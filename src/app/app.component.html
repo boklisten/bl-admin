@@ -1,15 +1,14 @@
 
-<app-header *ngIf="showContent()"></app-header>
+<app-header *ngIf="showContent"></app-header>
 
-<div class="container-fluid no-gutters" *ngIf="showContent()">
+<div class="container-fluid no-gutters" [ngClass]="{'bl-login-container': !showContent}" >
 	<div class="row no-gutters">
-        <div class="col-1">
+        <div class="col-1" *ngIf="showContent">
             <app-side-bar></app-side-bar>
         </div>
-        <div class="col-11">
+        <div [ngClass]="{'col-11': showContent, 'col-12': !showContent}">
             <router-outlet></router-outlet>
         </div>
 	</div>
 </div>
 
-<router-outlet *ngIf="!showContent()"></router-outlet>

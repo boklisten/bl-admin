@@ -12,11 +12,16 @@ export class AdminGuardService implements CanActivate {
 	}
 
 	public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-		if (this._authService.isAdmin()) {
-			return true;
+		if (this._authService.isLoggedIn()) {
+			if (this._authService.isAdmin()) {
+				return true;
+			} else {
+				this._userGuardService.redirectToPermissionDenied(state.url);
+			}
+		} else {
+			this._userGuardService.redirectToLogin(state.url);
 		}
 
-		this._userGuardService.redirectToLogin(state.url);
 		return false;
 	}
 }

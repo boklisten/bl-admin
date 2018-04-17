@@ -254,9 +254,9 @@
     angular2-jwt "^0.2.3"
     tslib "^1.7.1"
 
-"@wizardcoder/bl-login@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-login/-/bl-login-0.1.2.tgz#5ced1fb0b48666f4f133875fea54b6cba10257a5"
+"@wizardcoder/bl-login@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-login/-/bl-login-0.2.0.tgz#ab8b8a405378a4ccf0be765a5b9881afed08a9e3"
   dependencies:
     tslib "^1.7.1"
 

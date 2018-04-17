@@ -2,34 +2,56 @@ import {Injectable} from '@angular/core';
 import {UserPermission} from '@wizardcoder/bl-model';
 import {TokenService} from '@wizardcoder/bl-connect';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
+import {AuthLoginService} from '@wizardcoder/bl-login';
 
 @Injectable()
 export class AuthService {
 	public redirectUrl: string;
+	private _logout$: Subject<boolean>;
+	private _login$: Subject<boolean>;
 
-	constructor(private _tokenService: TokenService, private _router: Router) {
+	constructor(private _tokenService: TokenService, private _router: Router, private _authLoginService: AuthLoginService) {
+		this._logout$ = new Subject<boolean>();
+		this._login$ = new Subject<boolean>();
+
+		this._authLoginService.onLogin().subscribe(() => {
+			this._login$.next(true);
+		});
+
+		this._authLoginService.onLogout().subscribe(() => {
+			this._logout$.next(true);
+		});
 	}
 
-	public loggedIn(): boolean {
-		return (this._tokenService.haveAccessToken() && (this.isAdmin() || this.isEmployee()));
+	public isLoggedIn(): boolean {
+		return this._authLoginService.isLoggedIn();
 	}
 
 	public isAdmin(): boolean {
-		if (this._tokenService.haveAccessToken()) {
+		if (this._authLoginService.isLoggedIn()) {
 			return (this._tokenService.getAccessTokenBody().permission === 'admin');
 		}
 		return false;
 	}
 
 	public isEmployee(): boolean {
-		if (this._tokenService.haveAccessToken()) {
+		if (this._authLoginService.isLoggedIn()) {
 			return (this.isAdmin() || this._tokenService.getAccessTokenBody().permission === 'employee');
 		}
 		return false;
 	}
 
 	public logout() {
-		this._tokenService.removeTokens();
-		this._router.navigate(['/']);
+		this._authLoginService.logout('/auth/menu');
+	}
+
+	public onLogin(): Observable<boolean> {
+		return this._login$;
+	}
+
+	public onLogout(): Observable<boolean> {
+		return this._logout$;
 	}
 }

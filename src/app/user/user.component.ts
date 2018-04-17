@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
 	}
 
 	onEditDetails() {
-		this._router.navigate(['/auth/details/register']);
+		this._router.navigate(['/auth/register/detail']);
 	}
 
 }

@@ -1,3 +1,5 @@
+@import "../styles";
+
 .bl-content {
 	width: 100vw;
 	float: left;
@@ -5,4 +7,12 @@
 
 .container-fluid {
 	padding: 0;
+}
+
+.bl-login-container {
+	background-color: $primary-color;
+	height: 100vh;
+	width: 100vw;
+
+	padding: 40px;
 }
