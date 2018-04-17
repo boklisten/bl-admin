@@ -13,6 +13,7 @@ import { SideBarButtonComponent } from './side-bar/side-bar-button/side-bar-butt
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faUser, faUsers, faMoneyBillAlt} from '@fortawesome/free-solid-svg-icons';
+import {AuthModule} from './auth/auth.module';
 
 library.add(faUser, faUsers, faMoneyBillAlt);
 
@@ -27,10 +28,12 @@ library.add(faUser, faUsers, faMoneyBillAlt);
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
+		AuthModule,
 		LoginModule,
 		FontAwesomeModule
 	],
-	providers: [],
+	providers: [
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule {

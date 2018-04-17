@@ -1,6 +1,7 @@
 
-<app-header></app-header>
-<div class="container-fluid no-gutters">
+<app-header *ngIf="showContent()"></app-header>
+
+<div class="container-fluid no-gutters" *ngIf="showContent()">
 	<div class="row no-gutters">
         <div class="col-1">
             <app-side-bar></app-side-bar>
@@ -10,3 +11,5 @@
         </div>
 	</div>
 </div>
+
+<router-outlet *ngIf="!showContent()"></router-outlet>
