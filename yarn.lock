@@ -96,7 +96,7 @@
   optionalDependencies:
     node-sass "^4.7.2"
 
-"@angular/common@^5.0.0", "@angular/common@^5.2.0":
+"@angular/common@^5.2.0":
   version "5.2.10"
   resolved "https://registry.yarnpkg.com/@angular/common/-/common-5.2.10.tgz#828308df8505a31f219a6895ff91dbb178ebac98"
   dependencies:
@@ -111,13 +111,13 @@
     reflect-metadata "^0.1.2"
     tsickle "^0.27.2"
 
-"@angular/compiler@^5.0.0", "@angular/compiler@^5.2.0":
+"@angular/compiler@^5.2.0":
   version "5.2.10"
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-5.2.10.tgz#1cd9914436f0707957823531c4418ce5b7e6a130"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/core@^5.0.0", "@angular/core@^5.2.0":
+"@angular/core@^5.2.0":
   version "5.2.10"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-5.2.10.tgz#a6eba06cae7267efbd2666e3fa5e42b84c2261de"
   dependencies:
@@ -139,13 +139,13 @@
   version "5.2.10"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-5.2.10.tgz#5699af9d46033faccefeb21d4d168524d2180a8c"
 
-"@angular/platform-browser-dynamic@^5.0.0", "@angular/platform-browser-dynamic@^5.2.0":
+"@angular/platform-browser-dynamic@^5.2.0":
   version "5.2.10"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-5.2.10.tgz#bec4c0ca9fb16c34adee851caa187989953216ca"
   dependencies:
     tslib "^1.7.1"
 
-"@angular/platform-browser@^5.0.0", "@angular/platform-browser@^5.2.0":
+"@angular/platform-browser@^5.2.0":
   version "5.2.10"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-5.2.10.tgz#92883803de7362e635748a440dd5f6172fc2394a"
   dependencies:
@@ -157,18 +157,9 @@
   dependencies:
     tslib "^1.7.1"
 
-"@fortawesome/angular-fontawesome@fortawesome/angular-fontawesome":
+"@fortawesome/angular-fontawesome@^0.1.0-8":
   version "0.1.0-8"
-  resolved "https://codeload.github.com/fortawesome/angular-fontawesome/tar.gz/8f632df8d60fd0492389002c14d496565aabf487"
-  dependencies:
-    "@angular/common" "^5.0.0"
-    "@angular/compiler" "^5.0.0"
-    "@angular/core" "^5.0.0"
-    "@angular/platform-browser" "^5.0.0"
-    "@angular/platform-browser-dynamic" "^5.0.0"
-    core-js "^2.4.1"
-    rxjs "^5.5.2"
-    zone.js "^0.8.14"
+  resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.1.0-8.tgz#c2bcb0155781fa91282e146b3bdb7877231ea7f6"
 
 "@fortawesome/fontawesome-common-types@^0.2.0-6":
   version "0.2.0-6"
@@ -880,6 +871,10 @@ boom@5.x.x:
   resolved "https://registry.yarnpkg.com/boom/-/boom-5.2.0.tgz#5dd9da6ee3a5f302077436290cb717d3f4a54e02"
   dependencies:
     hoek "4.x.x"
+
+bootstrap@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0.tgz#ceb03842c145fcc1b9b4e15da2a05656ba68469a"
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -4486,7 +4481,13 @@ module-deps@^4.0.8:
     through2 "^2.0.0"
     xtend "^4.0.0"
 
-moment@^2.22.1:
+moment-es6@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/moment-es6/-/moment-es6-1.0.0.tgz#552fcf405d62565b0a1fe84e6c1e697ac79332df"
+  dependencies:
+    moment "*"
+
+moment@*, moment@^2.22.1:
   version "2.22.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.1.tgz#529a2e9bf973f259c9643d237fda84de3a26e8ad"
 
@@ -6074,7 +6075,7 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-rxjs@^5.5.2, rxjs@^5.5.6:
+rxjs@^5.5.6:
   version "5.5.10"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.5.10.tgz#fde02d7a614f6c8683d0d1957827f492e09db045"
   dependencies:
@@ -7700,6 +7701,6 @@ yn@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/yn/-/yn-2.0.0.tgz#e5adabc8acf408f6385fc76495684c88e6af689a"
 
-zone.js@^0.8.14, zone.js@^0.8.19:
+zone.js@^0.8.19:
   version "0.8.26"
   resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.26.tgz#7bdd72f7668c5a7ad6b118148b4ea39c59d08d2d"
