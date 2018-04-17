@@ -247,8 +247,8 @@
   resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
 
 "@wizardcoder/bl-connect@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-connect/-/bl-connect-0.5.3.tgz#0c925be301ab8f35f2e39890b887170d605c1078"
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-connect/-/bl-connect-0.5.4.tgz#52dc9dc1407509f2808951c20e42fc59c629b7e3"
   dependencies:
     angular-2-local-storage "^1.0.1"
     angular2-jwt "^0.2.3"

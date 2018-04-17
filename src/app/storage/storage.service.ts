@@ -8,18 +8,22 @@ export class StorageService {
 		this.onLogout();
 	}
 
-	private onLogout() {
-		this._authService.onLogout().subscribe(() => {
-			localStorage.clear();
-		});
-	}
-
 	public store(key: string, value: any): any {
 		localStorage.setItem(key, JSON.stringify(value));
 	}
 
 	public get(key: string): any {
-		return JSON.parse(localStorage.getItem(key));
+		if (localStorage.getItem(key) === null) {
+			return null;
+		} else {
+			return JSON.parse(localStorage.getItem(key));
+		}
+	}
+
+	private onLogout() {
+		this._authService.onLogout().subscribe(() => {
+			localStorage.clear();
+		});
 	}
 
 }

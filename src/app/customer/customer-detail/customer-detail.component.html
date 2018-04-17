@@ -1,0 +1,15 @@
+<div class="container" *ngIf="userDetail">
+    <div class="row">
+        <div class="col-12">
+			<h3>{{userDetail.name}}</h3>
+		</div>
+    </div>
+</div>
+
+<div class="container" *ngIf="!userDetail">
+	<div class="row">
+		<div class="col-12">
+			<div class="alert alert-warning">Could not find user</div>
+		</div>
+	</div>
+</div>

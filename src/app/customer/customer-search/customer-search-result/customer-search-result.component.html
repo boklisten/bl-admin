@@ -1,0 +1,25 @@
+
+<div class="alert alert-warning" *ngIf="!userDetails">No customers where found</div>
+
+<div class="row" *ngIf="userDetails">
+	<div class="col-12">
+		<div class="list-group">
+			<div class="list-group-item list-group-item-action" *ngFor="let userDetail of userDetails" (click)="onCustomerClick(userDetail)">
+				<div class="row">
+					<div class="col-3">
+						<fa-icon [icon]="'user'" class="mr-1"></fa-icon> {{userDetail.name}}
+					</div>
+					<div class="col-3">
+						<fa-icon [icon]="'at'" class="mr-1"></fa-icon> {{userDetail.email}}
+					</div>
+					<div class="col-3">
+						<fa-icon [icon]="'phone'" class="mr-1"></fa-icon> {{userDetail.phone}}
+					</div>
+					<div class="col-3">
+						<fa-icon [icon]="'address-card'" class="mr-1"></fa-icon> {{userDetail.address}} {{userDetail.postCode}} {{userDetail.postCity}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

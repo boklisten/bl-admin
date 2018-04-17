@@ -12,15 +12,16 @@ import {SideBarComponent} from './side-bar/side-bar.component';
 import { SideBarButtonComponent } from './side-bar/side-bar-button/side-bar-button.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow} from '@fortawesome/free-solid-svg-icons';
 import {AuthModule} from './auth/auth.module';
 import {UserModule} from './user/user.module';
 import {BranchStoreService} from './branch/branch-store.service';
 import {BranchModule} from './branch/branch.module';
 import {BranchGuardService} from './branch/branch-guard.service';
 import {StorageService} from './storage/storage.service';
+import {CustomerModule} from './customer/customer.module';
 
-library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow);
+import {faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt, faPhone, faAddressCard} from '@fortawesome/free-solid-svg-icons';
+library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt, faPhone, faAddressCard);
 
 @NgModule({
 	declarations: [
@@ -37,7 +38,8 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		LoginModule,
 		UserModule,
 		BranchModule,
-		FontAwesomeModule
+		FontAwesomeModule,
+		CustomerModule
 	],
 	providers: [
 		AuthLoginService,

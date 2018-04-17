@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class SideBarButtonComponent implements OnInit {
 	@Input() icon: string[];
 	@Input() title: string;
+	@Input() link: string;
 
 	constructor() {
 	}
