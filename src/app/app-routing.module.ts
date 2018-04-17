@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {EmployeeGuardService} from './auth/guards/employee-guard.service';
+import {BranchGuardService} from './branch/branch-guard.service';
 
 const routes: Routes = [
 	{
@@ -11,7 +12,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'home',
-		canActivate: [EmployeeGuardService],
+		canActivate: [EmployeeGuardService, BranchGuardService],
 		component: HomeComponent
 	}
 ];

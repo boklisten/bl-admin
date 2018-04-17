@@ -4,9 +4,14 @@
             <img src="../../assets/img/boklisten_logo_v2_icon_white_lg.png" height="40" width="40">
 			<b class="bl-logo-text">bladmin</b>
         </div>
-		<div class="col-1">
-			<div class="row">
-				<div class="col-12">
+		<div class="col-3">
+			<div class="row align-items-center">
+				<div class="col-8">
+					<div class="bl-header-location bl-header-button" *ngIf="currentBranch" routerLink="/branch/select">
+						<fa-icon [icon]="'location-arrow'"></fa-icon> {{currentBranch.name}}
+					</div>
+				</div>
+				<div class="col-4">
 					<fa-icon [icon]="'user-circle'" size="2x" class="bl-header-button" routerLink="/user"></fa-icon>
 				</div>
 			</div>

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {AuthService} from './auth/auth.service';
+import {BranchStoreService} from './branch/branch-store.service';
 
 @Component({
 	selector: 'app-root',
@@ -10,7 +11,7 @@ export class AppComponent {
 	title = 'app';
 	public showContent: boolean;
 
-	constructor(private _authService: AuthService) {
+	constructor(private _authService: AuthService, private _branchStoreService: BranchStoreService) {
 		this.showContent = false;
 
 		this._authService.onLogout().subscribe(() => {
