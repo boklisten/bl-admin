@@ -1,0 +1,19 @@
+@import "../../styles";
+
+.bl-header {
+	width: 100vm;
+	background-color: $primary-color;
+	height: 50px;
+	cursor: pointer;
+}
+
+.bl-logo-text {
+	margin-left: 3px;
+	color: #ffffff;
+	font-family: "Courier New";
+	cursor: pointer;
+}
+
+.bl-logo-text:hover {
+	text-decoration: underline;
+}
