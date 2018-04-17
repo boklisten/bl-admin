@@ -6,7 +6,7 @@ import {EmployeeGuardService} from './auth/guards/employee-guard.service';
 const routes: Routes = [
 	{
 		path: '',
-		redirectTo: 'home',
+		redirectTo: '/auth/login',
 		pathMatch: 'full'
 	},
 	{

@@ -4,7 +4,6 @@
 	width: 100vm;
 	background-color: $primary-color;
 	height: 50px;
-	cursor: pointer;
 }
 
 .bl-logo-text {
@@ -16,4 +15,14 @@
 
 .bl-logo-text:hover {
 	text-decoration: underline;
+}
+
+.bl-header-button {
+	cursor: pointer;
+}
+
+.bl-header-button:hover {
+	color: #ffffff;
+	text-decoration: underline;
+	border-bottom: 2px solid #ffffff;
 }

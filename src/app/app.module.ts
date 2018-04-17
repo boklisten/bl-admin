@@ -12,10 +12,11 @@ import {SideBarComponent} from './side-bar/side-bar.component';
 import { SideBarButtonComponent } from './side-bar/side-bar-button/side-bar-button.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {faUser, faUsers, faMoneyBillAlt} from '@fortawesome/free-solid-svg-icons';
+import {faUser, faUsers, faMoneyBillAlt, faUserCircle} from '@fortawesome/free-solid-svg-icons';
 import {AuthModule} from './auth/auth.module';
+import {UserModule} from './user/user.module';
 
-library.add(faUser, faUsers, faMoneyBillAlt);
+library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle);
 
 @NgModule({
 	declarations: [
@@ -30,6 +31,7 @@ library.add(faUser, faUsers, faMoneyBillAlt);
 		AppRoutingModule,
 		AuthModule,
 		LoginModule,
+		UserModule,
 		FontAwesomeModule
 	],
 	providers: [
