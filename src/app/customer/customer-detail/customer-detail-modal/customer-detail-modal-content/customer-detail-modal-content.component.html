@@ -1,0 +1,58 @@
+
+
+<div *ngIf="showContent">
+	<div class="modal-header">
+		<h4 class="modal-title">{{userDetail.name}}</h4>
+	</div>
+
+	<div class="modal-body">
+        <div class="container" *ngIf="userDetail">
+            <div class="row">
+                <div class="col-12" [formGroup]="userDetailForm">
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="'user'"></fa-icon>
+                            </span>
+                        </div>
+                        <input id="name" class="form-control" [formControlName]="'name'" placeholder="Full name">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="'phone'"></fa-icon>
+                            </span>
+                        </div>
+                        <input id="phone" class="form-control" [formControlName]="'phone'" placeholder="Phone">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="'address-card'"></fa-icon>
+                            </span>
+                        </div>
+                        <input id="address" class="form-control" [formControlName]="'address'" placeholder="Address">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="'address-card'"></fa-icon>
+                            </span>
+                        </div>
+                        <input id="postCode" class="form-control" [formControlName]="'postCode'" placeholder="Post code">
+                        <input id="postCity" class="form-control" [formControlName]="'postCity'" placeholder="Post city">
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+
+	<div class="modal-footer">
+		<button class="btn btn-outline-success btn-block">Update details</button>
+		<button class="btn btn-outline-danger" (click)="activeModal.close('close click')">Close</button>
+	</div>
+</div>

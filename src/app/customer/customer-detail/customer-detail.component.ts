@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Params} from '@angular/router';
 import {UserDetailService} from '@wizardcoder/bl-connect';
 import {BlApiError, UserDetail} from '@wizardcoder/bl-model';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {V} from '@angular/core/src/render3';
+import {CustomerDetailModalComponent} from './customer-detail-modal/customer-detail-modal.component';
 
 @Component({
 	selector: 'app-customer-detail',
@@ -11,6 +14,7 @@ import {BlApiError, UserDetail} from '@wizardcoder/bl-model';
 export class CustomerDetailComponent implements OnInit {
 	private _currentId: string;
 	public userDetail: UserDetail;
+	public showUserDetail: boolean;
 
 	constructor(private _route: ActivatedRoute, private _userDetailService: UserDetailService) {
 
@@ -30,4 +34,7 @@ export class CustomerDetailComponent implements OnInit {
 		});
 	}
 
+	public onShowUserDetail() {
+		this.showUserDetail = !this.showUserDetail;
+	}
 }

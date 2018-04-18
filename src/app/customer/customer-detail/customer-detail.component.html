@@ -1,11 +1,3 @@
-<div class="container" *ngIf="userDetail">
-    <div class="row">
-        <div class="col-12">
-			<h3>{{userDetail.name}}</h3>
-		</div>
-    </div>
-</div>
-
 <div class="container" *ngIf="!userDetail">
 	<div class="row">
 		<div class="col-12">
@@ -13,3 +5,14 @@
 		</div>
 	</div>
 </div>
+
+<div class="container" *ngIf="userDetail">
+	<div class="row">
+		<div class="col-12">
+		</div>
+	</div>
+    <div class="row">
+	</div>
+</div>
+
+<app-customer-detail-modal [userDetail]="userDetail"></app-customer-detail-modal>
