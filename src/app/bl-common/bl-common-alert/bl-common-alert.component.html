@@ -12,6 +12,10 @@
 		<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon> {{text}}
 	</span>
 
+	<span *ngIf="type === 'secondary'">
+		{{text}}
+	</span>
+
 	<span *ngIf="desc">{{desc}}</span>
 
 </ngb-alert>

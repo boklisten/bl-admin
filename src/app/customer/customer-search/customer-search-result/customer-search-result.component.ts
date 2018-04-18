@@ -14,6 +14,7 @@ export class CustomerSearchResultComponent implements OnInit {
 	public warningText: string;
 
 	constructor(private _customerSearchService: CustomerSearchService, private _router: Router) {
+
 		this._customerSearchService.onSearchResult().subscribe((userDetails: UserDetail[]) => {
 			this.warningText = null;
 			this.userDetails = userDetails;

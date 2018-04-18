@@ -17,9 +17,13 @@ export class CustomerDetailComponent implements OnInit {
 	public showUserDetail: boolean;
 	private _currentId: string;
 	public customerDetailUpdated: boolean;
+	public wait: boolean;
+	public warningText: string;
 
 	constructor(private _route: ActivatedRoute, private _customerDetailService: CustomerDetailService) {
 		this.customerDetailUpdated = false;
+		this.wait = false;
+		this.warningText = null;
 	}
 
 	ngOnInit() {
@@ -33,6 +37,8 @@ export class CustomerDetailComponent implements OnInit {
 
 		this._customerDetailService.onCustomerDetailChange().subscribe((customerDetail: UserDetail) => {
 			this.customerDetail = customerDetail;
+			this.warningText = null;
+			this.wait = false;
 		});
 	}
 
@@ -41,9 +47,12 @@ export class CustomerDetailComponent implements OnInit {
 	}
 
 	private getUserDetails() {
+		this.wait = true;
+		this.warningText = null;
 		this._customerDetailService.fetchCustomerDetail(this._currentId).then(() => {
-
+			this.wait = false;
 		}).catch(() => {
+			this.warningText = 'could not get customer details';
 			console.log('customerDetailComponent: could not fetch customerDetail');
 		});
 	}

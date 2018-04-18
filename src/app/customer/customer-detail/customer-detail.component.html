@@ -1,15 +1,18 @@
-<div class="container" *ngIf="!customerDetail">
+
+
+<div class="container-fluid mt-2">
 	<div class="row">
 		<div class="col-12">
-			<div class="alert alert-warning">Could not find user</div>
+			<app-bl-common-alert [type]="'warning'" *ngIf="warningText" [text]="warningText" (exit)="warningText = null"></app-bl-common-alert>
+			<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
 		</div>
 	</div>
-</div>
-
-<div class="container-fluid mt-2" *ngIf="customerDetail">
-	<div class="row">
+	<div class="row" *ngIf="customerDetail">
 		<div class="col-lg-3 col-6">
 			<app-customer-detail-card [customerDetail]="customerDetail"></app-customer-detail-card>
+		</div>
+		<div class="col-lg-3">
+			<app-customer-order-list></app-customer-order-list>
 		</div>
 	</div>
 </div>

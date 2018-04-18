@@ -16,6 +16,7 @@ import {CustomerDetailService} from './customer-detail/customer-detail.service';
 import {BlCommonModule} from '../bl-common/bl-common.module';
 import { CustomerCurrentComponent } from './customer-current/customer-current.component';
 import { CustomerDetailPopoverComponent } from './customer-detail/customer-detail-popover/customer-detail-popover.component';
+import {OrderModule} from '../order/order.module';
 
 @NgModule({
 	imports: [
@@ -26,7 +27,8 @@ import { CustomerDetailPopoverComponent } from './customer-detail/customer-detai
 		FontAwesomeModule,
 		NgbModalModule,
 		BlCommonModule,
-		NgbPopoverModule
+		NgbPopoverModule,
+		OrderModule
 	],
 	providers: [
 		CustomerSearchService,

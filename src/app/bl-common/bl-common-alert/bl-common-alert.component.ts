@@ -7,7 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class BlCommonAlertComponent implements OnInit {
 
-	@Input() type: "warning" | "success" | "danger";
+	@Input() type: "warning" | "success" | "danger" | "secondary";
 	@Input() text: string;
 	@Input() desc: string;
 	@Output() exit: EventEmitter<boolean>;
@@ -30,6 +30,10 @@ export class BlCommonAlertComponent implements OnInit {
 					break;
 				case 'danger':
 					this.showDanger();
+					break;
+				case 'secondary':
+					this.showSecondary();
+					break;
 			}
 			this.showAlert = true;
 		}
@@ -40,6 +44,10 @@ export class BlCommonAlertComponent implements OnInit {
 	}
 
 	showDanger() {
+
+	}
+
+	showSecondary() {
 
 	}
 
