@@ -5,6 +5,7 @@ import {BlApiError, UserDetail} from '@wizardcoder/bl-model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {V} from '@angular/core/src/render3';
 import {CustomerDetailModalComponent} from './customer-detail-modal/customer-detail-modal.component';
+import {CustomerDetailService} from './customer-detail.service';
 
 @Component({
 	selector: 'app-customer-detail',
@@ -12,11 +13,11 @@ import {CustomerDetailModalComponent} from './customer-detail-modal/customer-det
 	styleUrls: ['./customer-detail.component.scss']
 })
 export class CustomerDetailComponent implements OnInit {
-	private _currentId: string;
-	public userDetail: UserDetail;
+	public customerDetail: UserDetail;
 	public showUserDetail: boolean;
+	private _currentId: string;
 
-	constructor(private _route: ActivatedRoute, private _userDetailService: UserDetailService) {
+	constructor(private _route: ActivatedRoute, private _customerDetailService: CustomerDetailService) {
 
 	}
 
@@ -25,16 +26,24 @@ export class CustomerDetailComponent implements OnInit {
 			this._currentId = params['id'];
 
 			if (this._currentId) {
-				this._userDetailService.getById(this._currentId).then((userDetail: UserDetail) => {
-					this.userDetail = userDetail;
-				}).catch((blApiError: BlApiError) => {
-					console.log('customerDetailComponent: could not get userdetail', blApiError);
-				});
+				this.getUserDetails();
 			}
+		});
+
+		this._customerDetailService.onCustomerDetailChange().subscribe((customerDetail: UserDetail) => {
+			this.customerDetail = customerDetail;
 		});
 	}
 
-	public onShowUserDetail() {
-		this.showUserDetail = !this.showUserDetail;
+	public onUserDetailUpdated() {
+		this.getUserDetails();
+	}
+
+	private getUserDetails() {
+		this._customerDetailService.fetchCustomerDetail(this._currentId).then(() => {
+
+		}).catch(() => {
+			console.log('customerDetailComponent: could not fetch customerDetail');
+		})
 	}
 }

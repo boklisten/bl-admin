@@ -11,6 +11,8 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { CustomerDetailModalComponent} from './customer-detail/customer-detail-modal/customer-detail-modal.component';
 import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import {CustomerDetailModalContentComponent} from './customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component';
+import { CustomerDetailCardComponent } from './customer-detail/customer-detail-card/customer-detail-card.component';
+import {CustomerDetailService} from './customer-detail/customer-detail.service';
 
 @NgModule({
 	imports: [
@@ -22,7 +24,8 @@ import {CustomerDetailModalContentComponent} from './customer-detail/customer-de
 		NgbModalModule
 	],
 	providers: [
-		CustomerSearchService
+		CustomerSearchService,
+		CustomerDetailService
 	],
 	declarations: [
 		CustomerSearchComponent,
@@ -30,7 +33,8 @@ import {CustomerDetailModalContentComponent} from './customer-detail/customer-de
 		CustomerDetailComponent,
 		CustomerDetailModalComponent,
 		CustomerDetailModalComponent,
-		CustomerDetailModalContentComponent
+		CustomerDetailModalContentComponent,
+		CustomerDetailCardComponent
 	],
 	entryComponents: [CustomerDetailModalContentComponent]
 })

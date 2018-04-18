@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!userDetail">
+<div class="container" *ngIf="!customerDetail">
 	<div class="row">
 		<div class="col-12">
 			<div class="alert alert-warning">Could not find user</div>
@@ -6,13 +6,11 @@
 	</div>
 </div>
 
-<div class="container" *ngIf="userDetail">
+<div class="container mt-2" *ngIf="customerDetail">
 	<div class="row">
-		<div class="col-12">
+		<div class="col-6">
+			<app-customer-detail-card [customerDetail]="customerDetail"></app-customer-detail-card>
 		</div>
-	</div>
-    <div class="row">
 	</div>
 </div>
 
-<app-customer-detail-modal [userDetail]="userDetail"></app-customer-detail-modal>

@@ -1,7 +1,13 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserDetail} from '@wizardcoder/bl-model';
+import {BlApiError, UserDetail} from '@wizardcoder/bl-model';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import {UserDetailService} from '@wizardcoder/bl-connect';
+import {CustomerDetailService} from '../../customer-detail.service';
+
+interface UserDetailPatch {
+	[key: string]: any;
+}
 
 @Component({
 	selector: 'app-customer-detail-modal-content',
@@ -9,18 +15,15 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 	styleUrls: ['./customer-detail-modal-content.component.scss']
 })
 export class CustomerDetailModalContentComponent implements OnInit {
-
 	public userDetailForm: FormGroup;
 	public showContent = false;
 	private _userDetail: UserDetail;
 
 	@Input() set userDetail(userDetail: UserDetail) {
-		console.log('we got the user detail', userDetail);
 		this._userDetail = userDetail;
 	}
 
-
-	constructor(public activeModal: NgbActiveModal, private _changeDetectorRef: ChangeDetectorRef) {
+	constructor(public activeModal: NgbActiveModal, private _customerDetailService: CustomerDetailService) {
 		this.showContent = false;
 	}
 
@@ -32,7 +35,6 @@ export class CustomerDetailModalContentComponent implements OnInit {
 		return this._userDetail;
 	}
 
-
 	private createUserDetailForm() {
 		this.userDetailForm = new FormGroup({
 			'name': new FormControl(this.userDetail.name, [Validators.minLength(2)]),
@@ -42,6 +44,33 @@ export class CustomerDetailModalContentComponent implements OnInit {
 			'postCity': new FormControl(this.userDetail.postCity),
 			'country': new FormControl(this.userDetail.country),
 		});
+
 		this.showContent = true;
+	}
+
+	public onUserDetailUpdate() {
+		const patchedValues = this.getPatchedValues();
+
+		if (patchedValues !== {} || patchedValues !== null) {
+			this._customerDetailService.updateCustomerDetail(patchedValues).then((updatedUserDetail: UserDetail) => {
+				this.activeModal.close('user details updated');
+			}).catch((blApiError: BlApiError) => {
+				console.log('customerDetailModalContentComponent: could not update userDetail');
+			});
+		} else {
+			this.activeModal.close('no updates detected');
+		}
+	}
+
+	private getPatchedValues(): any {
+		const userDetailPatch: UserDetailPatch = {};
+
+		for (const key of Object.keys(this.userDetailForm.controls)) {
+			if (this.userDetailForm.controls[key].dirty) {
+				userDetailPatch[key] = this.userDetailForm.controls[key].value;
+			}
+		}
+
+		return userDetailPatch;
 	}
 }

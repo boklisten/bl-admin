@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserDetailService} from '@wizardcoder/bl-connect';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CustomerDetailModalContentComponent} from './customer-detail-modal-content/customer-detail-modal-content.component';
+import {CustomerDetailService} from '../customer-detail.service';
 
 @Component({
 	selector: 'app-customer-detail-modal',
@@ -12,13 +13,9 @@ import {CustomerDetailModalContentComponent} from './customer-detail-modal-conte
 })
 export class CustomerDetailModalComponent implements OnInit {
 
-	public userDetailForm: FormGroup;
+	@Input() customerDetail: UserDetail;
 
-	@Input() userDetail: UserDetail;
-	@Output() exit: EventEmitter<boolean>;
-
-	constructor(private _modalService: NgbModal, private _userDetailService: UserDetailService) {
-		this.exit = new EventEmitter<boolean>();
+	constructor(private _modalService: NgbModal) {
 	}
 
 	ngOnInit() {
@@ -26,13 +23,11 @@ export class CustomerDetailModalComponent implements OnInit {
 
 	public onShowModal() {
 		setTimeout(() => {
-			console.log('opening modal');
 			const modalRef = this._modalService.open(CustomerDetailModalContentComponent);
-			console.log('trying to add details');
-			modalRef.componentInstance.userDetail = this.userDetail;
-			console.log('added user detail');
+			modalRef.componentInstance.userDetail = this.customerDetail;
 		});
 	}
+
 
 
 }
