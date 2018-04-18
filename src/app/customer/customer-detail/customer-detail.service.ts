@@ -46,4 +46,8 @@ export class CustomerDetailService {
 		this._customerDetailChange$.next(this._currentCustomerDetail);
 	}
 
+	public clearCustomerDetail() {
+		this._currentCustomerDetail = null;
+	}
+
 }

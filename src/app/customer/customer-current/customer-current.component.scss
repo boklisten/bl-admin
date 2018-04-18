@@ -1,0 +1,16 @@
+
+@import "../../../styles";
+
+.bl-customer-current {
+	height: 30px;
+	color: #ffffff;
+	background-color: $secondary-color;
+}
+
+.bl-customer-current-details {
+	cursor: pointer;
+}
+
+.bl-customer-current-details:hover {
+	border-bottom: $link-border;
+}

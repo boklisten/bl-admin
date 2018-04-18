@@ -1,0 +1,29 @@
+<div class="container-fluid" *ngIf="customerDetail">
+    <div class="row bl-customer-current justify-content-center align-items-center">
+        <div class="col-12 text-center"
+			 [ngbPopover]="customerDetailPopover"
+			 placement="bottom"
+			 #customerDetailPopoverRef="ngbPopover"
+			 (click)="setCurrentPopoverOpen(customerDetailPopoverRef)">
+			<span class="bl-customer-current-details">
+				<fa-icon [icon]="'user'" class="ml-2 mr-2"></fa-icon> {{customerDetail.email}} | {{customerDetail.name}}
+			</span>
+        </div>
+    </div>
+</div>
+
+<ng-template #customerDetailPopover>
+	<app-customer-detail-popover></app-customer-detail-popover>
+	<div class="row mt-2">
+		<div class="col-6">
+			<button class="btn btn-outline-secondary btn-block btn-sm" (click)="onChangeCustomerDetail()">
+				<fa-icon [icon]="'user'"></fa-icon><fa-icon [icon]="'search'"></fa-icon>
+			</button>
+		</div>
+		<div class="col-6">
+			<button class="btn btn-outline-secondary btn-block btn-sm" (click)="onViewCustomerDetail()">
+				<fa-icon [icon]="'address-card'"></fa-icon>
+			</button>
+		</div>
+	</div>
+</ng-template>

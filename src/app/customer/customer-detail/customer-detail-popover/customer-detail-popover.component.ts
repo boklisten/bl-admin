@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
+import {CustomerDetailService} from '../customer-detail.service';
 import {UserDetail} from '@wizardcoder/bl-model';
-import {CustomerDetailService} from '../customer/customer-detail/customer-detail.service';
 
 @Component({
-	selector: 'app-side-bar',
-	templateUrl: './side-bar.component.html',
-	styleUrls: ['./side-bar.component.scss']
+	selector: 'app-customer-detail-popover',
+	templateUrl: './customer-detail-popover.component.html',
+	styleUrls: ['./customer-detail-popover.component.scss']
 })
-export class SideBarComponent implements OnInit {
+export class CustomerDetailPopoverComponent implements OnInit {
 	public customerDetail: UserDetail;
 
 	constructor(private _customerDetailService: CustomerDetailService) {

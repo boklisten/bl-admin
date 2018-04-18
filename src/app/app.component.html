@@ -2,6 +2,7 @@
 <app-header *ngIf="showContent"></app-header>
 
 <div class="container-fluid no-gutters" [ngClass]="{'bl-login-container': !showContent}" >
+	<app-customer-current *ngIf="showContent"></app-customer-current>
 	<div class="row no-gutters">
         <div class="col-1" *ngIf="showContent">
             <app-side-bar></app-side-bar>

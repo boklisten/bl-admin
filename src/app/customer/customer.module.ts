@@ -9,11 +9,13 @@ import { CustomerSearchResultComponent } from './customer-search/customer-search
 import {CustomerSearchService} from './customer-search/customer-search.service';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerDetailModalComponent} from './customer-detail/customer-detail-modal/customer-detail-modal.component';
-import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import {CustomerDetailModalContentComponent} from './customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component';
 import { CustomerDetailCardComponent } from './customer-detail/customer-detail-card/customer-detail-card.component';
 import {CustomerDetailService} from './customer-detail/customer-detail.service';
 import {BlCommonModule} from '../bl-common/bl-common.module';
+import { CustomerCurrentComponent } from './customer-current/customer-current.component';
+import { CustomerDetailPopoverComponent } from './customer-detail/customer-detail-popover/customer-detail-popover.component';
 
 @NgModule({
 	imports: [
@@ -23,7 +25,8 @@ import {BlCommonModule} from '../bl-common/bl-common.module';
 		CustomerRoutingModule,
 		FontAwesomeModule,
 		NgbModalModule,
-		BlCommonModule
+		BlCommonModule,
+		NgbPopoverModule
 	],
 	providers: [
 		CustomerSearchService,
@@ -36,7 +39,13 @@ import {BlCommonModule} from '../bl-common/bl-common.module';
 		CustomerDetailModalComponent,
 		CustomerDetailModalComponent,
 		CustomerDetailModalContentComponent,
-		CustomerDetailCardComponent
+		CustomerDetailCardComponent,
+		CustomerCurrentComponent,
+		CustomerDetailPopoverComponent
+	],
+	exports: [
+		CustomerCurrentComponent,
+		CustomerDetailPopoverComponent
 	],
 	entryComponents: [CustomerDetailModalContentComponent]
 })
