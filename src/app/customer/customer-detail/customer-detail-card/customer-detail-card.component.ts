@@ -8,11 +8,17 @@ import {UserDetail} from '@wizardcoder/bl-model';
 })
 export class CustomerDetailCardComponent implements OnInit {
 	@Input() customerDetail: UserDetail;
+	public customerDetailUpdated: boolean;
 
 	constructor() {
+		this.customerDetailUpdated = false;
 	}
 
 	ngOnInit() {
+	}
+
+	onCustomerDetailUpdated() {
+		this.customerDetailUpdated = true;
 	}
 
 }

@@ -52,7 +52,13 @@
 	</div>
 
 	<div class="modal-footer">
-		<button class="btn btn-outline-success btn-block" (click)="onUserDetailUpdate()">Update details</button>
-		<button class="btn btn-outline-danger" (click)="activeModal.close('close click')">Close</button>
+		<div class="row">
+			<div class="col-8">
+				<app-bl-common-update-button [wait]="wait" (click)="onUserDetailUpdate()"></app-bl-common-update-button>
+			</div>
+			<div class="col-4">
+				<button class="btn btn-outline-danger btn-block" (click)="activeModal.close('close click')">Close</button>
+			</div>
+		</div>
 	</div>
 </div>

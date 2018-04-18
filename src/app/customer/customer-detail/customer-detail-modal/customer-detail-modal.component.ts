@@ -14,8 +14,10 @@ import {CustomerDetailService} from '../customer-detail.service';
 export class CustomerDetailModalComponent implements OnInit {
 
 	@Input() customerDetail: UserDetail;
+	@Output() updated: EventEmitter<boolean>;
 
 	constructor(private _modalService: NgbModal) {
+		this.updated = new EventEmitter<boolean>();
 	}
 
 	ngOnInit() {
@@ -25,9 +27,9 @@ export class CustomerDetailModalComponent implements OnInit {
 		setTimeout(() => {
 			const modalRef = this._modalService.open(CustomerDetailModalContentComponent);
 			modalRef.componentInstance.userDetail = this.customerDetail;
+			modalRef.componentInstance.updated.subscribe(() => {
+				this.updated.emit(true);
+			});
 		});
 	}
-
-
-
 }

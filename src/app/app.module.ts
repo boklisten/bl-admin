@@ -20,8 +20,10 @@ import {BranchGuardService} from './branch/branch-guard.service';
 import {StorageService} from './storage/storage.service';
 import {CustomerModule} from './customer/customer.module';
 
-import {faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt, faPhone, faAddressCard} from '@fortawesome/free-solid-svg-icons';
-library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt, faPhone, faAddressCard);
+import {faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt, faPhone,
+	faAddressCard, faQrcode} from '@fortawesome/free-solid-svg-icons';
+import {BlCommonModule} from './bl-common/bl-common.module';
+library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt, faPhone, faAddressCard, faQrcode);
 
 @NgModule({
 	declarations: [
@@ -39,7 +41,8 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		UserModule,
 		BranchModule,
 		FontAwesomeModule,
-		CustomerModule
+		CustomerModule,
+		BlCommonModule
 	],
 	providers: [
 		AuthLoginService,

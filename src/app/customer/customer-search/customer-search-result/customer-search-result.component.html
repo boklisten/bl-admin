@@ -1,10 +1,9 @@
 
-<div class="alert alert-warning" *ngIf="!userDetails">No customers where found</div>
-
+<app-bl-common-alert [type]="'warning'" [text]="warningText" *ngIf="warningText" (exit)="warningText = null"></app-bl-common-alert>
 <div class="row" *ngIf="userDetails">
 	<div class="col-12">
 		<div class="list-group">
-			<div class="list-group-item list-group-item-action" *ngFor="let userDetail of userDetails" (click)="onCustomerClick(userDetail)">
+			<div class="list-group-item list-group-item-action bl-customer-search-result-item" *ngFor="let userDetail of userDetails" (click)="onCustomerClick(userDetail)">
 				<div class="row">
 					<div class="col-3">
 						<fa-icon [icon]="'user'" class="mr-1"></fa-icon> {{userDetail.name}}

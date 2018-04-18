@@ -16,9 +16,10 @@ export class CustomerDetailComponent implements OnInit {
 	public customerDetail: UserDetail;
 	public showUserDetail: boolean;
 	private _currentId: string;
+	public customerDetailUpdated: boolean;
 
 	constructor(private _route: ActivatedRoute, private _customerDetailService: CustomerDetailService) {
-
+		this.customerDetailUpdated = false;
 	}
 
 	ngOnInit() {
@@ -36,7 +37,7 @@ export class CustomerDetailComponent implements OnInit {
 	}
 
 	public onUserDetailUpdated() {
-		this.getUserDetails();
+		this.customerDetailUpdated = true;
 	}
 
 	private getUserDetails() {
@@ -44,6 +45,6 @@ export class CustomerDetailComponent implements OnInit {
 
 		}).catch(() => {
 			console.log('customerDetailComponent: could not fetch customerDetail');
-		})
+		});
 	}
 }

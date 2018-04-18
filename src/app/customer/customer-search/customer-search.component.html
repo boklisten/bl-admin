@@ -3,9 +3,7 @@
         <div class="col-6">
 			<div class="input-group input-group-lg mb-3">
 				<input type="text" class="form-control" placeholder="customer search" [(ngModel)]="searchTerm" (keyup)="onSearch()">
-				<div class="input-group-append">
-					<button class="btn btn-outline-secondary" type="button" (click)="onSearch()"><fa-icon [icon]="'search'"></fa-icon></button>
-				</div>
+				<app-bl-common-update-button class="input-group-append" [icon]="'search'" [wait]="wait" (click)="onSearch()"></app-bl-common-update-button>
 			</div>
         </div>
     </div>

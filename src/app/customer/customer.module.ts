@@ -13,6 +13,7 @@ import {NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import {CustomerDetailModalContentComponent} from './customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component';
 import { CustomerDetailCardComponent } from './customer-detail/customer-detail-card/customer-detail-card.component';
 import {CustomerDetailService} from './customer-detail/customer-detail.service';
+import {BlCommonModule} from '../bl-common/bl-common.module';
 
 @NgModule({
 	imports: [
@@ -21,7 +22,8 @@ import {CustomerDetailService} from './customer-detail/customer-detail.service';
 		ReactiveFormsModule,
 		CustomerRoutingModule,
 		FontAwesomeModule,
-		NgbModalModule
+		NgbModalModule,
+		BlCommonModule
 	],
 	providers: [
 		CustomerSearchService,

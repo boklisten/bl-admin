@@ -3,6 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{customerDetail.name}}</h5>
+				<app-bl-common-alert [type]="'success'" [text]="'user details was updated'" *ngIf="customerDetailUpdated" (exit)="customerDetailUpdated = false"></app-bl-common-alert>
             </div>
 			<ul class="list-group list-group-flush">
 				<li class="list-group-item">
@@ -20,9 +21,12 @@
 				<li class="list-group-item">
 					<fa-icon [icon]="'birthday-cake'" class="mr-2"></fa-icon> {{customerDetail.dob}}
 				</li>
+				<li class="list-group-item">
+					<fa-icon [icon]="'qrcode'" class="mr-2"></fa-icon> {{customerDetail.id}}
+				</li>
 			</ul>
             <div class="card-footer">
-                <app-customer-detail-modal [customerDetail]="customerDetail"></app-customer-detail-modal>
+                <app-customer-detail-modal [customerDetail]="customerDetail" (updated)="onCustomerDetailUpdated()"></app-customer-detail-modal>
             </div>
         </div>
 	</div>

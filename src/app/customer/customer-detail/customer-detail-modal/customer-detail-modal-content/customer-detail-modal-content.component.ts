@@ -19,12 +19,17 @@ export class CustomerDetailModalContentComponent implements OnInit {
 	public showContent = false;
 	private _userDetail: UserDetail;
 
+	public wait: boolean;
+
 	@Input() set userDetail(userDetail: UserDetail) {
 		this._userDetail = userDetail;
 	}
 
+	@Output() updated: EventEmitter<boolean>;
+
 	constructor(public activeModal: NgbActiveModal, private _customerDetailService: CustomerDetailService) {
 		this.showContent = false;
+		this.updated = new EventEmitter<boolean>();
 	}
 
 	ngOnInit() {
@@ -51,14 +56,19 @@ export class CustomerDetailModalContentComponent implements OnInit {
 	public onUserDetailUpdate() {
 		const patchedValues = this.getPatchedValues();
 
-		if (patchedValues !== {} || patchedValues !== null) {
+		if (patchedValues !== {} && patchedValues !== null && Object.keys(patchedValues).length !== 0) {
+			this.wait = true;
 			this._customerDetailService.updateCustomerDetail(patchedValues).then((updatedUserDetail: UserDetail) => {
+				this.updated.emit(true);
 				this.activeModal.close('user details updated');
+				this.wait = false;
 			}).catch((blApiError: BlApiError) => {
 				console.log('customerDetailModalContentComponent: could not update userDetail');
+				this.wait = false;
 			});
 		} else {
 			this.activeModal.close('no updates detected');
+			this.wait = false;
 		}
 	}
 

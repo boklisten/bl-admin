@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {UserDetailService} from '@wizardcoder/bl-connect';
 import {Subject} from 'rxjs/Subject';
-import {UserDetail} from '@wizardcoder/bl-model';
+import {BlApiError, BlApiNotFoundError, UserDetail} from '@wizardcoder/bl-model';
 import {Observable} from 'rxjs/Observable';
 import {StorageService} from '../../storage/storage.service';
 
 @Injectable()
 export class CustomerSearchService {
+	private _searchResultError$: Subject<any>;
 	private _searchResult$: Subject<UserDetail[]>;
 	private _currentSearchTerm: string;
 	private _searchTermStorageName: string;
@@ -14,6 +15,7 @@ export class CustomerSearchService {
 	constructor(private _userDetailService: UserDetailService, private _storageService: StorageService) {
 		this._searchTermStorageName = 'bl-customer-search-term';
 		this._searchResult$ = new Subject<UserDetail[]>();
+		this._searchResultError$ = new Subject<any>();
 
 		if (this._storageService.get(this._searchTermStorageName)) {
 			this._currentSearchTerm = this._storageService.get(this._searchTermStorageName);
@@ -25,8 +27,9 @@ export class CustomerSearchService {
 
 		this._userDetailService.get('?s=' + searchTerm).then((userDetails: UserDetail[]) => {
 			this._searchResult$.next(userDetails);
-		}).catch(() => {
-			console.log('userDetailService: there was an error when getting userdetails');
+		}).catch((blApiError: BlApiError) => {
+			console.log('userDetailService: there was an error when getting customer details', blApiError);
+			this._searchResultError$.next(new Error('not found'));
 		});
 	}
 
@@ -41,6 +44,10 @@ export class CustomerSearchService {
 
 	public onSearchResult(): Observable<UserDetail[]> {
 		return this._searchResult$;
+	}
+
+	public onSearchResultError(): Observable<any> {
+		return this._searchResultError$;
 	}
 
 }

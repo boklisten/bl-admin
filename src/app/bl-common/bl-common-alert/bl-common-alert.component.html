@@ -1,0 +1,18 @@
+
+
+<ngb-alert type="{{type}}" (close)="onExit()">
+
+	<span *ngIf="type === 'danger'">
+		<fa-icon [icon]="'exclamation-triangle'" class="mr-2"></fa-icon> {{text}}
+	</span>
+	<span *ngIf="type === 'warning'">
+		<fa-icon [icon]="'exclamation'" class="mr-2"></fa-icon> {{text}}
+	</span>
+	<span *ngIf="type === 'success'">
+		<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon> {{text}}
+	</span>
+
+	<span *ngIf="desc">{{desc}}</span>
+
+</ngb-alert>
+

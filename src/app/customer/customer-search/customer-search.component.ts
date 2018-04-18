@@ -8,20 +8,31 @@ import {CustomerSearchService} from './customer-search.service';
 })
 export class CustomerSearchComponent implements OnInit {
 	public searchTerm: string;
+	public wait: boolean;
 
 	constructor(private _customerSearchService: CustomerSearchService) {
 		this.searchTerm = '';
+		this.wait = false;
+
+		this._customerSearchService.onSearchResult().subscribe(() => {
+			this.wait = false;
+		});
+
+		this._customerSearchService.onSearchResultError().subscribe(() => {
+			this.wait = false;
+		});
 	}
 
 	ngOnInit() {
 		if (this._customerSearchService.getSearchTerm()) {
 			this.searchTerm = this._customerSearchService.getSearchTerm();
-			this._customerSearchService.search(this.searchTerm);
+			this.onSearch();
 		}
 	}
 
 	onSearch() {
 		if (this.searchTerm && this.searchTerm.length > 2) {
+			this.wait = true;
 			this._customerSearchService.search(this.searchTerm);
 		}
 	}

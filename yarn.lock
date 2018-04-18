@@ -247,8 +247,8 @@
   resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
 
 "@wizardcoder/bl-connect@^0.5.3":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-connect/-/bl-connect-0.5.4.tgz#52dc9dc1407509f2808951c20e42fc59c629b7e3"
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-connect/-/bl-connect-0.5.5.tgz#749c84feabcb4cbcb18f24ff912cbadcc007c1be"
   dependencies:
     angular-2-local-storage "^1.0.1"
     angular2-jwt "^0.2.3"
@@ -261,8 +261,8 @@
     tslib "^1.7.1"
 
 "@wizardcoder/bl-model@^0.13.2":
-  version "0.13.2"
-  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-model/-/bl-model-0.13.2.tgz#9730b351a02a0987bee3eb490e6c4e1546951d33"
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-model/-/bl-model-0.13.3.tgz#d28fad87a0e32a19e3beb6386e4398d3b0ccfa97"
   dependencies:
     typescript "^2.6.1"
 
