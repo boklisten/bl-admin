@@ -9,13 +9,15 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { ItemSearchComponent } from './item-search/item-search.component';
 import {ItemSearchService} from './item-search/item-search.service';
 import { ItemSearchResultComponent } from './item-search/item-search-result/item-search-result.component';
+import {PriceModule} from '../price/price.module';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		ItemRoutingModule,
 		BlCommonModule,
-		FontAwesomeModule
+		FontAwesomeModule,
+		PriceModule
 	],
 	declarations: [ItemDetailComponent, ItemDetailCardComponent, ItemSearchComponent, ItemSearchResultComponent],
 	providers: [

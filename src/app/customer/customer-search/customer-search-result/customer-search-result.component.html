@@ -5,18 +5,20 @@
 	<div class="col-12">
 		<div class="list-group">
 			<div class="list-group-item list-group-item-action bl-customer-search-result-item" *ngFor="let userDetail of userDetails" (click)="onCustomerClick(userDetail)">
-				<div class="row">
-					<div class="col-3">
+				<div class="row justify-content-between">
+					<div class="col-auto">
 						<fa-icon [icon]="'user'" class="mr-1"></fa-icon> {{userDetail.name}}
 					</div>
-					<div class="col-3">
-						<fa-icon [icon]="'at'" class="mr-1"></fa-icon> {{userDetail.email}}
+				</div>
+				<div class="row justify-content-between text-secondary">
+					<div class="col-auto">
+						<small><fa-icon [icon]="'address-card'" class="mr-1"></fa-icon> {{userDetail.address}} {{userDetail.postCode}} {{userDetail.postCity}}</small>
 					</div>
-					<div class="col-3">
-						<fa-icon [icon]="'phone'" class="mr-1"></fa-icon> {{userDetail.phone}}
+					<div class="col-auto">
+						<small><fa-icon [icon]="'at'" class="mr-1"></fa-icon> {{userDetail.email}}</small>
 					</div>
-					<div class="col-3">
-						<fa-icon [icon]="'address-card'" class="mr-1"></fa-icon> {{userDetail.address}} {{userDetail.postCode}} {{userDetail.postCity}}
+					<div class="col-auto">
+						<small><fa-icon [icon]="'phone'" class="mr-1"></fa-icon> {{userDetail.phone}}</small>
 					</div>
 				</div>
 			</div>

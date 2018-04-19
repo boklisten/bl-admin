@@ -15,10 +15,10 @@
 					<fa-icon [icon]="'barcode'" class="mr-2"></fa-icon> <span>{{item.info['isbn']}}</span>
 				</li>
 				<li class="list-group-item">
-					<fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> <span>{{item.price}} kr</span> <span class="ml-2"><small> mva {{item.taxRate}}%</small></span>
+					<fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> <span>{{item | itemPrice:'buy'}}</span> <span class="ml-2"><small> mva {{item.taxRate}}%</small></span>
 				</li>
 				<li class="list-group-item" *ngIf="item.sell">
-					<fa-icon [icon]="'exchange-alt'"></fa-icon><fa-icon [icon]="'dollar-sign'" class="ml-1 mr-2"></fa-icon><span>{{item.sellPrice}} kr</span>
+					<fa-icon [icon]="'exchange-alt'"></fa-icon><fa-icon [icon]="'dollar-sign'" class="ml-1 mr-2"></fa-icon><span>{{item | itemPrice:'sell'}}</span>
 				</li>
 				<li class="list-group-item">
 					<span *ngIf="item.rent" class="badge badge-info badge-pill"><fa-icon [icon]="'calendar-alt'"></fa-icon></span>

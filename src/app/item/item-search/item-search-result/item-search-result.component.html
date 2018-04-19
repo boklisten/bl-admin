@@ -1,5 +1,11 @@
+
+
 <div class="row">
 	<div class="col-12">
+		<app-bl-common-alert [type]="'secondary'" [text]="notFoundError" *ngIf="notFoundError" (exit)="notFoundError = null"></app-bl-common-alert>
+	</div>
+	<div class="col-12">
+
 		<ul class="list-group">
 			<li class="list-group-item" *ngFor="let item of items" >
 				<div class="row justify-content-between">
@@ -22,7 +28,7 @@
 						<small>
 							<span>
 								<span><fa-icon [icon]="'calendar-alt'" class="mr-1"></fa-icon><fa-icon [icon]="'dollar-sign'"></fa-icon></span>
-								100 kr
+								{{item | itemPrice:'rent':'semester':1}}
 							</span>
 						</small>
 					</div>
@@ -30,7 +36,7 @@
 						<small>
 							<span>
 								<span><fa-icon [icon]="'calendar'" class="mr-1"></fa-icon><fa-icon [icon]="'dollar-sign'"></fa-icon></span>
-								100 kr
+								{{item | itemPrice:'rent':'year':1}}
 							</span>
 						</small>
 					</div>
@@ -38,7 +44,7 @@
 						<small>
 							<span>
 								<span><fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon><fa-icon [icon]="'dollar-sign'"></fa-icon></span>
-								100 kr
+								{{item | itemPrice:'buy'}}
 							</span>
 						</small>
 					</div>
@@ -46,7 +52,7 @@
 						<small>
 							<span>
 								<span><fa-icon [icon]="'exchange-alt'" class="mr-1"></fa-icon><fa-icon [icon]="'dollar-sign'"></fa-icon></span>
-								{{item.sellPrice}} kr
+								{{item | itemPrice:'sell'}}
 							</span>
 						</small>
 					</div>

@@ -9,6 +9,7 @@ import {ItemSearchService} from '../item-search.service';
 })
 export class ItemSearchResultComponent implements OnInit {
 	public items: Item[];
+	public notFoundError: string;
 
 	constructor(private _itemSearchService: ItemSearchService) {
 	}
@@ -19,12 +20,13 @@ export class ItemSearchResultComponent implements OnInit {
 		}
 
 		this._itemSearchService.onSearchResult().subscribe(() => {
-			console.log('tehre was update', this._itemSearchService.getSearchResult());
 			this.items = this._itemSearchService.getSearchResult();
+			this.notFoundError = null;
 		});
 
 		this._itemSearchService.onSearchResultError().subscribe(() => {
-
+			this.notFoundError = 'Could not find any item';
+			this.items = [];
 		});
 	}
 

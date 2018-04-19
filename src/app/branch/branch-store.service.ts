@@ -19,13 +19,12 @@ export class BranchStoreService {
 		this.redirectUrl = null;
 
 		if (this._storageService.get('bl-branch')) {
-			console.log('we have a saved branch', this._storageService.get('bl-branch'));
 			this._currentBranch = this._storageService.get('bl-branch');
 			this._branchChange$.next(this._currentBranch);
 		}
 
 		this.getAllBranches().then((branches: Branch[]) => {
-			console.log('got all branches', branches);
+
 		}).catch(() => {
 			console.log('could not get all branches');
 		});

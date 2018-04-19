@@ -37,7 +37,6 @@ export class CustomerOrderListComponent implements OnInit {
 		this.wait = true;
 		this.warningText = '';
 		this._orderService.getManyByIds(this.customerDetail.orders).then((orders: Order[]) => {
-			console.log('we got the orders', orders);
 			if (orders.length <= 0) {
 				this.warningText = 'no orders found';
 			}
