@@ -7,15 +7,23 @@
 	</div>
 	<div class="row" *ngIf="order">
 		<div class="col-3">
-			<app-order-detail-card [order]="order"></app-order-detail-card>
+			<div class="row">
+				<div class="col-12">
+					<app-order-detail-card [order]="order"></app-order-detail-card>
+				</div>
+			</div>
+			<div class="row mt-4">
+				<div class="col-12">
+					<app-order-delivery-detail [order]="order"></app-order-delivery-detail>
+				</div>
+			</div>
 		</div>
 
-		<div class="col-3">
-			<app-order-payment-detail [order]="order"></app-order-payment-detail>
-			<app-order-delivery-detail [order]="order" class="mt-2"></app-order-delivery-detail>
-		</div>
 		<div class="col-6">
 			<app-order-item-list [order]="order"></app-order-item-list>
+		</div>
+		<div class="col-3">
+			<app-order-payment-detail [order]="order"></app-order-payment-detail>
 		</div>
 	</div>
 </div>

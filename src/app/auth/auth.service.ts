@@ -11,10 +11,12 @@ export class AuthService {
 	public redirectUrl: string;
 	private _logout$: Subject<boolean>;
 	private _login$: Subject<boolean>;
+	private _applicationLogout$: Subject<boolean>;
 
 	constructor(private _tokenService: TokenService, private _router: Router, private _authLoginService: AuthLoginService) {
 		this._logout$ = new Subject<boolean>();
 		this._login$ = new Subject<boolean>();
+		this._applicationLogout$ = new Subject<boolean>();
 
 		this._authLoginService.onLogin().subscribe(() => {
 			this._login$.next(true);
@@ -31,6 +33,14 @@ export class AuthService {
 
 	public isAdmin(): boolean {
 		if (this._authLoginService.isLoggedIn()) {
+
+			try {
+				this._tokenService.getAccessTokenBody();
+			} catch (e) {
+				this.logout();
+				return false;
+			}
+
 			return (this._tokenService.getAccessTokenBody().permission === 'admin');
 		}
 		return false;
@@ -38,6 +48,14 @@ export class AuthService {
 
 	public isEmployee(): boolean {
 		if (this._authLoginService.isLoggedIn()) {
+
+			try {
+				this._tokenService.getAccessTokenBody();
+			} catch (e) {
+				this.logout();
+				return false;
+			}
+
 			return (this.isAdmin() || this._tokenService.getAccessTokenBody().permission === 'employee');
 		}
 		return false;
@@ -53,5 +71,13 @@ export class AuthService {
 
 	public onLogout(): Observable<boolean> {
 		return this._logout$;
+	}
+
+	public applicationLogout() {
+		this._applicationLogout$.next(true);
+	}
+
+	public onApplicationLogout(): Observable<boolean> {
+		return this._applicationLogout$;
 	}
 }

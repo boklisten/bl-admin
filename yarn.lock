@@ -255,8 +255,8 @@
     tslib "^1.7.1"
 
 "@wizardcoder/bl-login@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-login/-/bl-login-0.2.0.tgz#ab8b8a405378a4ccf0be765a5b9881afed08a9e3"
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-login/-/bl-login-0.2.1.tgz#97c8a79b24603204c881713257b27a3ae0ee095f"
   dependencies:
     tslib "^1.7.1"
 

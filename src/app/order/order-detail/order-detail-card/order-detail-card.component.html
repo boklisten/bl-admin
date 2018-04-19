@@ -7,12 +7,6 @@
                 </h4>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <fa-icon [icon]="'qrcode'" class="mr-2"></fa-icon> {{order.id}}
-                </li>
-                <li class="list-group-item">
-                    <fa-icon [icon]="'clock'" class="mr-2"></fa-icon> {{order.creationTime | date}}
-                </li>
                 <li class="list-group-item" *ngIf="order.placed">
                     <fa-icon [icon]="'check'" class="mr-2"></fa-icon> Confirmed
                 </li>
@@ -27,6 +21,12 @@
                 </li>
                 <li class="list-group-item">
                     <fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon> {{order.branch}}
+                </li>
+                <li class="list-group-item">
+                    <fa-icon [icon]="'clock'" class="mr-2"></fa-icon> {{order.creationTime | date}}
+                </li>
+                <li class="list-group-item">
+                    <fa-icon [icon]="'qrcode'" class="mr-2"></fa-icon> {{order.id}}
                 </li>
             </ul>
         </div>

@@ -24,8 +24,11 @@ export class AppComponent {
 			this.showContent = true;
 		});
 
-		if (this._authService.isLoggedIn()) {
-			this.showContent = true;
-		}
+		this._authService.onApplicationLogout().subscribe(() => {
+			console.log('the user was logged out by application');
+			this.showContent = false;
+		});
+
+		this.showContent = this._authService.isLoggedIn();
 	}
 }

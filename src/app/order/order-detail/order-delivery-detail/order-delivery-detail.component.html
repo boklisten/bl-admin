@@ -7,6 +7,20 @@
 				<app-bl-common-alert [type]="'warning'" [text]="warningText" *ngIf="warningText" (exit)="warningText = null"></app-bl-common-alert>
 				<app-bl-common-update-button *ngIf="wait" [wait]="wait"></app-bl-common-update-button>
 			</div>
+
+			<ul class="list-group list-group-flush" *ngIf="delivery">
+                <li class="list-group-item">
+					<span *ngIf="delivery.method === 'branch'"><fa-icon [icon]="'warehouse'" class="mr-2 ml-2"></fa-icon> {{delivery.info['branch']}}</span>
+					<span *ngIf="delivery.method === 'bring'"><fa-icon [icon]="'truck'" class="mr-2 ml-2"></fa-icon> Bring</span>
+                </li>
+            </ul>
+			<div class="card-footer" *ngIf="delivery">
+				<div class="row">
+					<div class="col-auto ml-auto">
+						<span><fa-icon [icon]="'dollar-sign'" class="mr-2 ml-2"></fa-icon> {{delivery.amount}} kr</span>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
