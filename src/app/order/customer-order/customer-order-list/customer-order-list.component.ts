@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CustomerDetailService} from '../../../customer/customer-detail/customer-detail.service';
 import {BlApiError, Order, UserDetail} from '@wizardcoder/bl-model';
 import {OrderService} from '@wizardcoder/bl-connect';
+import {Router} from '@angular/router';
 
 @Component({
 	selector: 'app-customer-order-list',
@@ -14,7 +15,7 @@ export class CustomerOrderListComponent implements OnInit {
 	public wait: boolean;
 	public warningText: string;
 
-	constructor(private _customerDetailService: CustomerDetailService, private _orderService: OrderService) {
+	constructor(private _customerDetailService: CustomerDetailService, private _orderService: OrderService, private _router: Router) {
 		this.wait = false;
 		this.warningText = null;
 	}
@@ -47,6 +48,10 @@ export class CustomerOrderListComponent implements OnInit {
 			this.wait = false;
 			this.warningText = 'no orders found';
 		});
+	}
+
+	onCustomerOrderDetailClick(id: string) {
+		this._router.navigate(['order/' + id + '/detail']);
 	}
 
 }

@@ -1,0 +1,21 @@
+<div class="container-fluid mt-2">
+	<div class="row">
+		<div class="col-12">
+			<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
+			<app-bl-common-alert [type]="'warning'" *ngIf="warningText" [text]="warningText" (exit)="warningText = null"></app-bl-common-alert>
+		</div>
+	</div>
+	<div class="row" *ngIf="order">
+		<div class="col-3">
+			<app-order-detail-card [order]="order"></app-order-detail-card>
+		</div>
+
+		<div class="col-3">
+			<app-order-payment-detail [order]="order"></app-order-payment-detail>
+			<app-order-delivery-detail [order]="order" class="mt-2"></app-order-delivery-detail>
+		</div>
+		<div class="col-6">
+			<app-order-item-list [order]="order"></app-order-item-list>
+		</div>
+	</div>
+</div>

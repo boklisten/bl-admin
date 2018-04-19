@@ -1,0 +1,34 @@
+<div class="row" *ngIf="order">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">
+                    Order
+                </h4>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <fa-icon [icon]="'qrcode'" class="mr-2"></fa-icon> {{order.id}}
+                </li>
+                <li class="list-group-item">
+                    <fa-icon [icon]="'clock'" class="mr-2"></fa-icon> {{order.creationTime | date}}
+                </li>
+                <li class="list-group-item" *ngIf="order.placed">
+                    <fa-icon [icon]="'check'" class="mr-2"></fa-icon> Confirmed
+                </li>
+                <li class="list-group-item text-danger" *ngIf="!order.placed">
+                    <fa-icon [icon]="'times'" class="mr-2"></fa-icon> Not Confirmed
+                </li>
+                <li class="list-group-item list-group-item-action" routerLink="{{'/customer/' + order.customer + '/detail'}}">
+                    <fa-icon [icon]="'user'" class="mr-2"></fa-icon> {{order.customer}}
+                </li>
+                <li class="list-group-item" *ngIf="order.employee">
+                    <fa-icon [icon]="'user-circle'" class="mr-2"></fa-icon> {{order.employee}}
+                </li>
+                <li class="list-group-item">
+                    <fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon> {{order.branch}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

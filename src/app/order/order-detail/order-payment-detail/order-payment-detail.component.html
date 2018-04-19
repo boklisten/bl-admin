@@ -1,0 +1,40 @@
+
+
+<div class="row">
+
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Payments</h4>
+
+				<app-bl-common-alert [type]="'warning'" *ngIf="warningText" [text]="warningText" (exit)="warningText = null"></app-bl-common-alert>
+				<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
+				<app-bl-common-alert [type]="'secondary'" *ngIf="noPaymentsFoundText" [text]="noPaymentsFoundText" (exit)="noPaymentsFoundText = null"></app-bl-common-alert>
+			</div>
+
+			<ul class="list-group">
+                <li class="list-group-item" *ngFor="let payment of payments">
+					<div class="list-group">
+                        <div class="list-group-item">
+                            <fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{payment.amount}} kr
+							<span *ngIf="payment.method === 'cash'"><fa-icon [icon]="'money'" class="mr-2 ml-2"></fa-icon> Cash</span>
+							<span *ngIf="payment.method === 'dibs'"><fa-icon [icon]="'credit-card'" class="mr-2 ml-2"></fa-icon> Dibs</span>
+                        </div>
+
+                        <div class="list-group-item">
+                            <fa-icon [icon]="'qrcode'" class="mr-2"></fa-icon> {{payment.id}}
+                        </div>
+					</div>
+                </li>
+            </ul>
+
+			<div class="card-footer">
+				<div class="row">
+					<div class="col-auto ml-auto">
+						<fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{calculateTotalAmount()}} kr
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

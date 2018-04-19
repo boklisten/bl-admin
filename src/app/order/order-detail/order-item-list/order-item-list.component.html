@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Items</h4>
+				<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
+				<app-bl-common-alert [type]="'warning'" *ngIf="warningText" [text]="warningText" (exit)="warningText = null"></app-bl-common-alert>
+			</div>
+			<ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let orderItem of order.orderItems">
+                    <fa-icon [icon]="'book'" class="mr-2"></fa-icon> {{orderItem.title}}
+                </li>
+			</ul>
+		</div>
+	</div>
+</div>

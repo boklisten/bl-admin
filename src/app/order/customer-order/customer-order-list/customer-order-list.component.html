@@ -12,16 +12,14 @@
 				</div>
 			</div>
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item list-group-item-action" *ngFor="let customerOrder of customerOrders">
-					<div class="">
-                        <div class="bl-customer-order-list-item" *ngFor="let orderItem of customerOrder.orderItems">
-							<div>{{orderItem.title}}</div>
-							<div>
-								<small class="text-center" *ngIf="orderItem.type === 'rent' || orderItem.type === 'extend'">{{orderItem.type}} to {{orderItem.info.to | date}}</small>
-								<small class="text-center" *ngIf="orderItem.type !== 'rent' && orderItem.type !== 'extend'">{{orderItem.type}}</small>
-							</div>
+				<li class="list-group-item list-group-item-action" *ngFor="let customerOrder of customerOrders" (click)="onCustomerOrderDetailClick(customerOrder.id)">
+                    <div class="bl-customer-order-list-item" *ngFor="let orderItem of customerOrder.orderItems">
+                        <div>{{orderItem.title}}</div>
+                        <div>
+                            <small class="text-center" *ngIf="orderItem.type === 'rent' || orderItem.type === 'extend'">{{orderItem.type}} to {{orderItem.info.to | date}}</small>
+                            <small class="text-center" *ngIf="orderItem.type !== 'rent' && orderItem.type !== 'extend'">{{orderItem.type}}</small>
                         </div>
-					</div>
+                    </div>
 					<div>
 						<span>
                             <small>
