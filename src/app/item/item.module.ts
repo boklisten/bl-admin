@@ -6,6 +6,9 @@ import {ItemDetailComponent} from './item-detail/item-detail.component';
 import {BlCommonModule} from '../bl-common/bl-common.module';
 import { ItemDetailCardComponent } from './item-detail/item-detail-card/item-detail-card.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { ItemSearchComponent } from './item-search/item-search.component';
+import {ItemSearchService} from './item-search/item-search.service';
+import { ItemSearchResultComponent } from './item-search/item-search-result/item-search-result.component';
 
 @NgModule({
 	imports: [
@@ -14,7 +17,10 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 		BlCommonModule,
 		FontAwesomeModule
 	],
-	declarations: [ItemDetailComponent, ItemDetailCardComponent]
+	declarations: [ItemDetailComponent, ItemDetailCardComponent, ItemSearchComponent, ItemSearchResultComponent],
+	providers: [
+		ItemSearchService
+	]
 })
 export class ItemModule {
 }

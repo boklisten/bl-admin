@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {AuthLoginService} from '@wizardcoder/bl-login';
+import {StorageService} from '../storage/storage.service';
 
 @Injectable()
 export class AuthService {
@@ -62,6 +63,7 @@ export class AuthService {
 	}
 
 	public logout() {
+		this._logout$.next(true);
 		this._authLoginService.logout('/auth/menu');
 	}
 
