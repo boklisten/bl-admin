@@ -15,16 +15,16 @@
 			<ul class="list-group">
                 <li class="list-group-item" *ngFor="let payment of payments">
 					<div class="list-group">
+						<div class="list-group-item" *ngIf="payment.method !== 'later'">
+							<span *ngIf="payment.confirmed"><fa-icon [icon]="'check'" class="mr-2"></fa-icon> Confirmed</span>
+							<span *ngIf="!payment.confirmed" class="text-danger"><fa-icon [icon]="'times'" class="mr-2"></fa-icon> Not Confirmed</span>
+                        </div>
                         <div class="list-group-item">
                             <fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{payment.amount}} kr
 							<span *ngIf="payment.method === 'cash'"><fa-icon [icon]="'money'" class="mr-2 ml-2"></fa-icon> Cash</span>
 							<span *ngIf="payment.method === 'dibs'"><fa-icon [icon]="'credit-card'" class="mr-2 ml-2"></fa-icon> Dibs</span>
 							<span *ngIf="payment.method === 'card'"><fa-icon [icon]="'credit-card'" class="mr-2 ml-2"></fa-icon> Card</span>
 							<span *ngIf="payment.method === 'later'" class="text-danger"><fa-icon [icon]="'exclamation-triangle'" class="mr-2 ml-2"></fa-icon> Not payed yet</span>
-                        </div>
-						<div class="list-group-item" *ngIf="payment.method !== 'later'">
-							<span *ngIf="payment.confirmed"><fa-icon [icon]="'check'" class="mr-2"></fa-icon> Confirmed</span>
-							<span *ngIf="!payment.confirmed" class="text-danger"><fa-icon [icon]="'times'" class="mr-2"></fa-icon> Not Confirmed</span>
                         </div>
 						<div class="list-group-item">
                             <fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon> {{payment.branch}}

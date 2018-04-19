@@ -9,15 +9,22 @@
 			</div>
 
 			<ul class="list-group list-group-flush" *ngIf="delivery">
-                <li class="list-group-item">
-					<span *ngIf="delivery.method === 'branch'"><fa-icon [icon]="'warehouse'" class="mr-2 ml-2"></fa-icon> {{delivery.info['branch']}}</span>
-					<span *ngIf="delivery.method === 'bring'"><fa-icon [icon]="'truck'" class="mr-2 ml-2"></fa-icon> Bring</span>
+                <li class="list-group-item" *ngIf="delivery.method == 'branch'">
+					<span><fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon> {{delivery.info['branch']}}</span>
                 </li>
+				<li class="list-group-item" *ngIf="delivery.method === 'bring'">
+					<span *ngIf="delivery.method === 'bring'"><fa-icon [icon]="'truck'" class="mr-2"></fa-icon> Bring</span>
+					<span *ngIf="delivery.info['from']" class="ml-2"> <fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon> {{delivery.info['to']}}</span>
+					<span *ngIf="delivery.info['estimatedDelivery']" class="ml-2"><fa-icon [icon]="'clock'" class="mr-2"></fa-icon>{{delivery.info['estimatedDelivery'] | date}}</span>
+				</li>
             </ul>
 			<div class="card-footer" *ngIf="delivery">
 				<div class="row">
 					<div class="col-auto ml-auto">
-						<span><fa-icon [icon]="'dollar-sign'" class="mr-2 ml-2"></fa-icon> {{delivery.amount}} kr</span>
+						<div><fa-icon [icon]="'dollar-sign'" class="mr-2 ml-2"></fa-icon> {{delivery.amount}} kr</div>
+						<div>
+							<small style="font-size: 11px; line-height: 11px; display: block; text-align: right;" *ngIf="delivery.info['taxAmount']">mva {{delivery.info['taxAmount']}} kr</small>
+						</div>
 					</div>
 				</div>
 			</div>

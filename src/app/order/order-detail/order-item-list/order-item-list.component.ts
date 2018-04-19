@@ -9,14 +9,22 @@ import {ItemService} from '@wizardcoder/bl-connect';
 })
 export class OrderItemListComponent implements OnInit {
 	@Input() order: Order;
+	public warningText: string;
 
 	constructor(private _itemService: ItemService) {
 	}
 
 	ngOnInit() {
-		for (let orderItem of this.order.orderItems) {
-			console.log('the orderItem', orderItem);
+	}
+
+	public calculateTotalAmount(): number {
+		let totalAmount = 0;
+
+		for (const orderItem of this.order.orderItems) {
+			totalAmount += orderItem.amount;
 		}
+
+		return totalAmount;
 	}
 
 }

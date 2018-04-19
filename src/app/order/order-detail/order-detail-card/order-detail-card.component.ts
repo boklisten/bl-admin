@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Order} from '@wizardcoder/bl-model';
 
 @Component({
 	selector: 'app-order-detail-card',
