@@ -10,11 +10,15 @@ import {ItemService} from '@wizardcoder/bl-connect';
 export class OrderItemListComponent implements OnInit {
 	@Input() order: Order;
 	public warningText: string;
+	public wait;
 
 	constructor(private _itemService: ItemService) {
 	}
 
 	ngOnInit() {
+		if (!this.order.orderItems || this.order.orderItems.length <= 0) {
+			this.warningText = 'There was no items attached to the order';
+		}
 	}
 
 	public calculateTotalAmount(): number {

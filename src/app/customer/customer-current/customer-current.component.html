@@ -13,8 +13,7 @@
 </div>
 
 <ng-template #customerDetailPopover>
-	<app-customer-detail-popover></app-customer-detail-popover>
-	<div class="row mt-2">
+	<div class="row mb-4 mt-2">
 		<div class="col-6">
 			<button class="btn btn-outline-secondary btn-block btn-sm" (click)="onChangeCustomerDetail()">
 				<fa-icon [icon]="'user'"></fa-icon><fa-icon [icon]="'search'"></fa-icon>
@@ -26,4 +25,5 @@
 			</button>
 		</div>
 	</div>
+	<app-customer-detail-popover></app-customer-detail-popover>
 </ng-template>

@@ -11,25 +11,20 @@
 					</div>
 				</div>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item list-group-item-action" *ngFor="let customerOrder of customerOrders" (click)="onCustomerOrderDetailClick(customerOrder.id)">
-                    <div class="bl-customer-order-list-item" *ngFor="let orderItem of customerOrder.orderItems">
-                        <div>{{orderItem.title}}</div>
-                        <div>
-                            <small class="text-center" *ngIf="orderItem.type === 'rent' || orderItem.type === 'extend'">{{orderItem.type}} to {{orderItem.info.to | date}}</small>
-                            <small class="text-center" *ngIf="orderItem.type !== 'rent' && orderItem.type !== 'extend'">{{orderItem.type}}</small>
-                        </div>
-                    </div>
-					<div>
-						<span>
-                            <small>
-                                <fa-icon [icon]="'qrcode'" class="mr-1"></fa-icon> {{customerOrder.id}}
-								<fa-icon [icon]="'clock'" class="ml-2 mr-1"></fa-icon> {{customerOrder.creationTime | date}}
-							</small>
-						</span>
+			<div class="list-group">
+				<div class="list-group-item list-group-item-action" *ngFor="let customerOrder of customerOrders" (click)="onCustomerOrderDetailClick(customerOrder.id)">
+					<div class="row mt-2 mb-2 justify-content-between text-secondary">
+						<div class="col-auto">
+							<small><fa-icon [icon]="'clock'" class="ml-2 mr-1"></fa-icon> {{customerOrder.creationTime | date}}</small>
+						</div>
+						<div class="col-auto">
+							<small><fa-icon [icon]="'qrcode'" class="mr-1"></fa-icon> {{customerOrder.id}}</small>
+						</div>
 					</div>
-				</li>
-			</ul>
+
+					<app-order-item-detail-list [orderItems]="customerOrder.orderItems" class="mt-2"></app-order-item-detail-list>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

@@ -7,4 +7,21 @@ $success-color: #53dd6c;
 $warning-color: #ee8434;
 
 $link-border: 2px solid #ffffff;
+$link-border-black: 2px solid #000000;
 $border-color: rgba(0,0,0,.125);
+
+.bl-link {
+	cursor: pointer;
+}
+
+.bl-link:hover {
+	border-bottom: $link-border;
+}
+
+.bl-link-black {
+	@extend .bl-link;
+}
+
+.bl-link-black:hover {
+	border-bottom: $link-border-black;
+}

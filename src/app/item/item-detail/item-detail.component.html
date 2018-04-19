@@ -1,0 +1,14 @@
+<div class="container-fluid mt-2">
+	<div class="row">
+		<div class="col-12">
+			<app-bl-common-alert *ngIf="notFoundText" [type]="'warning'" [text]="notFoundText" (exit)="notFoundText = null"></app-bl-common-alert>
+			<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
+		</div>
+	</div>
+
+	<div class="row" *ngIf="item">
+		<div class="col-4">
+			<app-item-detail-card [item]="item"></app-item-detail-card>
+		</div>
+	</div>
+</div>

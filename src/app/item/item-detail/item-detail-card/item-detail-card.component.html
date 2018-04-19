@@ -1,0 +1,39 @@
+<div class="row" *ngIf="item">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">
+					<fa-icon [icon]="'book'" *ngIf="item.type === 'book'" class="mr-2"></fa-icon>{{item.title}}
+				</h4>
+
+				<p class="card-text">
+					{{item.desc}}
+				</p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item" *ngIf="item.type === 'book'">
+					<fa-icon [icon]="'barcode'" class="mr-2"></fa-icon> <span>{{item.info['isbn']}}</span>
+				</li>
+				<li class="list-group-item">
+					<fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> <span>{{item.price}} kr</span> <span class="ml-2"><small> mva {{item.taxRate}}%</small></span>
+				</li>
+				<li class="list-group-item" *ngIf="item.sell">
+					<fa-icon [icon]="'exchange-alt'"></fa-icon><fa-icon [icon]="'dollar-sign'" class="ml-1 mr-2"></fa-icon><span>{{item.sellPrice}} kr</span>
+				</li>
+				<li class="list-group-item">
+					<span *ngIf="item.rent" class="badge badge-info badge-pill"><fa-icon [icon]="'calendar-alt'"></fa-icon></span>
+					<span *ngIf="item.buy" class="badge badge-info badge-pill"><fa-icon [icon]="'money-bill-alt'"></fa-icon></span>
+					<span *ngIf="item.sell" class="badge badge-info badge-pill"><fa-icon [icon]="'exchange-alt'"></fa-icon></span>
+				</li>
+				<li class="list-group-item">
+					<fa-icon [icon]="'tags'" class="mr-2"></fa-icon> <span *ngFor="let category of item.categories" class="badge badge-secondary mr-2">{{category}}</span>
+				</li>
+			</ul>
+			<div class="card-footer">
+				<button class="btn btn-outline-secondary btn-block">
+					Edit
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

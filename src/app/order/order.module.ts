@@ -10,6 +10,7 @@ import {OrderPaymentDetailComponent} from './order-detail/order-payment-detail/o
 import {OrderDetailCardComponent} from './order-detail/order-detail-card/order-detail-card.component';
 import {OrderDeliveryDetailComponent} from './order-detail/order-delivery-detail/order-delivery-detail.component';
 import {OrderItemListComponent} from './order-detail/order-item-list/order-item-list.component';
+import { OrderItemDetailListComponent } from './order-detail/order-item-detail-list/order-item-detail-list.component';
 
 @NgModule({
 	imports: [
@@ -24,7 +25,8 @@ import {OrderItemListComponent} from './order-detail/order-item-list/order-item-
 		OrderPaymentDetailComponent,
 		OrderDetailCardComponent,
 		OrderDeliveryDetailComponent,
-		OrderItemListComponent
+		OrderItemListComponent,
+		OrderItemDetailListComponent
 	],
 	exports: [
 		CustomerOrderListComponent

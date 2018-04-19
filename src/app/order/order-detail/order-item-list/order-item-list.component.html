@@ -3,38 +3,9 @@
 		<div class="card">
 			<div class="card-body">
 				<h4 class="card-title">Items</h4>
-				<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
 				<app-bl-common-alert [type]="'warning'" *ngIf="warningText" [text]="warningText" (exit)="warningText = null"></app-bl-common-alert>
 			</div>
-			<div class="list-group">
-                <div class="list-group-item" *ngFor="let orderItem of order.orderItems">
-					<ul class="list-group">
-                        <li class="list-group-item">
-							<div class="row justify-content-between">
-								<div class="col-auto">
-                            		<fa-icon [icon]="'book'" class="mr-2"></fa-icon> {{orderItem.title}}
-								</div>
-								<div class="col-auto">
-                            		<fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{orderItem.amount}} kr
-								</div>
-							</div>
-							<div class="row" *ngIf="orderItem.type === 'buy'">
-								<div class="col text-secondary">
-									<small><fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon> {{orderItem.type}}</small>
-								</div>
-							</div>
-							<div class="row" *ngIf="orderItem.type === 'rent' || orderItem.type === 'extend'">
-								<div class="col text-secondary">
-									<small>
-										<span><fa-icon [icon]="'calendar-alt'" class="mr-2"></fa-icon> {{orderItem.type}}</span>
-										<span class="ml-2"><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon> {{orderItem.info['to'] | date}}</span>
-									</small>
-								</div>
-							</div>
-                        </li>
-                    </ul>
-                </div>
-			</div>
+			<app-order-item-detail-list [orderItems]="order.orderItems"></app-order-item-detail-list>
             <div class="card-footer">
 				<div class="row justify-content-end">
 					<div class="col-auto">

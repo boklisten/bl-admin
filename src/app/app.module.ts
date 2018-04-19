@@ -22,11 +22,12 @@ import {CustomerModule} from './customer/customer.module';
 
 import {faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt, faPhone,
 	faAddressCard, faQrcode, faSyncAlt, faTimes, faShoppingCart, faClock, faWarehouse, faDollarSign,
-	faCreditCard, faBook, faTruck, faArrowRight, faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
+	faCreditCard, faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode} from '@fortawesome/free-solid-svg-icons';
 import {BlCommonModule} from './bl-common/bl-common.module';
+import {ItemModule} from './item/item.module';
 library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt,
 	faPhone, faAddressCard, faQrcode, faSyncAlt, faTimes, faShoppingCart, faClock, faWarehouse, faDollarSign, faCreditCard,
-	faBook, faTruck, faArrowRight, faCalendarAlt);
+	faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode);
 
 @NgModule({
 	declarations: [
@@ -45,7 +46,8 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		BranchModule,
 		FontAwesomeModule,
 		CustomerModule,
-		BlCommonModule
+		BlCommonModule,
+		ItemModule
 	],
 	providers: [
 		AuthLoginService,

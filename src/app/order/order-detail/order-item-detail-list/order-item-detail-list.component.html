@@ -1,0 +1,28 @@
+
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let orderItem of orderItems">
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <span routerLink="{{'/item/' + orderItem.item + '/detail'}}" class="bl-link-black">
+                    <fa-icon [icon]="'book'" class="mr-2"></fa-icon> {{orderItem.title}}
+                </span>
+            </div>
+            <div class="col-auto">
+                <fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{orderItem.amount}} kr
+            </div>
+        </div>
+        <div class="row" *ngIf="orderItem.type === 'buy'">
+            <div class="col text-secondary">
+                <small><fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon> {{orderItem.type}}</small>
+            </div>
+        </div>
+        <div class="row" *ngIf="orderItem.type === 'rent' || orderItem.type === 'extend'">
+            <div class="col text-secondary">
+                <small>
+                    <span><fa-icon [icon]="'calendar-alt'" class="mr-2"></fa-icon> {{orderItem.type}}</span>
+                    <span class="ml-2"><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon> {{orderItem.info['to'] | date}}</span>
+                </small>
+            </div>
+        </div>
+    </li>
+</ul>
