@@ -27,7 +27,7 @@
 							<span *ngIf="payment.method === 'later'" class="text-danger"><fa-icon [icon]="'exclamation-triangle'" class="mr-2 ml-2"></fa-icon> Not payed yet</span>
                         </div>
 						<div class="list-group-item">
-                            <fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon> {{payment.branch}}
+                            <fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon> {{payment.branch | branchName | async}}
                         </div>
                         <div class="list-group-item">
                             <fa-icon [icon]="'qrcode'" class="mr-2"></fa-icon> {{payment.id}}

@@ -11,7 +11,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 		BranchRoutingModule,
 		FontAwesomeModule
 	],
-	declarations: [BranchSelectComponent]
+	declarations: [BranchSelectComponent],
 })
 export class BranchModule {
 }

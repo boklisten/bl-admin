@@ -8,6 +8,9 @@ import { BlCommonAlertComponent } from './bl-common-alert/bl-common-alert.compon
 import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { BlSearchBarComponent } from './search/bl-search-bar/bl-search-bar.component';
 import {FormsModule} from '@angular/forms';
+import {CustomerNamePipe} from "./pipes/customer/customer-name.pipe";
+import {BranchNamePipe} from "./pipes/branch/branch-name.pipe";
+import { BlDatePipe } from './pipes/date/bl-date.pipe';
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -18,11 +21,21 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		FontAwesomeModule,
 		FormsModule
 	],
-	declarations: [BlCommonUpdateButtonComponent, BlCommonAlertComponent, BlSearchBarComponent],
+	declarations: [
+		BlCommonUpdateButtonComponent,
+		BlCommonAlertComponent,
+		BlSearchBarComponent,
+		CustomerNamePipe,
+		BranchNamePipe,
+		BlDatePipe
+	],
 	exports: [
 		BlCommonUpdateButtonComponent,
 		BlCommonAlertComponent,
-		BlSearchBarComponent
+		BlSearchBarComponent,
+		CustomerNamePipe,
+		BranchNamePipe,
+		BlDatePipe
 	]
 })
 export class BlCommonModule {

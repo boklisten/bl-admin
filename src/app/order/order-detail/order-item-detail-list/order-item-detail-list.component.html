@@ -1,6 +1,6 @@
 
 <ul class="list-group">
-    <li class="list-group-item" *ngFor="let orderItem of orderItems">
+    <li class="list-group-item list-group-item-action" *ngFor="let orderItem of orderItems">
         <div class="row justify-content-between">
             <div class="col-auto">
                 <span routerLink="{{'/item/' + orderItem.item + '/detail'}}" class="bl-link-black">
@@ -20,7 +20,7 @@
             <div class="col text-secondary">
                 <small>
                     <span><fa-icon [icon]="'calendar-alt'" class="mr-2"></fa-icon> {{orderItem.type}}</span>
-                    <span class="ml-2"><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon> {{orderItem.info['to'] | date}}</span>
+                    <span class="ml-2"><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon> {{orderItem.info['to'] | blDate}}</span>
                 </small>
             </div>
         </div>

@@ -43,7 +43,7 @@ import {OrderModule} from '../order/order.module';
 		CustomerDetailModalContentComponent,
 		CustomerDetailCardComponent,
 		CustomerCurrentComponent,
-		CustomerDetailPopoverComponent
+		CustomerDetailPopoverComponent,
 	],
 	exports: [
 		CustomerCurrentComponent,

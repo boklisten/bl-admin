@@ -15,7 +15,7 @@
 				<div class="list-group-item list-group-item-action" *ngFor="let customerOrder of customerOrders" (click)="onCustomerOrderDetailClick(customerOrder.id)">
 					<div class="row mt-2 mb-2 justify-content-between text-secondary">
 						<div class="col-auto">
-							<small><fa-icon [icon]="'clock'" class="ml-2 mr-1"></fa-icon> {{customerOrder.creationTime | date}}</small>
+							<small><fa-icon [icon]="'clock'" class="ml-2 mr-1"></fa-icon> {{customerOrder.creationTime | blDate}}</small>
 						</div>
 						<div class="col-auto">
 							<small><fa-icon [icon]="'qrcode'" class="mr-1"></fa-icon> {{customerOrder.id}}</small>
