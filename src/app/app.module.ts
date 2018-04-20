@@ -26,6 +26,7 @@ import {faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow,
 	faCalendar, faCartPlus} from '@fortawesome/free-solid-svg-icons';
 import {BlCommonModule} from './bl-common/bl-common.module';
 import {ItemModule} from './item/item.module';
+import {BlConnectModule} from "@wizardcoder/bl-connect";
 library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt,
 	faPhone, faAddressCard, faQrcode, faSyncAlt, faTimes, faShoppingCart, faClock, faWarehouse, faDollarSign, faCreditCard,
 	faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode, faCalendar, faCartPlus);
@@ -40,6 +41,7 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 	],
 	imports: [
 		BrowserModule,
+		BlConnectModule,
 		AppRoutingModule,
 		AuthModule,
 		LoginModule,
@@ -60,11 +62,12 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 })
 export class AppModule {
 	constructor() {
+		BlConnectModule.withConfig({basePath: environment.apiPath});
 		LoginModule.withConfig({
 			successPath: 'home',
 			apiPath: environment.apiPath,
 			userAgreementUrl: '/',
-			logoutPath: '/',
+			logoutPath: '/auth/menu',
 			permissionDeniedPath: '/auth/permission/denied',
 			permissions: ['employee', 'admin']
 		});
