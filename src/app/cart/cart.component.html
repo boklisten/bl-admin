@@ -1,0 +1,55 @@
+
+
+
+
+<div class="container-fluid mt-4">
+	<div class="row">
+		<div class="col-3">
+			<div class="row">
+				<div class="col-12">
+					<ngb-tabset>
+						<ngb-tab>
+							<ng-template ngbTabTitle>
+								<span class="text-secondary">Ordered items</span>
+							</ng-template>
+
+							<ng-template ngbTabContent>
+								<div class="row mt-2">
+									<div class="col-12">
+										<app-customer-order-item-list></app-customer-order-item-list>
+									</div>
+								</div>
+							</ng-template>
+						</ngb-tab>
+						<ngb-tab>
+							<ng-template ngbTabTitle>
+								<span class="text-secondary">Customer items</span>
+							</ng-template>
+
+							<ng-template ngbTabContent>
+								<div class="row mt-2">
+									<div class="col-12">
+										<app-bl-common-alert [type]="'secondary'" [text]="'Customer currently have no items'"></app-bl-common-alert>
+									</div>
+								</div>
+							</ng-template>
+						</ngb-tab>
+
+						<ngb-tab>
+							<ng-template ngbTabTitle>
+								<span class="text-secondary">Search</span>
+							</ng-template>
+							<ng-template ngbTabContent>
+								<div class="row mt-2">
+									<div class="col-12">
+										<app-item-search-bar></app-item-search-bar>
+									</div>
+								</div>
+							</ng-template>
+						</ngb-tab>
+					</ngb-tabset>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

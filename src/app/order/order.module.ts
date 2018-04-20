@@ -13,6 +13,7 @@ import {OrderItemListComponent} from './order-detail/order-item-list/order-item-
 import { OrderItemDetailListComponent } from './order-detail/order-item-detail-list/order-item-detail-list.component';
 import {BranchModule} from "../branch/branch.module";
 import {CustomerModule} from "../customer/customer.module";
+import { CustomerOrderItemListComponent } from './customer-order/customer-order-item-list/customer-order-item-list.component';
 
 @NgModule({
 	imports: [
@@ -28,10 +29,12 @@ import {CustomerModule} from "../customer/customer.module";
 		OrderDetailCardComponent,
 		OrderDeliveryDetailComponent,
 		OrderItemListComponent,
-		OrderItemDetailListComponent
+		OrderItemDetailListComponent,
+		CustomerOrderItemListComponent
 	],
 	exports: [
-		CustomerOrderListComponent
+		CustomerOrderListComponent,
+		CustomerOrderItemListComponent
 	]
 })
 export class OrderModule {

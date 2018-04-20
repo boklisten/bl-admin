@@ -10,6 +10,7 @@ import { ItemSearchComponent } from './item-search/item-search.component';
 import {ItemSearchService} from './item-search/item-search.service';
 import { ItemSearchResultComponent } from './item-search/item-search-result/item-search-result.component';
 import {PriceModule} from '../price/price.module';
+import { ItemSearchBarComponent } from './item-search-bar/item-search-bar.component';
 
 @NgModule({
 	imports: [
@@ -19,9 +20,12 @@ import {PriceModule} from '../price/price.module';
 		FontAwesomeModule,
 		PriceModule
 	],
-	declarations: [ItemDetailComponent, ItemDetailCardComponent, ItemSearchComponent, ItemSearchResultComponent],
+	declarations: [ItemDetailComponent, ItemDetailCardComponent, ItemSearchComponent, ItemSearchResultComponent, ItemSearchBarComponent],
 	providers: [
 		ItemSearchService
+	],
+	exports: [
+		ItemSearchBarComponent
 	]
 })
 export class ItemModule {

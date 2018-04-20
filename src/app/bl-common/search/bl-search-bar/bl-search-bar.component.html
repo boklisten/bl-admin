@@ -1,5 +1,5 @@
 
-<div class="input-group input-group-lg mb-3">
-    <input type="text" class="form-control" placeholder="{{placeholder}}" [(ngModel)]="searchTerm" (keyup)="onSearch()">
+<div class="input-group input-group-lg">
+    <input type="text" class="form-control" placeholder="{{placeholder}}" [(ngModel)]="searchTerm" (keyup)="onSearch()" (focus)="$event.target.select()">
     <app-bl-common-update-button class="input-group-append" [icon]="'search'" [wait]="wait" (click)="onSearch()"></app-bl-common-update-button>
 </div>
