@@ -13,9 +13,7 @@
 						<span routerLink="{{'/item/' + item.id + '/detail'}}" class="bl-link-black bl-item-search-item-title">{{item.title}}</span>
 					</div>
 					<div class="col-4">
-						<button class="btn btn-sm btn-outline-success btn-block">
-							<fa-icon [icon]="'cart-plus'"></fa-icon>
-						</button>
+						<app-blc-item-add [item]="item"></app-blc-item-add>
 					</div>
 				</div>
 				<div class="row">

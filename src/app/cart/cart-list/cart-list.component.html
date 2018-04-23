@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card bl-cart-list">
+			<div class="bl-cart-list-header">
+				<h3 class="card-title text-center">
+					<fa-icon [icon]="'shopping-cart'"></fa-icon>
+				</h3>
+			</div>
+
+			<ul class="list-group">
+				<li class="list-group-item" *ngFor="let cartItem of cart">
+					<app-cart-list-item [cartItem]="cartItem"></app-cart-list-item>
+				</li>
+			</ul>
+
+			<app-bl-common-alert [type]="'secondary'" *ngIf="cart.length <= 0" [text]="'Cart is empty'"></app-bl-common-alert>
+
+			<div class="card-footer" *ngIf="cart.length > 0">
+				<div class="row justify-content-end align-items-center">
+					<div class="col-auto">
+						<span><b><fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{getTotalAmount() | blcPrice}}</b></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

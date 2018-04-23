@@ -1,0 +1,4 @@
+<button class="btn btn-sm btn-block" [ngClass]="{'btn-success': added, 'btn-outline-secondary': !added}" (click)="onClick()">
+    <fa-icon [icon]="'cart-plus'" *ngIf="!added"></fa-icon>
+	<fa-icon [icon]="'check'" *ngIf="added"></fa-icon>
+</button>

@@ -11,6 +11,8 @@ import {FormsModule} from '@angular/forms';
 import {CustomerNamePipe} from "./pipes/customer/customer-name.pipe";
 import {BranchNamePipe} from "./pipes/branch/branch-name.pipe";
 import { BlDatePipe } from './pipes/date/bl-date.pipe';
+import {BlcItemAddComponent} from './blc-item-add/blc-item-add.component';
+import { BlcPricePipe } from './pipes/price/blc-price.pipe';
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -27,7 +29,9 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlSearchBarComponent,
 		CustomerNamePipe,
 		BranchNamePipe,
-		BlDatePipe
+		BlDatePipe,
+		BlcItemAddComponent,
+		BlcPricePipe
 	],
 	exports: [
 		BlCommonUpdateButtonComponent,
@@ -35,7 +39,10 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlSearchBarComponent,
 		CustomerNamePipe,
 		BranchNamePipe,
-		BlDatePipe
+		BlDatePipe,
+		BlcItemAddComponent,
+		BlcPricePipe
+
 	]
 })
 export class BlCommonModule {

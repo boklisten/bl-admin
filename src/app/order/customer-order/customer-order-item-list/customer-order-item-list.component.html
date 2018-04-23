@@ -31,9 +31,7 @@
                     </div>
 
                     <div class="col-6">
-                        <button class="btn btn-outline-secondary btn-sm btn-block">
-                            <fa-icon [icon]="'cart-plus'"></fa-icon>
-                        </button>
+                       <app-blc-item-add [orderItem]="customerOrderItem.orderItem" [order]="customerOrderItem.order"></app-blc-item-add>
                     </div>
 				</div>
             </li>

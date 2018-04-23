@@ -20,7 +20,13 @@ import { ItemSearchBarComponent } from './item-search-bar/item-search-bar.compon
 		FontAwesomeModule,
 		PriceModule
 	],
-	declarations: [ItemDetailComponent, ItemDetailCardComponent, ItemSearchComponent, ItemSearchResultComponent, ItemSearchBarComponent],
+	declarations: [
+		ItemDetailComponent,
+		ItemDetailCardComponent,
+		ItemSearchComponent,
+		ItemSearchResultComponent,
+		ItemSearchBarComponent
+	],
 	providers: [
 		ItemSearchService
 	],

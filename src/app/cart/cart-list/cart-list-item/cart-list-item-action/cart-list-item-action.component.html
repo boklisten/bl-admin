@@ -1,0 +1,13 @@
+<div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="cartItem.action">
+    <label ngbButtonLabel [ngClass]="{'btn-outline-secondary': !showAction(action), 'btn-outline-info': showAction(action)}" *ngFor="let action of actionList">
+        <input ngbButton type="radio" [value]="action" [disabled]="!showAction(action)">
+        <fa-icon [icon]="'calendar-alt'" class="mr-3 ml-3" *ngIf="action === 'semester'"></fa-icon>
+        <fa-icon [icon]="'calendar'" class="mr-3 ml-3" *ngIf="action === 'year'"></fa-icon>
+        <fa-icon [icon]="'money-bill-alt'" class="mr-3 ml-3" *ngIf="action === 'buy'"></fa-icon>
+        <fa-icon [icon]="'exchange-alt'" class="mr-3 ml-3" *ngIf="action === 'sell'"></fa-icon>
+        <fa-icon [icon]="'ban'" class="mr-3 ml-3" *ngIf="action === 'cancel'"></fa-icon>
+        <fa-icon [icon]="'calendar-plus'" class="mr-3 ml-3" *ngIf="action === 'extend'"></fa-icon>
+    </label>
+</div>
+
+ {{cartItem.action}}
