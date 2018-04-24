@@ -12,10 +12,18 @@
     </label>
 </div>
 
- <span *ngIf="cartItem.orderItem.type === 'rent'" class="ml-2 text-secondary">
-	 {{cartItem.orderItem.type}} <fa-icon [icon]="'arrow-right'" class="mr-2 ml-2"></fa-icon> {{cartItem.orderItem.info.to | blDate}}
- </span>
+<span *ngIf="cartItem.orderItem.type === 'rent'" class="ml-2 text-secondary">
+	{{cartItem.orderItem.type}} <fa-icon [icon]="'arrow-right'" class="mr-2 ml-2"></fa-icon> {{cartItem.orderItem.info.to | blDate}}
+</span>
 
- <span *ngIf="cartItem.orderItem.type === 'cancel'" class="ml-2 text-danger">
-	 cancel this item
- </span>
+<span *ngIf="cartItem.orderItem.type === 'cancel'" class="ml-2 text-danger">
+	cancel this item
+</span>
+
+<span *ngIf="cartItem.orderItem.type === 'sell'" class="ml-2 text-secondary">
+	buy this item from customer
+</span>
+
+<span *ngIf="cartItem.orderItem.type === 'buy'" class="ml-2 text-secondary">
+	sell this item
+</span>

@@ -96,14 +96,13 @@ export class CartService {
 	}
 
 	private addNewItem(item: Item) {
-		console.log('the added item', item);
 		let type: OrderItemType = 'rent';
 		let price = this._itemPriceService.rentPrice(item, 'semester', 1);
 
-		if (!item.rent) {
+		if (!item.rent || !this._customerService.haveCustomer()) {
 			type = 'buy';
 			price = this._itemPriceService.buyPrice(item);
-			if (!item.buy) {
+			if (!item.buy && this._customerService.haveCustomer()) {
 				type = 'sell';
 				price = this._itemPriceService.sellPrice(item);
 			}

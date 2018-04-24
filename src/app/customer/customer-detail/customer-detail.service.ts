@@ -27,7 +27,6 @@ export class CustomerDetailService {
 
 	public fetchCustomerDetail(id: string): Promise<UserDetail> {
 		return this._userDetailService.getById(id).then((customerDetail: UserDetail) => {
-			this.setCustomerDetail(customerDetail);
 			return customerDetail;
 		}).catch((blApiError: BlApiError) => {
 			throw new Error('customerDetailService: could not fetch customerDetail');

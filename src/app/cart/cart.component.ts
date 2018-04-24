@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Order} from '@wizardcoder/bl-model';
+import {Item, Order} from '@wizardcoder/bl-model';
 import {CustomerService} from '../customer/customer.service';
+import {ItemService} from '@wizardcoder/bl-connect';
+import {CartService} from './cart.service';
+import {tick} from '@angular/core/testing';
 
 @Component({
 	selector: 'app-cart',
@@ -11,7 +14,7 @@ import {CustomerService} from '../customer/customer.service';
 export class CartComponent implements OnInit {
 	public haveCustomer: boolean;
 
-	constructor(private _customerService: CustomerService) {
+	constructor(private _customerService: CustomerService, private _itemService: ItemService, private _cartService: CartService) {
 		this.haveCustomer = false;
 	}
 
@@ -19,7 +22,14 @@ export class CartComponent implements OnInit {
 		this.haveCustomer = this._customerService.haveCustomer();
 
 		this._customerService.onCustomerChange().subscribe(() => {
-				this.haveCustomer = this._customerService.haveCustomer();
+			this.haveCustomer = this._customerService.haveCustomer();
+			/*
+			this._itemService.get().then((items: Item[]) => {
+				this._cartService.add(items[0]);
+				this._cartService.add(items[1]);
+			});
+			*/
+
 		});
 
 
