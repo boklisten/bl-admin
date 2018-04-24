@@ -35,8 +35,8 @@ export class CustomerDetailComponent implements OnInit {
 			}
 		});
 
-		this._customerDetailService.onCustomerDetailChange().subscribe((customerDetail: UserDetail) => {
-			this.customerDetail = customerDetail;
+		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
+			this.customerDetail = this._customerDetailService.getCustomerDetail();
 			this.warningText = null;
 			this.wait = false;
 		});

@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {EmployeeGuardService} from "../auth/guards/employee-guard.service";
 import {BranchGuardService} from "../branch/branch-guard.service";
 import {CartComponent} from "./cart.component";
+import {CustomerOrderResolverService} from '../order/customer-order/customer-order-resolver.service';
 
 const routes: Routes = [
 	{

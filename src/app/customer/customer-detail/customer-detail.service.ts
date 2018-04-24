@@ -15,10 +15,10 @@ export class CustomerDetailService {
 	constructor(private _userDetailService: UserDetailService, private _storageService: StorageService) {
 		this._storageCustomerIdName = 'bl-customer-id';
 		this._customerDetailChange$ = new Subject<UserDetail>();
-		
+
 		if (this._storageService.get(this._storageCustomerIdName)) {
-			this.fetchCustomerDetail(this._storageService.get(this._storageCustomerIdName)).then(() => {
-			
+			this.fetchCustomerDetail(this._storageService.get(this._storageCustomerIdName)).then((customerDetail: UserDetail) => {
+				this.setCustomerDetail(customerDetail);
 			}).catch((error) => {
 				console.log('customerDetailService: could not get the saved customer', error);
 			});
@@ -60,6 +60,8 @@ export class CustomerDetailService {
 
 	public clearCustomerDetail() {
 		this._currentCustomerDetail = null;
+		this._storageService.remove(this._storageCustomerIdName);
+		this._customerDetailChange$.next();
 	}
 
 }

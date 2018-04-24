@@ -19,12 +19,8 @@ export class CartListComponent implements OnInit {
 	ngOnInit() {
 		this.cart = this._cartService.getCart();
 
-		// TAKE THIS AWAY IN PROD
-		this._itemService.get().then((items: Item[]) => {
-			this._cartService.add(items[0]);
-			this._cartService.add(items[1]);
-		}).catch(() => {
-
+		this._cartService.onCartChange().subscribe(() => {
+			this.cart = this._cartService.getCart();
 		});
 	}
 

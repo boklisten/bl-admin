@@ -12,6 +12,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { CartListItemComponent } from './cart-list/cart-list-item/cart-list-item.component';
 import {FormsModule} from '@angular/forms';
 import { CartListItemActionComponent } from './cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component';
+import {CustomerOrderResolverService} from '../order/customer-order/customer-order-resolver.service';
 
 @NgModule({
 	imports: [
@@ -30,6 +31,9 @@ import { CartListItemActionComponent } from './cart-list/cart-list-item/cart-lis
 		CartListComponent,
 		CartListItemComponent,
 		CartListItemActionComponent
+	],
+	providers: [
+		CustomerOrderResolverService
 	]
 })
 export class CartModule {

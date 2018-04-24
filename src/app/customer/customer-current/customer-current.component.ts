@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {CustomerDetailService} from '../customer-detail/customer-detail.service';
 import {UserDetail} from '@wizardcoder/bl-model';
 import {Router} from '@angular/router';
+import {CustomerService} from '../customer.service';
 
 @Component({
 	selector: 'app-customer-current',
@@ -12,14 +13,20 @@ export class CustomerCurrentComponent implements OnInit {
 	public customerDetail: UserDetail;
 	public lastPopoverRef: any;
 
-	constructor(private _customerDetailService: CustomerDetailService, private _router: Router) {
-		this._customerDetailService.onCustomerDetailChange().subscribe((customerDetail: UserDetail) => {
-			this.customerDetail = customerDetail;
+	constructor(private _customerDetailService: CustomerDetailService, private _router: Router, private _customerService: CustomerService) {
+
+		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
+			this.customerDetail = this._customerDetailService.getCustomerDetail();
 		});
 	}
 
 	ngOnInit() {
 
+	}
+
+	onClearCustomer() {
+		this.customerDetail = null;
+		this._customerService.clear();
 	}
 
 	onViewCustomerDetail() {

@@ -20,9 +20,17 @@ export class StorageService {
 		}
 	}
 
+	public remove(key: string) {
+		localStorage.removeItem(key);
+	}
+
+	public clear() {
+		localStorage.clear();
+	}
+
 	private onLogout() {
 		this._authService.onLogout().subscribe(() => {
-			localStorage.clear();
+			this.clear();
 		});
 	}
 

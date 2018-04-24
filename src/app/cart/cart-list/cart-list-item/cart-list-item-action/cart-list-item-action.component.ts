@@ -1,6 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CartItem} from '../../../cartItem';
 import {CartItemAction} from '../../../cartItemAction';
+import {CustomerOrderService} from '../../../../order/customer-order/customer-order.service';
+import {OrderItemPriceService} from '../../../../price/order-item-price/order-item-price.service';
+import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
+import {Period} from '@wizardcoder/bl-model/dist/period/period';
+import {DateService} from '../../../../date/date.service';
 
 @Component({
 	selector: 'app-cart-list-item-action',
@@ -9,14 +14,21 @@ import {CartItemAction} from '../../../cartItemAction';
 })
 export class CartListItemActionComponent implements OnInit {
 	@Input() cartItem: CartItem;
+	@Output() actionChange: EventEmitter<CartItemAction>;
+
 	public actionList: string[];
 
-	constructor() {
+	constructor(private _orderItemPriceService: OrderItemPriceService, private _dateService: DateService) {
 		this.actionList = [];
+		this.actionChange = new EventEmitter<CartItemAction>();
+	}
+
+	ngOnInit() {
+		this.createActionList();
 	}
 
 	createActionList() {
-		if (this.cartItem.order) {
+		if (this.cartItem.originalOrder) {
 			this.actionList = [
 				'semester',
 				'year',
@@ -38,10 +50,8 @@ export class CartListItemActionComponent implements OnInit {
 				'sell'
 			];
 		}
-	}
 
-	ngOnInit() {
-		this.createActionList();
+		this.selectDefaultAction();
 	}
 
 	showAction(action: CartItemAction): boolean {
@@ -61,12 +71,80 @@ export class CartListItemActionComponent implements OnInit {
 		}
 	}
 
+	onActionChange(action: CartItemAction) {
+		this.cartItem.action = action;
+		this.updateOrderItemBasedOnAction(this.cartItem.action);
+		this.actionChange.emit(this.cartItem.action);
+
+	}
+
 	disableAction(action: CartItemAction): boolean {
 		switch (action) {
 			default:
 				return false;
-
 		}
+	}
+
+	originalAction(action: CartItemAction): boolean {
+		if (!this.cartItem.originalOrderItem) {
+			return false;
+		} else {
+			if (this.cartItem.originalOrderItem.type === 'rent') {
+				return (action === this.cartItem.originalOrderItem.info.periodType);
+			} else {
+				return (action === this.cartItem.originalOrderItem.type);
+			}
+		}
+	}
+
+	private selectDefaultAction() {
+		if (this.cartItem.originalOrder) {
+			if (this.cartItem.orderItem.type === 'rent') {
+				this.onActionChange(this.cartItem.orderItem.info.periodType);
+			} else {
+				this.onActionChange(this.cartItem.orderItem.type);
+			}
+		}
+	}
+
+	private updateOrderItemBasedOnAction(action: CartItemAction) {
+		switch (action) {
+			case 'semester':
+				this.updateOrderItemRent('semester');
+				break;
+			case 'year':
+				this.updateOrderItemRent('year');
+				break;
+			case 'buy':
+				this.updateOrderItem(action);
+				break;
+			case 'sell':
+				this.updateOrderItem(action);
+				break;
+			case 'cancel':
+				this.updateOrderItem('cancel' as any);
+				break;
+		}
+
+		this.cartItem.orderItem.amount = this._orderItemPriceService.calculateOrderItemPrice(this.cartItem.orderItem,
+			this.cartItem.item, this.cartItem.originalOrder, this.cartItem.originalOrderItem.amount);
+	}
+
+	private updateOrderItem(type: OrderItemType) {
+		this.cartItem.orderItem.type = type;
+		this.cartItem.orderItem.info = null;
+	}
+
+	private updateOrderItemRent(period: Period) {
+		this.cartItem.orderItem.type = 'rent';
+		const rentPeriod = this._dateService.rentPeriod(period);
+
+		this.cartItem.orderItem.info = {
+			from: rentPeriod.from,
+			to: rentPeriod.to,
+			numberOfPeriods: 1,
+			periodType: period
+		};
 	}
 
 }

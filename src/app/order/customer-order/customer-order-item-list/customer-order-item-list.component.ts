@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomerDetailService} from "../../../customer/customer-detail/customer-detail.service";
-import {OrderService} from "@wizardcoder/bl-connect";
-import {Order, OrderItem, UserDetail} from "@wizardcoder/bl-model";
+import {CustomerDetailService} from '../../../customer/customer-detail/customer-detail.service';
+import {OrderService} from '@wizardcoder/bl-connect';
+import {Order, OrderItem, UserDetail} from '@wizardcoder/bl-model';
+import {CustomerService} from '../../../customer/customer.service';
 
 @Component({
 	selector: 'app-customer-order-item-list',
@@ -10,48 +11,45 @@ import {Order, OrderItem, UserDetail} from "@wizardcoder/bl-model";
 })
 export class CustomerOrderItemListComponent implements OnInit {
 	public customerDetail: UserDetail;
-	public orderItems: OrderItem[];
-	public customerOrderItems: {orderItem: OrderItem, order: Order}[];
+	public customerOrderItems: { orderItem: OrderItem, order: Order }[];
 
-	constructor(private _customerDetailService: CustomerDetailService, private _orderService: OrderService) {
-		this.orderItems = [];
+	constructor(private _customerService: CustomerService) {
 		this.customerOrderItems = [];
 	}
 
 	ngOnInit() {
-		this.customerDetail = this._customerDetailService.getCustomerDetail();
 
-		if (this.customerDetail) {
-			this.fetchCustomerOrders();
+		if (this._customerService.haveCustomer()) {
+			this.addCustomerOrder();
 		}
 
-		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
-			this.customerDetail = this._customerDetailService.getCustomerDetail();
-			this.fetchCustomerOrders();
+		this._customerService.onCustomerChange().subscribe(() => {
+			if (this._customerService.haveCustomer()) {
+
+				this.addCustomerOrder();
+			} else {
+				this.customerOrderItems = [];
+			}
 		});
 	}
 
-	fetchCustomerOrders() {
-		this._orderService.getManyByIds(this.customerDetail.orders).then((orders: Order[]) => {
-
-			for (const order of orders) {
+	addCustomerOrder() {
+		this.customerOrderItems = [];
+		if (this._customerService.get().orders) {
+			for (const order of this._customerService.get().orders) {
 				for (const orderItem of order.orderItems) {
-					this.orderItems.push(orderItem);
 					this.customerOrderItems.push({orderItem: orderItem, order: order});
 				}
 			}
-		}).catch(() => {
-			console.log('customerOrderListComponent: could not get items');
-		});
+		}
 	}
 
-	public havePayed(customerOrderItem: {orderItem: OrderItem, order: Order}) {
+	public havePayed(customerOrderItem: { orderItem: OrderItem, order: Order }) {
 		if (customerOrderItem.order.payments && customerOrderItem.order.payments.length > 0) {
 			return true;
 		}
 		return false;
 	}
-
 
 
 }

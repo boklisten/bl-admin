@@ -26,11 +26,6 @@ export class CustomerOrderListComponent implements OnInit {
 		if (this.customerDetail) {
 			this.fetchCustomerOrders();
 		}
-
-		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
-			this.customerDetail = this._customerDetailService.getCustomerDetail();
-			this.fetchCustomerOrders();
-		});
 	}
 
 	fetchCustomerOrders() {

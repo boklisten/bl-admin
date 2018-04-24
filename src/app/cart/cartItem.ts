@@ -7,5 +7,6 @@ export class CartItem {
 	orderItem: OrderItem;
 	action: CartItemAction;
 	customerItem?: CustomerItem;
-	order?: Order;
+	originalOrder?: Order;
+	originalOrderItem?: OrderItem;
 }

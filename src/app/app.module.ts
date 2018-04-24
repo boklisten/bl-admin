@@ -30,6 +30,8 @@ import {BlConnectModule} from "@wizardcoder/bl-connect";
 import {CartModule} from "./cart/cart.module";
 import {CartService} from './cart/cart.service';
 import {DateService} from './date/date.service';
+import {CustomerOrderService} from './order/customer-order/customer-order.service';
+import {CustomerService} from './customer/customer.service';
 library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt,
 	faPhone, faAddressCard, faQrcode, faSyncAlt, faTimes, faShoppingCart, faClock, faWarehouse, faDollarSign, faCreditCard,
 	faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode, faCalendar, faCartPlus, faCheckCircle, faClipboardList,
@@ -63,7 +65,9 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		BranchGuardService,
 		StorageService,
 		CartService,
-		DateService
+		DateService,
+		CustomerOrderService,
+		CustomerService
 	],
 	bootstrap: [AppComponent]
 })
