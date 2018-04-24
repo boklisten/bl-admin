@@ -1,20 +1,14 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {SearchComponent} from './search.component';
 import {EmployeeGuardService} from '../auth/guards/employee-guard.service';
 import {BranchGuardService} from '../branch/branch-guard.service';
-import {ItemDetailComponent} from './item-detail/item-detail.component';
-import {ItemSearchComponent} from './item-search/item-search.component';
 
 const routes: Routes = [
 	{
-		path: 'item',
-		canActivate: [EmployeeGuardService, BranchGuardService],
-		children: [
-			{
-				path: ':id/detail',
-				component: ItemDetailComponent
-			}
-		]
+		path: 'search',
+		component: SearchComponent,
+		canActivate: [EmployeeGuardService, BranchGuardService]
 	}
 ];
 
@@ -22,5 +16,5 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule]
 })
-export class ItemRoutingModule {
+export class SearchRoutingModule {
 }

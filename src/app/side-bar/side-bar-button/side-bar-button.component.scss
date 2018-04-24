@@ -13,8 +13,12 @@
 	font-size: 11px;
 }
 
-.bl-sidebar-button:hover {
+.bl-sidebar-button-selected {
 	background-color: $primary-color;
+}
+
+.bl-sidebar-button:hover {
+	background-color: #3387A1;
 }
 
 .bl-sidebar-button-text {

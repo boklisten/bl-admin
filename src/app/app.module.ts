@@ -32,6 +32,7 @@ import {CartService} from './cart/cart.service';
 import {DateService} from './date/date.service';
 import {CustomerOrderService} from './order/customer-order/customer-order.service';
 import {CustomerService} from './customer/customer.service';
+import {SearchModule} from './search/search.module';
 library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt,
 	faPhone, faAddressCard, faQrcode, faSyncAlt, faTimes, faShoppingCart, faClock, faWarehouse, faDollarSign, faCreditCard,
 	faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode, faCalendar, faCartPlus, faCheckCircle, faClipboardList,
@@ -57,7 +58,8 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		CustomerModule,
 		BlCommonModule,
 		ItemModule,
-		CartModule
+		CartModule,
+		SearchModule
 	],
 	providers: [
 		AuthLoginService,

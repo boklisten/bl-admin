@@ -47,7 +47,8 @@ import {OrderModule} from '../order/order.module';
 	],
 	exports: [
 		CustomerCurrentComponent,
-		CustomerDetailPopoverComponent
+		CustomerDetailPopoverComponent,
+		CustomerSearchComponent
 	],
 	entryComponents: [CustomerDetailModalContentComponent]
 })

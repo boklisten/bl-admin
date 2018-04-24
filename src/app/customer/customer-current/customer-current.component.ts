@@ -35,7 +35,7 @@ export class CustomerCurrentComponent implements OnInit {
 	}
 
 	onChangeCustomerDetail() {
-		this._router.navigate(['/customer/search']);
+		this._router.navigate(['/search']);
 		this.lastPopoverRef.close();
 	}
 

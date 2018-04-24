@@ -1,18 +1,16 @@
-<div class="container-fluid" *ngIf="customerDetail">
-    <div class="row bl-customer-current justify-content-center align-items-center">
-        <div class="col-12 text-center align-items-center"
-			 [ngbPopover]="customerDetailPopover"
-			 placement="bottom"
-			 #customerDetailPopoverRef="ngbPopover"
-			 (click)="setCurrentPopoverOpen(customerDetailPopoverRef)">
+<div class="row no-gutters bl-customer-current justify-content-center" *ngIf="customerDetail">
+    <div class="col-auto text-center bl-customer-current-container no-gutters"
+         [ngbPopover]="customerDetailPopover"
+         placement="bottom"
+         #customerDetailPopoverRef="ngbPopover"
+         (click)="setCurrentPopoverOpen(customerDetailPopoverRef)">
 
-			<span class="bl-customer-current-details">
-				<fa-icon [icon]="'user'" class="ml-2 mr-2"></fa-icon> {{customerDetail.email}} | {{customerDetail.name}}
-			</span>
-			<span class="ml-2 bl-link" (click)="onClearCustomer()">
-				<fa-icon [icon]="'times'"></fa-icon>
-			</span>
-        </div>
+        <span class="bl-customer-current-details bl-link-black">
+            <fa-icon [icon]="'user'" class="ml-2 mr-2"></fa-icon> {{customerDetail.email}} | {{customerDetail.name}}
+        </span>
+        <span class="ml-2 bl-link-black" (click)="onClearCustomer()">
+            <fa-icon [icon]="'times'"></fa-icon>
+        </span>
     </div>
 </div>
 

@@ -1,15 +1,13 @@
-<div class="container mt-2">
-    <div class="row justify-content-center">
-        <div class="col-6">
-			<div class="input-group input-group-lg mb-3">
-				<input type="text" class="form-control" placeholder="customer search" [(ngModel)]="searchTerm" (keyup)="onSearch()">
-				<app-bl-common-update-button class="input-group-append" [icon]="'search'" [wait]="wait" (click)="onSearch()"></app-bl-common-update-button>
-			</div>
+<div class="row">
+    <div class="col-12">
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" placeholder="customer search" [(ngModel)]="searchTerm" (keyup)="onSearch()">
+            <app-bl-common-update-button class="input-group-append" [icon]="'search'" [wait]="wait" (click)="onSearch()"></app-bl-common-update-button>
         </div>
     </div>
-	<div class="row justify-content-center">
-		<div class="col-6">
-			<app-customer-search-result></app-customer-search-result>
-		</div>
-	</div>
+</div>
+<div class="row mt-2">
+    <div class="col-12">
+        <app-customer-search-result></app-customer-search-result>
+    </div>
 </div>

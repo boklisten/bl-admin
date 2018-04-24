@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {EmployeeGuardService} from '../auth/guards/employee-guard.service';
 import {BranchGuardService} from '../branch/branch-guard.service';
-import {CustomerSearchComponent} from './customer-search/customer-search.component';
 import {CustomerDetailComponent} from './customer-detail/customer-detail.component';
 
 const routes: Routes = [
@@ -10,10 +9,6 @@ const routes: Routes = [
 		path: 'customer',
 		canActivate: [EmployeeGuardService, BranchGuardService],
 		children: [
-			{
-				path: 'search',
-				component: CustomerSearchComponent
-			},
 			{
 				path: ':id/detail',
 				component: CustomerDetailComponent

@@ -52,6 +52,7 @@ export class CustomerDetailComponent implements OnInit {
 		this._customerDetailService.fetchCustomerDetail(this._currentId).then((customerDetail: UserDetail) => {
 			this.wait = false;
 			this.customerDetail = customerDetail;
+			this._customerDetailService.setCustomerDetail(this.customerDetail);
 		}).catch(() => {
 			this.warningText = 'could not get customer details';
 			console.log('customerDetailComponent: could not fetch customerDetail');
