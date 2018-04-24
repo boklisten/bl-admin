@@ -6,6 +6,7 @@ import {OrderItemPriceService} from '../../../../price/order-item-price/order-it
 import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
 import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {DateService} from '../../../../date/date.service';
+import {CustomerService} from '../../../../customer/customer.service';
 
 @Component({
 	selector: 'app-cart-list-item-action',
@@ -16,9 +17,9 @@ export class CartListItemActionComponent implements OnInit {
 	@Input() cartItem: CartItem;
 	@Output() actionChange: EventEmitter<CartItemAction>;
 
-	public actionList: string[];
+	public actionList: CartItemAction[];
 
-	constructor(private _orderItemPriceService: OrderItemPriceService, private _dateService: DateService) {
+	constructor(private _orderItemPriceService: OrderItemPriceService, private _dateService: DateService, private _customerService: CustomerService) {
 		this.actionList = [];
 		this.actionChange = new EventEmitter<CartItemAction>();
 	}
@@ -39,15 +40,18 @@ export class CartListItemActionComponent implements OnInit {
 			this.actionList = [
 				'extend',
 				'buyout',
-				'deliver',
 				'cancel'
 			];
-		} else {
+		} else if (this._customerService.haveCustomer()) {
 			this.actionList = [
 				'semester',
 				'year',
 				'buy',
 				'sell'
+			];
+		} else {
+			this.actionList = [
+				'buy'
 			];
 		}
 
@@ -104,6 +108,8 @@ export class CartListItemActionComponent implements OnInit {
 			} else {
 				this.onActionChange(this.cartItem.orderItem.type);
 			}
+		} else {
+			this.onActionChange(this.cartItem.orderItem.type);
 		}
 	}
 
@@ -127,7 +133,7 @@ export class CartListItemActionComponent implements OnInit {
 		}
 
 		this.cartItem.orderItem.amount = this._orderItemPriceService.calculateOrderItemPrice(this.cartItem.orderItem,
-			this.cartItem.item, this.cartItem.originalOrder, this.cartItem.originalOrderItem.amount);
+			this.cartItem.item, this.cartItem.originalOrder, (this.cartItem.originalOrderItem) ? this.cartItem.originalOrderItem.amount : 0);
 	}
 
 	private updateOrderItem(type: OrderItemType) {
@@ -137,7 +143,11 @@ export class CartListItemActionComponent implements OnInit {
 
 	private updateOrderItemRent(period: Period) {
 		this.cartItem.orderItem.type = 'rent';
-		const rentPeriod = this._dateService.rentPeriod(period);
+		let rentPeriod = this._dateService.rentPeriod(period);
+
+		if (this.originalAction(period)) {
+			rentPeriod = {to: this.cartItem.originalOrderItem.info.to, from: this.cartItem.originalOrderItem.info.from};
+		}
 
 		this.cartItem.orderItem.info = {
 			from: rentPeriod.from,

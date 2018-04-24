@@ -96,7 +96,7 @@ export class CartService {
 	}
 
 	private addNewItem(item: Item) {
-
+		console.log('the added item', item);
 		let type: OrderItemType = 'rent';
 		let price = this._itemPriceService.rentPrice(item, 'semester', 1);
 

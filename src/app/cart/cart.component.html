@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-12">
 					<ngb-tabset>
-						<ngb-tab>
+						<ngb-tab *ngIf="haveCustomer">
 							<ng-template ngbTabTitle>
 								<span class="text-secondary">Ordered items</span>
 							</ng-template>
@@ -21,7 +21,7 @@
 								</div>
 							</ng-template>
 						</ngb-tab>
-						<ngb-tab>
+						<ngb-tab *ngIf="haveCustomer">
 							<ng-template ngbTabTitle>
 								<span class="text-secondary">Customer items</span>
 							</ng-template>
