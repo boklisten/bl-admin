@@ -102,15 +102,12 @@ export class CartListItemActionComponent implements OnInit {
 	}
 
 	private selectDefaultAction() {
-		if (this.cartItem.originalOrder) {
-			if (this.cartItem.orderItem.type === 'rent') {
-				this.onActionChange(this.cartItem.orderItem.info.periodType);
-			} else {
-				this.onActionChange(this.cartItem.orderItem.type);
-			}
+		if (this.cartItem.orderItem.type === 'rent') {
+			this.onActionChange(this.cartItem.orderItem.info.periodType);
 		} else {
 			this.onActionChange(this.cartItem.orderItem.type);
 		}
+
 	}
 
 	private updateOrderItemBasedOnAction(action: CartItemAction) {

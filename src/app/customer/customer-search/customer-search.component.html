@@ -1,9 +1,6 @@
 <div class="row">
     <div class="col-12">
-        <div class="input-group input-group-lg">
-            <input type="text" class="form-control" placeholder="customer search" [(ngModel)]="searchTerm" (keyup)="onSearch()">
-            <app-bl-common-update-button class="input-group-append" [icon]="'search'" [wait]="wait" (click)="onSearch()"></app-bl-common-update-button>
-        </div>
+		<app-bl-search-bar [wait]="wait" [placeholder]="'Customer Search'" [term]="searchTerm" (search)="onSearch($event)"></app-bl-search-bar>
     </div>
 </div>
 <div class="row mt-2">

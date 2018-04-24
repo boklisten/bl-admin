@@ -26,14 +26,14 @@ export class CustomerSearchComponent implements OnInit {
 	ngOnInit() {
 		if (this._customerSearchService.getSearchTerm()) {
 			this.searchTerm = this._customerSearchService.getSearchTerm();
-			this.onSearch();
+			this.onSearch(this.searchTerm);
 		}
 	}
 
-	onSearch() {
-		if (this.searchTerm && this.searchTerm.length > 2) {
+	onSearch(searchTerm: string) {
+		if (searchTerm && searchTerm.length > 2) {
 			this.wait = true;
-			this._customerSearchService.search(this.searchTerm);
+			this._customerSearchService.search(searchTerm);
 		}
 	}
 
