@@ -18,7 +18,8 @@ import {Period} from '@wizardcoder/bl-model/dist/period/period';
 export class CartListItemComponent implements OnInit {
 	@Input() cartItem: CartItem;
 	public cartItemAction: CartItemAction;
-	public alreadyPayed: boolean;
+	public alreadyPayedAmount: number;
+	public showAlreadyPayed: boolean;
 
 	constructor(private _cartService: CartService, private _itemPriceService: ItemPriceService,
 	            private _customerOrderService: CustomerOrderService, private _orderItemPriceService: OrderItemPriceService,
@@ -26,24 +27,35 @@ export class CartListItemComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.setAlreadyPayed();
+		this.setShowAlreadyPayed();
+		this.setAlreadyPayedAmount();
 	}
 
 	public onActionChange(action: CartItemAction) {
-		this.setAlreadyPayed();
+		this.setShowAlreadyPayed();
+	}
+
+	public setAlreadyPayedAmount() {
+		if (this.cartItem.originalOrder.payments && this.cartItem.originalOrder.payments.length > 0) {
+			this.alreadyPayedAmount = this.cartItem.originalOrderItem.amount;
+			return;
+		}
+
+		this.alreadyPayedAmount = 0;
+
 	}
 
 	public remove() {
 		this._cartService.remove(this.cartItem.item.id);
 	}
 
-	public setAlreadyPayed() {
+	public setShowAlreadyPayed() {
 		if (!this.cartItem.originalOrder) {
-			this.alreadyPayed = false;
+			this.showAlreadyPayed = false;
 			return;
 		}
 
-		this.alreadyPayed = this._orderItemPriceService.orderItemTypePayedFor(this.cartItem.orderItem, this.cartItem.originalOrder);
+		this.showAlreadyPayed = this._orderItemPriceService.orderItemTypePayedFor(this.cartItem.orderItem, this.cartItem.originalOrderItem, this.cartItem.originalOrder);
 
 	}
 }

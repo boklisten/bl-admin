@@ -8,46 +8,34 @@ export class OrderItemPriceService {
 	constructor(private _itemPriceService: ItemPriceService) {
 	}
 
-	public orderItemTypePayedFor(orderItem: OrderItem, order: Order): boolean {
-		if (!order || !order.payments || order.payments.length <= 0) {
+	public orderItemTypePayedFor(orderItem: OrderItem, originalOrderItem: OrderItem, originalOrder: Order): boolean {
+		if (!originalOrderItem || (!originalOrder.payments || originalOrder.payments.length <= 0)) {
 			return false;
 		}
 
-		for (const customerOrderItem of order.orderItems) {
-			if (customerOrderItem.item === orderItem.item) {
-				if (customerOrderItem.type === orderItem.type) {
-					if (orderItem.type === 'rent' || orderItem.type === 'extend') {
-						if (customerOrderItem.info.periodType !== orderItem.info.periodType) {
-							return false;
-						}
+		if (originalOrderItem.item === orderItem.item) {
+			if (originalOrderItem.type === orderItem.type) {
+				if (orderItem.type === 'rent' || orderItem.type === 'extend') {
+					if (originalOrderItem.info.periodType !== orderItem.info.periodType) {
+						return false;
 					}
-
-					return true;
 				}
+
+				return true;
 			}
 		}
 
 		return false;
 	}
 
-	public orderItemAmountPayed(orderItem: OrderItem, order: Order): number {
-		if (!order.payments || order.payments.length <= 0) {
+	public calculateOrderItemPrice(orderItem: OrderItem, item: Item, originalOrderItem?: OrderItem, originalOrder?: Order): number {
+		if (originalOrderItem && this.orderItemTypePayedFor(orderItem, originalOrderItem, originalOrder)) {
 			return 0;
 		}
 
-		for (const customerOrderItem of order.orderItems) {
-			if (customerOrderItem.item === orderItem.item) {
-				return customerOrderItem.amount;
-			}
-		}
 
-		return 0;
-	}
+		const alreadyPayed = (originalOrderItem && (originalOrder.payments && originalOrder.payments.length > 0)) ? originalOrderItem.amount : 0;
 
-	public calculateOrderItemPrice(orderItem: OrderItem, item: Item, order?: Order, alreadyPayed?: number): number {
-		if (this.orderItemTypePayedFor(orderItem, order)) {
-			return 0;
-		}
 
 		switch (orderItem.type as any) {
 			case 'rent':

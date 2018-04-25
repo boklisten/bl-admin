@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-12">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Title</th>
+					<th scope="col">Action</th>
+					<th scope="col"><fa-icon [icon]="'dollar-sign'"></fa-icon></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let cartItem of cart">
+					<td>{{cartItem.orderItem.title}}</td>
+					<td>{{cartItem.action}}</td>
+					<td>{{cartItem.orderItem.amount | blcPrice}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

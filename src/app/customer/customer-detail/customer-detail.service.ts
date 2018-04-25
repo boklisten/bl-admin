@@ -26,6 +26,10 @@ export class CustomerDetailService {
 	}
 
 	public fetchCustomerDetail(id: string): Promise<UserDetail> {
+		if (this._currentCustomerDetail && id === this._currentCustomerDetail.id) {
+			return Promise.resolve(this._currentCustomerDetail);
+		}
+
 		return this._userDetailService.getById(id).then((customerDetail: UserDetail) => {
 			return customerDetail;
 		}).catch((blApiError: BlApiError) => {
@@ -52,6 +56,9 @@ export class CustomerDetailService {
 	}
 
 	public setCustomerDetail(customerDetail: UserDetail) {
+		if (this._currentCustomerDetail && this._currentCustomerDetail.id === customerDetail.id) {
+			return;
+		}
 		this._storageService.store(this._storageCustomerIdName, customerDetail.id);
 		this._currentCustomerDetail = customerDetail;
 		this._customerDetailChange$.next(this._currentCustomerDetail);

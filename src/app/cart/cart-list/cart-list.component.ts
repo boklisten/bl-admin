@@ -3,6 +3,7 @@ import {CartService} from '../cart.service';
 import {Item, OrderItem} from '@wizardcoder/bl-model';
 import {ItemService} from '@wizardcoder/bl-connect';
 import {CartItem} from '../cartItem';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
 	selector: 'app-cart-list',
@@ -12,7 +13,7 @@ import {CartItem} from '../cartItem';
 export class CartListComponent implements OnInit {
 	public cart: CartItem[];
 
-	constructor(private _cartService: CartService, private _itemService: ItemService) {
+	constructor(private _cartService: CartService, private _modalService: NgbModal, private _itemService: ItemService) {
 		this.cart = [];
 	}
 
@@ -22,6 +23,15 @@ export class CartListComponent implements OnInit {
 		this._cartService.onCartChange().subscribe(() => {
 			this.cart = this._cartService.getCart();
 		});
+/*
+		setTimeout(() => {
+			this._itemService.get().then((items: Item[]) => {
+				this._cartService.add(items[7]);
+				this._cartService.add(items[6]);
+			});
+
+		}, 500);
+		*/
 	}
 
 	remove(orderItem: OrderItem) {
@@ -36,6 +46,10 @@ export class CartListComponent implements OnInit {
 		}
 
 		return totalAmount;
+	}
+
+	onConfirm(content) {
+		this._modalService.open(content, {size: 'lg', centered: true});
 	}
 
 }

@@ -17,6 +17,10 @@ export class ItemPriceService {
 			return -1;
 		}
 
+		if (branch.paymentInfo.responsible) {
+			return this.sanitizePrice(0);
+		}
+
 		for (const rentPeriod of branch.paymentInfo.rentPeriods) {
 			if (rentPeriod.type === period) {
 				if (alreadyPayed) {

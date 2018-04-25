@@ -11,6 +11,8 @@ import {CartItemAction} from './cartItemAction';
 import {CustomerOrderService} from '../order/customer-order/customer-order.service';
 import {CustomerDetailService} from '../customer/customer-detail/customer-detail.service';
 import {CustomerService} from '../customer/customer.service';
+import {BranchStoreService} from '../branch/branch-store.service';
+import {CartHelperService} from './cart-helper.service';
 
 @Injectable()
 export class CartService {
@@ -18,12 +20,18 @@ export class CartService {
 
 	private _cartChange$: Subject<boolean>;
 
-	constructor(private _itemPriceService: ItemPriceService, private _dateService: DateService, private itemService: ItemService, private _customerService: CustomerService) {
+	constructor(private _itemPriceService: ItemPriceService, private _dateService: DateService, private itemService: ItemService,
+	            private _customerService: CustomerService, private _branchStoreService: BranchStoreService,
+	            private _cartHelperService: CartHelperService) {
+
 		this._cart = [];
 		this._cartChange$ = new Subject<boolean>();
 
 		this._customerService.onCustomerChange().subscribe(() => {
-			console.log('the customer changed, have customer', this._customerService.haveCustomer());
+			this.clear();
+		});
+
+		this._branchStoreService.onBranchChange().subscribe(() => {
 			this.clear();
 		});
 	}
@@ -33,12 +41,12 @@ export class CartService {
 			const orderAndOrderItem: { orderItem: OrderItem, order: Order } = this._customerService.haveOrderedItem(item.id);
 			this.addOrderItem(orderAndOrderItem.orderItem, orderAndOrderItem.order);
 		} catch (e) {
-			console.log('customer did not have the item ordered, must add it manuel', item.title);
 			this.addNewItem(item);
 		}
 	}
 
 	public addOrderItem(orderItem: OrderItem, order: Order, item?: Item) {
+
 		if (this.contains(orderItem.item)) {
 			return;
 		}
@@ -96,35 +104,21 @@ export class CartService {
 	}
 
 	private addNewItem(item: Item) {
-		let type: OrderItemType = 'rent';
-		let price = this._itemPriceService.rentPrice(item, 'semester', 1);
+		let orderItem: OrderItem;
 
-		if (!item.rent || !this._customerService.haveCustomer()) {
-			type = 'buy';
-			price = this._itemPriceService.buyPrice(item);
-			if (!item.buy && this._customerService.haveCustomer()) {
-				type = 'sell';
-				price = this._itemPriceService.sellPrice(item);
-			}
+		try {
+			orderItem = this._cartHelperService.createOrderItemBasedOnItem(item);
+		} catch (e) {
+			console.log('the item can not be added', e);
 		}
-
-		const orderItem: OrderItem = {
-			type: type,
-			item: item.id,
-			title: item.title,
-			amount: price,
-			unitPrice: item.price,
-			taxRate: item.taxRate,
-			taxAmount: 0,
-			info: this.createOrderItemInfo(type)
-		};
 
 		this.addCartItem({
 			item: item,
 			orderItem: orderItem,
-			action: this.getActionBasedOnOrderItem(orderItem.type)
+			action: this._cartHelperService.getFirstValidActionOnItem(item)
 		});
 	}
+
 
 	private addNewOrderItem(orderItem: OrderItem, order: Order, item: Item) {
 		const newOrderItem: OrderItem = {
@@ -155,25 +149,17 @@ export class CartService {
 
 	private getActionBasedOnOrderItem(type: OrderItemType): CartItemAction {
 		if (type === 'rent') {
-			return 'semester';
+			const branch = this._branchStoreService.getCurrentBranch();
+			if (branch.paymentInfo.rentPeriods && branch.paymentInfo.rentPeriods.length > 0) {
+				return branch.paymentInfo.rentPeriods[0].type;
+			}
 		} else {
 			return type;
 		}
 
 	}
 
-	private createOrderItemInfo(type: OrderItemType): OrderItemInfo {
-		if (type === 'rent') {
-			const fromTo = this._dateService.rentPeriod('semester');
 
-			return {
-				from: fromTo.from,
-				to: fromTo.to,
-				numberOfPeriods: 1,
-				periodType: 'semester'
-			};
-		}
-	}
 
 
 }

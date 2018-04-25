@@ -7,6 +7,7 @@ import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-i
 import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {DateService} from '../../../../date/date.service';
 import {CustomerService} from '../../../../customer/customer.service';
+import {CartHelperService} from '../../../cart-helper.service';
 
 @Component({
 	selector: 'app-cart-list-item-action',
@@ -19,7 +20,8 @@ export class CartListItemActionComponent implements OnInit {
 
 	public actionList: CartItemAction[];
 
-	constructor(private _orderItemPriceService: OrderItemPriceService, private _dateService: DateService, private _customerService: CustomerService) {
+	constructor(private _orderItemPriceService: OrderItemPriceService, private _dateService: DateService, private _customerService: CustomerService,
+	            private _cartHelperService: CartHelperService) {
 		this.actionList = [];
 		this.actionChange = new EventEmitter<CartItemAction>();
 	}
@@ -56,23 +58,17 @@ export class CartListItemActionComponent implements OnInit {
 		}
 
 		this.selectDefaultAction();
+
 	}
 
 	showAction(action: CartItemAction): boolean {
-		switch (action) {
-			case 'semester':
-				return this.cartItem.item.rent;
-			case 'year':
-				return this.cartItem.item.rent;
-			case 'buy':
-				return this.cartItem.item.buy;
-			case 'sell':
-				return this.cartItem.item.sell;
-			case 'cancel':
+		if (this.cartItem.originalOrderItem && this.cartItem.originalOrderItem.type === 'rent') {
+			if (action === 'semester' || action === 'year') {
 				return true;
-			default:
-				return false;
+			}
 		}
+
+		return (this._cartHelperService.actionValidOnItem(action, this.cartItem.item) && this._cartHelperService.cartItemActionValidOnBranch(action));
 	}
 
 	onActionChange(action: CartItemAction) {
@@ -130,7 +126,7 @@ export class CartListItemActionComponent implements OnInit {
 		}
 
 		this.cartItem.orderItem.amount = this._orderItemPriceService.calculateOrderItemPrice(this.cartItem.orderItem,
-			this.cartItem.item, this.cartItem.originalOrder, (this.cartItem.originalOrderItem) ? this.cartItem.originalOrderItem.amount : 0);
+			this.cartItem.item, this.cartItem.originalOrderItem, this.cartItem.originalOrder);
 	}
 
 	private updateOrderItem(type: OrderItemType) {
