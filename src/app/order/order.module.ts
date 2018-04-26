@@ -14,6 +14,7 @@ import { OrderItemDetailListComponent } from './order-detail/order-item-detail-l
 import {BranchModule} from "../branch/branch.module";
 import {CustomerModule} from "../customer/customer.module";
 import { CustomerOrderItemListComponent } from './customer-order/customer-order-item-list/customer-order-item-list.component';
+import {OrderHandlerService} from './order-handler/order-handler.service';
 
 @NgModule({
 	imports: [
@@ -35,6 +36,9 @@ import { CustomerOrderItemListComponent } from './customer-order/customer-order-
 	exports: [
 		CustomerOrderListComponent,
 		CustomerOrderItemListComponent
+	],
+	providers: [
+		OrderHandlerService
 	]
 })
 export class OrderModule {

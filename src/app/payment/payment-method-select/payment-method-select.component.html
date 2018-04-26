@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-12">
+		<form [formGroup]="paymentMethodForm">
+			<div class="btn-group btn-group-toggle">
+				<label class="btn-primary" ngbButtonLabel>
+					<input type="checkbox" formControlName="card" ngbButton> <fa-icon [icon]="'credit-card'" class="mr-2"></fa-icon> Card
+				</label>
+				<label class="btn-primary" ngbButtonLabel>
+					<input type="checkbox" formControlName="cash" ngbButton> <fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon> Cash
+				</label>
+				<label class="btn-primary" ngbButtonLabel>
+					<input type="checkbox" formControlName="vipps" ngbButton> Vipps
+				</label>
+			</div>
+		</form>
+	</div>
+</div>

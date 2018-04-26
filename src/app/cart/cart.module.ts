@@ -17,6 +17,8 @@ import { CartConfirmComponent } from './cart-confirm/cart-confirm.component';
 import { CartListSmallComponent } from './cart-list-small/cart-list-small.component';
 import {CartHelperService} from './cart-helper.service';
 import {CustomerModule} from '../customer/customer.module';
+import {CartConfirmService} from './cart-confirm/cart-confirm.service';
+import {PaymentModule} from '../payment/payment.module';
 
 @NgModule({
 	imports: [
@@ -30,7 +32,9 @@ import {CustomerModule} from '../customer/customer.module';
 		FormsModule,
 		NgbButtonsModule,
 		NgbModalModule,
-		CustomerModule
+		CustomerModule,
+		OrderModule,
+		PaymentModule
 	],
 	declarations: [
 		CartComponent,
@@ -42,7 +46,8 @@ import {CustomerModule} from '../customer/customer.module';
 	],
 	providers: [
 		CustomerOrderResolverService,
-		CartHelperService
+		CartHelperService,
+		CartConfirmService
 	]
 })
 export class CartModule {

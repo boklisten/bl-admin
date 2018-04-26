@@ -21,7 +21,6 @@ export class CustomerDetailModalComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		console.log('the size', this.buttonSize);
 	}
 
 	public onShowModal() {

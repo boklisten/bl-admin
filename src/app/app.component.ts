@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthService} from './auth/auth.service';
 import {BranchStoreService} from './branch/branch-store.service';
+import {Router} from '@angular/router';
 
 @Component({
 	selector: 'app-root',
@@ -11,8 +12,12 @@ export class AppComponent {
 	title = 'app';
 	public showContent: boolean;
 
-	constructor(private _authService: AuthService, private _branchStoreService: BranchStoreService) {
+	constructor(private _authService: AuthService, private _branchStoreService: BranchStoreService, private _router: Router) {
 		this.showContent = false;
+
+		this._router.events.subscribe(() => {
+			window.scroll(0, 0);
+		});
 
 		this._authService.onLogout().subscribe(() => {
 			console.log('the user logged out');

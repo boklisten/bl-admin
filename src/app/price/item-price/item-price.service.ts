@@ -33,6 +33,11 @@ export class ItemPriceService {
 	}
 
 	public buyPrice(item: Item, alreadyPayed?: number): number {
+		const branch = this._branchStoreService.getCurrentBranch();
+		if (!branch.paymentInfo) {
+			return this.sanitizePrice(-1);
+		}
+
 		if (alreadyPayed) {
 			return this.sanitizePrice(item.price - alreadyPayed);
 		}
@@ -40,6 +45,12 @@ export class ItemPriceService {
 	}
 
 	public sellPrice(item: Item): number {
+		const branch = this._branchStoreService.getCurrentBranch();
+
+		if (!branch.paymentInfo) {
+			return this.sanitizePrice(-1);
+		}
+
 		if (item.sellPrice > 0) {
 			return (this.sanitizePrice(0 - item.sellPrice));
 		}

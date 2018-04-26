@@ -22,7 +22,9 @@ export class CustomerDetailSmallComponent implements OnInit {
 
 	ngOnInit() {
 		this._customerService.onCustomerChange().subscribe(() => {
-			this.setCustomerDetail(this._customerService.get().detail);
+			if (this._customerService.haveCustomer()) {
+				this.setCustomerDetail(this._customerService.get().detail);
+			}
 		});
 
 		if (this._customerService.haveCustomer()) {
