@@ -30,16 +30,16 @@ export class CartHelperService {
 	}
 
 	public actionValidOnItem(action: CartItemAction, item: Item): boolean {
-		if (action === 'semester' || action === 'year' && this._customerService.haveCustomer()) {
-			if (item.rent) {
+		if (action === 'semester' || action === 'year') {
+			if (item.rent && this._customerService.haveCustomer()) {
 				return true;
 			}
 		} else if (action === 'buy') {
 			if (item.buy) {
 				return true;
 			}
-		} else if (action === 'sell' && this._customerService.haveCustomer()) {
-			if (item.sell) {
+		} else if (action === 'sell') {
+			if (item.sell && this._customerService.haveCustomer()) {
 				return true;
 			}
 		} else {

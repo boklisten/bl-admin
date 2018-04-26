@@ -40,6 +40,9 @@ export class ItemPriceService {
 	}
 
 	public sellPrice(item: Item): number {
+		if (item.sellPrice > 0) {
+			return (this.sanitizePrice(0 - item.sellPrice));
+		}
 		return this.sanitizePrice(item.sellPrice);
 	}
 

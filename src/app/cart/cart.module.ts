@@ -16,6 +16,7 @@ import {CustomerOrderResolverService} from '../order/customer-order/customer-ord
 import { CartConfirmComponent } from './cart-confirm/cart-confirm.component';
 import { CartListSmallComponent } from './cart-list-small/cart-list-small.component';
 import {CartHelperService} from './cart-helper.service';
+import {CustomerModule} from '../customer/customer.module';
 
 @NgModule({
 	imports: [
@@ -28,7 +29,8 @@ import {CartHelperService} from './cart-helper.service';
 		FontAwesomeModule,
 		FormsModule,
 		NgbButtonsModule,
-		NgbModalModule
+		NgbModalModule,
+		CustomerModule
 	],
 	declarations: [
 		CartComponent,

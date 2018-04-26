@@ -1,0 +1,37 @@
+<div class="row" *ngIf="customerDetail">
+	<div class="col-12">
+		<app-bl-common-alert [type]="'danger'" *ngIf="!customerValid" [text]="customerNotValidText"></app-bl-common-alert>
+
+		<ul class="list-group">
+			<li class="list-group-item">
+				<div class="row justify-content-between">
+					<div class="col-auto">
+						<fa-icon [icon]="'user'" class="mr-2"></fa-icon> {{customerDetail.name}}
+					</div>
+					<div class="col-auto">
+						<fa-icon [icon]="'address-card'" class="mr-2"></fa-icon>
+						<span>{{customerDetail.address}}</span>
+						<span>{{customerDetail.postCode}}</span>
+						<span>{{customerDetail.postCity}}</span>
+					</div>
+					<div class="col-auto">
+						<fa-icon [icon]="'birthday-cake'" class="mr-2"></fa-icon> {{customerDetail.dob | blDate}}
+					</div>
+				</div>
+				<div class="row justify-content-between">
+					<div class="col-auto">
+						<fa-icon [icon]="'at'" class="mr-2"></fa-icon> {{customerDetail.email}}
+					</div>
+					<div class="col-auto">
+						<fa-icon [icon]="'phone'" class="mr-2"></fa-icon> {{customerDetail.phone}}
+					</div>
+				</div>
+				<div class="row justify-content-end mt-4">
+					<div class="col-3">
+						<app-customer-detail-modal [buttonSize]="'small'" [customerDetail]="customerDetail" (updated)="onCustomerDetailUpdated()"></app-customer-detail-modal>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

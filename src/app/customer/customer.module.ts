@@ -17,6 +17,7 @@ import {BlCommonModule} from '../bl-common/bl-common.module';
 import { CustomerCurrentComponent } from './customer-current/customer-current.component';
 import { CustomerDetailPopoverComponent } from './customer-detail/customer-detail-popover/customer-detail-popover.component';
 import {OrderModule} from '../order/order.module';
+import { CustomerDetailSmallComponent } from './customer-detail/customer-detail-small/customer-detail-small.component';
 
 @NgModule({
 	imports: [
@@ -44,11 +45,13 @@ import {OrderModule} from '../order/order.module';
 		CustomerDetailCardComponent,
 		CustomerCurrentComponent,
 		CustomerDetailPopoverComponent,
+		CustomerDetailSmallComponent,
 	],
 	exports: [
 		CustomerCurrentComponent,
 		CustomerDetailPopoverComponent,
-		CustomerSearchComponent
+		CustomerSearchComponent,
+		CustomerDetailSmallComponent
 	],
 	entryComponents: [CustomerDetailModalContentComponent]
 })

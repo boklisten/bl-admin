@@ -19,6 +19,7 @@ export class CartService {
 	private _cart: CartItem[];
 
 	private _cartChange$: Subject<boolean>;
+	private _customerDetailId: string;
 
 	constructor(private _itemPriceService: ItemPriceService, private _dateService: DateService, private itemService: ItemService,
 	            private _customerService: CustomerService, private _branchStoreService: BranchStoreService,
@@ -27,8 +28,21 @@ export class CartService {
 		this._cart = [];
 		this._cartChange$ = new Subject<boolean>();
 
+		if (this._customerService.haveCustomer()) {
+			this._customerDetailId = this._customerService.get().detail.id;
+		}
+
 		this._customerService.onCustomerChange().subscribe(() => {
-			this.clear();
+			if (this._customerService.haveCustomer()) {
+				if (this._customerDetailId && this._customerService.get().detail.id) {
+					return;
+				} else {
+					this._customerDetailId = this._customerService.get().detail.id;
+					this.clear();
+				}
+			} else {
+				this.clear();
+			}
 		});
 
 		this._branchStoreService.onBranchChange().subscribe(() => {
@@ -101,6 +115,16 @@ export class CartService {
 
 	public getCart(): CartItem[] {
 		return this._cart;
+	}
+
+	public getTotalAmount(): number {
+		let totalAmount = 0;
+
+		this._cart.forEach((cartItem: CartItem) => {
+			totalAmount += cartItem.orderItem.amount;
+		});
+
+		return totalAmount;
 	}
 
 	private addNewItem(item: Item) {

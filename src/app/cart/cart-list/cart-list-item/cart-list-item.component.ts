@@ -36,7 +36,7 @@ export class CartListItemComponent implements OnInit {
 	}
 
 	public setAlreadyPayedAmount() {
-		if (this.cartItem.originalOrder.payments && this.cartItem.originalOrder.payments.length > 0) {
+		if (this.cartItem.originalOrder && this.cartItem.originalOrder.payments && this.cartItem.originalOrder.payments.length > 0) {
 			this.alreadyPayedAmount = this.cartItem.originalOrderItem.amount;
 			return;
 		}
@@ -55,7 +55,8 @@ export class CartListItemComponent implements OnInit {
 			return;
 		}
 
-		this.showAlreadyPayed = this._orderItemPriceService.orderItemTypePayedFor(this.cartItem.orderItem, this.cartItem.originalOrderItem, this.cartItem.originalOrder);
+		this.showAlreadyPayed = this._orderItemPriceService.orderItemTypePayedFor(this.cartItem.orderItem,
+			this.cartItem.originalOrderItem, this.cartItem.originalOrder);
 
 	}
 }

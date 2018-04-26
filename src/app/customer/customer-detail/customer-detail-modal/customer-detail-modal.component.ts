@@ -12,7 +12,7 @@ import {CustomerDetailService} from '../customer-detail.service';
 	styleUrls: ['./customer-detail-modal.component.scss']
 })
 export class CustomerDetailModalComponent implements OnInit {
-
+	@Input() buttonSize: 'small' | 'large';
 	@Input() customerDetail: UserDetail;
 	@Output() updated: EventEmitter<boolean>;
 
@@ -21,6 +21,7 @@ export class CustomerDetailModalComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		console.log('the size', this.buttonSize);
 	}
 
 	public onShowModal() {

@@ -10,12 +10,16 @@ import {CartService} from '../cart.service';
 export class CartListSmallComponent implements OnInit {
 
 	public cart: CartItem[];
+	public cartTotalAmount: number;
 
 	constructor(private _cartService: CartService) {
 	}
 
 	ngOnInit() {
 		this.cart = this._cartService.getCart();
+		this.cartTotalAmount = this._cartService.getTotalAmount();
 	}
+
+
 
 }

@@ -56,12 +56,27 @@ export class CustomerDetailService {
 	}
 
 	public setCustomerDetail(customerDetail: UserDetail) {
-		if (this._currentCustomerDetail && this._currentCustomerDetail.id === customerDetail.id) {
+		if (!this.checkForCustomerDetailDifference(customerDetail)) {
 			return;
 		}
+
 		this._storageService.store(this._storageCustomerIdName, customerDetail.id);
 		this._currentCustomerDetail = customerDetail;
 		this._customerDetailChange$.next(this._currentCustomerDetail);
+	}
+
+	private checkForCustomerDetailDifference(customerDetail: UserDetail) {
+		if (!this._currentCustomerDetail) {
+			return true;
+		}
+
+		for (const key of Object.keys(customerDetail)) {
+			if (!this._currentCustomerDetail[key] || this._currentCustomerDetail[key] !== customerDetail[key]) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public clearCustomerDetail() {

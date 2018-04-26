@@ -1,12 +1,24 @@
 
-
+<div class="modal-header">
+	<h3>Confirm order</h3>
+</div>
 <div class="modal-body">
     <div class="row">
+		<div class="col-12">
+			<app-customer-detail-small (valid)="onCustomerValid($event)"></app-customer-detail-small>
+		</div>
+	</div>
+	<div class="row mt-5">
 		<div class="col-12">
 			<app-cart-list-small></app-cart-list-small>
 		</div>
 	</div>
 </div>
 <div class="modal-footer">
-    the footer
+	<div class="row justify-content-end">
+		<div class="col-4">
+			<button class="btn btn-success btn-block" *ngIf="showConfirmOrderButton" [disabled]="buttonDisabled">Confirm</button>
+			<button class="btn btn-info btn-block" *ngIf="showGoToPaymentButton" [disabled]="buttonDisabled">Go to payment</button>
+		</div>
+	</div>
 </div>
