@@ -34,7 +34,7 @@ export class CartService {
 
 		this._customerService.onCustomerChange().subscribe(() => {
 			if (this._customerService.haveCustomer()) {
-				if (this._customerDetailId && this._customerService.get().detail.id) {
+				if (this._customerDetailId && (this._customerService.get().detail.id === this._customerDetailId)) {
 					return;
 				} else {
 					this._customerDetailId = this._customerService.get().detail.id;
@@ -48,6 +48,30 @@ export class CartService {
 		this._branchStoreService.onBranchChange().subscribe(() => {
 			this.clear();
 		});
+	}
+
+	public getCartItemsApartOfNewOrder(): CartItem[] {
+		const cartItems: CartItem[] = [];
+
+		for (const cartItem of this._cart) {
+			if (!(cartItem.orderItem.amount === 0 && cartItem.originalOrderItem && (cartItem.originalOrderItem.amount !== cartItem.orderItem.amount))) {
+				cartItems.push(cartItem);
+			}
+		}
+
+		return cartItems;
+	}
+
+	public getCartItemsNotApartOfNewOrder(): CartItem[] {
+		const cartItems: CartItem[] = [];
+
+		for (const cartItem of this._cart) {
+			if (cartItem.orderItem.amount === 0 && cartItem.originalOrderItem) {
+				cartItems.push(cartItem);
+			}
+		}
+
+		return cartItems;
 	}
 
 	public add(item: Item) {

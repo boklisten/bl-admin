@@ -32,15 +32,30 @@
             </div>
         </div>
     </div>
+
+	<div class="row justify-content-center mt-5 mb-5" *ngIf="showConfirmation">
+		<div class="col-auto">
+			<span class="text-warning"><fa-icon [icon]="'circle-notch'" [size]="'9x'" [spin]="true" *ngIf="confirmationWait"></fa-icon></span>
+			<span class="text-success"><fa-icon [icon]="'check-circle'" [size]="'9x'" *ngIf="confirmationSuccess"></fa-icon></span>
+		</div>
+	</div>
 </div>
 
 
 
-<div class="modal-footer">
+<div class="modal-footer" *ngIf="showSummary">
 	<div class="row justify-content-end">
 		<div class="col-4">
 			<button class="btn btn-success btn-block" *ngIf="showConfirmOrderButton" [disabled]="buttonDisabled" (click)="onConfirm()">Confirm</button>
-			<app-bl-common-update-button [text]="'Go to payment'" [wait]="wait" (click)="onGoToPayment()"></app-bl-common-update-button>
+			<app-bl-common-update-button [disabled]="buttonDisabled" [text]="'Go to payment'" [wait]="wait" (click)="onGoToPayment()" *ngIf="showGoToPaymentButton"></app-bl-common-update-button>
+		</div>
+	</div>
+</div>
+
+<div class="modal-footer" *ngIf="showPayment">
+	<div class="row justify-content-end">
+		<div class="col-4">
+			<app-bl-common-update-button [text]="'Confirm'" [wait]="wait" (click)="''"></app-bl-common-update-button>
 		</div>
 	</div>
 </div>

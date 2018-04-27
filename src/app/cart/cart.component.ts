@@ -13,6 +13,8 @@ import {tick} from '@angular/core/testing';
 })
 export class CartComponent implements OnInit {
 	public haveCustomer: boolean;
+	public cartConfirmText: string;
+	public cartFailureText: string;
 
 	constructor(private _customerService: CustomerService, private _itemService: ItemService, private _cartService: CartService) {
 		this.haveCustomer = false;
@@ -31,6 +33,20 @@ export class CartComponent implements OnInit {
 			*/
 
 		});
+	}
+
+	public onCartConfirmed() {
+		this._cartService.clear();
+		this.cartConfirmText = 'The order was confirmed';
+
+		setTimeout(() => {
+			this.cartFailureText = null;
+		}, 2000);
+
+	}
+
+	public onCartFailed() {
+
 	}
 
 

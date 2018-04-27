@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CartService} from '../cart.service';
 import {CustomerService} from '../../customer/customer.service';
 import {CartConfirmService} from './cart-confirm.service';
@@ -10,6 +10,9 @@ import {Order} from '@wizardcoder/bl-model';
 	styleUrls: ['./cart-confirm.component.scss']
 })
 export class CartConfirmComponent implements OnInit {
+	@Output() confirmed: EventEmitter<boolean>;
+	@Output() failure: EventEmitter<boolean>;
+
 	public totalAmount: number;
 	public showCustomer: boolean;
 	public showGoToPaymentButton: boolean;
@@ -20,10 +23,14 @@ export class CartConfirmComponent implements OnInit {
 	public order: Order;
 	public wait: boolean;
 	public errorText: string;
+	public showConfirmation: boolean;
+	public confirmationWait: boolean;
+	public confirmationSuccess: boolean;
 
 	constructor(private _cartService: CartService, private _customerService: CustomerService,
 	            private _cartConfirmService: CartConfirmService) {
-
+		this.confirmed = new EventEmitter<boolean>();
+		this.failure = new EventEmitter<boolean>();
 	}
 
 	ngOnInit() {
@@ -31,6 +38,7 @@ export class CartConfirmComponent implements OnInit {
 		this.showGoToPaymentButton = false;
 		this.buttonDisabled = false;
 		this.showSummary = true;
+		this.showConfirmation = false;
 
 		this.totalAmount = this._cartService.getTotalAmount();
 		this.showCustomer = this._customerService.haveCustomer();
@@ -45,9 +53,10 @@ export class CartConfirmComponent implements OnInit {
 	onGoToPayment() {
 		this.wait = true;
 		this.errorText = null;
+
 		this._cartConfirmService.addOrder().then((addedOrder: Order) => {
-			this.order = addedOrder;
 			this.showPayment = true;
+			this.order = addedOrder;
 			this.buttonDisabled = true;
 			this.showSummary = false;
 			this.wait = false;
@@ -60,6 +69,7 @@ export class CartConfirmComponent implements OnInit {
 
 	onGoToSummary() {
 		this.showSummary = true;
+		this.showConfirmation = false;
 		this.showPayment = false;
 	}
 
@@ -72,7 +82,28 @@ export class CartConfirmComponent implements OnInit {
 	}
 
 	onConfirm() {
-		this._cartConfirmService.confirm();
+		this.showConfirmation = true;
+		this.showPayment = false;
+		this.showSummary = false;
+		this.confirmationWait = true;
+
+		this.showGoToPaymentButton = false;
+		this.showConfirmOrderButton = false;
+
+		setTimeout(() => {
+			this.confirmationSuccess = true;
+			this.confirmationWait = false;
+			this.confirmed.emit(true);
+		}, 2000);
+
+		/*
+		this._cartConfirmService.confirmCartWithoutPayment().then(() => {
+			this.confirmationSuccess = true;
+			this.confirmationWait = false;
+		}).catch(() => {
+			console.log('there was an error with confirmation of order');
+		});
+		*/
 	}
 
 	onPaymentConfirmed() {

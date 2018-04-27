@@ -1,14 +1,17 @@
 
-
-
-
 <div class="container-fluid mt-4">
+	<div class="row">
+		<div class="col-12">
+			<app-bl-common-alert [type]="'success'" [text]="cartConfirmText" *ngIf="cartConfirmText" (exit)="cartConfirmText = null"></app-bl-common-alert>
+			<app-bl-common-alert [type]="'danger'" [text]="cartFailureText" *ngIf="cartFailureText" (exit)="cartFailureText = null"></app-bl-common-alert>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-4">
 			<div class="row">
 				<div class="col-12">
 					<ngb-tabset>
-						<ngb-tab *ngIf="haveCustomer">
+						<ngb-tab *ngIf="haveCustomer" id="customerOrderItemsTab">
 							<ng-template ngbTabTitle>
 								<span class="text-secondary">Ordered items</span>
 							</ng-template>
@@ -53,7 +56,7 @@
 		</div>
 
 		<div class="col-8">
-			<app-cart-list></app-cart-list>
+			<app-cart-list (cartConfirmed)="onCartConfirmed()" (cartConfirmationFailed)="onCartFailed()"></app-cart-list>
 		</div>
 	</div>
 </div>

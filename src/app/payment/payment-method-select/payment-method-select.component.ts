@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
 	selector: 'app-payment-method-select',
@@ -8,28 +8,43 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class PaymentMethodSelectComponent implements OnInit {
 	public paymentMethodForm: FormGroup;
+	public vipps: boolean;
+	public card: boolean;
+	public cash: boolean;
+	public showInput: boolean;
 
 	constructor(private _formBuilder: FormBuilder) {
 	}
 
 	ngOnInit() {
 		this.paymentMethodForm = this._formBuilder.group({
-			card: true,
+			card: false,
 			cash: false,
-			vipps: false
+			vipps: new FormControl({value: false, disabled: true})
 		});
 
 		this.paymentMethodForm.controls['card'].valueChanges.subscribe((value) => {
-			console.log('card: ', value);
+			this.card = value;
+			this.showInputs();
 		});
 
 		this.paymentMethodForm.controls['cash'].valueChanges.subscribe((value) => {
-			console.log('cash: ', value);
+			this.cash = value;
+			this.showInputs();
 		});
 
 
 		this.paymentMethodForm.controls['vipps'].valueChanges.subscribe((value) => {
-			console.log('vipps: ', value);
+			this.vipps = value;
+			this.showInputs();
 		});
+	}
+
+	private showInputs() {
+		if ((this.card && (this.cash || this.vipps)) || (this.cash && (this.card || this.vipps)) || (this.vipps && (this.card || this.cash))) {
+			this.showInput = true;
+		} else {
+			this.showInput = false;
+		}
 	}
 }

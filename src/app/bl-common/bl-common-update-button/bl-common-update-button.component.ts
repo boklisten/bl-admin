@@ -10,6 +10,7 @@ export class BlCommonUpdateButtonComponent implements OnInit {
 	@Input() text: string;
 	@Input() wait: boolean;
 	@Input() icon: string;
+	@Input() disabled: boolean;
 	@Output() click: EventEmitter<boolean>;
 
 	constructor() {

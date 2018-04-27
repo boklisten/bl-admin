@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CartService} from '../cart.service';
 import {Item, OrderItem} from '@wizardcoder/bl-model';
 import {ItemService} from '@wizardcoder/bl-connect';
 import {CartItem} from '../cartItem';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModalWindow} from '@ng-bootstrap/ng-bootstrap/modal/modal-window';
 
 @Component({
 	selector: 'app-cart-list',
@@ -11,10 +12,17 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 	styleUrls: ['./cart-list.component.scss']
 })
 export class CartListComponent implements OnInit {
+	@Output() cartConfirmed: EventEmitter<boolean>;
+	@Output() cartConfirmationFailed: EventEmitter<boolean>;
+
 	public cart: CartItem[];
+	private _cartConfirmModal: NgbModalRef;
+
 
 	constructor(private _cartService: CartService, private _modalService: NgbModal, private _itemService: ItemService) {
 		this.cart = [];
+		this.cartConfirmed = new EventEmitter<boolean>();
+		this.cartConfirmationFailed = new EventEmitter<boolean>();
 	}
 
 	ngOnInit() {
@@ -23,15 +31,6 @@ export class CartListComponent implements OnInit {
 		this._cartService.onCartChange().subscribe(() => {
 			this.cart = this._cartService.getCart();
 		});
-/*
-		setTimeout(() => {
-			this._itemService.get().then((items: Item[]) => {
-				this._cartService.add(items[7]);
-				this._cartService.add(items[6]);
-			});
-
-		}, 500);
-		*/
 	}
 
 	remove(orderItem: OrderItem) {
@@ -48,8 +47,21 @@ export class CartListComponent implements OnInit {
 		return totalAmount;
 	}
 
-	onConfirm(content) {
-		this._modalService.open(content, {size: 'lg', centered: true});
+	onShowConfirm(content) {
+		this._cartConfirmModal = this._modalService.open(content, {size: 'lg', centered: true})
 	}
+
+	onCartConfirm() {
+		this._cartConfirmModal.close();
+		this.cartConfirmed.emit(true);
+	}
+
+	onCartFailure() {
+		this._cartConfirmModal.close();
+		this.cartConfirmationFailed.emit(true);
+	}
+
+
+
 
 }

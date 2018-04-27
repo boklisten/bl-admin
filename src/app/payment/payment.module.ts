@@ -8,6 +8,7 @@ import { PaymentMethodSelectComponent } from './payment-method-select/payment-me
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {NgbButtonsModule} from '@ng-bootstrap/ng-bootstrap';
+import {BlCommonModule} from '../bl-common/bl-common.module';
 
 @NgModule({
 	imports: [
@@ -16,7 +17,8 @@ import {NgbButtonsModule} from '@ng-bootstrap/ng-bootstrap';
 		FormsModule,
 		ReactiveFormsModule,
 		FontAwesomeModule,
-		NgbButtonsModule
+		NgbButtonsModule,
+		BlCommonModule
 	],
 	declarations: [PaymentComponent, PaymentMethodSelectComponent],
 	exports: [

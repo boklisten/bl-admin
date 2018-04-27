@@ -16,7 +16,7 @@ export class CustomerDetailSmallComponent implements OnInit {
 
 	constructor(private _customerService: CustomerService) {
 		this.customerValid = true;
-		this.customerNotValidText = 'Customer is not valid';
+		this.customerNotValidText = 'Customer details does not have all valid fields';
 		this.valid = new EventEmitter<boolean>();
 	}
 

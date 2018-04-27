@@ -9,7 +9,22 @@ export class CustomerItemHandlerService {
 	constructor(private _branchStoreService: BranchStoreService, private _userService: UserService) {
 	}
 
-	public convertOrderItemToCustomerItem(orderItem: OrderItem): CustomerItem {
+	public addCustomerItemsBasedOnOrderItems(orderItems: OrderItem[]): Promise<CustomerItem[]> {
+		const customerItems: CustomerItem[] = [];
+
+		for (const orderItem of orderItems) {
+			try {
+
+				customerItems.push(this.convertOrderItemToCustomerItem(orderItem));
+			} catch (e) {
+				return Promise.reject(e);
+			}
+		}
+
+		return Promise.resolve(customerItems);
+	}
+
+	private convertOrderItemToCustomerItem(orderItem: OrderItem): CustomerItem {
 		if (orderItem.type !== 'rent') {
 			throw new Error(`can not create customerItem from orderItemType "${orderItem.type}"`);
 		}

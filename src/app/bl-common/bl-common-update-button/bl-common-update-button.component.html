@@ -1,5 +1,5 @@
 
-<button type="button" class="btn btn-block" [ngClass]="{'btn-outline-success': !wait, 'btn-warning': wait}" (click)="onClick()">
+<button type="button" [disabled]="disabled" class="btn btn-block" [ngClass]="{'btn-outline-success': !wait, 'btn-warning': wait}" (click)="onClick()">
 	<span *ngIf="!wait && text && !icon">{{text}}</span>
 	<span *ngIf="!wait && !text && !icon">Update</span>
 

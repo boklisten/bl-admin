@@ -1,17 +1,55 @@
-<div class="row">
-	<div class="col-12">
+
+
+
+<div class="row justify-content-center">
+	<div class="col-auto">
 		<form [formGroup]="paymentMethodForm">
-			<div class="btn-group btn-group-toggle">
-				<label class="btn-primary" ngbButtonLabel>
+			<div class="btn-group btn-group-toggle btn-group-lg">
+				<label class="btn-outline-secondary" ngbButtonLabel>
 					<input type="checkbox" formControlName="card" ngbButton> <fa-icon [icon]="'credit-card'" class="mr-2"></fa-icon> Card
 				</label>
-				<label class="btn-primary" ngbButtonLabel>
+				<label class="btn-outline-secondary" ngbButtonLabel>
 					<input type="checkbox" formControlName="cash" ngbButton> <fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon> Cash
 				</label>
-				<label class="btn-primary" ngbButtonLabel>
+				<label class="btn-outline-secondary" ngbButtonLabel>
 					<input type="checkbox" formControlName="vipps" ngbButton> Vipps
 				</label>
 			</div>
 		</form>
+	</div>
+</div>
+
+<div class="row mt-5">
+	<div class="col-12">
+
+        <div class="input-group mb-3" *ngIf="card && showInput">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    <fa-icon [icon]="'credit-card'"></fa-icon>
+                </span>
+            </div>
+
+            <input type="text" class="form-control" id="cardAmount" placeholder="card amount">
+        </div>
+
+		<div class="input-group mb-3" *ngIf="cash && showInput">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+					<fa-icon [icon]="'money-bill-alt'"></fa-icon>
+                </span>
+            </div>
+
+            <input type="text" class="form-control" id="cashAmount" placeholder="cash amount">
+        </div>
+
+		<div class="input-group mb-3" *ngIf="vipps && showInput">
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+					vipps
+                </span>
+            </div>
+
+            <input type="text" class="form-control" id="vippsAmount" placeholder="vipps amount">
+        </div>
 	</div>
 </div>

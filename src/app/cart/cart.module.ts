@@ -19,6 +19,7 @@ import {CartHelperService} from './cart-helper.service';
 import {CustomerModule} from '../customer/customer.module';
 import {CartConfirmService} from './cart-confirm/cart-confirm.service';
 import {PaymentModule} from '../payment/payment.module';
+import {CustomerItemModule} from '../customer-item/customer-item.module';
 
 @NgModule({
 	imports: [
@@ -34,7 +35,8 @@ import {PaymentModule} from '../payment/payment.module';
 		NgbModalModule,
 		CustomerModule,
 		OrderModule,
-		PaymentModule
+		PaymentModule,
+		CustomerItemModule
 	],
 	declarations: [
 		CartComponent,

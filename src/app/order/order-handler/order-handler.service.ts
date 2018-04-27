@@ -14,6 +14,7 @@ export class OrderHandlerService {
 	            private _customerService: CustomerService, private _userService: UserService, private _orderService: OrderService) {
 	}
 
+
 	public addOrderFromCart(): Promise<Order> {
 		return new Promise((resolve, reject) => {
 			let order: Order;
@@ -26,27 +27,26 @@ export class OrderHandlerService {
 
 			resolve(order);
 
-			console.log('orderHandlerService: ALERT: should uncomment');
-			/*
+			//console.log('orderHandlerService: ALERT: should uncomment');
+
 			this._orderService.add(order).then((addedOrder: Order) => {
 				resolve(addedOrder);
 			}).catch((addOrderError: BlApiError) => {
 				reject(new Error('orderHandlerService: could not add order: ' + addOrderError));
 			});
-			*/
 		});
 	}
 
 	private convertCartToOrder(): Order {
-		const cart = this._cartService.getCart();
+		const cartItems = this._cartService.getCartItemsApartOfNewOrder();
 
 		const orderItems: OrderItem[] = [];
 
-		for (const cartItem of cart) {
-			if (cartItem.originalOrder && cartItem.originalOrderItem) {
-				if (cartItem.orderItem.amount === 0) { // no point in adding this to new order, just update old one with customerItem
-					break;
-				}
+		console.log('the cart items' , cartItems);
+
+		for (const cartItem of cartItems) {
+			if (cartItem.originalOrder && cartItem.originalOrderItem && cartItem.orderItem.amount === 0) {
+				break;
 			}
 
 			orderItems.push(this.createOrderItemBasedOnCartItem(cartItem));
