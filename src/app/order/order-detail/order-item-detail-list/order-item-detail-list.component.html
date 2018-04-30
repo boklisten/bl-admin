@@ -16,13 +16,20 @@
                 <small><fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon> {{orderItem.type}}</small>
             </div>
         </div>
-        <div class="row" *ngIf="orderItem.type === 'rent' || orderItem.type === 'extend'">
-            <div class="col text-secondary">
+        <div class="row justify-content-between text-secondary" *ngIf="orderItem.type === 'rent' || orderItem.type === 'extend'">
+            <div class="col-auto">
                 <small>
                     <span><fa-icon [icon]="'calendar-alt'" class="mr-2"></fa-icon> {{orderItem.type}}</span>
                     <span class="ml-2"><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon> {{orderItem.info['to'] | blDate}}</span>
                 </small>
             </div>
+			<div class="col-auto text-success" *ngIf="orderItem.info && orderItem.info.customerItem">
+				<small class="bl-link-black" routerLink="{{'/customerItem/' + orderItem.info.customerItem + '/detail'}}">
+					<span>
+						<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>delivered
+					</span>
+				</small>
+			</div>
         </div>
     </li>
 </ul>

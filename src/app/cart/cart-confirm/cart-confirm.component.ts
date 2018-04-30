@@ -90,20 +90,14 @@ export class CartConfirmComponent implements OnInit {
 		this.showGoToPaymentButton = false;
 		this.showConfirmOrderButton = false;
 
-		setTimeout(() => {
-			this.confirmationSuccess = true;
+		this._cartConfirmService.confirm().then(() => {
 			this.confirmationWait = false;
 			this.confirmed.emit(true);
-		}, 2000);
-
-		/*
-		this._cartConfirmService.confirmCartWithoutPayment().then(() => {
-			this.confirmationSuccess = true;
-			this.confirmationWait = false;
-		}).catch(() => {
-			console.log('there was an error with confirmation of order');
+		}).catch((e) => {
+			this.wait = false;
+			console.log('we could not confirm cart', e);
+			this.failure.emit(true);
 		});
-		*/
 	}
 
 	onPaymentConfirmed() {

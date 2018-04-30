@@ -23,6 +23,9 @@ export class CustomerSearchService {
 	}
 
 	public search(searchTerm: string) {
+		if (searchTerm && searchTerm.length < 3) {
+			return;
+		}
 		this.setSearchTerm(searchTerm);
 
 		this._userDetailService.get('?s=' + searchTerm).then((userDetails: UserDetail[]) => {
