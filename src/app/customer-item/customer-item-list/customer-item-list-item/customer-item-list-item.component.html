@@ -1,0 +1,15 @@
+
+<div class="row justify-content-between text-secondary" *ngIf="item">
+	<div class="col-auto">
+		<fa-icon [icon]="'book'" class="mr-2" *ngIf="item.type === 'book'"></fa-icon>{{item.title}}
+	</div>
+	<div class="col-4">
+		<app-blc-item-add [item]="item" [customerItem]="customerItem"></app-blc-item-add>
+	</div>
+</div>
+
+<div class="row text-secondary" *ngIf="customerItem" routerLink="{{'/customerItem/' + customerItem.id + '/detail'}}">
+	<div class="col-auto">
+		<fa-icon [icon]="'clock'" class="mr-2"></fa-icon> {{customerItem.deadline | blDate}}
+	</div>
+</div>

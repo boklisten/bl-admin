@@ -10,7 +10,9 @@ import {CustomerSearchService} from './customer-search/customer-search.service';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { CustomerDetailModalComponent} from './customer-detail/customer-detail-modal/customer-detail-modal.component';
 import {NgbModalModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
-import {CustomerDetailModalContentComponent} from './customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component';
+import {CustomerDetailModalContentComponent}
+	from './customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component';
+
 import { CustomerDetailCardComponent } from './customer-detail/customer-detail-card/customer-detail-card.component';
 import {CustomerDetailService} from './customer-detail/customer-detail.service';
 import {BlCommonModule} from '../bl-common/bl-common.module';
@@ -18,6 +20,7 @@ import { CustomerCurrentComponent } from './customer-current/customer-current.co
 import { CustomerDetailPopoverComponent } from './customer-detail/customer-detail-popover/customer-detail-popover.component';
 import {OrderModule} from '../order/order.module';
 import { CustomerDetailSmallComponent } from './customer-detail/customer-detail-small/customer-detail-small.component';
+import {CustomerItemModule} from '../customer-item/customer-item.module';
 
 @NgModule({
 	imports: [
@@ -29,7 +32,8 @@ import { CustomerDetailSmallComponent } from './customer-detail/customer-detail-
 		NgbModalModule,
 		BlCommonModule,
 		NgbPopoverModule,
-		OrderModule
+		OrderModule,
+		CustomerItemModule
 	],
 	providers: [
 		CustomerSearchService,

@@ -6,6 +6,8 @@ import {CustomerItemHandlerService} from './customer-item-handler/customer-item-
 import { CustomerItemDetailComponent } from './customer-item-detail/customer-item-detail.component';
 import {BlCommonModule} from '../bl-common/bl-common.module';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { CustomerItemListComponent } from './customer-item-list/customer-item-list.component';
+import { CustomerItemListItemComponent } from './customer-item-list/customer-item-list-item/customer-item-list-item.component';
 
 @NgModule({
 	imports: [
@@ -14,9 +16,12 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 		BlCommonModule,
 		FontAwesomeModule
 	],
-	declarations: [CustomerItemDetailComponent],
+	declarations: [CustomerItemDetailComponent, CustomerItemListComponent, CustomerItemListItemComponent],
 	providers: [
 		CustomerItemHandlerService
+	],
+	exports: [
+		CustomerItemListComponent
 	]
 })
 export class CustomerItemModule {
