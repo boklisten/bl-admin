@@ -275,8 +275,8 @@
     tslib "^1.7.1"
 
 "@wizardcoder/bl-model@^0.13.4":
-  version "0.13.4"
-  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-model/-/bl-model-0.13.4.tgz#85bf9128c427828278e9102f1df21a09d3fe51e3"
+  version "0.13.7"
+  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-model/-/bl-model-0.13.7.tgz#3264707be28dd2f7cef243201652dab534e4c78f"
   dependencies:
     typescript "^2.6.1"
 
@@ -6597,8 +6597,8 @@ typedarray@^0.0.6, typedarray@~0.0.5:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
 typescript@^2.6.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.8.1.tgz#6160e4f8f195d5ba81d4876f9c0cc1fbc0820624"
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.8.3.tgz#5d817f9b6f31bb871835f4edf0089f21abe6c170"
 
 typescript@~2.5.3:
   version "2.5.3"

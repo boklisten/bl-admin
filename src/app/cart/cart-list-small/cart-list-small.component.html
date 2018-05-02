@@ -16,10 +16,11 @@
 					<td *ngIf="cartItem.orderItem.type === 'rent' || cartItem.orderItem.type === 'extend'">
 						<fa-icon [icon]="'calendar-alt'" class="mr-2" *ngIf="cartItem.action === 'semester'"></fa-icon>
 						<fa-icon [icon]="'calendar'" class="mr-2" *ngIf="cartItem.action === 'year'"></fa-icon>
+						<fa-icon [icon]="'calendar-plus'" class="mr-2" *ngIf="cartItem.action === 'extend'"></fa-icon>
 						<fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon>
 						{{cartItem.orderItem.info.to | blDate}}
 					</td>
-					<td *ngIf="cartItem.orderItem.type === 'buy'">
+					<td *ngIf="cartItem.orderItem.type === 'buy' || cartItem.orderItem.type === 'buyout'">
 						<fa-icon [icon]="'money-bill-alt'"></fa-icon>
 					</td>
 					<td *ngIf="cartItem.orderItem.type === 'sell'">
@@ -27,6 +28,9 @@
 					</td>
 					<td *ngIf="cartItem.action === 'cancel'">
 						<fa-icon [icon]="'ban'"></fa-icon>
+					</td>
+					<td *ngIf="cartItem.action === 'return'">
+						<fa-icon [icon]="'arrow-alt-circle-down'"></fa-icon>
 					</td>
 
 					<td>{{cartItem.orderItem.amount | blcPrice}}</td>

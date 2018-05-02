@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Item, Order} from '@wizardcoder/bl-model';
+import {Item, Order, UserDetail} from '@wizardcoder/bl-model';
 import {CustomerService} from '../customer/customer.service';
 import {ItemService} from '@wizardcoder/bl-connect';
 import {CartService} from './cart.service';
@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
 	public haveCustomer: boolean;
 	public cartConfirmText: string;
 	public cartFailureText: string;
+	public customerDetail: UserDetail;
 
 	constructor(private _customerService: CustomerService, private _itemService: ItemService, private _cartService: CartService) {
 		this.haveCustomer = false;
@@ -22,9 +23,11 @@ export class CartComponent implements OnInit {
 
 	ngOnInit() {
 		this.haveCustomer = this._customerService.haveCustomer();
-
+		this.setCustomerDetail();
 		this._customerService.onCustomerChange().subscribe(() => {
 			this.haveCustomer = this._customerService.haveCustomer();
+			this.setCustomerDetail();
+
 			/*
 			this._itemService.get().then((items: Item[]) => {
 				this._cartService.add(items[0]);
@@ -33,6 +36,12 @@ export class CartComponent implements OnInit {
 			*/
 
 		});
+	}
+
+	setCustomerDetail() {
+		if (this._customerService.haveCustomer()) {
+			this.customerDetail = this._customerService.get().detail;
+		}
 	}
 
 	public onCartConfirmed() {

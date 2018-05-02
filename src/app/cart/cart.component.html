@@ -30,9 +30,9 @@
 							</ng-template>
 
 							<ng-template ngbTabContent>
-								<div class="row mt-2">
+								<div class="row mt-2" *ngIf="customerDetail">
 									<div class="col-12">
-										<app-bl-common-alert [type]="'secondary'" [text]="'Customer currently have no items'"></app-bl-common-alert>
+										<app-customer-item-list [customerDetail]="customerDetail"></app-customer-item-list>
 									</div>
 								</div>
 							</ng-template>

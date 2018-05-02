@@ -2,18 +2,22 @@ import {Injectable} from '@angular/core';
 import {CartItemAction} from './cartItemAction';
 import {BranchStoreService} from '../branch/branch-store.service';
 import {CartItem} from './cartItem';
-import {Item, OrderItem} from '@wizardcoder/bl-model';
+import {Branch, CustomerItem, Item, OrderItem} from '@wizardcoder/bl-model';
 import {CustomerService} from '../customer/customer.service';
 import {ItemPriceService} from '../price/item-price/item-price.service';
 import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
 import {OrderItemInfo} from '@wizardcoder/bl-model/dist/order/order-item/order-item-info';
 import {DateService} from '../date/date.service';
+import {OrderItemPriceService} from '../price/order-item-price/order-item-price.service';
+import {Period} from '@wizardcoder/bl-model/dist/period/period';
+import {CustomerItemPriceService} from '../price/customer-item-price/customer-item-price.service';
 
 @Injectable()
 export class CartHelperService {
 
 	constructor(private _branchStoreService: BranchStoreService, private _customerService: CustomerService,
-	            private _itemPriceService: ItemPriceService, private _dateService: DateService) {
+	            private _itemPriceService: ItemPriceService, private _dateService: DateService,
+	            private _orderItemPriceService: OrderItemPriceService, private _customerItemPriceService: CustomerItemPriceService) {
 	}
 
 	public cartItemActionValidOnBranch(action: CartItemAction): boolean {
@@ -29,25 +33,87 @@ export class CartHelperService {
 		return true;
 	}
 
-	public actionValidOnItem(action: CartItemAction, item: Item): boolean {
-		if (action === 'semester' || action === 'year') {
-			if (item.rent && this._customerService.haveCustomer()) {
-				return true;
-			}
-		} else if (action === 'buy') {
-			if (item.buy) {
-				return true;
-			}
-		} else if (action === 'sell') {
-			if (item.sell && this._customerService.haveCustomer()) {
+	public actionValidOnItem(action: CartItemAction, item: Item, customerItem?: CustomerItem): boolean {
+		if (!customerItem) {
+			if (action === 'semester' || action === 'year') {
+				if (item.rent && this._customerService.haveCustomer()) {
+					return true;
+				}
+			} else if (action === 'buy') {
+				if (item.buy) {
+					return true;
+				}
+			} else if (action === 'sell') {
+				if (item.sell && this._customerService.haveCustomer()) {
+					return true;
+				}
+			} else {
 				return true;
 			}
 		} else {
-			return true;
+			if (action === 'cancel') {
+				return (customerItem.handout && this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time));
+			} else if (action === 'return') {
+				return (customerItem.handout
+					&& this._dateService.isCustomerItemReturnValid(customerItem.deadline)
+					&& !this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time));
+			} else if (action === 'buyout') {
+				return (customerItem.handout && this._dateService.isCustomerItemReturnValid(customerItem.deadline));
+			} else if (action === 'extend') {
+				return (customerItem.handout && this._dateService.isCustomerItemReturnValid(customerItem.deadline));
+			}
+
 		}
 
 		return false;
 	}
+
+	public createOrderItemBasedOnCustomerItem(customerItem: CustomerItem, item: Item) {
+		if (this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time)) {
+			return this.createOrderItemTypeCancel(customerItem, item);
+		} else if (this._dateService.isCustomerItemReturnValid(customerItem.deadline)) {
+			return this.createOrderItemTypeReturn(customerItem, item);
+		} else {
+			throw new Error('cartHelperService: this customerItem can not be handled');
+		}
+	}
+
+	public createOrderItemTypeExtend(customerItem: CustomerItem, item: Item, period: Period): OrderItem {
+		return {
+			type: 'extend',
+			item: item.id,
+			title: item.title,
+			amount: this._customerItemPriceService.priceExtend(customerItem, item, period),
+			unitPrice: item.price,
+			taxRate: item.taxRate,
+			taxAmount: 0
+		};
+	}
+
+	public createOrderItemTypeCancel(customerItem: CustomerItem, item: Item): OrderItem {
+		return {
+			type: 'cancel',
+			item: item.id,
+			title: item.title,
+			amount: this._customerItemPriceService.priceCancel(customerItem),
+			unitPrice: 0,
+			taxRate: 0,
+			taxAmount: 0
+		};
+	}
+
+	public createOrderItemTypeReturn(customerItem: CustomerItem, item: Item): OrderItem {
+		return {
+			type: 'return',
+			item: item.id,
+			title: item.title,
+			amount: this._customerItemPriceService.priceReturn(customerItem),
+			unitPrice: 0,
+			taxRate: 0,
+			taxAmount: 0
+		};
+	}
+
 
 	public createOrderItemBasedOnItem(item: Item): OrderItem {
 		let action: CartItemAction;

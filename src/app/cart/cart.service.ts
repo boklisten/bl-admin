@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CustomerItem, Item, Order, OrderItem} from '@wizardcoder/bl-model';
+import {BlApiError, CustomerItem, Item, Order, OrderItem} from '@wizardcoder/bl-model';
 import {ItemPriceService} from '../price/item-price/item-price.service';
 import {OrderItemInfo} from '@wizardcoder/bl-model/dist/order/order-item/order-item-info';
 import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
@@ -21,7 +21,7 @@ export class CartService {
 	private _cartChange$: Subject<boolean>;
 	private _customerDetailId: string;
 
-	constructor(private _itemPriceService: ItemPriceService, private _dateService: DateService, private itemService: ItemService,
+	constructor(private _itemPriceService: ItemPriceService, private _dateService: DateService, private _itemService: ItemService,
 	            private _customerService: CustomerService, private _branchStoreService: BranchStoreService,
 	            private _cartHelperService: CartHelperService) {
 
@@ -32,22 +32,72 @@ export class CartService {
 			this._customerDetailId = this._customerService.get().detail.id;
 		}
 
-		this._customerService.onCustomerChange().subscribe(() => {
-			if (this._customerService.haveCustomer()) {
-				if (this._customerDetailId && (this._customerService.get().detail.id === this._customerDetailId)) {
-					return;
-				} else {
-					this._customerDetailId = this._customerService.get().detail.id;
-					this.clear();
-				}
-			} else {
-				this.clear();
-			}
-		});
+		this.onCustomerChange();
 
 		this._branchStoreService.onBranchChange().subscribe(() => {
 			this.clear();
 		});
+	}
+
+	public add(item: Item) {
+		try {
+			const orderAndOrderItem: { orderItem: OrderItem, order: Order } = this._customerService.haveOrderedItem(item.id);
+			this.addOrderItem(orderAndOrderItem.orderItem, orderAndOrderItem.order);
+		} catch (e) {
+			this.addNewItem(item);
+		}
+	}
+
+	public addOrderItem(orderItem: OrderItem, order: Order, item?: Item) {
+
+		if (this.contains(orderItem.item)) {
+			return;
+		}
+
+		if (!item) {
+			this._itemService.getById(orderItem.item).then((foundItem: Item) => {
+				this.addNewOrderItem(orderItem, order, foundItem);
+			});
+		} else {
+			this.addNewOrderItem(orderItem, order, item);
+		}
+	}
+
+	public addCustomerItem(customerItem: CustomerItem, item?: Item) {
+		if (this.contains(customerItem.item)) {
+			return;
+		}
+
+		if (!item) {
+			this._itemService.getById(customerItem.item).then((foundItem: Item) => {
+				this.addNewCustomerItem(customerItem, foundItem);
+			}).catch((getItemError: BlApiError) => {
+				console.log('cartService: Could not find item when trying to add customerItem', getItemError);
+				return;
+			});
+		} else {
+			this.addNewCustomerItem(customerItem, item);
+		}
+	}
+
+	public remove(itemId: string) {
+		for (let i = 0; i < this._cart.length; i++) {
+			if (this._cart[i].item.id === itemId) {
+				this._cart.splice(i, 1);
+				this._cartChange$.next(true);
+				return;
+			}
+		}
+	}
+
+	public contains(itemId: string) {
+		for (const orderItem of this._cart) {
+			if (orderItem.item.id === itemId) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public getCartItemsApartOfNewOrder(): CartItem[] {
@@ -74,60 +124,6 @@ export class CartService {
 		return cartItems;
 	}
 
-	public add(item: Item) {
-		try {
-			const orderAndOrderItem: { orderItem: OrderItem, order: Order } = this._customerService.haveOrderedItem(item.id);
-			this.addOrderItem(orderAndOrderItem.orderItem, orderAndOrderItem.order);
-		} catch (e) {
-			this.addNewItem(item);
-		}
-	}
-
-	public addOrderItem(orderItem: OrderItem, order: Order, item?: Item) {
-
-		if (this.contains(orderItem.item)) {
-			return;
-		}
-
-		if (!item) {
-			this.itemService.getById(orderItem.item).then((foundItem: Item) => {
-				this.addNewOrderItem(orderItem, order, foundItem);
-			});
-		} else {
-			this.addNewOrderItem(orderItem, order, item);
-		}
-	}
-
-	public addCustomerItem(customerItem: CustomerItem) {
-		if (this.contains(customerItem.item)) {
-			return;
-		}
-
-		this.itemService.getById(customerItem.item).then((item: Item) => {
-			// this.addCartItem({item: Item, orderItem})
-		});
-	}
-
-	public remove(itemId: string) {
-		for (let i = 0; i < this._cart.length; i++) {
-			if (this._cart[i].item.id === itemId) {
-				this._cart.splice(i, 1);
-				this._cartChange$.next(true);
-				return;
-			}
-		}
-	}
-
-	public contains(itemId: string) {
-		for (const orderItem of this._cart) {
-			if (orderItem.item.id === itemId) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
 	public clear() {
 		this._cart = [];
 		this._cartChange$.next(true);
@@ -149,6 +145,38 @@ export class CartService {
 		});
 
 		return totalAmount;
+	}
+
+	private onCustomerChange() {
+		this._customerService.onCustomerChange().subscribe(() => {
+			if (this._customerService.haveCustomer()) {
+				if (this._customerDetailId && (this._customerService.get().detail.id === this._customerDetailId)) {
+					return;
+				} else {
+					this._customerDetailId = this._customerService.get().detail.id;
+					this.clear();
+				}
+			} else {
+				this.clear();
+			}
+		});
+	}
+
+	private addNewCustomerItem(customerItem: CustomerItem, item: Item) {
+		let orderItem: OrderItem;
+
+		try {
+			orderItem = this._cartHelperService.createOrderItemBasedOnCustomerItem(customerItem, item);
+		} catch (e) {
+			throw new Error('cartService: could not create orderItem');
+		}
+
+		this.addCartItem({
+			item: item,
+			orderItem: orderItem,
+			customerItem: customerItem,
+			action: orderItem.type
+		});
 	}
 
 	private addNewItem(item: Item) {
@@ -206,8 +234,6 @@ export class CartService {
 		}
 
 	}
-
-
 
 
 }

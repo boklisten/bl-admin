@@ -47,7 +47,7 @@ export class BlcItemAddComponent implements OnInit {
 			this._cartService.remove(this.customerItem.item);
 			this.added = false;
 		} else {
-			this._cartService.addCustomerItem(this.customerItem);
+			this._cartService.addCustomerItem(this.customerItem, (this.item) ? this.item : null);
 			this.added = true;
 		}
 	}

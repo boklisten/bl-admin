@@ -1,11 +1,31 @@
 import {Injectable} from '@angular/core';
-import {Item, Order, OrderItem} from '@wizardcoder/bl-model';
+import {Branch, CustomerItem, Item, Order, OrderItem} from '@wizardcoder/bl-model';
 import {ItemPriceService} from '../item-price/item-price.service';
+import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
+import {Period} from '@wizardcoder/bl-model/dist/period/period';
+import {BranchStoreService} from '../../branch/branch-store.service';
 
 @Injectable()
 export class OrderItemPriceService {
 
 	constructor(private _itemPriceService: ItemPriceService) {
+	}
+
+	public priceRent(orderItem: OrderItem, item: Item, originalOrderItem?: OrderItem, originalOrder?: Order): number {
+		return this._itemPriceService
+			.rentPrice(item, orderItem.info.periodType, orderItem.info.numberOfPeriods, this.alreadyPayed(originalOrderItem, originalOrder));
+	}
+
+	public priceBuy(item: Item, originalOrderItem?: OrderItem, originalOrder?: Order): number {
+		return this._itemPriceService.buyPrice(item, this.alreadyPayed(originalOrderItem, originalOrder));
+	}
+
+	public priceSell(item: Item): number {
+		return this._itemPriceService.sellPrice(item);
+	}
+
+	public priceCancel(originalOrderItem?: OrderItem, originalOrder?: Order): number {
+		return 0 - this.alreadyPayed(originalOrderItem, originalOrder);
 	}
 
 	public orderItemTypePayedFor(orderItem: OrderItem, originalOrderItem: OrderItem, originalOrder: Order): boolean {
@@ -28,27 +48,7 @@ export class OrderItemPriceService {
 		return false;
 	}
 
-	public calculateOrderItemPrice(orderItem: OrderItem, item: Item, originalOrderItem?: OrderItem, originalOrder?: Order): number {
-		if (originalOrderItem && this.orderItemTypePayedFor(orderItem, originalOrderItem, originalOrder)) {
-			return 0;
-		}
-
-
-		const alreadyPayed = (originalOrderItem && (originalOrder.payments && originalOrder.payments.length > 0)) ? originalOrderItem.amount : 0;
-
-
-		switch (orderItem.type as any) {
-			case 'rent':
-				return this._itemPriceService.rentPrice(item, orderItem.info.periodType, orderItem.info.numberOfPeriods, alreadyPayed);
-			case 'buy':
-				return this._itemPriceService.buyPrice(item, alreadyPayed);
-			case 'sell':
-				return this._itemPriceService.sellPrice(item);
-			case 'cancel':
-				return 0 - alreadyPayed;
-			default:
-				return 0;
-		}
+	private alreadyPayed(originalOrderItem?: OrderItem, originalOrder?: Order): number {
+		return (originalOrderItem && (originalOrder.payments && originalOrder.payments.length > 0)) ? originalOrderItem.amount : 0;
 	}
-
 }

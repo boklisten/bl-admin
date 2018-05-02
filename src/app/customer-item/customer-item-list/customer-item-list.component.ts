@@ -9,6 +9,7 @@ import {CustomerItemService, ItemService} from '@wizardcoder/bl-connect';
 })
 export class CustomerItemListComponent implements OnInit {
 	@Input() customerDetail: UserDetail;
+	@Input() title: string;
 	customerItems: CustomerItem[];
 
 	constructor(private _customerItemService: CustomerItemService, private itemService: ItemService) {
