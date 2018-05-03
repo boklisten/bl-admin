@@ -181,7 +181,8 @@ export class CartListItemActionComponent implements OnInit {
 			from: extendPeriod.from,
 			to: extendPeriod.to,
 			numberOfPeriods: 1,
-			periodType: 'semester'
+			periodType: 'semester',
+			customerItem: this.cartItem.customerItem.id
 		};
 	}
 

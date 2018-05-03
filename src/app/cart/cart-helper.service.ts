@@ -86,7 +86,8 @@ export class CartHelperService {
 			amount: this._customerItemPriceService.priceExtend(customerItem, item, period),
 			unitPrice: item.price,
 			taxRate: item.taxRate,
-			taxAmount: 0
+			taxAmount: 0,
+			customerItem: customerItem.id
 		};
 	}
 
@@ -98,7 +99,8 @@ export class CartHelperService {
 			amount: this._customerItemPriceService.priceCancel(customerItem),
 			unitPrice: 0,
 			taxRate: 0,
-			taxAmount: 0
+			taxAmount: 0,
+			customerItem: customerItem.id
 		};
 	}
 
@@ -110,7 +112,8 @@ export class CartHelperService {
 			amount: this._customerItemPriceService.priceReturn(customerItem),
 			unitPrice: 0,
 			taxRate: 0,
-			taxAmount: 0
+			taxAmount: 0,
+			customerItem: customerItem.id
 		};
 	}
 

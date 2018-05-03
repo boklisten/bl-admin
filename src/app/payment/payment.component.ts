@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Order} from '@wizardcoder/bl-model';
+import {PaymentChoice} from './payment-choice';
+import {PaymentHandlerService} from './payment-handler/payment-handler.service';
 
 @Component({
 	selector: 'app-payment',
@@ -12,18 +14,31 @@ export class PaymentComponent implements OnInit {
 	@Output() paymentComplete: EventEmitter<boolean>;
 	@Output() paymentFailure: EventEmitter<boolean>;
 
-	constructor() {
+	constructor(private _paymentHandlerService: PaymentHandlerService) {
 		this.paymentComplete = new EventEmitter<boolean>();
 		this.paymentFailure = new EventEmitter<boolean>();
 	}
 
 	ngOnInit() {
+
 		if (!this.order) {
 			this.paymentFailure.emit(true);
 			return;
 		}
 
-		console.log('should create payment for ', this.order);
+		this.paymentFailure.emit(true);
 	}
+
+	onPaymentChoices(paymentChoices: PaymentChoice[]) {
+		this._paymentHandlerService.setPaymentChoices(paymentChoices);
+		this.paymentComplete.emit(true);
+
+	}
+
+	onPaymentChoiceFailure() {
+		this.paymentFailure.emit(true);
+	}
+
+
 
 }

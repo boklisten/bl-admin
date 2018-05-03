@@ -206,7 +206,8 @@ export class CartService {
 			taxRate: orderItem.taxRate,
 			taxAmount: orderItem.taxAmount,
 			info: orderItem.info,
-			discount: orderItem.discount
+			discount: orderItem.discount,
+			movedFromOrder: order.id
 		};
 
 		this.addCartItem({

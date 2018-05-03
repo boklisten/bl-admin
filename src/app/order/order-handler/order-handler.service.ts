@@ -14,20 +14,15 @@ export class OrderHandlerService {
 	            private _customerService: CustomerService, private _userService: UserService, private _orderService: OrderService) {
 	}
 
-
-	public addOrderFromCart(): Promise<Order> {
+	public addOrder(cartItems: CartItem[]): Promise<Order> {
 		return new Promise((resolve, reject) => {
 			let order: Order;
 
 			try {
-				order = this.convertCartToOrder();
+				order = this.convertCartItemsToOrder(cartItems);
 			} catch (e) {
-				reject(new Error('orderHandlerService: could not convert cart to order: ' + e));
+				return reject(new Error('orderHandlerService: could not convert cart to order: ' + e))
 			}
-
-			resolve(order);
-
-			//console.log('orderHandlerService: ALERT: should uncomment');
 
 			this._orderService.add(order).then((addedOrder: Order) => {
 				resolve(addedOrder);
@@ -35,29 +30,30 @@ export class OrderHandlerService {
 				reject(new Error('orderHandlerService: could not add order: ' + addOrderError));
 			});
 		});
+
 	}
 
-	private convertCartToOrder(): Order {
-		const cartItems = this._cartService.getCartItemsApartOfNewOrder();
+	public placeOrder(order: Order): Promise<boolean> {
+		return this._orderService.update(order.id, {placed: true}).then((placedOrder: Order) => {
+			return true;
+		}).catch((placeOrderError) => {
+			throw new Error('orderHandlerService: could not place order' + placeOrderError);
+		});
+	}
+
+	private convertCartItemsToOrder(cartItems: CartItem[]): Order {
 
 		const orderItems: OrderItem[] = [];
 
-		console.log('the cart items' , cartItems);
-
 		for (const cartItem of cartItems) {
-			if (cartItem.originalOrder && cartItem.originalOrderItem && cartItem.orderItem.amount === 0) {
-				break;
-			}
-
 			orderItems.push(this.createOrderItemBasedOnCartItem(cartItem));
 		}
 
 		if (orderItems.length <= 0) {
-			throw new Error('could not create order, no orderItems valid');
+			throw new Error('orderHandlerService: could not create order, no orderItems valid from cart');
 		}
 
 		return this.createOrder(orderItems);
-
 	}
 
 	private createOrder(orderItems: OrderItem[]): Order {

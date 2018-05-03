@@ -275,8 +275,8 @@
     tslib "^1.7.1"
 
 "@wizardcoder/bl-model@^0.13.4":
-  version "0.13.7"
-  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-model/-/bl-model-0.13.7.tgz#3264707be28dd2f7cef243201652dab534e4c78f"
+  version "0.13.9"
+  resolved "https://registry.yarnpkg.com/@wizardcoder/bl-model/-/bl-model-0.13.9.tgz#780f5d3cacce7b1a9cd209a90c07f847e06a6d8f"
   dependencies:
     typescript "^2.6.1"
 

@@ -1,4 +1,5 @@
-
+cashAmount: {{cashAmount}}
+cardAmount: {{cardAmount}}
 
 
 <div class="row justify-content-center">
@@ -29,7 +30,7 @@
                 </span>
             </div>
 
-            <input type="text" class="form-control" id="cardAmount" placeholder="card amount">
+            <input type="text" class="form-control" id="cardAmount" placeholder="card amount" [(ngModel)]="cardAmount" (keyup)="onInputChange()">
         </div>
 
 		<div class="input-group mb-3" *ngIf="cash && showInput">
@@ -39,7 +40,7 @@
                 </span>
             </div>
 
-            <input type="text" class="form-control" id="cashAmount" placeholder="cash amount">
+            <input type="text" class="form-control" id="cashAmount" placeholder="cash amount" [(ngModel)]="cashAmount" (keyup)="onInputChange()">
         </div>
 
 		<div class="input-group mb-3" *ngIf="vipps && showInput">
@@ -49,7 +50,7 @@
                 </span>
             </div>
 
-            <input type="text" class="form-control" id="vippsAmount" placeholder="vipps amount">
+            <input type="text" class="form-control" id="vippsAmount" placeholder="vipps amount" (keyup)="onInputChange()">
         </div>
 	</div>
 </div>

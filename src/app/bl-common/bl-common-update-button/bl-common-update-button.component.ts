@@ -11,10 +11,10 @@ export class BlCommonUpdateButtonComponent implements OnInit {
 	@Input() wait: boolean;
 	@Input() icon: string;
 	@Input() disabled: boolean;
-	@Output() click: EventEmitter<boolean>;
+	@Output() clicked: EventEmitter<boolean>;
 
 	constructor() {
-		this.click = new EventEmitter<boolean>();
+		this.clicked = new EventEmitter<boolean>();
 	}
 
 
@@ -23,8 +23,8 @@ export class BlCommonUpdateButtonComponent implements OnInit {
 
 	onClick() {
 		if (!this.wait) {
-			this.click.emit(true);
+			this.clicked.emit(true);
 		}
-}
+	}
 
 }

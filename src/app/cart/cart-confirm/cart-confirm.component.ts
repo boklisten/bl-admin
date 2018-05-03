@@ -55,6 +55,7 @@ export class CartConfirmComponent implements OnInit {
 		this.errorText = null;
 
 		this._cartConfirmService.addOrder().then((addedOrder: Order) => {
+			console.log('hi there');
 			this.showPayment = true;
 			this.order = addedOrder;
 			this.buttonDisabled = true;
@@ -81,6 +82,21 @@ export class CartConfirmComponent implements OnInit {
 		}
 	}
 
+	onConfirmPayment() {
+		this.wait = true;
+
+		this._cartConfirmService.placeOrder(this.order).then(() => {
+			this._cartConfirmService.addOrUpdateCustomerItems(this.order).then(() => {
+				console.log('the order was confirmed and customerItems was processed');
+				this.confirmed.emit(true);
+			}).catch((addOrUpdateCustomerItemError) => {
+				console.log('cartConfirmComponent: could not add or update customerItems', addOrUpdateCustomerItemError);
+			});
+		}).catch((placeOrderError) => {
+			console.log('cartConfirmComponent: could not place order', placeOrderError);
+		});
+	}
+
 	onConfirm() {
 		this.showConfirmation = true;
 		this.showPayment = false;
@@ -89,7 +105,7 @@ export class CartConfirmComponent implements OnInit {
 
 		this.showGoToPaymentButton = false;
 		this.showConfirmOrderButton = false;
-
+		/*
 		this._cartConfirmService.confirm().then(() => {
 			this.confirmationWait = false;
 			this.confirmed.emit(true);
@@ -98,14 +114,17 @@ export class CartConfirmComponent implements OnInit {
 			console.log('we could not confirm cart', e);
 			this.failure.emit(true);
 		});
+		*/
 	}
 
 	onPaymentConfirmed() {
 		console.log('the payments was confirmed');
+		this.buttonDisabled = false;
 	}
 
 	onPaymentFailure() {
 		console.log('the payments failed');
+		this.buttonDisabled = true;
 	}
 
 }
