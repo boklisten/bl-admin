@@ -3,6 +3,7 @@ import {BranchStoreService} from '../../branch/branch-store.service';
 import {Item, Order, OrderItem} from '@wizardcoder/bl-model';
 import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
+import {MapType} from '@angular/compiler/src/output/output_ast';
 
 @Injectable()
 export class ItemPriceService {
@@ -58,7 +59,7 @@ export class ItemPriceService {
 	}
 
 	private sanitizePrice(price: number): number {
-		return price;
+		return (Math.round(price / 10) * 10);
 	}
 
 }

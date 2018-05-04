@@ -26,6 +26,10 @@ export class CustomerService {
 		return !(!this._customer);
 	}
 
+	public reloadCustomer() {
+		this._customerDetailService.reloadCustomerDetail();
+	}
+
 	public haveOrderedItem(itemId: string): {orderItem: OrderItem, order: Order} {
 		for (const order of this._customer.orders) {
 			for (const orderItem of order.orderItems) {

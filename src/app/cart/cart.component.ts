@@ -45,11 +45,11 @@ export class CartComponent implements OnInit {
 	}
 
 	public onCartConfirmed() {
-		this._cartService.clear();
+		this._cartService.confirmCart();
 		this.cartConfirmText = 'The order was confirmed';
 
 		setTimeout(() => {
-			this.cartFailureText = null;
+			this.cartConfirmText = null;
 		}, 2000);
 
 	}

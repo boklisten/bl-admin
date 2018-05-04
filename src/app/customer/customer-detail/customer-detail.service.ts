@@ -25,6 +25,16 @@ export class CustomerDetailService {
 		}
 	}
 
+	public reloadCustomerDetail() {
+		console.log('reloaded the customer detail');
+		this._userDetailService.getById(this._currentCustomerDetail.id).then((customerDetail: UserDetail) => {
+			console.log('the new customer detail', customerDetail);
+			this.setCustomerDetail(customerDetail);
+		}).catch((fetchCustomerDetailError) => {
+			console.log('customerDetailService: could not fetch customerDetail');
+		});
+	}
+
 	public fetchCustomerDetail(id: string): Promise<UserDetail> {
 		if (this._currentCustomerDetail && id === this._currentCustomerDetail.id) {
 			return Promise.resolve(this._currentCustomerDetail);
@@ -56,9 +66,12 @@ export class CustomerDetailService {
 	}
 
 	public setCustomerDetail(customerDetail: UserDetail) {
+		console.log('the customerDetail changed', customerDetail);
+		/*
 		if (!this.checkForCustomerDetailDifference(customerDetail)) {
 			return;
 		}
+		*/
 
 		this._storageService.store(this._storageCustomerIdName, customerDetail.id);
 		this._currentCustomerDetail = customerDetail;

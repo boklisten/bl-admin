@@ -105,16 +105,20 @@ export class CartConfirmComponent implements OnInit {
 
 		this.showGoToPaymentButton = false;
 		this.showConfirmOrderButton = false;
-		/*
-		this._cartConfirmService.confirm().then(() => {
-			this.confirmationWait = false;
-			this.confirmed.emit(true);
-		}).catch((e) => {
-			this.wait = false;
-			console.log('we could not confirm cart', e);
-			this.failure.emit(true);
+
+		this._cartConfirmService.addOrder().then((addedOrder: Order) => {
+			this._cartConfirmService.placeOrder(addedOrder).then(() => {
+				this._cartConfirmService.addOrUpdateCustomerItems(addedOrder).then(() => {
+					this.confirmed.emit(true);
+				}).catch((addOrUpdateCustomerItemError) => {
+					console.log('cartConfirmComponent: could not add or update customerItems: ' + addOrUpdateCustomerItemError);
+				});
+			}).catch((placeOrderError) => {
+				console.log('cartConfirmComponent: could not place order: ' + placeOrderError);
+			});
+		}).catch((addOrderError) => {
+			console.log('cartConfirmComponent: could not add order: ' + addOrderError);
 		});
-		*/
 	}
 
 	onPaymentConfirmed() {

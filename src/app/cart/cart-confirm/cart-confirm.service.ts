@@ -22,17 +22,23 @@ export class CartConfirmService {
 
 	public placeOrder(order: Order): Promise<boolean> {
 		return new Promise((resolve, reject) => {
-			this._paymentHandlerService.addPayments(order).then(() => {
-				console.log('the payments was added!');
+			if (order.amount !== 0) {
+				this._paymentHandlerService.addPayments(order).then(() => {
+					this._orderHandlerService.placeOrder(order).then(() => {
+						resolve(true);
+					}).catch((placeOrderError) => {
+						reject(new Error('cartConfirmService: could not place order' + placeOrderError))
+					});
+				}).catch((addPaymentError) => {
+					reject(new Error('cartConfirmService: could not add payments: ' + addPaymentError));
+				});
+			} else {
 				this._orderHandlerService.placeOrder(order).then(() => {
-					console.log('the order was placed!');
 					resolve(true);
 				}).catch((placeOrderError) => {
-					reject(new Error('cartConfirmService: could not place order' + placeOrderError))
+					console.log('cartConfirmService: could not place order: ' + placeOrderError);
 				});
-			}).catch((addPaymentError) => {
-				reject(new Error('cartConfirmService: could not add payments: ' + addPaymentError));
-			});
+			}
 		});
 	}
 

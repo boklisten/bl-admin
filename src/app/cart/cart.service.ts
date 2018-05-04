@@ -13,12 +13,14 @@ import {CustomerDetailService} from '../customer/customer-detail/customer-detail
 import {CustomerService} from '../customer/customer.service';
 import {BranchStoreService} from '../branch/branch-store.service';
 import {CartHelperService} from './cart-helper.service';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class CartService {
 	private _cart: CartItem[];
 
 	private _cartChange$: Subject<boolean>;
+	private _cartConfirm$: Subject<boolean>;
 	private _customerDetailId: string;
 
 	constructor(private _itemPriceService: ItemPriceService, private _dateService: DateService, private _itemService: ItemService,
@@ -27,6 +29,7 @@ export class CartService {
 
 		this._cart = [];
 		this._cartChange$ = new Subject<boolean>();
+		this._cartConfirm$ = new Subject<boolean>();
 
 		if (this._customerService.haveCustomer()) {
 			this._customerDetailId = this._customerService.get().detail.id;
@@ -127,6 +130,16 @@ export class CartService {
 	public clear() {
 		this._cart = [];
 		this._cartChange$.next(true);
+	}
+
+	public confirmCart() {
+		this.clear();
+		this._customerService.reloadCustomer();
+		this._cartConfirm$.next(true);
+	}
+
+	public onCartConfirm(): Observable<boolean> {
+		return this._cartConfirm$;
 	}
 
 	public onCartChange() {
