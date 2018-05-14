@@ -21,7 +21,7 @@ export class OrderDeliveryDetailComponent implements OnInit {
 
 	ngOnInit() {
 		if (!this.order.delivery) {
-			this.warningText = 'Order has no delivery attaced';
+			this.notFoundText = 'Order has no delivery attached';
 		} else {
 			this.wait = true;
 			this._deliveryService.getById(this.order.delivery).then((delivery: Delivery) => {

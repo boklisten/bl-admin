@@ -59,7 +59,8 @@ export class ItemPriceService {
 	}
 
 	private sanitizePrice(price: number): number {
-		return (Math.round(price / 10) * 10);
+		return price;
+		// return (parseInt((price / 10).toString(), 10) + 1) * 10;
 	}
 
 }

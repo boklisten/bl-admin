@@ -63,7 +63,8 @@ export class OrderHandlerService {
 			branch: this._branchStoreService.getCurrentBranch().id,
 			customer: (this._customerService.haveCustomer()) ? this._customerService.get().detail.id : null,
 			byCustomer: false,
-			employee: this._userService.getUserDetailId()
+			employee: this._userService.getUserDetailId(),
+			viewableFor: [this._customerService.get().detail.user.id]
 		} as Order;
 	}
 

@@ -4,11 +4,13 @@ import {BranchStoreService} from '../../branch/branch-store.service';
 import {UserService} from '../../user/user.service';
 import {CustomerItemService} from '@wizardcoder/bl-connect';
 import {reject} from 'q';
+import {CustomerService} from '../../customer/customer.service';
 
 @Injectable()
 export class CustomerItemHandlerService {
 
-	constructor(private _branchStoreService: BranchStoreService, private _userService: UserService, private _customerItemService: CustomerItemService) {
+	constructor(private _branchStoreService: BranchStoreService, private _userService: UserService, private _customerItemService: CustomerItemService,
+	            private _customerService: CustomerService) {
 	}
 
 	public updateCustomerItems(orderItems: OrderItem[]): Promise<CustomerItem[]> {
@@ -146,6 +148,7 @@ export class CustomerItemHandlerService {
 			deadline: orderItem.info.to,
 			handout: true,
 			orders: [orderId],
+			viewableFor: [this._customerService.get().detail.user.id],
 			handoutInfo: {
 				handoutBy: 'branch',
 				handoutById: branch.id,

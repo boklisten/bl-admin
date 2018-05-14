@@ -17,7 +17,7 @@
 					<span class="bl-link-black"><fa-icon [icon]="'user'" class="mr-2"></fa-icon> {{order.customer | customerName | async}}</span>
                 </li>
                 <li class="list-group-item" *ngIf="order.employee">
-                    <fa-icon [icon]="'user-circle'" class="mr-2"></fa-icon> {{order.employee}}
+                    <fa-icon [icon]="'user-circle'" class="mr-2"></fa-icon> {{order.employee | customerName | async}}
                 </li>
                 <li class="list-group-item">
                     <fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon> {{order.branch | branchName | async}}

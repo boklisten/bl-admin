@@ -10,11 +10,11 @@
 						<fa-icon [icon]="'clock'" class="mr-2"></fa-icon> {{customerItem.deadline | blDate}}
 					</li>
 					<li class="list-group-item">
-						<fa-icon [icon]="'user'" class="mr-2"></fa-icon> {{customerItem.customer}}
+						<fa-icon [icon]="'user'" class="mr-2"></fa-icon> {{customerItem.customer | customerName | async}}
 					</li>
 					<li class="list-group-item">
 						<fa-icon [icon]="'user'" class="mr-1"></fa-icon><fa-icon [icon]="'book'" class="mr-2"></fa-icon>
-						<span *ngIf="customerItem.handoutInfo.handoutBy === 'branch'"></span> {{customerItem.handoutInfo.time | blDate:'time'}} at {{customerItem.handoutInfo.handoutById | branchName | async}} by {{customerItem.handoutInfo.handoutEmployee}}
+						<span *ngIf="customerItem.handoutInfo.handoutBy === 'branch'"></span> {{customerItem.handoutInfo.time | blDate:'time'}} at {{customerItem.handoutInfo.handoutById | branchName | async}} by {{customerItem.handoutInfo.handoutEmployee | customerName | async}}
 					</li>
 					<li class="list-group-item" *ngIf="customerItem.returned">
 						<fa-icon [icon]="'arrow-down'" class="mr-1"></fa-icon><fa-icon [icon]="'book'" class="mr-2"></fa-icon>
