@@ -11,6 +11,7 @@ import {ItemSearchService} from './item-search/item-search.service';
 import { ItemSearchResultComponent } from './item-search/item-search-result/item-search-result.component';
 import {PriceModule} from '../price/price.module';
 import { ItemSearchBarComponent } from './item-search-bar/item-search-bar.component';
+import { ItemUploadComponent } from './item-upload/item-upload.component';
 
 @NgModule({
 	imports: [
@@ -25,14 +26,17 @@ import { ItemSearchBarComponent } from './item-search-bar/item-search-bar.compon
 		ItemDetailCardComponent,
 		ItemSearchComponent,
 		ItemSearchResultComponent,
-		ItemSearchBarComponent
+		ItemSearchBarComponent,
+		ItemUploadComponent
 	],
 	providers: [
 		ItemSearchService
 	],
 	exports: [
-		ItemSearchBarComponent
+		ItemSearchBarComponent,
+		ItemUploadComponent
 	]
+
 })
 export class ItemModule {
 }

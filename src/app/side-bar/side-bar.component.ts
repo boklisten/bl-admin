@@ -34,6 +34,12 @@ export class SideBarComponent implements OnInit {
 				icon: 'user',
 				selected: false,
 				hide: true
+			},
+			{
+				name: 'database',
+				link: 'database',
+				icon: 'database',
+				selected: false
 			}
 		];
 	}
