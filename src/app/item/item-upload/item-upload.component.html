@@ -1,3 +1,29 @@
-<p>
-  item-upload works!
-</p>
+
+<div class="row">
+	<div class="col-12">
+		<div class="form-group">
+            <label for="file">Choose File</label>
+            <input id="file" type="file" (change)="onItemUpload($event.target.files)">
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-12">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">id</th>
+					<th scope="col">title</th>
+					<th scope="col">price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of uploadedItems">
+					<th scope="col">{{item.id}}</th>
+					<td>{{item.title}}</td>
+					<td>{{item.price}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

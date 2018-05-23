@@ -1,6 +1,23 @@
+<ngb-tabset type="pills">
+	<ngb-tab title="Edit items">
+		<ng-template ngbTabContent>
+			<div class="row mt-4">
+                <div class="col-3">
+                    <button class="btn btn-primary" (click)="onDownloadItems()">
+                        Get Items
+                    </button>
+                </div>
+			</div>
+		</ng-template>
+	</ngb-tab>
+	<ngb-tab title="Upload items">
+		<ng-template ngbTabContent>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <app-item-upload></app-item-upload>
+                </div>
 
-<div class="row">
-	<div class="col-12">
-		<app-item-upload></app-item-upload>
-	</div>
-</div>
+            </div>
+		</ng-template>
+	</ngb-tab>
+</ngb-tabset>

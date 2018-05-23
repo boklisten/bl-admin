@@ -10,27 +10,31 @@ import {Branch, Item} from '@wizardcoder/bl-model';
 })
 export class ItemUploadComponent implements OnInit {
 
-	constructor(private _databaseExcelService: DatabaseExcelService, private _itemService: ItemService) {
+	private _file: File;
+	public uploadedItems: Item[];
 
+	constructor(private _databaseExcelService: DatabaseExcelService, private _itemService: ItemService) {
+		this._file = null;
 	}
 
 	ngOnInit() {
-
-		this._itemService.get().then((items: Item[]) => {
-			this._databaseExcelService.objectsToExcelFile(items, 'testItems.xlsx');
-		}).catch((err) => {
-			console.log('could not get the items', err);
-		});
-
-
-		console.log(this._databaseExcelService.excelFileToObjects({
-			title: 'Signatur 3',
-			'info.isbn': '123',
-			'info.weight': 100,
-			desc: 'hello there'
-		}));
-
-
 	}
 
+	onItemUpload(files: FileList) {
+
+		const file = files[0];
+
+		const reader = new FileReader();
+
+		reader.onload = (e: any) => {
+			console.log('wer are reading!');
+			const data = e.target.result;
+
+			this.uploadedItems = this._databaseExcelService.excelFileToObjects(data);
+			console.log('the upladed items', this.uploadedItems);
+		};
+
+		reader.readAsArrayBuffer(file);
+
+	}
 }

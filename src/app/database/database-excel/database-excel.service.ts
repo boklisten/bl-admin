@@ -19,22 +19,36 @@ export class DatabaseExcelService {
 
 		utils.book_append_sheet(workBook, sheet, fileName);
 
-		//writeFile(workBook, fileName);
+		writeFile(workBook, fileName);
 	}
 
-	public excelFileToObjects(excelFile: any): any[] {
-		return [this.flattenObjToRegular(excelFile)];
+	public excelFileToObjects(excelBinaryFile: any): any[] {
+
+		const workbook = read(excelBinaryFile, {type: 'array'});
+
+		const jsonWorkbook = utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+
+
+		const objectArray = [];
+
+		for (const obj of jsonWorkbook) {
+			objectArray.push(this.flattenObjToRegular(obj));
+		}
+
+		return objectArray;
+
 	}
 
 	private flattenObjToRegular(flattenObj: any) {
 		const regularObj = {};
 
 		for (const objKey in flattenObj) {
+
 			if (!flattenObj.hasOwnProperty(objKey)) {
 				continue;
 			}
 
-			const splittedKey = objKey.split('.');
+			const splittedKey = objKey.toString().split('.');
 
 			this.addFlattenObjToRegular(regularObj, splittedKey, flattenObj[objKey]);
 		}

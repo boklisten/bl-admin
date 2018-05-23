@@ -16,6 +16,10 @@ export class DateService {
 	constructor(private _branchStoreService: BranchStoreService) {
 	}
 
+	public currentDateCompact(): string {
+		return moment().format('DD_MM_YY');
+	}
+
 	public isCustomerItemReturnValid(deadline: Date): boolean {
 		return moment().isSameOrBefore(moment(deadline));
 	}
