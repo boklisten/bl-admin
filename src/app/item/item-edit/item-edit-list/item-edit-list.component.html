@@ -1,0 +1,149 @@
+
+
+
+<div class="row">
+	<div class="col-12">
+		<div class="input-group mb-3" *ngIf="items && items.length > 0">
+
+            <input
+                type='text'
+				class="form-control"
+                placeholder='Filter by title or isbn'
+                (keyup)='updateFilter($event)'
+            />
+			<div class="input-group-append">
+				<span class="input-group-text">
+					<fa-icon [icon]="'filter'"></fa-icon>
+				</span>
+			</div>
+		</div>
+		<ngx-datatable
+			#itemEditTable
+			class="bootstrap"
+			[headerHeight]="50"
+			[rowHeight]="'auto'"
+			[rows]="items"
+			[columnMode]="'force'"
+			[columns]="columns">
+
+			<ngx-datatable-column name="id" [frozenLeft]="true">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span>
+						{{value}}
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="title">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+					<span
+						title="Double click to edit"
+						(dblclick)="editing[rowIndex + 'title'] = true"
+						*ngIf="!editing[rowIndex + 'title']">
+						{{value}}
+                    </span>
+                    <input
+                        autofocus
+                        (blur)="updateValue($event.target.value, 'title', rowIndex)"
+						(keyup.enter)="updateValue($event.target.value, 'title', rowIndex)"
+                        *ngIf="editing[rowIndex + 'title']"
+                        type="text"
+						class="form-control"
+                        [value]="value"/>
+                </ng-template>
+            </ngx-datatable-column>
+
+
+            <ngx-datatable-column name="price">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+					<span
+						title="Double click to edit"
+						(dblclick)="editing[rowIndex + 'price'] = true"
+						*ngIf="!editing[rowIndex + 'price']">
+						{{value}}
+                    </span>
+                    <input
+                        autofocus
+                        (blur)="updateValue($event.target.value, 'price', rowIndex)"
+						(keyup.enter)="updateValue($event.target.value, 'price', rowIndex)"
+                        *ngIf="editing[rowIndex + 'price']"
+                        type="text"
+						class="form-control"
+                        [value]="value"/>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="rent" [maxWidth]="100">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span>
+                        <button class="btn btn-sm" [ngClass]="{'btn-outline-secondary': !value, 'btn-secondary': value}" (click)="updateValue(!value, 'rent', rowIndex)">
+                            <fa-icon [icon]="'check'" class="mr-2" *ngIf="value"></fa-icon> Rent
+                        </button>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+
+			<ngx-datatable-column name="sell" [maxWidth]="100">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span>
+                        <button class="btn btn-sm" [ngClass]="{'btn-outline-secondary': !value, 'btn-secondary': value}" (click)="updateValue(!value, 'sell', rowIndex)">
+                            <fa-icon [icon]="'check'" class="mr-2" *ngIf="value"></fa-icon> Sell
+                        </button>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+
+			<ngx-datatable-column name="buy" [maxWidth]="100">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span>
+                        <button class="btn btn-sm" [ngClass]="{'btn-outline-secondary': !value, 'btn-secondary': value}" (click)="updateValue(!value, 'buy', rowIndex)">
+                            <fa-icon [icon]="'check'" class="mr-2" *ngIf="value"></fa-icon> Buy
+                        </button>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+
+
+			<ngx-datatable-column name="active">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <span>
+                        <button class="btn btn-sm" [ngClass]="{'btn-danger': !value, 'btn-secondary': value}" (click)="updateValue(!value, 'active', rowIndex)">
+							<span *ngIf="value"><fa-icon [icon]="'check'" class="mr-2"></fa-icon> Active</span>
+							<span *ngIf="!value">Not active</span>
+                        </button>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+
+			<ngx-datatable-row-detail [rowHeight]="100" #itemDetailRow (toggle)="onDetailToggle($event)">
+				<ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+
+					<div class="row no-gutters">
+						<div class="col-6">
+							{{row.desc}}
+						</div>
+						<div class="col-6">
+							{{row.info.isbn}}
+						</div>
+					</div>
+				</ng-template>
+			</ngx-datatable-row-detail>
+
+			<ngx-datatable-column
+				[width]="100"
+				[frozenRight]="true"
+				[canAutoResize]="false">
+				<ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template let-rowIndex="rowIndex">
+					<span>
+						<button class="btn btn-outline-info btn-sm" (click)="toggleExpandRow(row)">
+							<fa-icon [icon]="'ellipsis-v'"></fa-icon>
+						</button>
+					</span>
+					<span><fa-icon [icon]="'circle-notch'" [spin]="true" *ngIf="updating[items[rowIndex].id]"></fa-icon></span>
+				</ng-template>
+			</ngx-datatable-column>
+
+
+		</ngx-datatable>
+	</div>
+</div>

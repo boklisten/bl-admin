@@ -12,6 +12,9 @@ import { ItemSearchResultComponent } from './item-search/item-search-result/item
 import {PriceModule} from '../price/price.module';
 import { ItemSearchBarComponent } from './item-search-bar/item-search-bar.component';
 import { ItemUploadComponent } from './item-upload/item-upload.component';
+import { ItemEditListComponent } from './item-edit/item-edit-list/item-edit-list.component';
+import {FormsModule} from '@angular/forms';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 
 @NgModule({
 	imports: [
@@ -19,7 +22,9 @@ import { ItemUploadComponent } from './item-upload/item-upload.component';
 		ItemRoutingModule,
 		BlCommonModule,
 		FontAwesomeModule,
-		PriceModule
+		PriceModule,
+		FormsModule,
+		NgxDatatableModule
 	],
 	declarations: [
 		ItemDetailComponent,
@@ -27,14 +32,16 @@ import { ItemUploadComponent } from './item-upload/item-upload.component';
 		ItemSearchComponent,
 		ItemSearchResultComponent,
 		ItemSearchBarComponent,
-		ItemUploadComponent
+		ItemUploadComponent,
+		ItemEditListComponent
 	],
 	providers: [
 		ItemSearchService
 	],
 	exports: [
 		ItemSearchBarComponent,
-		ItemUploadComponent
+		ItemUploadComponent,
+		ItemEditListComponent
 	]
 
 })

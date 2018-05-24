@@ -2,7 +2,11 @@
 	<ngb-tab title="Edit items">
 		<ng-template ngbTabContent>
 			<div class="row mt-4">
-                <div class="col-3">
+				<div class="col-12">
+					<app-item-edit-list [items]="databaseItems" [autoUpdate]="true"></app-item-edit-list>
+				</div>
+
+				<div class="col-12 mt-4">
                     <button class="btn btn-primary" (click)="onDownloadItems()">
                         Get Items
                     </button>

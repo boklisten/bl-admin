@@ -10,11 +10,18 @@ import {DateService} from '../../date/date.service';
 	styleUrls: ['./database-items.component.scss']
 })
 export class DatabaseItemsComponent implements OnInit {
+	public databaseItems: Item[];
 
 	constructor(private _itemService: ItemService, private _databaseExcelService: DatabaseExcelService, private _dateService: DateService) {
+		this.databaseItems = [];
 	}
 
 	ngOnInit() {
+		this._itemService.get().then((items: Item[]) => {
+			this.databaseItems = items;
+		}).catch((err) => {
+			console.log('DatabaseItemsComponent: could not get items', err);
+		});
 	}
 
 
