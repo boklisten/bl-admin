@@ -24,7 +24,8 @@ import {faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow,
 	faAddressCard, faQrcode, faSyncAlt, faTimes, faShoppingCart, faClock, faWarehouse, faDollarSign,
 	faCreditCard, faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode,
 	faCalendar, faCartPlus, faCheckCircle, faClipboardList, faBan, faCalendarPlus, faArrowDown, faArrowUp,
-	faArrowAltCircleDown, faDatabase, faSquare, faCheckSquare, faEllipsisV, faFilter} from '@fortawesome/free-solid-svg-icons';
+	faArrowAltCircleDown, faDatabase, faSquare, faCheckSquare, faEllipsisV, faFilter, faInfoCircle,
+	faEraser} from '@fortawesome/free-solid-svg-icons';
 import {BlCommonModule} from './bl-common/bl-common.module';
 import {ItemModule} from './item/item.module';
 import {BlConnectModule} from "@wizardcoder/bl-connect";
@@ -40,7 +41,7 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 	faPhone, faAddressCard, faQrcode, faSyncAlt, faTimes, faShoppingCart, faClock, faWarehouse, faDollarSign, faCreditCard,
 	faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode, faCalendar, faCartPlus, faCheckCircle, faClipboardList,
 	faBan, faCalendarPlus, faArrowDown, faArrowUp, faArrowAltCircleDown, faDatabase, faSquare, faCheckSquare, faEllipsisV,
-	faFilter
+	faFilter, faInfoCircle, faEraser
 );
 
 @NgModule({

@@ -12,6 +12,8 @@ import {DatabaseExcelService} from '../../../database/database-excel/database-ex
 export class ItemEditListComponent implements OnInit, OnChanges {
 	@Input() items: Item[];
 	@Input() autoUpdate: boolean;
+	@Input() editable: boolean;
+	@Input() uploadList: boolean;
 	@ViewChild('itemEditTable') table: any;
 
 	public rows: Item[];
@@ -63,6 +65,14 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 	add() {
 	}
 
+	updateRowItem(rowIndex: number, colName: string) {
+		this.editing[rowIndex + colName] = false;
+
+		if (this.autoUpdate) {
+			this.updateItemToDb(rowIndex, colName);
+		}
+	}
+
 
 	updateValue(value, cell: string, rowIndex: number) {
 		this.editing[rowIndex + cell] = false;
@@ -72,6 +82,20 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 		if (this.autoUpdate) {
 			this.updateItem(rowIndex, cell);
 		}
+	}
+
+	private updateItemToDb(rowIndex: number, colName: string) {
+		this.updating[rowIndex] = true;
+
+		this._itemService.update(this.items[rowIndex].id, this.items[rowIndex]).then((updatedItem: Item) => {
+			this.editing[rowIndex + colName] = false;
+			this.updating[rowIndex] = false;
+			this.items[rowIndex] = updatedItem;
+			this.items = [...this.items];
+		}).catch((updateItemError) => {
+			console.log('itemEditListCOmponent: could not update item', updateItemError);
+			this.updating[rowIndex] = false;
+		});
 	}
 
 
@@ -94,6 +118,8 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 		});
 	}
 
+
+
 	public toggleExpandRow(row) {
 		this.table.rowDetail.toggleExpandRow(row);
 	}
@@ -107,7 +133,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 
 		this.items = this.temp.filter((item: Item) => {
 			return (item.title.toLowerCase().indexOf(val) !== -1
-				|| (item.info && item.info.isbn && item.info.isbn.toLowerCase().indexOf(val) !== -1) || val.length <= 0);
+				|| (item.info && item.info.isbn && (typeof item.info.isbn) === 'string' && item.info.isbn.toLowerCase().indexOf(val) !== -1) || val.length <= 0);
 		});
 	}
 
@@ -134,8 +160,6 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 					console.log('itemEditListComponent: could not updated uploaded item');
 				});
 			}
-
-
 		}
 	}
 

@@ -35,13 +35,6 @@ $border-color: rgba(0,0,0,.125);
 	border-bottom: $link-border-black;
 }
 
-.ngx-datatable .datatable-body-cell {
-	overflow: visible !important;
-}
-
-.ngx-datatable {
-	overflow: visible !important;
-}
 
 .datatable-body-row.active {
 	background-color: #c7ffbc;

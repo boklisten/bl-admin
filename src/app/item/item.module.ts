@@ -15,7 +15,7 @@ import { ItemUploadComponent } from './item-upload/item-upload.component';
 import { ItemEditListComponent } from './item-edit/item-edit-list/item-edit-list.component';
 import {FormsModule} from '@angular/forms';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
-import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
 	imports: [
@@ -26,7 +26,7 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 		PriceModule,
 		FormsModule,
 		NgxDatatableModule,
-		NgbDropdownModule
+		NgbTooltipModule
 	],
 	declarations: [
 		ItemDetailComponent,
