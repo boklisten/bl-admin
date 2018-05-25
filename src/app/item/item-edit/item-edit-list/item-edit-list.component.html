@@ -3,7 +3,7 @@
 
 <div class="row">
 	<div class="col-12">
-		<div class="input-group mb-3" *ngIf="items && items.length > 0">
+		<div class="input-group mb-3" *ngIf="temp && temp.length > 0">
 
             <input
                 type='text'
@@ -24,7 +24,7 @@
 			[rowHeight]="'auto'"
 			[rows]="items"
 			[columnMode]="'force'"
-			[columns]="columns">
+			[columns]="columns" style="z-index: 1; position: relative">
 
 			<ngx-datatable-column name="id" [frozenLeft]="true">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
@@ -115,31 +115,21 @@
                 </ng-template>
             </ngx-datatable-column>
 
-			<ngx-datatable-row-detail [rowHeight]="100" #itemDetailRow (toggle)="onDetailToggle($event)">
-				<ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-
-					<div class="row no-gutters">
-						<div class="col-6">
-							{{row.desc}}
-						</div>
-						<div class="col-6">
-							{{row.info.isbn}}
-						</div>
-					</div>
-				</ng-template>
-			</ngx-datatable-row-detail>
-
 			<ngx-datatable-column
 				[width]="100"
 				[frozenRight]="true"
-				[canAutoResize]="false">
+				[canAutoResize]="false"
+			style="position: relative; z-index: 1;">
 				<ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template let-rowIndex="rowIndex">
-					<span>
-						<button class="btn btn-outline-info btn-sm" (click)="toggleExpandRow(row)">
+					<div ngbDropdown placement="left" class="d-inline-block">
+						<button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
 							<fa-icon [icon]="'ellipsis-v'"></fa-icon>
 						</button>
-					</span>
-					<span><fa-icon [icon]="'circle-notch'" [spin]="true" *ngIf="updating[items[rowIndex].id]"></fa-icon></span>
+						<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+							<button class="dropdown-item">view more</button>
+						</div>
+						<span><fa-icon [icon]="'circle-notch'" [spin]="true" *ngIf="updating[items[rowIndex].id]"></fa-icon></span>
+					</div>
 				</ng-template>
 			</ngx-datatable-column>
 
