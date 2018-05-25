@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, V
 import {Item} from '@wizardcoder/bl-model';
 import {ItemService} from '@wizardcoder/bl-connect';
 import {selectRows} from '@swimlane/ngx-datatable/release/utils';
+import {DatabaseExcelService} from '../../../database/database-excel/database-excel.service';
 
 @Component({
 	selector: 'app-item-edit-list',
@@ -13,14 +14,15 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 	@Input() autoUpdate: boolean;
 	@ViewChild('itemEditTable') table: any;
 
-	public rows: any[];
+	public rows: Item[];
 	public columns: any[];
 	public editing = {};
 	public updating = {};
 	public expanded = {};
-	public temp: any[];
+	public temp: Item[];
+	public selected: Item[];
 
-	constructor(private _itemService: ItemService, private _changeDetectionRef: ChangeDetectorRef) {
+	constructor(private _itemService: ItemService, private _changeDetectionRef: ChangeDetectorRef, private _databaseExcelService: DatabaseExcelService) {
 		this.columns = [
 			{prop: 'title'},
 			{name: 'id'},
@@ -32,20 +34,33 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 			{name: 'active'},
 			{name: 'action'}
 		];
+		this.selected = [];
+		this.items = [];
+		this.temp = [];
+		this.rows = [];
+	}
+
+	onDownloadSelected() {
+		this._databaseExcelService.objectsToExcelFile(this.selected, 'items');
 	}
 
 	ngOnInit() {
-		this.temp = [...this.items];
-
-		console.log('the temp', this.temp);
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
 		for (const propName in changes) {
-			if (propName === 'items') {
+			if (propName === 'items' && this.items) {
 				this.temp = [...this.items];
 			}
 		}
+	}
+
+	onSelect({ selected }) {
+		this.selected.splice(0, this.selected.length);
+		this.selected.push(...selected);
+	}
+
+	add() {
 	}
 
 
@@ -89,7 +104,8 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 		const val = event.target.value.toLowerCase();
 
 		this.items = this.temp.filter((item: Item) => {
-			return (item.title.toLowerCase().indexOf(val) !== -1 || (item.info && item.info.isbn && item.info.isbn.toLowerCase().indexOf(val) !== -1) || val.length <= 0);
+			return (item.title.toLowerCase().indexOf(val) !== -1
+				|| (item.info && item.info.isbn && item.info.isbn.toLowerCase().indexOf(val) !== -1) || val.length <= 0);
 		});
 	}
 

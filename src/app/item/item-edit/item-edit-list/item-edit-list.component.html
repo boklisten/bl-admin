@@ -1,9 +1,19 @@
 
 
+<div class="row" *ngIf="temp.length > 0">
+	<div class="col-12 mb-3">
+		<button class="btn btn-sm mr-1" [ngClass]="{'btn-outline-success': selected.length > 0, 'btn-outline-secondary': selected.lenght <= 0}" [disabled]="selected.length <= 0" *ngIf="!autoUpdate">
+			Upload selected
+		</button>
+		<button class="btn btn-sm" [ngClass]="{'btn-outline-secondary': selected.length > 0}" [disabled]="selected.length <= 0" (click)="onDownloadSelected()">
+			Download selected
+		</button>
+	</div>
+</div>
 
 <div class="row">
 	<div class="col-12">
-		<div class="input-group mb-3" *ngIf="temp && temp.length > 0">
+		<div class="input-group mb-3" *ngIf="temp.length > 0">
 
             <input
                 type='text'
@@ -17,6 +27,12 @@
 				</span>
 			</div>
 		</div>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-12">
 		<ngx-datatable
 			#itemEditTable
 			class="bootstrap"
@@ -24,7 +40,26 @@
 			[rowHeight]="'auto'"
 			[rows]="items"
 			[columnMode]="'force'"
-			[columns]="columns" style="z-index: 1; position: relative">
+			[columns]="columns"
+			[selected]="selected"
+			[selectionType]="'checkbox'"
+			(select)='onSelect($event)'>
+
+
+			<ngx-datatable-column
+				[width]="30"
+				[sortable]="false"
+				[canAutoResize]="false"
+				[draggable]="false"
+				[resizeable]="false"
+				[frozenLeft]="true">
+				<ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+					<input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+				</ng-template>
+				<ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
+					<input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
+				</ng-template>
+			</ngx-datatable-column>
 
 			<ngx-datatable-column name="id" [frozenLeft]="true">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">

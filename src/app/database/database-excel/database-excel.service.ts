@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {read, write, utils, WorkBook, writeFile} from 'xlsx';
+import {DateService} from '../../date/date.service';
 
 @Injectable()
 export class DatabaseExcelService {
 
-	constructor() {
+	constructor(private _dateService: DateService) {
 	}
 
 	public objectsToExcelFile(objects: any[], fileName: string) {
@@ -17,16 +18,18 @@ export class DatabaseExcelService {
 		const sheet = utils.json_to_sheet(flattenObjects);
 		const workBook: WorkBook = utils.book_new();
 
-		utils.book_append_sheet(workBook, sheet, fileName);
+		const fileNameWithDate = fileName + '_' + this._dateService.currentDateCompact() + '.xlsx';
 
-		writeFile(workBook, fileName);
+		utils.book_append_sheet(workBook, sheet, fileNameWithDate);
+
+		writeFile(workBook, fileNameWithDate);
 	}
 
 	public excelFileToObjects(excelBinaryFile: any): any[] {
 
 		const workbook = read(excelBinaryFile, {type: 'array'});
 
-		const jsonWorkbook = utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
+		const jsonWorkbook = utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], {raw: true});
 
 
 		const objectArray = [];
@@ -34,6 +37,8 @@ export class DatabaseExcelService {
 		for (const obj of jsonWorkbook) {
 			objectArray.push(this.flattenObjToRegular(obj));
 		}
+
+		console.log('the object array', objectArray);
 
 		return objectArray;
 
@@ -57,20 +62,28 @@ export class DatabaseExcelService {
 	}
 
 	private addFlattenObjToRegular(parentObj: any, keys: string[], value: any) {
-			const currentKey = keys[0];
+		const currentKey = keys[0];
 
-			if (keys.length <= 1) {
+
+		if (keys.length <= 1) {
+			if (value === 'false') {
+				parentObj[keys[0]] = false;
+			} else if (value === 'true') {
+				parentObj[keys[0]] = true;
+			} else {
 				parentObj[keys[0]] = value;
-				return;
 			}
 
+			return;
+		}
 
-			if (!parentObj.hasOwnProperty(currentKey)) {
-				parentObj[currentKey] = {};
-			}
 
-			keys.shift(); // removes the current key from array
-			return this.addFlattenObjToRegular(parentObj[currentKey], keys, value);
+		if (!parentObj.hasOwnProperty(currentKey)) {
+			parentObj[currentKey] = {};
+		}
+
+		keys.shift(); // removes the current key from array
+		return this.addFlattenObjToRegular(parentObj[currentKey], keys, value);
 
 	}
 
