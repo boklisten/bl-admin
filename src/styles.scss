@@ -42,3 +42,8 @@ $border-color: rgba(0,0,0,.125);
 .ngx-datatable {
 	overflow: visible !important;
 }
+
+.datatable-body-row.active {
+	background-color: #c7ffbc;
+
+}

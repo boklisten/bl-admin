@@ -79,16 +79,18 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 		const updateData = {};
 		updateData[cell] = this.items[rowIndex][cell];
 
-		this.updating[this.items[rowIndex].id] = true;
+		const itemCell = this.items[rowIndex].id + this.items[rowIndex].title;
+
+		this.updating[itemCell] = true;
 
 		this._itemService.update(this.items[rowIndex].id, updateData).then((updatedItem: Item) => {
-			this.updating[this.items[rowIndex].id] = false;
+			this.updating[itemCell] = false;
 			this.items[rowIndex] = updatedItem;
 			this.items = [...this.items];
 			this._changeDetectionRef.markForCheck();
 		}).catch((updateError) => {
 			console.log('itemEditListComponent: could not update item', updateError);
-			this.updating[this.items[rowIndex].id] = false;
+			this.updating[itemCell] = false;
 		});
 	}
 
@@ -107,6 +109,34 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 			return (item.title.toLowerCase().indexOf(val) !== -1
 				|| (item.info && item.info.isbn && item.info.isbn.toLowerCase().indexOf(val) !== -1) || val.length <= 0);
 		});
+	}
+
+	public uploadSelected() {
+		for (const selectedItem of this.selected) {
+			const itemCell = selectedItem.id + selectedItem.title;
+
+			if (!selectedItem.id || selectedItem.id.length <= 0) {
+				this.updating[itemCell] = true;
+
+				this._itemService.add(selectedItem).then((addedItem: Item) => {
+					this.updating[itemCell] = false;
+
+					for (let i = 0; i < this.items.length; i++) {
+						if (this.items[i].title === addedItem.title) {
+							this.items.splice(i, 1);
+							break;
+						}
+					}
+
+					this.items = [...this.items];
+
+				}).catch((updateErr) => {
+					console.log('itemEditListComponent: could not updated uploaded item');
+				});
+			}
+
+
+		}
 	}
 
 

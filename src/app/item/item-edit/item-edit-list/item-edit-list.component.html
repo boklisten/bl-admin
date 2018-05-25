@@ -2,7 +2,7 @@
 
 <div class="row" *ngIf="temp.length > 0">
 	<div class="col-12 mb-3">
-		<button class="btn btn-sm mr-1" [ngClass]="{'btn-outline-success': selected.length > 0, 'btn-outline-secondary': selected.lenght <= 0}" [disabled]="selected.length <= 0" *ngIf="!autoUpdate">
+		<button class="btn btn-sm mr-1" [ngClass]="{'btn-outline-success': selected.length > 0, 'btn-outline-secondary': selected.lenght <= 0}" [disabled]="selected.length <= 0" *ngIf="!autoUpdate" (click)="uploadSelected()">
 			Upload selected
 		</button>
 		<button class="btn btn-sm" [ngClass]="{'btn-outline-secondary': selected.length > 0}" [disabled]="selected.length <= 0" (click)="onDownloadSelected()">
@@ -163,7 +163,7 @@
 						<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
 							<button class="dropdown-item">view more</button>
 						</div>
-						<span><fa-icon [icon]="'circle-notch'" [spin]="true" *ngIf="updating[items[rowIndex].id]"></fa-icon></span>
+						<span><fa-icon [icon]="'circle-notch'" [spin]="true" *ngIf="updating[items[rowIndex].id + items[rowIndex].title]"></fa-icon></span>
 					</div>
 				</ng-template>
 			</ngx-datatable-column>
