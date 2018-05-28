@@ -52,10 +52,9 @@ export class ItemPriceService {
 			return this.sanitizePrice(-1);
 		}
 
-		if (item.sellPrice > 0) {
-			return (this.sanitizePrice(0 - item.sellPrice));
-		}
-		return this.sanitizePrice(item.sellPrice);
+		// TODO: should update sell price calculation to follow new flow
+
+		return this.sanitizePrice(-1);
 	}
 
 	private sanitizePrice(price: number): number {

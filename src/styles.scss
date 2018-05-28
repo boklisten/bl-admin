@@ -35,6 +35,27 @@ $border-color: rgba(0,0,0,.125);
 	border-bottom: $link-border-black;
 }
 
+.bl-toggle-on {
+	font-size: 30px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+	color: $success-color;
+}
+
+.bl-toggle-on:hover {
+	color: #337f37
+}
+
+.bl-toggle-off {
+	@extend .bl-toggle-on;
+	color: $alert-color;
+}
+
+.bl-toggle-off:hover {
+	color: #9f0600;
+}
+
 
 .datatable-body-row.active {
 	background-color: #c7ffbc;

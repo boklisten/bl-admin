@@ -4,7 +4,7 @@
 		<button class="btn btn-sm mr-1" [ngClass]="{'btn-outline-success': selected.length > 0, 'btn-outline-secondary': selected.lenght <= 0}" [disabled]="selected.length <= 0" *ngIf="!autoUpdate" (click)="uploadSelected()">
 			Upload selected
 		</button>
-		<button class="btn btn-sm" [ngClass]="{'btn-outline-secondary': selected.length > 0}" [disabled]="selected.length <= 0" (click)="onDownloadSelected()">
+		<button class="btn btn-sm" [ngClass]="{'btn-outline-info': selected.length > 0}" [disabled]="selected.length <= 0" (click)="onDownloadSelected()">
 			Download selected
 		</button>
 	</div>
@@ -80,7 +80,7 @@
                 </ng-template>
             </ngx-datatable-column>
 
-			<ngx-datatable-column name="title">
+			<ngx-datatable-column name="title" [minWidth]="500" [maxWidth]="500" [resizeable]="false">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
 					<span *ngIf="editable">
 
@@ -151,43 +151,19 @@
                 </ng-template>
             </ngx-datatable-column>
 
-
-            <ngx-datatable-column name="rent" [maxWidth]="100">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                    <span>
-                        <button class="btn btn-sm" [disabled]="!editable" [ngClass]="{'btn-outline-secondary': !value, 'btn-secondary': value}" (click)="updateValue(!value, 'rent', rowIndex)">
-                            <fa-icon [icon]="'check'" class="mr-2" *ngIf="value"></fa-icon> Rent
-                        </button>
-                    </span>
-                </ng-template>
-            </ngx-datatable-column>
-
-			<ngx-datatable-column name="sell" [maxWidth]="100">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                    <span>
-                        <button class="btn btn-sm" [disabled]="!editable" [ngClass]="{'btn-outline-secondary': !value, 'btn-secondary': value}" (click)="updateValue(!value, 'sell', rowIndex)">
-                            <fa-icon [icon]="'check'" class="mr-2" *ngIf="value"></fa-icon> Sell
-                        </button>
-                    </span>
-                </ng-template>
-            </ngx-datatable-column>
-
-			<ngx-datatable-column name="buy" [maxWidth]="100">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                    <span>
-                        <button class="btn btn-sm" [disabled]="!editable" [ngClass]="{'btn-outline-secondary': !value, 'btn-secondary': value}" (click)="updateValue(!value, 'buy', rowIndex)">
-                            <fa-icon [icon]="'check'" class="mr-2" *ngIf="value"></fa-icon> Buy
-                        </button>
-                    </span>
-                </ng-template>
-            </ngx-datatable-column>
-
 			<ngx-datatable-column name="active">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+					<app-bl-common-toggle-button [value]="value" (click)="updateValue(!value, 'active', rowIndex)" [tooltip]="'change active state'"></app-bl-common-toggle-button>
+                </ng-template>
+            </ngx-datatable-column>
+
+
+			<ngx-datatable-column name="archived">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                     <span>
-                        <button class="btn btn-sm" [disabled]="!editable" [ngClass]="{'btn-danger': !value, 'btn-secondary': value}" (click)="updateValue(!value, 'active', rowIndex)">
-							<span *ngIf="value"><fa-icon [icon]="'check'" class="mr-2"></fa-icon> Active</span>
-							<span *ngIf="!value">Not active</span>
+                        <button class="btn btn-sm" [disabled]="!editable" [ngClass]="{'btn-danger': value, 'btn-outline-secondary': !value}" (click)="updateValue(!value, 'archived', rowIndex)">
+							<span *ngIf="value"><fa-icon [icon]="'check'" class="mr-2"></fa-icon> Archived</span>
+							<span *ngIf="!value"><fa-icon [icon]="'archive'" class="mr-2"></fa-icon> Archive</span>
                         </button>
                     </span>
                 </ng-template>
@@ -209,11 +185,10 @@
                                 <fa-icon [icon]="'info-circle'"></fa-icon>
                             </button>
 						</span>
-
+						<span>
+							<fa-icon [icon]="'circle-notch'" class="ml-2" [spin]="true" *ngIf="updating[rowIndex]"></fa-icon>
+						</span>
 					</div>
-
-					<fa-icon [icon]="'circle-notch'" class="ml-2" [spin]="true" *ngIf="updating[rowIndex]"></fa-icon>
-
 				</ng-template>
 			</ngx-datatable-column>
 		</ngx-datatable>

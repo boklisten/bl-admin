@@ -34,22 +34,9 @@ export class CartHelperService {
 	}
 
 	public actionValidOnItem(action: CartItemAction, item: Item, customerItem?: CustomerItem): boolean {
+		// TODO: should update this method to user Branch.branchItems to validate if action is valid
 		if (!customerItem) {
-			if (action === 'semester' || action === 'year') {
-				if (item.rent && this._customerService.haveCustomer()) {
-					return true;
-				}
-			} else if (action === 'buy') {
-				if (item.buy) {
-					return true;
-				}
-			} else if (action === 'sell') {
-				if (item.sell && this._customerService.haveCustomer()) {
-					return true;
-				}
-			} else {
-				return true;
-			}
+			return true;
 		} else {
 			if (action === 'cancel') {
 				return (customerItem.handout && this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time));
