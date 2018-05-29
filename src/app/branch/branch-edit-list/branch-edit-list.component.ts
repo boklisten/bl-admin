@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Branch} from '@wizardcoder/bl-model';
 import {BranchService} from '@wizardcoder/bl-connect';
 import {DatabaseExcelService} from '../../database/database-excel/database-excel.service';
@@ -8,7 +8,7 @@ import {DatabaseExcelService} from '../../database/database-excel/database-excel
 	templateUrl: './branch-edit-list.component.html',
 	styleUrls: ['./branch-edit-list.component.scss']
 })
-export class BranchEditListComponent implements OnInit {
+export class BranchEditListComponent implements OnInit, OnChanges {
 	@Input() branches: Branch[];
 	@Input() autoUpdate: boolean;
 	@Input() uploadList: boolean;
@@ -28,17 +28,25 @@ export class BranchEditListComponent implements OnInit {
 	ngOnInit() {
 	}
 
+
+	ngOnChanges(changes: SimpleChanges) {
+		for (const propName in changes) {
+			if (propName === 'branches' && this.branches) {
+				this.temp = [...this.branches];
+			}
+		}
+	}
+
 	public onDownloadSelected() {
 		this._databaseExcelService.objectsToExcelFile(this.selected, 'branches');
 	}
 
-	public onUpdateFilter(filter: string) {
-		const fil = filter.toLowerCase();
+	public onUpdateFilter(event) {
+		const fil = event.target.value.toLowerCase();
 
-		this.branches = (this.temp.filter((branch: Branch) => {
-			return (branch.name.toLowerCase().indexOf(fil) !== -1);
-		}));
-
+		this.branches = this.temp.filter((branch: Branch) => {
+			return (fil.length <= 0 || branch.name.toLowerCase().indexOf(fil) !== -1);
+		});
 	}
 
 	onSelect({ selected }) {

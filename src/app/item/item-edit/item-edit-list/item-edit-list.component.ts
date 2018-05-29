@@ -25,17 +25,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 	public selected: Item[];
 
 	constructor(private _itemService: ItemService, private _changeDetectionRef: ChangeDetectorRef, private _databaseExcelService: DatabaseExcelService) {
-		this.columns = [
-			{prop: 'title'},
-			{name: 'id'},
-			{name: 'price'},
-			{name: 'types'},
-			{name: 'rent'},
-			{name: 'buy'},
-			{name: 'sell'},
-			{name: 'active'},
-			{name: 'action'}
-		];
+		this.columns = [];
 		this.selected = [];
 		this.items = [];
 		this.temp = [];
@@ -93,7 +83,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 			this.items[rowIndex] = updatedItem;
 			this.items = [...this.items];
 		}).catch((updateItemError) => {
-			console.log('itemEditListCOmponent: could not update item', updateItemError);
+			console.log('itemEditListComponent: could not update item', updateItemError);
 			this.updating[rowIndex] = false;
 		});
 	}

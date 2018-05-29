@@ -1,0 +1,18 @@
+<span *ngIf="!disabled">
+    <span
+		title="Double click to edit"
+		(dblclick)="editing = true"
+		*ngIf="!editing">
+        {{value}}
+    </span>
+    <input
+		autofocus
+		*ngIf="editing"
+		[value]="value"
+		[(ngModel)]="value"
+		(blur)="onUpdate(value)"
+		(keyup.enter)="onUpdate(value)"
+		type="number"
+		class="form-control form-control-sm"/>
+</span>
+<span *ngIf="disabled">{{value}}</span>

@@ -1,0 +1,164 @@
+<div class="card" *ngIf="branch">
+	<div class="card-header">
+		<h5>Payment settings</h5>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-12">
+                <div class="row">
+                    <div class="col-12 text-secondary">
+                        <h6>Rent periods</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let rentPeriod of branch.paymentInfo.rentPeriods; let i = index" [attr.data-index]="i">
+								<div class="row align-items-center">
+									<div class="col-10">
+                                        <div class="row justify-content-between">
+                                            <div class="col-auto text-primary">
+                                                Type
+                                            </div>
+                                            <div class="col-auto">
+												<app-blc-edit-string-value
+													[(value)]="rentPeriod.type"
+													(update)="onUpdate()"></app-blc-edit-string-value>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-between">
+                                            <div class="col-auto text-primary">
+												Limit
+                                            </div>
+                                            <div class="col-auto">
+												<app-blc-edit-number-value
+													[(value)]="rentPeriod.maxNumberOfPeriods"
+													(update)="onUpdate()"></app-blc-edit-number-value>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-between">
+                                            <div class="col-auto text-primary">
+                                                Percentage
+                                            </div>
+                                            <div class="col-auto">
+												<app-blc-edit-number-value
+													[(value)]="rentPeriod.percentage"
+													(update)="onUpdate()"></app-blc-edit-number-value>
+                                            </div>
+                                        </div>
+									</div>
+									<div class="col-2">
+										<div class="row justify-content-end align-items-center">
+											<div class="col-auto align-items-center align-content-center">
+                                                <button class="btn btn-sm btn-outline-danger" (click)="onRentPeriodDelete(i)">
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                </button>
+											</div>
+										</div>
+									</div>
+								</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+				<div class="row mt-2" [ngClass]="{'justify-content-end': branch.paymentInfo.rentPeriods.length > 0}">
+					<div class="col-auto" [ngClass]="{'col-12': branch.paymentInfo.rentPeriods.length <= 0}">
+						<button class="btn btn-sm btn-outline-success" (click)="onRentPeriodAdd()" [ngClass]="{'btn-block': branch.paymentInfo.rentPeriods.length <= 0}">
+							Add
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row mt-2">
+			<div class="col-12">
+                <div class="row text-secondary">
+                    <div class="col-12">
+                        <h6>Extend periods</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let extendPeriod of branch.paymentInfo.extendPeriods; let i = index" [attr.data-index]="i">
+								<div class="row align-items-center">
+									<div class="col-10">
+                                        <div class="row justify-content-between">
+                                            <div class="col-auto text-primary">
+                                                Type
+                                            </div>
+                                            <div class="col-auto">
+												<app-blc-edit-string-value
+													[(value)]="extendPeriod.type"
+													(update)="onUpdate()"></app-blc-edit-string-value>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-between">
+                                            <div class="col-auto text-primary">
+												Limit
+                                            </div>
+                                            <div class="col-auto">
+												<app-blc-edit-number-value
+													[(value)]="extendPeriod.maxNumberOfPeriods"
+													(update)="onUpdate()"></app-blc-edit-number-value>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-between">
+                                            <div class="col-auto text-primary">
+                                               	Price
+                                            </div>
+                                            <div class="col-auto">
+												<app-blc-edit-number-value
+													[(value)]="extendPeriod.price"
+													(update)="onUpdate()"></app-blc-edit-number-value>
+                                            </div>
+                                        </div>
+									</div>
+									<div class="col-2">
+										<div class="row justify-content-end align-items-center">
+											<div class="col-auto align-items-center align-content-center">
+                                                <button class="btn btn-sm btn-outline-danger" (click)="onExtendPeriodDelete(i)">
+                                                    <fa-icon [icon]="'times'"></fa-icon>
+                                                </button>
+											</div>
+										</div>
+									</div>
+								</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+				<div class="row mt-2" [ngClass]="{'justify-content-end': branch.paymentInfo.extendPeriods.length > 0}">
+					<div class="col-auto" [ngClass]="{'col-12': branch.paymentInfo.extendPeriods.length <= 0}">
+						<button class="btn btn-sm btn-outline-success" (click)="onExtendPeriodAdd()" [ngClass]="{'btn-block': branch.paymentInfo.extendPeriods.length <= 0}">
+							Add
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row justify-content-between mt-4">
+			<div class="col-auto text-secondary">
+				Buyout percentage
+			</div>
+			<div class="col-auto">
+				<app-blc-edit-number-value
+                    [(value)]="branch.paymentInfo.buyout.percentage"
+                    (update)="onUpdate()"></app-blc-edit-number-value>
+			</div>
+		</div>
+
+		<div class="row justify-content-between mt-2">
+			<div class="col-auto text-secondary">
+				Responsible for payment
+			</div>
+			<div class="col-auto">
+				<app-bl-common-toggle-button [(value)]="branch.paymentInfo.responsible" (update)="onUpdate()"></app-bl-common-toggle-button>
+			</div>
+		</div>
+	</div>
+</div>

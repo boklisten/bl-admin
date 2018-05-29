@@ -19,8 +19,6 @@ export class DatabaseComponent implements OnInit, AfterViewInit {
 		this._route.params.subscribe((params: Params) => {
 			this.tab = params['tab'];
 
-			console.log('the tab', this.tab);
-
 			if (this.tab) {
 				setTimeout(() => {
 					this.tabset.select(this.tab);

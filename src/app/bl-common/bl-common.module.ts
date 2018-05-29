@@ -16,6 +16,8 @@ import { BlcPricePipe } from './pipes/price/blc-price.pipe';
 import { BlCommonToggleButtonComponent } from './bl-common-button/bl-common-toggle-button/bl-common-toggle-button.component';
 import { BlcDatatableStringCellComponent } from './datatable/blc-datatable-string-cell/blc-datatable-string-cell.component';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import { BlcEditStringValueComponent } from './blc-edit/blc-edit-string-value/blc-edit-string-value.component';
+import { BlcEditNumberValueComponent } from './blc-edit/blc-edit-number-value/blc-edit-number-value.component';
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -38,7 +40,9 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcItemAddComponent,
 		BlcPricePipe,
 		BlCommonToggleButtonComponent,
-		BlcDatatableStringCellComponent
+		BlcDatatableStringCellComponent,
+		BlcEditStringValueComponent,
+		BlcEditNumberValueComponent
 	],
 	exports: [
 		BlCommonUpdateButtonComponent,
@@ -50,7 +54,9 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcItemAddComponent,
 		BlcPricePipe,
 		BlCommonToggleButtonComponent,
-		BlcDatatableStringCellComponent
+		BlcDatatableStringCellComponent,
+		BlcEditStringValueComponent,
+		BlcEditNumberValueComponent
 
 	]
 })

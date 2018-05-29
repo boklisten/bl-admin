@@ -1,0 +1,52 @@
+import {Component, Input, OnInit} from '@angular/core';
+import {Branch} from '@wizardcoder/bl-model';
+import {BranchService} from '@wizardcoder/bl-connect';
+
+@Component({
+	selector: 'app-branch-edit-price-info',
+	templateUrl: './branch-edit-price-info.component.html',
+	styleUrls: ['./branch-edit-price-info.component.scss']
+})
+export class BranchEditPriceInfoComponent implements OnInit {
+
+	@Input() branch: Branch;
+
+	constructor(private _branchService: BranchService) {
+	}
+
+	ngOnInit() {
+	}
+
+	public onRentPeriodDelete(index: number) {
+		this.branch.paymentInfo.rentPeriods.splice(index, 1);
+	}
+
+	public onRentPeriodAdd() {
+		this.branch.paymentInfo.rentPeriods.push({
+			type: 'semester',
+			maxNumberOfPeriods: 1,
+			percentage: 1
+		});
+	}
+
+	public onExtendPeriodDelete(index: number) {
+		this.branch.paymentInfo.extendPeriods.splice(index, 1);
+	}
+
+	public onExtendPeriodAdd() {
+		this.branch.paymentInfo.extendPeriods.push({
+			type: 'semester',
+			maxNumberOfPeriods: 1,
+			price: 1
+		});
+	}
+
+	public onUpdate() {
+		this._branchService.update(this.branch.id, this.branch).then((updatedBranch: Branch) => {
+			this.branch = updatedBranch;
+		}).catch((updateBranchError) => {
+			console.log('branchEditPriceInfoComponent: could not update branch');
+		});
+	}
+
+}
