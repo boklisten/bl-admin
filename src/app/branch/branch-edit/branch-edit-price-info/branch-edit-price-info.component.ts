@@ -19,6 +19,7 @@ export class BranchEditPriceInfoComponent implements OnInit {
 
 	public onRentPeriodDelete(index: number) {
 		this.branch.paymentInfo.rentPeriods.splice(index, 1);
+		this.onUpdate();
 	}
 
 	public onRentPeriodAdd() {
@@ -27,10 +28,12 @@ export class BranchEditPriceInfoComponent implements OnInit {
 			maxNumberOfPeriods: 1,
 			percentage: 1
 		});
+		this.onUpdate();
 	}
 
 	public onExtendPeriodDelete(index: number) {
 		this.branch.paymentInfo.extendPeriods.splice(index, 1);
+		this.onUpdate();
 	}
 
 	public onExtendPeriodAdd() {
@@ -39,6 +42,7 @@ export class BranchEditPriceInfoComponent implements OnInit {
 			maxNumberOfPeriods: 1,
 			price: 1
 		});
+		this.onUpdate();
 	}
 
 	public onUpdate() {

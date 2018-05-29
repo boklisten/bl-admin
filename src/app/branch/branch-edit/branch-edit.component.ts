@@ -33,4 +33,12 @@ export class BranchEditComponent implements OnInit {
 			console.log('branchInfoComponent: could not get branch', getBranchError);
 		});
 	}
+
+	onUpdate() {
+		this._branchService.update(this.branch.id, this.branch).then((updatedBranch: Branch) => {
+			this.branch = updatedBranch;
+		}).catch((updateError) => {
+			console.log('BranchEditComponent: could not update branch', updateError);
+		});
+	}
 }

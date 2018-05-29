@@ -5,62 +5,60 @@
 	<div class="card-body">
 		<div class="row">
 			<div class="col-12">
-                <div class="row">
-                    <div class="col-12 text-secondary">
-                        <h6>Rent periods</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <ul class="list-group">
-                            <li class="list-group-item" *ngFor="let rentPeriod of branch.paymentInfo.rentPeriods; let i = index" [attr.data-index]="i">
+				<div class="row">
+					<div class="col-12 text-secondary">
+						<h6>Rent periods</h6>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<ul class="list-group">
+							<li class="list-group-item" *ngFor="let rentPeriod of branch.paymentInfo.rentPeriods; let i = index" [attr.data-index]="i">
 								<div class="row align-items-center">
 									<div class="col-10">
-                                        <div class="row justify-content-between">
-                                            <div class="col-auto text-primary">
-                                                Type
-                                            </div>
-                                            <div class="col-auto">
+										<div class="row justify-content-between">
+											<div class="col-auto text-dark font-weight-bold">
+												Type
+											</div>
+											<div class="col-auto">
 												<app-blc-edit-string-value
 													[(value)]="rentPeriod.type"
 													(update)="onUpdate()"></app-blc-edit-string-value>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-between">
-                                            <div class="col-auto text-primary">
+											</div>
+										</div>
+										<div class="row justify-content-between">
+											<div class="col-auto text-dark font-weight-bold">
 												Limit
-                                            </div>
-                                            <div class="col-auto">
+											</div>
+											<div class="col-auto">
 												<app-blc-edit-number-value
 													[(value)]="rentPeriod.maxNumberOfPeriods"
 													(update)="onUpdate()"></app-blc-edit-number-value>
-                                            </div>
-                                        </div>
-                                        <div class="row justify-content-between">
-                                            <div class="col-auto text-primary">
-                                                Percentage
-                                            </div>
-                                            <div class="col-auto">
+											</div>
+										</div>
+										<div class="row justify-content-between">
+											<div class="col-auto text-dark font-weight-bold">
+												Percentage
+											</div>
+											<div class="col-auto">
 												<app-blc-edit-number-value
 													[(value)]="rentPeriod.percentage"
 													(update)="onUpdate()"></app-blc-edit-number-value>
-                                            </div>
-                                        </div>
+											</div>
+										</div>
 									</div>
 									<div class="col-2">
 										<div class="row justify-content-end align-items-center">
 											<div class="col-auto align-items-center align-content-center">
-                                                <button class="btn btn-sm btn-outline-danger" (click)="onRentPeriodDelete(i)">
-                                                    <fa-icon [icon]="'times'"></fa-icon>
-                                                </button>
+												<fa-icon [icon]="'times'" (click)="onRentPeriodDelete(i)"></fa-icon>
 											</div>
 										</div>
 									</div>
 								</div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+							</li>
+						</ul>
+					</div>
+				</div>
 				<div class="row mt-2" [ngClass]="{'justify-content-end': branch.paymentInfo.rentPeriods.length > 0}">
 					<div class="col-auto" [ngClass]="{'col-12': branch.paymentInfo.rentPeriods.length <= 0}">
 						<button class="btn btn-sm btn-outline-success" (click)="onRentPeriodAdd()" [ngClass]="{'btn-block': branch.paymentInfo.rentPeriods.length <= 0}">
@@ -86,7 +84,7 @@
 								<div class="row align-items-center">
 									<div class="col-10">
                                         <div class="row justify-content-between">
-                                            <div class="col-auto text-primary">
+                                            <div class="col-auto text-dark font-weight-bold">
                                                 Type
                                             </div>
                                             <div class="col-auto">
@@ -96,7 +94,7 @@
                                             </div>
                                         </div>
                                         <div class="row justify-content-between">
-                                            <div class="col-auto text-primary">
+                                            <div class="col-auto text-dark font-weight-bold">
 												Limit
                                             </div>
                                             <div class="col-auto">
@@ -106,7 +104,7 @@
                                             </div>
                                         </div>
                                         <div class="row justify-content-between">
-                                            <div class="col-auto text-primary">
+                                            <div class="col-auto text-dark font-weight-bold">
                                                	Price
                                             </div>
                                             <div class="col-auto">
@@ -119,9 +117,7 @@
 									<div class="col-2">
 										<div class="row justify-content-end align-items-center">
 											<div class="col-auto align-items-center align-content-center">
-                                                <button class="btn btn-sm btn-outline-danger" (click)="onExtendPeriodDelete(i)">
-                                                    <fa-icon [icon]="'times'"></fa-icon>
-                                                </button>
+												<fa-icon [icon]="'times'" (click)="onExtendPeriodDelete(i)"></fa-icon>
 											</div>
 										</div>
 									</div>
