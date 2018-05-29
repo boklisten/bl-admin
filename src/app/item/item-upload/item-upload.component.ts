@@ -27,11 +27,8 @@ export class ItemUploadComponent implements OnInit {
 		const reader = new FileReader();
 
 		reader.onload = (e: any) => {
-			console.log('wer are reading!');
 			const data = e.target.result;
-
 			this.uploadedItems = this._databaseExcelService.excelFileToObjects(data);
-			console.log('the upladed items', this.uploadedItems);
 		};
 
 		reader.readAsArrayBuffer(file);

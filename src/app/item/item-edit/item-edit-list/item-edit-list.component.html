@@ -1,7 +1,7 @@
 
 <div class="row" *ngIf="temp.length > 0">
 	<div class="col-12 mb-3">
-		<button class="btn btn-sm mr-1" [ngClass]="{'btn-outline-success': selected.length > 0, 'btn-outline-secondary': selected.lenght <= 0}" [disabled]="selected.length <= 0" *ngIf="!autoUpdate" (click)="uploadSelected()">
+		<button class="btn btn-sm mr-1" [ngClass]="{'btn-outline-success': selected.length > 0, 'btn-outline-secondary': selected.length <= 0}" [disabled]="selected.length <= 0" *ngIf="!autoUpdate" (click)="uploadSelected()">
 			Upload selected
 		</button>
 		<button class="btn btn-sm" [ngClass]="{'btn-outline-info': selected.length > 0}" [disabled]="selected.length <= 0" (click)="onDownloadSelected()">
@@ -59,101 +59,55 @@
 
 			<ngx-datatable-column name="isbn">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-					<span *ngIf="editable">
-                        <span
-                            title="Double click to edit"
-                            (dblclick)="editing[rowIndex + 'isbn'] = true"
-                            *ngIf="!editing[rowIndex + 'isbn']">
-                            {{items[rowIndex].info.isbn}}
-                        </span>
-                        <input
-                            autofocus
-                            *ngIf="editing[rowIndex + 'isbn']"
-                            [value]="items[rowIndex].info.isbn"
-                            [(ngModel)]="items[rowIndex].info.isbn"
-                            (blur)="updateRowItem(rowIndex, 'isbn')"
-                            (keyup.enter)="updateRowItem(rowIndex, 'isbn')"
-                            type="text"
-                            class="form-control form-control-sm"/>
-					</span>
-					<span *ngIf="!editable">{{items[rowIndex].info.isbn}}</span>
+                    <app-blc-datatable-string-cell
+						[rowIndex]="rowIndex"
+                        [name]="'isbn'"
+                        [(value)]="items[rowIndex].info.isbn"
+						[editingObj]="editing"
+						(update)="updateRowItem($event.rowIndex, $event.name)"
+                    ></app-blc-datatable-string-cell>
                 </ng-template>
             </ngx-datatable-column>
 
-			<ngx-datatable-column name="title" [minWidth]="500" [maxWidth]="500" [resizeable]="false">
+			<ngx-datatable-column name="title" [width]="500">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-					<span *ngIf="editable">
-
-                        <span
-                            title="Double click to edit"
-                            (dblclick)="editing[rowIndex + 'title'] = true"
-                            *ngIf="!editing[rowIndex + 'title']">
-                            {{items[rowIndex].title}}
-                        </span>
-                        <input
-                            autofocus
-                            *ngIf="editing[rowIndex + 'title']"
-                            [value]="items[rowIndex].title"
-                            [(ngModel)]="items[rowIndex].title"
-                            (blur)="updateRowItem(rowIndex, 'title')"
-                            (keyup.enter)="updateRowItem(rowIndex, 'title')"
-                            type="text"
-                            class="form-control form-control-sm"/>
-					</span>
-					<span *ngIf="!editable">{{items[rowIndex].title}}</span>
+                    <app-blc-datatable-string-cell
+						[rowIndex]="rowIndex"
+                        [name]="'title'"
+                        [(value)]="items[rowIndex].title"
+						[editingObj]="editing"
+						(update)="updateRowItem($event.rowIndex, $event.name)"
+                    ></app-blc-datatable-string-cell>
                 </ng-template>
             </ngx-datatable-column>
 
 			<ngx-datatable-column name="price">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-					<span *ngIf="editable">
-                        <span
-                            title="Double click to edit"
-                            (dblclick)="editing[rowIndex + 'price'] = true"
-                            *ngIf="!editing[rowIndex + 'price']">
-                            {{items[rowIndex].price}}
-                        </span>
-                        <input
-                            autofocus
-                            *ngIf="editing[rowIndex + 'price']"
-                            [value]="items[rowIndex].price"
-                            [(ngModel)]="items[rowIndex].price"
-                            (blur)="updateRowItem(rowIndex, 'price')"
-                            (keyup.enter)="updateRowItem(rowIndex, 'price')"
-                            type="text"
-                            class="form-control form-control-sm"/>
-					</span>
-					<span *ngIf="!editable">{{items[rowIndex].price}}</span>
-                </ng-template>
-            </ngx-datatable-column>
+				<ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+					<app-blc-datatable-string-cell
+						[rowIndex]="rowIndex"
+						[name]="'price'"
+						[(value)]="items[rowIndex].price"
+						[editingObj]="editing"
+						(update)="updateRowItem($event.rowIndex, $event.name)"
+					></app-blc-datatable-string-cell>
+				</ng-template>
+			</ngx-datatable-column>
 
 			<ngx-datatable-column name="year">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-
-					<span *ngIf="editable">
-                        <span
-                            title="Double click to edit"
-                            (dblclick)="editing[rowIndex + 'year'] = true"
-                            *ngIf="!editing[rowIndex + 'year']">
-                            {{items[rowIndex].info.year}}
-                        </span>
-                        <input
-                            autofocus
-                            *ngIf="editing[rowIndex + 'year']"
-                            [value]="items[rowIndex].info.year"
-                            [(ngModel)]="items[rowIndex].info.year"
-                            (blur)="updateRowItem(rowIndex, 'year')"
-                            (keyup.enter)="updateRowItem(rowIndex, 'year')"
-                            type="text"
-                            class="form-control form-control-sm"/>
-					</span>
-					<span *ngIf="!editable">{{items[rowIndex].info.year}}</span>
-                </ng-template>
-            </ngx-datatable-column>
+				<ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+					<app-blc-datatable-string-cell
+						[rowIndex]="rowIndex"
+						[name]="'year'"
+						[(value)]="items[rowIndex].info.year"
+						[editingObj]="editing"
+						(update)="updateRowItem($event.rowIndex, $event.name)"
+					></app-blc-datatable-string-cell>
+				</ng-template>
+			</ngx-datatable-column>
 
 			<ngx-datatable-column name="active">
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-					<app-bl-common-toggle-button [value]="value" (click)="updateValue(!value, 'active', rowIndex)" [tooltip]="'change active state'"></app-bl-common-toggle-button>
+					<app-bl-common-toggle-button [(value)]="items[rowIndex].active" (update)="updateRowItem(rowIndex, 'active')" [tooltip]="'change active state'"></app-bl-common-toggle-button>
                 </ng-template>
             </ngx-datatable-column>
 

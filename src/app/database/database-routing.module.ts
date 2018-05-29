@@ -8,6 +8,11 @@ const routes: Routes = [
 		path: 'database',
 		canActivate: [AdminGuardService],
 		component: DatabaseComponent
+	},
+	{
+		path: 'database/:tab',
+		canActivate: [AdminGuardService],
+		component: DatabaseComponent
 	}
 ];
 

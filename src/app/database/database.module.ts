@@ -8,6 +8,8 @@ import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {ItemModule} from '../item/item.module';
 import {DatabaseExcelService} from './database-excel/database-excel.service';
+import { DatabaseBranchesComponent } from './database-branches/database-branches.component';
+import {BranchModule} from '../branch/branch.module';
 
 @NgModule({
 	imports: [
@@ -15,12 +17,13 @@ import {DatabaseExcelService} from './database-excel/database-excel.service';
 		DatabaseRoutingModule,
 		NgbTabsetModule,
 		FontAwesomeModule,
-		ItemModule
+		ItemModule,
+		BranchModule
 	],
 	providers: [
 		DatabaseExcelService
 	],
-	declarations: [DatabaseComponent, DatabaseItemsComponent]
+	declarations: [DatabaseComponent, DatabaseItemsComponent, DatabaseBranchesComponent]
 })
 export class DatabaseModule {
 }

@@ -133,7 +133,10 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 
 		this.items = this.temp.filter((item: Item) => {
 			return (item.title.toLowerCase().indexOf(val) !== -1
-				|| (item.info && item.info.isbn && (typeof item.info.isbn) === 'string' && item.info.isbn.toLowerCase().indexOf(val) !== -1) || val.length <= 0);
+				|| (item.info && item.info.isbn
+					&& (typeof item.info.isbn) === 'string'
+					&& item.info.isbn.toLowerCase().indexOf(val) !== -1)
+				|| val.length <= 0);
 		});
 	}
 
@@ -157,7 +160,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 					this.items = [...this.items];
 
 				}).catch((updateErr) => {
-					console.log('itemEditListComponent: could not updated uploaded item');
+					console.log('itemEditListComponent: could not add item');
 				});
 			}
 		}

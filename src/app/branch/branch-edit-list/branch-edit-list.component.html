@@ -1,0 +1,91 @@
+
+<div class="row">
+	<div class="col-12 mb-3">
+		<button class="btn btn-sm mr-1" [ngClass]="{'btn-outline-success': selected.length > 0, 'btn-outline-secondary': selected.length <= 0}" [disabled]="selected.length <= 0" *ngIf="!autoUpdate" (click)="onUploadSelected()">
+			Upload selected
+		</button>
+		<button class="btn btn-sm" [ngClass]="{'btn-outline-info': selected.length > 0}" [disabled]="selected.length <= 0" (click)="onDownloadSelected()">
+			Download selected
+		</button>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-12">
+		<div class="input-group mb-3">
+
+            <input
+                type='text'
+				class="form-control"
+                placeholder='Filter by name'
+                (keyup)='onUpdateFilter($event)'
+            />
+			<div class="input-group-append">
+				<span class="input-group-text">
+					<fa-icon [icon]="'filter'"></fa-icon>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12">
+		<ngx-datatable
+			#branchEditTable
+			class="bootstrap"
+			[headerHeight]="50"
+			[footerHeight]="25"
+			[limit]="10"
+			[rows]="branches"
+			[rowHeight]="50"
+			[columnMode]="'force'"
+			[selected]="selected"
+			(select)="onSelect($event)"
+			[selectionType]="'checkbox'">
+
+            <ngx-datatable-column
+                [width]="30"
+                [sortable]="false"
+                [canAutoResize]="false"
+                [draggable]="false"
+                [resizeable]="false"
+                [headerCheckboxable]="true"
+                [checkboxable]="true">
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="name">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                    <app-blc-datatable-string-cell
+                        [rowIndex]="rowIndex"
+                        [name]="'name'"
+                        [(value)]="branches[rowIndex].name"
+                        [editingObj]="editing"
+                        (update)="updateRowItem($event.rowIndex, $event.name)">
+                    </app-blc-datatable-string-cell>
+                </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="type">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+                    <app-blc-datatable-string-cell
+                        [rowIndex]="rowIndex"
+                        [name]="'type'"
+                        [(value)]="branches[rowIndex].type"
+                        [editingObj]="editing"
+                        (update)="updateRowItem($event.rowIndex, $event.name)">
+                    </app-blc-datatable-string-cell>
+                </ng-template>
+            </ngx-datatable-column>
+
+			<ngx-datatable-column name="active">
+                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+					<app-bl-common-toggle-button [(value)]="branches[rowIndex].active" (update)="updateRowItem(rowIndex, 'active')"></app-bl-common-toggle-button>
+                </ng-template>
+            </ngx-datatable-column>
+
+		</ngx-datatable>
+
+	</div>
+</div>

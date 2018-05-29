@@ -1,0 +1,9 @@
+<div class="row">
+	<div class="col-12">
+		<div class="form-group">
+			<label for="file">Choose File</label>
+			<input id="file" type="file" (change)="onBranchUpload($event.target.files)">
+		</div>
+	</div>
+</div>
+<app-branch-edit-list [branches]="uploadedBranches" [uploadList]="true"></app-branch-edit-list>

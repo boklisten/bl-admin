@@ -14,6 +14,8 @@ import { BlDatePipe } from './pipes/date/bl-date.pipe';
 import {BlcItemAddComponent} from './blc-item-add/blc-item-add.component';
 import { BlcPricePipe } from './pipes/price/blc-price.pipe';
 import { BlCommonToggleButtonComponent } from './bl-common-button/bl-common-toggle-button/bl-common-toggle-button.component';
+import { BlcDatatableStringCellComponent } from './datatable/blc-datatable-string-cell/blc-datatable-string-cell.component';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -23,7 +25,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		NgbAlertModule,
 		FontAwesomeModule,
 		FormsModule,
-		NgbTooltipModule
+		NgbTooltipModule,
+		NgxDatatableModule
 	],
 	declarations: [
 		BlCommonUpdateButtonComponent,
@@ -34,7 +37,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlDatePipe,
 		BlcItemAddComponent,
 		BlcPricePipe,
-		BlCommonToggleButtonComponent
+		BlCommonToggleButtonComponent,
+		BlcDatatableStringCellComponent
 	],
 	exports: [
 		BlCommonUpdateButtonComponent,
@@ -45,7 +49,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlDatePipe,
 		BlcItemAddComponent,
 		BlcPricePipe,
-		BlCommonToggleButtonComponent
+		BlCommonToggleButtonComponent,
+		BlcDatatableStringCellComponent
 
 	]
 })
