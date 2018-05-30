@@ -11,6 +11,9 @@ import {BlCommonModule} from '../bl-common/bl-common.module';
 import { BranchInfoComponent } from './branch-info/branch-info.component';
 import { BranchEditComponent } from './branch-edit/branch-edit.component';
 import { BranchEditPriceInfoComponent } from './branch-edit/branch-edit-price-info/branch-edit-price-info.component';
+import { BranchEditItemsComponent } from './branch-edit/branch-edit-items/branch-edit-items.component';
+import {ItemModule} from '../item/item.module';
+import {BranchItemHandlerService} from './branch-item/branch-item-handler.service';
 
 @NgModule({
 	imports: [
@@ -18,7 +21,8 @@ import { BranchEditPriceInfoComponent } from './branch-edit/branch-edit-price-in
 		BranchRoutingModule,
 		FontAwesomeModule,
 		NgxDatatableModule,
-		BlCommonModule
+		BlCommonModule,
+		ItemModule
 	],
 	declarations: [
 		BranchSelectComponent,
@@ -26,7 +30,11 @@ import { BranchEditPriceInfoComponent } from './branch-edit/branch-edit-price-in
 		BranchEditListComponent,
 		BranchInfoComponent,
 		BranchEditComponent,
-		BranchEditPriceInfoComponent
+		BranchEditPriceInfoComponent,
+		BranchEditItemsComponent
+	],
+	providers: [
+		BranchItemHandlerService
 	],
 	exports: [
 		BranchEditListComponent,

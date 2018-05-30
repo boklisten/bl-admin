@@ -16,6 +16,7 @@ import { ItemEditListComponent } from './item-edit/item-edit-list/item-edit-list
 import {FormsModule} from '@angular/forms';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {NgbDropdownModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import { ItemSelectListComponent } from './item-select-list/item-select-list.component';
 
 @NgModule({
 	imports: [
@@ -35,7 +36,8 @@ import {NgbDropdownModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 		ItemSearchResultComponent,
 		ItemSearchBarComponent,
 		ItemUploadComponent,
-		ItemEditListComponent
+		ItemEditListComponent,
+		ItemSelectListComponent
 	],
 	providers: [
 		ItemSearchService
@@ -43,7 +45,8 @@ import {NgbDropdownModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 	exports: [
 		ItemSearchBarComponent,
 		ItemUploadComponent,
-		ItemEditListComponent
+		ItemEditListComponent,
+		ItemSelectListComponent
 	]
 
 })

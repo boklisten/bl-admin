@@ -1,0 +1,47 @@
+<div class="card" *ngIf="branch">
+	<div class="card-header">
+		<h3>Items</h3>
+	</div>
+	<div class="card-body">
+		<app-bl-common-alert [type]="'secondary'" *ngIf="!branch.branchItems || branch.branchItems.length <= 0" [text]="'No items on branch yet'"></app-bl-common-alert>
+		<ul class="list-group">
+			<li class="list-group-item" *ngFor="let branchItem of branch.branchItems">
+
+			</li>
+		</ul>
+
+	</div>
+	<div class="card-footer">
+        <button class="btn btn-sm btn-outline-success" (click)="openAddItems(itemAddList)">
+            Add items
+        </button>
+	</div>
+</div>
+
+<ng-template #itemAddList let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title">Add items to branch</h4>
+		<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+			<span aria-hidden="true">
+				<fa-icon [icon]="'times'"></fa-icon>
+			</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<app-item-select-list (selectedItems)="onSelectedItems($event)"></app-item-select-list>
+	</div>
+	<div class="modal-footer">
+		<div class="row justify-content-between">
+			<div class="col-auto">
+				<button type="button" class="btn btn-success"
+						[disabled]="selectedItems.length <= 0"
+						(click)="onAddSelectedItems()">
+					Add selected items
+				</button>
+			</div>
+		</div>
+	</div>
+</ng-template>
+
+
+

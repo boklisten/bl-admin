@@ -1,0 +1,77 @@
+import {Injectable} from '@angular/core';
+import {Branch, BranchItem, Item} from '@wizardcoder/bl-model';
+import {BranchItemService, BranchService} from '@wizardcoder/bl-connect';
+import {throws} from 'assert';
+
+@Injectable()
+export class BranchItemHandlerService {
+
+	constructor(private _branchItemService: BranchItemService, private _branchService: BranchService) {
+	}
+
+	public async addItemsToBranch(items: Item[], branch: Branch): Promise<BranchItem[]> {
+		const branchItemAddPromArray: Promise<BranchItem>[] = [];
+
+		try {
+			const itemsToAdd = await this.takeOutDuplicateItems(branch, items);
+
+			for (const item of itemsToAdd) {
+				branchItemAddPromArray.push(this._branchItemService.add(this.createDefaultBranchItem(item.id, branch.id)));
+			}
+
+			console.log('the items to add', itemsToAdd);
+
+			const branchItems = await Promise.all(branchItemAddPromArray);
+
+			return await this.addBranchItemsToBranch(branch, branchItems);
+
+		} catch (e) {
+			throw new Error('branchItemHandlerService: could not add items to branch: ' + e);
+		}
+	}
+
+	private takeOutDuplicateItems(branch: Branch, itemsToAdd: Item[]): Promise<Item[]> {
+		// if the item id already is in the branch.branchItems, no need to add them again
+		return this._branchItemService.getManyByIds(branch.branchItems).then((branchItems: BranchItem[]) => {
+			return itemsToAdd.filter((item: Item) => {
+				for (const branchItem of branchItems) {
+					if (item.id === branchItem.item) {
+						return false;
+					}
+				}
+				return true;
+			});
+		}).catch((getBranchItems) => {
+			throw new Error('branchItemHandler: could not get branchItems');
+		});
+	}
+
+	private addBranchItemsToBranch(branch: Branch, branchItems: BranchItem[]): Promise<BranchItem[]> {
+		return new Promise((resolve, reject) => {
+			const branchItemIds: string[] = (branch.branchItems) ? branch.branchItems : [];
+
+			branchItems.forEach((branchItem: BranchItem) => {
+				branchItemIds.push(branchItem.id);
+			});
+
+			console.log('the branchItems to update branch with', branchItemIds);
+
+			this._branchService.update(branch.id, {branchItems: branchItemIds}).then((updatedBranch: Branch) => {
+				resolve(branchItems);
+			}).catch((updateBranchError) => {
+				reject(new Error('branchItemHandlerService: could not update branch with branchItems' + updateBranchError));
+			});
+		});
+	}
+
+	private createDefaultBranchItem(itemId: string, branchId: string): BranchItem {
+		return {
+			item: itemId,
+			branch: branchId,
+			sell: false,
+			buy: false,
+			rent: false
+		} as any;
+	}
+
+}
