@@ -38,6 +38,7 @@ export class BranchItemCategorySelectComponent implements OnInit {
 
 	onRemoveCategory(index: number) {
 		this.categories.splice(index, 1);
+		this.updateBranchItem();
 	}
 
 	isCategorySelected(name: string) {

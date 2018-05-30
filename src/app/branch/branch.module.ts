@@ -17,9 +17,11 @@ import {BranchItemHandlerService} from './branch-item/branch-item-handler.servic
 import { BranchEditbranchItemEditComponent } from './branch-edit/branch-editbranch-item-edit/branch-editbranch-item-edit.component';
 import { BranchItemEditComponent } from './branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component';
 import { BranchItemCategorySelectComponent } from './branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.component';
-import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbAccordionModule, NgbDatepickerModule, NgbPopoverModule, NgbTimepickerModule} from '@ng-bootstrap/ng-bootstrap';
 import {BranchItemCategorySelectService} from './branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.service';
 import {FormsModule} from '@angular/forms';
+import { BranchOpeningHoursEditComponent } from './branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component';
+import {OpeningHoursHandlerService} from './branch-edit/branch-opening-hours-edit/opening-hours-handler.service';
 
 @NgModule({
 	imports: [
@@ -30,7 +32,10 @@ import {FormsModule} from '@angular/forms';
 		BlCommonModule,
 		ItemModule,
 		NgbPopoverModule,
-		FormsModule
+		FormsModule,
+		NgbAccordionModule,
+		NgbTimepickerModule,
+		NgbDatepickerModule
 	],
 	declarations: [
 		BranchSelectComponent,
@@ -42,11 +47,13 @@ import {FormsModule} from '@angular/forms';
 		BranchEditItemsComponent,
 		BranchEditbranchItemEditComponent,
 		BranchItemEditComponent,
-		BranchItemCategorySelectComponent
+		BranchItemCategorySelectComponent,
+		BranchOpeningHoursEditComponent
 	],
 	providers: [
 		BranchItemHandlerService,
-		BranchItemCategorySelectService
+		BranchItemCategorySelectService,
+		OpeningHoursHandlerService
 	],
 	exports: [
 		BranchEditListComponent,

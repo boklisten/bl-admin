@@ -32,7 +32,20 @@
 			</div>
 			<div class="row mt-4">
 				<div class="col-12">
-            		<app-branch-edit-price-info [branch]="branch"></app-branch-edit-price-info>
+					<ngb-accordion [closeOthers]="true" activeIds="openingHourEdit">
+						<ngb-panel id="priceEdit" title="Price settings">
+							<ng-template ngbPanelContent>
+            					<app-branch-edit-price-info [branch]="branch"></app-branch-edit-price-info>
+							</ng-template>
+						</ngb-panel>
+
+						<ngb-panel id="openingHourEdit" title="Opening hours">
+							<ng-template ngbPanelContent>
+								<app-branch-opening-hours-edit [branch]="branch"></app-branch-opening-hours-edit>
+							</ng-template>
+						</ngb-panel>
+
+					</ngb-accordion>
 				</div>
 			</div>
 		</div>
