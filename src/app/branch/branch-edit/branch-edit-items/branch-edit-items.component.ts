@@ -38,6 +38,7 @@ export class BranchEditItemsComponent implements OnInit {
 
 	onAddSelectedItems() {
 		this._branchItemHandlerService.addItemsToBranch(this.selectedItems, this.branch).then((branchItems: BranchItem[]) => {
+
 			this.branchItems = branchItems;
 			this.modalRef.close();
 		}).catch((addBranchItemsError) => {

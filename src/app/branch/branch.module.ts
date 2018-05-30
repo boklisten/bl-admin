@@ -14,6 +14,12 @@ import { BranchEditPriceInfoComponent } from './branch-edit/branch-edit-price-in
 import { BranchEditItemsComponent } from './branch-edit/branch-edit-items/branch-edit-items.component';
 import {ItemModule} from '../item/item.module';
 import {BranchItemHandlerService} from './branch-item/branch-item-handler.service';
+import { BranchEditbranchItemEditComponent } from './branch-edit/branch-editbranch-item-edit/branch-editbranch-item-edit.component';
+import { BranchItemEditComponent } from './branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component';
+import { BranchItemCategorySelectComponent } from './branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.component';
+import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
+import {BranchItemCategorySelectService} from './branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.service';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
 	imports: [
@@ -22,7 +28,9 @@ import {BranchItemHandlerService} from './branch-item/branch-item-handler.servic
 		FontAwesomeModule,
 		NgxDatatableModule,
 		BlCommonModule,
-		ItemModule
+		ItemModule,
+		NgbPopoverModule,
+		FormsModule
 	],
 	declarations: [
 		BranchSelectComponent,
@@ -31,10 +39,14 @@ import {BranchItemHandlerService} from './branch-item/branch-item-handler.servic
 		BranchInfoComponent,
 		BranchEditComponent,
 		BranchEditPriceInfoComponent,
-		BranchEditItemsComponent
+		BranchEditItemsComponent,
+		BranchEditbranchItemEditComponent,
+		BranchItemEditComponent,
+		BranchItemCategorySelectComponent
 	],
 	providers: [
-		BranchItemHandlerService
+		BranchItemHandlerService,
+		BranchItemCategorySelectService
 	],
 	exports: [
 		BranchEditListComponent,

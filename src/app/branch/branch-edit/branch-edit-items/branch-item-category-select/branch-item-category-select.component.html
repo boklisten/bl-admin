@@ -1,0 +1,48 @@
+<div class="row align-items-center">
+	<div class="col-auto" *ngFor="let category of categories; let i = index" [attr.data-index]="i">
+		<div class="btn btn-sm btn-outline-secondary">
+			<span>{{category}}</span>
+
+			<span class="ml-2" (click)="onRemoveCategory(i)">
+				<fa-icon [icon]="'times'"></fa-icon>
+			</span>
+		</div>
+	</div>
+	<div class="col-auto align-items-center">
+		<button class="btn btn-sm btn-outline-success" [ngbPopover]="popContent" popoverTitle="Category select" placement="bottom" container="body" #p="ngbPopover" (keydown.esc)="p.close()">
+			<span><fa-icon [icon]="'plus'"></fa-icon></span>
+			<span *ngIf="categories.length <= 0" class="ml-2">Add category</span>
+		</button>
+	</div>
+</div>
+
+
+
+<ng-template #popContent>
+	<div class="row" (keydown.esc)="p.close()">
+		<div class="col-12">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="New category" [(ngModel)]="categoryName" (keydown.enter)="onAddCategory()">
+
+				<div class="input-group-append">
+					<button class="btn btn-outline-success" (click)="onAddCategory()">
+						<fa-icon [icon]="'plus'"></fa-icon>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row justify-content-between">
+		<div class="col-auto mt-2" *ngFor="let category of availableCategories">
+			<button class="btn btn-sm"
+					[ngClass]="{'btn-outline-secondary': !isCategorySelected(category), 'btn-secondary': isCategorySelected(category)}"
+					(click)="onSelectCategory(category)"
+			>
+				<span *ngIf="isCategorySelected(category)" class="mr-2">
+					<fa-icon [icon]="'check'"></fa-icon>
+				</span>
+				{{category}}
+			</button>
+		</div>
+	</div>
+</ng-template>

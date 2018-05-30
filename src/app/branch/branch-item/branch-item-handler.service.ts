@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Branch, BranchItem, Item} from '@wizardcoder/bl-model';
 import {BranchItemService, BranchService} from '@wizardcoder/bl-connect';
-import {throws} from 'assert';
 
 @Injectable()
 export class BranchItemHandlerService {
@@ -18,8 +17,6 @@ export class BranchItemHandlerService {
 			for (const item of itemsToAdd) {
 				branchItemAddPromArray.push(this._branchItemService.add(this.createDefaultBranchItem(item.id, branch.id)));
 			}
-
-			console.log('the items to add', itemsToAdd);
 
 			const branchItems = await Promise.all(branchItemAddPromArray);
 
@@ -57,7 +54,11 @@ export class BranchItemHandlerService {
 			console.log('the branchItems to update branch with', branchItemIds);
 
 			this._branchService.update(branch.id, {branchItems: branchItemIds}).then((updatedBranch: Branch) => {
-				resolve(branchItems);
+				this._branchItemService.getManyByIds(updatedBranch.branchItems).then((updatedBranchItems: BranchItem[]) => {
+					resolve(updatedBranchItems);
+				}).catch((getBranchItemError) => {
+					reject(new Error('branchItemHandlerService: could not get the updated branchItems'));
+				});
 			}).catch((updateBranchError) => {
 				reject(new Error('branchItemHandlerService: could not update branch with branchItems' + updateBranchError));
 			});
