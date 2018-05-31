@@ -6,13 +6,35 @@
         </div>
 		<div class="col-3">
 			<div class="row align-items-center">
-				<div class="col-8">
-					<div class="bl-header-location bl-header-button" *ngIf="currentBranch" routerLink="/branch/select">
-						<fa-icon [icon]="'location-arrow'"></fa-icon> {{currentBranch.name}}
+				<div class="col-6">
+					<div ngbDropdown class="bl-header-location d-inline-block" *ngIf="currentBranch">
+                        <button class="btn btn-outline-dark" id="branchDropdown" ngbDropdownToggle>
+                            <fa-icon [icon]="'location-arrow'" class="mr-2"></fa-icon>
+							{{currentBranch.name}}
+                        </button>
+                        <div ngbDropdownMenu>
+							<button
+								class="dropdown-item"
+								*ngFor="let branch of branches"
+								(click)="onSelectBranch(branch)"
+								[ngClass]="{'btn-secondary': (currentBranch && currentBranch.id === branch.id), 'btn-outline-secondary': (!currentBranch|| currentBranch.id !== branch.id)}">
+								<fa-icon [icon]="'check'" *ngIf="(currentBranch && currentBranch.id === branch.id)"></fa-icon> {{branch.name}}
+							</button>
+                        </div>
 					</div>
 				</div>
-				<div class="col-4">
-					<fa-icon [icon]="'user-circle'" size="2x" class="bl-header-button" routerLink="/user"></fa-icon>
+				<div class="col-6">
+					<div ngbDropdown placement="bottom-left" class="bl-header-location d-inline-block">
+						<fa-icon [icon]="'user-circle'" size="2x" class="bl-header-button" ngbDropdownToggle></fa-icon>
+                        <div ngbDropdownMenu>
+							<button class="dropdown-item" routerLink="/auth/register/detail">
+								<fa-icon [icon]="'user-circle'" class="mr-2"></fa-icon> Edit user details
+							</button>
+							<button class="dropdown-item" (click)="onUserLogout()">
+								<fa-icon [icon]="'sign-out-alt'" class="mr-2"></fa-icon> Log out
+							</button>
+                        </div>
+					</div>
 				</div>
 			</div>
 		</div>

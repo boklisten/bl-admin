@@ -39,6 +39,7 @@ import {UserService} from './user/user.service';
 import {DatabaseModule} from './database/database.module';
 import {BranchItemStoreService} from './branch/branch-item-store/branch-item-store.service';
 import {PriceModule} from './price/price.module';
+import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt,
 	faPhone, faAddressCard, faQrcode, faSyncAlt, faTimes, faShoppingCart, faClock, faWarehouse, faDollarSign, faCreditCard,
 	faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode, faCalendar, faCartPlus, faCheckCircle, faClipboardList,
@@ -69,7 +70,8 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		CartModule,
 		SearchModule,
 		DatabaseModule,
-		PriceModule
+		PriceModule,
+		NgbDropdownModule
 	],
 	providers: [
 		AuthLoginService,
