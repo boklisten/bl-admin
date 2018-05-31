@@ -21,4 +21,25 @@ export class UserService {
 		return this._tokenService.getAccessTokenBody().username;
 	}
 
+	havePermission(permission: UserPermission): boolean {
+
+		if (permission === this.getPermission() || permission === 'customer') {
+			return true;
+		}
+
+		if (permission === 'manager') {
+			if (this.getPermission() === 'admin' || this.getPermission() === 'super') {
+				return true;
+			}
+		}
+
+		if (permission === 'admin') {
+			if (this.getPermission() === 'super') {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 }

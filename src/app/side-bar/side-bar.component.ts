@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {UserDetail} from '@wizardcoder/bl-model';
+import {UserDetail, UserPermission} from '@wizardcoder/bl-model';
 import {Router, RouterEvent} from '@angular/router';
 import {CustomerService} from '../customer/customer.service';
 import {Customer} from '../customer/customer';
 import {s} from '@angular/core/src/render3';
+import {UserService} from '../user/user.service';
 
 @Component({
 	selector: 'app-side-bar',
@@ -12,20 +13,22 @@ import {s} from '@angular/core/src/render3';
 })
 export class SideBarComponent implements OnInit {
 	public customerDetail: UserDetail;
-	public sidebarLinks: { name: string, link: string, icon: string, selected: boolean, hide?: boolean}[];
+	public sidebarLinks: { name: string, link: string, icon: string, selected: boolean, permission: UserPermission, hide?: boolean }[];
 
-	constructor(private _customerService: CustomerService, private _router: Router) {
+	constructor(private _customerService: CustomerService, private _router: Router, private _userService: UserService) {
 		this.sidebarLinks = [
 			{
 				name: 'search',
 				link: 'search',
 				icon: 'search',
+				permission: 'customer',
 				selected: false
 			},
 			{
 				name: 'cart',
 				link: 'cart',
 				icon: 'shopping-cart',
+				permission: 'customer',
 				selected: false
 			},
 			{
@@ -33,12 +36,14 @@ export class SideBarComponent implements OnInit {
 				link: '',
 				icon: 'user',
 				selected: false,
+				permission: 'customer',
 				hide: true
 			},
 			{
 				name: 'database',
 				link: 'database',
 				icon: 'database',
+				permission: 'admin',
 				selected: false
 			}
 		];
@@ -52,12 +57,16 @@ export class SideBarComponent implements OnInit {
 			}
 		});
 
+		this.hideNoPermissionLinks();
+
+
 		this._customerService.onCustomerChange().subscribe(() => {
 			if (this._customerService.haveCustomer()) {
 				for (const sidebarLink of this.sidebarLinks) {
 					if (sidebarLink.name === 'customer') {
 						sidebarLink.link = 'customer/' + this._customerService.get().detail.id + '/detail';
 						sidebarLink.hide = false;
+						this.hideNoPermissionLinks();
 						return;
 					}
 				}
@@ -65,6 +74,7 @@ export class SideBarComponent implements OnInit {
 				for (const sidebarLink of this.sidebarLinks) {
 					if (sidebarLink.name === 'customer') {
 						sidebarLink.hide = true;
+						this.hideNoPermissionLinks();
 					}
 				}
 			}
@@ -78,6 +88,14 @@ export class SideBarComponent implements OnInit {
 
 				sidebarLink.selected = true;
 				return;
+			}
+		}
+	}
+
+	private hideNoPermissionLinks() {
+		for (const sidebarLink of this.sidebarLinks) {
+			if (!this._userService.havePermission(sidebarLink.permission)) {
+				sidebarLink.hide = true;
 			}
 		}
 	}
