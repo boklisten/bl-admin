@@ -1,15 +1,20 @@
 import {Injectable} from '@angular/core';
 import {BranchStoreService} from '../../branch/branch-store.service';
-import {Item, Order, OrderItem} from '@wizardcoder/bl-model';
+import {BranchItem, Item, Order, OrderItem} from '@wizardcoder/bl-model';
 import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
 import {MapType} from '@angular/compiler/src/output/output_ast';
+import {BranchItemStoreService} from '../../branch/branch-item-store/branch-item-store.service';
+import {BranchPriceService} from '../branch-price/branch-price.service';
 
 @Injectable()
 export class ItemPriceService {
+	private _branchItems: BranchItem[];
 
-	constructor(private _branchStoreService: BranchStoreService) {
+	constructor(private _branchStoreService: BranchStoreService, private _branchPriceService: BranchPriceService) {
+		this._branchItems = [];
 	}
+
 
 	public rentPrice(item: Item, period: Period, numberOfPeriods: number, alreadyPayed?: number): number {
 		const branch = this._branchStoreService.getCurrentBranch();
@@ -22,15 +27,17 @@ export class ItemPriceService {
 			return this.sanitizePrice(0);
 		}
 
-		for (const rentPeriod of branch.paymentInfo.rentPeriods) {
-			if (rentPeriod.type === period) {
-				if (alreadyPayed) {
-					return this.sanitizePrice(((item.price * rentPeriod.percentage) * numberOfPeriods) - alreadyPayed);
-				}
-				return this.sanitizePrice((item.price * rentPeriod.percentage) * numberOfPeriods);
-			}
+		const branchPrice = this._branchPriceService.rentPrice(item, period, numberOfPeriods);
+
+		if (branchPrice === -1) {
+			return -1;
 		}
-		return -1;
+
+		if (alreadyPayed) {
+			return this.sanitizePrice(branchPrice - alreadyPayed);
+		}
+
+		return this.sanitizePrice(branchPrice);
 	}
 
 	public buyPrice(item: Item, alreadyPayed?: number): number {

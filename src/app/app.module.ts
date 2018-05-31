@@ -37,6 +37,8 @@ import {CustomerService} from './customer/customer.service';
 import {SearchModule} from './search/search.module';
 import {UserService} from './user/user.service';
 import {DatabaseModule} from './database/database.module';
+import {BranchItemStoreService} from './branch/branch-item-store/branch-item-store.service';
+import {PriceModule} from './price/price.module';
 library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt,
 	faPhone, faAddressCard, faQrcode, faSyncAlt, faTimes, faShoppingCart, faClock, faWarehouse, faDollarSign, faCreditCard,
 	faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode, faCalendar, faCartPlus, faCheckCircle, faClipboardList,
@@ -66,11 +68,13 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		ItemModule,
 		CartModule,
 		SearchModule,
-		DatabaseModule
+		DatabaseModule,
+		PriceModule
 	],
 	providers: [
 		AuthLoginService,
 		BranchStoreService,
+		BranchItemStoreService,
 		BranchGuardService,
 		StorageService,
 		CartService,
