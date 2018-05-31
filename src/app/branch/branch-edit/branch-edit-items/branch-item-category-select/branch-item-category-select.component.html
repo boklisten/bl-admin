@@ -1,6 +1,6 @@
 <div class="row align-items-center">
 	<div class="col-auto" *ngFor="let category of categories; let i = index" [attr.data-index]="i">
-		<div class="btn btn-sm btn-outline-secondary">
+		<div class="badge badge-secondary">
 			<span>{{category}}</span>
 
 			<span class="ml-2" (click)="onRemoveCategory(i)">
@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<div class="col-auto align-items-center">
-		<button class="btn btn-sm btn-outline-success" [ngbPopover]="popContent" popoverTitle="Category select" placement="bottom" container="body" #p="ngbPopover" (keydown.esc)="p.close()">
+		<button class="btn btn-sm btn-light" [ngbPopover]="popContent" popoverTitle="Category select" placement="bottom" container="body" #p="ngbPopover" (keydown.esc)="p.close()">
 			<span><fa-icon [icon]="'plus'"></fa-icon></span>
 			<span *ngIf="categories.length <= 0" class="ml-2">Add category</span>
 		</button>

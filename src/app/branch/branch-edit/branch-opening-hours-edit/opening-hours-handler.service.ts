@@ -28,11 +28,14 @@ export class OpeningHoursHandlerService {
 	}
 
 	public remove(branch: Branch, openingHour: OpeningHour): Promise<boolean> {
-		const updatedOpeningHourIds = branch.openingHours.filter((openingHourId: string) => {
-			return (openingHourId !== openingHour.id);
-		});
+		for (let i = 0; i < branch.openingHours.length; i++) {
+			if (branch.openingHours[i] === openingHour.id) {
+				branch.openingHours.splice(i, 1);
+				break;
+			}
+		}
 
-		return this._branchService.update(branch.id, {openingHours: updatedOpeningHourIds}).then((updatedBranch: Branch) => {
+		return this._branchService.update(branch.id, {openingHours: branch.openingHours}).then((updatedBranch: Branch) => {
 			return true;
 		}).catch((updateBranchError) => {
 			throw new Error('openingHoursHandlerService: could not update opening hours on branch');
