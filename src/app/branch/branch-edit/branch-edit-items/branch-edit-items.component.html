@@ -6,8 +6,15 @@
 		<app-bl-common-alert [type]="'secondary'" [text]="'No items on branch yet'"></app-bl-common-alert>
 	</div>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let branchItem of branchItems">
-            <app-branch-item-edit [branchItem]="branchItem"></app-branch-item-edit>
+        <li class="list-group-item" *ngFor="let branchItem of branchItems; let i = index">
+			<div class="row align-items-center">
+				<div class="col-11">
+            		<app-branch-item-edit [branchItem]="branchItem"></app-branch-item-edit>
+				</div>
+				<div class="col-1 text-right">
+					<fa-icon [icon]="'times'" (click)="onRemoveItem(i)"></fa-icon>
+				</div>
+			</div>
         </li>
     </ul>
 	<div class="card-footer">

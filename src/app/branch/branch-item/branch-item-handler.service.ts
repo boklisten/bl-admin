@@ -27,6 +27,20 @@ export class BranchItemHandlerService {
 		}
 	}
 
+	public removeItemFromBranch(branchItem: BranchItem, branch: Branch): Promise<string[]> {
+		for (let i = 0; i < branch.branchItems.length; i++) {
+			if (branch.branchItems[i] === branchItem.id) {
+				branch.branchItems.splice(i, 1);
+			}
+		}
+
+		return this._branchService.update(branch.id, {branchItems: branch.branchItems}).then((updatedBranch: Branch) => {
+			return updatedBranch.branchItems;
+		}).catch((updateBranchError) => {
+			throw new Error('branchItemHandlerService: could not update branch when deleting branchItem');
+		});
+	}
+
 	private takeOutDuplicateItems(branch: Branch, itemsToAdd: Item[]): Promise<Item[]> {
 		// if the item id already is in the branch.branchItems, no need to add them again
 		return this._branchItemService.getManyByIds(branch.branchItems).then((branchItems: BranchItem[]) => {

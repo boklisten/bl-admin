@@ -5,27 +5,9 @@
 				<div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h2>
+                            <h1>
                                 <app-blc-edit-string-value [(value)]="branch.name" (update)="onUpdate()"></app-blc-edit-string-value>
-                            </h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="row justify-content-between">
-                                <div class="col-auto text-secondary">
-                                    Desc
-                                </div>
-                                <div class="col-auto">
-                                    <app-blc-edit-string-value [(value)]="branch.desc" (update)="onUpdate()"></app-blc-edit-string-value>
-                                </div>
-                            </div>
-                            <div class="row justify-content-between mt-2">
-                                <div class="col-auto text-secondary">
-                                    Active
-                                </div>
-                                <div class="col-auto">
-                                    <app-bl-common-toggle-button [(value)]="branch.active" (update)="onUpdate()"></app-bl-common-toggle-button>
-                                </div>
-                            </div>
+                            </h1>
                         </div>
                     </div>
 				</div>
@@ -33,6 +15,26 @@
 			<div class="row mt-4">
 				<div class="col-12">
 					<ngb-accordion [closeOthers]="true" activeIds="openingHourEdit">
+						<ngb-panel id="generalSettings" title="General settings">
+							<ng-template ngbPanelContent>
+                                <div class="row justify-content-between">
+                                    <div class="col-auto text-secondary">
+                                        Desc
+                                    </div>
+                                    <div class="col-auto">
+                                        <app-blc-edit-string-value [(value)]="branch.desc" (update)="onUpdate()"></app-blc-edit-string-value>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between mt-2">
+                                    <div class="col-auto text-secondary">
+                                        Active
+                                    </div>
+                                    <div class="col-auto">
+                                        <app-bl-common-toggle-button [(value)]="branch.active" (update)="onUpdate()"></app-bl-common-toggle-button>
+                                    </div>
+                                </div>
+							</ng-template>
+						</ngb-panel>
 						<ngb-panel id="priceEdit" title="Price settings">
 							<ng-template ngbPanelContent>
             					<app-branch-edit-price-info [branch]="branch"></app-branch-edit-price-info>

@@ -46,4 +46,12 @@ export class BranchEditItemsComponent implements OnInit {
 		});
 	}
 
+	onRemoveItem(index: number) {
+		this._branchItemHandlerService.removeItemFromBranch(this.branchItems[index], this.branch).then(() => {
+			this.branchItems.splice(index, 1);
+		}).catch((removeBranchItemError) => {
+			console.log('branchEditItemsComponent: could not remove branchItem from branch', removeBranchItemError);
+		});
+	}
+
 }
