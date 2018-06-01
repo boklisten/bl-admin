@@ -1,12 +1,10 @@
+<app-bl-common-alert *ngIf="customerItems.length <= 0" [text]="'Customer does not have items'" [type]="'secondary'"></app-bl-common-alert>
 
-<div class="card">
+<div class="card" *ngIf="customerItems.length > 0">
 	<div class="card-header" *ngIf="title">
 		<h4 class="card-title">
 			{{title}}
 		</h4>
-	</div>
-	<div class="card-body" *ngIf="customerItems.length <= 0">
-		<app-bl-common-alert [text]="'No customer items found'" [type]="'secondary'"></app-bl-common-alert>
 	</div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item list-group-item-action" *ngFor="let customerItem of customerItems">

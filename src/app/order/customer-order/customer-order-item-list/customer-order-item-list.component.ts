@@ -39,13 +39,30 @@ export class CustomerOrderItemListComponent implements OnInit {
 		if (this._customerService.get().orders) {
 			for (const order of this._customerService.get().orders) {
 				for (const orderItem of order.orderItems) {
-					if (orderItem.type !== 'buyout' && orderItem.type !== 'return' && (!orderItem.info || !orderItem.info.customerItem)
-						&& (!orderItem.info || !orderItem.info.customerItem)) {
-						this.customerOrderItems.push({orderItem: orderItem, order: order});
-					}
+					this.addAsOrderedItem(order, orderItem);
 				}
 			}
 		}
+	}
+
+	private addAsOrderedItem(order: Order, orderItem: OrderItem) {
+		if (orderItem.type !== 'rent' && orderItem.type !== 'buy') {
+			return;
+		}
+
+		if (orderItem.type === 'rent') {
+			if (orderItem.info && orderItem.info.customerItem) {
+				return;
+			}
+		}
+
+		if (orderItem.type === 'buy') {
+			if (!orderItem.delivered) {
+				return;
+			}
+		}
+
+		this.customerOrderItems.push({orderItem: orderItem, order: order});
 	}
 
 	public havePayed(customerOrderItem: { orderItem: OrderItem, order: Order }) {

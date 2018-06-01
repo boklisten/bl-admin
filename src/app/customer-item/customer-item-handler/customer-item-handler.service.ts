@@ -29,7 +29,7 @@ export class CustomerItemHandlerService {
 		});
 	}
 
-	public addCustomerItems(orderItemsWithOrder: {orderItem: OrderItem, order: Order}[]): Promise<CustomerItem[]> {
+	public addCustomerItems(orderItemsWithOrder: { orderItem: OrderItem, order: Order }[]): Promise<CustomerItem[]> {
 		const customerItems: CustomerItem[] = [];
 
 		for (const orderItemWithOrder of orderItemsWithOrder) {
@@ -38,12 +38,14 @@ export class CustomerItemHandlerService {
 			}
 		}
 
+		console.log('going to add these customerItems', customerItems);
+
 		if (customerItems.length > 0) {
-				return this.addCustomerItemsToApi(customerItems).then((addedCustomerItems: CustomerItem[]) => {
-					return addedCustomerItems;
-				}).catch((addCustomerItemsError: BlApiError) => {
-					throw new Error('customerItemHandlerService: could not add customerItems ' + addCustomerItemsError);
-				});
+			return this.addCustomerItemsToApi(customerItems).then((addedCustomerItems: CustomerItem[]) => {
+				return addedCustomerItems;
+			}).catch((addCustomerItemsError: BlApiError) => {
+				throw new Error('customerItemHandlerService: could not add customerItems ' + addCustomerItemsError);
+			});
 		} else {
 			return Promise.reject(Error('customerItemHandlerService: no customerItems to add'));
 		}
