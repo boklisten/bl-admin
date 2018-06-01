@@ -22,6 +22,10 @@ export class CustomerService {
 		return this._customer;
 	}
 
+	public getCustomerDetail(): UserDetail {
+		return (this._customer) ? this._customer.detail : null;
+	}
+
 	public haveCustomer(): boolean {
 		return !(!this._customer);
 	}

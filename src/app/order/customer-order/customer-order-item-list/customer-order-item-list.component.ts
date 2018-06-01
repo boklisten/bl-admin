@@ -39,7 +39,7 @@ export class CustomerOrderItemListComponent implements OnInit {
 		if (this._customerService.get().orders) {
 			for (const order of this._customerService.get().orders) {
 				for (const orderItem of order.orderItems) {
-					if (orderItem.type !== 'buyout' && orderItem.type !== 'return' && !orderItem.info.customerItem
+					if (orderItem.type !== 'buyout' && orderItem.type !== 'return' && (!orderItem.info || !orderItem.info.customerItem)
 						&& (!orderItem.info || !orderItem.info.customerItem)) {
 						this.customerOrderItems.push({orderItem: orderItem, order: order});
 					}

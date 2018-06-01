@@ -148,7 +148,7 @@ export class CustomerItemHandlerService {
 			deadline: orderItem.info.to,
 			handout: true,
 			orders: [orderId],
-			viewableFor: [this._customerService.get().detail.user.id],
+			viewableFor: [this._customerService.getCustomerDetail().blid],
 			handoutInfo: {
 				handoutBy: 'branch',
 				handoutById: branch.id,

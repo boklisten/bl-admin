@@ -21,7 +21,7 @@ export class OrderHandlerService {
 			try {
 				order = this.convertCartItemsToOrder(cartItems);
 			} catch (e) {
-				return reject(new Error('orderHandlerService: could not convert cart to order: ' + e))
+				return reject(new Error('orderHandlerService: could not convert cart to order: ' + e));
 			}
 
 			this._orderService.add(order).then((addedOrder: Order) => {
@@ -61,10 +61,10 @@ export class OrderHandlerService {
 			amount: this.calculateOrderAmount(orderItems),
 			orderItems: orderItems,
 			branch: this._branchStoreService.getCurrentBranch().id,
-			customer: (this._customerService.haveCustomer()) ? this._customerService.get().detail.id : null,
+			customer: (this._customerService.haveCustomer()) ? this._customerService.getCustomerDetail().id : null,
 			byCustomer: false,
 			employee: this._userService.getUserDetailId(),
-			viewableFor: [this._customerService.get().detail.user.id]
+			viewableFor: (this._customerService.haveCustomer()) ? [this._customerService.getCustomerDetail().blid] : null
 		} as Order;
 	}
 

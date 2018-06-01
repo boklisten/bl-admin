@@ -55,7 +55,6 @@ export class CartConfirmComponent implements OnInit {
 		this.errorText = null;
 
 		this._cartConfirmService.addOrder().then((addedOrder: Order) => {
-			console.log('hi there');
 			this.showPayment = true;
 			this.order = addedOrder;
 			this.buttonDisabled = true;
@@ -87,7 +86,6 @@ export class CartConfirmComponent implements OnInit {
 
 		this._cartConfirmService.placeOrder(this.order).then(() => {
 			this._cartConfirmService.addOrUpdateCustomerItems(this.order).then(() => {
-				console.log('the order was confirmed and customerItems was processed');
 				this.confirmed.emit(true);
 			}).catch((addOrUpdateCustomerItemError) => {
 				console.log('cartConfirmComponent: could not add or update customerItems', addOrUpdateCustomerItemError);

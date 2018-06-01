@@ -69,7 +69,7 @@ export class ItemPriceService {
 		if (price < 0) {
 			return price;
 		}
-		return (parseInt((price / 10).toString(), 10) + 1) * 10;
+		return (parseInt((price / 10).toString(), 10)) * 10;
 	}
 
 }
