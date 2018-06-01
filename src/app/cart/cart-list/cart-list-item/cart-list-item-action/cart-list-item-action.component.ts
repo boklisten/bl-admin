@@ -69,7 +69,7 @@ export class CartListItemActionComponent implements OnInit {
 			}
 		}
 
-		return (this._cartHelperService.actionValidOnItem(action, this.cartItem.item, this.cartItem.customerItem) && this._cartHelperService.cartItemActionValidOnBranch(action));
+		return (this._cartHelperService.actionValidOnItem(action, this.cartItem.item, this.cartItem.customerItem));
 	}
 
 	onActionChange(action: CartItemAction) {
@@ -77,13 +77,6 @@ export class CartListItemActionComponent implements OnInit {
 		this.updateOrderItemBasedOnAction(this.cartItem.action);
 		this.actionChange.emit(this.cartItem.action);
 
-	}
-
-	disableAction(action: CartItemAction): boolean {
-		switch (action) {
-			default:
-				return false;
-		}
 	}
 
 	originalAction(action: CartItemAction): boolean {

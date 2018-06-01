@@ -33,7 +33,9 @@ export class BranchPriceService {
 	}
 
 	public rentPrice(item: Item, period: Period, numberOfPeriods: number): number {
-		if (!this._branch || this._branch.paymentInfo) {
+		this._branchItems = this._branchItemStoreService.getBranchItems();
+
+		if (!this._branch || !this._branch.paymentInfo) {
 			return -1;
 		}
 

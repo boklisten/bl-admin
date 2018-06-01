@@ -17,6 +17,7 @@ export class BranchItemStoreService {
 		this._branchItemChange$ = new Subject();
 	}
 
+
 	public getBranchItems(): BranchItem[] {
 		return this._branchItems;
 	}
@@ -28,21 +29,32 @@ export class BranchItemStoreService {
 	private onBranchUpdate() {
 		if (this._branchStoreService.getCurrentBranch()) {
 			this._branch = this._branchStoreService.getCurrentBranch();
-			this.fetchBranchItems();
+
+			this.fetchBranchItems().then(() => {
+
+			}).catch(() => {
+
+			});
 		}
 
 		this._branchStoreService.onBranchChange().subscribe(() => {
 			this._branch = this._branchStoreService.getCurrentBranch();
-			this.fetchBranchItems();
+
+			this.fetchBranchItems().then(() => {
+
+			}).catch(() => {
+
+			});
 		});
 	}
 
-	private fetchBranchItems() {
-		this._branchItemService.getManyByIds(this._branch.branchItems).then((branchItems: BranchItem[]) => {
+	public fetchBranchItems(): Promise<boolean> {
+		return this._branchItemService.getManyByIds(this._branch.branchItems).then((branchItems: BranchItem[]) => {
 			this._branchItems = branchItems;
 			this._branchItemChange$.next(true);
+			return true;
 		}).catch((getBranchItemsError) => {
-			console.log('BranchItemStoreService: could not get branchItems');
+			throw new Error('BranchItemStoreService: could not get branchItems');
 		});
 	}
 }

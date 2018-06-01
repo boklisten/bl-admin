@@ -21,6 +21,7 @@ import {BranchItemCategorySelectService} from './branch-edit/branch-edit-items/b
 import {FormsModule} from '@angular/forms';
 import { BranchOpeningHoursEditComponent } from './branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component';
 import {OpeningHoursHandlerService} from './branch-edit/branch-opening-hours-edit/opening-hours-handler.service';
+import {BranchItemHelperService} from './branch-item-helper/branch-item-helper.service';
 
 @NgModule({
 	imports: [
@@ -51,7 +52,8 @@ import {OpeningHoursHandlerService} from './branch-edit/branch-opening-hours-edi
 	providers: [
 		BranchItemHandlerService,
 		BranchItemCategorySelectService,
-		OpeningHoursHandlerService
+		OpeningHoursHandlerService,
+		BranchItemHelperService
 	],
 	exports: [
 		BranchEditListComponent,

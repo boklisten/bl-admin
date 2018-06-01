@@ -11,13 +11,15 @@ import {DateService} from '../date/date.service';
 import {OrderItemPriceService} from '../price/order-item-price/order-item-price.service';
 import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {CustomerItemPriceService} from '../price/customer-item-price/customer-item-price.service';
+import {BranchItemHelperService} from '../branch/branch-item-helper/branch-item-helper.service';
 
 @Injectable()
 export class CartHelperService {
 
 	constructor(private _branchStoreService: BranchStoreService, private _customerService: CustomerService,
 	            private _itemPriceService: ItemPriceService, private _dateService: DateService,
-	            private _orderItemPriceService: OrderItemPriceService, private _customerItemPriceService: CustomerItemPriceService) {
+	            private _orderItemPriceService: OrderItemPriceService, private _customerItemPriceService: CustomerItemPriceService,
+	            private _branchItemHelperService: BranchItemHelperService) {
 	}
 
 	public cartItemActionValidOnBranch(action: CartItemAction): boolean {
@@ -36,7 +38,13 @@ export class CartHelperService {
 	public actionValidOnItem(action: CartItemAction, item: Item, customerItem?: CustomerItem): boolean {
 		// TODO: should update this method to user Branch.branchItems to validate if action is valid
 		if (!customerItem) {
-			return true;
+			if ((action === 'semester' || action === 'year') && this._customerService.haveCustomer()) {
+				return this._branchItemHelperService.isRentValid(item, action);
+			} else if (action === 'buy') {
+				return this._branchItemHelperService.isBuyValid(item);
+			} else if (action === 'sell' && this._customerService.haveCustomer()) {
+				return this._branchItemHelperService.isSellValid(item);
+			}
 		} else {
 			if (action === 'cancel') {
 				return (customerItem.handout && this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time));

@@ -22,7 +22,7 @@
 					</div>
 				</div>
 				<div class="row justify-content-between text-secondary">
-					<div class="col-auto">
+					<div class="col-auto" *ngIf="isRentValid(item, 'semester')">
 						<small>
 							<span>
 								<span><fa-icon [icon]="'calendar-alt'" class="mr-1"></fa-icon><fa-icon [icon]="'dollar-sign'"></fa-icon></span>
@@ -30,7 +30,7 @@
 							</span>
 						</small>
 					</div>
-					<div class="col-auto">
+					<div class="col-auto" *ngIf="isRentValid(item, 'year')">
 						<small>
 							<span>
 								<span><fa-icon [icon]="'calendar'" class="mr-1"></fa-icon><fa-icon [icon]="'dollar-sign'"></fa-icon></span>
@@ -38,7 +38,7 @@
 							</span>
 						</small>
 					</div>
-					<div class="col-auto">
+					<div class="col-auto" *ngIf="isBuyValid(item)">
 						<small>
 							<span>
 								<span><fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon><fa-icon [icon]="'dollar-sign'"></fa-icon></span>
@@ -46,7 +46,7 @@
 							</span>
 						</small>
 					</div>
-					<div class="col-auto">
+					<div class="col-auto" *ngIf="isSellValid(item)">
 						<small>
 							<span>
 								<span><fa-icon [icon]="'exchange-alt'" class="mr-1"></fa-icon><fa-icon [icon]="'dollar-sign'"></fa-icon></span>
