@@ -6,7 +6,8 @@
 		"ng": "ng",
 		"start": "node server.js",
 		"watch": "ng serve --env=local --port 8080",
-		"build": "ng build --aot --prod --env=${ANGULAR_ENV}",
+		"build": "ng build --aot --prod --sourcemaps false --env=${ANGULAR_ENV}",
+		"postinstall": "npm run build",
 		"test": "ng test",
 		"lint": "ng lint",
 		"e2e": "ng e2e"
