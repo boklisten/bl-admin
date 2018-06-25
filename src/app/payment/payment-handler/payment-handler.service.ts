@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {PaymentChoice} from '../payment-choice';
-import {Order, Payment, PaymentMethod} from '@wizardcoder/bl-model';
+import {Order, Payment, PaymentMethod, UserDetail} from '@wizardcoder/bl-model';
 import {PaymentService} from '@wizardcoder/bl-connect';
 import {BranchStoreService} from '../../branch/branch-store.service';
 import {CustomerService} from '../../customer/customer.service';
+import {Customer} from '../../customer/customer';
 
 @Injectable()
 export class PaymentHandlerService {
@@ -41,27 +42,28 @@ export class PaymentHandlerService {
 
 	private createPayments(orderId: string): Payment[] {
 		const branch = this._branchStoreService.getCurrentBranch();
-		let customerId: string;
+		let customerDetail: UserDetail;
 		const payments: Payment[] = [];
 
 		if (this._customerService.haveCustomer()) {
-			customerId = this._customerService.get().detail.id;
+			customerDetail = this._customerService.get().detail;
 		}
 
 		for (const paymentChoice of this._paymentChoices) {
-			payments.push(this.createPayment(orderId, paymentChoice.type, paymentChoice.amount, branch.id, customerId));
+			payments.push(this.createPayment(orderId, paymentChoice.type, paymentChoice.amount, branch.id, customerDetail));
 		}
 
 		return payments;
 	}
 
-	private createPayment(orderId: string, method: PaymentMethod, amount: number, branchId: string, customerId?: string): Payment {
+	private createPayment(orderId: string, method: PaymentMethod, amount: number, branchId: string, customerDetail: UserDetail): Payment {
 		return {
 			method: method,
 			order: orderId,
 			amount: amount,
 			branch: branchId,
-			customer: customerId,
+			customer: customerDetail.id,
+			viewableFor: [customerDetail.blid],
 			taxAmount: 0
 		} as Payment;
 	}
