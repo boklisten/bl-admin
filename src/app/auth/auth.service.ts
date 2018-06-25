@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {UserPermission} from '@wizardcoder/bl-model';
 import {TokenService} from '@wizardcoder/bl-connect';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
+import {Observable, Subject} from 'rxjs';
 import {AuthLoginService} from '@wizardcoder/bl-login';
 import {StorageService} from '../storage/storage.service';
 

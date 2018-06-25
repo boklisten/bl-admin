@@ -4,7 +4,7 @@ import {ItemPriceService} from '../price/item-price/item-price.service';
 import {OrderItemInfo} from '@wizardcoder/bl-model/dist/order/order-item/order-item-info';
 import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
 import {DateService} from '../date/date.service';
-import {Subject} from 'rxjs/Subject';
+import {Subject, Observable} from 'rxjs';
 import {CartItem} from './cartItem';
 import {ItemService} from '@wizardcoder/bl-connect';
 import {CartItemAction} from './cartItemAction';
@@ -13,7 +13,6 @@ import {CustomerDetailService} from '../customer/customer-detail/customer-detail
 import {CustomerService} from '../customer/customer.service';
 import {BranchStoreService} from '../branch/branch-store.service';
 import {CartHelperService} from './cart-helper.service';
-import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class CartService {

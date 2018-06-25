@@ -25,6 +25,7 @@ export class BranchEditPriceInfoComponent implements OnInit {
 	public onRentPeriodAdd() {
 		this.branch.paymentInfo.rentPeriods.push({
 			type: 'semester',
+			date: new Date(),
 			maxNumberOfPeriods: 1,
 			percentage: 1
 		});
@@ -40,6 +41,7 @@ export class BranchEditPriceInfoComponent implements OnInit {
 		this.branch.paymentInfo.extendPeriods.push({
 			type: 'semester',
 			maxNumberOfPeriods: 1,
+			date: new Date(),
 			price: 1
 		});
 		this.onUpdate();

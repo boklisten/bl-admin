@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {UserDetailService} from '@wizardcoder/bl-connect';
-import {Subject} from 'rxjs/Subject';
+import {Subject, Observable} from 'rxjs';
 import {BlApiError, BlApiNotFoundError, UserDetail} from '@wizardcoder/bl-model';
-import {Observable} from 'rxjs/Observable';
 import {StorageService} from '../../storage/storage.service';
 
 @Injectable()

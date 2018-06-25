@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Branch} from '@wizardcoder/bl-model';
 import {BranchService} from '@wizardcoder/bl-connect';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import {Subject, Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {StorageService} from '../storage/storage.service';
 import {AuthService} from '../auth/auth.service';

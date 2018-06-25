@@ -89,9 +89,9 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 })
 export class AppModule {
 	constructor() {
-		BlConnectModule.withConfig({basePath: environment.apiPath});
 		LoginModule.withConfig({
 			successPath: 'home',
+			registerSuccessPath: '/auth/login',
 			apiPath: environment.apiPath,
 			userAgreementUrl: '/',
 			logoutPath: '/auth/menu',

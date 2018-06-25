@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {CustomerDetailService} from './customer-detail/customer-detail.service';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
+import {Observable, Subject} from 'rxjs';
 import {Customer} from './customer';
 import {CustomerOrderService} from '../order/customer-order/customer-order.service';
 import {Order, OrderItem, UserDetail} from '@wizardcoder/bl-model';

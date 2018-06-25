@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {Order, OrderItem, Payment, UserDetail} from '@wizardcoder/bl-model';
 import {OrderService, PaymentService} from '@wizardcoder/bl-connect';
 import {CustomerDetailService} from '../../customer/customer-detail/customer-detail.service';
-import {Subject} from 'rxjs/Subject';
-import {Observable} from 'rxjs/Observable';
+import {Subject, Observable} from 'rxjs';
 
 @Injectable()
 export class CustomerOrderService {
