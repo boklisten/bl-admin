@@ -58,8 +58,8 @@ export class BranchOpeningHoursEditComponent implements OnInit {
 
 	onAddOpeningHour() {
 
-		const fromDate = new Date(this.fromDay.year, (this.fromDay.month > 0) ? this.fromDay.month - 1 : this.fromDay.month, this.fromDay.day, this.fromTime.hour, this.fromTime.minute);
-		const toDate = new Date(this.fromDay.year, (this.fromDay.month > 0) ? this.fromDay.month - 1 : this.fromDay.month, this.fromDay.day, this.toTime.hour, this.toTime.minute);
+		const fromDate = moment(this.fromDay).set('hour', this.fromTime.hour).set('minute', this.fromTime.minute).toDate();
+		const toDate = moment(this.fromDay).set('hour', this.toTime.hour).set('minute', this.toTime.minute).toDate();
 
 		const newOpeningHour: OpeningHour = {
 			from: fromDate,
