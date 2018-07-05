@@ -28,7 +28,7 @@ import {faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow,
 	faEraser, faArchive, faToggleOn, faToggleOff, faEdit, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {BlCommonModule} from './bl-common/bl-common.module';
 import {ItemModule} from './item/item.module';
-import {BlConnectModule} from "@wizardcoder/bl-connect";
+import {BlConnectConfigService, BlConnectModule} from '@wizardcoder/bl-connect';
 import {CartModule} from "./cart/cart.module";
 import {CartService} from './cart/cart.service';
 import {DateService} from './date/date.service';
@@ -88,7 +88,7 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 	bootstrap: [AppComponent]
 })
 export class AppModule {
-	constructor() {
+	constructor(private _blConnectConfig: BlConnectConfigService) {
 		LoginModule.withConfig({
 			successPath: 'home',
 			registerSuccessPath: '/auth/login',
@@ -98,5 +98,7 @@ export class AppModule {
 			permissionDeniedPath: '/auth/permission/denied',
 			permissions: ['employee', 'admin']
 		});
+
+		_blConnectConfig.setConfig({basePath: environment.apiPath});
 	}
 }
