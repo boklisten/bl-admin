@@ -213,10 +213,10 @@ export class CartService {
 			type: orderItem.type,
 			item: orderItem.item,
 			title: orderItem.title,
-			amount: orderItem.amount,
-			unitPrice: orderItem.unitPrice,
+			amount: 0,
+			unitPrice: 0,
 			taxRate: orderItem.taxRate,
-			taxAmount: orderItem.taxAmount,
+			taxAmount: 0,
 			info: orderItem.info,
 			discount: orderItem.discount,
 			movedFromOrder: order.id

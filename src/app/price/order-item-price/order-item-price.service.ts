@@ -5,10 +5,46 @@ import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-i
 import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {BranchStoreService} from '../../branch/branch-store.service';
 
+export interface  OrderItemAmounts {
+	amount: number;
+	unitPrice: number;
+	taxAmount: number;
+}
+
 @Injectable()
 export class OrderItemPriceService {
 
 	constructor(private _itemPriceService: ItemPriceService) {
+	}
+
+	public calculateAmounts(orderItem: OrderItem, item: Item, originalOrderItem?: OrderItem, originalOrder?: Order): OrderItemAmounts {
+		let unitPrice = 0;
+		if (orderItem.type === 'rent') {
+			unitPrice = this.priceRent(orderItem, item, originalOrderItem, originalOrder);
+		} else if (orderItem.type === 'buy') {
+			unitPrice = this.priceBuy(item, originalOrderItem, originalOrder);
+		} else if (orderItem.type === 'sell') {
+			unitPrice = this.priceSell(item);
+		} else if (orderItem.type === 'cancel') {
+			unitPrice = this.priceCancel(originalOrderItem, originalOrder);
+		}
+
+		const taxAmount = this.calculateTaxAmount(orderItem.taxRate, unitPrice);
+		const amount = this.calculateOrderItemAmount(unitPrice, taxAmount);
+
+		return {
+			amount: amount,
+			unitPrice: unitPrice,
+			taxAmount: taxAmount
+		};
+	}
+
+	private calculateTaxAmount(taxRate: number, unitPrice: number): number {
+		return taxRate * unitPrice;
+	}
+
+	private calculateOrderItemAmount(unitPrice: number, taxAmount: number): number {
+		return unitPrice + taxAmount;
 	}
 
 	public priceRent(orderItem: OrderItem, item: Item, originalOrderItem?: OrderItem, originalOrder?: Order): number {

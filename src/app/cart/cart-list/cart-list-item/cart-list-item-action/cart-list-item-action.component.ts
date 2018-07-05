@@ -131,27 +131,14 @@ export class CartListItemActionComponent implements OnInit {
 		if (this.cartItem.customerItem) {
 			this.cartItem.orderItem.amount = this.orderItemAmountBasedOnCustomerItem();
 		} else {
-			this.cartItem.orderItem.amount = this.orderItemAmount();
+			const orderItemAmounts = this._orderItemPriceService
+				.calculateAmounts(this.cartItem.orderItem, this.cartItem.item, this.cartItem.originalOrderItem, this.cartItem.originalOrder);
+
+			this.cartItem.orderItem.amount = orderItemAmounts.amount;
+			this.cartItem.orderItem.taxAmount = orderItemAmounts.taxAmount;
+			this.cartItem.orderItem.unitPrice = orderItemAmounts.unitPrice;
 		}
 	}
-
-	private orderItemAmount(): number {
-		switch (this.cartItem.action) {
-			case 'year':
-				return this._orderItemPriceService
-					.priceRent(this.cartItem.orderItem, this.cartItem.item, this.cartItem.originalOrderItem, this.cartItem.originalOrder);
-			case 'semester':
-				return this._orderItemPriceService
-					.priceRent(this.cartItem.orderItem, this.cartItem.item, this.cartItem.originalOrderItem, this.cartItem.originalOrder);
-			case 'buy':
-				return this._orderItemPriceService.priceBuy(this.cartItem.item, this.cartItem.originalOrderItem, this.cartItem.originalOrder);
-			case 'cancel':
-				return this._orderItemPriceService.priceCancel(this.cartItem.originalOrderItem, this.cartItem.originalOrder);
-			case 'sell':
-				return this._orderItemPriceService.priceSell(this.cartItem.item);
-		}
-	}
-
 
 	private orderItemAmountBasedOnCustomerItem(): number {
 		switch (this.cartItem.action) {

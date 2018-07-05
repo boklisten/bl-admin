@@ -20,9 +20,12 @@ export class OrderHandlerService {
 
 			try {
 				order = this.convertCartItemsToOrder(cartItems);
+
 			} catch (e) {
 				return reject(new Error('orderHandlerService: could not convert cart to order: ' + e));
 			}
+
+			console.log('trying to add order', order);
 
 			this._orderService.add(order).then((addedOrder: Order) => {
 				resolve(addedOrder);
