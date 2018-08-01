@@ -20,17 +20,14 @@ export class AppComponent {
 		});
 
 		this._authService.onLogout().subscribe(() => {
-			console.log('the user logged out');
 			this.showContent = false;
 		});
 
 		this._authService.onLogin().subscribe(() => {
-			console.log('the user logged in');
 			this.showContent = true;
 		});
 
 		this._authService.onApplicationLogout().subscribe(() => {
-			console.log('the user was logged out by application');
 			this.showContent = false;
 		});
 
