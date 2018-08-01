@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {BranchStoreService} from '../branch/branch-store.service';
 import * as moment from 'moment';
-import {b} from '@angular/core/src/render3';
+import {BranchHelperService} from '../branch/branch-helper/branch-helper.service';
 
 interface FromToDate {
 	from: Date;
@@ -13,7 +13,7 @@ interface FromToDate {
 @Injectable()
 export class DateService {
 
-	constructor(private _branchStoreService: BranchStoreService) {
+	constructor(private _branchStoreService: BranchStoreService, private _branchHelperService: BranchHelperService) {
 	}
 
 	public currentDateCompact(): string {
@@ -46,14 +46,27 @@ export class DateService {
 	private rentPeriodSemester(): FromToDate {
 		const branch = this._branchStoreService.getCurrentBranch();
 
-		return {from: new Date(), to: moment().add(6, 'months').toDate()};
+		const rentPeriod = this._branchHelperService.getRentPeriod(branch, 'semester');
+
+		if (!rentPeriod) {
+			throw new Error('could not find period type on branch');
+		}
+
+		return {from: new Date(), to: rentPeriod.date};
 
 	}
 
 	private rentPeriodYear(): FromToDate {
 		const branch = this._branchStoreService.getCurrentBranch();
 
-		return {from: moment().toDate(), to: moment().add(1, 'year').toDate()};
+		const rentPeriod = this._branchHelperService.getRentPeriod(branch, 'year');
+
+		if (!rentPeriod) {
+			throw new Error('could not find period type on branch');
+		}
+
+		return {from: new Date(), to: rentPeriod.date};
+
 	}
 
 

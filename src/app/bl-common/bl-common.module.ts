@@ -18,6 +18,7 @@ import { BlcDatatableStringCellComponent } from './datatable/blc-datatable-strin
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import { BlcEditStringValueComponent } from './blc-edit/blc-edit-string-value/blc-edit-string-value.component';
 import { BlcEditNumberValueComponent } from './blc-edit/blc-edit-number-value/blc-edit-number-value.component';
+import { BlcEditDateValueComponent } from './blc-edit/blc-edit-date-value/blc-edit-date-value.component';
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -42,7 +43,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlCommonToggleButtonComponent,
 		BlcDatatableStringCellComponent,
 		BlcEditStringValueComponent,
-		BlcEditNumberValueComponent
+		BlcEditNumberValueComponent,
+		BlcEditDateValueComponent
 	],
 	exports: [
 		BlCommonUpdateButtonComponent,
@@ -56,7 +58,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlCommonToggleButtonComponent,
 		BlcDatatableStringCellComponent,
 		BlcEditStringValueComponent,
-		BlcEditNumberValueComponent
+		BlcEditNumberValueComponent,
+		BlcEditDateValueComponent
 
 	]
 })

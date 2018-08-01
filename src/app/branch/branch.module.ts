@@ -10,7 +10,6 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {BlCommonModule} from '../bl-common/bl-common.module';
 import { BranchInfoComponent } from './branch-info/branch-info.component';
 import { BranchEditComponent } from './branch-edit/branch-edit.component';
-import { BranchEditPriceInfoComponent } from './branch-edit/branch-edit-price-info/branch-edit-price-info.component';
 import { BranchEditItemsComponent } from './branch-edit/branch-edit-items/branch-edit-items.component';
 import {ItemModule} from '../item/item.module';
 import {BranchItemHandlerService} from './branch-item/branch-item-handler.service';
@@ -22,6 +21,8 @@ import {FormsModule} from '@angular/forms';
 import { BranchOpeningHoursEditComponent } from './branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component';
 import {OpeningHoursHandlerService} from './branch-edit/branch-opening-hours-edit/opening-hours-handler.service';
 import {BranchItemHelperService} from './branch-item-helper/branch-item-helper.service';
+import {BranchEditPeriodSettingsComponent} from './branch-edit/branch-edit-period-settings/branch-edit-period-settings.component';
+import {BranchHelperService} from './branch-helper/branch-helper.service';
 
 @NgModule({
 	imports: [
@@ -43,7 +44,7 @@ import {BranchItemHelperService} from './branch-item-helper/branch-item-helper.s
 		BranchEditListComponent,
 		BranchInfoComponent,
 		BranchEditComponent,
-		BranchEditPriceInfoComponent,
+		BranchEditPeriodSettingsComponent,
 		BranchEditItemsComponent,
 		BranchItemEditComponent,
 		BranchItemCategorySelectComponent,
@@ -53,7 +54,8 @@ import {BranchItemHelperService} from './branch-item-helper/branch-item-helper.s
 		BranchItemHandlerService,
 		BranchItemCategorySelectService,
 		OpeningHoursHandlerService,
-		BranchItemHelperService
+		BranchItemHelperService,
+		BranchHelperService
 	],
 	exports: [
 		BranchEditListComponent,

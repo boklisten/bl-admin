@@ -4,10 +4,10 @@ import {BranchService} from '@wizardcoder/bl-connect';
 
 @Component({
 	selector: 'app-branch-edit-price-info',
-	templateUrl: './branch-edit-price-info.component.html',
-	styleUrls: ['./branch-edit-price-info.component.scss']
+	templateUrl: './branch-edit-period-settings.component.html',
+	styleUrls: ['./branch-edit-period-settings.component.scss']
 })
-export class BranchEditPriceInfoComponent implements OnInit {
+export class BranchEditPeriodSettingsComponent implements OnInit {
 
 	@Input() branch: Branch;
 
