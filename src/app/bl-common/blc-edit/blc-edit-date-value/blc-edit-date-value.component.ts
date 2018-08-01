@@ -7,6 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class BlcEditDateValueComponent implements OnInit {
 	@Input() value: Date;
+	@Input() disabled: boolean;
 	@Output() valueChange: EventEmitter<Date>;
 	@Output() update: EventEmitter<Date>;
 
