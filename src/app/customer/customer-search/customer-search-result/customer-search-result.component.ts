@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CustomerSearchService} from '../customer-search.service';
 import {UserDetail} from '@wizardcoder/bl-model';
 import {Router} from '@angular/router';
+import {CustomerDetailService} from '../../customer-detail/customer-detail.service';
 
 @Component({
 	selector: 'app-customer-search-result',
@@ -13,7 +14,7 @@ export class CustomerSearchResultComponent implements OnInit {
 	public userDetails: UserDetail[];
 	public warningText: string;
 
-	constructor(private _customerSearchService: CustomerSearchService, private _router: Router) {
+	constructor(private _customerSearchService: CustomerSearchService, private _router: Router, private _customerDetailService: CustomerDetailService) {
 
 		this._customerSearchService.onSearchResult().subscribe((userDetails: UserDetail[]) => {
 			this.warningText = null;
@@ -29,8 +30,9 @@ export class CustomerSearchResultComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	onCustomerClick(userDetail: UserDetail) {
-		this._router.navigate(['customer/' + userDetail.id + '/detail']);
+	onCustomerClick(customerDetail: UserDetail) {
+		this._customerDetailService.setCustomerDetail(customerDetail);
+		this._router.navigate(['/cart']);
 	}
 
 }

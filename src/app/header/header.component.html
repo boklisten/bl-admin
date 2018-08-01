@@ -1,16 +1,20 @@
 <div class="container-fluid">
 	<div class="row align-items-center bl-header justify-content-between">
-        <div class="col-md-5 col-sm-4" routerLink="home">
+        <div class="col-md-3 col-sm-4 col-4" routerLink="home">
             <img src="../../assets/img/boklisten_logo_v2_icon_white_lg.png" height="40" width="40">
-			<b class="bl-logo-text">bladmin</b>
+			<b class="bl-logo-text d-sm-inline d-none">bladmin</b>
         </div>
-		<div class="col-3">
-			<div class="row align-items-center">
-				<div class="col-6">
+		<div class="col-md-4 d-md-inline d-none">
+			<app-customer-current></app-customer-current>
+		</div>
+
+		<div class="col-md-5 col-sm-8 col-8">
+			<div class="row align-items-center justify-content-center">
+				<div class="col-auto">
 					<div ngbDropdown class="bl-header-location d-inline-block" *ngIf="currentBranch">
                         <button class="btn btn-outline-dark" id="branchDropdown" ngbDropdownToggle>
                             <fa-icon [icon]="'location-arrow'" class="mr-2"></fa-icon>
-							{{currentBranch.name}}
+							<span class="d-md-inline d-none">{{currentBranch.name}}</span>
                         </button>
                         <div ngbDropdownMenu>
 							<button
@@ -23,8 +27,8 @@
                         </div>
 					</div>
 				</div>
-				<div class="col-6">
-					<div ngbDropdown placement="bottom-left" class="bl-header-location d-inline-block">
+				<div class="col-auto">
+					<div ngbDropdown placement="bottom" class="bl-header-location d-inline-block">
 						<fa-icon [icon]="'user-circle'" size="2x" class="bl-header-button" ngbDropdownToggle></fa-icon>
                         <div ngbDropdownMenu>
 							<button class="dropdown-item" routerLink="/auth/register/detail">
