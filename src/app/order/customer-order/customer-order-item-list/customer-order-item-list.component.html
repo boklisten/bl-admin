@@ -14,7 +14,7 @@
                         <span *ngIf="havePayed(customerOrderItem)">
 							<fa-icon [icon]="'dollar-sign'" class="mr-1"></fa-icon><fa-icon [icon]="'check-circle'"></fa-icon>
 						</span>
-						<span *ngIf="!havePayed(customerOrderItem)"><fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{customerOrderItem.orderItem.amount}} kr</span>
+						<span *ngIf="!havePayed(customerOrderItem)"><fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{customerOrderItem.orderItem.amount | blcPrice}}</span>
                     </div>
                 </div>
 
