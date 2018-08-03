@@ -53,11 +53,23 @@ export class ItemSelectListComponent implements OnInit, OnChanges {
 		const val = event.target.value.toLowerCase();
 
 		this.items = this.temp.filter((item: Item) => {
-			return (item.title.toLowerCase().indexOf(val) !== -1
-				|| (item.info && item.info.isbn
-					&& (typeof item.info.isbn) === 'string'
-					&& item.info.isbn.toLowerCase().indexOf(val) !== -1)
-				|| val.length <= 0);
+			if (val.length <= 0) {
+				return true;
+			}
+
+			if (item.title.toLocaleLowerCase().indexOf(val) !== -1) {
+				return true;
+			}
+
+			if (item.info && item.info.isbn && item.info.isbn.toString().indexOf(val) !== -1) {
+				return true;
+			}
+
+			if (item.info && item.info.subject && item.info.subject.toString().indexOf(val) !== -1) {
+				return true;
+			}
+
+			return false;
 		});
 	}
 }
