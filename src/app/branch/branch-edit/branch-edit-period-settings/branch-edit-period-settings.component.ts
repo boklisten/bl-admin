@@ -17,6 +17,7 @@ export class BranchEditPeriodSettingsComponent implements OnInit {
 	ngOnInit() {
 		this.branch.paymentInfo.rentPeriods = (this.branch.paymentInfo.rentPeriods) ? this.branch.paymentInfo.rentPeriods : [] as any;
 		this.branch.paymentInfo.extendPeriods = (this.branch.paymentInfo.extendPeriods) ? this.branch.paymentInfo.extendPeriods : [] as any;
+		this.branch.paymentInfo.responsibleForDelivery = (this.branch.paymentInfo.responsibleForDelivery) ? this.branch.paymentInfo.responsibleForDelivery : false;
 	}
 
 	public onRentPeriodDelete(index: number) {
