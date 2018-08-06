@@ -13,6 +13,7 @@ app.use(express.static(__dirname + '/dist'));
 const forceSSL = function() {
 	return function (req, res, next) {
 		if (req.headers['x-forwarded-proto'] !== 'https') {
+			console.log('the request is http should redirect to https');
 			return res.redirect(
 				['https://', req.get('Host'), req.url].join('')
 			);
@@ -26,6 +27,7 @@ const forceSSL = function() {
 // middleware
 
 if (process.env.NODE_ENV === 'production') {
+	console.log('we are in production');
 	app.use(forceSSL());
 }
 
