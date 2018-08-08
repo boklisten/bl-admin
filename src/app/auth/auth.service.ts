@@ -32,33 +32,53 @@ export class AuthService {
 	}
 
 	public isAdmin(): boolean {
-		if (this._authLoginService.isLoggedIn()) {
+		let permission: UserPermission;
 
-			try {
-				this._tokenService.getAccessTokenBody();
-			} catch (e) {
-				this.logout();
-				return false;
-			}
-
-			return (this._tokenService.getAccessTokenBody().permission === 'admin');
+		try {
+			permission = this.getUserPermission();
+		} catch (e) {
+			return false;
 		}
-		return false;
+
+		return (permission === 'admin');
+	}
+
+
+	public isManager(): boolean {
+		let permission: UserPermission;
+
+		try {
+			permission = this.getUserPermission();
+		} catch (e) {
+			return false;
+		}
+
+		return (this.isAdmin() || permission === 'manager');
 	}
 
 	public isEmployee(): boolean {
-		if (this._authLoginService.isLoggedIn()) {
+		let permission: UserPermission;
 
+		try {
+			permission = this.getUserPermission();
+		} catch (e) {
+			return false;
+		}
+
+		return (this.isAdmin() || this.isManager() || permission === 'employee');
+	}
+
+	private getUserPermission(): UserPermission {
+		if (this._authLoginService.isLoggedIn()) {
 			try {
 				this._tokenService.getAccessTokenBody();
 			} catch (e) {
 				this.logout();
-				return false;
+				throw e;
 			}
 
-			return (this.isAdmin() || this._tokenService.getAccessTokenBody().permission === 'employee');
+			return this._tokenService.getAccessTokenBody().permission;
 		}
-		return false;
 	}
 
 	public logout() {
