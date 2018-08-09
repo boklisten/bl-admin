@@ -18,6 +18,16 @@ export class BranchEditPeriodSettingsComponent implements OnInit {
 		this.branch.paymentInfo.rentPeriods = (this.branch.paymentInfo.rentPeriods) ? this.branch.paymentInfo.rentPeriods : [] as any;
 		this.branch.paymentInfo.extendPeriods = (this.branch.paymentInfo.extendPeriods) ? this.branch.paymentInfo.extendPeriods : [] as any;
 		this.branch.paymentInfo.responsibleForDelivery = (this.branch.paymentInfo.responsibleForDelivery) ? this.branch.paymentInfo.responsibleForDelivery : false;
+		this.branch.paymentInfo.payLater = (this.branch.paymentInfo.payLater) ? this.branch.paymentInfo.payLater : false;
+		if (!this.branch.deliveryMethods) {
+			this.branch.deliveryMethods = {
+				byMail: false,
+				branch: false
+			};
+		} else {
+			this.branch.deliveryMethods.branch = (this.branch.deliveryMethods.branch) ? this.branch.deliveryMethods.branch : false;
+			this.branch.deliveryMethods.byMail = (this.branch.deliveryMethods.byMail) ? this.branch.deliveryMethods.byMail : false;
+		}
 	}
 
 	public onRentPeriodDelete(index: number) {

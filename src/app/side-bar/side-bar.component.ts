@@ -39,6 +39,7 @@ export class SideBarComponent implements OnInit {
 				permission: 'customer',
 				hide: true
 			},
+			/*
 			{
 				name: 'orders',
 				link: 'orders',
@@ -46,6 +47,7 @@ export class SideBarComponent implements OnInit {
 				permission: 'manager',
 				selected: false
 			},
+			*/
 			{
 				name: 'database',
 				link: 'database',

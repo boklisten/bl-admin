@@ -173,6 +173,33 @@
     </div>
 </div>
 
+<div class="row justify-content-between mt-4">
+    <div class="col-auto text-secondary">
+        Delivery by mail
+    </div>
+    <div class="col-auto">
+        <app-bl-common-toggle-button [(value)]="branch.deliveryMethods.byMail" (update)="onUpdate()"></app-bl-common-toggle-button>
+    </div>
+</div>
+
+<div class="row justify-content-between mt-4">
+    <div class="col-auto text-secondary">
+        Delivery at branch
+    </div>
+    <div class="col-auto">
+        <app-bl-common-toggle-button [(value)]="branch.deliveryMethods.branch" (update)="onUpdate()"></app-bl-common-toggle-button>
+    </div>
+</div>
+
+<div class="row justify-content-between mt-4">
+    <div class="col-auto text-secondary">
+        Pay later
+    </div>
+    <div class="col-auto">
+        <app-bl-common-toggle-button [(value)]="branch.paymentInfo.payLater" (update)="onUpdate()"></app-bl-common-toggle-button>
+    </div>
+</div>
+
 <div class="row justify-content-between mt-2">
     <div class="col-auto text-secondary">
         Responsible for payment
