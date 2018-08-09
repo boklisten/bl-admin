@@ -1,8 +1,10 @@
 <div class="row">
 	<div class="col-12">
 		<div class="card">
-			<div class="card-body">
-				<h4 class="card-title">Items</h4>
+			<div class="card-header">
+				<h6 class="card-title">Items</h6>
+			</div>
+			<div class="card-body" *ngIf="warningText">
 				<app-bl-common-alert [type]="'warning'" *ngIf="warningText" [text]="warningText" (exit)="warningText = null"></app-bl-common-alert>
 			</div>
 			<app-order-item-detail-list [orderItems]="order.orderItems"></app-order-item-detail-list>
