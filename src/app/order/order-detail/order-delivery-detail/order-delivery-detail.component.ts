@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {BlApiError, Delivery, Order} from '@wizardcoder/bl-model';
 import {DeliveryService} from '@wizardcoder/bl-connect';
 
@@ -7,7 +7,7 @@ import {DeliveryService} from '@wizardcoder/bl-connect';
 	templateUrl: './order-delivery-detail.component.html',
 	styleUrls: ['./order-delivery-detail.component.scss']
 })
-export class OrderDeliveryDetailComponent implements OnInit {
+export class OrderDeliveryDetailComponent implements OnInit, OnChanges {
 	@Input() order: Order;
 
 	public delivery: Delivery;
@@ -20,6 +20,11 @@ export class OrderDeliveryDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
+	}
+
+	getDelivery() {
+		this.delivery = null;
+		this.notFoundText = null;
 		if (!this.order.delivery) {
 			this.notFoundText = 'Order has no delivery attached';
 		} else {
@@ -31,6 +36,12 @@ export class OrderDeliveryDetailComponent implements OnInit {
 				this.warningText = 'Could not get delivery';
 				this.wait = false;
 			});
+		}
+	}
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes['order'].currentValue !== changes['order'].previousValue) {
+			this.getDelivery();
 		}
 	}
 

@@ -40,6 +40,13 @@ export class SideBarComponent implements OnInit {
 				hide: true
 			},
 			{
+				name: 'orders',
+				link: 'orders',
+				icon: 'receipt',
+				permission: 'manager',
+				selected: false
+			},
+			{
 				name: 'database',
 				link: 'database',
 				icon: 'database',

@@ -4,6 +4,7 @@ import {AdminGuardService} from './guards/admin-guard.service';
 import {EmployeeGuardService} from './guards/employee-guard.service';
 import {UserGuardService} from './guards/user-guard.service';
 import {AuthService} from './auth.service';
+import {ManagerGuardService} from './guards/manager-guard.service';
 
 @NgModule({
 	imports: [
@@ -13,7 +14,8 @@ import {AuthService} from './auth.service';
 		AuthService,
 		AdminGuardService,
 		EmployeeGuardService,
-		UserGuardService
+		UserGuardService,
+		ManagerGuardService
 	],
 	declarations: []
 })

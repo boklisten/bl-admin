@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {BlApiError, Order, Payment} from '@wizardcoder/bl-model';
 import {PaymentService} from '@wizardcoder/bl-connect';
 
@@ -7,7 +7,7 @@ import {PaymentService} from '@wizardcoder/bl-connect';
 	templateUrl: './order-payment-detail.component.html',
 	styleUrls: ['./order-payment-detail.component.scss']
 })
-export class OrderPaymentDetailComponent implements OnInit {
+export class OrderPaymentDetailComponent implements OnInit, OnChanges {
 	@Input() order: Order;
 	public wait: boolean;
 	public warningText: string;
@@ -20,6 +20,16 @@ export class OrderPaymentDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
+
+	}
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes['order'].currentValue !== changes['order'].previousValue) {
+			this.getPayment();
+		}
+	}
+
+	private getPayment() {
 		this.wait = true;
 		this.noPaymentsFoundText = null;
 		this.warningText = null;

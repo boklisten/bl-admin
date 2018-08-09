@@ -3,6 +3,8 @@ import {Routes, RouterModule} from '@angular/router';
 import {EmployeeGuardService} from '../auth/guards/employee-guard.service';
 import {BranchGuardService} from '../branch/branch-guard.service';
 import {OrderDetailComponent} from './order-detail/order-detail.component';
+import {ManagerGuardService} from '../auth/guards/manager-guard.service';
+import {OrderManagerComponent} from './order-manager/order-manager.component';
 
 const routes: Routes = [
 	{
@@ -14,6 +16,11 @@ const routes: Routes = [
 				component: OrderDetailComponent
 			}
 		]
+	},
+	{
+		path: 'orders',
+		canActivate: [ManagerGuardService],
+		component: OrderManagerComponent
 	}
 ];
 

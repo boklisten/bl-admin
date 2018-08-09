@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="col-4">
+		<app-order-manager-list (selectedOrder)="onSelectOrder($event)"></app-order-manager-list>
+	</div>
+	<div class="col-4">
+		<div class="row mt-2">
+			<div class="col">
+				<app-order-item-list [order]="activeOrder" *ngIf="activeOrder"></app-order-item-list>
+			</div>
+		</div>
+	</div>
+	<div class="col-4">
+		<div class="row">
+			<div class="col">
+				<app-order-delivery-detail [order]="activeOrder" *ngIf="activeOrder"></app-order-delivery-detail>
+			</div>
+		</div>
+		<div class="row mt-2">
+			<div class="col">
+				<app-order-payment-detail [order]="activeOrder" *ngIf="activeOrder"></app-order-payment-detail>
+			</div>
+		</div>
+		<div class="row mt-2">
+			<div class="col">
+				<app-order-detail-card [order]="activeOrder" *ngIf="activeOrder"></app-order-detail-card>
+			</div>
+		</div>
+	</div>
+</div>

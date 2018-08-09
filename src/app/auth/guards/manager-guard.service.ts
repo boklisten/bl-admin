@@ -13,7 +13,7 @@ export class ManagerGuardService implements CanActivate {
 
 	public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		if (this._authService.isLoggedIn()) {
-			if (this._authService.isEmployee()) {
+			if (this._authService.isManager()) {
 				return true;
 			} else {
 				this._userGuardService.redirectToPermissionDenied(state.url);

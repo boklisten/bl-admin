@@ -15,6 +15,10 @@ import {BranchModule} from "../branch/branch.module";
 import {CustomerModule} from "../customer/customer.module";
 import { CustomerOrderItemListComponent } from './customer-order/customer-order-item-list/customer-order-item-list.component';
 import {OrderHandlerService} from './order-handler/order-handler.service';
+import { OrderManagerComponent } from './order-manager/order-manager.component';
+import { OrderManagerListComponent } from './order-manager/order-manager-list/order-manager-list.component';
+import {OrderManagerListService} from './order-manager/order-manager-list/order-manager-list.service';
+import { OrderManagerListItemComponent } from './order-manager/order-manager-list/order-manager-list-item/order-manager-list-item.component';
 
 @NgModule({
 	imports: [
@@ -31,14 +35,18 @@ import {OrderHandlerService} from './order-handler/order-handler.service';
 		OrderDeliveryDetailComponent,
 		OrderItemListComponent,
 		OrderItemDetailListComponent,
-		CustomerOrderItemListComponent
+		CustomerOrderItemListComponent,
+		OrderManagerComponent,
+		OrderManagerListComponent,
+		OrderManagerListItemComponent
 	],
 	exports: [
 		CustomerOrderListComponent,
 		CustomerOrderItemListComponent
 	],
 	providers: [
-		OrderHandlerService
+		OrderHandlerService,
+		OrderManagerListService
 	]
 })
 export class OrderModule {
