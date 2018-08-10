@@ -67,6 +67,10 @@ export class CustomerOrderItemListComponent implements OnInit {
 			}
 		}
 
+		if (orderItem.movedToOrder) {
+			return;
+		}
+
 		this.customerOrderItems.push({orderItem: orderItem, order: order});
 	}
 
