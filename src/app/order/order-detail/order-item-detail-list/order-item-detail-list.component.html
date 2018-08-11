@@ -1,6 +1,8 @@
 
 <ul class="list-group list-group-flush">
-    <li class="list-group-item list-group-item-action" *ngFor="let orderItem of orderItems">
+    <li class="list-group-item list-group-item-action"
+		[ngClass]="{'bl-inactive-item': orderItem.movedToOrder}"
+		*ngFor="let orderItem of orderItems">
         <div class="row justify-content-between">
             <div class="col-auto">
                 <span routerLink="{{'/item/' + orderItem.item + '/detail'}}" class="bl-link-black">
@@ -41,5 +43,12 @@
 				</small>
 			</div>
         </div>
+		<div class="row justify-content-md-end" *ngIf="orderItem.movedToOrder">
+			<div class="col-auto bl-link-black font-italic" i18n="@@orderItemDetailListMovedToAnotherOrder" routerLink="{{'/order/' + orderItem.movedToOrder + '/detail'}}">
+				<small>
+					moved to another order
+				</small>
+			</div>
+		</div>
     </li>
 </ul>

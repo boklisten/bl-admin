@@ -5,6 +5,7 @@ $secondary-color: #283d3b;
 $alert-color: #e63946;
 $success-color: #53dd6c;
 $warning-color: #ee8434;
+$inactive-color: #d7dbdd;
 
 $link-border: 2px solid #ffffff;
 $link-border-black: 2px solid #000000;
@@ -41,6 +42,10 @@ $border-color: rgba(0,0,0,.125);
 	line-height: 30px;
 	cursor: pointer;
 	color: $success-color;
+}
+
+.bl-inactive-item {
+	background-color: $inactive-color;
 }
 
 .bl-toggle-on:hover {

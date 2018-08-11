@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {OrderManagerListService} from './order-manager-list.service';
 import {Order} from '@wizardcoder/bl-model';
 import {BranchStoreService} from '../../../branch/branch-store.service';
+import {CustomerService} from '../../../customer/customer.service';
 
 @Component({
 	selector: 'app-order-manager-list',
@@ -15,7 +16,9 @@ export class OrderManagerListComponent implements OnInit {
 	allBranchesFilter: boolean;
 	@Output() selectedOrder: EventEmitter<Order>;
 
-	constructor(private _orderManagerListService: OrderManagerListService, private _branchStoreService: BranchStoreService) {
+	constructor(private _orderManagerListService: OrderManagerListService,
+	            private _branchStoreService: BranchStoreService,
+	            private _customerService: CustomerService) {
 		this.selectedOrder = new EventEmitter<Order>();
 		this.allBranchesFilter = false;
 	}

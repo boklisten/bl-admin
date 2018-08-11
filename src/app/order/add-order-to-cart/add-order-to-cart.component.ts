@@ -1,5 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Order} from '@wizardcoder/bl-model';
+import {Order, UserDetail} from '@wizardcoder/bl-model';
+import {CartService} from '../../cart/cart.service';
+import {Router} from '@angular/router';
+import {UserDetailService} from '@wizardcoder/bl-connect';
+import {CustomerDetailService} from '../../customer/customer-detail/customer-detail.service';
 
 @Component({
 	selector: 'app-add-order-to-cart',
@@ -9,10 +13,26 @@ import {Order} from '@wizardcoder/bl-model';
 export class AddOrderToCartComponent implements OnInit {
 	@Input() order: Order;
 
-	constructor() {
+	constructor(private _cartService: CartService, private _router: Router, private userDetailService: UserDetailService, private _customerDetailService: CustomerDetailService) {
 	}
 
 	ngOnInit() {
+	}
+
+	public onAddToCart() {
+		this._customerDetailService.fetchCustomerDetail(this.order.customer).then((customerDetail: UserDetail) => {
+			this._customerDetailService.setCustomerDetail(customerDetail);
+
+			for (const orderItem of this.order.orderItems) {
+				if (!orderItem.movedToOrder) {
+					this._cartService.addOrderItem(orderItem, this.order);
+				}
+			}
+
+			this._router.navigate(['/cart']);
+		}).catch(() => {
+			console.log('addOrderToCartComponent: could not get customer detail');
+		});
 	}
 
 }
