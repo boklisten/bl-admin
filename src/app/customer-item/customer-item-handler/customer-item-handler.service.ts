@@ -9,45 +9,47 @@ import {CustomerService} from '../../customer/customer.service';
 @Injectable()
 export class CustomerItemHandlerService {
 
-	constructor(private _branchStoreService: BranchStoreService, private _userService: UserService, private _customerItemService: CustomerItemService,
+	constructor(private _branchStoreService: BranchStoreService,
+	            private _userService: UserService,
+	            private _customerItemService: CustomerItemService,
 	            private _customerService: CustomerService) {
 	}
 
-	public updateCustomerItems(orderItems: OrderItem[]): Promise<CustomerItem[]> {
-		const updateCustomerItemPromiseArr: Promise<CustomerItem>[] = [];
+	public async updateCustomerItems(orderItems: OrderItem[]): Promise<CustomerItem[]> {
+		const customerItems: CustomerItem[] = [];
 
-		for (const orderItem of orderItems) {
-			updateCustomerItemPromiseArr.push(this.createCustomerItemPatch(orderItem));
+		try {
+			for (const orderItem of orderItems) {
+				const customerItem = await this.createCustomerItemPatch(orderItem);
+				customerItems.push(customerItem);
+			}
+		} catch (e) {
+			throw new Error('could not update customerItems: ' + e);
 		}
 
-		return new Promise((resolve, reject) => {
-			Promise.all(updateCustomerItemPromiseArr).then((customerItems: CustomerItem[]) => {
-				resolve(customerItems);
-			}).catch((updateCustomerItemsError) => {
-				reject(new Error('customerItemHandlerService: could not update customerItems: ' + updateCustomerItemsError));
-			});
-		});
+		return customerItems;
 	}
 
-	public addCustomerItems(orderItemsWithOrder: { orderItem: OrderItem, order: Order }[]): Promise<CustomerItem[]> {
+	public async addCustomerItems(orderItemsWithOrder: { orderItem: OrderItem, order: Order }[]): Promise<CustomerItem[]> {
 		const customerItems: CustomerItem[] = [];
 
 		for (const orderItemWithOrder of orderItemsWithOrder) {
 			if (orderItemWithOrder.orderItem.type === 'rent') {
-				customerItems.push(this.convertOrderItemToCustomerItem(orderItemWithOrder.orderItem, orderItemWithOrder.order.customer, orderItemWithOrder.order.id));
+				const customerItem = this.convertOrderItemToCustomerItem(orderItemWithOrder.orderItem,
+					orderItemWithOrder.order.customer, orderItemWithOrder.order.id);
+				customerItems.push(customerItem);
 			}
 		}
 
-		console.log('going to add these customerItems', customerItems);
+		if (customerItems.length <= 0) {
+			throw new Error('customerITemHandlerService: no customerItems to add');
+		}
 
-		if (customerItems.length > 0) {
-			return this.addCustomerItemsToApi(customerItems).then((addedCustomerItems: CustomerItem[]) => {
-				return addedCustomerItems;
-			}).catch((addCustomerItemsError: BlApiError) => {
-				throw new Error('customerItemHandlerService: could not add customerItems ' + addCustomerItemsError);
-			});
-		} else {
-			return Promise.reject(Error('customerItemHandlerService: no customerItems to add'));
+		try {
+			return await this.addCustomerItemsToApi(customerItems);
+		} catch (e) {
+			console.log('we got error here', e);
+			throw new Error('customerItemHandlerService: could not add customer items: ' + e);
 		}
 	}
 
@@ -130,14 +132,19 @@ export class CustomerItemHandlerService {
 		};
 	}
 
-	private addCustomerItemsToApi(customerItems: CustomerItem[]): Promise<CustomerItem[]> {
-		const addCustomerItemPromArray: Promise<CustomerItem>[] = [];
+	private async addCustomerItemsToApi(customerItems: CustomerItem[]): Promise<CustomerItem[]> {
+		const addedCustomerItems: CustomerItem[] = [];
 
-		for (const customerItem of customerItems) {
-			addCustomerItemPromArray.push(this._customerItemService.add(customerItem));
+		try {
+            for (const customerItem of customerItems) {
+                const addedCustomerItem = await this._customerItemService.add(customerItem);
+                addedCustomerItems.push(addedCustomerItem);
+            }
+		} catch (e) {
+			throw new Error('customerItemHandlerService: could not add customer item: ' + e);
 		}
 
-		return Promise.all(addCustomerItemPromArray);
+		return addedCustomerItems;
 	}
 
 

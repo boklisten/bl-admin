@@ -27,7 +27,7 @@ export class CartConfirmService {
 					this._orderHandlerService.placeOrder(order).then(() => {
 						resolve(true);
 					}).catch((placeOrderError) => {
-						reject(new Error('cartConfirmService: could not place order' + placeOrderError))
+						reject(new Error('cartConfirmService: could not place order' + placeOrderError));
 					});
 				}).catch((addPaymentError) => {
 					reject(new Error('cartConfirmService: could not add payments: ' + addPaymentError));
@@ -42,8 +42,7 @@ export class CartConfirmService {
 		});
 	}
 
-	public addOrUpdateCustomerItems(order: Order): Promise<boolean> {
-		return new Promise((resolve, reject) => {
+	public async addOrUpdateCustomerItems(order: Order): Promise<boolean> {
 			const customerItemsToCreate: {order: Order, orderItem: OrderItem}[] = [];
 			const orderItemsToUpdate: OrderItem[] = [];
 
@@ -57,72 +56,18 @@ export class CartConfirmService {
 				}
 			}
 
-			const updateAndCreateCustomerItemPromiseArr: Promise<CustomerItem[]>[] = [];
+			try {
+				if (orderItemsToUpdate.length > 0) {
+					await this._customerItemHandlerService.updateCustomerItems(orderItemsToUpdate);
+				}
 
-			if (orderItemsToUpdate.length > 0) {
-				updateAndCreateCustomerItemPromiseArr.push(this._customerItemHandlerService.updateCustomerItems(orderItemsToUpdate));
+				if (customerItemsToCreate.length > 0) {
+					await this._customerItemHandlerService.addCustomerItems(customerItemsToCreate);
+				}
+			} catch (e) {
+				throw new Error('could not add or update customerItems: ' + e);
 			}
 
-			if (customerItemsToCreate. length > 0) {
-				updateAndCreateCustomerItemPromiseArr.push(this._customerItemHandlerService.addCustomerItems(customerItemsToCreate));
-			}
-
-			Promise.all(updateAndCreateCustomerItemPromiseArr).then((customerItems) => {
-				resolve(true);
-			}).catch((e) => {
-				reject(new Error('cartConfirmService: could not create or update customerItems' + e));
-			});
-		});
-
+			return true;
 	}
-
-
-
-	private updateOrCreateCustomerItemsByCartItems(cartItems: CartItem[]): Promise<boolean> {
-		console.log('update or create customerItems by cartItems');
-		return new Promise((resolve, reject) => {
-			for (const cartItem of cartItems) {
-				console.log('should update or create customerItem for', cartItems);
-			}
-		});
-	}
-
-	private updateOrCreateCustomerItemsByOrder(order: Order): Promise<boolean> {
-		console.log('update or create customerItem by order');
-		return new Promise((resolve, reject) => {
-			for (const orderItem of order.orderItems) {
-				console.log('should update or create customerItem for', orderItem.title);
-			}
-		});
-	}
-
-	private getCartItemsForOrder(): CartItem[] {
-		const cart = this._cartService.getCart();
-		const cartItemsForOrder: CartItem[] = [];
-
-		for (const cartItem of cart) {
-			if (cartItem.orderItem.amount !== 0
-				|| (cartItem.orderItem.amount === 0 && !cartItem.originalOrderItem && !cartItem.originalOrderItem && !cartItem.customerItem)) {
-				cartItemsForOrder.push(cartItem);
-			}
-		}
-
-		return cartItemsForOrder;
-	}
-
-	private getCartItemsForUpdate(): CartItem[] {
-		const cart = this._cartService.getCart();
-		const cartItemsForUpdate: CartItem[] = [];
-
-		for (const cartItem of cart) {
-			if (cartItem.orderItem.amount === 0 && ((cartItem.originalOrderItem && cartItem.originalOrderItem) || cartItem.customerItem)) {
-				cartItemsForUpdate.push(cartItem);
-			}
-		}
-
-		return cartItemsForUpdate;
-	}
-
-
-
 }
