@@ -3,12 +3,42 @@
 	<div class="col">
 		<div class="card">
 			<div class="card-header">
-                <button class="btn btn-outline-secondary btn-sm" (click)="onAllBranchesFilterClick()">
-                    <span>
-                        <fa-icon [icon]="'check'" class="mr-2" *ngIf="allBranchesFilter"></fa-icon>
-                        All branches
-                    </span>
-                </button>
+				<div class="row justify-content-end text-secondary">
+					<!--
+					<div class="col-2">
+                        <span class="mr-2 pb-2">
+                            <fa-icon [icon]="'dollar-sign'"></fa-icon>
+                        </span>
+                        <span>
+                            <app-bl-common-toggle-button [(value)]="orderFilter.payment" (update)="onFilterUpdate()"></app-bl-common-toggle-button>
+                        </span>
+					</div>
+					-->
+					<div class="col-2">
+						<span class="mr-2 pb-2">
+                            <fa-icon [icon]="'sync-alt'" [spin]="fetching"></fa-icon>
+                        </span>
+                        <span>
+							<app-bl-common-toggle-button [(value)]="orderFilter.autoFetch"></app-bl-common-toggle-button>
+                        </span>
+					</div>
+					<div class="col-2">
+						<span class="mr-2 pb-2">
+                            <fa-icon [icon]="'location-arrow'"></fa-icon>
+                        </span>
+                        <span>
+							<app-bl-common-toggle-button [(value)]="orderFilter.onlyCurrentBranch" (update)="onFilterUpdate()"></app-bl-common-toggle-button>
+                        </span>
+					</div>
+					<div class="col-2">
+						<span class="mr-2 pb-2">
+                            <fa-icon [icon]="'truck'"></fa-icon>
+                        </span>
+                        <span>
+							<app-bl-common-toggle-button [(value)]="orderFilter.delivery" (update)="onFilterUpdate()"></app-bl-common-toggle-button>
+                        </span>
+					</div>
+				</div>
 			</div>
             <div class="card-body" *ngIf="placedOrders && placedOrders.length <= 0">
                 <div class="alert alert-secondary" >
@@ -19,7 +49,7 @@
                 <div class="list-group-item list-group-item-action"
                      (click)="onOrderClick(placedOrder)"
                      *ngFor="let placedOrder of placedOrders"
-                     [ngClass]="{'active': activeOrder === placedOrder}">
+                     [ngClass]="{'active': activeOrder && activeOrder.id === placedOrder.id }">
                     <app-order-manager-list-item [order]="placedOrder"></app-order-manager-list-item>
                 </div>
             </div>

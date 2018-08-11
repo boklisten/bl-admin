@@ -1,8 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {OrderManagerListService} from './order-manager-list.service';
+import {OrderFilter, OrderManagerListService} from './order-manager-list.service';
 import {Order} from '@wizardcoder/bl-model';
 import {BranchStoreService} from '../../../branch/branch-store.service';
 import {CustomerService} from '../../../customer/customer.service';
+import {timer} from 'rxjs/internal/observable/timer';
+import {Observable} from 'rxjs/internal/Observable';
 
 @Component({
 	selector: 'app-order-manager-list',
@@ -14,6 +16,10 @@ export class OrderManagerListComponent implements OnInit {
 	tempPlacedOrders: Order[];
 	activeOrder: Order;
 	allBranchesFilter: boolean;
+	orderFilter: OrderFilter;
+	interval: number;
+	autoFetchTimer: Observable<number>;
+	fetching: boolean;
 	@Output() selectedOrder: EventEmitter<Order>;
 
 	constructor(private _orderManagerListService: OrderManagerListService,
@@ -21,19 +27,28 @@ export class OrderManagerListComponent implements OnInit {
 	            private _customerService: CustomerService) {
 		this.selectedOrder = new EventEmitter<Order>();
 		this.allBranchesFilter = false;
+		this.interval = 10000;
+		this.fetching = false;
 	}
 
 	ngOnInit() {
-		this._orderManagerListService.getPlacedOrders().then((orders: Order[]) => {
-			this.placedOrders = orders;
-			this.tempPlacedOrders = orders;
-			this.filterOnlyCurrentBranch();
-			this.filterNewestFirst();
-		}).catch((err) => {
-			console.log('could not get the placed orders', err);
-		});
-
+		this.orderFilter = this._orderManagerListService.getOrderFilter();
+		this.getOrders();
 		this.onBranchChange();
+
+		this.autoFetchTimer = timer(this.interval, this.interval);
+
+		this.autoFetchTimer.subscribe(() => {
+			if (this.orderFilter.autoFetch) {
+				console.log('fetching');
+				this.getOrders();
+				this.fetching = true;
+			}
+		});
+	}
+
+	onAutoFetch(): Observable<number> {
+		return this.autoFetchTimer;
 	}
 
 	onAllBranchesFilterClick() {
@@ -46,13 +61,34 @@ export class OrderManagerListComponent implements OnInit {
 		}
 	}
 
+	onFilterUpdate() {
+		this._orderManagerListService.setFilter(this.orderFilter);
+		this.getOrders();
+	}
+
+	private getOrders() {
+		this._orderManagerListService.getPlacedOrders().then((orders: Order[]) => {
+			this.placedOrders = orders;
+			this.tempPlacedOrders = orders;
+			this.filterOnlyCurrentBranch();
+			this.filterNewestFirst();
+
+			setTimeout(() => {
+				this.fetching = false;
+			}, 1000);
+
+		}).catch((err) => {
+			this.placedOrders = [];
+			this.fetching = false;
+		});
+	}
+
 	onBranchChange() {
 		this._branchStoreService.onBranchChange().subscribe(() => {
-			this.activeOrder = null;
-			this.selectedOrder.emit(null);
-
-			if (!this.allBranchesFilter) {
-				this.filterOnlyCurrentBranch();
+			if (this.orderFilter.onlyCurrentBranch) {
+				this.getOrders();
+				this.activeOrder = null;
+				this.selectedOrder.emit(null);
 			}
 		});
 	}
