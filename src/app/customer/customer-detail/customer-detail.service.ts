@@ -34,6 +34,20 @@ export class CustomerDetailService {
 		});
 	}
 
+	public getAndSetCustomerDetailById(id: string): Promise<UserDetail> {
+		return new Promise((resolve, reject) => {
+            this.fetchCustomerDetail(id).then((customerDetail: UserDetail) => {
+
+                const obs = this.onCustomerDetailChange().subscribe(() => {
+                    obs.unsubscribe();
+                    resolve(customerDetail);
+                });
+
+                this.setCustomerDetail(customerDetail);
+            });
+		});
+	}
+
 	public fetchCustomerDetail(id: string): Promise<UserDetail> {
 		if (this._currentCustomerDetail && id === this._currentCustomerDetail.id) {
 			return Promise.resolve(this._currentCustomerDetail);

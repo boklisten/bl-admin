@@ -11,7 +11,6 @@ import {CustomerService} from '../../../../customer/customer.service';
 export class OrderManagerListItemComponent implements OnInit {
 	@Input() order: Order;
 	userDetail: UserDetail;
-	handedOutAllItems: boolean;
 	delivery: Delivery;
 	haveDelivery: boolean;
 	havePayed: boolean;
@@ -20,7 +19,6 @@ export class OrderManagerListItemComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.handedOutAllItems = this.haveHandedOutAllItems();
 		this.getCustomer();
 		this.getDelivery();
 		this.havePayed = this.checkIfPayed();
@@ -41,15 +39,6 @@ export class OrderManagerListItemComponent implements OnInit {
 		}).catch((err) => {
 			console.log('OrderManagerListItem: could not get delivery', err);
 		});
-	}
-
-	haveHandedOutAllItems() {
-		for (const orderItem of this.order.orderItems) {
-			if (!orderItem.info || !orderItem.info.customerItem) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	checkIfPayed() {

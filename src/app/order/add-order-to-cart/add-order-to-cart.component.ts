@@ -20,8 +20,7 @@ export class AddOrderToCartComponent implements OnInit {
 	}
 
 	public onAddToCart() {
-		this._customerDetailService.fetchCustomerDetail(this.order.customer).then((customerDetail: UserDetail) => {
-			this._customerDetailService.setCustomerDetail(customerDetail);
+		this._customerDetailService.getAndSetCustomerDetailById(this.order.customer).then((customerDetail: UserDetail) => {
 
 			for (const orderItem of this.order.orderItems) {
 				if (!orderItem.movedToOrder) {
