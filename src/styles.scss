@@ -19,6 +19,27 @@ $border-color: rgba(0,0,0,.125);
 	border: 0 !important;
 }
 
+.bl-content {
+	max-height: calc(100vh - 50px);
+	//flex: 1 1 0;
+	//flex-direction: column;
+	//display: flex;
+	//align-items: stretch;
+	overflow-y: scroll;
+}
+
+.bl-flex-row {
+	//flex: 1 1 0;
+	//display: flex;
+}
+
+.bl-col-scroll {
+	max-height: calc(100vh - 60px);
+	overflow-y: scroll;
+}
+
+//BOOTSTRAP SPECIFIC
+
 
 .bl-link {
 	cursor: pointer;

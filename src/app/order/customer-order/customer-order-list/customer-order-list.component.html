@@ -1,5 +1,5 @@
 
-<div class="row" *ngIf="customerDetail">
+<div class="row bl-col-scroll" *ngIf="customerDetail">
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
@@ -13,6 +13,7 @@
 			</div>
 			<div class="list-group">
 				<div class="list-group-item list-group-item-action" *ngFor="let customerOrder of customerOrders" (click)="onCustomerOrderDetailClick(customerOrder.id)">
+
 					<div class="row mt-2 mb-2 justify-content-between text-secondary">
 						<div class="col-auto">
 							<small><fa-icon [icon]="'clock'" class="ml-2 mr-1"></fa-icon> {{customerOrder.creationTime | blDate}}</small>

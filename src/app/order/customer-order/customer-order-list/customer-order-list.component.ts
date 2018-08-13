@@ -35,7 +35,15 @@ export class CustomerOrderListComponent implements OnInit {
 			if (orders.length <= 0) {
 				this.warningText = 'no orders found';
 			}
+
+
+
 			this.customerOrders = orders;
+
+			this.customerOrders = orders.sort((orderA, orderB) => {
+				return new Date(orderB.creationTime).getTime() - new Date(orderA.creationTime).getTime();
+			});
+
 			this.wait = false;
 		}).catch((blApiError: BlApiError) => {
 			console.log('customerOrderListComponent: could not fetch customer orders');
