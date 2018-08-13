@@ -1,23 +1,25 @@
 import {Injectable} from '@angular/core';
 import {OrderHandlerService} from '../../order/order-handler/order-handler.service';
-import {CustomerItem, Order, OrderItem} from '@wizardcoder/bl-model';
+import {CustomerItem, Delivery, Order, OrderItem} from '@wizardcoder/bl-model';
 import {CartService} from '../cart.service';
 import {CustomerItemHandlerService} from '../../customer-item/customer-item-handler/customer-item-handler.service';
 import {forEach} from '@angular/router/src/utils/collection';
 import {CartItem} from '../cartItem';
 import {CustomerService} from '../../customer/customer.service';
 import {PaymentHandlerService} from '../../payment/payment-handler/payment-handler.service';
+import {DeliveryService} from '@wizardcoder/bl-connect';
 
 @Injectable()
 export class CartConfirmService {
 
 	constructor(private _orderHandlerService: OrderHandlerService, private _cartService: CartService,
 	            private _customerItemHandlerService: CustomerItemHandlerService, private _customerService: CustomerService,
+	            private _deliveryService: DeliveryService,
 	            private _paymentHandlerService: PaymentHandlerService) {
 	}
 
-	public addOrder(): Promise<Order> {
-		return this._orderHandlerService.addOrder(this._cartService.getCart());
+	public async addOrder(): Promise<Order> {
+		return this._orderHandlerService.addOrder(this._cartService.getCart(), await this.orderShouldHaveDelivery());
 	}
 
 	public placeOrder(order: Order): Promise<boolean> {
@@ -40,6 +42,34 @@ export class CartConfirmService {
 				});
 			}
 		});
+	}
+
+	public async orderShouldHaveDelivery() {
+
+		for (const cartItem of this._cartService.getCart()) {
+			if (cartItem.originalOrder && cartItem.originalOrder.delivery) {
+				const delivery = await this._deliveryService.getById(cartItem.originalOrder.delivery);
+				if (delivery.method !== 'bring') {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+
+		return true;
+	}
+	public async getOriginalDelivery(): Promise<Delivery> {
+		for (const cartItem of this._cartService.getCart()) {
+			if (cartItem.originalOrder && cartItem.originalOrder.delivery) {
+				const delivery = await this._deliveryService.getById(cartItem.originalOrder.delivery);
+				if (delivery.method === 'bring') {
+					return delivery;
+				}
+			}
+		}
+
+		throw new Error('could not find original delivery');
 	}
 
 	public async addOrUpdateCustomerItems(order: Order): Promise<boolean> {

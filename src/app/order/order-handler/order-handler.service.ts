@@ -14,18 +14,17 @@ export class OrderHandlerService {
 	            private _customerService: CustomerService, private _userService: UserService, private _orderService: OrderService) {
 	}
 
-	public addOrder(cartItems: CartItem[]): Promise<Order> {
+	public addOrder(cartItems: CartItem[], handoutByDelivery: boolean): Promise<Order> {
 		return new Promise((resolve, reject) => {
 			let order: Order;
 
 			try {
 				order = this.convertCartItemsToOrder(cartItems);
+				order.handoutByDelivery = handoutByDelivery;
 
 			} catch (e) {
 				return reject(new Error('orderHandlerService: could not convert cart to order: ' + e));
 			}
-
-			console.log('trying to add order', order);
 
 			this._orderService.add(order).then((addedOrder: Order) => {
 				resolve(addedOrder);

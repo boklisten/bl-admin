@@ -20,6 +20,7 @@ import {CustomerModule} from '../customer/customer.module';
 import {CartConfirmService} from './cart-confirm/cart-confirm.service';
 import {PaymentModule} from '../payment/payment.module';
 import {CustomerItemModule} from '../customer-item/customer-item.module';
+import { CartDeliveryComponent } from './cart-delivery/cart-delivery.component';
 
 @NgModule({
 	imports: [
@@ -44,7 +45,8 @@ import {CustomerItemModule} from '../customer-item/customer-item.module';
 		CartListItemComponent,
 		CartListItemActionComponent,
 		CartConfirmComponent,
-		CartListSmallComponent
+		CartListSmallComponent,
+		CartDeliveryComponent
 	],
 	providers: [
 		CustomerOrderResolverService,

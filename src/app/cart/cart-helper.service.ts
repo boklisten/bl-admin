@@ -184,6 +184,10 @@ export class CartHelperService {
 			taxRate: item.taxRate
 		} as OrderItem;
 
+		if (action === 'rent' || action === 'semester' || action === 'year' || action === 'buy') {
+			orderItem.handout = true;
+		}
+
 		const calculatedOrderItemAmounts = this._orderItemPriceService.calculateAmounts(orderItem, item);
 
 		orderItem.item = item.id;

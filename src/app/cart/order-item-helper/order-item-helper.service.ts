@@ -48,6 +48,7 @@ export class OrderItemHelperService {
 		orderItem.type = 'buy';
 		orderItem.delivered = true;
 		orderItem.info = null;
+		orderItem.handout = true;
 		await this.updateOrderItemAmounts(orderItem, item);
 		return orderItem;
 	}
@@ -71,6 +72,8 @@ export class OrderItemHelperService {
 			to: fromToDate.to,
 			numberOfPeriods: 1
 		};
+
+		orderItem.handout = true;
 
 		await this.updateOrderItemAmounts(orderItem, item);
 

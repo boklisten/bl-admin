@@ -7,6 +7,9 @@
 		<div *ngIf="(!showAlreadyPayed && alreadyPayedAmount > 0)" class="text-right">
 			<small class="text-success"><fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon>{{cartItem.originalOrderItem.amount | blcPrice}}</small>
 		</div>
+		<span *ngIf="delivery && delivery.method === 'bring'" class="text-secondary">
+			<fa-icon [icon]="'truck'" class="mr-2"></fa-icon>
+		</span>
 		<span *ngIf="!showAlreadyPayed && cartItem.orderItem.amount >= 0"><fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{cartItem.orderItem.amount | blcPrice}}</span>
 		<span *ngIf="!showAlreadyPayed && cartItem.orderItem.amount < 0" class="text-danger"><fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{cartItem.orderItem.amount | blcPrice}}</span>
 		<span *ngIf="showAlreadyPayed" class="text-success bl-link-black" routerLink="{{'/order/' + cartItem.originalOrder.id + '/detail'}}"><fa-icon [icon]="'dollar-sign'" class="mr-1"></fa-icon><fa-icon [icon]="'check-circle'"></fa-icon></span>
