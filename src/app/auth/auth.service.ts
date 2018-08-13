@@ -27,6 +27,14 @@ export class AuthService {
 		});
 	}
 
+	public getUsername(): string {
+		return this._tokenService.getAccessTokenBody().username;
+	}
+
+	public getPermission(): UserPermission {
+		return this.getUserPermission();
+	}
+
 	public isLoggedIn(): boolean {
 		return this._authLoginService.isLoggedIn();
 	}

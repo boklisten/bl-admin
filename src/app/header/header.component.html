@@ -37,6 +37,11 @@
 							<button class="dropdown-item" (click)="onUserLogout()">
 								<fa-icon [icon]="'sign-out-alt'" class="mr-2"></fa-icon> Log out
 							</button>
+							<div class="dropdown-divider"></div>
+							<div class="dropdown-item text-muted disabled">
+								<div>{{username}}</div>
+								<small>{{userPermission}}</small>
+							</div>
                         </div>
 					</div>
 				</div>

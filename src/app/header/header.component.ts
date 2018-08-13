@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Branch} from '@wizardcoder/bl-model';
+import {Branch, UserPermission} from '@wizardcoder/bl-model';
 import {BranchStoreService} from '../branch/branch-store.service';
 import {AuthService} from '../auth/auth.service';
 
@@ -11,6 +11,8 @@ import {AuthService} from '../auth/auth.service';
 export class HeaderComponent implements OnInit {
 	public currentBranch: Branch;
 	public branches: Branch[];
+	public userPermission: string;
+	public username: string;
 
 	constructor(private _branchStoreService: BranchStoreService, private _authService: AuthService) {
 	}
@@ -29,6 +31,24 @@ export class HeaderComponent implements OnInit {
 		}).catch((getBranchesError) => {
 			console.log('HeaderComponent: could not get branches');
 		});
+
+		this.userPermission = this.translateUserPermission(this._authService.getPermission());
+		this.username = this._authService.getUsername();
+	}
+
+	private translateUserPermission(userPermission: UserPermission) {
+		switch (userPermission) {
+			case 'employee':
+				return 'ansatt';
+			case 'manager':
+				return 'filialsjef';
+			case 'admin':
+				return 'administrator';
+			case 'super':
+				return 'wizard';
+			default:
+				return 'ansatt';
+		}
 	}
 
 	public onSelectBranch(branch: Branch) {
