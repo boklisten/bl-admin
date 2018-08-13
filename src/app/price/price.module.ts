@@ -5,6 +5,7 @@ import {ItemPriceService} from './item-price/item-price.service';
 import {OrderItemPriceService} from './order-item-price/order-item-price.service';
 import {CustomerItemPriceService} from './customer-item-price/customer-item-price.service';
 import {BranchPriceService} from './branch-price/branch-price.service';
+import {PriceService} from './price.service';
 
 @NgModule({
 	imports: [
@@ -15,7 +16,8 @@ import {BranchPriceService} from './branch-price/branch-price.service';
 		ItemPriceService,
 		OrderItemPriceService,
 		CustomerItemPriceService,
-		BranchPriceService
+		BranchPriceService,
+		PriceService
 	],
 	exports: [
 		ItemPricePipe

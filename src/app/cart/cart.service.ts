@@ -247,6 +247,4 @@ export class CartService {
 		}
 
 	}
-
-
 }

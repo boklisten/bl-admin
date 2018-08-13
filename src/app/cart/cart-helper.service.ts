@@ -12,6 +12,7 @@ import {OrderItemPriceService} from '../price/order-item-price/order-item-price.
 import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {CustomerItemPriceService} from '../price/customer-item-price/customer-item-price.service';
 import {BranchItemHelperService} from '../branch/branch-item-helper/branch-item-helper.service';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable()
 export class CartHelperService {
@@ -19,6 +20,7 @@ export class CartHelperService {
 	constructor(private _branchStoreService: BranchStoreService, private _customerService: CustomerService,
 	            private _itemPriceService: ItemPriceService, private _dateService: DateService,
 	            private _orderItemPriceService: OrderItemPriceService, private _customerItemPriceService: CustomerItemPriceService,
+	            private _authService: AuthService,
 	            private _branchItemHelperService: BranchItemHelperService) {
 	}
 
@@ -35,27 +37,50 @@ export class CartHelperService {
 		return true;
 	}
 
-	public actionValidOnItem(action: CartItemAction, item: Item, customerItem?: CustomerItem): boolean {
-		// TODO: should update this method to user Branch.branchItems to validate if action is valid
-		if (!customerItem) {
+	public isActionValidOnItem(action, item: Item): boolean {
+		if ((action === 'semester' || action === 'year') && this._customerService.haveCustomer()) {
+			return this._branchItemHelperService.isRentValid(item, action);
+		} else if (action === 'buy') {
+			return this._branchItemHelperService.isBuyValid(item);
+		} else if (action === 'sell' && this._customerService.haveCustomer()) {
+			return this._branchItemHelperService.isSellValid(item);
+		} else {
+			return false;
+		}
+	}
+
+	public isActionValidOnCartItem(action: CartItemAction, cartItem: CartItem): boolean {
+		if (!cartItem.customerItem) {
 			if ((action === 'semester' || action === 'year') && this._customerService.haveCustomer()) {
-				return this._branchItemHelperService.isRentValid(item, action);
+				return this._branchItemHelperService.isRentValid(cartItem.item, action);
 			} else if (action === 'buy') {
-				return this._branchItemHelperService.isBuyValid(item);
+				return this._branchItemHelperService.isBuyValid(cartItem.item);
 			} else if (action === 'sell' && this._customerService.haveCustomer()) {
-				return this._branchItemHelperService.isSellValid(item);
+				return this._branchItemHelperService.isSellValid(cartItem.item);
+			} else if (action === 'cancel') {
+				if (this._authService.isManager()) {
+					return this._dateService.isOrderItemCancelValid(cartItem.originalOrder.creationTime);
+				} else {
+					return false;
+				}
 			}
 		} else {
 			if (action === 'cancel') {
-				return (customerItem.handout && this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time));
+				if (this._authService.isManager()) {
+					return (cartItem.customerItem.handout && this._dateService.isCustomerItemCancelValid(cartItem.customerItem.handoutInfo.time));
+				} else {
+					return false;
+				}
 			} else if (action === 'return') {
-				return (customerItem.handout
-					&& this._dateService.isCustomerItemReturnValid(customerItem.deadline)
-					&& !this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time));
+				return (cartItem.customerItem.handout
+					&& this._dateService.isCustomerItemReturnValid(cartItem.customerItem.deadline)
+					&& !this._dateService.isCustomerItemCancelValid(cartItem.customerItem.handoutInfo.time));
 			} else if (action === 'buyout') {
-				return (customerItem.handout && this._dateService.isCustomerItemReturnValid(customerItem.deadline));
+				return (cartItem.customerItem.handout && this._dateService.isCustomerItemReturnValid(cartItem.customerItem.deadline));
 			} else if (action === 'extend') {
-				return (customerItem.handout && this._dateService.isCustomerItemReturnValid(customerItem.deadline));
+				return (cartItem.customerItem.handout
+					&& this._dateService.isCustomerItemReturnValid(cartItem.customerItem.deadline)
+					&& this._dateService.isCustomerItemExtendValid(cartItem.customerItem.deadline, 'semester'));
 			}
 
 		}
@@ -64,26 +89,42 @@ export class CartHelperService {
 	}
 
 	public createOrderItemBasedOnCustomerItem(customerItem: CustomerItem, item: Item) {
-		if (this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time)) {
+		if (!this._dateService.isCustomerItemReturnValid(customerItem.deadline) && !this._authService.isAdmin()) {
+			throw new Error('can not add customer item to cart, the deadline is overdue');
+		}
+
+		if (this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time) && this._authService.isManager()) {
 			return this.createOrderItemTypeCancel(customerItem, item);
-		} else if (this._dateService.isCustomerItemReturnValid(customerItem.deadline)) {
+		} else if (this._dateService.isCustomerItemReturnValid(customerItem.deadline) && !this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time)) {
 			return this.createOrderItemTypeReturn(customerItem, item);
+		} else if (this._dateService.isCustomerItemExtendValid(customerItem.deadline, 'semester')) {
+			return this.createOrderItemTypeExtend(customerItem, item, 'semester');
+		} else if (this._branchItemHelperService.isBuyValid(item)) {
+			return this.createOrderItemTypeBuyout(customerItem, item);
 		} else {
 			throw new Error('cartHelperService: this customerItem can not be handled');
 		}
 	}
 
 	public createOrderItemTypeExtend(customerItem: CustomerItem, item: Item, period: Period): OrderItem {
-		return {
+		const orderItem: OrderItem = {
 			type: 'extend',
 			item: item.id,
 			title: item.title,
-			amount: this._customerItemPriceService.priceExtend(customerItem, item, period),
-			unitPrice: item.price,
-			taxRate: item.taxRate,
+			amount: 0,
+			unitPrice: 0,
+			taxRate: 0,
 			taxAmount: 0,
 			customerItem: customerItem.id
 		};
+
+		const orderItemAmounts = this._customerItemPriceService.calculateAmountsExtend(customerItem, period, item);
+		orderItem.amount = orderItemAmounts.amount;
+		orderItem.unitPrice = orderItemAmounts.unitPrice;
+		orderItem.taxAmount = orderItemAmounts.taxAmount;
+		orderItem.taxRate = item.taxRate;
+
+		return orderItem;
 	}
 
 	public createOrderItemTypeCancel(customerItem: CustomerItem, item: Item): OrderItem {
@@ -100,6 +141,7 @@ export class CartHelperService {
 	}
 
 	public createOrderItemTypeReturn(customerItem: CustomerItem, item: Item): OrderItem {
+
 		return {
 			type: 'return',
 			item: item.id,
@@ -108,6 +150,21 @@ export class CartHelperService {
 			unitPrice: 0,
 			taxRate: 0,
 			taxAmount: 0,
+			customerItem: customerItem.id
+		};
+	}
+
+	public createOrderItemTypeBuyout(customerItem: CustomerItem, item: Item): OrderItem {
+		const orderItemAmounts = this._customerItemPriceService.calculateAmountsBuyout(item);
+
+		return {
+			type: 'buyout',
+			item: item.id,
+			title: item.title,
+			amount: orderItemAmounts.amount,
+			unitPrice: orderItemAmounts.unitPrice,
+			taxAmount: orderItemAmounts.taxAmount,
+			taxRate: item.taxRate,
 			customerItem: customerItem.id
 		};
 	}
@@ -122,39 +179,22 @@ export class CartHelperService {
 			throw new Error('no action can be done on this item');
 		}
 
-		return {
-			type: this.orderItemTypeBasedOnAction(action),
-			item: item.id,
-			title: item.title,
-			amount: this.orderItemPriceBasedOnAction(action, item),
-			unitPrice: item.price,
-			taxRate: item.taxRate,
-			taxAmount: 0,
-			info: this.createDefaultOrderItemInfo(this.orderItemTypeBasedOnAction(action))
-		};
-	}
+		const orderItem = {
+			type: action,
+			taxRate: item.taxRate
+		} as OrderItem;
 
-	private createDefaultOrderItemInfo(type: OrderItemType): OrderItemInfo {
-		if (type === 'rent') {
-			let periodType: 'semester' | 'year';
+		const calculatedOrderItemAmounts = this._orderItemPriceService.calculateAmounts(orderItem, item);
 
-			if (this.cartItemActionValidOnBranch('semester')) {
-				periodType = 'semester';
-			} else if (this.cartItemActionValidOnBranch('year')) {
-				periodType = 'year';
-			} else {
-				return null;
-			}
+		orderItem.item = item.id;
+		orderItem.title = item.title;
+		orderItem.unitPrice = calculatedOrderItemAmounts.unitPrice;
+		orderItem.taxRate = calculatedOrderItemAmounts.taxAmount;
+		orderItem.amount = calculatedOrderItemAmounts.amount;
+		orderItem.info = this.createDefaultOrderItemInfo(this.orderItemTypeBasedOnAction(action));
 
-			const fromTo = this._dateService.rentPeriod(periodType);
 
-			return {
-				from: fromTo.from,
-				to: fromTo.to,
-				numberOfPeriods: 1,
-				periodType: periodType
-			};
-		}
+		return orderItem;
 	}
 
 	public getFirstValidActionOnItem(item: Item) {
@@ -167,7 +207,26 @@ export class CartHelperService {
 
 		for (const action of actionList) {
 			if (this.cartItemActionValidOnBranch(action)) {
-				if (this.actionValidOnItem(action, item)) {
+				if (this.isActionValidOnItem(action, item)) {
+					return action;
+				}
+			}
+		}
+
+		throw new Error('no action on item is valid');
+	}
+
+	public getFirstValidActionOnCartItem(cartItem: CartItem) {
+		const actionList: CartItemAction[] = [
+			'semester',
+			'year',
+			'buy',
+			'sell'
+		];
+
+		for (const action of actionList) {
+			if (this.cartItemActionValidOnBranch(action)) {
+				if (this.isActionValidOnCartItem(action, cartItem)) {
 					return action;
 				}
 			}
@@ -194,6 +253,29 @@ export class CartHelperService {
 			return this._itemPriceService.buyPrice(item, alreadyPayedAmount);
 		} else if (action === 'sell') {
 			return this._itemPriceService.sellPrice(item);
+		}
+	}
+
+	private createDefaultOrderItemInfo(type: OrderItemType): OrderItemInfo {
+		if (type === 'rent') {
+			let periodType: 'semester' | 'year';
+
+			if (this.cartItemActionValidOnBranch('semester')) {
+				periodType = 'semester';
+			} else if (this.cartItemActionValidOnBranch('year')) {
+				periodType = 'year';
+			} else {
+				return null;
+			}
+
+			const fromTo = this._dateService.rentPeriod(periodType);
+
+			return {
+				from: fromTo.from,
+				to: fromTo.to,
+				numberOfPeriods: 1,
+				periodType: periodType
+			};
 		}
 	}
 }

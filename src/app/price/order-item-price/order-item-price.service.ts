@@ -4,6 +4,7 @@ import {ItemPriceService} from '../item-price/item-price.service';
 import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
 import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {BranchStoreService} from '../../branch/branch-store.service';
+import {PriceService} from '../price.service';
 
 export interface  OrderItemAmounts {
 	amount: number;
@@ -14,7 +15,7 @@ export interface  OrderItemAmounts {
 @Injectable()
 export class OrderItemPriceService {
 
-	constructor(private _itemPriceService: ItemPriceService) {
+	constructor(private _itemPriceService: ItemPriceService, private _priceService: PriceService) {
 	}
 
 	public calculateAmounts(orderItem: OrderItem, item: Item, originalOrderItem?: OrderItem, originalOrder?: Order): OrderItemAmounts {
@@ -29,8 +30,9 @@ export class OrderItemPriceService {
 			unitPrice = this.priceCancel(originalOrderItem, originalOrder);
 		}
 
-		const taxAmount = this.calculateTaxAmount(orderItem.taxRate, unitPrice);
-		const amount = this.calculateOrderItemAmount(unitPrice, taxAmount);
+		unitPrice = this._priceService.sanitize(unitPrice);
+		const taxAmount = this._priceService.sanitize(this.calculateTaxAmount(orderItem.taxRate, unitPrice));
+		const amount = this._priceService.sanitize(this.calculateOrderItemAmount(unitPrice, taxAmount));
 
 		return {
 			amount: amount,

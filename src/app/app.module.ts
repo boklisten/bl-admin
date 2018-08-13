@@ -96,7 +96,7 @@ export class AppModule {
 			userAgreementUrl: '/',
 			logoutPath: '/auth/menu',
 			permissionDeniedPath: '/auth/permission/denied',
-			permissions: ['employee', 'admin']
+			permissions: ['employee', 'manager', 'admin', 'super']
 		});
 
 		_blConnectConfig.setConfig({basePath: environment.apiPath});

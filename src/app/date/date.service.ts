@@ -12,6 +12,8 @@ interface FromToDate {
 
 @Injectable()
 export class DateService {
+	numOfPeriodsCancel: number;
+	cancelPeriod: string;
 
 	constructor(private _branchStoreService: BranchStoreService, private _branchHelperService: BranchHelperService) {
 	}
@@ -28,8 +30,25 @@ export class DateService {
 		return moment().isSameOrBefore(moment(handoutDate).add(2, 'week'));
 	}
 
+	public isOrderItemCancelValid(orderDate: Date): boolean {
+		return moment().isSameOrBefore(moment(orderDate).add(2, 'week'));
+	}
+
+	public isCustomerItemExtendValid(currentDeadline: Date, period: Period): boolean {
+		const fromToDate = this.extendPeriod(period);
+		return (moment(currentDeadline).isBefore(moment(fromToDate.to)));
+	}
+
 	public extendPeriod(period: Period): FromToDate {
-		return this.rentPeriod(period);
+		const branch = this._branchStoreService.getCurrentBranch();
+
+		const extendPeriod = this._branchHelperService.getExtendPeriod(branch, period);
+
+		if (!extendPeriod) {
+			throw new Error('could not find extend period type on branch');
+		}
+
+		return {from: new Date(), to: extendPeriod.date}
 	}
 
 	public rentPeriod(period: Period): FromToDate {

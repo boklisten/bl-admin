@@ -7,12 +7,17 @@ import {MapType} from '@angular/compiler/src/output/output_ast';
 import {BranchItemStoreService} from '../../branch/branch-item-store/branch-item-store.service';
 import {BranchPriceService} from '../branch-price/branch-price.service';
 import {BranchItemHelperService} from '../../branch/branch-item-helper/branch-item-helper.service';
+import {PriceService} from '../price.service';
 
 @Injectable()
 export class ItemPriceService {
 	private _branchItems: BranchItem[];
 
-	constructor(private _branchStoreService: BranchStoreService, private _branchPriceService: BranchPriceService, private _branchItemHelperService: BranchItemHelperService) {
+	constructor(private _branchStoreService: BranchStoreService,
+	            private _branchPriceService: BranchPriceService,
+	            private _branchItemHelperService: BranchItemHelperService,
+	            private _priceService: PriceService
+	) {
 		this._branchItems = [];
 	}
 
@@ -35,10 +40,10 @@ export class ItemPriceService {
 		}
 
 		if (alreadyPayed) {
-			return this.sanitizePrice(branchPrice - alreadyPayed);
+			return this._priceService.sanitize(branchPrice - alreadyPayed);
 		}
 
-		return this.sanitizePrice(branchPrice);
+		return this._priceService.sanitize(branchPrice);
 	}
 
 	public buyPrice(item: Item, alreadyPayed?: number): number {
@@ -47,9 +52,9 @@ export class ItemPriceService {
 		}
 
 		if (alreadyPayed) {
-			return this.sanitizePrice(item.price - alreadyPayed);
+			return this._priceService.sanitize(item.price - alreadyPayed);
 		}
-		return this.sanitizePrice(item.price);
+		return this._priceService.sanitize(item.price);
 	}
 
 	public sellPrice(item: Item): number {
@@ -60,16 +65,7 @@ export class ItemPriceService {
 		// TODO: should update sell price calculation to follow new flow
 
 
-
-		return this.sanitizePrice(-1);
-	}
-
-	private sanitizePrice(price: number): number {
-		//return price;
-		if (price < 0) {
-			return price;
-		}
-		return (parseInt((price / 10).toString(), 10)) * 10;
+		return this._priceService.sanitize(-1);
 	}
 
 }

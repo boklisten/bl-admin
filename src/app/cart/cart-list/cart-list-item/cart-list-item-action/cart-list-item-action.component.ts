@@ -8,6 +8,8 @@ import {DateService} from '../../../../date/date.service';
 import {CustomerService} from '../../../../customer/customer.service';
 import {CartHelperService} from '../../../cart-helper.service';
 import {CustomerItemPriceService} from '../../../../price/customer-item-price/customer-item-price.service';
+import {OrderItemHelperService} from '../../../order-item-helper/order-item-helper.service';
+import {AuthService} from '../../../../auth/auth.service';
 
 @Component({
 	selector: 'app-cart-list-item-action',
@@ -20,8 +22,13 @@ export class CartListItemActionComponent implements OnInit {
 
 	public actionList: CartItemAction[];
 
-	constructor(private _orderItemPriceService: OrderItemPriceService, private _dateService: DateService, private _customerService: CustomerService,
-	            private _cartHelperService: CartHelperService, private _customerItemPriceService: CustomerItemPriceService) {
+	constructor(private _orderItemPriceService: OrderItemPriceService,
+	            private _dateService: DateService,
+	            private _customerService: CustomerService,
+	            private _cartHelperService: CartHelperService,
+	            private _authService: AuthService,
+	            private _orderItemHelperService: OrderItemHelperService,
+	            private _customerItemPriceService: CustomerItemPriceService) {
 		this.actionList = [];
 		this.actionChange = new EventEmitter<CartItemAction>();
 	}
@@ -35,16 +42,22 @@ export class CartListItemActionComponent implements OnInit {
 			this.actionList = [
 				'semester',
 				'year',
-				'buy',
-				'cancel'
+				'buy'
 			];
+
+			if (this._authService.isManager()) {
+				this.actionList.push('cancel');
+			}
 		} else if (this.cartItem.customerItem) {
 			this.actionList = [
 				'return',
 				'extend',
-				'buyout',
-				'cancel'
+				'buyout'
 			];
+
+			if (this._authService.isManager()) {
+				this.actionList.push('cancel');
+			}
 		} else if (this._customerService.haveCustomer()) {
 			this.actionList = [
 				'semester',
@@ -69,7 +82,7 @@ export class CartListItemActionComponent implements OnInit {
 			}
 		}
 
-		return (this._cartHelperService.actionValidOnItem(action, this.cartItem.item, this.cartItem.customerItem));
+		return (this._cartHelperService.isActionValidOnCartItem(action, this.cartItem));
 	}
 
 	onActionChange(action: CartItemAction) {
@@ -101,90 +114,10 @@ export class CartListItemActionComponent implements OnInit {
 	}
 
 	private updateOrderItemBasedOnAction(action: CartItemAction) {
-		switch (action) {
-			case 'semester':
-				this.updateOrderItemRent('semester');
-				break;
-			case 'year':
-				this.updateOrderItemRent('year');
-				break;
-			case 'buy':
-				this.updateOrderItem(action);
-				break;
-			case 'sell':
-				this.updateOrderItem(action);
-				break;
-			case 'return':
-				this.updateOrderItem(action);
-				break;
-			case 'extend':
-				this.updateOrderItemExtend();
-				break;
-			case 'buyout':
-				this.updateOrderItem(action);
-				break;
-			case 'cancel':
-				this.updateOrderItem('cancel');
-				break;
-		}
+		this._orderItemHelperService.updateOrderItem(action, this.cartItem.orderItem, this.cartItem.item, this.cartItem.customerItem).then(() => {
 
-		if (this.cartItem.customerItem) {
-			this.cartItem.orderItem.amount = this.orderItemAmountBasedOnCustomerItem();
-		} else {
-			const orderItemAmounts = this._orderItemPriceService
-				.calculateAmounts(this.cartItem.orderItem, this.cartItem.item, this.cartItem.originalOrderItem, this.cartItem.originalOrder);
-
-			this.cartItem.orderItem.amount = orderItemAmounts.amount;
-			this.cartItem.orderItem.taxAmount = orderItemAmounts.taxAmount;
-			this.cartItem.orderItem.unitPrice = orderItemAmounts.unitPrice;
-		}
+		}).catch(() => {
+			console.log('cartListItemAction: could not update orderItem');
+		});
 	}
-
-	private orderItemAmountBasedOnCustomerItem(): number {
-		switch (this.cartItem.action) {
-			case 'buyout':
-				return this._customerItemPriceService.priceBuyout(this.cartItem.item);
-			case 'extend':
-				return this._customerItemPriceService.priceExtend(this.cartItem.customerItem, this.cartItem.item, this.cartItem.orderItem.info.periodType);
-			case 'cancel':
-				return this._customerItemPriceService.priceCancel(this.cartItem.customerItem);
-			case 'return':
-				return this._customerItemPriceService.priceReturn(this.cartItem.customerItem);
-		}
-	}
-
-	private updateOrderItemExtend() {
-		this.cartItem.orderItem.type = 'extend';
-		const extendPeriod = this._dateService.extendPeriod('semester');
-
-		this.cartItem.orderItem.info = {
-			from: extendPeriod.from,
-			to: extendPeriod.to,
-			numberOfPeriods: 1,
-			periodType: 'semester',
-			customerItem: this.cartItem.customerItem.id
-		};
-	}
-
-	private updateOrderItem(type: OrderItemType) {
-		this.cartItem.orderItem.type = type;
-		this.cartItem.orderItem.info = null;
-	}
-
-	private updateOrderItemRent(period: Period) {
-		this.cartItem.orderItem.type = 'rent';
-		let rentPeriod = this._dateService.rentPeriod(period);
-
-		if (this.originalAction(period)) {
-			rentPeriod = {to: this.cartItem.originalOrderItem.info.to, from: this.cartItem.originalOrderItem.info.from};
-		}
-
-		this.cartItem.orderItem.info = {
-			from: rentPeriod.from,
-			to: rentPeriod.to,
-			numberOfPeriods: 1,
-			periodType: period
-		};
-	}
-
 }
