@@ -18,6 +18,14 @@ export class SideBarComponent implements OnInit {
 	constructor(private _customerService: CustomerService, private _router: Router, private _userService: UserService) {
 		this.sidebarLinks = [
 			{
+				name: 'customer',
+				link: '',
+				icon: 'address-card',
+				selected: false,
+				permission: 'customer',
+				hide: true
+			},
+			{
 				name: 'search',
 				link: 'search',
 				icon: 'search',
@@ -30,14 +38,6 @@ export class SideBarComponent implements OnInit {
 				icon: 'shopping-cart',
 				permission: 'customer',
 				selected: false
-			},
-			{
-				name: 'customer',
-				link: '',
-				icon: 'user',
-				selected: false,
-				permission: 'customer',
-				hide: true
 			},
 			{
 				name: 'orders',

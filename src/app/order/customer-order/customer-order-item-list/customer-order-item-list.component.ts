@@ -14,7 +14,7 @@ export class CustomerOrderItemListComponent implements OnInit {
 	public customerOrderItems: { orderItem: OrderItem, order: Order }[];
 	public noOrderItemsText: string;
 
-	constructor(private _customerService: CustomerService) {
+	constructor(private _customerService: CustomerService, private _orderService: OrderService) {
 		this.customerOrderItems = [];
 		this.noOrderItemsText = 'Customer has no ordered items';
 	}
@@ -22,27 +22,32 @@ export class CustomerOrderItemListComponent implements OnInit {
 	ngOnInit() {
 
 		if (this._customerService.haveCustomer()) {
-			this.addCustomerOrder();
+			this.customerDetail = this._customerService.get().detail;
+			this.getOrderItems();
 		}
 
 		this._customerService.onCustomerChange().subscribe(() => {
 			if (this._customerService.haveCustomer()) {
-				this.addCustomerOrder();
+				this.customerDetail = this._customerService.get().detail;
+				this.getOrderItems();
 			} else {
 				this.customerOrderItems = [];
 			}
 		});
 	}
 
-	addCustomerOrder() {
+	private getOrderItems() {
 		this.customerOrderItems = [];
-		if (this._customerService.get().orders) {
-			for (const order of this._customerService.get().orders) {
+		this._orderService.getManyByIds(this.customerDetail.orders).then((orders: Order[]) => {
+		console.log('fetched the orderItems');
+			for (const order of orders) {
 				for (const orderItem of order.orderItems) {
 					this.addAsOrderedItem(order, orderItem);
 				}
 			}
-		}
+		}).catch(() => {
+			console.log('CustomerOrderItemList: could not get orders');
+		});
 	}
 
 	public havePayed(customerOrderItem: { orderItem: OrderItem, order: Order }) {
@@ -67,11 +72,13 @@ export class CustomerOrderItemListComponent implements OnInit {
 			}
 		}
 
-		if (orderItem.movedToOrder) {
-			return;
+		if (!orderItem.movedToOrder) {
+			console.log('should add', orderItem);
+			this.customerOrderItems.push({orderItem: orderItem, order: order});
 		}
 
-		this.customerOrderItems.push({orderItem: orderItem, order: order});
+		return;
+
 	}
 
 

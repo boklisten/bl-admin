@@ -46,6 +46,7 @@ export class OrderItemHelperService {
 	private async updateOrderItemBuy(orderItem: OrderItem, item: Item): Promise<OrderItem> {
 		console.log('updating to buy');
 		orderItem.type = 'buy';
+		orderItem.delivered = true;
 		orderItem.info = null;
 		await this.updateOrderItemAmounts(orderItem, item);
 		return orderItem;
@@ -79,6 +80,7 @@ export class OrderItemHelperService {
 	private async updateOrderItemBuyout(orderItem: OrderItem, item: Item, customerItem: CustomerItem): Promise<OrderItem> {
 		console.log('updating to buyout');
 		orderItem.type = 'buyout';
+		orderItem.delivered = true;
 		const orderItemAmounts: OrderItemAmounts = this._customerItemPriceService.calculateAmountsBuyout(item);
 
 		orderItem.taxRate = item.taxRate;

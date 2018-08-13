@@ -48,7 +48,7 @@ export class CartConfirmService {
 
 			if (order) {
 				for (const orderItem of order.orderItems) {
-					if (!orderItem.customerItem && orderItem.type !== 'buy' && orderItem.type !== 'sell') {
+					if (!orderItem.customerItem && orderItem.type !== 'buy' && orderItem.type !== 'sell' && orderItem.type !== 'buyout' && orderItem.type !== 'cancel') {
 						customerItemsToCreate.push({orderItem: orderItem, order: order});
 					} else if (orderItem.customerItem) {
 						orderItemsToUpdate.push(orderItem);
