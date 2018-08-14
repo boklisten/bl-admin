@@ -13,18 +13,41 @@
 					<span><fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon> {{delivery.info['branch'] | branchName | async}}</span>
                 </li>
 				<li class="list-group-item" *ngIf="delivery.method === 'bring'">
-					<span *ngIf="delivery.method === 'bring'"><fa-icon [icon]="'truck'" class="mr-2"></fa-icon> Bring</span>
-					<span *ngIf="delivery.info['from']" class="ml-2"> <fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon> {{delivery.info['to']}}</span>
-					<span *ngIf="delivery.info['estimatedDelivery']" class="ml-2"><fa-icon [icon]="'clock'" class="mr-2"></fa-icon>{{delivery.info['estimatedDelivery'] | blDate}}</span>
+					<div class="row justify-content-between">
+						<div class="col-auto">
+							<span *ngIf="delivery.method === 'bring'"><fa-icon [icon]="'truck'" class="mr-2"></fa-icon> Bring</span>
+						</div>
+						<div class="col-auto">
+							<span *ngIf="delivery.info['estimatedDelivery']"><fa-icon [icon]="'clock'" class="mr-2"></fa-icon>{{delivery.info['estimatedDelivery'] | blDate}}</span>
+						</div>
+					</div>
+					<div class="row mt-2 justify-content-center">
+						<div class="col-auto">
+							<span *ngIf="delivery.info['shipmentAddress']">
+								{{delivery.info['shipmentAddress']['name']}}
+							</span>
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-auto">
+							<span *ngIf="delivery.info['shipmentAddress']">
+								{{delivery.info['shipmentAddress']['address']}}
+							</span>
+						</div>
+					</div>
+					<div class="row justify-content-center">
+						<div class="col-auto">
+							<span *ngIf="delivery.info['shipmentAddress']">
+								{{delivery.info['shipmentAddress']['postalCode']}} {{delivery.info['shipmentAddress']['postalCity']}}
+							</span>
+						</div>
+					</div>
 				</li>
             </ul>
 			<div class="card-footer" *ngIf="delivery">
 				<div class="row">
 					<div class="col-auto ml-auto">
-						<div><fa-icon [icon]="'dollar-sign'" class="mr-2 ml-2"></fa-icon> {{delivery.amount}} kr</div>
-						<div>
-							<small style="font-size: 11px; line-height: 11px; display: block; text-align: right;" *ngIf="delivery.info['taxAmount']">mva {{delivery.info['taxAmount']}} kr</small>
-						</div>
+						<div>{{delivery.amount | blcPrice}}</div>
 					</div>
 				</div>
 			</div>

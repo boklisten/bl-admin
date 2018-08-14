@@ -17,26 +17,16 @@ export class PaymentHandlerService {
 		this._paymentChoices = paymentChoices;
 	}
 
-	public addPayments(order: Order): Promise<boolean> {
-		return new Promise((resolve, reject) => {
+	public async addPayments(order: Order): Promise<boolean> {
+		const payments = this.createPayments(order.id);
 
-			const payments = this.createPayments(order.id);
+		for (const payment of payments) {
+			await this._paymentService.add(payment);
+		}
 
-			const addPaymentPromiseArr: Promise<Payment>[] = [];
+		console.log('added the payments', payments);
 
-			for (const payment of payments) {
-				addPaymentPromiseArr.push(this._paymentService.add(payment));
-			}
-
-			Promise.all(addPaymentPromiseArr).then((something) => {
-				resolve(true);
-			}).catch((addPaymentsError) => {
-				reject(new Error('paymentHandlerService: could not add payments: ' + addPaymentsError));
-			});
-		});
-
-
-
+		return true;
 	}
 
 

@@ -10,7 +10,7 @@
                 </span>
             </div>
             <div class="col-auto">
-                <fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{orderItem.amount}} kr
+                {{orderItem.amount | blcPrice}}
             </div>
         </div>
         <div class="row" *ngIf="orderItem.type === 'buy'">

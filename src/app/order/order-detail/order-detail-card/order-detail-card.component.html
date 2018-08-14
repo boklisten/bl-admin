@@ -18,7 +18,7 @@
                     <fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon> {{order.branch | branchName | async}}
                 </li>
                 <li class="list-group-item">
-                    <fa-icon [icon]="'clock'" class="mr-2"></fa-icon> {{order.creationTime | blDate:'time'}}
+                    <fa-icon [icon]="'clock'" class="mr-2"></fa-icon> {{order.creationTime | blDate:'timestamp'}}
                 </li>
                 <li class="list-group-item">
                     <fa-icon [icon]="'qrcode'" class="mr-2"></fa-icon> {{order.id}}

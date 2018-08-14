@@ -17,37 +17,48 @@
 	</div>
 </div>
 
-<div class="row mt-5">
-	<div class="col-12">
+<div class="row mt-5 justify-content-center">
+	<div class="col-6">
 
-        <div class="input-group mb-3" *ngIf="card && showInput">
-            <div class="input-group-prepend">
+        <div class="input-group input-group-lg mb-3 mr-2" *ngIf="card && showInput">
+
+            <input type="text" class="form-control" id="cardAmount" placeholder="card amount"
+				   [(ngModel)]="cardAmount"
+				   (click)="$event.target.select()"
+				   (keyup)="onInputChange()">
+
+            <div class="input-group-append">
                 <span class="input-group-text">
                     <fa-icon [icon]="'credit-card'"></fa-icon>
                 </span>
             </div>
-
-            <input type="text" class="form-control" id="cardAmount" placeholder="card amount" [(ngModel)]="cardAmount" (keyup)="onInputChange()">
         </div>
 
-		<div class="input-group mb-3" *ngIf="cash && showInput">
-            <div class="input-group-prepend">
+		<div class="input-group input-group-lg mb-3" *ngIf="cash && showInput">
+
+            <input type="text" class="form-control" id="cashAmount" placeholder="cash amount"
+				   [(ngModel)]="cashAmount"
+				   (click)="$event.target.select()"
+				   (keyup)="onInputChange()">
+
+            <div class="input-group-append">
                 <span class="input-group-text">
 					<fa-icon [icon]="'money-bill-alt'"></fa-icon>
                 </span>
             </div>
-
-            <input type="text" class="form-control" id="cashAmount" placeholder="cash amount" [(ngModel)]="cashAmount" (keyup)="onInputChange()">
         </div>
 
-		<div class="input-group mb-3" *ngIf="vipps && showInput">
-            <div class="input-group-prepend">
+		<div class="input-group input-group-lg mb-3" *ngIf="vipps && showInput">
+
+            <input type="text" class="form-control" id="vippsAmount" placeholder="vipps amount" [(ngModel)]="vippsAmount"
+				   (click)="$event.target.select()"
+				   (keyup)="onInputChange()">
+
+			<div class="input-group-append">
                 <span class="input-group-text">
 					vipps
                 </span>
             </div>
-
-            <input type="text" class="form-control" id="vippsAmount" placeholder="vipps amount" (keyup)="onInputChange()">
         </div>
 	</div>
 </div>

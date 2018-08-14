@@ -21,9 +21,10 @@
 							<span *ngIf="!payment.confirmed" class="text-danger"><fa-icon [icon]="'times'" class="mr-2"></fa-icon> Not Confirmed</span>
                         </div>
                         <div class="list-group-item">
-                            <fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{payment.amount}} kr
-							<span *ngIf="payment.method === 'cash'"><fa-icon [icon]="'money'" class="mr-2 ml-2"></fa-icon> Cash</span>
+                            {{payment.amount | blcPrice}}
+							<span *ngIf="payment.method === 'cash'"><fa-icon [icon]="'money-bill-alt'" class="mr-2 ml-2"></fa-icon> Cash</span>
 							<span *ngIf="payment.method === 'dibs'"><fa-icon [icon]="'credit-card'" class="mr-2 ml-2"></fa-icon> Dibs</span>
+							<span *ngIf="payment.method === 'vipps'" class="ml-2 font-weight-bold">Vipps</span>
 							<span *ngIf="payment.method === 'card'"><fa-icon [icon]="'credit-card'" class="mr-2 ml-2"></fa-icon> Card</span>
 							<span *ngIf="payment.method === 'later'" class="text-danger"><fa-icon [icon]="'exclamation-triangle'" class="mr-2 ml-2"></fa-icon> Not payed yet</span>
                         </div>
@@ -37,7 +38,7 @@
 			<div class="card-footer">
 				<div class="row">
 					<div class="col-auto ml-auto">
-						<fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{calculateTotalAmount()}} kr
+						{{calculateTotalAmount() | blcPrice}}
 					</div>
 				</div>
 			</div>

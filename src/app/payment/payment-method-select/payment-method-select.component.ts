@@ -33,7 +33,7 @@ export class PaymentMethodSelectComponent implements OnInit {
 		this.paymentMethodForm = this._formBuilder.group({
 			card: false,
 			cash: false,
-			vipps: new FormControl({value: false, disabled: true})
+			vipps: false
 		});
 
 		this.paymentMethodForm.controls['card'].valueChanges.subscribe((selected) => {
