@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Delivery, Order} from '@wizardcoder/bl-model';
 import {DeliveryService} from '@wizardcoder/bl-connect';
+import {Customer} from '../../customer/customer';
+import {CustomerService} from '../../customer/customer.service';
 
 @Component({
 	selector: 'app-cart-delivery',
@@ -11,24 +13,25 @@ export class CartDeliveryComponent implements OnInit {
 	@Input() order: Order;
 	@Input() originalDelivery: Delivery;
 	@Output() deliveryConfirmed: EventEmitter<boolean>;
+	customer: Customer;
 	delivery: Delivery;
 	trackingNumber: string;
 	canConfirmDelivery: boolean;
 
-	constructor(private _deliveryService: DeliveryService) {
+	constructor(private _deliveryService: DeliveryService, private customerService: CustomerService) {
 		this.trackingNumber = '';
 		this.deliveryConfirmed = new EventEmitter<boolean>();
 		this.canConfirmDelivery = false;
+		this.customer = this.customerService.get();
 	}
 
 	ngOnInit() {
-		console.log('we have the order here', this.order);
-
 		this.delivery = {
 			id: '',
 			method: 'bring',
 			order: this.order.id,
 			amount: 0,
+			viewableFor: [this.customer.detail.blid],
 			info: {
 				from: this.originalDelivery.info['from'],
 				to: this.originalDelivery.info['to'],
@@ -52,7 +55,6 @@ export class CartDeliveryComponent implements OnInit {
 	onTrackingNumberConfirm() {
 		this.delivery.info['trackingNumber'] = this.trackingNumber;
 		this._deliveryService.add(this.delivery).then((addedDelivery) => {
-			console.log('added delivery', addedDelivery);
 			this.deliveryConfirmed.emit(true);
 		}).catch((err) => {
 			console.log('could not add delivery');
