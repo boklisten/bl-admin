@@ -31,9 +31,16 @@
                         </small>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-6" *ngIf="currentBranchId === customerOrderItem.order.branch">
                        <app-blc-item-add [orderItem]="customerOrderItem.orderItem" [order]="customerOrderItem.order"></app-blc-item-add>
                     </div>
+
+					<div class="col-6 justify-content-center" *ngIf="currentBranchId !== customerOrderItem.order.branch">
+						<div class="alert alert-warning text-center">
+							<div class="mr-2">orderItem is from</div>
+							<span class="font-weight-bold">{{customerOrderItem.order.branch | branchName | async}}</span>
+						</div>
+					</div>
 				</div>
             </li>
         </ul>

@@ -3,6 +3,7 @@ import {CustomerDetailService} from '../../../customer/customer-detail/customer-
 import {OrderService} from '@wizardcoder/bl-connect';
 import {Order, OrderItem, UserDetail} from '@wizardcoder/bl-model';
 import {CustomerService} from '../../../customer/customer.service';
+import {BranchStoreService} from '../../../branch/branch-store.service';
 
 @Component({
 	selector: 'app-customer-order-item-list',
@@ -13,13 +14,17 @@ export class CustomerOrderItemListComponent implements OnInit {
 	public customerDetail: UserDetail;
 	public customerOrderItems: { orderItem: OrderItem, order: Order }[];
 	public noOrderItemsText: string;
+	public currentBranchId: string;
 
-	constructor(private _customerService: CustomerService, private _orderService: OrderService) {
+	constructor(private _customerService: CustomerService,
+	            private _branchStoreService: BranchStoreService,
+	            private _orderService: OrderService) {
 		this.customerOrderItems = [];
 		this.noOrderItemsText = 'Customer has no ordered items';
 	}
 
 	ngOnInit() {
+		this.currentBranchId = this._branchStoreService.getCurrentBranch().id;
 
 		if (this._customerService.haveCustomer()) {
 			this.customerDetail = this._customerService.get().detail;
@@ -34,12 +39,15 @@ export class CustomerOrderItemListComponent implements OnInit {
 				this.customerOrderItems = [];
 			}
 		});
+
+		this._branchStoreService.onBranchChange().subscribe(() => {
+			this.currentBranchId = this._branchStoreService.getCurrentBranch().id;
+		});
 	}
 
 	private getOrderItems() {
 		this.customerOrderItems = [];
 		this._orderService.getManyByIds(this.customerDetail.orders).then((orders: Order[]) => {
-		console.log('fetched the orderItems');
 			for (const order of orders) {
 				for (const orderItem of order.orderItems) {
 					this.addAsOrderedItem(order, orderItem);
@@ -58,23 +66,21 @@ export class CustomerOrderItemListComponent implements OnInit {
 	}
 
 	private addAsOrderedItem(order: Order, orderItem: OrderItem) {
-		if (orderItem.type !== 'rent' && orderItem.type !== 'buy') {
+		if (order.handoutByDelivery || !order.byCustomer) {
 			return;
 		}
 
-		if (orderItem.info && orderItem.info.customerItem) {
+		if (orderItem.handout) {
 			return;
 		}
 
-		if (orderItem.type === 'buy') {
-			if (orderItem.delivered) {
-				return;
-			}
+		if (orderItem.movedToOrder) {
+			return;
 		}
 
-		if (!orderItem.movedToOrder) {
-			console.log('should add', orderItem);
-			this.customerOrderItems.push({orderItem: orderItem, order: order});
+		if (orderItem.type === 'rent' || orderItem.type === 'buy') {
+
+			this.customerOrderItems.push({order: order, orderItem: orderItem});
 		}
 
 		return;
