@@ -46,6 +46,7 @@ export class CustomerDetailModalContentComponent implements OnInit {
 			'phone': new FormControl(this.userDetail.phone, [Validators.minLength(8)]),
 			'address': new FormControl(this.userDetail.address, []),
 			'postCode': new FormControl(this.userDetail.postCode, [Validators.minLength(4)]),
+			'dob': new FormControl(this.userDetail.dob, [Validators.requiredTrue]),
 			'postCity': new FormControl(this.userDetail.postCity),
 			'country': new FormControl(this.userDetail.country),
 		});

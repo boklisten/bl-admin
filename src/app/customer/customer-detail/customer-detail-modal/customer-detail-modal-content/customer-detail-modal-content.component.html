@@ -28,6 +28,15 @@
                         <input id="phone" class="form-control" [formControlName]="'phone'" placeholder="Phone" (keyup.enter)="onUserDetailUpdate()">
                     </div>
 
+					<div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="'birthday-cake'"></fa-icon>
+                            </span>
+                        </div>
+                        <input type="date" id="dob" class="form-control" [formControlName]="'dob'" placeholder="Dob" (keyup.enter)="onUserDetailUpdate()">
+                    </div>
+
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
