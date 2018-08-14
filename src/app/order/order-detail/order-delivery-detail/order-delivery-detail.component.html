@@ -42,6 +42,14 @@
 							</span>
 						</div>
 					</div>
+					<div class="row mt-2">
+						<div class="col-auto text-secondary">
+							<span class="mr-2">Tracking number: </span>
+							<span *ngIf="delivery.info['trackingNumber']" class="bl-link-black" (click)="onBringClick()">
+								{{delivery.info['trackingNumber']}}
+							</span>
+						</div>
+					</div>
 				</li>
             </ul>
 			<div class="card-footer" *ngIf="delivery">
