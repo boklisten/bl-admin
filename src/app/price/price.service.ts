@@ -9,9 +9,10 @@ export class PriceService {
 	}
 
 	public sanitize(price: number): number {
-		if (price <= 0) {
-			return price;
-		}
+
+		/*if (price <= 0) {
+			return this.sanitizeNum(price);
+		}*/
 
 		return this.sanitizeNum((parseInt((price / 10).toString(), 10)) * 10);
 	}
