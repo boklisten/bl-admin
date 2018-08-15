@@ -28,6 +28,11 @@
                 <small><fa-icon [icon]="'ban'" class="mr-2"></fa-icon> {{orderItem.type}}</small>
             </div>
         </div>
+		<div class="row" *ngIf="orderItem.type === 'sell'">
+            <div class="col text-secondary">
+                <small><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon> {{orderItem.type}}</small>
+            </div>
+        </div>
         <div class="row justify-content-between text-secondary" *ngIf="orderItem.type === 'rent' || orderItem.type === 'extend'">
             <div class="col-auto">
                 <small>
