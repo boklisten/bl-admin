@@ -19,11 +19,6 @@ export class ItemSearchService {
 		this._searchResultError$ = new Subject<any>();
 		this._searchResult$ = new Subject<boolean>();
 		this._storageSearchTermName = 'bl-item-search-term';
-/*
-		if (this._storageService.get(this._storageSearchTermName)) {
-			this.search(this._storageService.get(this._storageSearchTermName));
-		}
-		*/
 	}
 
 	public async search(searchTerm: string, addToCart?: boolean): Promise<Item[]> {
@@ -84,6 +79,5 @@ export class ItemSearchService {
 
 	private setSearchTerm(searchTerm: string) {
 		this._searchTerm = searchTerm;
-		//this._storageService.store(this._storageSearchTermName, this._searchTerm);
 	}
 }

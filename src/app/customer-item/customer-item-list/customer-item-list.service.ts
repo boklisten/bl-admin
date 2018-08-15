@@ -28,12 +28,9 @@ export class CustomerItemListService {
 	}
 
 	public async addItemWithIsbn(isbn: string): Promise<boolean> {
-		console.log('we are here');
 		if (this._customerItemList.length <= 0) {
 			this._customerItemList = await this.getCustomerItems();
 		}
-
-		console.log('now we are here');
 
 		const cartItemWithItem = this.getItemWithIsbn(isbn);
 
