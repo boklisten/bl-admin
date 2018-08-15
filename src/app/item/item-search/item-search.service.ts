@@ -27,7 +27,7 @@ export class ItemSearchService {
 	}
 
 	public async search(searchTerm: string, addToCart?: boolean): Promise<Item[]> {
-		if (!searchTerm || searchTerm === this._searchTerm || searchTerm.length < 3) {
+		if (!searchTerm || searchTerm.length < 3) {
 			return;
 		}
 
@@ -38,7 +38,11 @@ export class ItemSearchService {
 		try {
 			items = await this._itemService.get('?s=' + this._searchTerm);
 		} catch (e) {
-			items = [];
+			try {
+				items = await this._itemService.get('?info.isbn=' + this._searchTerm);
+			} catch (e) {
+				items = [];
+			}
 		}
 
 		if (items.length === 1 && addToCart) {
