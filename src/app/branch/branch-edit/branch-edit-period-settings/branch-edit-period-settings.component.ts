@@ -28,6 +28,13 @@ export class BranchEditPeriodSettingsComponent implements OnInit {
 			this.branch.deliveryMethods.branch = (this.branch.deliveryMethods.branch) ? this.branch.deliveryMethods.branch : false;
 			this.branch.deliveryMethods.byMail = (this.branch.deliveryMethods.byMail) ? this.branch.deliveryMethods.byMail : false;
 		}
+
+		if (!this.branch.paymentInfo.sell) {
+			this.branch.paymentInfo.sell = {
+				percentage: 0
+			};
+		}
+
 	}
 
 	public onRentPeriodDelete(index: number) {

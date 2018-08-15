@@ -54,9 +54,8 @@ export class OrderItemHelperService {
 	}
 
 	private async updateOrderItemSell(orderItem: OrderItem, item: Item): Promise<OrderItem> {
-		console.log('updating to sell');
 		orderItem.type = 'sell';
-
+		orderItem.handout = false;
 		orderItem.info = null;
 		await this.updateOrderItemAmounts(orderItem, item);
 		return orderItem;

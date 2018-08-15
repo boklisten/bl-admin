@@ -58,14 +58,12 @@ export class ItemPriceService {
 	}
 
 	public sellPrice(item: Item): number {
-		if (!this._branchItemHelperService.isSellValid(item)) {
-			return -1;
+
+		const branch = this._branchStoreService.getCurrentBranch();
+		if (branch.paymentInfo && branch.paymentInfo.sell && branch.paymentInfo.sell.percentage) {
+			return -Math.abs(this._priceService.sanitize(Math.floor(item.price * branch.paymentInfo.sell.percentage)));
 		}
-
-		// TODO: should update sell price calculation to follow new flow
-
-
-		return this._priceService.sanitize(-1);
+		return -1;
 	}
 
 }

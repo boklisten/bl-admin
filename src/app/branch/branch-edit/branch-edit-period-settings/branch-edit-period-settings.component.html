@@ -166,6 +166,17 @@
 
 <div class="row justify-content-between mt-4">
     <div class="col-auto text-secondary">
+        Sell percentage
+    </div>
+    <div class="col-auto">
+        <app-blc-edit-number-value
+            [(value)]="branch.paymentInfo.sell.percentage"
+            (update)="onUpdate()"></app-blc-edit-number-value>
+    </div>
+</div>
+
+<div class="row justify-content-between mt-4">
+    <div class="col-auto text-secondary">
         Free delivery
     </div>
     <div class="col-auto">

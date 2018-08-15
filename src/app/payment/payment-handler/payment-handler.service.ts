@@ -24,8 +24,6 @@ export class PaymentHandlerService {
 			await this._paymentService.add(payment);
 		}
 
-		console.log('added the payments', payments);
-
 		return true;
 	}
 
@@ -52,8 +50,8 @@ export class PaymentHandlerService {
 			order: orderId,
 			amount: amount,
 			branch: branchId,
-			customer: customerDetail.id,
-			viewableFor: [customerDetail.blid],
+			customer: (this._customerService.haveCustomer()) ? customerDetail.id : null,
+			viewableFor: (this._customerService.haveCustomer()) ? [customerDetail.blid] : [],
 			taxAmount: 0
 		} as Payment;
 	}
