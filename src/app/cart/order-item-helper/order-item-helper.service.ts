@@ -44,7 +44,6 @@ export class OrderItemHelperService {
 	}
 
 	private async updateOrderItemBuy(orderItem: OrderItem, item: Item): Promise<OrderItem> {
-		console.log('updating to buy');
 		orderItem.type = 'buy';
 		orderItem.delivered = true;
 		orderItem.info = null;
@@ -80,7 +79,6 @@ export class OrderItemHelperService {
 	}
 
 	private async updateOrderItemBuyout(orderItem: OrderItem, item: Item, customerItem: CustomerItem): Promise<OrderItem> {
-		console.log('updating to buyout');
 		orderItem.type = 'buyout';
 		orderItem.delivered = true;
 		const orderItemAmounts: OrderItemAmounts = this._customerItemPriceService.calculateAmountsBuyout(item);
@@ -96,7 +94,6 @@ export class OrderItemHelperService {
 	}
 
 	private async updateOrderItemReturn(orderItem: OrderItem, customerItem: CustomerItem, item: Item) {
-		console.log('updating to return');
 		orderItem.type = 'return';
 
 		const orderItemAmounts: OrderItemAmounts = await this._customerItemPriceService.calculateAmountsReturn(customerItem, item);

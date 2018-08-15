@@ -36,8 +36,10 @@ export class CustomerService {
 	public haveOrderedItem(itemId: string): {orderItem: OrderItem, order: Order} {
 		for (const order of this._customer.orders) {
 			for (const orderItem of order.orderItems) {
-				if (orderItem.item === itemId) {
-					return {orderItem: orderItem, order: order};
+				if (orderItem.item === itemId ) {
+					if (orderItem.type === 'rent' || orderItem.type === 'buy') {
+						return {orderItem: orderItem, order: order};
+					}
 				}
 			}
 		}
