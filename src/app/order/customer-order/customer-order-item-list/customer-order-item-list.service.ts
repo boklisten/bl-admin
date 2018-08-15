@@ -49,41 +49,32 @@ export class CustomerOrderItemListService {
 
 
 	public async getOrderedItems(): Promise<{ orderItem: OrderItem, order: Order, item: Item }[]> {
-		this._customerOrderItems = [];
-
+		const customerOrderItems = [];
 		const customerDetail = this._customerService.getCustomerDetail();
-
 		const orders = await this._orderService.getManyByIds(customerDetail.orders);
 
 		for (const order of orders) {
 			for (const orderItem of order.orderItems) {
-				await this.addAsOrderedItem(order, orderItem);
+				if (order.handoutByDelivery || !order.byCustomer) {
+					continue;
+				}
+
+				if (orderItem.handout) {
+					continue;
+				}
+
+				if (orderItem.movedToOrder) {
+					continue;
+				}
+
+				if (orderItem.type === 'rent' || orderItem.type === 'buy') {
+					const item = await this._itemService.getById(orderItem.item);
+					customerOrderItems.push({order: order, orderItem: orderItem, item: item});
+				}
 			}
 		}
 
-		return this._customerOrderItems;
-	}
-
-	private async addAsOrderedItem(order: Order, orderItem: OrderItem): Promise<boolean> {
-		if (order.handoutByDelivery || !order.byCustomer) {
-			return false;
-		}
-
-		if (orderItem.handout) {
-			return false;
-		}
-
-		if (orderItem.movedToOrder) {
-			return false;
-		}
-
-		if (orderItem.type === 'rent' || orderItem.type === 'buy') {
-			const item = await this._itemService.getById(orderItem.item);
-			this._customerOrderItems.push({order: order, orderItem: orderItem, item: item});
-			return true;
-		}
-
-		return false;
-
+		this._customerOrderItems = customerOrderItems;
+		return customerOrderItems;
 	}
 }

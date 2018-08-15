@@ -34,8 +34,8 @@ export class CustomerOrderItemListComponent implements OnInit {
 		}
 
 		this._customerService.onCustomerChange().subscribe(() => {
+			this.customerOrderItems = [];
 			if (this._customerService.haveCustomer()) {
-				this.customerDetail = this._customerService.get().detail;
 				this.getCustomerOrderItems();
 			} else {
 				this.customerOrderItems = [];

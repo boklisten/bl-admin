@@ -4,6 +4,7 @@ import {Observable, Subject} from 'rxjs';
 import {Customer} from './customer';
 import {CustomerOrderService} from '../order/customer-order/customer-order.service';
 import {Order, OrderItem, UserDetail} from '@wizardcoder/bl-model';
+import {CartService} from '../cart/cart.service';
 
 @Injectable()
 export class CustomerService {
@@ -30,6 +31,7 @@ export class CustomerService {
 	}
 
 	public reloadCustomer() {
+		console.log('reloading customer');
 		this._customerDetailService.reloadCustomerDetail();
 	}
 

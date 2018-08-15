@@ -12,8 +12,10 @@ import {DeliveryService} from '@wizardcoder/bl-connect';
 @Injectable()
 export class CartConfirmService {
 
-	constructor(private _orderHandlerService: OrderHandlerService, private _cartService: CartService,
-	            private _customerItemHandlerService: CustomerItemHandlerService, private _customerService: CustomerService,
+	constructor(private _orderHandlerService: OrderHandlerService,
+	            private _cartService: CartService,
+	            private _customerItemHandlerService: CustomerItemHandlerService,
+	            private _customerService: CustomerService,
 	            private _deliveryService: DeliveryService,
 	            private _paymentHandlerService: PaymentHandlerService) {
 	}
