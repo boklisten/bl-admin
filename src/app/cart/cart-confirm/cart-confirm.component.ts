@@ -81,8 +81,6 @@ export class CartConfirmComponent implements OnInit {
 	}
 
 	async onGoToDelivery() {
-		console.log('going to delivery');
-
 		this.originalDelivery = await this._cartConfirmService.getOriginalDelivery();
 
 		this.addOrder().then((order: Order) => {
@@ -152,12 +150,10 @@ export class CartConfirmComponent implements OnInit {
 	}
 
 	onPaymentConfirmed() {
-		console.log('the payments was confirmed');
 		this.buttonDisabled = false;
 	}
 
 	onPaymentFailure() {
-		console.log('the payments failed');
 		this.buttonDisabled = true;
 	}
 

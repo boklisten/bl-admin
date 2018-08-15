@@ -25,6 +25,9 @@ export class CustomerDetailService {
 	}
 
 	public reloadCustomerDetail() {
+		if (!this._currentCustomerDetail) {
+			return;
+		}
 		this._userDetailService.getById(this._currentCustomerDetail.id).then((customerDetail: UserDetail) => {
 			this.setCustomerDetail(customerDetail);
 		}).catch((fetchCustomerDetailError) => {

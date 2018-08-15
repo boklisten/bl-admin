@@ -31,7 +31,6 @@ export class CustomerService {
 	}
 
 	public reloadCustomer() {
-		console.log('reloading customer');
 		this._customerDetailService.reloadCustomerDetail();
 	}
 
