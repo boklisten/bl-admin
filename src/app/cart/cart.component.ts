@@ -5,6 +5,7 @@ import {CustomerService} from '../customer/customer.service';
 import {ItemService} from '@wizardcoder/bl-connect';
 import {CartService} from './cart.service';
 import {tick} from '@angular/core/testing';
+import {CartItemSearchService} from './cart-item-search/cart-item-search.service';
 
 @Component({
 	selector: 'app-cart',
@@ -17,7 +18,7 @@ export class CartComponent implements OnInit {
 	public cartFailureText: string;
 	public customerDetail: UserDetail;
 
-	constructor(private _customerService: CustomerService, private _itemService: ItemService, private _cartService: CartService) {
+	constructor(private _customerService: CustomerService, private _itemService: ItemService, private _cartService: CartService, private _cartItemSearchService: CartItemSearchService) {
 		this.haveCustomer = false;
 	}
 

@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {CustomerDetailService} from '../../../customer/customer-detail/customer-detail.service';
 import {OrderService} from '@wizardcoder/bl-connect';
-import {Order, OrderItem, UserDetail} from '@wizardcoder/bl-model';
+import {Item, Order, OrderItem, UserDetail} from '@wizardcoder/bl-model';
 import {CustomerService} from '../../../customer/customer.service';
 import {BranchStoreService} from '../../../branch/branch-store.service';
+import {CustomerOrderItemListService} from './customer-order-item-list.service';
 
 @Component({
 	selector: 'app-customer-order-item-list',
@@ -12,12 +13,13 @@ import {BranchStoreService} from '../../../branch/branch-store.service';
 })
 export class CustomerOrderItemListComponent implements OnInit {
 	public customerDetail: UserDetail;
-	public customerOrderItems: { orderItem: OrderItem, order: Order }[];
+	public customerOrderItems: { orderItem: OrderItem, order: Order, item: Item}[];
 	public noOrderItemsText: string;
 	public currentBranchId: string;
 
 	constructor(private _customerService: CustomerService,
 	            private _branchStoreService: BranchStoreService,
+	            private _customerOrderItemListService: CustomerOrderItemListService,
 	            private _orderService: OrderService) {
 		this.customerOrderItems = [];
 		this.noOrderItemsText = 'Customer has no ordered items';
@@ -28,13 +30,13 @@ export class CustomerOrderItemListComponent implements OnInit {
 
 		if (this._customerService.haveCustomer()) {
 			this.customerDetail = this._customerService.get().detail;
-			this.getOrderItems();
+			this.getCustomerOrderItems();
 		}
 
 		this._customerService.onCustomerChange().subscribe(() => {
 			if (this._customerService.haveCustomer()) {
 				this.customerDetail = this._customerService.get().detail;
-				this.getOrderItems();
+				this.getCustomerOrderItems();
 			} else {
 				this.customerOrderItems = [];
 			}
@@ -45,19 +47,6 @@ export class CustomerOrderItemListComponent implements OnInit {
 		});
 	}
 
-	private getOrderItems() {
-		this.customerOrderItems = [];
-		this._orderService.getManyByIds(this.customerDetail.orders).then((orders: Order[]) => {
-			for (const order of orders) {
-				for (const orderItem of order.orderItems) {
-					this.addAsOrderedItem(order, orderItem);
-				}
-			}
-		}).catch(() => {
-			console.log('CustomerOrderItemList: could not get orders');
-		});
-	}
-
 	public havePayed(customerOrderItem: { orderItem: OrderItem, order: Order }) {
 		if (customerOrderItem.order.payments && customerOrderItem.order.payments.length > 0) {
 			return true;
@@ -65,27 +54,12 @@ export class CustomerOrderItemListComponent implements OnInit {
 		return false;
 	}
 
-	private addAsOrderedItem(order: Order, orderItem: OrderItem) {
-		if (order.handoutByDelivery || !order.byCustomer) {
-			return;
-		}
-
-		if (orderItem.handout) {
-			return;
-		}
-
-		if (orderItem.movedToOrder) {
-			return;
-		}
-
-		if (orderItem.type === 'rent' || orderItem.type === 'buy') {
-
-			this.customerOrderItems.push({order: order, orderItem: orderItem});
-		}
-
-		return;
+	private getCustomerOrderItems() {
+		this._customerOrderItemListService.getOrderedItems().then((customerOrderItems) => {
+			this.customerOrderItems = customerOrderItems;
+		}).catch((err) => {
+			console.log('customerOrderItemList: could not get customer order items', err);
+		});
 
 	}
-
-
 }

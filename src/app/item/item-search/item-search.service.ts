@@ -3,6 +3,7 @@ import {ItemService} from '@wizardcoder/bl-connect';
 import {BlApiError, Item} from '@wizardcoder/bl-model';
 import {Subject, Observable} from 'rxjs';
 import {StorageService} from '../../storage/storage.service';
+import {CartService} from '../../cart/cart.service';
 
 @Injectable()
 export class ItemSearchService {
@@ -12,42 +13,47 @@ export class ItemSearchService {
 	private _searchResult: Item[];
 	private _storageSearchTermName: string;
 
-	constructor(private _itemService: ItemService, private _storageService: StorageService) {
+	constructor(private _itemService: ItemService,
+	            private _cartService: CartService,
+	            private _storageService: StorageService) {
 		this._searchResultError$ = new Subject<any>();
 		this._searchResult$ = new Subject<boolean>();
 		this._storageSearchTermName = 'bl-item-search-term';
-
+/*
 		if (this._storageService.get(this._storageSearchTermName)) {
 			this.search(this._storageService.get(this._storageSearchTermName));
 		}
+		*/
 	}
 
-	public search(searchTerm: string) {
+	public async search(searchTerm: string, addToCart?: boolean): Promise<Item[]> {
 		if (!searchTerm || searchTerm === this._searchTerm || searchTerm.length < 3) {
 			return;
 		}
 
 		this.setSearchTerm(searchTerm);
 
-		this._itemService.get('?s=' + this._searchTerm).then((items: Item[]) => {
-			this.setSearchResult(items);
-		}).catch((blApiError: BlApiError) => {
-			this._searchResultError$.next(new Error('itemSearchService: could not get items'));
-		});
+		let items: Item[] = [];
+
+		try {
+			items = await this._itemService.get('?s=' + this._searchTerm);
+		} catch (e) {
+			items = [];
+		}
+
+		if (items.length === 1 && addToCart) {
+			if (!this._cartService.contains(items[0].id)) {
+				this._cartService.add(items[0]);
+			}
+		}
+
+		this.setSearchResult(items);
+
+		return items;
 	}
 
 	public getSearchTerm(): string {
 		return this._searchTerm;
-	}
-
-	private setSearchResult(searchResult: Item[]) {
-		this._searchResult = searchResult;
-		this._searchResult$.next(true);
-	}
-
-	private setSearchTerm(searchTerm: string) {
-		this._searchTerm = searchTerm;
-		this._storageService.store(this._storageSearchTermName, this._searchTerm);
 	}
 
 	public getSearchResult(): Item[] {
@@ -60,5 +66,20 @@ export class ItemSearchService {
 
 	public onSearchResultError(): Observable<Item[]> {
 		return this._searchResultError$;
+	}
+
+	private setSearchResult(searchResult: Item[]) {
+		this._searchResult = searchResult;
+
+		if (searchResult.length > 0) {
+			this._searchResult$.next(true);
+		} else {
+			this._searchResultError$.next(true);
+		}
+	}
+
+	private setSearchTerm(searchTerm: string) {
+		this._searchTerm = searchTerm;
+		//this._storageService.store(this._storageSearchTermName, this._searchTerm);
 	}
 }

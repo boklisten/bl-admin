@@ -21,6 +21,9 @@ import {CartConfirmService} from './cart-confirm/cart-confirm.service';
 import {PaymentModule} from '../payment/payment.module';
 import {CustomerItemModule} from '../customer-item/customer-item.module';
 import { CartDeliveryComponent } from './cart-delivery/cart-delivery.component';
+import {CartItemSearchService} from './cart-item-search/cart-item-search.service';
+import {CustomerItemListService} from '../customer-item/customer-item-list/customer-item-list.service';
+import {CustomerOrderItemListService} from '../order/customer-order/customer-order-item-list/customer-order-item-list.service';
 
 @NgModule({
 	imports: [
@@ -51,7 +54,10 @@ import { CartDeliveryComponent } from './cart-delivery/cart-delivery.component';
 	providers: [
 		CustomerOrderResolverService,
 		CartHelperService,
-		CartConfirmService
+		CartConfirmService,
+		CartItemSearchService,
+		CustomerItemListService,
+		CustomerOrderItemListService
 	]
 })
 export class CartModule {

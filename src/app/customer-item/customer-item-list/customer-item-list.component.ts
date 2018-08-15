@@ -3,6 +3,7 @@ import {BlApiError, CustomerItem, Item, UserDetail} from '@wizardcoder/bl-model'
 import {CustomerItemService, ItemService} from '@wizardcoder/bl-connect';
 import {CartService} from '../../cart/cart.service';
 import {CustomerService} from '../../customer/customer.service';
+import {CustomerItemListService} from './customer-item-list.service';
 
 @Component({
 	selector: 'app-customer-item-list',
@@ -12,46 +13,35 @@ import {CustomerService} from '../../customer/customer.service';
 export class CustomerItemListComponent implements OnInit {
 	customerDetail: UserDetail;
 	@Input() title: string;
-	customerItems: CustomerItem[];
+	customerItemsWithItem: {customerItem: CustomerItem, item: Item}[];
 
-	constructor(private _customerItemService: CustomerItemService, private itemService: ItemService, private _cartService: CartService,
+	constructor(private _customerItemService: CustomerItemService,
+	            private itemService: ItemService,
+	            private _customerItemListService: CustomerItemListService,
+	            private _cartService: CartService,
 	            private _customerService: CustomerService) {
-		this.customerItems = [];
+		this.customerItemsWithItem = [];
 	}
 
 	ngOnInit() {
-
 		if (this._customerService.haveCustomer()) {
 			this.customerDetail = this._customerService.get().detail;
 			this.getCustomerItems();
 		}
 
 		this._customerService.onCustomerChange().subscribe(() => {
-			console.log('customer changed, needs to change customerItemList');
 			if (this._customerService.haveCustomer()) {
 				this.customerDetail = this._customerService.get().detail;
 				this.getCustomerItems();
 			}
 		});
-
 	}
 
 	getCustomerItems() {
-
-		this._customerItemService.getManyByIds(this.customerDetail.customerItems).then((customerItems: CustomerItem[]) => {
-			console.log('fetched the customerItems!');
-			const activeCustomerItems: CustomerItem[] = [];
-
-			for (const customerItem of customerItems) {
-				if (!customerItem.returned && !customerItem.buyout && customerItem.handout) {
-					activeCustomerItems.push(customerItem);
-				}
-			}
-
-			this.customerItems = activeCustomerItems;
-		}).catch((getCustomerItemsError: BlApiError) => {
-			console.log('customerItemListComponent: could not get customerItems', getCustomerItemsError);
+		this._customerItemListService.getCustomerItems().then((customerItemsWithItem) => {
+			this.customerItemsWithItem = customerItemsWithItem;
+		}).catch((err) => {
+			console.log('customerItemList: could not get customer items');
 		});
 	}
-
 }

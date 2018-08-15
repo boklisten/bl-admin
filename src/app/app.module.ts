@@ -40,6 +40,7 @@ import {DatabaseModule} from './database/database.module';
 import {BranchItemStoreService} from './branch/branch-item-store/branch-item-store.service';
 import {PriceModule} from './price/price.module';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {BlcScannerService} from './bl-common/blc-scanner/blc-scanner.service';
 library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow, faSearch, faAt,
 	faPhone, faAddressCard, faQrcode, faSyncAlt, faTimes, faShoppingCart, faClock, faWarehouse, faDollarSign, faCreditCard,
 	faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode, faCalendar, faCartPlus, faCheckCircle, faClipboardList,
@@ -53,7 +54,7 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		HomeComponent,
 		HeaderComponent,
 		SideBarComponent,
-		SideBarButtonComponent
+		SideBarButtonComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -83,7 +84,8 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		DateService,
 		CustomerOrderService,
 		CustomerService,
-		UserService
+		UserService,
+		BlcScannerService
 	],
 	bootstrap: [AppComponent]
 })

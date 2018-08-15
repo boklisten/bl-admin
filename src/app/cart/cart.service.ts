@@ -13,6 +13,7 @@ import {CustomerDetailService} from '../customer/customer-detail/customer-detail
 import {CustomerService} from '../customer/customer.service';
 import {BranchStoreService} from '../branch/branch-store.service';
 import {CartHelperService} from './cart-helper.service';
+import {CartItemSearchService} from './cart-item-search/cart-item-search.service';
 
 @Injectable()
 export class CartService {
