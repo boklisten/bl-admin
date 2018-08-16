@@ -1,11 +1,12 @@
 
-<button type="button" [disabled]="disabled" class="btn btn-block" [ngClass]="{'btn-outline-success': !wait, 'btn-warning': wait}" (click)="onClick()">
+<button type="button" [disabled]="disabled" class="btn btn-block" [ngClass]="{'btn-outline-dark': !wait, 'btn-warning': wait}" (click)="onClick()">
 	<span *ngIf="!wait && text && !icon">{{text}}</span>
 	<span *ngIf="!wait && !text && !icon">Update</span>
 
 	<span *ngIf="!wait && icon">
 		<fa-icon [icon]="icon"></fa-icon>
 	</span>
+
 
 	<fa-icon [icon]="'circle-notch'" [spin]="true" *ngIf="wait"></fa-icon>
 </button>

@@ -33,6 +33,10 @@ export class CartListComponent implements OnInit {
 		});
 	}
 
+	public onClearCart() {
+		this._cartService.clear();
+	}
+
 	remove(orderItem: OrderItem) {
 		this._cartService.remove(orderItem.item);
 	}

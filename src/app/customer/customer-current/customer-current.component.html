@@ -5,10 +5,10 @@
          #customerDetailPopoverRef="ngbPopover"
          (click)="setCurrentPopoverOpen(customerDetailPopoverRef)">
 
-        <span class="bl-customer-current-details bl-link-black">
+        <span class="bl-customer-current-details bl-link">
             <fa-icon [icon]="'user-circle'" class="ml-2 mr-2"></fa-icon> {{customerDetail.name}}
         </span>
-        <span class="ml-2 bl-link-black" (click)="onClearCustomer()">
+        <span class="ml-2 bl-link" (click)="onClearCustomer()">
             <fa-icon [icon]="'times'"></fa-icon>
         </span>
     </div>

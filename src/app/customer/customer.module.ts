@@ -55,7 +55,8 @@ import {CustomerItemModule} from '../customer-item/customer-item.module';
 		CustomerCurrentComponent,
 		CustomerDetailPopoverComponent,
 		CustomerSearchComponent,
-		CustomerDetailSmallComponent
+		CustomerDetailSmallComponent,
+		CustomerSearchResultComponent
 	],
 	entryComponents: [CustomerDetailModalContentComponent]
 })

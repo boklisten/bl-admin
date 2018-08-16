@@ -7,6 +7,7 @@ import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 import {ItemModule} from '../item/item.module';
 import {CustomerModule} from '../customer/customer.module';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { CustomerResultComponent } from './customer/customer-result/customer-result.component';
 
 @NgModule({
 	imports: [
@@ -17,7 +18,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 		CustomerModule,
 		FontAwesomeModule
 	],
-	declarations: [SearchComponent]
+	declarations: [SearchComponent, CustomerResultComponent]
 })
 export class SearchModule {
 }

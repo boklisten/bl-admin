@@ -26,7 +26,7 @@ import {faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow,
 	faCalendar, faCartPlus, faCheckCircle, faClipboardList, faBan, faCalendarPlus, faArrowDown, faArrowUp,
 	faArrowAltCircleDown, faDatabase, faSquare, faCheckSquare, faEllipsisV, faFilter, faInfoCircle,
 	faEraser, faArchive, faToggleOn, faToggleOff, faEdit, faPlus, faReceipt, faKey, faBirthdayCake,
-	faUserTie, faUserAstronaut, faUserSecret, faUserCog
+	faUserTie, faUserAstronaut, faUserSecret, faUserCog, faTrashAlt
 } from '@fortawesome/free-solid-svg-icons';
 import {BlCommonModule} from './bl-common/bl-common.module';
 import {ItemModule} from './item/item.module';
@@ -48,7 +48,7 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 	faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode, faCalendar, faCartPlus, faCheckCircle, faClipboardList,
 	faBan, faCalendarPlus, faArrowDown, faArrowUp, faArrowAltCircleDown, faDatabase, faSquare, faCheckSquare, faEllipsisV,
 	faFilter, faInfoCircle, faEraser, faArchive, faToggleOn, faToggleOff, faEdit, faPlus, faReceipt, faKey,
-	faBirthdayCake, faUserTie, faUserAstronaut, faUserSecret, faUserCog,
+	faBirthdayCake, faUserTie, faUserAstronaut, faUserSecret, faUserCog, faTrashAlt
 );
 
 @NgModule({
@@ -57,7 +57,7 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		HomeComponent,
 		HeaderComponent,
 		SideBarComponent,
-		SideBarButtonComponent,
+		SideBarButtonComponent
 	],
 	imports: [
 		BrowserModule,

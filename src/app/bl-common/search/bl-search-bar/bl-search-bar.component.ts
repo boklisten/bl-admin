@@ -9,7 +9,10 @@ export class BlSearchBarComponent implements OnInit {
 	@Input() placeholder: string;
 	@Input() wait: boolean;
 	@Input() term: string;
-	
+	@Input() small: boolean;
+	@Input() searchFieldId: string;
+	@Input() design: 'dark' | 'light';
+
 	@Output() search: EventEmitter<string>;
 
 	public searchTerm: string;

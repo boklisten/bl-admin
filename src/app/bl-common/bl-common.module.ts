@@ -20,6 +20,7 @@ import { BlcEditStringValueComponent } from './blc-edit/blc-edit-string-value/bl
 import { BlcEditNumberValueComponent } from './blc-edit/blc-edit-number-value/blc-edit-number-value.component';
 import { BlcEditDateValueComponent } from './blc-edit/blc-edit-date-value/blc-edit-date-value.component';
 import {BlcScannerDirective} from './blc-scanner/blc-scanner.directive';
+import {BlcKeyeventDoubleShiftDirective} from './blc-keyevent/blc-keyevent-double-shift.directive';
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -46,7 +47,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcEditStringValueComponent,
 		BlcEditNumberValueComponent,
 		BlcEditDateValueComponent,
-		BlcScannerDirective
+		BlcScannerDirective,
+		BlcKeyeventDoubleShiftDirective
 	],
 	exports: [
 		BlCommonUpdateButtonComponent,
@@ -62,7 +64,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcEditStringValueComponent,
 		BlcEditNumberValueComponent,
 		BlcEditDateValueComponent,
-		BlcScannerDirective
+		BlcScannerDirective,
+		BlcKeyeventDoubleShiftDirective
 
 	]
 })

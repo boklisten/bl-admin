@@ -2,9 +2,21 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title text-center text-secondary">
-					<fa-icon [icon]="'shopping-cart'"></fa-icon>
-				</h3>
+				<div class="row justify-content-between">
+					<div class="col-auto"></div>
+					<div class="col-auto">
+                        <h3 class="card-title text-center text-secondary">
+                            <fa-icon [icon]="'shopping-cart'"></fa-icon>
+                        </h3>
+					</div>
+					<div class="col-auto">
+						<button class="btn btn-outline-secondary btn-sm" (click)="onClearCart()">
+							<fa-icon [icon]="'trash-alt'"></fa-icon>
+						</button>
+					</div>
+				</div>
+				<div class="row justify-content-end">
+				</div>
 			</div>
 
 			<ul class="list-group list-group-flush">
@@ -24,8 +36,8 @@
                             Confirm
                         </button>
                     </div>
-                    <div class="col-auto">
-                        <span><b><fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon> {{getTotalAmount() | blcPrice}}</b></span>
+                    <div class="col-auto font-weight-bold">
+                        {{getTotalAmount() | blcPrice}}
                     </div>
 				</div>
             </div>
