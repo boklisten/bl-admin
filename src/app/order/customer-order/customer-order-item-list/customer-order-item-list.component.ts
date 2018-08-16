@@ -30,20 +30,16 @@ export class CustomerOrderItemListComponent implements OnInit {
 
 		if (this._customerService.haveCustomer()) {
 			this.customerDetail = this._customerService.get().detail;
-			this.getCustomerOrderItems();
 		}
 
-		this._customerService.onCustomerChange().subscribe(() => {
-			this.customerOrderItems = [];
-			if (this._customerService.haveCustomer()) {
-				this.getCustomerOrderItems();
-			} else {
-				this.customerOrderItems = [];
-			}
-		});
+		this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
 
 		this._branchStoreService.onBranchChange().subscribe(() => {
 			this.currentBranchId = this._branchStoreService.getCurrentBranch().id;
+		});
+
+		this._customerOrderItemListService.onCustomerOrderItemListChange().subscribe(() => {
+			this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
 		});
 	}
 
@@ -52,14 +48,5 @@ export class CustomerOrderItemListComponent implements OnInit {
 			return true;
 		}
 		return false;
-	}
-
-	private getCustomerOrderItems() {
-		this._customerOrderItemListService.getOrderedItems().then((customerOrderItems) => {
-			this.customerOrderItems = customerOrderItems;
-		}).catch((err) => {
-			console.log('customerOrderItemList: could not get customer order items', err);
-		});
-
 	}
 }
