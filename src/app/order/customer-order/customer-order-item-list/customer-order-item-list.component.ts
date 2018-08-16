@@ -41,6 +41,12 @@ export class CustomerOrderItemListComponent implements OnInit {
 		this._customerOrderItemListService.onCustomerOrderItemListChange().subscribe(() => {
 			this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
 		});
+
+		this._customerOrderItemListService.fetchOrderedItems().then((customerOrderItems) => {
+			//this.customerOrderItems = customerOrderItems;
+		}).catch(() => {
+
+		});
 	}
 
 	public havePayed(customerOrderItem: { orderItem: OrderItem, order: Order }) {

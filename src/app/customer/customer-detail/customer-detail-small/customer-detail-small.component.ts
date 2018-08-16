@@ -68,6 +68,10 @@ export class CustomerDetailSmallComponent implements OnInit {
 			return false;
 		}
 
+		if (!customerDetail.dob) {
+			return false;
+		}
+
 		return true;
 	}
 

@@ -88,6 +88,8 @@ export class CustomerOrderItemListService {
 
 
 	public async fetchOrderedItems(): Promise<{ orderItem: OrderItem, order: Order, item: Item }[]> {
+		this._customerOrderItems = [];
+		this._customerOrderItemList$.next(true);
 		const customerOrderItems = [];
 		const customerDetail = this._customerService.getCustomerDetail();
 		const orders = await this._orderService.getManyByIds(customerDetail.orders);
@@ -113,6 +115,8 @@ export class CustomerOrderItemListService {
 			}
 		}
 
+		this._customerOrderItems = customerOrderItems;
+		this._customerOrderItemList$.next(true);
 		return customerOrderItems;
 	}
 }

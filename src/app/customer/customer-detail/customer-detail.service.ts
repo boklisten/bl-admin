@@ -88,6 +88,7 @@ export class CustomerDetailService {
 
 		this._storageService.store(this._storageCustomerIdName, customerDetail.id);
 		this._currentCustomerDetail = customerDetail;
+		console.log('the customer was set');
 		this._customerDetailChange$.next(this._currentCustomerDetail);
 	}
 
