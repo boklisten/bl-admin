@@ -1,15 +1,15 @@
 <div class="container-fluid">
-	<div class="row align-items-center bl-header justify-content-between">
-        <div class="col-md-3 col-sm-4 col-4" routerLink="home">
+	<div class="row align-items-center bl-header">
+        <div class="col-md-3 col-sm-3 col-2" routerLink="home">
             <img src="../../assets/img/boklisten_logo_v2_icon_white_lg.png" height="40" width="40">
 			<b class="bl-logo-text d-sm-inline d-none">bladmin</b>
         </div>
-		<div class="col-md-4 d-md-inline d-none">
-			<app-customer-current></app-customer-current>
-		</div>
 
-		<div class="col-md-5 col-sm-8 col-8">
-			<div class="row align-items-center justify-content-center">
+		<div class="col-md-8 col-sm-9 col-10">
+			<div class="row align-items-center justify-content-md-end">
+				<div class="col-auto">
+					<app-customer-current></app-customer-current>
+				</div>
 				<div class="col-auto">
 					<div ngbDropdown class="bl-header-location d-inline-block" *ngIf="currentBranch">
                         <button class="btn btn-outline-dark" id="branchDropdown" ngbDropdownToggle>
@@ -29,19 +29,35 @@
 				</div>
 				<div class="col-auto">
 					<div ngbDropdown placement="bottom" class="bl-header-location d-inline-block">
-						<fa-icon [icon]="'user-circle'" size="2x" class="bl-header-button" ngbDropdownToggle></fa-icon>
+						<fa-icon [icon]="'user-'" size="2x" class="bl-header-button" ngbDropdownToggle *ngIf="permission === 'employee'"></fa-icon>
+						<fa-icon [icon]="'user-tie'" size="2x" class="bl-header-button" ngbDropdownToggle *ngIf="permission === 'manager'"></fa-icon>
+						<fa-icon [icon]="'user-astronaut'" size="2x" class="bl-header-button" ngbDropdownToggle *ngIf="permission === 'admin'"></fa-icon>
+						<fa-icon [icon]="'user-secret'" size="2x" class="bl-header-button" ngbDropdownToggle *ngIf="permission === 'super'"></fa-icon>
                         <div ngbDropdownMenu>
-							<button class="dropdown-item" routerLink="/auth/register/detail">
-								<fa-icon [icon]="'user-circle'" class="mr-2"></fa-icon> Edit user details
-							</button>
-							<button class="dropdown-item" (click)="onUserLogout()">
-								<fa-icon [icon]="'sign-out-alt'" class="mr-2"></fa-icon> Log out
-							</button>
-							<div class="dropdown-divider"></div>
 							<div class="dropdown-item text-muted disabled">
 								<div>{{username}}</div>
-								<small>{{userPermission}}</small>
+								<small>
+									<span class="mr-2">
+										<fa-icon [icon]="'user'" *ngIf="permission === 'employee'"></fa-icon>
+										<fa-icon [icon]="'user-tie'" *ngIf="permission === 'manager'"></fa-icon>
+										<fa-icon [icon]="'user-astronaut'" *ngIf="permission === 'admin'"></fa-icon>
+										<fa-icon [icon]="'user-secret'" *ngIf="permission === 'super'"></fa-icon>
+									</span>
+									<span>{{userPermission}}</span>
+								</small>
 							</div>
+
+							<div class="dropdown-divider"></div>
+
+							<button class="dropdown-item" routerLink="/auth/register/detail">
+								<fa-icon [icon]="'user-cog'" class="mr-2"></fa-icon> Edit user details
+							</button>
+
+							<div class="dropdown-divider"></div>
+
+							<button class="dropdown-item text-danger" (click)="onUserLogout()">
+								<fa-icon [icon]="'sign-out-alt'" class="mr-2"></fa-icon> Log out
+							</button>
                         </div>
 					</div>
 				</div>

@@ -25,7 +25,9 @@ import {faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow,
 	faCreditCard, faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode,
 	faCalendar, faCartPlus, faCheckCircle, faClipboardList, faBan, faCalendarPlus, faArrowDown, faArrowUp,
 	faArrowAltCircleDown, faDatabase, faSquare, faCheckSquare, faEllipsisV, faFilter, faInfoCircle,
-	faEraser, faArchive, faToggleOn, faToggleOff, faEdit, faPlus, faReceipt} from '@fortawesome/free-solid-svg-icons';
+	faEraser, faArchive, faToggleOn, faToggleOff, faEdit, faPlus, faReceipt, faKey, faBirthdayCake,
+	faUserTie, faUserAstronaut, faUserSecret, faUserCog
+} from '@fortawesome/free-solid-svg-icons';
 import {BlCommonModule} from './bl-common/bl-common.module';
 import {ItemModule} from './item/item.module';
 import {BlConnectConfigService, BlConnectModule} from '@wizardcoder/bl-connect';
@@ -45,7 +47,8 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 	faPhone, faAddressCard, faQrcode, faSyncAlt, faTimes, faShoppingCart, faClock, faWarehouse, faDollarSign, faCreditCard,
 	faBook, faTruck, faArrowRight, faCalendarAlt, faTags, faExchangeAlt, faBarcode, faCalendar, faCartPlus, faCheckCircle, faClipboardList,
 	faBan, faCalendarPlus, faArrowDown, faArrowUp, faArrowAltCircleDown, faDatabase, faSquare, faCheckSquare, faEllipsisV,
-	faFilter, faInfoCircle, faEraser, faArchive, faToggleOn, faToggleOff, faEdit, faPlus, faReceipt
+	faFilter, faInfoCircle, faEraser, faArchive, faToggleOn, faToggleOff, faEdit, faPlus, faReceipt, faKey,
+	faBirthdayCake, faUserTie, faUserAstronaut, faUserSecret, faUserCog,
 );
 
 @NgModule({

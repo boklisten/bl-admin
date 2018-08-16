@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
 	public branches: Branch[];
 	public userPermission: string;
 	public username: string;
+	public permission: UserPermission;
 
 	constructor(private _branchStoreService: BranchStoreService, private _authService: AuthService) {
 	}
@@ -32,7 +33,8 @@ export class HeaderComponent implements OnInit {
 			console.log('HeaderComponent: could not get branches');
 		});
 
-		this.userPermission = this.translateUserPermission(this._authService.getPermission());
+		this.permission = this._authService.getPermission();
+		this.userPermission = this.translateUserPermission(this.permission);
 		this.username = this._authService.getUsername();
 	}
 
