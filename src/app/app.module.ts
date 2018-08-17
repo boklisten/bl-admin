@@ -30,7 +30,7 @@ import {faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationArrow,
 } from '@fortawesome/free-solid-svg-icons';
 import {BlCommonModule} from './bl-common/bl-common.module';
 import {ItemModule} from './item/item.module';
-import {BlConnectConfigService, BlConnectModule} from '@wizardcoder/bl-connect';
+import {BlConnectConfigService, BlConnectModule, TokenService} from '@wizardcoder/bl-connect';
 import {CartModule} from "./cart/cart.module";
 import {CartService} from './cart/cart.service';
 import {DateService} from './date/date.service';
@@ -88,7 +88,8 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		CustomerOrderService,
 		CustomerService,
 		UserService,
-		BlcScannerService
+		BlcScannerService,
+		TokenService
 	],
 	bootstrap: [AppComponent]
 })
