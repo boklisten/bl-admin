@@ -67,6 +67,10 @@ export class CustomerService {
 				return;
 			}
 
+			this.setCustomer(customerDetail);
+
+
+				/*
 			if (customerDetail.orders && customerDetail.orders.length > 0) {
 				this._customerOrderService.getCustomerOrders().then((orders: Order[]) => {
 					this.setCustomer(customerDetail, orders);
@@ -74,8 +78,8 @@ export class CustomerService {
 					console.log('customerService: could not get orders');
 				});
 			} else {
-				this.setCustomer(customerDetail);
 			}
+				*/
 		});
 	}
 
