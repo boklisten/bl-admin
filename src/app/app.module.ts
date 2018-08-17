@@ -88,8 +88,7 @@ library.add(faUser, faUsers, faMoneyBillAlt, faUserCircle, faCheck, faLocationAr
 		CustomerOrderService,
 		CustomerService,
 		UserService,
-		BlcScannerService,
-		TokenService
+		BlcScannerService
 	],
 	bootstrap: [AppComponent]
 })

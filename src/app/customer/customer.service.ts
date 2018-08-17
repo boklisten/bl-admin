@@ -84,6 +84,7 @@ export class CustomerService {
 	}
 
 	private setCustomer(detail: UserDetail, orders?: Order[]) {
+		console.log('SETTING CUSTOMER');
 		this._customer = {detail: detail, orders: (orders) ? orders : null};
 		this._customerChange$.next(true);
 	}

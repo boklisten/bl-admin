@@ -35,7 +35,9 @@ export class CustomerOrderItemListService {
 
 	private onCustomerChange() {
 		this._customerService.onCustomerChange().subscribe(() => {
+			console.log('the CUSTOMER CHANGED');
 			this.fetchOrderedItems().then((customerOrderItems) => {
+
 				this._customerOrderItems = customerOrderItems;
 				this._customerOrderItemList$.next(true);
 			}).catch((err) => {
@@ -89,10 +91,11 @@ export class CustomerOrderItemListService {
 
 	public async fetchOrderedItems(): Promise<{ orderItem: OrderItem, order: Order, item: Item }[]> {
 		this._customerOrderItems = [];
-		this._customerOrderItemList$.next(true);
+		// this._customerOrderItemList$.next(true);
 		const customerOrderItems = [];
 		const customerDetail = this._customerService.getCustomerDetail();
 		const orders = await this._orderService.getManyByIds(customerDetail.orders);
+		console.log('--got orders', orders);
 
 		for (const order of orders) {
 			for (const orderItem of order.orderItems) {

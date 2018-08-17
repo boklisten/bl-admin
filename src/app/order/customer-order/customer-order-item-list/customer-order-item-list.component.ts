@@ -39,6 +39,7 @@ export class CustomerOrderItemListComponent implements OnInit {
 		});
 
 		this._customerOrderItemListService.onCustomerOrderItemListChange().subscribe(() => {
+			console.log('THE ORDER ITEM LIST CHANGED');
 			this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
 		});
 
