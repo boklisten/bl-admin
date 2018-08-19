@@ -1,7 +1,9 @@
 
 <div class="row">
 	<div class="col-12">
-		<app-bl-common-alert [type]="'secondary'" *ngIf="customerOrderItems.length <= 0 && !wait" [text]="noOrderItemsText"></app-bl-common-alert>
+		<app-bl-common-alert [type]="'secondary'" *ngIf="customerOrderItems.length <= 0 && !wait"
+							 i18n-text="@@customerOrderItemListNoOrderedItems"
+							 text="No ordered items"></app-bl-common-alert>
 		<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
 
         <ul class="list-group" *ngIf="!wait && customerOrderItems.length > 0">

@@ -43,14 +43,15 @@
 			<div class="col-auto text-success" *ngIf="orderItem.info && orderItem.info.customerItem">
 				<small class="bl-link-black" routerLink="{{'/customerItem/' + orderItem.info.customerItem + '/detail'}}">
 					<span>
-						<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon> delivered
+						<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>
+						<span i18n="@@orderItemDetailListDelivered">delivered</span>
 					</span>
 				</small>
 			</div>
         </div>
 		<div class="row justify-content-md-end" *ngIf="orderItem.movedToOrder">
 			<div class="col-auto bl-link-black font-italic" i18n="@@orderItemDetailListMovedToAnotherOrder" routerLink="{{'/order/' + orderItem.movedToOrder + '/detail'}}">
-				<small>
+				<small i18n="@@orderItemDetailListMovedToAnotherOrder">
 					moved to another order
 				</small>
 			</div>

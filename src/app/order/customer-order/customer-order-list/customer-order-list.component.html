@@ -3,10 +3,14 @@
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title">Orders</h5>
+				<h5 class="card-title" i18n="@@customerOrderListTitle">Orders</h5>
 				<div class="row">
 					<div class="col-12">
-						<app-bl-common-alert [type]="'secondary'" [text]="warningText" *ngIf="warningText" (exit)="warningText = null"></app-bl-common-alert>
+						<app-bl-common-alert [type]="'secondary'"
+											 i18n="@@customerOrderListCouldNotRetrieveError"
+											 text="Could not retrieve customer orders"
+											 *ngIf="warningText"
+											 (exit)="warningText = null"></app-bl-common-alert>
 						<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
 					</div>
 				</div>

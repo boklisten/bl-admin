@@ -21,6 +21,6 @@
 		{{order.creationTime | blDate:'timestamp'}}
 	</div>
 	<div class="col-6 text-right">
-		{{order.orderItems.length}} items
+		<span i18n="@@orderManagerListItemNumberOfItems">{order.orderItems.length, plural, =0 {no items} =1 {one item} other {{{order.orderItems.length}} items }}</span>
 	</div>
 </div>

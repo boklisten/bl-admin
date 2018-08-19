@@ -36,7 +36,7 @@ export class OrderDetailComponent implements OnInit {
 			this.wait = false;
 			this.order = order;
 		}).catch((blApiError: BlApiError) => {
-			console.log('orderDetailComponent: error when getting order', blApiError);
+			this.warningText = 'could not get order';
 			this.wait = false;
 
 		});

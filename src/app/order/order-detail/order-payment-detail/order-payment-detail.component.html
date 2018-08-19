@@ -4,13 +4,21 @@
 
 	<div class="col-12">
 		<div class="card">
-			<div class="card-header">
+			<div class="card-header" i18n="@@orderPaymentDetailTitle">
 				Payments
 			</div>
 			<div class="card-body" *ngIf="warningText || wait || noPaymentsFoundText">
-				<app-bl-common-alert [type]="'warning'" *ngIf="warningText" [text]="warningText" (exit)="warningText = null"></app-bl-common-alert>
+				<app-bl-common-alert [type]="'warning'"
+									 *ngIf="warningText"
+									 i18n-text="@@orderPaymentDetailCouldNotGetError"
+									 text="could not get payments"
+									 (exit)="warningText = null"></app-bl-common-alert>
 				<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
-				<app-bl-common-alert [type]="'secondary'" *ngIf="noPaymentsFoundText" [text]="noPaymentsFoundText" (exit)="noPaymentsFoundText = null"></app-bl-common-alert>
+				<app-bl-common-alert [type]="'secondary'"
+									 *ngIf="noPaymentsFoundText"
+									 i18n-text="@@orderPaymentDetailNoPaymentsFound"
+									 text="no payments found on order"
+									 (exit)="noPaymentsFoundText = null"></app-bl-common-alert>
 			</div>
 
 			<ul class="list-group">
@@ -22,11 +30,21 @@
                         </div>
                         <div class="list-group-item">
                             {{payment.amount | blcPrice}}
-							<span *ngIf="payment.method === 'cash'"><fa-icon [icon]="'money-bill-alt'" class="mr-2 ml-2"></fa-icon> Cash</span>
-							<span *ngIf="payment.method === 'dibs'"><fa-icon [icon]="'credit-card'" class="mr-2 ml-2"></fa-icon> Dibs</span>
-							<span *ngIf="payment.method === 'vipps'" class="ml-2 font-weight-bold">Vipps</span>
-							<span *ngIf="payment.method === 'card'"><fa-icon [icon]="'credit-card'" class="mr-2 ml-2"></fa-icon> Card</span>
-							<span *ngIf="payment.method === 'later'" class="text-danger"><fa-icon [icon]="'exclamation-triangle'" class="mr-2 ml-2"></fa-icon> Not payed yet</span>
+							<span *ngIf="payment.method === 'cash'"><fa-icon [icon]="'money-bill-alt'" class="mr-2 ml-2"></fa-icon>
+								<span i18n="@@orderPaymentDetailMethodCash">Cash</span>
+							</span>
+							<span *ngIf="payment.method === 'dibs'"><fa-icon [icon]="'credit-card'" class="mr-2 ml-2"></fa-icon>
+								<span i18n="@@orderPaymentDetailMethodDibs">Dibs</span>
+							</span>
+							<span *ngIf="payment.method === 'vipps'" class="ml-2 font-weight-bold">
+								<span i18n="@@orderPaymentDetailMethodVipps">Vipps</span>
+							</span>
+							<span *ngIf="payment.method === 'card'"><fa-icon [icon]="'credit-card'" class="mr-2 ml-2"></fa-icon>
+								<span i18n="@@orderPaymentDetailMethodCard">Card</span>
+							</span>
+							<span *ngIf="payment.method === 'later'" class="text-danger"><fa-icon [icon]="'exclamation-triangle'" class="mr-2 ml-2"></fa-icon>
+								<span i18n="@@orderPaymentDetailNoPaymentYet">Not payed yet</span>
+							</span>
                         </div>
 						<div class="list-group-item">
                             <fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon> {{payment.branch | branchName | async}}

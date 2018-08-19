@@ -43,7 +43,6 @@ export class OrderPaymentDetailComponent implements OnInit, OnChanges {
 			}
 
 		}).catch((blApiError: BlApiError) => {
-			console.log('orderPaymentDetailComponent: could not get payments');
 			this.warningText = 'could not find payments';
 			this.wait = false;
 		});

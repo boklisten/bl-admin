@@ -3,10 +3,12 @@
         <div class="card">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item" *ngIf="order.placed">
-                    <fa-icon [icon]="'check'" class="mr-2"></fa-icon> Confirmed
+                    <fa-icon [icon]="'check'" class="mr-2"></fa-icon>
+					<span i18n="@@orderDetailCardConfirmed">Confirmed</span>
                 </li>
                 <li class="list-group-item text-danger" *ngIf="!order.placed">
-                    <fa-icon [icon]="'times'" class="mr-2"></fa-icon> Not Confirmed
+                    <fa-icon [icon]="'times'" class="mr-2"></fa-icon>
+					<span i18n="@@orderDetailCardNotConfirmed">Not Confirmed</span>
                 </li>
                 <li class="list-group-item list-group-item-action" routerLink="{{'/customer/' + order.customer + '/detail'}}">
 					<span class="bl-link-black"><fa-icon [icon]="'user'" class="mr-2"></fa-icon> {{order.customer | customerName | async}}</span>

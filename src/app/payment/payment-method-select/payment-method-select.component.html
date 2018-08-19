@@ -4,13 +4,16 @@
 		<form [formGroup]="paymentMethodForm">
 			<div class="btn-group btn-group-toggle btn-group-lg">
 				<label class="btn-outline-secondary" ngbButtonLabel>
-					<input type="checkbox" formControlName="card" ngbButton> <fa-icon [icon]="'credit-card'" class="mr-2"></fa-icon> Card
+					<input type="checkbox" formControlName="card" ngbButton> <fa-icon [icon]="'credit-card'" class="mr-2"></fa-icon>
+					<span i18n="@@paymentMethodSelectCard">Card</span>
 				</label>
 				<label class="btn-outline-secondary" ngbButtonLabel>
-					<input type="checkbox" formControlName="cash" ngbButton> <fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon> Cash
+					<input type="checkbox" formControlName="cash" ngbButton> <fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon>
+					<span i18n="@@paymentMethodSelectCash">Cash</span>
 				</label>
 				<label class="btn-outline-secondary" ngbButtonLabel>
-					<input type="checkbox" formControlName="vipps" ngbButton> Vipps
+					<input type="checkbox" formControlName="vipps" ngbButton>
+					<span i18n="@@paymentMethodSelectVipps">Vipps</span>
 				</label>
 			</div>
 		</form>
@@ -56,7 +59,7 @@
 
 			<div class="input-group-append">
                 <span class="input-group-text">
-					vipps
+					<span i18n="@@paymentMethodSelectVipps">Vipps</span>
                 </span>
             </div>
         </div>
