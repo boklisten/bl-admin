@@ -152,6 +152,7 @@ export class CustomerItemHandlerService {
 		const customerDetail = this._customerService.getCustomerDetail();
 
 		return {
+			id: null,
 			item: orderItem.item,
 			customer: customerId,
 			deadline: orderItem.info.to,

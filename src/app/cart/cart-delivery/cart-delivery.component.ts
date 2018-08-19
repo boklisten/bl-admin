@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Delivery, Order} from '@wizardcoder/bl-model';
+import {Delivery, Order, UserDetail} from '@wizardcoder/bl-model';
 import {DeliveryService} from '@wizardcoder/bl-connect';
 import {Customer} from '../../customer/customer';
 import {CustomerService} from '../../customer/customer.service';
@@ -17,12 +17,15 @@ export class CartDeliveryComponent implements OnInit {
 	delivery: Delivery;
 	trackingNumber: string;
 	canConfirmDelivery: boolean;
+	customerDetail: UserDetail;
 
 	constructor(private _deliveryService: DeliveryService, private customerService: CustomerService) {
 		this.trackingNumber = '';
 		this.deliveryConfirmed = new EventEmitter<boolean>();
 		this.canConfirmDelivery = false;
 		this.customer = this.customerService.get();
+		this.customerDetail = this.customer.detail;
+
 	}
 
 	ngOnInit() {

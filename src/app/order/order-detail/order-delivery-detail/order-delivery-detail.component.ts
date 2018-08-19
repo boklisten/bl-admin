@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {BlApiError, Delivery, Order} from '@wizardcoder/bl-model';
+import {BlApiError, Delivery, Order, UserDetail} from '@wizardcoder/bl-model';
 import {DeliveryService} from '@wizardcoder/bl-connect';
+import {CustomerService} from '../../../customer/customer.service';
 
 @Component({
 	selector: 'app-order-delivery-detail',
@@ -14,12 +15,14 @@ export class OrderDeliveryDetailComponent implements OnInit, OnChanges {
 	public notFoundText: string;
 	public warningText: string;
 	public wait: boolean;
+	public customerDetail: UserDetail;
 
-	constructor(private _deliveryService: DeliveryService) {
+	constructor(private _deliveryService: DeliveryService, private _customerService: CustomerService) {
 
 	}
 
 	ngOnInit() {
+		this.customerDetail = this._customerService.getCustomerDetail();
 	}
 
 	getDelivery() {
