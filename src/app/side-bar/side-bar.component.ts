@@ -5,6 +5,7 @@ import {CustomerService} from '../customer/customer.service';
 import {Customer} from '../customer/customer';
 import {s} from '@angular/core/src/render3';
 import {UserService} from '../user/user.service';
+import {CartService} from '../cart/cart.service';
 
 @Component({
 	selector: 'app-side-bar',
@@ -13,9 +14,12 @@ import {UserService} from '../user/user.service';
 })
 export class SideBarComponent implements OnInit {
 	public customerDetail: UserDetail;
-	public sidebarLinks: { name: string, link: string, icon: string, selected: boolean, permission: UserPermission, hide?: boolean }[];
+	public sidebarLinks: { name: string, link: string, notification?: boolean, icon: string, selected: boolean, permission: UserPermission, hide?: boolean }[];
 
-	constructor(private _customerService: CustomerService, private _router: Router, private _userService: UserService) {
+	constructor(private _customerService: CustomerService,
+	            private _router: Router,
+	            private _cartService: CartService,
+	            private _userService: UserService) {
 		this.sidebarLinks = [
 			{
 				name: 'search',
@@ -64,7 +68,16 @@ export class SideBarComponent implements OnInit {
 			}
 		});
 
+
 		this.hideNoPermissionLinks();
+
+		this._cartService.onCartChange().subscribe(() => {
+			if (this._cartService.getCart().length > 0) {
+				this.setNotificationOnSidebarLink('cart', true);
+			} else {
+				this.setNotificationOnSidebarLink('cart', false);
+			}
+		});
 
 
 		this._customerService.onCustomerChange().subscribe(() => {
@@ -94,6 +107,15 @@ export class SideBarComponent implements OnInit {
 				this.deselectAllSideBarLinks();
 
 				sidebarLink.selected = true;
+				return;
+			}
+		}
+	}
+
+	setNotificationOnSidebarLink(name: string, notification: boolean) {
+		for (const sidebarLink of this.sidebarLinks) {
+			if (sidebarLink.name === name) {
+				sidebarLink.notification = notification;
 				return;
 			}
 		}

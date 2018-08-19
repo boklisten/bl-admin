@@ -1,6 +1,8 @@
-<div class="row bl-sidebar-button justify-content-center" routerLink="{{link}}" [ngClass]="{'bl-sidebar-button-selected': selected}">
-	<div class="col-12 text-center">
+<div class="row no-gutters bl-sidebar-button align-items-center" routerLink="{{link}}" [ngClass]="{'bl-sidebar-button-selected': selected}">
+	<div class="col-4">
+		<div class="bl-sidebar-notification" *ngIf="notification"></div>
+	</div>
+	<div class="col-8">
 		<fa-icon [icon]="icon" size="2x"></fa-icon>
-		<fa-icon [icon]="icon2" size="2x" *ngIf="icon2" class="ml-1"></fa-icon>
 	</div>
 </div>

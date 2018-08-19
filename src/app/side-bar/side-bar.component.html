@@ -1,6 +1,11 @@
 
-<div class="container-fluid bl-sidebar">
+<div class="bl-sidebar">
 	<span *ngFor="let sidebarLink of sidebarLinks">
-		<app-side-bar-button *ngIf="!sidebarLink.hide" [icon]="sidebarLink.icon" [link]="sidebarLink.link" [selected]="sidebarLink.selected"></app-side-bar-button>
+		<app-side-bar-button
+			*ngIf="!sidebarLink.hide"
+			[icon]="sidebarLink.icon"
+			[link]="sidebarLink.link"
+			[notification]="sidebarLink.notification"
+			[selected]="sidebarLink.selected"></app-side-bar-button>
 	</span>
 </div>

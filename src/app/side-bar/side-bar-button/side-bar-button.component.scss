@@ -1,5 +1,14 @@
 @import "../../../styles";
 
+.bl-sidebar-notification {
+	background-color: $alert-color;
+	border-radius: 50%;
+	width: 10px;
+	height: 10px;
+	float: right;
+	margin-right: 10px;
+}
+
 .bl-sidebar-button {
 	color: #ffffff;
 	padding-top: 10px;

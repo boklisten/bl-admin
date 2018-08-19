@@ -10,6 +10,7 @@ export class SideBarButtonComponent implements OnInit {
 	@Input() icon2: string[];
 	@Input() title: string;
 	@Input() link: string;
+	@Input() notification: boolean;
 	@Input() selected: boolean;
 
 	constructor() {
