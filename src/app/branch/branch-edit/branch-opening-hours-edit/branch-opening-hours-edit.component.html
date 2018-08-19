@@ -32,14 +32,14 @@
 <div class="row justify-content-end mt-4">
 	<div class="col-auto" [ngClass]="{'col-12': openingHours.length <= 0}">
 		<button class="btn btn-outline-success" [ngClass]="{'btn-block': openingHours.length <= 0}" (click)="openAddOpeningHour(addOpeningHour)">
-			Add
+			<span i18n="@@blAddButton">Add</span>
 		</button>
 	</div>
 </div>
 
 <ng-template #addOpeningHour let-c="close" let-d="dismiss">
 	<div class="modal-header">
-		<h4 class="modal-title">Add opening hour</h4>
+		<h4 class="modal-title" i18n="@@branchOpeningHoursEditAddOpeningHour">Add opening hour</h4>
 		<button type="button" class="close" aria-label="Close" (click)="c('Cross click')">
 			<span aria-hidden="true">
 				<fa-icon [icon]="'times'"></fa-icon>
@@ -80,7 +80,7 @@
 				<button type="button" class="btn btn-success"
 						[disabled]="!isOpeningHourValid()"
 						(click)="onAddOpeningHour()">
-					Add opening hour
+					<span i18n="@@branchOpeningHoursEditAddOpeningHour">Add opening hour</span>
 				</button>
 			</div>
 		</div>

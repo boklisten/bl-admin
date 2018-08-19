@@ -19,7 +19,7 @@
 							<ng-template ngbPanelContent>
                                 <div class="row justify-content-between">
                                     <div class="col-auto text-secondary">
-                                        Desc
+										<span i18n="@@branchEditDescription">Desc</span>
                                     </div>
                                     <div class="col-auto">
                                         <app-blc-edit-string-value [(value)]="branch.desc" (update)="onUpdate()"></app-blc-edit-string-value>
@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="row justify-content-between mt-2">
                                     <div class="col-auto text-secondary">
-                                        Active
+										<span i18n="@@branchEditActiveToggle">Active</span>
                                     </div>
                                     <div class="col-auto">
                                         <app-bl-common-toggle-button [(value)]="branch.active" (update)="onUpdate()"></app-bl-common-toggle-button>

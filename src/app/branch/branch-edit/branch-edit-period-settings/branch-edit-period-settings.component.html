@@ -3,7 +3,7 @@
     <div class="col-12">
         <div class="row">
             <div class="col-12 text-secondary">
-                <h6>Rent periods</h6>
+                <h6 i18n="@@branchEditPeriodSettingsTitle">Rent periods</h6>
             </div>
         </div>
         <div class="row">
@@ -14,7 +14,7 @@
                             <div class="col-10">
                                 <div class="row justify-content-between">
                                     <div class="col-auto text-dark font-weight-bold">
-                                        Type
+										<span i18n="type of period@@branchEditPeriodSettingType">Type</span>
                                     </div>
                                     <div class="col-auto">
                                         <app-blc-edit-string-value
@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="row justify-content-between">
                                     <div class="col-auto text-dark font-weight-bold">
-                                        Limit
+										<span i18n="limit of how many periods@@branchEditPeriodSettingLimit">Limit</span>
                                     </div>
                                     <div class="col-auto">
                                         <app-blc-edit-number-value
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="row justify-content-between">
                                     <div class="col-auto text-dark font-weight-bold">
-                                        Percentage
+										<span i18n="@@branchEditPeriodSettingPercentage">Percentage</span>
                                     </div>
                                     <div class="col-auto">
                                         <app-blc-edit-number-value
@@ -44,7 +44,7 @@
                                 </div>
 								<div class="row justify-content-between">
                                     <div class="col-auto text-dark font-weight-bold">
-										Date
+										<span i18n="@@branchEditPeriodSettingDate">Date</span>
                                     </div>
                                     <div class="col-auto">
 										<app-blc-edit-date-value
@@ -68,7 +68,7 @@
         <div class="row mt-2" [ngClass]="{'justify-content-end': branch.paymentInfo.rentPeriods.length > 0}">
             <div class="col-auto" [ngClass]="{'col-12': branch.paymentInfo.rentPeriods.length <= 0}">
                 <button class="btn btn-sm btn-outline-success" (click)="onRentPeriodAdd()" [ngClass]="{'btn-block': branch.paymentInfo.rentPeriods.length <= 0}">
-                    Add
+					<span i18n="@@branchEditPeriodSettingsAddButton">Add</span>
                 </button>
             </div>
         </div>
@@ -80,7 +80,7 @@
     <div class="col-12">
         <div class="row text-secondary">
             <div class="col-12">
-                <h6>Extend periods</h6>
+                <h6 i18n="@@branchEditPeriodSettinsExtendPeriodsTitle">Extend periods</h6>
             </div>
         </div>
         <div class="row">
@@ -91,7 +91,7 @@
                             <div class="col-10">
                                 <div class="row justify-content-between">
                                     <div class="col-auto text-dark font-weight-bold">
-                                        Type
+										<span i18n="type of period@@branchEditPeriodSettingType">Type</span>
                                     </div>
                                     <div class="col-auto">
                                         <app-blc-edit-string-value
@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="row justify-content-between">
                                     <div class="col-auto text-dark font-weight-bold">
-                                        Limit
+										<span i18n="limit of how many periods@@branchEditPeriodSettingLimit">Limit</span>
                                     </div>
                                     <div class="col-auto">
                                         <app-blc-edit-number-value
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="row justify-content-between">
                                     <div class="col-auto text-dark font-weight-bold">
-                                        Price
+										<span i18n="@@branchEditPeriodSettingPrice">Price</span>
                                     </div>
                                     <div class="col-auto">
                                         <app-blc-edit-number-value
@@ -121,7 +121,7 @@
                                 </div>
 								<div class="row justify-content-between">
                                     <div class="col-auto text-dark font-weight-bold">
-										Date
+										<span i18n="@@branchEditPeriodSettingDate">Date</span>
                                     </div>
                                     <div class="col-auto">
 										<app-blc-edit-date-value
@@ -145,7 +145,7 @@
         <div class="row mt-2" [ngClass]="{'justify-content-end': branch.paymentInfo.extendPeriods.length > 0}">
             <div class="col-auto" [ngClass]="{'col-12': branch.paymentInfo.extendPeriods.length <= 0}">
                 <button class="btn btn-sm btn-outline-success" (click)="onExtendPeriodAdd()" [ngClass]="{'btn-block': branch.paymentInfo.extendPeriods.length <= 0}">
-                    Add
+					<span i18n="@@branchEditPeriodSettingsAddButton">Add</span>
                 </button>
             </div>
         </div>
@@ -155,7 +155,7 @@
 
 <div class="row justify-content-between mt-4">
     <div class="col-auto text-secondary">
-        Buyout percentage
+		<span i18n="@@branchEditPeriodSettingsBuyoutPercentage">Buyout percentage</span>
     </div>
     <div class="col-auto">
         <app-blc-edit-number-value
@@ -166,7 +166,9 @@
 
 <div class="row justify-content-between mt-4">
     <div class="col-auto text-secondary">
-        Sell percentage
+		<span i18n="sell is when customer sells the item to branch@@branchEditPeriodSettingsSellPercentage">
+			Sell percentage
+		</span>
     </div>
     <div class="col-auto">
         <app-blc-edit-number-value
@@ -177,7 +179,7 @@
 
 <div class="row justify-content-between mt-4">
     <div class="col-auto text-secondary">
-        Free delivery
+		<span i18n="@@branchEditPeriodSettingsFreeDeliveryToggle">Free delivery</span>
     </div>
     <div class="col-auto">
         <app-bl-common-toggle-button [(value)]="branch.paymentInfo.responsibleForDelivery" (update)="onUpdate()"></app-bl-common-toggle-button>
@@ -186,7 +188,7 @@
 
 <div class="row justify-content-between mt-4">
     <div class="col-auto text-secondary">
-        Delivery by mail
+		<span i18n="@@branchEditPeriodSettingsDeliveryByMailToggle">Delivery by mail</span>
     </div>
     <div class="col-auto">
         <app-bl-common-toggle-button [(value)]="branch.deliveryMethods.byMail" (update)="onUpdate()"></app-bl-common-toggle-button>
@@ -195,7 +197,7 @@
 
 <div class="row justify-content-between mt-4">
     <div class="col-auto text-secondary">
-        Delivery at branch
+		<span i18n="@@branchEditPeriodSettingsDeliveryAtBranchToggle">Delivery at branch</span>
     </div>
     <div class="col-auto">
         <app-bl-common-toggle-button [(value)]="branch.deliveryMethods.branch" (update)="onUpdate()"></app-bl-common-toggle-button>
@@ -204,7 +206,7 @@
 
 <div class="row justify-content-between mt-4">
     <div class="col-auto text-secondary">
-        Pay later
+		<span i18n="@@branchEditPeriodSettingsPayLaterToggle">Pay later</span>
     </div>
     <div class="col-auto">
         <app-bl-common-toggle-button [(value)]="branch.paymentInfo.payLater" (update)="onUpdate()"></app-bl-common-toggle-button>
@@ -213,7 +215,7 @@
 
 <div class="row justify-content-between mt-2">
     <div class="col-auto text-secondary">
-        Responsible for payment
+		<span i18n="@@branchEditPeriodSettingsResponsibleForPaymentToggle">Responsible for payment</span>
     </div>
     <div class="col-auto">
         <app-bl-common-toggle-button [(value)]="branch.paymentInfo.responsible" (update)="onUpdate()"></app-bl-common-toggle-button>

@@ -9,9 +9,12 @@
 		</div>
 	</div>
 	<div class="col-auto align-items-center">
-		<button class="btn btn-sm btn-light" [ngbPopover]="popContent" popoverTitle="Category select" placement="bottom" container="body" #p="ngbPopover" (keydown.esc)="p.close()">
+		<button class="btn btn-sm btn-light" [ngbPopover]="popContent"
+				i18n-popoverTitle="@@branchItemCategorySelectPopoverTitle" popoverTitle="Category select" placement="bottom" container="body" #p="ngbPopover" (keydown.esc)="p.close()">
 			<span><fa-icon [icon]="'plus'"></fa-icon></span>
-			<span *ngIf="categories.length <= 0" class="ml-2">Add category</span>
+			<span *ngIf="categories.length <= 0"
+				  class="ml-2"
+				  i18n="@@branchItemCategorySelectAddCategory">Add category</span>
 		</button>
 	</div>
 </div>
@@ -22,7 +25,7 @@
 	<div class="row" (keydown.esc)="p.close()">
 		<div class="col-12">
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="New category" [(ngModel)]="categoryName" (keydown.enter)="onAddCategory()">
+				<input type="text" class="form-control" i18n-placeholder="@@branchItemCategorySelectNewCategoryPlaceholder" placeholder="New category" [(ngModel)]="categoryName" (keydown.enter)="onAddCategory()">
 
 				<div class="input-group-append">
 					<button class="btn btn-outline-success" (click)="onAddCategory()">
