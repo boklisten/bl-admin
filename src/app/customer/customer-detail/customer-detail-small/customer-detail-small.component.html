@@ -1,6 +1,8 @@
 <div class="row" *ngIf="customerDetail">
 	<div class="col-12">
-		<app-bl-common-alert [type]="'danger'" *ngIf="!customerValid" [text]="customerNotValidText"></app-bl-common-alert>
+		<app-bl-common-alert [type]="'danger'" *ngIf="!customerValid"
+							 i18n-text="@@customerDetailNotValidError"
+							 text="Customer detail does not have all required fields!"></app-bl-common-alert>
 
 		<ul class="list-group">
 			<li class="list-group-item">
