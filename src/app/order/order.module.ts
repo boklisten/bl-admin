@@ -20,6 +20,7 @@ import { OrderManagerListComponent } from './order-manager/order-manager-list/or
 import {OrderManagerListService} from './order-manager/order-manager-list/order-manager-list.service';
 import { OrderManagerListItemComponent } from './order-manager/order-manager-list/order-manager-list-item/order-manager-list-item.component';
 import { AddOrderToCartComponent } from './add-order-to-cart/add-order-to-cart.component';
+import { CustomerOrderItemListItemComponent } from './customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component';
 
 @NgModule({
 	imports: [
@@ -40,7 +41,8 @@ import { AddOrderToCartComponent } from './add-order-to-cart/add-order-to-cart.c
 		OrderManagerComponent,
 		OrderManagerListComponent,
 		OrderManagerListItemComponent,
-		AddOrderToCartComponent
+		AddOrderToCartComponent,
+		CustomerOrderItemListItemComponent
 	],
 	exports: [
 		CustomerOrderListComponent,

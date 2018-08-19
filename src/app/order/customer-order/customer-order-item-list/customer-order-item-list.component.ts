@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CustomerDetailService} from '../../../customer/customer-detail/customer-detail.service';
-import {OrderService} from '@wizardcoder/bl-connect';
-import {Item, Order, OrderItem, UserDetail} from '@wizardcoder/bl-model';
+import {DeliveryService, OrderService} from '@wizardcoder/bl-connect';
+import {Delivery, Item, Order, OrderItem, UserDetail} from '@wizardcoder/bl-model';
 import {CustomerService} from '../../../customer/customer.service';
 import {BranchStoreService} from '../../../branch/branch-store.service';
 import {CustomerOrderItemListService} from './customer-order-item-list.service';
@@ -17,8 +17,10 @@ export class CustomerOrderItemListComponent implements OnInit {
 	public noOrderItemsText: string;
 	public currentBranchId: string;
 	public wait: boolean;
+	public delivery: Delivery;
 
 	constructor(private _customerService: CustomerService,
+	            private _deliveryService: DeliveryService,
 	            private _branchStoreService: BranchStoreService,
 	            private _customerOrderItemListService: CustomerOrderItemListService,
 	            private _orderService: OrderService) {
@@ -53,6 +55,19 @@ export class CustomerOrderItemListComponent implements OnInit {
 		}).catch(() => {
 
 		});
+	}
+
+	public async haveDelivery(customerOrderItem: {orderItem: OrderItem, order: Order}): Promise<boolean> {
+		if (!this.havePayed(customerOrderItem)) {
+			return false;
+		}
+
+		try {
+			const delivery = await this._deliveryService.getById(customerOrderItem.order.delivery);
+			return (delivery.method === 'bring');
+		} catch (e) {
+			return false;
+		}
 	}
 
 	public havePayed(customerOrderItem: { orderItem: OrderItem, order: Order }) {
