@@ -2,7 +2,9 @@
 	<div class="col-auto">
 		<div class="row justify-content-center">
 			<div class="col-auto text-secondary">
-				<span *ngIf="delivery.method === 'bring'"><fa-icon [icon]="'truck'" class="mr-2"></fa-icon> send with Bring</span>
+				<span *ngIf="delivery.method === 'bring'"><fa-icon [icon]="'truck'" class="mr-2"></fa-icon>
+					<span i18n="@@cartDeliverySendWithBring">send with Bring</span>
+				</span>
 			</div>
 		</div>
 		<div class="row mt-2 justify-content-center">
@@ -52,6 +54,7 @@
 				   (change)="onTrackingNumberChange()"
 				   (keyup)="onTrackingNumberChange()"
 				   (click)="$event.target.select()"
+				   i18n-placeholder="@@cartDeliveryTrackingNumberPlaceholder"
 				   placeholder="tracking number"
 				   [(ngModel)]="trackingNumber"/>
 			<div class="input-group-append">
@@ -65,7 +68,7 @@
 		<button class="btn btn-outline-success btn-lg"
 				(click)="onTrackingNumberConfirm()"
 				[disabled]="!canConfirmDelivery">
-			Confirm delivery
+			<span i18n="@@cartDeliveryConfirmDeliveryButton">Confirm delivery</span>
 		</button>
 	</div>
 </div>

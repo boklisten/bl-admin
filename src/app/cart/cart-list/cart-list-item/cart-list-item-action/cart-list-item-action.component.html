@@ -18,25 +18,35 @@
 </span>
 
 
-<span *ngIf="cartItem.action === 'cancel'" class="ml-2 text-danger">
+<span *ngIf="cartItem.action === 'cancel'"
+	  i18n="@@cartListItemActionCancelThisItem"
+	  class="ml-2 text-danger">
 	cancel this item
 </span>
 
-<span *ngIf="cartItem.orderItem.type === 'sell'" class="ml-2 text-secondary">
+<span *ngIf="cartItem.orderItem.type === 'sell'"
+	  i18n="@@cartListItemActionBuyThisItemFromCustomer"
+	  class="ml-2 text-secondary">
 	buy this item from customer
 </span>
 
-<span *ngIf="cartItem.orderItem.type === 'buy'" class="ml-2 text-secondary">
+<span *ngIf="cartItem.orderItem.type === 'buy'"
+	  i18n="@@cartListItemActionSellItemToCustomer"
+	  class="ml-2 text-secondary">
 	sell this item
 </span>
 
 
 
-<span *ngIf="cartItem.orderItem.type === 'return'" class="ml-2 text-secondary">
+<span *ngIf="cartItem.orderItem.type === 'return'"
+	  i18n="@@cartListItemActionReturnItem"
+	  class="ml-2 text-secondary">
 	return this item
 </span>
 
 
-<span *ngIf="cartItem.orderItem.type === 'buyout'" class="ml-2 text-secondary">
+<span *ngIf="cartItem.orderItem.type === 'buyout'"
+	  i18n="@@cartListItemActionCustomerToBuyoutItem"
+	  class="ml-2 text-secondary">
 	customer to buyout this item
 </span>

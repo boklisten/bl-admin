@@ -16,7 +16,10 @@
                                 <fa-icon [icon]="'user'"></fa-icon>
                             </span>
                         </div>
-                        <input id="name" class="form-control" [formControlName]="'name'" placeholder="Full name" (keyup.enter)="onUserDetailUpdate()">
+                        <input id="name" class="form-control" [formControlName]="'name'"
+							   i18n-placeholder="@@customerDetailModalFullNamePlaceholder"
+							   placeholder="Full name"
+							   (keyup.enter)="onUserDetailUpdate()">
                     </div>
 
                     <div class="input-group mb-3">
@@ -25,7 +28,11 @@
                                 <fa-icon [icon]="'phone'"></fa-icon>
                             </span>
                         </div>
-                        <input id="phone" class="form-control" [formControlName]="'phone'" placeholder="Phone" (keyup.enter)="onUserDetailUpdate()">
+                        <input id="phone" class="form-control"
+							   [formControlName]="'phone'"
+							   i18n-placeholder="@@customerDetailModalPhonePlaceholder"
+							   placeholder="Phone"
+							   (keyup.enter)="onUserDetailUpdate()">
                     </div>
 
 					<div class="input-group mb-3">
@@ -34,7 +41,10 @@
                                 <fa-icon [icon]="'birthday-cake'"></fa-icon>
                             </span>
                         </div>
-                        <input type="date" id="dob" class="form-control" [formControlName]="'dob'" placeholder="Dob" (keyup.enter)="onUserDetailUpdate()">
+                        <input type="date" id="dob" class="form-control"
+							   [formControlName]="'dob'"
+							   i18n-placeholder="@@customerDetailModalDobPlaceholder"
+							   placeholder="Dob" (keyup.enter)="onUserDetailUpdate()">
                     </div>
 
                     <div class="input-group mb-3">
@@ -43,7 +53,11 @@
                                 <fa-icon [icon]="'address-card'"></fa-icon>
                             </span>
                         </div>
-                        <input id="address" class="form-control" [formControlName]="'address'" placeholder="Address" (keyup.enter)="onUserDetailUpdate()">
+                        <input id="address" class="form-control"
+							   [formControlName]="'address'"
+							   i18n-placeholder="@@customerDetailModalAddressPlaceholder"
+							   placeholder="Address"
+							   (keyup.enter)="onUserDetailUpdate()">
                     </div>
 
                     <div class="input-group mb-3">
@@ -52,8 +66,15 @@
                                 <fa-icon [icon]="'address-card'"></fa-icon>
                             </span>
                         </div>
-                        <input id="postCode" class="form-control" [formControlName]="'postCode'" placeholder="Post code" (keyup.enter)="onUserDetailUpdate()">
-                        <input id="postCity" class="form-control" [formControlName]="'postCity'" placeholder="Post city" (keyup.enter)="onUserDetailUpdate()">
+                        <input id="postCode" class="form-control"
+							   [formControlName]="'postCode'"
+							   i18n-placeholder="@@customerDetailModalPostCodePlaceholder"
+							   placeholder="Post code"
+							   (keyup.enter)="onUserDetailUpdate()">
+                        <input id="postCity" class="form-control" [formControlName]="'postCity'"
+							   i18n-placeholder="@@customerDetailModalPostCityPlaceholder"
+							   placeholder="Post city"
+							   (keyup.enter)="onUserDetailUpdate()">
                     </div>
                 </div>
             </div>
@@ -66,7 +87,9 @@
 				<app-bl-common-update-button [wait]="wait" (click)="onUserDetailUpdate()"></app-bl-common-update-button>
 			</div>
 			<div class="col-4">
-				<button class="btn btn-outline-danger btn-block" (click)="activeModal.close('close click')">Close</button>
+				<button class="btn btn-outline-danger btn-block"
+						i18n="@@customerDetailModalCloseButton"
+						(click)="activeModal.close('close click')">Close</button>
 			</div>
 		</div>
 	</div>

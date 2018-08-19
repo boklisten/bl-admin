@@ -2,8 +2,16 @@
 <div class="container-fluid mt-4" blcScanner>
 	<div class="row">
 		<div class="col-12">
-			<app-bl-common-alert [type]="'success'" [text]="cartConfirmText" *ngIf="cartConfirmText" (exit)="cartConfirmText = null"></app-bl-common-alert>
-			<app-bl-common-alert [type]="'danger'" [text]="cartFailureText" *ngIf="cartFailureText" (exit)="cartFailureText = null"></app-bl-common-alert>
+			<app-bl-common-alert [type]="'success'"
+								 i18n-text="@@cartOrderWasConfirmed"
+								 text="Order was confirmed!"
+								 *ngIf="cartConfirmText"
+								 (exit)="cartConfirmText = null"></app-bl-common-alert>
+			<app-bl-common-alert [type]="'danger'"
+								 i18n-text="@@cartFailureText"
+								 text="could not confirm order"
+								 *ngIf="cartFailureText"
+								 (exit)="cartFailureText = null"></app-bl-common-alert>
 		</div>
 	</div>
 	<div class="row">
@@ -13,7 +21,7 @@
 					<ngb-tabset>
 						<ngb-tab *ngIf="haveCustomer" id="customerOrderItemsTab">
 							<ng-template ngbTabTitle>
-								<span class="text-secondary">Ordered items</span>
+								<span class="text-secondary" i18n="@@cartOrderedItems">Ordered items</span>
 							</ng-template>
 
 							<ng-template ngbTabContent>
@@ -26,7 +34,7 @@
 						</ngb-tab>
 						<ngb-tab *ngIf="haveCustomer">
 							<ng-template ngbTabTitle>
-								<span class="text-secondary">Customer items</span>
+								<span class="text-secondary" i18n="@@cartCustomerItems">Customer items</span>
 							</ng-template>
 
 							<ng-template ngbTabContent>
@@ -40,7 +48,7 @@
 
 						<ngb-tab>
 							<ng-template ngbTabTitle>
-								<span class="text-secondary">Search</span>
+								<span class="text-secondary" i18n="@@cartSearch">Search</span>
 							</ng-template>
 							<ng-template ngbTabContent>
 								<div class="row mt-2">

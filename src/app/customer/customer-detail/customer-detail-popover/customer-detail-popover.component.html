@@ -15,7 +15,8 @@
                 <fa-icon [icon]="'address-card'" class="mr-2"></fa-icon> {{customerDetail.postCode}} {{customerDetail.postCity}}
             </li>
             <li class="list-group-item">
-                <fa-icon [icon]="'birthday-cake'" class="mr-2"></fa-icon> {{customerDetail.dob | blDate}}
+                <fa-icon [icon]="'birthday-cake'" class="mr-2"></fa-icon>
+				{{customerDetail.dob | blDate}}
             </li>
         </ul>
 	</div>

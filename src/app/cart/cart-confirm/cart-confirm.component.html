@@ -1,7 +1,6 @@
 
 <div class="modal-header">
-	<h3>Confirm order</h3>
-	<span *ngIf="orderShouldHaveDelivery">should have delivery</span>
+	<h3 i18n="@@cartConfirmConfirmOrder">Confirm order</h3>
 </div>
 
 
@@ -58,9 +57,22 @@
 <div class="modal-footer" *ngIf="showSummary">
 	<div class="row justify-content-end">
 		<div class="col-4">
-			<button class="btn btn-success btn-block" *ngIf="showConfirmOrderButton" [disabled]="buttonDisabled" (click)="onConfirm()">Confirm</button>
-			<button class="btn btn-outline-info btn-block" *ngIf="showDeliveryButton" [disabled]="buttonDisabled" (click)="onGoToDelivery()">Send by mail</button>
-			<app-bl-common-update-button [disabled]="buttonDisabled" [text]="'Go to payment'" [wait]="wait" (clicked)="onGoToPayment()" *ngIf="showGoToPaymentButton"></app-bl-common-update-button>
+			<button class="btn btn-success btn-block"
+					*ngIf="showConfirmOrderButton"
+					[disabled]="buttonDisabled"
+					(click)="onConfirm()"
+					i18n="@@cartConfirmSummaryConfirmButton">Confirm</button>
+
+			<button class="btn btn-outline-info btn-block"
+					*ngIf="showDeliveryButton"
+					[disabled]="buttonDisabled"
+					i18n="@@cartConfirmSummarySendByMailButton"
+					(click)="onGoToDelivery()">Send by mail</button>
+			<app-bl-common-update-button [disabled]="buttonDisabled"
+										 i18n-text="@@cartConfirmSummaryGoToPayment"
+										 text="Go to payment"
+										 [wait]="wait"
+										 (clicked)="onGoToPayment()" *ngIf="showGoToPaymentButton"></app-bl-common-update-button>
 		</div>
 	</div>
 </div>
@@ -68,7 +80,12 @@
 <div class="modal-footer" *ngIf="showPayment">
 	<div class="row justify-content-end">
 		<div class="col-4">
-			<app-bl-common-update-button [text]="'Confirm payment'" [wait]="wait" (clicked)="onConfirmPayment()" [disabled]="buttonDisabled"></app-bl-common-update-button>
+			<app-bl-common-update-button
+				i18n-text="@@cartConfirmSummaryGoToPayment"
+				text="Confirm payment"
+				[wait]="wait"
+				(clicked)="onConfirmPayment()"
+				[disabled]="buttonDisabled"></app-bl-common-update-button>
 		</div>
 	</div>
 </div>
