@@ -15,6 +15,7 @@ export class CustomerItemListComponent implements OnInit {
 	public customerDetail: UserDetail;
 	public customerItemsWithItem: {customerItem: CustomerItem, item: Item}[];
 	public wait: boolean;
+	public error: boolean;
 
 	constructor(private _customerItemService: CustomerItemService,
 	            private itemService: ItemService,
@@ -48,6 +49,8 @@ export class CustomerItemListComponent implements OnInit {
 			this.customerItemsWithItem = customerItemsWithItem;
 			this.wait = false;
 		}).catch((err) => {
+			this.wait = false;
+			this.error = true;
 			console.log('customerItemList: could not get customer items');
 		});
 	}

@@ -68,23 +68,10 @@ export class CustomerService {
 			}
 
 			this.setCustomer(customerDetail);
-
-
-				/*
-			if (customerDetail.orders && customerDetail.orders.length > 0) {
-				this._customerOrderService.getCustomerOrders().then((orders: Order[]) => {
-					this.setCustomer(customerDetail, orders);
-				}).catch(() => {
-					console.log('customerService: could not get orders');
-				});
-			} else {
-			}
-				*/
 		});
 	}
 
 	private setCustomer(detail: UserDetail, orders?: Order[]) {
-		console.log('SETTING CUSTOMER');
 		this._customer = {detail: detail, orders: (orders) ? orders : null};
 		this._customerChange$.next(true);
 	}

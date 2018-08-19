@@ -48,7 +48,6 @@ export class CustomerItemHandlerService {
 		try {
 			return await this.addCustomerItemsToApi(customerItems);
 		} catch (e) {
-			console.log('we got error here', e);
 			throw new Error('customerItemHandlerService: could not add customer items: ' + e);
 		}
 	}
@@ -136,10 +135,10 @@ export class CustomerItemHandlerService {
 		const addedCustomerItems: CustomerItem[] = [];
 
 		try {
-            for (const customerItem of customerItems) {
-                const addedCustomerItem = await this._customerItemService.add(customerItem);
-                addedCustomerItems.push(addedCustomerItem);
-            }
+			for (const customerItem of customerItems) {
+				const addedCustomerItem = await this._customerItemService.add(customerItem);
+				addedCustomerItems.push(addedCustomerItem);
+			}
 		} catch (e) {
 			throw new Error('customerItemHandlerService: could not add customer item: ' + e);
 		}
@@ -150,6 +149,7 @@ export class CustomerItemHandlerService {
 
 	private convertOrderItemToCustomerItem(orderItem: OrderItem, customerId: string, orderId: string): CustomerItem {
 		const branch = this._branchStoreService.getCurrentBranch();
+		const customerDetail = this._customerService.getCustomerDetail();
 
 		return {
 			item: orderItem.item,
@@ -163,6 +163,19 @@ export class CustomerItemHandlerService {
 				handoutById: branch.id,
 				handoutEmployee: this._userService.getUserDetailId(),
 				time: new Date()
+			},
+			customerInfo: {
+				name: customerDetail.name,
+				phone: customerDetail.phone,
+				address: customerDetail.address,
+				postCode: customerDetail.postCode,
+				postCity: customerDetail.postCity,
+				dob: customerDetail.dob,
+				guardian: {
+					name: (customerDetail.guardian) ? customerDetail.guardian.name : null,
+					phone: (customerDetail.guardian) ? customerDetail.guardian.phone : null,
+					email: (customerDetail.guardian) ? customerDetail.guardian.email : null
+				}
 			},
 			returned: false
 		} as CustomerItem;
