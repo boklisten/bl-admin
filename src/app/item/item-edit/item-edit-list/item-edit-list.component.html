@@ -2,10 +2,10 @@
 <div class="row" *ngIf="temp.length > 0">
 	<div class="col-12 mb-3">
 		<button class="btn btn-sm mr-1" [ngClass]="{'btn-outline-success': selected.length > 0, 'btn-outline-secondary': selected.length <= 0}" [disabled]="selected.length <= 0" *ngIf="!autoUpdate" (click)="uploadSelected()">
-			Upload selected
+			<span i18n="@@itemEditListUploadSelected">Upload selected</span>
 		</button>
 		<button class="btn btn-sm" [ngClass]="{'btn-outline-info': selected.length > 0}" [disabled]="selected.length <= 0" (click)="onDownloadSelected()">
-			Download selected
+			<span i18n="@@itemEditListDownloadSelected">Download selected</span>
 		</button>
 	</div>
 </div>
@@ -17,6 +17,7 @@
             <input
                 type='text'
 				class="form-control"
+				i18n-placeholder="@@itemEditListFilterByTitleOrIsbnPlaceholder"
                 placeholder='Filter by title or isbn'
                 (keyup)='updateFilter($event)'
             />
@@ -116,8 +117,12 @@
                 <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
                     <span>
                         <button class="btn btn-sm" [disabled]="!editable" [ngClass]="{'btn-danger': value, 'btn-outline-secondary': !value}" (click)="updateValue(!value, 'archived', rowIndex)">
-							<span *ngIf="value"><fa-icon [icon]="'check'" class="mr-2"></fa-icon> Archived</span>
-							<span *ngIf="!value"><fa-icon [icon]="'archive'" class="mr-2"></fa-icon> Archive</span>
+							<span *ngIf="value"><fa-icon [icon]="'check'" class="mr-2"></fa-icon>
+								<span i18n="@@itemEditListArchived">Archived</span>
+							</span>
+							<span *ngIf="!value"><fa-icon [icon]="'archive'" class="mr-2"></fa-icon>
+								<span i18n="@@itemEditListArchive">Archive</span>
+							</span>
                         </button>
                     </span>
                 </ng-template>

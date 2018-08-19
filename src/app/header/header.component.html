@@ -2,7 +2,7 @@
 	<div class="row align-items-center bl-header">
         <div class="col-md-3 col-sm-3 col-2" routerLink="home">
             <img src="../../assets/img/boklisten_logo_v2_icon_white_lg.png" height="40" width="40">
-			<b class="bl-logo-text d-sm-inline d-none">bladmin</b>
+			<b class="bl-logo-text d-sm-inline d-none" i18n="@@headerBladminName">bladmin</b>
         </div>
 
 		<div class="col-md-8 col-sm-9 col-10">
@@ -46,20 +46,25 @@
 										<fa-icon [icon]="'user-astronaut'" *ngIf="permission === 'admin'"></fa-icon>
 										<fa-icon [icon]="'user-secret'" *ngIf="permission === 'super'"></fa-icon>
 									</span>
-									<span>{{userPermission}}</span>
+									<span *ngIf="permission === 'employee'" i18n="@@blUserPermissionEmployee">employee</span>
+									<span *ngIf="permission === 'manager'" i18n="@@blUserPermissionManager">manager</span>
+									<span *ngIf="permission === 'admin'" i18n="@@blUserPermissionAdmin">administrator</span>
+									<span *ngIf="permission === 'super'" i18n="@@blUserPermissionSuper">wizard</span>
 								</small>
 							</div>
 
 							<div class="dropdown-divider"></div>
 
 							<button class="dropdown-item" routerLink="/auth/register/detail">
-								<fa-icon [icon]="'user-cog'" class="mr-2"></fa-icon> Edit user details
+								<fa-icon [icon]="'user-cog'" class="mr-2"></fa-icon>
+								<span i18n="@@headerEditUserDetailButton">Edit user details</span>
 							</button>
 
 							<div class="dropdown-divider"></div>
 
 							<button class="dropdown-item text-danger" (click)="onUserLogout()">
-								<fa-icon [icon]="'sign-out-alt'" class="mr-2"></fa-icon> Log out
+								<fa-icon [icon]="'sign-out-alt'" class="mr-2"></fa-icon>
+								<span i18n="@@headerLogoutButton">Log out</span>
 							</button>
                         </div>
 					</div>
