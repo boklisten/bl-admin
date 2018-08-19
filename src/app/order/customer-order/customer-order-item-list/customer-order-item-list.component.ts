@@ -16,6 +16,7 @@ export class CustomerOrderItemListComponent implements OnInit {
 	public customerOrderItems: { orderItem: OrderItem, order: Order, item: Item}[];
 	public noOrderItemsText: string;
 	public currentBranchId: string;
+	public wait: boolean;
 
 	constructor(private _customerService: CustomerService,
 	            private _branchStoreService: BranchStoreService,
@@ -34,16 +35,20 @@ export class CustomerOrderItemListComponent implements OnInit {
 
 		this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
 
+		this._customerOrderItemListService.onWait().subscribe((wait: boolean) => {
+			this.wait = wait;
+		});
+
 		this._branchStoreService.onBranchChange().subscribe(() => {
 			this.currentBranchId = this._branchStoreService.getCurrentBranch().id;
 		});
 
 		this._customerOrderItemListService.onCustomerOrderItemListChange().subscribe(() => {
-			console.log('THE ORDER ITEM LIST CHANGED');
 			this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
 		});
 
 		this._customerOrderItemListService.fetchOrderedItems().then((customerOrderItems) => {
+
 			//this.customerOrderItems = customerOrderItems;
 		}).catch(() => {
 

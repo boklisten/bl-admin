@@ -5,6 +5,7 @@ import {ItemService, OrderService} from '@wizardcoder/bl-connect';
 import {Item, Order, OrderItem} from '@wizardcoder/bl-model';
 import {CartService} from '../../../cart/cart.service';
 import {Subject} from 'rxjs/internal/Subject';
+import {Observable} from 'rxjs/internal/Observable';
 
 @Injectable({
 	providedIn: 'root'
@@ -12,6 +13,7 @@ import {Subject} from 'rxjs/internal/Subject';
 export class CustomerOrderItemListService {
 	private _customerOrderItems: { orderItem: OrderItem, order: Order, item: Item }[];
 	private _customerOrderItemList$: Subject<boolean>;
+	private _wait$: Subject<boolean>;
 
 	constructor(private _branchStoreService: BranchStoreService,
 	            private _orderService: OrderService,
@@ -23,6 +25,7 @@ export class CustomerOrderItemListService {
 		this.onCustomerChange();
 		this.onCartConfirmed();
 		this._customerOrderItemList$ = new Subject<boolean>();
+		this._wait$ = new Subject<boolean>();
 
 		if (this._customerService.haveCustomer()) {
 			this.fetchOrderedItems().then((customerOrderItems) => {
@@ -35,7 +38,6 @@ export class CustomerOrderItemListService {
 
 	private onCustomerChange() {
 		this._customerService.onCustomerChange().subscribe(() => {
-			console.log('the CUSTOMER CHANGED');
 			this.fetchOrderedItems().then((customerOrderItems) => {
 
 				this._customerOrderItems = customerOrderItems;
@@ -44,6 +46,10 @@ export class CustomerOrderItemListService {
 				console.log('CustomerOrderItemListService: could not get customer order items');
 			});
 		});
+	}
+
+	onWait(): Observable<boolean> {
+		return this._wait$.asObservable();
 	}
 
 	public onCustomerOrderItemListChange() {
@@ -93,9 +99,9 @@ export class CustomerOrderItemListService {
 		this._customerOrderItems = [];
 		// this._customerOrderItemList$.next(true);
 		const customerOrderItems = [];
+		this._wait$.next(true);
 		const customerDetail = this._customerService.getCustomerDetail();
 		const orders = await this._orderService.getManyByIds(customerDetail.orders);
-		console.log('--got orders', orders);
 
 		for (const order of orders) {
 			for (const orderItem of order.orderItems) {
@@ -119,6 +125,7 @@ export class CustomerOrderItemListService {
 		}
 
 		this._customerOrderItems = customerOrderItems;
+		this._wait$.next(false);
 		this._customerOrderItemList$.next(true);
 		return customerOrderItems;
 	}

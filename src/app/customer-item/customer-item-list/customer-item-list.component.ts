@@ -11,9 +11,10 @@ import {CustomerItemListService} from './customer-item-list.service';
 	styleUrls: ['./customer-item-list.component.scss']
 })
 export class CustomerItemListComponent implements OnInit {
-	customerDetail: UserDetail;
 	@Input() title: string;
-	customerItemsWithItem: {customerItem: CustomerItem, item: Item}[];
+	public customerDetail: UserDetail;
+	public customerItemsWithItem: {customerItem: CustomerItem, item: Item}[];
+	public wait: boolean;
 
 	constructor(private _customerItemService: CustomerItemService,
 	            private itemService: ItemService,
@@ -35,11 +36,17 @@ export class CustomerItemListComponent implements OnInit {
 				this.getCustomerItems();
 			}
 		});
+
+		this._customerItemListService.onWait().subscribe((wait) => {
+			this.wait = wait;
+		});
 	}
 
 	getCustomerItems() {
+		this.wait = true;
 		this._customerItemListService.getCustomerItems().then((customerItemsWithItem) => {
 			this.customerItemsWithItem = customerItemsWithItem;
+			this.wait = false;
 		}).catch((err) => {
 			console.log('customerItemList: could not get customer items');
 		});

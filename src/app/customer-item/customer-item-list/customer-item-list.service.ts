@@ -3,18 +3,22 @@ import {CustomerItem, Item} from '@wizardcoder/bl-model';
 import {CustomerService} from '../../customer/customer.service';
 import {CustomerItemService, ItemService} from '@wizardcoder/bl-connect';
 import {CartService} from '../../cart/cart.service';
+import {Observable} from 'rxjs/internal/Observable';
+import {Subject} from 'rxjs/internal/Subject';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class CustomerItemListService {
 	private _customerItemList: { customerItem: CustomerItem, item: Item }[];
+	private _wait$: Subject<boolean>;
 
 	constructor(private _customerService: CustomerService,
 	            private _itemService: ItemService,
 	            private _cartService: CartService,
 	            private _customerItemService: CustomerItemService) {
 		this._customerItemList = [];
+		this._wait$ = new Subject<boolean>();
 	}
 
 	public getItemWithIsbn(isbn: string) {
@@ -25,6 +29,10 @@ export class CustomerItemListService {
 				}
 			}
 		}
+	}
+
+	public onWait(): Observable<boolean> {
+		return this._wait$.asObservable();
 	}
 
 	public async addItemWithIsbn(isbn: string): Promise<boolean> {
@@ -47,6 +55,7 @@ export class CustomerItemListService {
 	public async getCustomerItems(): Promise<{ customerItem: CustomerItem, item: Item }[]> {
 		const customerItemList = [];
 		const customerDetail = this._customerService.getCustomerDetail();
+		this._wait$.next(true);
 
 		const customerItems = await this._customerItemService.getManyByIds(customerDetail.customerItems);
 
@@ -58,6 +67,7 @@ export class CustomerItemListService {
 			}
 		}
 
+		this._wait$.next(false);
 		return customerItemList;
 	}
 }
