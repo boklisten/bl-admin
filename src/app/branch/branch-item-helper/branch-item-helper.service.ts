@@ -30,11 +30,6 @@ export class BranchItemHelperService {
 	}
 
 	public isBuyValid(item: Item) {
-		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
-			if (branchItem.item === item.id) {
-				return branchItem.buy;
-			}
-		}
 		return true; // if the item is not found, the action is allowed
 	}
 
