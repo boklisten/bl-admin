@@ -19,6 +19,7 @@ export class CustomerDetailModalContentComponent implements OnInit {
 	public userDetailForm: FormGroup;
 	public showContent = false;
 	public dateInvalidError: boolean;
+	public dateNotProvidedError: boolean;
 	public wait: boolean;
 	public dobInput: string;
 	public dobOutput: Date;
@@ -51,10 +52,10 @@ export class CustomerDetailModalContentComponent implements OnInit {
 		momentDate = moment(this.dobInput.toString(), 'DD.MM.YYYY', true);
 
 		if (momentDate.isValid()) {
-			console.log('date is valid');
+			this.dateNotProvidedError = false;
 			this.dobOutput = momentDate.toDate();
 		} else {
-			console.log('date is NOT valid');
+			this.dateNotProvidedError = false;
 			this.dateInvalidError = true;
 		}
 	}
@@ -90,12 +91,17 @@ export class CustomerDetailModalContentComponent implements OnInit {
 
 		console.log('userDetaildob', this.userDetail.dob);
 
+		if (!this.userDetail.dob) {
+			this.dateNotProvidedError = true;
+		}
+
 		this.dobInput = moment(this.userDetail.dob).format('DD.MM.YYYY');
 
 		this.showContent = true;
 	}
 
 	private getPatchedValues(): any {
+		this.dateNotProvidedError = false;
 		const userDetailPatch: UserDetailPatch = {};
 
 		for (const key of Object.keys(this.userDetailForm.controls)) {

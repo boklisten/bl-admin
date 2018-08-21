@@ -84,6 +84,11 @@
                 </div>
             </div>
 			<div class="row">
+				<div class="col-12" *ngIf="dateNotProvidedError">
+					<div class="alert alert-warning">
+						date of birth not provided
+					</div>
+				</div>
 				<div class="col-12" *ngIf="dateInvalidError">
 					<div class="alert alert-secondary">
 						date must be on format "DD.MM.YYYY"
