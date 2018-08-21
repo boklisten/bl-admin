@@ -24,7 +24,7 @@ export class CustomerItemListService {
 	public getItemWithIsbn(isbn: string) {
 		for (const customerItemWithItem of this._customerItemList) {
 			if (customerItemWithItem.item.info && customerItemWithItem.item.info['isbn']) {
-				if (customerItemWithItem.item.info['isbn'] === isbn) {
+				if (customerItemWithItem.item.info['isbn'].toString() === isbn) {
 					return customerItemWithItem;
 				}
 			}
@@ -45,8 +45,8 @@ export class CustomerItemListService {
 		if (cartItemWithItem) {
 			if (!this._cartService.contains(cartItemWithItem.item.id)) {
 				this._cartService.addCustomerItem(cartItemWithItem.customerItem, cartItemWithItem.item);
-				return true;
 			}
+			return true;
 		}
 
 		return false;

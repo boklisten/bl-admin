@@ -72,7 +72,7 @@ export class CustomerOrderItemListService {
 	public getItemWithIsbn(isbn: string) {
 		for (const customerOrderItem of this._customerOrderItems) {
 			if (customerOrderItem.item.info && customerOrderItem.item.info['isbn']) {
-				if (customerOrderItem.item.info['isbn'] === isbn) {
+				if (customerOrderItem.item.info['isbn'].toString() === isbn) {
 					return customerOrderItem;
 				}
 			}
@@ -89,8 +89,9 @@ export class CustomerOrderItemListService {
 		if (customerOrderItem) {
 			if (!this._cartService.contains(customerOrderItem.orderItem.item)) {
 				this._cartService.addOrderItem(customerOrderItem.orderItem, customerOrderItem.order, customerOrderItem.item);
-				return true;
 			}
+			console.log('we found order item');
+			return true;
 		}
 
 		return false;
