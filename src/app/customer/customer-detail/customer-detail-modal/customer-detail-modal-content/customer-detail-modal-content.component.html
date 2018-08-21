@@ -9,13 +9,13 @@
         <div class="container" *ngIf="userDetail">
 			<div class="row" *ngIf="!userDetail.emailConfirmed">
 				<div class="col-12">
-                    <div class="alert alert-warning">
+                    <div class="alert alert-warning" i18n="@@customerDetailModalContentEmailNotConfirmed">
                         User has not confirmed his or her email
                     </div>
 				</div>
 			</div>
 			<div class="row mt-2">
-				<div class="col-auto mr-2">
+				<div class="col-auto mr-2" i18n="@@customerDetailModalContentEmailConfirmed">
 					email confirmed
 				</div>
 				<div class="col-auto">
@@ -85,12 +85,12 @@
             </div>
 			<div class="row">
 				<div class="col-12" *ngIf="dateNotProvidedError">
-					<div class="alert alert-warning">
+					<div class="alert alert-warning" i18n="@@customerDetailModalContentDobNotProvided">
 						date of birth not provided
 					</div>
 				</div>
 				<div class="col-12" *ngIf="dateInvalidError">
-					<div class="alert alert-secondary">
+					<div class="alert alert-secondary" i18n="@@customerDetailModalContentDateMustBeOnFormat">
 						date must be on format "DD.MM.YYYY"
 					</div>
 				</div>
