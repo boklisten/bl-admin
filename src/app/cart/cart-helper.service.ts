@@ -58,19 +58,12 @@ export class CartHelperService {
 			} else if (action === 'sell' && this._customerService.haveCustomer()) {
 				return this._branchItemHelperService.isSellValid(cartItem.item);
 			} else if (action === 'cancel') {
-				if (this._authService.isManager()) {
-					return this._dateService.isOrderItemCancelValid(cartItem.originalOrder.creationTime);
-				} else {
-					return false;
-				}
+				return true;
+				//return this._dateService.isOrderItemCancelValid(cartItem.originalOrder.creationTime);
 			}
 		} else {
 			if (action === 'cancel') {
-				if (this._authService.isManager()) {
-					return (cartItem.customerItem.handout && this._dateService.isCustomerItemCancelValid(cartItem.customerItem.handoutInfo.time));
-				} else {
-					return false;
-				}
+				return (cartItem.customerItem.handout && this._dateService.isCustomerItemCancelValid(cartItem.customerItem.handoutInfo.time));
 			} else if (action === 'return') {
 				return (cartItem.customerItem.handout
 					&& this._dateService.isCustomerItemReturnValid(cartItem.customerItem.deadline)

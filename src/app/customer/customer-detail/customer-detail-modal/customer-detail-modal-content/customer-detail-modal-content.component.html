@@ -7,6 +7,13 @@
 
 	<div class="modal-body">
         <div class="container" *ngIf="userDetail">
+			<div class="row">
+				<div class="col-12">
+                    <div class="alert alert-warning">
+                        User has not confirmed his or her email
+                    </div>
+				</div>
+			</div>
             <div class="row">
                 <div class="col-12" [formGroup]="userDetailForm">
 

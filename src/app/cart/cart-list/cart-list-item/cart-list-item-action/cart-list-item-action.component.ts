@@ -42,22 +42,16 @@ export class CartListItemActionComponent implements OnInit {
 			this.actionList = [
 				'semester',
 				'year',
-				'buy'
+				'buy',
+				'cancel'
 			];
-
-			if (this._authService.isManager()) {
-				this.actionList.push('cancel');
-			}
 		} else if (this.cartItem.customerItem) {
 			this.actionList = [
 				'return',
 				'extend',
-				'buyout'
+				'buyout',
+				'cancel'
 			];
-
-			if (this._authService.isManager()) {
-				this.actionList.push('cancel');
-			}
 		} else if (this._customerService.haveCustomer()) {
 			this.actionList = [
 				'semester',
