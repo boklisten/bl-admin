@@ -20,12 +20,25 @@
 			</div>
 
 			<ul class="list-group list-group-flush">
+				<li class="list-group-item bg-warning" *ngIf="searching">
+					<div class="row justify-content-center align-items-center no-gutters">
+						<div class="col-auto">
+							<fa-icon [icon]="'circle-notch'" [spin]="true" [size]="'2x'"></fa-icon>
+						</div>
+						<div class="col-auto ml-2">
+							<span i18n="@@cartListSearchingForBook">Searching</span>
+						</div>
+					</div>
+				</li>
 				<li class="list-group-item" *ngFor="let cartItem of cart">
 					<app-cart-list-item [cartItem]="cartItem"></app-cart-list-item>
 				</li>
 			</ul>
 
-			<app-bl-common-alert [type]="'secondary'" class="mr-3 ml-3 mt-3" *ngIf="cart.length <= 0" [text]="'Cart is empty'"></app-bl-common-alert>
+			<app-bl-common-alert [type]="'secondary'" class="mr-3 ml-3 mt-3"
+								 *ngIf="cart.length <= 0"
+								 i18n-text="@@cartListCartIsEmpty"
+								 text="Cart is empty"></app-bl-common-alert>
 
 
             <div class="card-footer bl-cart-list-footer" *ngIf="cart.length > 0">
