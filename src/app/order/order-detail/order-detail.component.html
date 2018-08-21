@@ -1,6 +1,10 @@
 <div class="container-fluid mt-2">
 	<div class="row">
 		<div class="col-12">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-12">
 			<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
 			<app-bl-common-alert [type]="'warning'"
 								 *ngIf="warningText"
@@ -14,6 +18,27 @@
 			<div class="row">
 				<div class="col-12">
 					<app-order-detail-card [order]="order"></app-order-detail-card>
+				</div>
+			</div>
+			<div class="row mt-2">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row justify-content-between">
+								<div class="col-6">
+                                    <button class="btn btn-outline-secondary btn-block btn-sm" (click)="printReceipt()">
+										<span i18n="@@orderDetailPrintReceiptButton">Print receipt</span>
+                                    </button>
+                                </div>
+								<div class="col-6">
+                                    <button class="btn btn-outline-secondary btn-block btn-sm" (click)="printAgreement()">
+										<span i18n="@@orderDetailPrintAgreementButton">Print agreement</span>
+                                	</button>
+								</div>
+                            </div>
+
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row mt-4">
