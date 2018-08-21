@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {OrderService} from '@wizardcoder/bl-connect';
+import {OrderPdfService, OrderService, PrintPdfService} from '@wizardcoder/bl-connect';
 import {BlApiError, Order} from '@wizardcoder/bl-model';
+import {CustomerService} from '../../customer/customer.service';
+import moment from 'moment-es6';
 
 @Component({
 	selector: 'app-order-detail',
@@ -14,7 +16,11 @@ export class OrderDetailComponent implements OnInit {
 	public wait: boolean;
 	public order: Order;
 
-	constructor(private _route: ActivatedRoute, private _orderService: OrderService) {
+	constructor(private _route: ActivatedRoute,
+	            private _orderPdfService: OrderPdfService,
+	            private _pdfPrintService: PrintPdfService,
+	            private _customerService: CustomerService,
+	            private _orderService: OrderService) {
 		this.warningText = null;
 		this.wait = false;
 	}
@@ -41,5 +47,28 @@ export class OrderDetailComponent implements OnInit {
 
 		});
 	}
+
+	printReceipt() {
+		this._orderPdfService.getOrderReceiptPdf(this.order.id).then((pdfContent) => {
+			const fileName = 'ordredetaljer_' + moment(this.order.creationTime).format('DDMMYYYY') + '.pdf';
+			this._pdfPrintService.printPdf(pdfContent, fileName);
+		}).catch(() => {
+			console.log('could not get pdf');
+		});
+	}
+
+	printAgreement() {
+		this._orderPdfService.getOrderAgreementPdf(this.order.id).then((pdfContent) => {
+			const fileName = 'laaneavtale_' + moment(this.order.creationTime).format('DDMMYYYY') + '.pdf';
+			this._pdfPrintService.printPdf(pdfContent, fileName);
+		}).catch(() => {
+			console.log('could not get pdf');
+		});
+	}
+
+	public async showPrintAgreement() {
+
+	}
+
 
 }
