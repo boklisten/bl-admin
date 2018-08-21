@@ -4,6 +4,7 @@ import {BlApiError, UserDetail} from '@wizardcoder/bl-model';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserDetailService} from '@wizardcoder/bl-connect';
 import {CustomerDetailService} from '../../customer-detail.service';
+import moment from 'moment-es6';
 
 interface UserDetailPatch {
 	[key: string]: any;
@@ -17,14 +18,10 @@ interface UserDetailPatch {
 export class CustomerDetailModalContentComponent implements OnInit {
 	public userDetailForm: FormGroup;
 	public showContent = false;
-	private _userDetail: UserDetail;
-
+	public dateInvalidError: boolean;
 	public wait: boolean;
-
-	@Input() set userDetail(userDetail: UserDetail) {
-		this._userDetail = userDetail;
-	}
-
+	public dobInput: string;
+	public dobOutput: Date;
 	@Output() updated: EventEmitter<boolean>;
 
 	constructor(public activeModal: NgbActiveModal, private _customerDetailService: CustomerDetailService) {
@@ -32,26 +29,34 @@ export class CustomerDetailModalContentComponent implements OnInit {
 		this.updated = new EventEmitter<boolean>();
 	}
 
-	ngOnInit() {
-		this.createUserDetailForm();
-	}
+	private _userDetail: UserDetail;
 
 	get userDetail(): UserDetail {
 		return this._userDetail;
 	}
 
-	private createUserDetailForm() {
-		this.userDetailForm = new FormGroup({
-			'name': new FormControl(this.userDetail.name, [Validators.minLength(2)]),
-			'phone': new FormControl(this.userDetail.phone, [Validators.minLength(8)]),
-			'address': new FormControl(this.userDetail.address, []),
-			'postCode': new FormControl(this.userDetail.postCode, [Validators.minLength(4)]),
-			'dob': new FormControl(this.userDetail.dob, [Validators.requiredTrue]),
-			'postCity': new FormControl(this.userDetail.postCity),
-			'country': new FormControl(this.userDetail.country),
-		});
+	@Input() set userDetail(userDetail: UserDetail) {
+		this._userDetail = userDetail;
+	}
 
-		this.showContent = true;
+	ngOnInit() {
+		this.createUserDetailForm();
+	}
+
+	public onDobChange() {
+		this.dateInvalidError = false;
+		let momentDate = null;
+		console.log('raw "' + this.dobInput + '"');
+
+		momentDate = moment(this.dobInput.toString(), 'DD.MM.YYYY', true);
+
+		if (momentDate.isValid()) {
+			console.log('date is valid');
+			this.dobOutput = momentDate.toDate();
+		} else {
+			console.log('date is NOT valid');
+			this.dateInvalidError = true;
+		}
 	}
 
 	public onUserDetailUpdate() {
@@ -73,6 +78,23 @@ export class CustomerDetailModalContentComponent implements OnInit {
 		}
 	}
 
+	private createUserDetailForm() {
+		this.userDetailForm = new FormGroup({
+			'name': new FormControl(this.userDetail.name, [Validators.minLength(2)]),
+			'phone': new FormControl(this.userDetail.phone, [Validators.minLength(8)]),
+			'address': new FormControl(this.userDetail.address, []),
+			'postCode': new FormControl(this.userDetail.postCode, [Validators.minLength(4)]),
+			'postCity': new FormControl(this.userDetail.postCity),
+			'country': new FormControl(this.userDetail.country),
+		});
+
+		console.log('userDetaildob', this.userDetail.dob);
+
+		this.dobInput = moment(this.userDetail.dob).format('DD.MM.YYYY');
+
+		this.showContent = true;
+	}
+
 	private getPatchedValues(): any {
 		const userDetailPatch: UserDetailPatch = {};
 
@@ -83,6 +105,7 @@ export class CustomerDetailModalContentComponent implements OnInit {
 		}
 
 		userDetailPatch['emailConfirmed'] = (this.userDetail.emailConfirmed) ? this.userDetail.emailConfirmed : false;
+		userDetailPatch['dob'] = this.dobOutput;
 
 		return userDetailPatch;
 	}

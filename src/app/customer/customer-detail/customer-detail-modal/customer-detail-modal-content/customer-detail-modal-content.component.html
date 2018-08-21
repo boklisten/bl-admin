@@ -50,17 +50,7 @@
 							   (keyup.enter)="onUserDetailUpdate()">
                     </div>
 
-					<div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                                <fa-icon [icon]="'birthday-cake'"></fa-icon>
-                            </span>
-                        </div>
-                        <input type="date" id="dob" class="form-control"
-							   [formControlName]="'dob'"
-							   i18n-placeholder="@@customerDetailModalDobPlaceholder"
-							   placeholder="Dob" (keyup.enter)="onUserDetailUpdate()">
-                    </div>
+
 
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -93,6 +83,26 @@
                     </div>
                 </div>
             </div>
+			<div class="row">
+				<div class="col-12" *ngIf="dateInvalidError">
+					<div class="alert alert-secondary">
+						date must be on format "DD.MM.YYYY"
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="'birthday-cake'"></fa-icon>
+                            </span>
+                        </div>
+                        <input type="text" id="dob" class="form-control"
+							   [(ngModel)]="dobInput"
+							   i18n-placeholder="@@customerDetailModalDobPlaceholder"
+							   placeholder="Dob" (keyup)="onDobChange()">
+                    </div>
+				</div>
+			</div>
         </div>
 	</div>
 
