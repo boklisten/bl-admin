@@ -82,6 +82,8 @@ export class CustomerDetailModalContentComponent implements OnInit {
 			}
 		}
 
+		userDetailPatch['emailConfirmed'] = (this.userDetail.emailConfirmed) ? this.userDetail.emailConfirmed : false;
+
 		return userDetailPatch;
 	}
 }

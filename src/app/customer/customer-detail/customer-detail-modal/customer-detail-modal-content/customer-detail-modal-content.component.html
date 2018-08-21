@@ -7,14 +7,22 @@
 
 	<div class="modal-body">
         <div class="container" *ngIf="userDetail">
-			<div class="row">
+			<div class="row" *ngIf="!userDetail.emailConfirmed">
 				<div class="col-12">
                     <div class="alert alert-warning">
                         User has not confirmed his or her email
                     </div>
 				</div>
 			</div>
-            <div class="row">
+			<div class="row mt-2">
+				<div class="col-auto mr-2">
+					email confirmed
+				</div>
+				<div class="col-auto">
+					<app-bl-common-toggle-button [(value)]="userDetail.emailConfirmed"></app-bl-common-toggle-button>
+				</div>
+			</div>
+            <div class="row mt-2">
                 <div class="col-12" [formGroup]="userDetailForm">
 
                     <div class="input-group mb-3">

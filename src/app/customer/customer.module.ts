@@ -33,7 +33,7 @@ import {CustomerItemModule} from '../customer-item/customer-item.module';
 		BlCommonModule,
 		NgbPopoverModule,
 		OrderModule,
-		CustomerItemModule
+		CustomerItemModule,
 	],
 	providers: [
 		CustomerSearchService,

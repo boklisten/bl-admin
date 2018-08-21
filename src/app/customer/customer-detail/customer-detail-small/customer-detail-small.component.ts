@@ -72,6 +72,10 @@ export class CustomerDetailSmallComponent implements OnInit {
 			return false;
 		}
 
+		if (!customerDetail.emailConfirmed) {
+			return false;
+		}
+
 		return true;
 	}
 
