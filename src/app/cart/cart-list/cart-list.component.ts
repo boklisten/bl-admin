@@ -5,6 +5,7 @@ import {ItemService} from '@wizardcoder/bl-connect';
 import {CartItem} from '../cartItem';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModalWindow} from '@ng-bootstrap/ng-bootstrap/modal/modal-window';
+import {CartItemSearchService} from '../cart-item-search/cart-item-search.service';
 
 @Component({
 	selector: 'app-cart-list',
@@ -17,9 +18,13 @@ export class CartListComponent implements OnInit {
 
 	public cart: CartItem[];
 	private _cartConfirmModal: NgbModalRef;
+	public searching: boolean;
 
 
-	constructor(private _cartService: CartService, private _modalService: NgbModal, private _itemService: ItemService) {
+	constructor(private _cartService: CartService,
+	            private _modalService: NgbModal,
+	            private _cartItemSearchService: CartItemSearchService,
+	            private _itemService: ItemService) {
 		this.cart = [];
 		this.cartConfirmed = new EventEmitter<boolean>();
 		this.cartConfirmationFailed = new EventEmitter<boolean>();
@@ -31,6 +36,12 @@ export class CartListComponent implements OnInit {
 		this._cartService.onCartChange().subscribe(() => {
 			this.cart = this._cartService.getCart();
 		});
+
+		this._cartItemSearchService.onSearching().subscribe((searching: boolean) => {
+			this.searching = searching;
+		});
+
+
 	}
 
 	public onClearCart() {
