@@ -35,8 +35,12 @@ export class DateService {
 	}
 
 	public isCustomerItemExtendValid(currentDeadline: Date, period: Period): boolean {
-		const fromToDate = this.extendPeriod(period);
-		return (moment(currentDeadline).isBefore(moment(fromToDate.to)));
+		try {
+			const fromToDate = this.extendPeriod(period);
+			return (moment(currentDeadline).isBefore(moment(fromToDate.to)));
+		} catch (e) {
+			return false;
+		}
 	}
 
 	public extendPeriod(period: Period): FromToDate {
