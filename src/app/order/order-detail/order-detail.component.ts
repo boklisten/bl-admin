@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {OrderPdfService, OrderService, PrintPdfService} from '@wizardcoder/bl-connect';
 import {BlApiError, Order} from '@wizardcoder/bl-model';
 import {CustomerService} from '../../customer/customer.service';

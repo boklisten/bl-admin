@@ -1,8 +1,7 @@
-import {AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BlApiError, UserDetail} from '@wizardcoder/bl-model';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {UserDetailService} from '@wizardcoder/bl-connect';
 import {CustomerDetailService} from '../../customer-detail.service';
 import moment from 'moment-es6';
 
