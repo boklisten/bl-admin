@@ -27,7 +27,9 @@ export class BlcScannerService {
 					isbn += num;
 
 					if (isbnLength === isbnMaxLength) {
-						this._isbn$.next(isbn.split('').reverse().join(''));
+						const isbnSearchString = isbn.split('').reverse().join('');
+						console.log(`"${isbnSearchString}"`);
+						this._isbn$.next(isbnSearchString);
 					}
 
 					isbnLength++;

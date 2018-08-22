@@ -23,9 +23,8 @@
 
 
 <span *ngIf="cartItem.action === 'cancel'"
-	  i18n="@@cartListItemActionCancelThisItem"
 	  class="ml-2 text-danger">
-	cancel this item
+	<span i18n="@@cartListItemActionCancelThisItem">cancel this item</span>
 	<fa-icon [icon]="'circle-notch'" class="ml-2" *ngIf="updating" [spin]="true"></fa-icon>
 </span>
 

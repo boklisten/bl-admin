@@ -11,7 +11,10 @@
 					<app-customer-current></app-customer-current>
 				</div>
 				<div class="col-3">
-					<app-bl-search-bar [design]="'dark'" [searchFieldId]="headerCustomerSearchId" [small]="true" [placeholder]="'Customer search'" [wait]="wait" [term]="searchTerm" (search)="onCustomerSearch($event)"></app-bl-search-bar>
+					<app-bl-search-bar [design]="'dark'" [searchFieldId]="headerCustomerSearchId"
+									   [small]="true"
+									   i18n-placeholder="@@headerCustomerSearch"
+									   placeholder="Customer search" [wait]="wait" [term]="searchTerm" (search)="onCustomerSearch($event)"></app-bl-search-bar>
 				</div>
 				<div class="col-auto">
 					<div ngbDropdown class="bl-header-location d-inline-block" *ngIf="currentBranch">
