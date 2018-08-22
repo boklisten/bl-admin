@@ -43,7 +43,6 @@ export class ItemSearchService {
 		if (items.length === 1 && addToCart) {
 			if (!this._cartService.contains(items[0].id)) {
 				this._cartService.add(items[0]);
-				this.setSearchResult([]);
 				this.setSearchTerm('');
 				return items;
 			}

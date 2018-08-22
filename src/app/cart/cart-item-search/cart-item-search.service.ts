@@ -5,6 +5,7 @@ import {CustomerItemListService} from '../../customer-item/customer-item-list/cu
 import {ItemSearchService} from '../../item/item-search/item-search.service';
 import {Subject} from 'rxjs/internal/Subject';
 import {Observable} from 'rxjs/internal/Observable';
+import {CustomerService} from '../../customer/customer.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -16,6 +17,7 @@ export class CartItemSearchService {
 	constructor(private _blcScannerService: BlcScannerService,
 	            private _customerItemListService: CustomerItemListService,
 	            private _itemSearchService: ItemSearchService,
+	            private _customerService: CustomerService,
 	            private _customerOrderItemListService: CustomerOrderItemListService) {
 		this.onIsbn();
 		this._searching$ = new Subject<boolean>();
@@ -54,10 +56,16 @@ export class CartItemSearchService {
 	}
 
 	private async scanForOrderItem(isbn: string): Promise<boolean> {
+		if (!this._customerService.haveCustomer()) {
+			return false;
+		}
 		return await this._customerOrderItemListService.addItemWithIsbn(isbn);
 	}
 
 	private async scanForCustomerItem(isbn: string): Promise<boolean> {
+		if (!this._customerService.haveCustomer()) {
+			return false;
+		}
 		return await this._customerItemListService.addItemWithIsbn(isbn);
 	}
 
