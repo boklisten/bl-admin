@@ -79,7 +79,11 @@ export class CartService {
 				return;
 			});
 		} else {
-			this.addNewCustomerItem(customerItem, item);
+			this.addNewCustomerItem(customerItem, item).then(() => {
+
+			}).catch((err) => {
+				console.log('could not add new customerItem: ' + err);
+			});
 		}
 	}
 
@@ -175,11 +179,11 @@ export class CartService {
 		});
 	}
 
-	private addNewCustomerItem(customerItem: CustomerItem, item: Item) {
+	private async addNewCustomerItem(customerItem: CustomerItem, item: Item): Promise<boolean> {
 		let orderItem: OrderItem;
 
 		try {
-			orderItem = this._cartHelperService.createOrderItemBasedOnCustomerItem(customerItem, item);
+			orderItem = await this._cartHelperService.createOrderItemBasedOnCustomerItem(customerItem, item);
 		} catch (e) {
 			throw new Error('cartService: could not create orderItem');
 		}
@@ -190,6 +194,8 @@ export class CartService {
 			customerItem: customerItem,
 			action: orderItem.type
 		});
+
+		return true;
 	}
 
 	private addNewItem(item: Item) {

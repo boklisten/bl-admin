@@ -59,7 +59,6 @@ export class CartHelperService {
 				return this._branchItemHelperService.isSellValid(cartItem.item);
 			} else if (action === 'cancel') {
 				return true;
-				//return this._dateService.isOrderItemCancelValid(cartItem.originalOrder.creationTime);
 			}
 		} else {
 			if (action === 'cancel') {
@@ -81,13 +80,13 @@ export class CartHelperService {
 		return false;
 	}
 
-	public createOrderItemBasedOnCustomerItem(customerItem: CustomerItem, item: Item) {
+	public async createOrderItemBasedOnCustomerItem(customerItem: CustomerItem, item: Item) {
 		if (!this._dateService.isCustomerItemReturnValid(customerItem.deadline) && !this._authService.isAdmin()) {
 			throw new Error('can not add customer item to cart, the deadline is overdue');
 		}
 
 		if (this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time) && this._authService.isManager()) {
-			return this.createOrderItemTypeCancel(customerItem, item);
+			return await this.createOrderItemTypeCancel(customerItem, item);
 		} else if (this._dateService.isCustomerItemReturnValid(customerItem.deadline) && !this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time)) {
 			return this.createOrderItemTypeReturn(customerItem, item);
 		} else if (this._dateService.isCustomerItemExtendValid(customerItem.deadline, 'semester')) {
@@ -120,12 +119,12 @@ export class CartHelperService {
 		return orderItem;
 	}
 
-	public createOrderItemTypeCancel(customerItem: CustomerItem, item: Item): OrderItem {
+	public async createOrderItemTypeCancel(customerItem: CustomerItem, item: Item): Promise<OrderItem> {
 		return {
 			type: 'cancel',
 			item: item.id,
 			title: item.title,
-			amount: this._customerItemPriceService.priceCancel(customerItem),
+			amount: await this._customerItemPriceService.priceCancel(customerItem),
 			unitPrice: 0,
 			taxRate: 0,
 			taxAmount: 0,
