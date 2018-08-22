@@ -2,14 +2,18 @@
     <label ngbButtonLabel
 		   [ngClass]="{'btn-outline-secondary': !showAction(action), 'btn-outline-info': showAction(action) && !originalAction(action), 'btn-outline-success': showAction(action) && originalAction(action)}"
 		   *ngFor="let action of actionList">
+
         <input ngbButton type="radio" [value]="action" [disabled]="!showAction(action)" (click)="onActionChange(action)">
         <fa-icon [icon]="'calendar-alt'" class="mr-3 ml-3" *ngIf="action === 'semester'"></fa-icon>
         <fa-icon [icon]="'calendar'" class="mr-3 ml-3" *ngIf="action === 'year'"></fa-icon>
         <fa-icon [icon]="'money-bill-alt'" class="mr-3 ml-3" *ngIf="action === 'buy' || action === 'buyout'"></fa-icon>
         <fa-icon [icon]="'exchange-alt'" class="mr-3 ml-3" *ngIf="action === 'sell'"></fa-icon>
-        <fa-icon [icon]="'ban'" class="mr-3 ml-3" *ngIf="action === 'cancel'"></fa-icon>
+
+		<fa-icon [icon]="'ban'" class="mr-3 ml-3" *ngIf="action === 'cancel'"></fa-icon>
+
         <fa-icon [icon]="'calendar-plus'" class="mr-3 ml-3" *ngIf="action === 'extend'"></fa-icon>
 		<fa-icon [icon]="'arrow-alt-circle-down'" class="mr-3 ml-3" *ngIf="action === 'return'"></fa-icon>
+
     </label>
 </div>
 
@@ -22,6 +26,7 @@
 	  i18n="@@cartListItemActionCancelThisItem"
 	  class="ml-2 text-danger">
 	cancel this item
+	<fa-icon [icon]="'circle-notch'" class="ml-2" *ngIf="updating" [spin]="true"></fa-icon>
 </span>
 
 <span *ngIf="cartItem.orderItem.type === 'sell'"

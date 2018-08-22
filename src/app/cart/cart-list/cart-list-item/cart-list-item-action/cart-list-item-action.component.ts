@@ -19,6 +19,7 @@ import {AuthService} from '../../../../auth/auth.service';
 export class CartListItemActionComponent implements OnInit {
 	@Input() cartItem: CartItem;
 	@Output() actionChange: EventEmitter<CartItemAction>;
+	public updating: boolean;
 
 	public actionList: CartItemAction[];
 
@@ -35,6 +36,7 @@ export class CartListItemActionComponent implements OnInit {
 
 	ngOnInit() {
 		this.createActionList();
+		this.updating = false;
 	}
 
 	createActionList() {
@@ -108,8 +110,9 @@ export class CartListItemActionComponent implements OnInit {
 	}
 
 	private updateOrderItemBasedOnAction(action: CartItemAction) {
+		this.updating = true;
 		this._orderItemHelperService.updateOrderItem(action, this.cartItem.orderItem, this.cartItem.item, this.cartItem.customerItem).then(() => {
-
+			this.updating = false;
 		}).catch(() => {
 			console.log('cartListItemAction: could not update orderItem');
 		});
