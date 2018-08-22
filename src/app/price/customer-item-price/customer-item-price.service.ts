@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Branch, CustomerItem, Item} from '@wizardcoder/bl-model';
+import {Branch, CustomerItem, Item, Order} from '@wizardcoder/bl-model';
 import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {DateService} from '../../date/date.service';
 import {BranchStoreService} from '../../branch/branch-store.service';
 import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
 import {PriceService} from '../price.service';
+import {OrderService} from '@wizardcoder/bl-connect';
+import {OrderHelperService} from '../../order/order-helper/order-helper.service';
 
 export interface OrderItemAmounts {
 	unitPrice: number;
@@ -17,6 +19,8 @@ export class CustomerItemPriceService {
 
 	constructor(private _dateService: DateService,
 	            private _branchStoreService: BranchStoreService,
+	            private _orderService: OrderService,
+	            private _orderHelperService: OrderHelperService,
 	            private _priceService: PriceService) {
 	}
 
@@ -42,9 +46,13 @@ export class CustomerItemPriceService {
 
 	}
 
-	public calculateAmountsCancel(customerItem: CustomerItem, item: Item) {
-		const unitPrice = this.priceCancel(customerItem);
-		return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
+	public async calculateAmountsCancel(customerItem: CustomerItem, item: Item): Promise<OrderItemAmounts> {
+		try {
+			const unitPrice = await this.priceCancel(customerItem);
+			return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
+		} catch (e) {
+			throw new Error('could not calculate orderItemAmounts for operation cancel: ' + e);
+		}
 	}
 
 
@@ -87,11 +95,29 @@ export class CustomerItemPriceService {
 		return 0;
 	}
 
-	public priceCancel(customerItem: CustomerItem) {
-		// if the customer wants to cancel he should get his money back, but only if it is less than two weeks since handout
-		if (customerItem.totalAmount && customerItem.handout && this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time)) {
-			return 0 - customerItem.totalAmount;
+	public async priceCancel(customerItem: CustomerItem): Promise<number> {
+		if (customerItem.handout && customerItem.handoutInfo) {
+			if (this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time)) {
+				let totalCancelAmount = 0;
+
+				for (const orderId of customerItem.orders) {
+					totalCancelAmount += await this.calculateOrderItemCancelAmount(orderId, customerItem.item);
+				}
+
+				return 0 - totalCancelAmount;
+			}
 		}
-		return 0;
+
+		throw new Error('could not calculate total cancel amount');
+	}
+
+	private async calculateOrderItemCancelAmount(orderId: string, itemId: string): Promise<number> {
+		const order = await this._orderService.getById(orderId);
+		const orderItem = this._orderHelperService.getOrderItemFromOrder(itemId, order);
+
+		if (orderItem.movedFromOrder) {
+			return await this.calculateOrderItemCancelAmount(orderItem.movedFromOrder, itemId);
+		}
+		return orderItem.amount;
 	}
 }

@@ -22,7 +22,7 @@ export class OrderHelperService {
 
 	}
 
-	private getOrderItemFromOrder(itemId: string, order: Order): OrderItem {
+	public getOrderItemFromOrder(itemId: string, order: Order): OrderItem {
 
 		for (const orderItem of order.orderItems) {
 			if (orderItem.item.toString() === itemId.toString()) {
