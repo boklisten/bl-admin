@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BlSearchBarComponent } from './search-bar.component';
+import { BlSearchBarComponent } from './bl-search-bar.component';
 
 describe('SearchBarComponent', () => {
   let component: BlSearchBarComponent;

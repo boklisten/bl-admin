@@ -12,7 +12,9 @@ export class AppComponent {
 	title = 'app';
 	public showContent: boolean;
 
-	constructor(private _authService: AuthService, private _branchStoreService: BranchStoreService, private _router: Router) {
+	constructor(private _authService: AuthService,
+	            private _branchStoreService: BranchStoreService,
+	            private _router: Router) {
 		this.showContent = false;
 
 		this._router.events.subscribe(() => {

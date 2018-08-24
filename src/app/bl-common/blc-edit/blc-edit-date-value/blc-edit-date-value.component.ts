@@ -22,7 +22,6 @@ export class BlcEditDateValueComponent implements OnInit {
 	}
 
 	onUpdate(value) {
-		console.log('the value', value);
 		this.value = value;
 		this.valueChange.emit(this.value);
 		this.update.emit(this.value);

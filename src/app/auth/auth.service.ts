@@ -4,7 +4,6 @@ import {TokenService} from '@wizardcoder/bl-connect';
 import {Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import {AuthLoginService} from '@wizardcoder/bl-login';
-import {StorageService} from '../storage/storage.service';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +12,9 @@ export class AuthService {
 	private _login$: Subject<boolean>;
 	private _applicationLogout$: Subject<boolean>;
 
-	constructor(private _tokenService: TokenService, private _router: Router, private _authLoginService: AuthLoginService) {
+	constructor(private _tokenService: TokenService,
+	            private _router: Router,
+	            private _authLoginService: AuthLoginService) {
 		this._logout$ = new Subject<boolean>();
 		this._login$ = new Subject<boolean>();
 		this._applicationLogout$ = new Subject<boolean>();

@@ -1,6 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BlCommonUpdateButtonComponent} from './bl-common-update-button.component';
+import {FaIconStubComponent} from '../../../test/stub/fontawesome/fa-icon-stub';
 
 describe('UpdateButtonComponent', () => {
 	let component: BlCommonUpdateButtonComponent;
@@ -8,7 +9,10 @@ describe('UpdateButtonComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-				declarations: [BlCommonUpdateButtonComponent]
+				declarations: [
+					BlCommonUpdateButtonComponent,
+					FaIconStubComponent
+				]
 			})
 			.compileComponents();
 	}));

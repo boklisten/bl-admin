@@ -1,6 +1,18 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {BlcItemAddComponent} from './item-add.component';
+import {BlcItemAddComponent} from './blc-item-add.component';
+import {FaIconStubComponent} from '../../../test/stub/fontawesome/fa-icon-stub';
+import {Component, Injectable} from '@angular/core';
+import {Observable} from 'rxjs/internal/Observable';
+import {CartService} from '../../cart/cart.service';
+
+@Injectable()
+class CartStubService {
+	onCartChange() {
+		return new Observable<any>();
+	}
+}
+
 
 describe('ItemAddComponent', () => {
 	let component: BlcItemAddComponent;
@@ -8,10 +20,17 @@ describe('ItemAddComponent', () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-				declarations: [BlcItemAddComponent]
+				declarations: [
+					BlcItemAddComponent,
+					FaIconStubComponent
+				],
+				providers: [
+					{provide: CartService, useClass: CartStubService}
+				]
 			})
 			.compileComponents();
 	}));
+
 
 	beforeEach(() => {
 		fixture = TestBed.createComponent(BlcItemAddComponent);
