@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {DatabaseRoutingModule} from './database-routing.module';
-import {DatabaseComponent} from './database/database.component';
+import {DatabaseComponent} from './database.component';
 import {DatabaseItemsComponent} from './database-items/database-items.component';
 import {NgbTabsetModule} from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
@@ -10,6 +10,9 @@ import {ItemModule} from '../item/item.module';
 import {DatabaseExcelService} from './database-excel/database-excel.service';
 import { DatabaseBranchesComponent } from './database-branches/database-branches.component';
 import {BranchModule} from '../branch/branch.module';
+import { DatabaseReportsComponent } from './database-reports/database-reports.component';
+import { DatabaseReportOrderComponent } from './database-reports/database-report-order/database-report-order.component';
+import {BlCommonModule} from '../bl-common/bl-common.module';
 
 @NgModule({
 	imports: [
@@ -18,12 +21,13 @@ import {BranchModule} from '../branch/branch.module';
 		NgbTabsetModule,
 		FontAwesomeModule,
 		ItemModule,
-		BranchModule
+		BranchModule,
+		BlCommonModule
 	],
 	providers: [
 		DatabaseExcelService
 	],
-	declarations: [DatabaseComponent, DatabaseItemsComponent, DatabaseBranchesComponent]
+	declarations: [DatabaseComponent, DatabaseItemsComponent, DatabaseBranchesComponent, DatabaseReportsComponent, DatabaseReportOrderComponent]
 })
 export class DatabaseModule {
 }
