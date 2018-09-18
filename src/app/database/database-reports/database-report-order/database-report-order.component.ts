@@ -16,6 +16,7 @@ export class DatabaseReportOrderComponent implements OnInit {
 	public fromDate: Date;
 	public toDate: Date;
 	public noOrdersFound: boolean;
+	public byCustomer: boolean;
 	public showFilter: boolean;
 	public currentBranch: boolean;
 	public wait: boolean;
@@ -29,10 +30,13 @@ export class DatabaseReportOrderComponent implements OnInit {
 		this.toDate = new Date();
 		this.showFilter = true;
 		this.currentBranch = true;
+		this.byCustomer = true;
 		this.wait = false;
 	}
 
 	onPeriodChange(period: {fromDate: Date, toDate: Date}) {
+		this.wait = false;
+		this.noOrdersFound = false;
 		this.fromDate = period.fromDate;
 		this.toDate = period.toDate;
 	}
@@ -47,6 +51,7 @@ export class DatabaseReportOrderComponent implements OnInit {
 			branchId: (this.currentBranch) ? this._branchStoreService.getCurrentBranch().id : null,
 			orderItemNotDelivered: this.notDelivered,
 			fromDate: this.fromDate,
+			byCustomer: this.byCustomer,
 			toDate: this.toDate
 		};
 

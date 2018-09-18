@@ -20,7 +20,7 @@ export class DatabaseReportOrderService {
 	public async printFilteredOrdersToFile(filter: DatabaseReportOrderFilter): Promise<boolean> {
 		try {
 			const orders = await this.getOrdersByFilter(filter);
-			await this.printOrdersToExcel(orders);
+			await this.printOrdersToExcel(orders, filter);
 
 			return true;
 		} catch (e) {
@@ -33,11 +33,11 @@ export class DatabaseReportOrderService {
 		return this._orderService.getAll(query);
 	}
 
-	private async printOrdersToExcel(orders: Order[]): Promise<boolean> {
+	private async printOrdersToExcel(orders: Order[], filter: DatabaseReportOrderFilter): Promise<boolean> {
 		let allExcelObjects: any[] = [];
 
 		for (const order of orders) {
-			const excelObjects = await this.orderToExcelObjects(order);
+			const excelObjects = await this.orderToExcelObjects(order, filter);
 			allExcelObjects = allExcelObjects.concat(excelObjects);
 		}
 
@@ -47,10 +47,16 @@ export class DatabaseReportOrderService {
 		return true;
 	}
 
-	private async orderToExcelObjects(order: Order): Promise<any[]> {
+	private async orderToExcelObjects(order: Order, filter: DatabaseReportOrderFilter): Promise<any[]> {
 		const excelObjects: any[] = [];
 
 		for (const orderItem of order.orderItems) {
+			if (filter.orderItemNotDelivered) {
+				if (typeof orderItem.movedToOrder !== 'undefined') {
+					continue;
+				}
+			}
+
 			excelObjects.push({
 				orderId: order.id,
 				branchId: order.branch,
@@ -60,8 +66,8 @@ export class DatabaseReportOrderService {
 				amount: orderItem.amount,
 				taxAmount: orderItem.taxAmount,
 				type: orderItem.type,
-				handout: orderItem.handout,
-				delivered: orderItem.delivered,
+				// handout: orderItem.handout,
+				// delivered: orderItem.delivered,
 				movedToOrder: orderItem.movedToOrder,
 				creationTime: order.creationTime
 			});
@@ -88,6 +94,10 @@ export class DatabaseReportOrderService {
 			} else {
 				query += '&creationTime=' + fromDate;
 			}
+		}
+
+		if (filter.byCustomer) {
+			query += '&byCustomer=' + filter.byCustomer;
 		}
 
 		if (filter.orderItemNotDelivered) {

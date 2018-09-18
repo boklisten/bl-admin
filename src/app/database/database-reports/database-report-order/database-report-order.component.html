@@ -1,21 +1,27 @@
-<div class="row" *ngIf="noOrdersFound">
-	<div class="col-12">
-		<div class="alert alert-secondary">
-			No orders found
-		</div>
-	</div>
-</div>
 
-<div class="row" *ngIf="wait">
-	<div class="col-12">
-		<app-bl-common-update-button [wait]="wait"></app-bl-common-update-button>
-	</div>
-</div>
+
 <div class="row no-gutters" *ngIf="showFilter">
 	<div class="col-12 no-gutters">
 		<div class="card">
+			<div class="card-header" i18n="@@databaseReportOrderTitle">
+				Orders
+			</div>
 			<div class="card-body">
-                <div class="row justify-content-between">
+                <div class="row mb-2" *ngIf="noOrdersFound">
+                    <div class="col-12">
+                        <div class="alert alert-secondary" i18n="@@databaseReportOrderNoOrdersFound">
+                            No orders found
+                        </div>
+                    </div>
+				</div>
+
+				<div class="row mb-2" *ngIf="wait">
+                    <div class="col-12">
+                        <app-bl-common-update-button [wait]="wait"></app-bl-common-update-button>
+                    </div>
+                </div>
+
+				<div class="row justify-content-between">
                     <div class="col-auto">
                         <fa-icon [icon]="'location-arrow'"></fa-icon>
                     </div>
@@ -27,7 +33,7 @@
                 </div>
 
                 <div class="row justify-content-between">
-                    <div class="col-auto">
+                    <div class="col-auto" i18n="@@databaseReportOrderNotDelivered">
                         Not delivered
                     </div>
                     <div class="col-auto">
@@ -37,29 +43,31 @@
                     </div>
                 </div>
 
+				<div class="row justify-content-between">
+                    <div class="col-auto" i18n="@@databaseReportOrderByCustomer">
+                       	By customer
+                    </div>
+                    <div class="col-auto">
+                        <app-bl-common-toggle-button
+                            [(value)]="byCustomer"
+                        ></app-bl-common-toggle-button>
+                    </div>
+                </div>
+
 				<div class="row mt-2 justify-content-center">
 					<div class="col-auto">
 						<app-blc-period-select (periodChange)="onPeriodChange($event)"></app-blc-period-select>
 					</div>
 				</div>
+
+				<div class="row mt-5">
+					<div class="col-12">
+                        <button type="button" class="btn btn-outline-info btn-block" (click)="onGetOrders()">
+							<span i18n="@@databaseReportOrderGetOrdersButton">Get orders</span>
+                        </button>
+					</div>
+				</div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="row mt-2">
-	<div class="col-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-info btn-block" (click)="onGetOrders()">
-                    Get orders
-                </button>
-                <button type="button" class="btn"
-                        [ngClass]="{'btn-outline-info': !showFilter, 'btn-info': showFilter}"
-                        (click)="onShowFilter()">
-                    <fa-icon [icon]="'filter'" ></fa-icon>
-                </button>
-            </div>
-        </div>
-	</div>
 </div>

@@ -3,6 +3,7 @@ import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {BranchStoreService} from '../branch/branch-store.service';
 import * as moment from 'moment';
 import {BranchHelperService} from '../branch/branch-helper/branch-helper.service';
+import {from} from 'rxjs/internal/observable/from';
 
 interface FromToDate {
 	from: Date;
@@ -73,11 +74,11 @@ export class DateService {
 	}
 
 	public getYearPeriod(): {fromDate: Date, toDate: Date} {
-		const currentDate = this.getCurrentDate().add(1, 'day');
-
+		const toDate = this.getCurrentDate().add(1, 'day');
+		const fromDate = this.getCurrentDate().subtract(1, 'year');
 		return {
-			fromDate: currentDate.subtract(1, 'year').toDate(),
-			toDate: currentDate.toDate()
+			fromDate: fromDate.toDate(),
+			toDate: toDate.toDate()
 		};
 	}
 
