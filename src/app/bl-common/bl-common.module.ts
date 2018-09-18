@@ -5,9 +5,9 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faCircleNotch, faCheckCircle, faExclamation} from '@fortawesome/free-solid-svg-icons';
 import { BlCommonAlertComponent } from './bl-common-alert/bl-common-alert.component';
-import {NgbAlertModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbAlertModule, NgbButtonsModule, NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 import { BlSearchBarComponent } from './search/bl-search-bar/bl-search-bar.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CustomerNamePipe} from "./pipes/customer/customer-name.pipe";
 import {BranchNamePipe} from "./pipes/branch/branch-name.pipe";
 import { BlDatePipe } from './pipes/date/bl-date.pipe';
@@ -21,6 +21,7 @@ import { BlcEditNumberValueComponent } from './blc-edit/blc-edit-number-value/bl
 import { BlcEditDateValueComponent } from './blc-edit/blc-edit-date-value/blc-edit-date-value.component';
 import {BlcScannerDirective} from './blc-scanner/blc-scanner.directive';
 import {BlcKeyeventDoubleShiftDirective} from './blc-keyevent/blc-keyevent-double-shift.directive';
+import { BlcPeriodSelectComponent } from './blc-period/blc-period-select/blc-period-select.component';
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -31,7 +32,9 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		FontAwesomeModule,
 		FormsModule,
 		NgbTooltipModule,
-		NgxDatatableModule
+		NgxDatatableModule,
+		ReactiveFormsModule,
+		NgbButtonsModule
 	],
 	declarations: [
 		BlCommonUpdateButtonComponent,
@@ -48,7 +51,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcEditNumberValueComponent,
 		BlcEditDateValueComponent,
 		BlcScannerDirective,
-		BlcKeyeventDoubleShiftDirective
+		BlcKeyeventDoubleShiftDirective,
+		BlcPeriodSelectComponent
 	],
 	exports: [
 		BlCommonUpdateButtonComponent,
@@ -65,7 +69,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcEditNumberValueComponent,
 		BlcEditDateValueComponent,
 		BlcScannerDirective,
-		BlcKeyeventDoubleShiftDirective
+		BlcKeyeventDoubleShiftDirective,
+		BlcPeriodSelectComponent
 
 	]
 })

@@ -1,0 +1,51 @@
+
+<div class="row">
+	<div class="col-12">
+        <div class="btn-group btn-group-toggle" ngbRadioGroup [(ngModel)]="periodSelect" (ngModelChange)="selectPeriod($event)">
+            <label ngbButtonLabel class="btn-outline-secondary">
+                <input ngbButton type="radio" value="day" i18n="@@blcPeriodSelectDay"> Day
+            </label>
+            <label ngbButtonLabel class="btn-outline-secondary">
+                <input ngbButton type="radio" value="semester" i18n="@@blcPeriodSelectSemester"> Semester
+            </label>
+            <label ngbButtonLabel class="btn-outline-secondary">
+                <input ngbButton type="radio" value="year" i18n="@@blcPeriodSelectYear"> Year
+            </label>
+			<label ngbButtonLabel class="btn-outline-secondary">
+                <input ngbButton type="radio" value="allTime" i18n="@@blcPeriodSelectAllTime"> All time
+            </label>
+            <label ngbButtonLabel class="btn-outline-secondary">
+                <input ngbButton type="radio" value="custom" i18n="@@blcPeriodSelectCustom"> Custom
+            </label>
+        </div>
+	</div>
+</div>
+
+<div class="row mt-2" *ngIf="periodSelect === 'custom'">
+	<div class="col-12">
+		<div class="row justify-content-between">
+            <div class="col-auto font-weight-bold" i18n="@@blcPeriodSelectFrom">
+                From
+            </div>
+            <div class="col-auto">
+                <app-blc-edit-date-value
+                    [(value)]="fromDate"
+					(valueChange)="onCustomDateChange()"
+                ></app-blc-edit-date-value>
+            </div>
+        </div>
+
+        <div class="row justify-content-between">
+            <div class="col-auto font-weight-bold" i18n="@@blcPeriodSelectTo">
+                To
+            </div>
+            <div class="col-auto">
+                <app-blc-edit-date-value
+                    [(value)]="toDate"
+					(valueChange)="onCustomDateChange()"
+                ></app-blc-edit-date-value>
+            </div>
+        </div>
+	</div>
+</div>
+

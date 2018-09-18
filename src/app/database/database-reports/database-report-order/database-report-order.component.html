@@ -37,27 +37,11 @@
                     </div>
                 </div>
 
-                <div class="row justify-content-between">
-                    <div class="col-auto">
-                        From date
-                    </div>
-                    <div class="col-auto">
-                        <app-blc-edit-date-value
-                            [(value)]="fromDate"
-                        ></app-blc-edit-date-value>
-                    </div>
-                </div>
-
-                <div class="row justify-content-between">
-                    <div class="col-auto">
-                        To date
-                    </div>
-                    <div class="col-auto">
-                        <app-blc-edit-date-value
-                            [(value)]="toDate"
-                        ></app-blc-edit-date-value>
-                    </div>
-                </div>
+				<div class="row mt-2 justify-content-center">
+					<div class="col-auto">
+						<app-blc-period-select (periodChange)="onPeriodChange($event)"></app-blc-period-select>
+					</div>
+				</div>
             </div>
         </div>
     </div>

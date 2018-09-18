@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
 	selector: 'app-blc-edit-date-value',
@@ -23,8 +24,8 @@ export class BlcEditDateValueComponent implements OnInit {
 
 	onUpdate(value) {
 		this.value = value;
-		this.valueChange.emit(this.value);
-		this.update.emit(this.value);
+		this.valueChange.emit(moment(this.value).toDate());
+		this.update.emit(moment(this.value).toDate());
 		this.editing = false;
 	}
 

@@ -32,6 +32,11 @@ export class DatabaseReportOrderComponent implements OnInit {
 		this.wait = false;
 	}
 
+	onPeriodChange(period: {fromDate: Date, toDate: Date}) {
+		this.fromDate = period.fromDate;
+		this.toDate = period.toDate;
+	}
+
 	onShowFilter() {
 		this.showFilter = !this.showFilter;
 	}
