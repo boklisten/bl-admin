@@ -7,6 +7,7 @@
 		"start": "node server.js",
 		"watch": "ng serve --port 8080",
 		"build": "ng build --configuration=${ANGULAR_ENV}",
+		"build:prod": "ng build --configuration=production-nb",
 		"extract-i18n": "ng xi18n && xliffmerge --profile xliffmerge.json en nb",
 		"postinstall": "npm run build",
 		"test": "ng test",

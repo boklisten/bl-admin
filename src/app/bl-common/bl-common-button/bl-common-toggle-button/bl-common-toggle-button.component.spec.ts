@@ -2,8 +2,13 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BlCommonToggleButtonComponent} from './bl-common-toggle-button.component';
 import {Component, Input} from '@angular/core';
-import {FaIconStubComponent} from '../../../../test/stub/fontawesome/fa-icon-stub';
 
+
+@Component({selector: 'fa-icon', template: ''})
+class FaIconStubComponent {
+	@Input() icon;
+	@Input() size;
+}
 
 describe('BlCommonToggleButtonComponent', () => {
 	let component: BlCommonToggleButtonComponent;

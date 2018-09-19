@@ -1,7 +1,15 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BlCommonUpdateButtonComponent} from './bl-common-update-button.component';
-import {FaIconStubComponent} from '../../../test/stub/fontawesome/fa-icon-stub';
+import {Component, Input} from '@angular/core';
+
+
+
+@Component({selector: 'fa-icon', template: ''})
+class FaIconStubComponent {
+	@Input() icon;
+	@Input() size;
+}
 
 describe('UpdateButtonComponent', () => {
 	let component: BlCommonUpdateButtonComponent;

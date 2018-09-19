@@ -1,8 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BlcItemAddComponent} from './blc-item-add.component';
-import {FaIconStubComponent} from '../../../test/stub/fontawesome/fa-icon-stub';
-import {Component, Injectable} from '@angular/core';
+import {Component, Injectable, Input} from '@angular/core';
 import {Observable} from 'rxjs/internal/Observable';
 import {CartService} from '../../cart/cart.service';
 
@@ -13,6 +12,12 @@ class CartStubService {
 	}
 }
 
+
+@Component({selector: 'fa-icon', template: ''})
+class FaIconStubComponent {
+	@Input() icon;
+	@Input() size;
+}
 
 describe('ItemAddComponent', () => {
 	let component: BlcItemAddComponent;
