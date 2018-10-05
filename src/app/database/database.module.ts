@@ -23,7 +23,8 @@ import { ReportDownloadModule, OrderDownloadComponent, PaymentDownloadComponent,
 		FontAwesomeModule,
 		ItemModule,
 		BranchModule,
-		BlCommonModule
+    BlCommonModule,
+    ReportDownloadModule
 	],
 	providers: [
     DatabaseExcelService
@@ -33,10 +34,8 @@ import { ReportDownloadModule, OrderDownloadComponent, PaymentDownloadComponent,
     DatabaseItemsComponent, 
     DatabaseBranchesComponent, 
     DatabaseReportsComponent, 
-    DatabaseReportOrderComponent,
-    PaymentDownloadComponent,
-    CustomerItemDownloadComponent,
-    OrderDownloadComponent]
+    DatabaseReportOrderComponent
+  ]
 })
 export class DatabaseModule {
 }
