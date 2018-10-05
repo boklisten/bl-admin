@@ -13,6 +13,7 @@ import {BranchModule} from '../branch/branch.module';
 import { DatabaseReportsComponent } from './database-reports/database-reports.component';
 import { DatabaseReportOrderComponent } from './database-reports/database-report-order/database-report-order.component';
 import {BlCommonModule} from '../bl-common/bl-common.module';
+import { ReportDownloadModule, OrderDownloadComponent, PaymentDownloadComponent, CustomerItemDownloadComponent } from  '@wizardcoder/bl-reporter';
 
 @NgModule({
 	imports: [
@@ -25,9 +26,17 @@ import {BlCommonModule} from '../bl-common/bl-common.module';
 		BlCommonModule
 	],
 	providers: [
-		DatabaseExcelService
+    DatabaseExcelService
 	],
-	declarations: [DatabaseComponent, DatabaseItemsComponent, DatabaseBranchesComponent, DatabaseReportsComponent, DatabaseReportOrderComponent]
+  declarations: [
+    DatabaseComponent, 
+    DatabaseItemsComponent, 
+    DatabaseBranchesComponent, 
+    DatabaseReportsComponent, 
+    DatabaseReportOrderComponent,
+    PaymentDownloadComponent,
+    CustomerItemDownloadComponent,
+    OrderDownloadComponent]
 })
 export class DatabaseModule {
 }

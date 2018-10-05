@@ -40,8 +40,6 @@ export class DatabaseReportOrderService {
 			const excelObjects = await this.orderToExcelObjects(order, filter);
 			allExcelObjects = allExcelObjects.concat(excelObjects);
 		}
-
-
 		this._databaseExcelService.objectsToExcelFile(allExcelObjects, 'orders.xlxs');
 
 		return true;
@@ -55,6 +53,12 @@ export class DatabaseReportOrderService {
 				if (typeof orderItem.movedToOrder !== 'undefined') {
 					continue;
 				}
+
+				if (typeof orderItem.info !== 'undefined') {
+					if (typeof orderItem.info.customerItem !== 'undefined')  {
+						continue;
+					}
+				}
 			}
 
 			excelObjects.push({
@@ -66,8 +70,6 @@ export class DatabaseReportOrderService {
 				amount: orderItem.amount,
 				taxAmount: orderItem.taxAmount,
 				type: orderItem.type,
-				// handout: orderItem.handout,
-				// delivered: orderItem.delivered,
 				movedToOrder: orderItem.movedToOrder,
 				creationTime: order.creationTime
 			});
