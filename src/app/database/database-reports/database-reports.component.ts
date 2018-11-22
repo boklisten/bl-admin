@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import { BranchStoreService } from '../../branch/branch-store.service';
+import { Branch } from "@wizardcoder/bl-model";
 
 @Component({
 	selector: 'app-database-reports',
@@ -6,11 +8,14 @@ import {Component, OnInit} from '@angular/core';
 	styleUrls: ['./database-reports.component.scss']
 })
 export class DatabaseReportsComponent implements OnInit {
+  public currentBranchId: string;
 
-	constructor() {
+	constructor(private branchStoreService: BranchStoreService) {
 	}
 
 	ngOnInit() {
+    const branch: Branch = this.branchStoreService.getCurrentBranch();
+    this.currentBranchId = branch.id;
 	}
 
 }
