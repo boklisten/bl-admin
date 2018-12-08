@@ -1,11 +1,17 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {BlApiError, Order, Payment} from '@wizardcoder/bl-model';
-import {PaymentService} from '@wizardcoder/bl-connect';
+import {
+	Component,
+	Input,
+	OnChanges,
+	OnInit,
+	SimpleChanges
+} from "@angular/core";
+import { BlApiError, Order, Payment } from "@wizardcoder/bl-model";
+import { PaymentService } from "@wizardcoder/bl-connect";
 
 @Component({
-	selector: 'app-order-payment-detail',
-	templateUrl: './order-payment-detail.component.html',
-	styleUrls: ['./order-payment-detail.component.scss']
+	selector: "app-order-payment-detail",
+	templateUrl: "./order-payment-detail.component.html",
+	styleUrls: ["./order-payment-detail.component.scss"]
 })
 export class OrderPaymentDetailComponent implements OnInit, OnChanges {
 	@Input() order: Order;
@@ -19,12 +25,10 @@ export class OrderPaymentDetailComponent implements OnInit, OnChanges {
 		this.payments = [];
 	}
 
-	ngOnInit() {
-
-	}
+	ngOnInit() {}
 
 	ngOnChanges(changes: SimpleChanges) {
-		if (changes['order'].currentValue !== changes['order'].previousValue) {
+		if (changes["order"].currentValue !== changes["order"].previousValue) {
 			this.getPayment();
 		}
 	}
@@ -34,18 +38,20 @@ export class OrderPaymentDetailComponent implements OnInit, OnChanges {
 		this.noPaymentsFoundText = null;
 		this.warningText = null;
 
-		this._paymentService.getManyByIds(this.order.payments).then((payments: Payment[]) => {
-			this.payments = payments;
-			this.wait = false;
+		this._paymentService
+			.getManyByIds(this.order.payments as string[])
+			.then((payments: Payment[]) => {
+				this.payments = payments;
+				this.wait = false;
 
-			if (this.payments.length <= 0) {
-				this.noPaymentsFoundText = 'No payments found';
-			}
-
-		}).catch((blApiError: BlApiError) => {
-			this.warningText = 'could not find payments';
-			this.wait = false;
-		});
+				if (this.payments.length <= 0) {
+					this.noPaymentsFoundText = "No payments found";
+				}
+			})
+			.catch((blApiError: BlApiError) => {
+				this.warningText = "could not find payments";
+				this.wait = false;
+			});
 	}
 
 	public calculateTotalAmount(): number {
@@ -57,5 +63,4 @@ export class OrderPaymentDetailComponent implements OnInit, OnChanges {
 
 		return totalAmount;
 	}
-
 }

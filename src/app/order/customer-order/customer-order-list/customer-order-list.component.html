@@ -1,33 +1,59 @@
-
 <div class="row bl-col-scroll" *ngIf="customerDetail">
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
-				<h5 class="card-title" i18n="@@customerOrderListTitle">Orders</h5>
+				<h5 class="card-title" i18n="@@customerOrderListTitle">
+					Orders
+				</h5>
 				<div class="row">
 					<div class="col-12">
-						<app-bl-common-alert [type]="'secondary'"
-											 i18n="@@customerOrderListCouldNotRetrieveError"
-											 text="Could not retrieve customer orders"
-											 *ngIf="warningText"
-											 (exit)="warningText = null"></app-bl-common-alert>
-						<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
+						<app-bl-common-alert
+							[type]="'secondary'"
+							i18n="@@customerOrderListCouldNotRetrieveError"
+							text="Could not retrieve customer orders"
+							*ngIf="warningText"
+							(exit)="warningText = null"
+						></app-bl-common-alert>
+						<app-bl-common-update-button
+							[wait]="wait"
+							*ngIf="wait"
+						></app-bl-common-update-button>
 					</div>
 				</div>
 			</div>
 			<div class="list-group">
-				<div class="list-group-item list-group-item-action" *ngFor="let customerOrder of customerOrders" (click)="onCustomerOrderDetailClick(customerOrder.id)">
-
-					<div class="row mt-2 mb-2 justify-content-between text-secondary">
+				<div
+					class="list-group-item list-group-item-action"
+					*ngFor="let customerOrder of customerOrders"
+					(click)="onCustomerOrderDetailClick(customerOrder.id)"
+				>
+					<div
+						class="row mt-2 mb-2 justify-content-between text-secondary"
+					>
 						<div class="col-auto">
-							<small><fa-icon [icon]="'clock'" class="ml-2 mr-1"></fa-icon> {{customerOrder.creationTime | blDate}}</small>
+							<small
+								><fa-icon
+									[icon]="'clock'"
+									class="ml-2 mr-1"
+								></fa-icon>
+								{{ customerOrder.creationTime | blDate }}</small
+							>
 						</div>
 						<div class="col-auto">
-							<small><fa-icon [icon]="'qrcode'" class="mr-1"></fa-icon> {{customerOrder.id}}</small>
+							<small
+								><fa-icon
+									[icon]="'qrcode'"
+									class="mr-1"
+								></fa-icon>
+								{{ customerOrder.id }}</small
+							>
 						</div>
 					</div>
 
-					<app-order-item-detail-list [orderItems]="customerOrder.orderItems" class="mt-2"></app-order-item-detail-list>
+					<app-order-item-detail-list
+						[orderItems]="customerOrder.orderItems"
+						class="mt-2"
+					></app-order-item-detail-list>
 				</div>
 			</div>
 		</div>

@@ -1,16 +1,16 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {CartService} from '../cart.service';
-import {Item, OrderItem} from '@wizardcoder/bl-model';
-import {ItemService} from '@wizardcoder/bl-connect';
-import {CartItem} from '../cartItem';
-import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {NgbModalWindow} from '@ng-bootstrap/ng-bootstrap/modal/modal-window';
-import {CartItemSearchService} from '../cart-item-search/cart-item-search.service';
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { CartService } from "../cart.service";
+import { Item, OrderItem } from "@wizardcoder/bl-model";
+import { ItemService } from "@wizardcoder/bl-connect";
+import { CartItem } from "../cartItem";
+import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModalWindow } from "@ng-bootstrap/ng-bootstrap/modal/modal-window";
+import { CartItemSearchService } from "../cart-item-search/cart-item-search.service";
 
 @Component({
-	selector: 'app-cart-list',
-	templateUrl: './cart-list.component.html',
-	styleUrls: ['./cart-list.component.scss']
+	selector: "app-cart-list",
+	templateUrl: "./cart-list.component.html",
+	styleUrls: ["./cart-list.component.scss"]
 })
 export class CartListComponent implements OnInit {
 	@Output() cartConfirmed: EventEmitter<boolean>;
@@ -20,11 +20,12 @@ export class CartListComponent implements OnInit {
 	private _cartConfirmModal: NgbModalRef;
 	public searching: boolean;
 
-
-	constructor(private _cartService: CartService,
-	            private _modalService: NgbModal,
-	            private _cartItemSearchService: CartItemSearchService,
-	            private _itemService: ItemService) {
+	constructor(
+		private _cartService: CartService,
+		private _modalService: NgbModal,
+		private _cartItemSearchService: CartItemSearchService,
+		private _itemService: ItemService
+	) {
 		this.cart = [];
 		this.cartConfirmed = new EventEmitter<boolean>();
 		this.cartConfirmationFailed = new EventEmitter<boolean>();
@@ -37,11 +38,11 @@ export class CartListComponent implements OnInit {
 			this.cart = this._cartService.getCart();
 		});
 
-		this._cartItemSearchService.onSearching().subscribe((searching: boolean) => {
-			this.searching = searching;
-		});
-
-
+		this._cartItemSearchService
+			.onSearching()
+			.subscribe((searching: boolean) => {
+				this.searching = searching;
+			});
 	}
 
 	public onClearCart() {
@@ -49,7 +50,7 @@ export class CartListComponent implements OnInit {
 	}
 
 	remove(orderItem: OrderItem) {
-		this._cartService.remove(orderItem.item);
+		this._cartService.remove(orderItem.item as string);
 	}
 
 	getTotalAmount(): number {
@@ -63,7 +64,10 @@ export class CartListComponent implements OnInit {
 	}
 
 	onShowConfirm(content) {
-		this._cartConfirmModal = this._modalService.open(content, {size: 'lg', centered: true})
+		this._cartConfirmModal = this._modalService.open(content, {
+			size: "lg",
+			centered: true
+		});
 	}
 
 	onCartConfirm() {
@@ -75,8 +79,4 @@ export class CartListComponent implements OnInit {
 		this._cartConfirmModal.close();
 		this.cartConfirmationFailed.emit(true);
 	}
-
-
-
-
 }

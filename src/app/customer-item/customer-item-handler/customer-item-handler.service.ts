@@ -1,91 +1,134 @@
-import {Injectable} from '@angular/core';
-import {BlApiError, CustomerItem, Order, OrderItem} from '@wizardcoder/bl-model';
-import {BranchStoreService} from '../../branch/branch-store.service';
-import {UserService} from '../../user/user.service';
-import {CustomerItemService} from '@wizardcoder/bl-connect';
-import {reject} from 'q';
-import {CustomerService} from '../../customer/customer.service';
+import { Injectable } from "@angular/core";
+import {
+	BlApiError,
+	CustomerItem,
+	Order,
+	OrderItem
+} from "@wizardcoder/bl-model";
+import { BranchStoreService } from "../../branch/branch-store.service";
+import { UserService } from "../../user/user.service";
+import { CustomerItemService } from "@wizardcoder/bl-connect";
+import { reject } from "q";
+import { CustomerService } from "../../customer/customer.service";
 
 @Injectable()
 export class CustomerItemHandlerService {
+	constructor(
+		private _branchStoreService: BranchStoreService,
+		private _userService: UserService,
+		private _customerItemService: CustomerItemService,
+		private _customerService: CustomerService
+	) {}
 
-	constructor(private _branchStoreService: BranchStoreService,
-	            private _userService: UserService,
-	            private _customerItemService: CustomerItemService,
-	            private _customerService: CustomerService) {
-	}
-
-	public async updateCustomerItems(orderItems: OrderItem[]): Promise<CustomerItem[]> {
+	public async updateCustomerItems(
+		orderItems: OrderItem[]
+	): Promise<CustomerItem[]> {
 		const customerItems: CustomerItem[] = [];
 
 		try {
 			for (const orderItem of orderItems) {
-				const customerItem = await this.createCustomerItemPatch(orderItem);
+				const customerItem = await this.createCustomerItemPatch(
+					orderItem
+				);
 				customerItems.push(customerItem);
 			}
 		} catch (e) {
-			throw new Error('could not update customerItems: ' + e);
+			throw new Error("could not update customerItems: " + e);
 		}
 
 		return customerItems;
 	}
 
-	public async addCustomerItems(orderItemsWithOrder: { orderItem: OrderItem, order: Order }[]): Promise<CustomerItem[]> {
+	public async addCustomerItems(
+		orderItemsWithOrder: { orderItem: OrderItem; order: Order }[]
+	): Promise<CustomerItem[]> {
 		const customerItems: CustomerItem[] = [];
 
 		for (const orderItemWithOrder of orderItemsWithOrder) {
-			if (orderItemWithOrder.orderItem.type === 'rent') {
-				const customerItem = this.convertOrderItemToCustomerItem(orderItemWithOrder.orderItem,
-					orderItemWithOrder.order.customer, orderItemWithOrder.order.id);
+			if (orderItemWithOrder.orderItem.type === "rent") {
+				const customerItem = this.convertOrderItemToCustomerItem(
+					orderItemWithOrder.orderItem,
+					orderItemWithOrder.order.customer as string,
+					orderItemWithOrder.order.id
+				);
 				customerItems.push(customerItem);
 			}
 		}
 
 		if (customerItems.length <= 0) {
-			throw new Error('customerITemHandlerService: no customerItems to add');
+			throw new Error(
+				"customerITemHandlerService: no customerItems to add"
+			);
 		}
 
 		try {
 			return await this.addCustomerItemsToApi(customerItems);
 		} catch (e) {
-			throw new Error('customerItemHandlerService: could not add customer items: ' + e);
+			throw new Error(
+				"customerItemHandlerService: could not add customer items: " + e
+			);
 		}
 	}
 
-	private createCustomerItemPatch(orderItem: OrderItem): Promise<CustomerItem> {
+	private createCustomerItemPatch(
+		orderItem: OrderItem
+	): Promise<CustomerItem> {
 		return new Promise((resolve, reject) => {
-			this._customerItemService.getById(orderItem.customerItem).then((customerItem: CustomerItem) => {
-				const customerItemPatch = this.createCustomerItemPatchByOrderItem(orderItem, customerItem);
-				this._customerItemService.update(customerItem.id, customerItemPatch).then((updatedCustomerItem: CustomerItem) => {
-					resolve(updatedCustomerItem);
-				}).catch((updateCustomerItemError) => {
-					reject(new Error('customerItemHandlerService: could not patch customerItems'));
+			this._customerItemService
+				.getById(orderItem.customerItem as string)
+				.then((customerItem: CustomerItem) => {
+					const customerItemPatch = this.createCustomerItemPatchByOrderItem(
+						orderItem,
+						customerItem
+					);
+					this._customerItemService
+						.update(customerItem.id, customerItemPatch)
+						.then((updatedCustomerItem: CustomerItem) => {
+							resolve(updatedCustomerItem);
+						})
+						.catch(updateCustomerItemError => {
+							reject(
+								new Error(
+									"customerItemHandlerService: could not patch customerItems"
+								)
+							);
+						});
+				})
+				.catch(() => {
+					reject(
+						new Error(
+							"customerItemHandlerService: could not get customerItem"
+						)
+					);
 				});
-			}).catch(() => {
-				reject(new Error('customerItemHandlerService: could not get customerItem'));
-			});
 		});
 	}
 
-	private createCustomerItemPatchByOrderItem(orderItem: OrderItem, customerItem: CustomerItem) {
-		if (orderItem.type === 'cancel') {
+	private createCustomerItemPatchByOrderItem(
+		orderItem: OrderItem,
+		customerItem: CustomerItem
+	) {
+		if (orderItem.type === "cancel") {
 			return this.createCustomerItemCancelPatch(orderItem, customerItem);
-		} else if (orderItem.type === 'extend') {
+		} else if (orderItem.type === "extend") {
 			return this.createCustomerItemExtendPatch(orderItem, customerItem);
-		} else if (orderItem.type === 'return') {
+		} else if (orderItem.type === "return") {
 			return this.createCustomerItemReturnPatch(customerItem);
-		} else if (orderItem.type === 'buyout') {
+		} else if (orderItem.type === "buyout") {
 			return this.createCustomerItemBuyoutPatch(orderItem, customerItem);
 		}
 	}
 
-	private createCustomerItemCancelPatch(orderItem: OrderItem, customerITem: CustomerItem): any {
+	private createCustomerItemCancelPatch(
+		orderItem: OrderItem,
+		customerITem: CustomerItem
+	): any {
 		const branch = this._branchStoreService.getCurrentBranch();
 		const userId = this._userService.getUserDetailId();
 		return {
 			returned: true,
 			returnInfo: {
-				returnedTo: 'branch',
+				returnedTo: "branch",
 				returnedToId: branch.id,
 				returnEmployee: userId,
 				time: new Date()
@@ -93,14 +136,22 @@ export class CustomerItemHandlerService {
 		};
 	}
 
-	private createCustomerItemBuyoutPatch(orderItem: OrderItem, customerItem: CustomerItem): any {
+	private createCustomerItemBuyoutPatch(
+		orderItem: OrderItem,
+		customerItem: CustomerItem
+	): any {
 		return {
-			buyout: true,
+			buyout: true
 		};
 	}
 
-	private createCustomerItemExtendPatch(orderItem: OrderItem, customerItem: CustomerItem): any {
-		const periodExtends = (customerItem.periodExtends) ? customerItem.periodExtends : [];
+	private createCustomerItemExtendPatch(
+		orderItem: OrderItem,
+		customerItem: CustomerItem
+	): any {
+		const periodExtends = customerItem.periodExtends
+			? customerItem.periodExtends
+			: [];
 
 		periodExtends.push({
 			from: orderItem.info.from,
@@ -113,7 +164,6 @@ export class CustomerItemHandlerService {
 			deadline: orderItem.info.to,
 			periodExtends: periodExtends
 		};
-
 	}
 
 	private createCustomerItemReturnPatch(customerItem: CustomerItem): any {
@@ -123,7 +173,7 @@ export class CustomerItemHandlerService {
 		return {
 			returned: true,
 			returnInfo: {
-				returnedTo: 'branch',
+				returnedTo: "branch",
 				returnedToId: branch.id,
 				returnEmployee: employeeId,
 				time: new Date()
@@ -131,23 +181,32 @@ export class CustomerItemHandlerService {
 		};
 	}
 
-	private async addCustomerItemsToApi(customerItems: CustomerItem[]): Promise<CustomerItem[]> {
+	private async addCustomerItemsToApi(
+		customerItems: CustomerItem[]
+	): Promise<CustomerItem[]> {
 		const addedCustomerItems: CustomerItem[] = [];
 
 		try {
 			for (const customerItem of customerItems) {
-				const addedCustomerItem = await this._customerItemService.add(customerItem);
+				const addedCustomerItem = await this._customerItemService.add(
+					customerItem
+				);
 				addedCustomerItems.push(addedCustomerItem);
 			}
 		} catch (e) {
-			throw new Error('customerItemHandlerService: could not add customer item: ' + e);
+			throw new Error(
+				"customerItemHandlerService: could not add customer item: " + e
+			);
 		}
 
 		return addedCustomerItems;
 	}
 
-
-	private convertOrderItemToCustomerItem(orderItem: OrderItem, customerId: string, orderId: string): CustomerItem {
+	private convertOrderItemToCustomerItem(
+		orderItem: OrderItem,
+		customerId: string,
+		orderId: string
+	): CustomerItem {
 		const branch = this._branchStoreService.getCurrentBranch();
 		const customerDetail = this._customerService.getCustomerDetail();
 
@@ -160,7 +219,7 @@ export class CustomerItemHandlerService {
 			orders: [orderId],
 			viewableFor: [this._customerService.getCustomerDetail().blid],
 			handoutInfo: {
-				handoutBy: 'branch',
+				handoutBy: "branch",
 				handoutById: branch.id,
 				handoutEmployee: this._userService.getUserDetailId(),
 				time: new Date()
@@ -173,13 +232,18 @@ export class CustomerItemHandlerService {
 				postCity: customerDetail.postCity,
 				dob: customerDetail.dob,
 				guardian: {
-					name: (customerDetail.guardian) ? customerDetail.guardian.name : null,
-					phone: (customerDetail.guardian) ? customerDetail.guardian.phone : null,
-					email: (customerDetail.guardian) ? customerDetail.guardian.email : null
+					name: customerDetail.guardian
+						? customerDetail.guardian.name
+						: null,
+					phone: customerDetail.guardian
+						? customerDetail.guardian.phone
+						: null,
+					email: customerDetail.guardian
+						? customerDetail.guardian.email
+						: null
 				}
 			},
 			returned: false
 		} as CustomerItem;
 	}
-
 }

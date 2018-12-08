@@ -1,22 +1,48 @@
-
 <div class="card">
 	<div class="card-header" *ngIf="title">
 		<h4 class="card-title">
 			<span i18n="@@customerItemListTitle">Customer items</span>
 		</h4>
 	</div>
-	<app-bl-common-alert *ngIf="customerItemsWithItem.length <= 0 && !wait && !error"
-						 i18n-text="@@customerItemListCustomerDontHaveItem"
-						 text="Customer does not have items" [type]="'secondary'"></app-bl-common-alert>
-	<app-bl-common-alert *ngIf="error"
-						 i18n-text="@@customerItemListCouldNotRetrieve"
-						 [text]="'Something went wrong with retrieving customerItems'"
-						 [type]="'danger'"></app-bl-common-alert>
-	<app-bl-common-update-button [wait]="wait" *ngIf="wait && !error"></app-bl-common-update-button>
+	<div class="row">
+		<div class="col-12">
+			<button
+				class="btn btn-outline-secondary btn-block btn-sm"
+				(click)="onSendReminder()"
+			>
+				Send reminder
+			</button>
+		</div>
+	</div>
 
-    <ul class="list-group list-group-flush" *ngIf="customerItemsWithItem.length > 0 && !wait && !error">
-        <li class="list-group-item list-group-item-action" *ngFor="let customerItemWithItem of customerItemsWithItem">
-			<app-customer-item-list-item [customerItem]="customerItemWithItem.customerItem"></app-customer-item-list-item>
-        </li>
-    </ul>
+	<app-bl-common-alert
+		*ngIf="customerItemsWithItem.length <= 0 && !wait && !error"
+		i18n-text="@@customerItemListCustomerDontHaveItem"
+		text="Customer does not have items"
+		[type]="'secondary'"
+	></app-bl-common-alert>
+	<app-bl-common-alert
+		*ngIf="error"
+		i18n-text="@@customerItemListCouldNotRetrieve"
+		[text]="'Something went wrong with retrieving customerItems'"
+		[type]="'danger'"
+	></app-bl-common-alert>
+	<app-bl-common-update-button
+		[wait]="wait"
+		*ngIf="wait && !error"
+	></app-bl-common-update-button>
+
+	<ul
+		class="list-group list-group-flush"
+		*ngIf="customerItemsWithItem.length > 0 && !wait && !error"
+	>
+		<li
+			class="list-group-item list-group-item-action"
+			*ngFor="let customerItemWithItem of customerItemsWithItem"
+		>
+			<app-customer-item-list-item
+				[customerItem]="customerItemWithItem.customerItem"
+			></app-customer-item-list-item>
+		</li>
+	</ul>
 </div>
