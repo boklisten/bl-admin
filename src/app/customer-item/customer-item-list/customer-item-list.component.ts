@@ -25,6 +25,7 @@ export class CustomerItemListComponent implements OnInit {
 	public customerItemsWithItem: { customerItem: CustomerItem; item: Item }[];
 	public wait: boolean;
 	public error: boolean;
+	public reminderDate: Date;
 
 	constructor(
 		private _customerItemService: CustomerItemService,
@@ -49,6 +50,7 @@ export class CustomerItemListComponent implements OnInit {
 				this.getCustomerItems();
 			}
 		});
+		this.reminderDate = new Date(2018, 11, 20);
 
 		this._customerItemListService.onWait().subscribe(wait => {
 			this.wait = wait;
@@ -57,7 +59,7 @@ export class CustomerItemListComponent implements OnInit {
 
 	public onSendReminder() {
 		this._messageService
-			.sendReminder(this.customerDetail.id, new Date(2018, 11, 20))
+			.sendReminder(this.customerDetail.id, this.reminderDate)
 			.then(data => {
 				console.log("reminder sent", data);
 			})
