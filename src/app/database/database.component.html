@@ -1,55 +1,55 @@
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-2">
 	<div class="row justify-content-center">
-            <div class="col-12">
-                <ngb-tabset #tabset="ngbTabset" id="ngbTabset">
-					<ngb-tab id="reports">
-                        <ng-template ngbTabTitle>
-                            <span class="text-secondary ml-3 mr-3">
-                                <fa-icon [icon]="'download'"></fa-icon>
-                            </span>
-                        </ng-template>
+		<div class="col-12">
+			<ngb-tabset #tabset="ngbTabset" id="ngbTabset">
+				<ngb-tab id="reports">
+					<ng-template ngbTabTitle>
+						<span class="text-secondary ml-3 mr-3">
+							<fa-icon [icon]="'download'"></fa-icon>
+						</span>
+					</ng-template>
 
-                        <ng-template ngbTabContent>
-                            <div class="row mt-3 justify-content-center">
-                                <div class="col-12">
-									<app-database-reports></app-database-reports>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ngb-tab>
+					<ng-template ngbTabContent>
+						<div class="row mt-3 justify-content-center">
+							<div class="col-12">
+								<app-database-reports></app-database-reports>
+							</div>
+						</div>
+					</ng-template>
+				</ngb-tab>
 
-                    <ngb-tab id="items">
-                        <ng-template ngbTabTitle>
-                            <span class="text-secondary ml-3 mr-3">
-                                <fa-icon [icon]="'book'"></fa-icon>
-                            </span>
-                        </ng-template>
+				<ngb-tab id="items">
+					<ng-template ngbTabTitle>
+						<span class="text-secondary ml-3 mr-3">
+							<fa-icon [icon]="'book'"></fa-icon>
+						</span>
+					</ng-template>
 
-                        <ng-template ngbTabContent>
-                            <div class="row mt-3 justify-content-center">
-                                <div class="col-12">
-									<app-database-items></app-database-items>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ngb-tab>
+					<ng-template ngbTabContent>
+						<div class="row mt-3 justify-content-center">
+							<div class="col-12">
+								<app-database-items></app-database-items>
+							</div>
+						</div>
+					</ng-template>
+				</ngb-tab>
 
-					<ngb-tab id="branches">
-                        <ng-template ngbTabTitle>
-                            <span class="text-secondary ml-3 mr-3">
-                                <fa-icon [icon]="'warehouse'"></fa-icon>
-                            </span>
-                        </ng-template>
+				<ngb-tab id="branches">
+					<ng-template ngbTabTitle>
+						<span class="text-secondary ml-3 mr-3">
+							<fa-icon [icon]="'warehouse'"></fa-icon>
+						</span>
+					</ng-template>
 
-                        <ng-template ngbTabContent>
-                            <div class="row mt-3 justify-content-center">
-                                <div class="col-12">
-									<app-database-branches></app-database-branches>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ngb-tab>
-                </ngb-tabset>
-            </div>
-        </div>
+					<ng-template ngbTabContent>
+						<div class="row mt-3 justify-content-center">
+							<div class="col-12">
+								<app-database-branches></app-database-branches>
+							</div>
+						</div>
+					</ng-template>
+				</ngb-tab>
+			</ngb-tabset>
+		</div>
+	</div>
 </div>

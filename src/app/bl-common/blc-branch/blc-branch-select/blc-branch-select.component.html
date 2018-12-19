@@ -1,0 +1,62 @@
+<div class="row">
+	<div class="col-12">
+		<button
+			class="btn btn-sm"
+			(click)="onAll()"
+			[ngClass]="{
+				'btn-outline-secondary': custom,
+				'btn-secondary': !custom
+			}"
+		>
+			<fa-icon icon="check" *ngIf="!custom" class="mr-2"></fa-icon>
+			<span i18n="@@blcBranchSelectAllBranches">All Branches</span>
+		</button>
+		<button
+			class="btn btn-sm btn-link"
+			(click)="onCustom()"
+			i18n="@@blcBranchSelectCustom"
+		>
+			Custom
+		</button>
+	</div>
+</div>
+<div *ngIf="custom" class="mt-2 mb-2">
+	<div class="card">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-12">
+					<span
+						*ngFor="let branch of branches"
+						(click)="toggle(branch.id)"
+						class="badge bl-click m-1 m-1 p-1"
+						[ngClass]="{
+							'badge-light': !contains(branch.id),
+							'badge-info': contains(branch.id)
+						}"
+					>
+						<span *ngIf="contains(branch.id)"
+							><fa-icon icon="check" class="mr-1"></fa-icon
+						></span>
+						<span>{{ branch.name }}</span>
+					</span>
+				</div>
+			</div>
+			<div
+				class="row mt-2 justify-content-end"
+				*ngIf="selectedBranches.length > 0"
+			>
+				<div class="col-auto">
+					<button
+						class="btn btn-sm btn-link text-secondary"
+						(click)="deselectAll()"
+					>
+						<fa-icon [icon]="'trash-alt'" class="mr-2"></fa-icon>
+						<span i18n="@@blcBranchSelectRemoveAll"
+							>Remove all</span
+						>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
