@@ -1,0 +1,66 @@
+<div class="modal-header"></div>
+<div class="modal-body">
+	<div *ngIf="!confirmed">
+		<div class="row">
+			<div class="col-auto">
+				Should send to {{ customerIds.length }} customers
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">deadline: {{ deadline | blDate }}</div>
+		</div>
+	</div>
+
+	<div *ngIf="confirmed && !remindersDone">
+		<div class="row">
+			<div class="col-12">
+				<span>Should send to {{ customerIds.lenght }} customers</span>
+				<span>{{ progressbarValue }} - {{ progressBarValuePart }}</span>
+			</div>
+			<div class="col-12">
+				<ngb-progressbar
+					[value]="progressbarValue"
+					[height]="50"
+					[striped]="true"
+					[animated]="true"
+					[showValue]="true"
+					[max]="progressbarValueFull"
+				></ngb-progressbar>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="remindersDone">
+	<div class="row">
+		<div class="col-12">successfull: {{ successfullMessages }}</div>
+		<div class="col-12">
+			<div>failed: @@{{ failedMessages.length }}@@</div>
+
+			<span *ngFor="let failedMessage of failedMessages"
+				>{{ failedMessage }} -</span
+			>
+
+			<button
+				class="btn btn-outline-secondary"
+				(click)="retryFailedMessages()"
+			>
+				retry failed messages
+			</button>
+		</div>
+	</div>
+</div>
+
+<div class="modal-footer">
+	<div class="row">
+		<div class="col-12">
+			<button
+				class="btn btn-success btn-block"
+				i18n="@@messengerReminderConfirmButton"
+				(click)="onConfirm()"
+			>
+				Confirm
+			</button>
+		</div>
+	</div>
+</div>

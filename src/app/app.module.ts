@@ -19,8 +19,10 @@ import { BranchModule } from "./branch/branch.module";
 import { BranchGuardService } from "./branch/branch-guard.service";
 import { StorageService } from "./storage/storage.service";
 import { CustomerModule } from "./customer/customer.module";
+import { MessengerModule } from "./messenger/messenger.module";
 
 import {
+	faAtom,
 	faUser,
 	faUsers,
 	faMoneyBillAlt,
@@ -80,7 +82,10 @@ import {
 	faDownload,
 	faFileExcel,
 	faMoneyBillWave,
-	faFileInvoiceDollar
+	faFileInvoiceDollar,
+	faEnvelope,
+	faBell,
+	faPaperPlane
 } from "@fortawesome/free-solid-svg-icons";
 import { BlCommonModule } from "./bl-common/bl-common.module";
 import { ItemModule } from "./item/item.module";
@@ -101,6 +106,9 @@ import { BranchItemStoreService } from "./branch/branch-item-store/branch-item-s
 import { PriceModule } from "./price/price.module";
 import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 import { BlcScannerService } from "./bl-common/blc-scanner/blc-scanner.service";
+import { MessagesComponent } from "./messages/messages.component";
+import { MessengerComponent } from "./messenger/messenger.component";
+import { MessengerReminderComponent } from "./messenger/messenger-reminder/messenger-reminder.component";
 library.add(
 	faUser,
 	faUsers,
@@ -161,7 +169,11 @@ library.add(
 	faFileExcel,
 	faMoneyBillWave,
   faFileInvoiceDollar,
-  faHashtag
+  faHashtag,
+	faEnvelope,
+	faBell,
+	faPaperPlane,
+	faAtom
 );
 
 @NgModule({
@@ -189,7 +201,8 @@ library.add(
 		DatabaseModule,
 		PriceModule,
 		NgbDropdownModule,
-		InvoiceModule
+		InvoiceModule,
+		MessengerModule
 	],
 	providers: [
 		AuthLoginService,

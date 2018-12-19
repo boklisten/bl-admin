@@ -63,7 +63,14 @@ export class SideBarComponent implements OnInit {
 			{
 				name: "invoices",
 				link: "invoices",
-				icon: "file-invoice-dollar",
+        icon: "file-invoice-dollar",
+        permission: "admin",
+        selected: false
+      },
+      {
+				name: "messenger",
+				link: "messenger",
+				icon: "envelope",
 				permission: "admin",
 				selected: false
 			},

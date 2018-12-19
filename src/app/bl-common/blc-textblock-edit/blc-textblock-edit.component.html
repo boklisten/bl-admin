@@ -1,0 +1,118 @@
+<div
+	class="row justify-content-end mb-2 mt-1 align-items-center"
+	[ngClass]="{ 'justify-content-between': textBlocks.length > 0 }"
+>
+	<div class="col-auto" *ngIf="textBlocks.length > 0">
+		<h5 i18n="@@blcTextBlockEditTitle">Text blocks</h5>
+	</div>
+	<div class="col-auto" [ngClass]="{ 'col-12': textBlocks.length <= 0 }">
+		<button
+			class="btn btn-outline-success btn-sm"
+			(click)="addTextBlock()"
+			[ngClass]="{ 'btn-block': textBlocks.length <= 0 }"
+		>
+			<fa-icon [icon]="'plus'"></fa-icon>
+			<span
+				*ngIf="textBlocks.length <= 0"
+				class="ml-2"
+				i18n="@@blcTextBlockEditAddTextBlock"
+			>
+				Add text block
+			</span>
+		</button>
+	</div>
+</div>
+
+<div class="row mb-1" *ngFor="let textBlock of textBlocks; let i = index">
+	<!--<div class="col-12" *ngIf="i !== 0"><hr /></div>-->
+	<div class="col-12">
+		<div class="row">
+			<div class="col-12">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span
+							class="input-group-text"
+							i18n="@@blcTextblockEditTextBlock"
+							>{{ i + 1 }}</span
+						>
+					</div>
+					<textarea
+						class="form-control"
+						aria-label="With textarea"
+						i18n-placeholder="@@textBlockEditTextAreaPlaceholder"
+						placeholder="Put some text to the customer here"
+						[(ngModel)]="textBlock.text"
+					></textarea>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="row justify-content-between">
+					<div class="col-auto">
+						<label
+							class="badge p-1"
+							[ngClass]="{
+								'badge-light':
+									textBlocks[i].secondary ||
+									textBlocks[i].warning ||
+									textBlocks[i].alert,
+								'badge-secondary':
+									!textBlocks[i].secondary &&
+									!textBlocks[i].warning &&
+									!textBlocks[i].alert
+							}"
+							(click)="selectTextBlockType(i, 'regular')"
+							i18n="@@textBlockEditRegularBadge"
+						>
+							regular
+						</label>
+						<label
+							class="badge p-1"
+							[ngClass]="{
+								'badge-light': !textBlocks[i].secondary,
+								'badge-secondary': textBlocks[i].secondary
+							}"
+							(click)="selectTextBlockType(i, 'secondary')"
+							i18n="@@textBlockEditSecondaryBadge"
+						>
+							secondary
+						</label>
+						<label
+							class="badge p-1"
+							[ngClass]="{
+								'badge-light': !textBlocks[i].warning,
+								'badge-warning': textBlocks[i].warning
+							}"
+							(click)="selectTextBlockType(i, 'warning')"
+							i18n="@@textBlockEditWarningBadge"
+						>
+							warning
+						</label>
+						<label
+							class="badge p-1"
+							[ngClass]="{
+								'badge-light': !textBlocks[i].alert,
+								'badge-danger': textBlocks[i].alert
+							}"
+							(click)="selectTextBlockType(i, 'alert')"
+							i18n="@@textBlockEditAlertBadge"
+						>
+							alert
+						</label>
+					</div>
+
+					<div class="col-auto">
+						<button
+							class="btn btn-link btn-sm text-secondary"
+							(click)="removeTextBlock(i)"
+						>
+							<fa-icon [icon]="'times'" class="mr-2"></fa-icon>
+							<span i18n="@@blcTextBlockEditRemoveTextBlock"
+								>Remove</span
+							>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

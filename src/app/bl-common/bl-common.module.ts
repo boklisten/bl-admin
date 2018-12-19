@@ -32,6 +32,9 @@ import { BlcKeyeventDoubleShiftDirective } from "./blc-keyevent/blc-keyevent-dou
 import { BlcPeriodSelectComponent } from "./blc-period/blc-period-select/blc-period-select.component";
 import { BlcButtonCheckComponent } from "./blc-button-check/blc-button-check.component";
 import { BlPrintComponent } from './bl-print/bl-print.component';
+import { BlcDeadlineSelectComponent } from "./blc-deadline-select/blc-deadline-select.component";
+import { BlcTextblockEditComponent } from "./blc-textblock-edit/blc-textblock-edit.component";
+import { BlcBranchSelectComponent } from "./blc-branch/blc-branch-select/blc-branch-select.component";
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -64,7 +67,10 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcKeyeventDoubleShiftDirective,
 		BlcPeriodSelectComponent,
 		BlcButtonCheckComponent,
-		BlPrintComponent
+		BlPrintComponent,
+		BlcDeadlineSelectComponent,
+		BlcTextblockEditComponent,
+		BlcBranchSelectComponent
 	],
 	exports: [
 		BlCommonUpdateButtonComponent,
@@ -83,7 +89,10 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcScannerDirective,
 		BlcKeyeventDoubleShiftDirective,
 		BlcPeriodSelectComponent,
-		BlcButtonCheckComponent
+		BlcButtonCheckComponent,
+		BlcDeadlineSelectComponent,
+		BlcTextblockEditComponent,
+		BlcBranchSelectComponent
 	]
 })
 export class BlCommonModule {}

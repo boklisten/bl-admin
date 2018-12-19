@@ -1,0 +1,18 @@
+<div class="container-fluid mt-2">
+	<div class="row">
+		<div class="col-12">
+			<ngb-tabset #tabset="ngbTabset" id="ngbTabset">
+				<ngb-tab id="reminders">
+					<ng-template ngbTabTitle>
+						<span class="text-secondary ml-3 mr-3">
+							<fa-icon [icon]="'bell'"></fa-icon>
+						</span>
+					</ng-template>
+					<ng-template ngbTabContent>
+						<app-messenger-reminder></app-messenger-reminder>
+					</ng-template>
+				</ngb-tab>
+			</ngb-tabset>
+		</div>
+	</div>
+</div>
