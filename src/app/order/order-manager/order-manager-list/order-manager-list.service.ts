@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {DeliveryService, OrderService} from '@wizardcoder/bl-connect';
-import {Order} from '@wizardcoder/bl-model';
-import * as moment from 'moment';
-import {BranchStoreService} from '../../../branch/branch-store.service';
+import { Injectable } from "@angular/core";
+import { DeliveryService, OrderService } from "@wizardcoder/bl-connect";
+import { Order } from "@wizardcoder/bl-model";
+import * as moment from "moment";
+import { BranchStoreService } from "../../../branch/branch-store.service";
 
 export interface OrderFilter {
 	placed: boolean; // if the order should be placed or not
@@ -19,23 +19,29 @@ export interface OrderFilter {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class OrderManagerListService {
 	private fetching: boolean;
 	private orderFilter: OrderFilter;
 
-	constructor(private _orderService: OrderService, private _deliveryService: DeliveryService, private _branchStoreService: BranchStoreService) {
+	constructor(
+		private _orderService: OrderService,
+		private _deliveryService: DeliveryService,
+		private _branchStoreService: BranchStoreService
+	) {
 		this.orderFilter = this.getDefaultOrderFilter();
 		this.fetching = true;
 	}
 
 	public async getPlacedOrders(): Promise<Order[]> {
 		try {
-			const orders = await this._orderService.getAll(this.getOrderQueryBasedOnFilter(this.orderFilter));
+			const orders = await this._orderService.getAll(
+				this.getOrderQueryBasedOnFilter(this.orderFilter)
+			);
 			return await this.filterOrders(orders);
 		} catch (e) {
-			throw new Error('OrderManagerListService: could not get orders');
+			throw new Error("OrderManagerListService: could not get orders");
 		}
 	}
 
@@ -48,26 +54,34 @@ export class OrderManagerListService {
 	}
 
 	private async filterOrders(orders: Order[]): Promise<Order[]> {
-
 		const returnOrders: Order[] = [];
 
 		for (const order of orders) {
 			if (this.orderFilter.delivery) {
-				if (!order.delivery || order.delivery.length <= 0) {
+				if (
+					!order.delivery ||
+					(typeof order.delivery === "string" &&
+						order.delivery.length <= 0)
+				) {
 					continue;
 				}
-				const delivery = await this._deliveryService.getById(order.delivery);
+				const delivery = await this._deliveryService.getById(
+					order.delivery as string
+				);
 
-				if (delivery.method !== 'bring') {
+				if (delivery.method !== "bring") {
 					continue;
 				}
 			}
 
-
 			let shouldInclude = false;
 
 			for (const orderItem of order.orderItems) {
-				if (orderItem.type !== 'extend' && orderItem.type !== 'buyout' && !orderItem.movedToOrder) {
+				if (
+					orderItem.type !== "extend" &&
+					orderItem.type !== "buyout" &&
+					!orderItem.movedToOrder
+				) {
 					shouldInclude = true;
 				}
 			}
@@ -84,7 +98,9 @@ export class OrderManagerListService {
 			placed: true,
 			byCustomer: true,
 			processed: false,
-			from: moment().subtract('1', 'week').toDate(),
+			from: moment()
+				.subtract("1", "week")
+				.toDate(),
 			to: new Date(),
 			delivery: false,
 			payment: false,
@@ -93,25 +109,24 @@ export class OrderManagerListService {
 		};
 	}
 
-
 	private getOrderQueryBasedOnFilter(orderFilter: OrderFilter): string {
-		let query = '?';
+		let query = "?";
 
 		if (orderFilter.placed) {
-			query += 'placed=true';
+			query += "placed=true";
 		} else {
-			query += 'placed=false';
+			query += "placed=false";
 		}
 
 		if (orderFilter.onlyCurrentBranch) {
-			query += '&branch=' + this._branchStoreService.getCurrentBranch().id;
+			query +=
+				"&branch=" + this._branchStoreService.getCurrentBranch().id;
 		}
 
 		if (orderFilter.byCustomer) {
-			query += '&byCustomer=true';
+			query += "&byCustomer=true";
 		}
 
 		return query;
 	}
-
 }

@@ -1,26 +1,35 @@
-import {Injectable} from '@angular/core';
-import {BranchStoreService} from '../../../branch/branch-store.service';
-import {CustomerService} from '../../../customer/customer.service';
-import {DeliveryService, ItemService, OrderService} from '@wizardcoder/bl-connect';
-import {Item, Order, OrderItem} from '@wizardcoder/bl-model';
-import {CartService} from '../../../cart/cart.service';
-import {Subject} from 'rxjs/internal/Subject';
-import {Observable} from 'rxjs/internal/Observable';
+import { Injectable } from "@angular/core";
+import { BranchStoreService } from "../../../branch/branch-store.service";
+import { CustomerService } from "../../../customer/customer.service";
+import {
+	DeliveryService,
+	ItemService,
+	OrderService
+} from "@wizardcoder/bl-connect";
+import { Item, Order, OrderItem } from "@wizardcoder/bl-model";
+import { CartService } from "../../../cart/cart.service";
+import { Subject } from "rxjs/internal/Subject";
+import { Observable } from "rxjs/internal/Observable";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class CustomerOrderItemListService {
-	private _customerOrderItems: { orderItem: OrderItem, order: Order, item: Item }[];
+	private _customerOrderItems: {
+		orderItem: OrderItem;
+		order: Order;
+		item: Item;
+	}[];
 	private _customerOrderItemList$: Subject<boolean>;
 	private _wait$: Subject<boolean>;
 
-	constructor(private _branchStoreService: BranchStoreService,
-	            private _orderService: OrderService,
-	            private _itemService: ItemService,
-	            private _cartService: CartService,
-	            private _customerService: CustomerService) {
-
+	constructor(
+		private _branchStoreService: BranchStoreService,
+		private _orderService: OrderService,
+		private _itemService: ItemService,
+		private _cartService: CartService,
+		private _customerService: CustomerService
+	) {
 		this._customerOrderItems = [];
 		this.onCustomerChange();
 		this.onCartConfirmed();
@@ -28,31 +37,37 @@ export class CustomerOrderItemListService {
 		this._wait$ = new Subject<boolean>();
 
 		if (this._customerService.haveCustomer()) {
-			this.fetchOrderedItems().then((customerOrderItems) => {
-				this._customerOrderItems = customerOrderItems;
-			}).catch((err) => {
-				console.log('CustomerOrderItemListService: could not get customer order items', err);
-			});
+			this.fetchOrderedItems()
+				.then(customerOrderItems => {
+					this._customerOrderItems = customerOrderItems;
+				})
+				.catch(err => {
+					console.log(
+						"CustomerOrderItemListService: could not get customer order items",
+						err
+					);
+				});
 		}
 	}
 
 	private onCustomerChange() {
 		this._customerService.onCustomerChange().subscribe(() => {
-			this.fetchOrderedItems().then((customerOrderItems) => {
-
-				this._customerOrderItems = customerOrderItems;
-				this._customerOrderItemList$.next(true);
-			}).catch((err) => {
-				console.log('CustomerOrderItemListService: could not get customer order items');
-			});
+			this.fetchOrderedItems()
+				.then(customerOrderItems => {
+					this._customerOrderItems = customerOrderItems;
+					this._customerOrderItemList$.next(true);
+				})
+				.catch(err => {
+					console.log(
+						"CustomerOrderItemListService: could not get customer order items"
+					);
+				});
 		});
 	}
 
 	onWait(): Observable<boolean> {
 		return this._wait$.asObservable();
 	}
-
-
 
 	public onCustomerOrderItemListChange() {
 		return this._customerOrderItemList$.asObservable();
@@ -64,15 +79,21 @@ export class CustomerOrderItemListService {
 		});
 	}
 
-	public getCustomerOrderItems(): {orderItem: OrderItem, order: Order, item: Item}[] {
+	public getCustomerOrderItems(): {
+		orderItem: OrderItem;
+		order: Order;
+		item: Item;
+	}[] {
 		return this._customerOrderItems;
 	}
 
-
 	public getItemWithIsbn(isbn: string) {
 		for (const customerOrderItem of this._customerOrderItems) {
-			if (customerOrderItem.item.info && customerOrderItem.item.info['isbn']) {
-				if (customerOrderItem.item.info['isbn'].toString() === isbn) {
+			if (
+				customerOrderItem.item.info &&
+				customerOrderItem.item.info["isbn"]
+			) {
+				if (customerOrderItem.item.info["isbn"].toString() === isbn) {
 					return customerOrderItem;
 				}
 			}
@@ -87,24 +108,34 @@ export class CustomerOrderItemListService {
 		const customerOrderItem = this.getItemWithIsbn(isbn);
 
 		if (customerOrderItem) {
-			if (!this._cartService.contains(customerOrderItem.orderItem.item)) {
-				this._cartService.addOrderItem(customerOrderItem.orderItem, customerOrderItem.order, customerOrderItem.item);
+			if (
+				!this._cartService.contains(customerOrderItem.orderItem
+					.item as string)
+			) {
+				this._cartService.addOrderItem(
+					customerOrderItem.orderItem,
+					customerOrderItem.order,
+					customerOrderItem.item
+				);
 			}
-			console.log('we found order item');
+			console.log("we found order item");
 			return true;
 		}
 
 		return false;
 	}
 
-
-	public async fetchOrderedItems(): Promise<{ orderItem: OrderItem, order: Order, item: Item }[]> {
+	public async fetchOrderedItems(): Promise<
+		{ orderItem: OrderItem; order: Order; item: Item }[]
+	> {
 		this._customerOrderItems = [];
 		// this._customerOrderItemList$.next(true);
 		const customerOrderItems = [];
 		this._wait$.next(true);
 		const customerDetail = this._customerService.getCustomerDetail();
-		const orders = await this._orderService.getManyByIds(customerDetail.orders);
+		const orders = await this._orderService.getManyByIds(
+			customerDetail.orders as string[]
+		);
 
 		for (const order of orders) {
 			for (const orderItem of order.orderItems) {
@@ -120,9 +151,15 @@ export class CustomerOrderItemListService {
 					continue;
 				}
 
-				if (orderItem.type === 'rent' || orderItem.type === 'buy') {
-					const item = await this._itemService.getById(orderItem.item);
-					customerOrderItems.push({order: order, orderItem: orderItem, item: item});
+				if (orderItem.type === "rent" || orderItem.type === "buy") {
+					const item = await this._itemService.getById(
+						orderItem.item as string
+					);
+					customerOrderItems.push({
+						order: order,
+						orderItem: orderItem,
+						item: item
+					});
 				}
 			}
 		}

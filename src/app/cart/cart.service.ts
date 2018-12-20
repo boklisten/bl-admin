@@ -1,19 +1,25 @@
-import {Injectable} from '@angular/core';
-import {BlApiError, CustomerItem, Item, Order, OrderItem} from '@wizardcoder/bl-model';
-import {ItemPriceService} from '../price/item-price/item-price.service';
-import {OrderItemInfo} from '@wizardcoder/bl-model/dist/order/order-item/order-item-info';
-import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
-import {DateService} from '../date/date.service';
-import {Subject, Observable} from 'rxjs';
-import {CartItem} from './cartItem';
-import {ItemService} from '@wizardcoder/bl-connect';
-import {CartItemAction} from './cartItemAction';
-import {CustomerOrderService} from '../order/customer-order/customer-order.service';
-import {CustomerDetailService} from '../customer/customer-detail/customer-detail.service';
-import {CustomerService} from '../customer/customer.service';
-import {BranchStoreService} from '../branch/branch-store.service';
-import {CartHelperService} from './cart-helper.service';
-import {CartItemSearchService} from './cart-item-search/cart-item-search.service';
+import { Injectable } from "@angular/core";
+import {
+	BlApiError,
+	CustomerItem,
+	Item,
+	Order,
+	OrderItem
+} from "@wizardcoder/bl-model";
+import { ItemPriceService } from "../price/item-price/item-price.service";
+import { OrderItemInfo } from "@wizardcoder/bl-model/dist/order/order-item/order-item-info";
+import { OrderItemType } from "@wizardcoder/bl-model/dist/order/order-item/order-item-type";
+import { DateService } from "../date/date.service";
+import { Subject, Observable } from "rxjs";
+import { CartItem } from "./cartItem";
+import { ItemService } from "@wizardcoder/bl-connect";
+import { CartItemAction } from "./cartItemAction";
+import { CustomerOrderService } from "../order/customer-order/customer-order.service";
+import { CustomerDetailService } from "../customer/customer-detail/customer-detail.service";
+import { CustomerService } from "../customer/customer.service";
+import { BranchStoreService } from "../branch/branch-store.service";
+import { CartHelperService } from "./cart-helper.service";
+import { CartItemSearchService } from "./cart-item-search/cart-item-search.service";
 
 @Injectable()
 export class CartService {
@@ -23,10 +29,14 @@ export class CartService {
 	private _cartConfirm$: Subject<boolean>;
 	private _customerDetailId: string;
 
-	constructor(private _itemPriceService: ItemPriceService, private _dateService: DateService, private _itemService: ItemService,
-	            private _customerService: CustomerService, private _branchStoreService: BranchStoreService,
-	            private _cartHelperService: CartHelperService) {
-
+	constructor(
+		private _itemPriceService: ItemPriceService,
+		private _dateService: DateService,
+		private _itemService: ItemService,
+		private _customerService: CustomerService,
+		private _branchStoreService: BranchStoreService,
+		private _cartHelperService: CartHelperService
+	) {
 		this._cart = [];
 		this._cartChange$ = new Subject<boolean>();
 		this._cartConfirm$ = new Subject<boolean>();
@@ -44,46 +54,59 @@ export class CartService {
 
 	public add(item: Item) {
 		try {
-			const orderAndOrderItem: { orderItem: OrderItem, order: Order } = this._customerService.haveOrderedItem(item.id);
-			this.addOrderItem(orderAndOrderItem.orderItem, orderAndOrderItem.order);
+			const orderAndOrderItem: {
+				orderItem: OrderItem;
+				order: Order;
+			} = this._customerService.haveOrderedItem(item.id);
+			this.addOrderItem(
+				orderAndOrderItem.orderItem,
+				orderAndOrderItem.order
+			);
 		} catch (e) {
 			this.addNewItem(item);
 		}
 	}
 
 	public addOrderItem(orderItem: OrderItem, order: Order, item?: Item) {
-
-		if (this.contains(orderItem.item)) {
+		if (this.contains(orderItem.item as string)) {
 			return;
 		}
 
 		if (!item) {
-			this._itemService.getById(orderItem.item).then((foundItem: Item) => {
-				this.addNewOrderItem(orderItem, order, foundItem);
-			});
+			this._itemService
+				.getById(orderItem.item as string)
+				.then((foundItem: Item) => {
+					this.addNewOrderItem(orderItem, order, foundItem);
+				});
 		} else {
 			this.addNewOrderItem(orderItem, order, item);
 		}
 	}
 
 	public addCustomerItem(customerItem: CustomerItem, item?: Item) {
-		if (this.contains(customerItem.item)) {
+		if (this.contains(customerItem.item as string)) {
 			return;
 		}
 
 		if (!item) {
-			this._itemService.getById(customerItem.item).then((foundItem: Item) => {
-				this.addNewCustomerItem(customerItem, foundItem);
-			}).catch((getItemError: BlApiError) => {
-				console.log('cartService: Could not find item when trying to add customerItem', getItemError);
-				return;
-			});
+			this._itemService
+				.getById(customerItem.item as string)
+				.then((foundItem: Item) => {
+					this.addNewCustomerItem(customerItem, foundItem);
+				})
+				.catch((getItemError: BlApiError) => {
+					console.log(
+						"cartService: Could not find item when trying to add customerItem",
+						getItemError
+					);
+					return;
+				});
 		} else {
-			this.addNewCustomerItem(customerItem, item).then(() => {
-
-			}).catch((err) => {
-				console.log('could not add new customerItem: ' + err);
-			});
+			this.addNewCustomerItem(customerItem, item)
+				.then(() => {})
+				.catch(err => {
+					console.log("could not add new customerItem: " + err);
+				});
 		}
 	}
 
@@ -111,7 +134,14 @@ export class CartService {
 		const cartItems: CartItem[] = [];
 
 		for (const cartItem of this._cart) {
-			if (!(cartItem.orderItem.amount === 0 && cartItem.originalOrderItem && (cartItem.originalOrderItem.amount !== cartItem.orderItem.amount))) {
+			if (
+				!(
+					cartItem.orderItem.amount === 0 &&
+					cartItem.originalOrderItem &&
+					cartItem.originalOrderItem.amount !==
+						cartItem.orderItem.amount
+				)
+			) {
 				cartItems.push(cartItem);
 			}
 		}
@@ -167,7 +197,11 @@ export class CartService {
 	private onCustomerChange() {
 		this._customerService.onCustomerChange().subscribe(() => {
 			if (this._customerService.haveCustomer()) {
-				if (this._customerDetailId && (this._customerService.get().detail.id === this._customerDetailId)) {
+				if (
+					this._customerDetailId &&
+					this._customerService.get().detail.id ===
+						this._customerDetailId
+				) {
 					return;
 				} else {
 					this._customerDetailId = this._customerService.get().detail.id;
@@ -179,13 +213,19 @@ export class CartService {
 		});
 	}
 
-	private async addNewCustomerItem(customerItem: CustomerItem, item: Item): Promise<boolean> {
+	private async addNewCustomerItem(
+		customerItem: CustomerItem,
+		item: Item
+	): Promise<boolean> {
 		let orderItem: OrderItem;
 
 		try {
-			orderItem = await this._cartHelperService.createOrderItemBasedOnCustomerItem(customerItem, item);
+			orderItem = await this._cartHelperService.createOrderItemBasedOnCustomerItem(
+				customerItem,
+				item
+			);
 		} catch (e) {
-			throw new Error('cartService: could not create orderItem');
+			throw new Error("cartService: could not create orderItem");
 		}
 
 		this.addCartItem({
@@ -202,9 +242,11 @@ export class CartService {
 		let orderItem: OrderItem;
 
 		try {
-			orderItem = this._cartHelperService.createOrderItemBasedOnItem(item);
+			orderItem = this._cartHelperService.createOrderItemBasedOnItem(
+				item
+			);
 		} catch (e) {
-			console.log('the item can not be added', e);
+			console.log("the item can not be added", e);
 		}
 
 		this.addCartItem({
@@ -213,7 +255,6 @@ export class CartService {
 			action: this._cartHelperService.getFirstValidActionOnItem(item)
 		});
 	}
-
 
 	private addNewOrderItem(orderItem: OrderItem, order: Order, item: Item) {
 		const newOrderItem: OrderItem = {
@@ -244,14 +285,16 @@ export class CartService {
 	}
 
 	private getActionBasedOnOrderItem(type: OrderItemType): CartItemAction {
-		if (type === 'rent') {
+		if (type === "rent") {
 			const branch = this._branchStoreService.getCurrentBranch();
-			if (branch.paymentInfo.rentPeriods && branch.paymentInfo.rentPeriods.length > 0) {
+			if (
+				branch.paymentInfo.rentPeriods &&
+				branch.paymentInfo.rentPeriods.length > 0
+			) {
 				return branch.paymentInfo.rentPeriods[0].type;
 			}
 		} else {
 			return type;
 		}
-
 	}
 }

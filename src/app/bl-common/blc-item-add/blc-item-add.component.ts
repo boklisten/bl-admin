@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CustomerItem, Item, Order, OrderItem} from '@wizardcoder/bl-model';
-import {CartService} from '../../cart/cart.service';
+import { Component, Input, OnInit } from "@angular/core";
+import { CustomerItem, Item, Order, OrderItem } from "@wizardcoder/bl-model";
+import { CartService } from "../../cart/cart.service";
 
 @Component({
-	selector: 'app-blc-item-add',
-	templateUrl: './blc-item-add.component.html',
-	styleUrls: ['./blc-item-add.component.scss']
+	selector: "app-blc-item-add",
+	templateUrl: "./blc-item-add.component.html",
+	styleUrls: ["./blc-item-add.component.scss"]
 })
 export class BlcItemAddComponent implements OnInit {
 	@Input() item: Item;
@@ -28,7 +28,9 @@ export class BlcItemAddComponent implements OnInit {
 	}
 
 	private checkIfAdded() {
-		this.added = this._cartService.contains((this.orderItem) ? this.orderItem.item : this.item.id);
+		this.added = this._cartService.contains(
+			this.orderItem ? (this.orderItem.item as string) : this.item.id
+		);
 	}
 
 	public onClick() {
@@ -41,21 +43,22 @@ export class BlcItemAddComponent implements OnInit {
 		}
 	}
 
-
 	private handleCustomerItem() {
-		if (this._cartService.contains(this.customerItem.item)) {
-			this._cartService.remove(this.customerItem.item);
+		if (this._cartService.contains(this.customerItem.item as string)) {
+			this._cartService.remove(this.customerItem.item as string);
 			this.added = false;
 		} else {
-			this._cartService.addCustomerItem(this.customerItem, (this.item) ? this.item : null);
+			this._cartService.addCustomerItem(
+				this.customerItem,
+				this.item ? this.item : null
+			);
 			this.added = true;
 		}
 	}
 
-
 	private handleOrderItem() {
-		if (this._cartService.contains(this.orderItem.item)) {
-			this._cartService.remove(this.orderItem.item);
+		if (this._cartService.contains(this.orderItem.item as string)) {
+			this._cartService.remove(this.orderItem.item as string);
 			this.added = false;
 		} else {
 			this._cartService.addOrderItem(this.orderItem, this.order);
