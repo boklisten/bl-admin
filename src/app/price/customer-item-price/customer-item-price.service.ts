@@ -37,6 +37,7 @@ export class CustomerItemPriceService {
 		period: Period,
 		item: Item
 	) {
+		/*
 		if (
 			!this._dateService.isCustomerItemExtendValid(
 				customerItem.deadline,
@@ -44,7 +45,8 @@ export class CustomerItemPriceService {
 			)
 		) {
 			throw new Error("extend period is not valid on customerItem");
-		}
+    }
+     */
 
 		const unitPrice = this.priceExtend(period);
 		return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
