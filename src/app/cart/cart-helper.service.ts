@@ -1,32 +1,35 @@
-import {Injectable} from '@angular/core';
-import {CartItemAction} from './cartItemAction';
-import {BranchStoreService} from '../branch/branch-store.service';
-import {CartItem} from './cartItem';
-import {Branch, CustomerItem, Item, OrderItem} from '@wizardcoder/bl-model';
-import {CustomerService} from '../customer/customer.service';
-import {ItemPriceService} from '../price/item-price/item-price.service';
-import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
-import {OrderItemInfo} from '@wizardcoder/bl-model/dist/order/order-item/order-item-info';
-import {DateService} from '../date/date.service';
-import {OrderItemPriceService} from '../price/order-item-price/order-item-price.service';
-import {Period} from '@wizardcoder/bl-model/dist/period/period';
-import {CustomerItemPriceService} from '../price/customer-item-price/customer-item-price.service';
-import {BranchItemHelperService} from '../branch/branch-item-helper/branch-item-helper.service';
-import {AuthService} from '../auth/auth.service';
+import { Injectable } from "@angular/core";
+import { CartItemAction } from "./cartItemAction";
+import { BranchStoreService } from "../branch/branch-store.service";
+import { CartItem } from "./cartItem";
+import { Branch, CustomerItem, Item, OrderItem } from "@wizardcoder/bl-model";
+import { CustomerService } from "../customer/customer.service";
+import { ItemPriceService } from "../price/item-price/item-price.service";
+import { OrderItemType } from "@wizardcoder/bl-model/dist/order/order-item/order-item-type";
+import { OrderItemInfo } from "@wizardcoder/bl-model/dist/order/order-item/order-item-info";
+import { DateService } from "../date/date.service";
+import { OrderItemPriceService } from "../price/order-item-price/order-item-price.service";
+import { Period } from "@wizardcoder/bl-model/dist/period/period";
+import { CustomerItemPriceService } from "../price/customer-item-price/customer-item-price.service";
+import { BranchItemHelperService } from "../branch/branch-item-helper/branch-item-helper.service";
+import { AuthService } from "../auth/auth.service";
 
 @Injectable()
 export class CartHelperService {
-
-	constructor(private _branchStoreService: BranchStoreService, private _customerService: CustomerService,
-	            private _itemPriceService: ItemPriceService, private _dateService: DateService,
-	            private _orderItemPriceService: OrderItemPriceService, private _customerItemPriceService: CustomerItemPriceService,
-	            private _authService: AuthService,
-	            private _branchItemHelperService: BranchItemHelperService) {
-	}
+	constructor(
+		private _branchStoreService: BranchStoreService,
+		private _customerService: CustomerService,
+		private _itemPriceService: ItemPriceService,
+		private _dateService: DateService,
+		private _orderItemPriceService: OrderItemPriceService,
+		private _customerItemPriceService: CustomerItemPriceService,
+		private _authService: AuthService,
+		private _branchItemHelperService: BranchItemHelperService
+	) {}
 
 	public cartItemActionValidOnBranch(action: CartItemAction): boolean {
 		const branch = this._branchStoreService.getCurrentBranch();
-		if (action === 'semester' || action === 'year') {
+		if (action === "semester" || action === "year") {
 			for (const rentPeriod of branch.paymentInfo.rentPeriods) {
 				if (rentPeriod.type === action) {
 					return true;
@@ -38,69 +41,143 @@ export class CartHelperService {
 	}
 
 	public isActionValidOnItem(action, item: Item): boolean {
-		if ((action === 'semester' || action === 'year') && this._customerService.haveCustomer()) {
+		if (
+			(action === "semester" || action === "year") &&
+			this._customerService.haveCustomer()
+		) {
 			return this._branchItemHelperService.isRentValid(item, action);
-		} else if (action === 'buy') {
+		} else if (action === "buy") {
 			return this._branchItemHelperService.isBuyValid(item);
-		} else if (action === 'sell' && this._customerService.haveCustomer()) {
+		} else if (action === "sell" && this._customerService.haveCustomer()) {
 			return this._branchItemHelperService.isSellValid(item);
 		} else {
 			return false;
 		}
 	}
 
-	public isActionValidOnCartItem(action: CartItemAction, cartItem: CartItem): boolean {
+	public isActionValidOnCartItem(
+		action: CartItemAction,
+		cartItem: CartItem
+	): boolean {
 		if (!cartItem.customerItem) {
-			if ((action === 'semester' || action === 'year') && this._customerService.haveCustomer()) {
-				return this._branchItemHelperService.isRentValid(cartItem.item, action);
-			} else if (action === 'buy') {
+			if (
+				(action === "semester" || action === "year") &&
+				this._customerService.haveCustomer()
+			) {
+				return this._branchItemHelperService.isRentValid(
+					cartItem.item,
+					action
+				);
+			} else if (action === "buy") {
 				return this._branchItemHelperService.isBuyValid(cartItem.item);
-			} else if (action === 'sell' && this._customerService.haveCustomer()) {
+			} else if (
+				action === "sell" &&
+				this._customerService.haveCustomer()
+			) {
 				return this._branchItemHelperService.isSellValid(cartItem.item);
-			} else if (action === 'cancel') {
+			} else if (action === "cancel") {
 				return true;
 			}
 		} else {
-			if (action === 'cancel') {
-				return (cartItem.customerItem.handout && this._dateService.isCustomerItemCancelValid(cartItem.customerItem.handoutInfo.time));
-			} else if (action === 'return') {
-				return (cartItem.customerItem.handout
-					&& this._dateService.isCustomerItemReturnValid(cartItem.customerItem.deadline)
-					&& !this._dateService.isCustomerItemCancelValid(cartItem.customerItem.handoutInfo.time));
-			} else if (action === 'buyout') {
-				return (cartItem.customerItem.handout && this._dateService.isCustomerItemReturnValid(cartItem.customerItem.deadline));
-			} else if (action === 'extend') {
-				return (cartItem.customerItem.handout
-					&& this._dateService.isCustomerItemReturnValid(cartItem.customerItem.deadline)
-					&& this._dateService.isCustomerItemExtendValid(cartItem.customerItem.deadline, 'semester'));
+			if (action === "cancel") {
+				return (
+					cartItem.customerItem.handout &&
+					this._dateService.isCustomerItemCancelValid(
+						cartItem.customerItem.handoutInfo.time
+					)
+				);
+			} else if (action === "return") {
+				return (
+					cartItem.customerItem.handout &&
+					this._dateService.isCustomerItemReturnValid(
+						cartItem.customerItem.deadline
+					) &&
+					!this._dateService.isCustomerItemCancelValid(
+						cartItem.customerItem.handoutInfo.time
+					)
+				);
+			} else if (action === "buyout") {
+				return (
+					cartItem.customerItem.handout &&
+					this._dateService.isCustomerItemReturnValid(
+						cartItem.customerItem.deadline
+					)
+				);
+			} else if (action === "extend") {
+				return (
+					cartItem.customerItem.handout &&
+					this._dateService.isCustomerItemReturnValid(
+						cartItem.customerItem.deadline
+					) &&
+					this._dateService.isCustomerItemExtendValid(
+						cartItem.customerItem.deadline,
+						"semester"
+					)
+				);
 			}
-
 		}
 
 		return false;
 	}
 
-	public async createOrderItemBasedOnCustomerItem(customerItem: CustomerItem, item: Item) {
-		if (!this._dateService.isCustomerItemReturnValid(customerItem.deadline) && !this._authService.isAdmin()) {
-			throw new Error('can not add customer item to cart, the deadline is overdue');
+	public async createOrderItemBasedOnCustomerItem(
+		customerItem: CustomerItem,
+		item: Item
+	) {
+		if (
+			!this._dateService.isCustomerItemReturnValid(
+				customerItem.deadline
+			) &&
+			!this._authService.isAdmin()
+		) {
+			throw new Error(
+				"can not add customer item to cart, the deadline is overdue"
+			);
 		}
 
-		if (this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time) && this._authService.isManager()) {
+		if (
+			this._dateService.isCustomerItemCancelValid(
+				customerItem.handoutInfo.time
+			) &&
+			this._authService.isManager()
+		) {
 			return await this.createOrderItemTypeCancel(customerItem, item);
-		} else if (this._dateService.isCustomerItemReturnValid(customerItem.deadline) && !this._dateService.isCustomerItemCancelValid(customerItem.handoutInfo.time)) {
+		} else if (
+			this._dateService.isCustomerItemReturnValid(
+				customerItem.deadline
+			) &&
+			!this._dateService.isCustomerItemCancelValid(
+				customerItem.handoutInfo.time
+			)
+		) {
 			return this.createOrderItemTypeReturn(customerItem, item);
-		} else if (this._dateService.isCustomerItemExtendValid(customerItem.deadline, 'semester')) {
-			return this.createOrderItemTypeExtend(customerItem, item, 'semester');
+		} else if (
+			this._dateService.isCustomerItemExtendValid(
+				customerItem.deadline,
+				"semester"
+			)
+		) {
+			return this.createOrderItemTypeExtend(
+				customerItem,
+				item,
+				"semester"
+			);
 		} else if (this._branchItemHelperService.isBuyValid(item)) {
 			return this.createOrderItemTypeBuyout(customerItem, item);
 		} else {
-			throw new Error('cartHelperService: this customerItem can not be handled');
+			throw new Error(
+				"cartHelperService: this customerItem can not be handled"
+			);
 		}
 	}
 
-	public createOrderItemTypeExtend(customerItem: CustomerItem, item: Item, period: Period): OrderItem {
+	public createOrderItemTypeExtend(
+		customerItem: CustomerItem,
+		item: Item,
+		period: Period
+	): OrderItem {
 		const orderItem: OrderItem = {
-			type: 'extend',
+			type: "extend",
 			item: item.id,
 			title: item.title,
 			amount: 0,
@@ -110,7 +187,11 @@ export class CartHelperService {
 			customerItem: customerItem.id
 		};
 
-		const orderItemAmounts = this._customerItemPriceService.calculateAmountsExtend(customerItem, period, item);
+		const orderItemAmounts = this._customerItemPriceService.calculateAmountsExtend(
+			customerItem,
+			period,
+			item
+		);
 		orderItem.amount = orderItemAmounts.amount;
 		orderItem.unitPrice = orderItemAmounts.unitPrice;
 		orderItem.taxAmount = orderItemAmounts.taxAmount;
@@ -119,12 +200,17 @@ export class CartHelperService {
 		return orderItem;
 	}
 
-	public async createOrderItemTypeCancel(customerItem: CustomerItem, item: Item): Promise<OrderItem> {
+	public async createOrderItemTypeCancel(
+		customerItem: CustomerItem,
+		item: Item
+	): Promise<OrderItem> {
 		return {
-			type: 'cancel',
+			type: "cancel",
 			item: item.id,
 			title: item.title,
-			amount: await this._customerItemPriceService.priceCancel(customerItem),
+			amount: await this._customerItemPriceService.priceCancel(
+				customerItem
+			),
 			unitPrice: 0,
 			taxRate: 0,
 			taxAmount: 0,
@@ -132,10 +218,12 @@ export class CartHelperService {
 		};
 	}
 
-	public createOrderItemTypeReturn(customerItem: CustomerItem, item: Item): OrderItem {
-
+	public createOrderItemTypeReturn(
+		customerItem: CustomerItem,
+		item: Item
+	): OrderItem {
 		return {
-			type: 'return',
+			type: "return",
 			item: item.id,
 			title: item.title,
 			amount: this._customerItemPriceService.priceReturn(customerItem),
@@ -146,11 +234,16 @@ export class CartHelperService {
 		};
 	}
 
-	public createOrderItemTypeBuyout(customerItem: CustomerItem, item: Item): OrderItem {
-		const orderItemAmounts = this._customerItemPriceService.calculateAmountsBuyout(item);
+	public createOrderItemTypeBuyout(
+		customerItem: CustomerItem,
+		item: Item
+	): OrderItem {
+		const orderItemAmounts = this._customerItemPriceService.calculateAmountsBuyout(
+			item
+		);
 
 		return {
-			type: 'buyout',
+			type: "buyout",
 			item: item.id,
 			title: item.title,
 			amount: orderItemAmounts.amount,
@@ -161,14 +254,13 @@ export class CartHelperService {
 		};
 	}
 
-
 	public createOrderItemBasedOnItem(item: Item): OrderItem {
 		let action: CartItemAction;
 
 		try {
 			action = this.getFirstValidActionOnItem(item);
 		} catch (e) {
-			throw new Error('no action can be done on this item');
+			throw new Error("no action can be done on this item");
 		}
 
 		const orderItem = {
@@ -176,29 +268,38 @@ export class CartHelperService {
 			taxRate: item.taxRate
 		} as OrderItem;
 
-		if (action === 'rent' || action === 'semester' || action === 'year' || action === 'buy') {
+		if (
+			action === "rent" ||
+			action === "semester" ||
+			action === "year" ||
+			action === "buy"
+		) {
 			orderItem.handout = true;
 		}
 
-		const calculatedOrderItemAmounts = this._orderItemPriceService.calculateAmounts(orderItem, item);
+		const calculatedOrderItemAmounts = this._orderItemPriceService.calculateAmounts(
+			orderItem,
+			item
+		);
 
 		orderItem.item = item.id;
 		orderItem.title = item.title;
 		orderItem.unitPrice = calculatedOrderItemAmounts.unitPrice;
 		orderItem.taxRate = calculatedOrderItemAmounts.taxAmount;
 		orderItem.amount = calculatedOrderItemAmounts.amount;
-		orderItem.info = this.createDefaultOrderItemInfo(this.orderItemTypeBasedOnAction(action));
-
+		orderItem.info = this.createDefaultOrderItemInfo(
+			this.orderItemTypeBasedOnAction(action)
+		);
 
 		return orderItem;
 	}
 
 	public getFirstValidActionOnItem(item: Item) {
 		const actionList: CartItemAction[] = [
-			'semester',
-			'year',
-			'buy',
-			'sell'
+			"semester",
+			"year",
+			"buy",
+			"sell"
 		];
 
 		for (const action of actionList) {
@@ -209,15 +310,15 @@ export class CartHelperService {
 			}
 		}
 
-		throw new Error('no action on item is valid');
+		throw new Error("no action on item is valid");
 	}
 
 	public getFirstValidActionOnCartItem(cartItem: CartItem) {
 		const actionList: CartItemAction[] = [
-			'semester',
-			'year',
-			'buy',
-			'sell'
+			"semester",
+			"year",
+			"buy",
+			"sell"
 		];
 
 		for (const action of actionList) {
@@ -228,38 +329,46 @@ export class CartHelperService {
 			}
 		}
 
-		throw new Error('no action on item is valid');
-
+		throw new Error("no action on item is valid");
 	}
 
 	public orderItemTypeBasedOnAction(action: CartItemAction): OrderItemType {
-		if (action === 'semester' || action === 'year') {
-			return 'rent';
+		if (action === "semester" || action === "year") {
+			return "rent";
 		} else {
 			return action as OrderItemType;
 		}
 	}
 
-	public orderItemPriceBasedOnAction(action: CartItemAction, item: Item, alreadyPayed?: number): number {
-		const alreadyPayedAmount = (alreadyPayed) ? alreadyPayed : 0;
+	public orderItemPriceBasedOnAction(
+		action: CartItemAction,
+		item: Item,
+		alreadyPayed?: number
+	): number {
+		const alreadyPayedAmount = alreadyPayed ? alreadyPayed : 0;
 
-		if (action === 'semester' || action === 'year') {
-			return this._itemPriceService.rentPrice(item, action, 1, alreadyPayedAmount);
-		} else if (action === 'buy') {
+		if (action === "semester" || action === "year") {
+			return this._itemPriceService.rentPrice(
+				item,
+				action,
+				1,
+				alreadyPayedAmount
+			);
+		} else if (action === "buy") {
 			return this._itemPriceService.buyPrice(item, alreadyPayedAmount);
-		} else if (action === 'sell') {
+		} else if (action === "sell") {
 			return this._itemPriceService.sellPrice(item);
 		}
 	}
 
 	private createDefaultOrderItemInfo(type: OrderItemType): OrderItemInfo {
-		if (type === 'rent') {
-			let periodType: 'semester' | 'year';
+		if (type === "rent") {
+			let periodType: "semester" | "year";
 
-			if (this.cartItemActionValidOnBranch('semester')) {
-				periodType = 'semester';
-			} else if (this.cartItemActionValidOnBranch('year')) {
-				periodType = 'year';
+			if (this.cartItemActionValidOnBranch("semester")) {
+				periodType = "semester";
+			} else if (this.cartItemActionValidOnBranch("year")) {
+				periodType = "year";
 			} else {
 				return null;
 			}
