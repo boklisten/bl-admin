@@ -52,7 +52,7 @@
 							]
 						},
 						"production-nb": {
-							"optimization": true,
+							"optimization": false,
 							"outputHashing": "all",
 							"sourceMap": false,
 							"extractCss": true,
@@ -60,7 +60,7 @@
 							"aot": true,
 							"extractLicenses": true,
 							"vendorChunk": false,
-							"buildOptimizer": true,
+							"buildOptimizer": false,
 							"i18nFile": "src/locale/messages.nb.xlf",
 							"i18nFormat": "xlf",
 							"i18nLocale": "nb",
