@@ -3,7 +3,6 @@ import {CartItem} from '../../../cartItem';
 import {CartItemAction} from '../../../cartItemAction';
 import {OrderItemPriceService} from '../../../../price/order-item-price/order-item-price.service';
 import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
-import {Period} from '@wizardcoder/bl-model/dist/period/period';
 import {DateService} from '../../../../date/date.service';
 import {CustomerService} from '../../../../customer/customer.service';
 import {CartHelperService} from '../../../cart-helper.service';
@@ -72,11 +71,13 @@ export class CartListItemActionComponent implements OnInit {
 	}
 
 	showAction(action: CartItemAction): boolean {
+    /*
 		if (this.cartItem.originalOrderItem && this.cartItem.originalOrderItem.type === 'rent') {
-			if (action === 'semester' || action === 'year') {
+			if (action === 'rent') {
 				return true;
 			}
-		}
+    }
+     */
 
 		return (this._cartHelperService.isActionValidOnCartItem(action, this.cartItem));
 	}

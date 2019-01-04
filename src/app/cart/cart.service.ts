@@ -4,7 +4,8 @@ import {
 	CustomerItem,
 	Item,
 	Order,
-	OrderItem
+	OrderItem,
+	Period
 } from "@wizardcoder/bl-model";
 import { ItemPriceService } from "../price/item-price/item-price.service";
 import { OrderItemInfo } from "@wizardcoder/bl-model/dist/order/order-item/order-item-info";
@@ -20,6 +21,7 @@ import { CustomerService } from "../customer/customer.service";
 import { BranchStoreService } from "../branch/branch-store.service";
 import { CartHelperService } from "./cart-helper.service";
 import { CartItemSearchService } from "./cart-item-search/cart-item-search.service";
+import { BranchItemHelperService } from "../branch/branch-item-helper/branch-item-helper.service";
 
 @Injectable()
 export class CartService {
@@ -35,7 +37,8 @@ export class CartService {
 		private _itemService: ItemService,
 		private _customerService: CustomerService,
 		private _branchStoreService: BranchStoreService,
-		private _cartHelperService: CartHelperService
+		private _cartHelperService: CartHelperService,
+		private _branchItemHelperService: BranchItemHelperService
 	) {
 		this._cart = [];
 		this._cartChange$ = new Subject<boolean>();
@@ -273,7 +276,8 @@ export class CartService {
 		this.addCartItem({
 			item: item,
 			orderItem: newOrderItem,
-			action: this.getActionBasedOnOrderItem(orderItem.type),
+			action: orderItem.type,
+			period: this.getPeriodBasedOnAction(item, orderItem.type),
 			originalOrder: order,
 			originalOrderItem: orderItem
 		});
@@ -284,17 +288,21 @@ export class CartService {
 		this._cartChange$.next(true);
 	}
 
-	private getActionBasedOnOrderItem(type: OrderItemType): CartItemAction {
-		if (type === "rent") {
-			const branch = this._branchStoreService.getCurrentBranch();
-			if (
-				branch.paymentInfo.rentPeriods &&
-				branch.paymentInfo.rentPeriods.length > 0
-			) {
-				return branch.paymentInfo.rentPeriods[0].type;
+	private getPeriodBasedOnAction(item: Item, action: CartItemAction): Period {
+		try {
+			if (action === "rent") {
+				return this._branchItemHelperService.getDefaultRentPeriod(item);
 			}
-		} else {
-			return type;
+
+			if (action === "partly-payment") {
+				return this._branchItemHelperService.getDefaultPartlyPaymentPeriod(
+					item
+				);
+			}
+		} catch (e) {
+			return null;
 		}
+
+		return null;
 	}
 }

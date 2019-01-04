@@ -1,39 +1,107 @@
-<div class="row justify-content-between align-items-center">
-    <div class="col-auto" *ngIf="item">
-        <div class="row">
-            <div class="col-12">
-                <h4 class="text-dark font-weight-bold">{{item.title}}</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <app-branch-item-category-select [branchItem]="branchItem"></app-branch-item-category-select>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="row">
-            <div class="col-4 text-dark" i18n="@@branchItemEditRent">
-                Rent
-            </div>
-            <div class="col-4 text-dark" i18n="@@branchItemEditBuy">
-                Buy
-            </div>
-            <div class="col-4 text-dark" i18n="if the customer can sell the item to branch @@branchItemEditSell">
-                Sell
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <app-bl-common-toggle-button [(value)]="branchItem.rent" (update)="onUpdate()"></app-bl-common-toggle-button>
-            </div>
-            <div class="col-4">
-                <app-bl-common-toggle-button [(value)]="branchItem.buy" (update)="onUpdate()"></app-bl-common-toggle-button>
-            </div>
-            <div class="col-4">
-                <app-bl-common-toggle-button [(value)]="branchItem.sell" (update)="onUpdate()"></app-bl-common-toggle-button>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="row justify-content-between align-items-center" *ngIf="item">
+	<div class="col-12">
+		<h5 class="text-dark font-weight-bold">{{ item.title }}</h5>
+	</div>
+	<div class="col-12">
+		<table class="table table-sm table-borderless text-center">
+			<thead>
+				<tr>
+					<td scope="col"></td>
+					<!--<td scope="col" i18n="@@branchItemEditRent">Rent</td>-->
+					<td scope="col" i18n="@@branchItemEditPartlyPayment">
+						Partly payment
+					</td>
+					<td scope="col" i18n="@@branchItemEditBuy">Buy</td>
+					<td
+						scope="col"
+						i18n="if the customer can sell the item to branch @@branchItemEditSell"
+					>
+						Sell
+					</td>
+					<!--<td scope="col" i18n="@@branchItemEditLive">Live</td>-->
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td scope="row text-secondary">Online</td>
 
+					<!--<td>-->
+					<!--<app-bl-common-toggle-button-->
+					<!--[(value)]="branchItem.rent"-->
+					<!--(update)="onUpdate()"-->
+					<!--></app-bl-common-toggle-button>-->
+					<!--</td>-->
+
+					<td>
+						<app-bl-common-toggle-button
+							[(value)]="branchItem.partlyPayment"
+							(update)="onUpdate()"
+						></app-bl-common-toggle-button>
+					</td>
+					<td>
+						<app-bl-common-toggle-button
+							[(value)]="branchItem.buy"
+							(update)="onUpdate()"
+						></app-bl-common-toggle-button>
+					</td>
+					<td>
+						<app-bl-common-toggle-button
+							[(value)]="branchItem.sell"
+							(update)="onUpdate()"
+						></app-bl-common-toggle-button>
+					</td>
+					<!--
+					<td>
+						<app-bl-common-toggle-button
+							[(value)]="branchItem.live"
+							(update)="onUpdate()"
+						></app-bl-common-toggle-button>
+					</td>
+          -->
+				</tr>
+				<tr>
+					<td scope="row text-secondary">At Branch</td>
+					<!--<td>-->
+					<!--<app-bl-common-toggle-button-->
+					<!--[(value)]="branchItem.rentAtBranch"-->
+					<!--(update)="onUpdate()"-->
+					<!--></app-bl-common-toggle-button>-->
+					<!--</td>-->
+
+					<td>
+						<app-bl-common-toggle-button
+							[(value)]="branchItem.partlyPaymentAtBranch"
+							(update)="onUpdate()"
+						></app-bl-common-toggle-button>
+					</td>
+					<td>
+						<app-bl-common-toggle-button
+							[(value)]="branchItem.buyAtBranch"
+							(update)="onUpdate()"
+						></app-bl-common-toggle-button>
+					</td>
+					<td>
+						<app-bl-common-toggle-button
+							[(value)]="branchItem.sellAtBranch"
+							(update)="onUpdate()"
+						></app-bl-common-toggle-button>
+					</td>
+					<!--
+					<td>
+						<app-bl-common-toggle-button
+							[(value)]="branchItem.liveAtBranch"
+							(update)="onUpdate()"
+						></app-bl-common-toggle-button>
+					</td>
+          -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-12">
+		<app-branch-item-category-select
+			[branchItem]="branchItem"
+		></app-branch-item-category-select>
+	</div>
+</div>

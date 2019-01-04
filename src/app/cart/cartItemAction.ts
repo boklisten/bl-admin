@@ -1,3 +1,3 @@
-import {OrderItemType} from '@wizardcoder/bl-model/dist/order/order-item/order-item-type';
+import {OrderItemType} from '@wizardcoder/bl-model';
 
-export type CartItemAction = OrderItemType | 'semester' | 'year';
+export type CartItemAction = OrderItemType;

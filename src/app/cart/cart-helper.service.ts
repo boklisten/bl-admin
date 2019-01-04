@@ -6,6 +6,7 @@ import { Branch, CustomerItem, Item, OrderItem } from "@wizardcoder/bl-model";
 import { CustomerService } from "../customer/customer.service";
 import { ItemPriceService } from "../price/item-price/item-price.service";
 import { OrderItemType } from "@wizardcoder/bl-model/dist/order/order-item/order-item-type";
+
 import { OrderItemInfo } from "@wizardcoder/bl-model/dist/order/order-item/order-item-info";
 import { DateService } from "../date/date.service";
 import { OrderItemPriceService } from "../price/order-item-price/order-item-price.service";
@@ -29,64 +30,55 @@ export class CartHelperService {
 
 	public cartItemActionValidOnBranch(action: CartItemAction): boolean {
 		const branch = this._branchStoreService.getCurrentBranch();
-		if (action === "semester" || action === "year") {
-			for (const rentPeriod of branch.paymentInfo.rentPeriods) {
-				if (rentPeriod.type === action) {
-					return true;
-				}
-			}
-			return false;
-		}
 		return true;
 	}
 
-	public isActionValidOnItem(action, item: Item): boolean {
-		if (
-			(action === "semester" || action === "year") &&
-			this._customerService.haveCustomer()
-		) {
-			return this._branchItemHelperService.isRentValid(item, action);
-		} else if (action === "buy") {
+	public isActionValidOnItem(action, item: Item, period?: Period): boolean {
+		if (action === "buy") {
 			return this._branchItemHelperService.isBuyValid(item);
-		} else if (action === "sell" && this._customerService.haveCustomer()) {
-			return this._branchItemHelperService.isSellValid(item);
-		} else {
-			return false;
 		}
+
+		if (this._customerService.haveCustomer()) {
+			switch (action) {
+				case "rent":
+					return this._branchItemHelperService.isRentValid(
+						item,
+						period
+					);
+				case "partly-payment":
+					return this._branchItemHelperService.isPartlyPaymentValid(
+						item,
+						period
+					);
+				case "sell":
+					return this._branchItemHelperService.isSellValid(item);
+				case "cancel":
+					return true;
+			}
+		}
+
+		return false;
 	}
 
 	public isActionValidOnCartItem(
 		action: CartItemAction,
-		cartItem: CartItem
+		cartItem: CartItem,
+		period?: Period
 	): boolean {
 		if (!cartItem.customerItem) {
-			if (
-				(action === "semester" || action === "year") &&
-				this._customerService.haveCustomer()
-			) {
-				return this._branchItemHelperService.isRentValid(
-					cartItem.item,
-					action
-				);
-			} else if (action === "buy") {
-				return this._branchItemHelperService.isBuyValid(cartItem.item);
-			} else if (
-				action === "sell" &&
-				this._customerService.haveCustomer()
-			) {
-				return this._branchItemHelperService.isSellValid(cartItem.item);
-			} else if (action === "cancel") {
-				return true;
-			}
-		} else {
-			if (action === "cancel") {
+			// if no customerItem is present, check like regular item
+			return this.isActionValidOnItem(action, cartItem.item, period);
+		}
+
+		switch (action) {
+			case "cancel":
 				return (
 					cartItem.customerItem.handout &&
 					this._dateService.isCustomerItemCancelValid(
 						cartItem.customerItem.handoutInfo.time
 					)
 				);
-			} else if (action === "return") {
+			case "return":
 				return (
 					cartItem.customerItem.handout &&
 					this._dateService.isCustomerItemReturnValid(
@@ -96,14 +88,14 @@ export class CartHelperService {
 						cartItem.customerItem.handoutInfo.time
 					)
 				);
-			} else if (action === "buyout") {
+			case "buyout":
 				return (
 					cartItem.customerItem.handout &&
 					this._dateService.isCustomerItemReturnValid(
 						cartItem.customerItem.deadline
 					)
 				);
-			} else if (action === "extend") {
+			case "extend":
 				return (
 					cartItem.customerItem.handout &&
 					this._dateService.isCustomerItemReturnValid(
@@ -114,7 +106,6 @@ export class CartHelperService {
 						"semester"
 					)
 				);
-			}
 		}
 
 		return false;
@@ -270,8 +261,7 @@ export class CartHelperService {
 
 		if (
 			action === "rent" ||
-			action === "semester" ||
-			action === "year" ||
+			action === "partly-payment" ||
 			action === "buy"
 		) {
 			orderItem.handout = true;
@@ -287,6 +277,7 @@ export class CartHelperService {
 		orderItem.unitPrice = calculatedOrderItemAmounts.unitPrice;
 		orderItem.taxRate = calculatedOrderItemAmounts.taxAmount;
 		orderItem.amount = calculatedOrderItemAmounts.amount;
+
 		orderItem.info = this.createDefaultOrderItemInfo(
 			this.orderItemTypeBasedOnAction(action)
 		);
@@ -296,8 +287,8 @@ export class CartHelperService {
 
 	public getFirstValidActionOnItem(item: Item) {
 		const actionList: CartItemAction[] = [
-			"semester",
-			"year",
+			"rent",
+			"partly-payment",
 			"buy",
 			"sell"
 		];
@@ -315,8 +306,8 @@ export class CartHelperService {
 
 	public getFirstValidActionOnCartItem(cartItem: CartItem) {
 		const actionList: CartItemAction[] = [
-			"semester",
-			"year",
+			"rent",
+			"partly-payment",
 			"buy",
 			"sell"
 		];
@@ -333,24 +324,21 @@ export class CartHelperService {
 	}
 
 	public orderItemTypeBasedOnAction(action: CartItemAction): OrderItemType {
-		if (action === "semester" || action === "year") {
-			return "rent";
-		} else {
-			return action as OrderItemType;
-		}
+		return action as OrderItemType;
 	}
 
 	public orderItemPriceBasedOnAction(
 		action: CartItemAction,
 		item: Item,
-		alreadyPayed?: number
+		alreadyPayed?: number,
+		period?: Period
 	): number {
 		const alreadyPayedAmount = alreadyPayed ? alreadyPayed : 0;
 
-		if (action === "semester" || action === "year") {
+		if (action === "rent" || action === "partly-payment") {
 			return this._itemPriceService.rentPrice(
 				item,
-				action,
+				period,
 				1,
 				alreadyPayedAmount
 			);
@@ -365,10 +353,8 @@ export class CartHelperService {
 		if (type === "rent") {
 			let periodType: "semester" | "year";
 
-			if (this.cartItemActionValidOnBranch("semester")) {
+			if (this.cartItemActionValidOnBranch("rent")) {
 				periodType = "semester";
-			} else if (this.cartItemActionValidOnBranch("year")) {
-				periodType = "year";
 			} else {
 				return null;
 			}
@@ -381,6 +367,7 @@ export class CartHelperService {
 				numberOfPeriods: 1,
 				periodType: periodType
 			};
+		} else if (type === "partly-payment") {
 		}
 	}
 }
