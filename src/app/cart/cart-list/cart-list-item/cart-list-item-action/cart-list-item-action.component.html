@@ -1,5 +1,5 @@
 <div
-	class="btn-group btn-group-toggle"
+	class="btn-group btn-group-toggle btn-group-sm"
 	ngbRadioGroup
 	name="radioBasic"
 	[(ngModel)]="cartItem.action"
@@ -20,21 +20,26 @@
 			[disabled]="!showAction(action.action, action.period)"
 			(click)="onActionChange(action.action, action.period)"
 		/>
-		<fa-icon
-			[icon]="'calendar-alt'"
-			class="mr-3 ml-3"
+		<span
 			*ngIf="
 				action.action === 'partly-payment' &&
 				action.period === 'semester'
 			"
-		></fa-icon>
-		<fa-icon
-			[icon]="'calendar'"
 			class="mr-3 ml-3"
+		>
+			<fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
+			<fa-icon [icon]="'calendar-alt'"></fa-icon>
+		</span>
+
+		<span
 			*ngIf="
 				action.action === 'partly-payment' && action.period === 'year'
 			"
-		></fa-icon>
+			class="mr-3 ml-3"
+		>
+			<fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
+			<fa-icon [icon]="'calendar'"></fa-icon>
+		</span>
 		<fa-icon
 			[icon]="'money-bill-alt'"
 			class="mr-3 ml-3"
@@ -74,6 +79,16 @@
 >
 	{{ cartItem.orderItem.type }}
 	<fa-icon [icon]="'arrow-right'" class="mr-2 ml-2"></fa-icon>
+	{{ cartItem.orderItem.info.to | blDate }}
+</span>
+
+<span
+	*ngIf="cartItem.orderItem.type === 'partly-payment'"
+	class="ml-2 text-secondary"
+>
+	<fa-icon [icon]="'money-bill-alt'"></fa-icon>
+	<fa-icon [icon]="'arrow-right'" class="ml-2 mr-2"></fa-icon>
+	<fa-icon [icon]="'clock'"></fa-icon>
 	{{ cartItem.orderItem.info.to | blDate }}
 </span>
 
