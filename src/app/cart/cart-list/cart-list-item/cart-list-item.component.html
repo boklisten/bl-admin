@@ -19,7 +19,11 @@
 			<fa-icon [icon]="'truck'" class="mr-2"></fa-icon>
 		</span>
 		<span
-			*ngIf="!showAlreadyPayed && cartItem.orderItem.amount >= 0"
+			*ngIf="
+				cartItem.orderItem.amount &&
+				!showAlreadyPayed &&
+				cartItem.orderItem.amount >= 0
+			"
 			class="text-right"
 			>{{ cartItem.orderItem.amount | blcPrice }}</span
 		>

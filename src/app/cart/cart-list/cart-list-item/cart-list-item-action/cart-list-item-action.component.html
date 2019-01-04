@@ -2,7 +2,7 @@
 	class="btn-group btn-group-toggle btn-group-sm"
 	ngbRadioGroup
 	name="radioBasic"
-	[(ngModel)]="cartItem.action"
+	[(ngModel)]="selectedAction"
 >
 	<label
 		ngbButtonLabel
@@ -16,7 +16,7 @@
 		<input
 			ngbButton
 			type="radio"
-			[value]="action"
+			[value]="action.action + action.period"
 			[disabled]="!showAction(action.action, action.period)"
 			(click)="onActionChange(action.action, action.period)"
 		/>

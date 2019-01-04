@@ -166,6 +166,10 @@ export class DateService {
 			period
 		);
 
+		if (!partlyPaymentPeriod) {
+			throw new Error("could not get partly payment period");
+		}
+
 		return {
 			from: new Date(),
 			to: partlyPaymentPeriod.date

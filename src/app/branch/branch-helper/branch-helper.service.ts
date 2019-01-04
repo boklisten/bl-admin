@@ -23,6 +23,8 @@ export class BranchHelperService {
 				return partlyPaymentPeriod;
 			}
 		}
+
+		return null;
 	}
 
 	public getExtendPeriod(branch: Branch, period: Period) {

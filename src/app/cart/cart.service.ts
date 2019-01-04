@@ -256,6 +256,7 @@ export class CartService {
 			item: item,
 			orderItem: orderItem,
 			action: this._cartHelperService.getFirstValidActionOnItem(item)
+				.action
 		});
 	}
 

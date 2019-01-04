@@ -246,7 +246,7 @@ export class CartHelperService {
 	}
 
 	public createOrderItemBasedOnItem(item: Item): OrderItem {
-		let action: CartItemAction;
+		let action: { action: CartItemAction; period?: Period };
 
 		try {
 			action = this.getFirstValidActionOnItem(item);
@@ -255,17 +255,22 @@ export class CartHelperService {
 		}
 
 		const orderItem = {
-			type: action,
+			type: action.action,
 			taxRate: item.taxRate
 		} as OrderItem;
 
 		if (
-			action === "rent" ||
-			action === "partly-payment" ||
-			action === "buy"
+			action.action === "rent" ||
+			action.action === "partly-payment" ||
+			action.action === "buy"
 		) {
 			orderItem.handout = true;
 		}
+
+		orderItem.info = this.createDefaultOrderItemInfo(
+			this.orderItemTypeBasedOnAction(action.action),
+			action.period
+		);
 
 		const calculatedOrderItemAmounts = this._orderItemPriceService.calculateAmounts(
 			orderItem,
@@ -278,24 +283,26 @@ export class CartHelperService {
 		orderItem.taxRate = calculatedOrderItemAmounts.taxAmount;
 		orderItem.amount = calculatedOrderItemAmounts.amount;
 
-		orderItem.info = this.createDefaultOrderItemInfo(
-			this.orderItemTypeBasedOnAction(action)
-		);
-
 		return orderItem;
 	}
 
-	public getFirstValidActionOnItem(item: Item) {
-		const actionList: CartItemAction[] = [
-			"rent",
-			"partly-payment",
-			"buy",
-			"sell"
+	public getFirstValidActionOnItem(
+		item: Item
+	): { action: CartItemAction; period?: Period } {
+		const actionList: { action: CartItemAction; period?: Period }[] = [
+			{ action: "rent", period: "semester" },
+			{ action: "rent", period: "year" },
+			{ action: "partly-payment", period: "semester" },
+			{ action: "partly-payment", period: "year" },
+			{ action: "buy" },
+			{ action: "sell" }
 		];
 
 		for (const action of actionList) {
-			if (this.cartItemActionValidOnBranch(action)) {
-				if (this.isActionValidOnItem(action, item)) {
+			if (this.cartItemActionValidOnBranch(action.action)) {
+				if (
+					this.isActionValidOnItem(action.action, item, action.period)
+				) {
 					return action;
 				}
 			}
@@ -304,17 +311,27 @@ export class CartHelperService {
 		throw new Error("no action on item is valid");
 	}
 
-	public getFirstValidActionOnCartItem(cartItem: CartItem) {
-		const actionList: CartItemAction[] = [
-			"rent",
-			"partly-payment",
-			"buy",
-			"sell"
+	public getFirstValidActionOnCartItem(
+		cartItem: CartItem
+	): { action: CartItemAction; period?: Period } {
+		const actionList: { action: CartItemAction; period?: Period }[] = [
+			{ action: "rent", period: "semester" },
+			{ action: "rent", period: "year" },
+			{ action: "partly-payment", period: "semester" },
+			{ action: "partly-payment", period: "year" },
+			{ action: "buy" },
+			{ action: "sell" }
 		];
 
 		for (const action of actionList) {
-			if (this.cartItemActionValidOnBranch(action)) {
-				if (this.isActionValidOnCartItem(action, cartItem)) {
+			if (this.cartItemActionValidOnBranch(action.action)) {
+				if (
+					this.isActionValidOnCartItem(
+						action.action,
+						cartItem,
+						action.period
+					)
+				) {
 					return action;
 				}
 			}
@@ -349,7 +366,10 @@ export class CartHelperService {
 		}
 	}
 
-	private createDefaultOrderItemInfo(type: OrderItemType): OrderItemInfo {
+	private createDefaultOrderItemInfo(
+		type: OrderItemType,
+		period?: Period
+	): any {
 		if (type === "rent") {
 			let periodType: "semester" | "year";
 
@@ -368,6 +388,13 @@ export class CartHelperService {
 				periodType: periodType
 			};
 		} else if (type === "partly-payment") {
+			const fromTo = this._dateService.partlyPaymentPeriod(period);
+
+			return {
+				from: fromTo.from,
+				to: fromTo.to,
+				periodType: period
+			};
 		}
 	}
 }

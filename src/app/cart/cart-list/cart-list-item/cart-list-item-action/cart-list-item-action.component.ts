@@ -1,11 +1,4 @@
-import {
-	Component,
-	EventEmitter,
-	Input,
-	OnInit,
-	Period,
-	Output
-} from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { CartItem } from "../../../cartItem";
 import { CartItemAction } from "../../../cartItemAction";
 import { OrderItemPriceService } from "../../../../price/order-item-price/order-item-price.service";
@@ -16,6 +9,7 @@ import { CartHelperService } from "../../../cart-helper.service";
 import { CustomerItemPriceService } from "../../../../price/customer-item-price/customer-item-price.service";
 import { OrderItemHelperService } from "../../../order-item-helper/order-item-helper.service";
 import { AuthService } from "../../../../auth/auth.service";
+import { Period } from "@wizardcoder/bl-model";
 
 @Component({
 	selector: "app-cart-list-item-action",
@@ -28,6 +22,7 @@ export class CartListItemActionComponent implements OnInit {
 	public updating: boolean;
 
 	public actionList: { action: CartItemAction; period?: Period }[];
+	public selectedAction: string;
 
 	constructor(
 		private _orderItemPriceService: OrderItemPriceService,
@@ -84,6 +79,7 @@ export class CartListItemActionComponent implements OnInit {
 	}
 
 	public onActionChange(action: CartItemAction, period?: Period) {
+		this.selectedAction = action + period;
 		this.cartItem.action = action;
 		this.updateOrderItemBasedOnAction(this.cartItem.action, period);
 		this.actionChange.emit(this.cartItem.action);
@@ -104,7 +100,12 @@ export class CartListItemActionComponent implements OnInit {
 	}
 
 	private selectDefaultAction() {
-		this.onActionChange(this.cartItem.orderItem.type);
+		this.onActionChange(
+			this.cartItem.orderItem.type,
+			this.cartItem.orderItem.info
+				? this.cartItem.orderItem.info.periodType
+				: null
+		);
 	}
 
 	private updateOrderItemBasedOnAction(
