@@ -1,15 +1,18 @@
-import {Injectable} from '@angular/core';
-import {BranchStoreService} from '../../branch/branch-store.service';
-import {BranchItemStoreService} from '../../branch/branch-item-store/branch-item-store.service';
-import {Branch, BranchItem, Item} from '@wizardcoder/bl-model';
-import {Period} from '@wizardcoder/bl-model/dist/period/period';
+import { Injectable } from "@angular/core";
+import { BranchStoreService } from "../../branch/branch-store.service";
+import { BranchItemStoreService } from "../../branch/branch-item-store/branch-item-store.service";
+import { Branch, BranchItem, Item, OrderItemType } from "@wizardcoder/bl-model";
+import { Period } from "@wizardcoder/bl-model/dist/period/period";
 
 @Injectable()
 export class BranchPriceService {
 	private _branchItems: BranchItem[];
 	private _branch: Branch;
 
-	constructor(private _branchStoreService: BranchStoreService, private _branchItemStoreService: BranchItemStoreService) {
+	constructor(
+		private _branchStoreService: BranchStoreService,
+		private _branchItemStoreService: BranchItemStoreService
+	) {
 		this._branchItems = [];
 		this.onBranchUpdate();
 		this.onBranchItemsUpdate();
@@ -23,7 +26,6 @@ export class BranchPriceService {
 		});
 	}
 
-
 	private onBranchItemsUpdate() {
 		this._branchItems = this._branchItemStoreService.getBranchItems();
 
@@ -32,7 +34,11 @@ export class BranchPriceService {
 		});
 	}
 
-	public rentPrice(item: Item, period: Period, numberOfPeriods: number): number {
+	public rentPrice(
+		item: Item,
+		period: Period,
+		numberOfPeriods: number
+	): number {
 		this._branchItems = this._branchItemStoreService.getBranchItems();
 
 		if (!this._branch || !this._branch.paymentInfo) {
@@ -50,44 +56,97 @@ export class BranchPriceService {
 		return -1;
 	}
 
-	private getRentPeriodPrice(item: Item, periodType: Period, numberOfPeriods: number): number {
-		for (const rentPeriod of this._branch.paymentInfo.rentPeriods) {
-			if (rentPeriod.type === periodType && rentPeriod.maxNumberOfPeriods >= numberOfPeriods) {
-				return (item.price * rentPeriod.percentage);
+	public partlyPaymentPrice(
+		item: Item,
+		period: Period,
+		numberOfPeriods
+	): number {
+		if (!this._branch || !this._branch.paymentInfo) {
+			return -1;
+		}
+
+		if (this._branch.paymentInfo.responsible) {
+			return 0;
+		}
+
+		if (this.isPartlyPaymentValid(item)) {
+			return this.getPartlyPaymentUpFrontPrice(
+				item,
+				period,
+				numberOfPeriods
+			);
+		}
+	}
+
+	public getPartlyPaymentBuyoutPrice(item: Item, periodType: Period): number {
+		for (const partlyPaymentPeriod of this._branch.paymentInfo
+			.partlyPaymentPeriods) {
+			if (partlyPaymentPeriod.type === periodType) {
+				return item.price * partlyPaymentPeriod.percentageBuyout;
 			}
 		}
 		return -1;
 	}
 
+	public getPartlyPaymentUpFrontPrice(
+		item: Item,
+		periodType: Period,
+		numberOfPeriods: number
+	): number {
+		for (const partlyPaymentPeriod of this._branch.paymentInfo
+			.partlyPaymentPeriods) {
+			if (partlyPaymentPeriod.type === periodType) {
+				return item.price * partlyPaymentPeriod.percentageUpFront;
+			}
+		}
+		return -1;
+	}
+
+	private getRentPeriodPrice(
+		item: Item,
+		periodType: Period,
+		numberOfPeriods: number
+	): number {
+		for (const rentPeriod of this._branch.paymentInfo.rentPeriods) {
+			if (
+				rentPeriod.type === periodType &&
+				rentPeriod.maxNumberOfPeriods >= numberOfPeriods
+			) {
+				return item.price * rentPeriod.percentage;
+			}
+		}
+		return -1;
+	}
+
+	private isPartlyPaymentValid(item: Item) {
+		return this.isActionValid(item, "partly-payment");
+	}
+
 	private isRentValid(item: Item): boolean {
-		return this.isActionValid(item, 'rent');
+		return this.isActionValid(item, "rent");
 	}
 
 	private isBuyValid(item: Item): boolean {
-		return this.isActionValid(item, 'buy');
+		return this.isActionValid(item, "buy");
 	}
 
 	private isSellValid(item: Item): boolean {
-		return this.isActionValid(item, 'sell');
+		return this.isActionValid(item, "sell");
 	}
 
-	private isActionValid(item: Item, action: 'rent' | 'buy' | 'sell'): boolean {
+	private isActionValid(item: Item, action: OrderItemType): boolean {
 		for (const branchItem of this._branchItems) {
 			if (branchItem.item === item.id) {
-				if (action === 'rent') {
+				if (action === "rent") {
 					return branchItem.rent;
-				} else if (action === 'buy') {
+				} else if (action === "buy") {
 					return branchItem.buy;
-				} else if (action === 'sell') {
+				} else if (action === "sell") {
 					return branchItem.sell;
 				}
 			}
 		}
 
 		return true;
-
 	}
-
-
-
 }

@@ -46,7 +46,12 @@ export class OrderItemPriceService {
 		} else if (orderItem.type === "cancel") {
 			unitPrice = this.priceCancel(originalOrderItem, originalOrder);
 		} else if (orderItem.type === "partly-payment") {
-			unitPrice = this.pricePartlyPayment(item);
+			unitPrice = this.pricePartlyPayment(
+				orderItem,
+				item,
+				originalOrderItem,
+				originalOrder
+			).upFront;
 		}
 
 		unitPrice = this._priceService.sanitize(unitPrice);
@@ -111,8 +116,18 @@ export class OrderItemPriceService {
 		return 0 - this.alreadyPayed(originalOrderItem, originalOrder);
 	}
 
-	public pricePartlyPayment(item: Item): number {
-		return 0;
+	public pricePartlyPayment(
+		orderItem: OrderItem,
+		item: Item,
+		originalOrderItem: OrderItem,
+		originalOrder: Order
+	): { upFront: number; amountLeftToPay: number } {
+		return this._itemPriceService.partlyPaymentPrice(
+			item,
+			orderItem.info.periodType,
+			1,
+			this.alreadyPayed(originalOrderItem, originalOrder)
+		);
 	}
 
 	public orderItemTypePayedFor(

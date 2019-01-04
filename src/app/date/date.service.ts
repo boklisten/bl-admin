@@ -159,6 +159,19 @@ export class DateService {
 		}
 	}
 
+	public partlyPaymentPeriod(period: Period): FromToDate {
+		const branch = this._branchStoreService.getCurrentBranch();
+		const partlyPaymentPeriod = this._branchHelperService.getPartlyPaymentPeriod(
+			branch,
+			period
+		);
+
+		return {
+			from: new Date(),
+			to: partlyPaymentPeriod.date
+		};
+	}
+
 	private rentPeriodSemester(): FromToDate {
 		const branch = this._branchStoreService.getCurrentBranch();
 
