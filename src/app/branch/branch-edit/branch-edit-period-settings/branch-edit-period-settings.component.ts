@@ -14,7 +14,8 @@ export class BranchEditPeriodSettingsComponent implements OnInit {
 	constructor(private _branchService: BranchService) {
 	}
 
-	ngOnInit() {
+  ngOnInit() {
+    this.branch.paymentInfo.partlyPaymentPeriods = (this.branch.paymentInfo.partlyPaymentPeriods) ? this.branch.paymentInfo.partlyPaymentPeriods : [] as any;
 		this.branch.paymentInfo.rentPeriods = (this.branch.paymentInfo.rentPeriods) ? this.branch.paymentInfo.rentPeriods : [] as any;
 		this.branch.paymentInfo.extendPeriods = (this.branch.paymentInfo.extendPeriods) ? this.branch.paymentInfo.extendPeriods : [] as any;
 		this.branch.paymentInfo.responsibleForDelivery = (this.branch.paymentInfo.responsibleForDelivery) ? this.branch.paymentInfo.responsibleForDelivery : false;
@@ -40,7 +41,23 @@ export class BranchEditPeriodSettingsComponent implements OnInit {
 	public onRentPeriodDelete(index: number) {
 		this.branch.paymentInfo.rentPeriods.splice(index, 1);
 		this.onUpdate();
+  }
+
+  public onPartlyPaymentPeriodDelete(index: number) {
+		this.branch.paymentInfo.partlyPaymentPeriods.splice(index, 1);
+		this.onUpdate();
+  }
+
+  public onPartlyPaymentPeriodAdd() {
+		this.branch.paymentInfo.partlyPaymentPeriods.push({
+			type: 'semester',
+			date: new Date(),
+      percentageBuyout: 1,
+      percentageUpFront: 1
+		});
+		this.onUpdate();
 	}
+
 
 	public onRentPeriodAdd() {
 		this.branch.paymentInfo.rentPeriods.push({

@@ -1,3 +1,78 @@
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="row text-secondary">
+            <div class="col-12">
+                <h6 i18n="@@branchEditPeriodSettinsPartlyPaymentsPeriodsTitle">Partly payment periods</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let partlyPaymentPeriod of branch.paymentInfo.partlyPaymentPeriods; let i = index" [attr.data-index]="i">
+                        <div class="row align-items-center">
+                            <div class="col-10">
+                                <div class="row justify-content-between">
+                                    <div class="col-auto text-dark font-weight-bold">
+										<span i18n="type of period@@branchEditPeriodSettingType">Type</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <app-blc-edit-string-value
+                                            [(value)]="partlyPaymentPeriod.type"
+                                            (update)="onUpdate()"></app-blc-edit-string-value>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between">
+                                    <div class="col-auto text-dark font-weight-bold">
+										<span i18n="@@branchEditPeriodSettingUpfrontPercentage">Upfront percentage</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <app-blc-edit-number-value
+                                            [(value)]="partlyPaymentPeriod.percentageUpFront"
+                                            (update)="onUpdate()"></app-blc-edit-number-value>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between">
+                                    <div class="col-auto text-dark font-weight-bold">
+										<span i18n="@@branchEditPeriodSettingBuyoutPercentage">Buyout percentage</span>
+                                    </div>
+                                    <div class="col-auto">
+                                        <app-blc-edit-number-value
+                                            [(value)]="partlyPaymentPeriod.percentageBuyout"
+                                            (update)="onUpdate()"></app-blc-edit-number-value>
+                                    </div>
+                                </div>
+								<div class="row justify-content-between">
+                                    <div class="col-auto text-dark font-weight-bold">
+										<span i18n="@@branchEditPeriodSettingDeadline">Deadline</span>
+                                    </div>
+                                    <div class="col-auto">
+										<app-blc-edit-date-value
+											[(value)]="partlyPaymentPeriod.date"
+											(update)="onUpdate()"></app-blc-edit-date-value>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="row justify-content-end align-items-center">
+                                    <div class="col-auto align-items-center align-content-center">
+                                        <fa-icon [icon]="'times'" (click)="onPartlyPaymentPeriodDelete(i)"></fa-icon>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-2" [ngClass]="{'justify-content-end': branch.paymentInfo.partlyPaymentPeriods.length > 0}">
+            <div class="col-auto" [ngClass]="{'col-12': branch.paymentInfo.partlyPaymentPeriods.length <= 0}">
+                <button class="btn btn-sm btn-outline-success" (click)="onPartlyPaymentPeriodAdd()" [ngClass]="{'btn-block': branch.paymentInfo.partlyPaymentPeriods.length <= 0}">
+					<span i18n="@@branchEditPeriodSettingsAddButton">Add</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-12">
@@ -6,6 +81,7 @@
                 <h6 i18n="@@branchEditPeriodSettingsTitle">Rent periods</h6>
             </div>
         </div>
+
         <div class="row">
             <div class="col-12">
                 <ul class="list-group">
