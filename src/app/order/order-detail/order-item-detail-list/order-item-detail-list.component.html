@@ -1,60 +1,145 @@
-
 <ul class="list-group">
-    <li class="list-group-item list-group-item-action"
-		[ngClass]="{'bl-inactive-item': orderItem.movedToOrder}"
-		*ngFor="let orderItem of orderItems">
-        <div class="row justify-content-between">
-            <div class="col-auto">
-                <span routerLink="{{'/item/' + orderItem.item + '/detail'}}" class="bl-link-black">
-                    <fa-icon [icon]="'book'" class="mr-2"></fa-icon> {{orderItem.title}}
-                </span>
-            </div>
-            <div class="col-auto">
-                {{orderItem.amount | blcPrice}}
-            </div>
-        </div>
-        <div class="row" *ngIf="orderItem.type === 'buy'">
-            <div class="col text-secondary">
-                <small><fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon> {{orderItem.type}}</small>
-            </div>
-        </div>
+	<li
+		class="list-group-item list-group-item-action"
+		[ngClass]="{ 'bl-inactive-item': orderItem.movedToOrder }"
+		*ngFor="let orderItem of orderItems"
+	>
+		<div class="row justify-content-between">
+			<div class="col-auto">
+				<span
+					routerLink="{{ '/item/' + orderItem.item + '/detail' }}"
+					class="bl-link-black"
+				>
+					<fa-icon [icon]="'book'" class="mr-2"></fa-icon>
+					{{ orderItem.title }}
+				</span>
+			</div>
+			<div
+				class="col-auto text-secondary"
+				*ngIf="orderItem.type === 'partly-payment'"
+			>
+				<small>
+					<span i18n="@@orderITemDetailListLeftToPay"
+						>left to pay</span
+					>: {{ orderItem.info.amountLeftToPay | blcPrice }}
+				</small>
+			</div>
+			<div class="col-auto">{{ orderItem.amount | blcPrice }}</div>
+		</div>
+		<div
+			class="row"
+			*ngIf="orderItem.type === 'buy' || orderItem.type === 'buyout'"
+		>
+			<div class="col text-secondary">
+				<small
+					><fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon>
+					{{ orderItem.type }}</small
+				>
+			</div>
+		</div>
 		<div class="row" *ngIf="orderItem.type === 'return'">
-            <div class="col text-secondary">
-                <small><fa-icon [icon]="'arrow-alt-down-circle'" class="mr-2"></fa-icon> {{orderItem.type}}</small>
-            </div>
-        </div>
+			<div class="col text-secondary">
+				<small
+					><fa-icon
+						[icon]="'arrow-alt-down-circle'"
+						class="mr-2"
+					></fa-icon>
+					{{ orderItem.type }}</small
+				>
+			</div>
+		</div>
 		<div class="row" *ngIf="orderItem.type === 'cancel'">
-            <div class="col text-secondary">
-                <small><fa-icon [icon]="'ban'" class="mr-2"></fa-icon> {{orderItem.type}}</small>
-            </div>
-        </div>
+			<div class="col text-secondary">
+				<small
+					><fa-icon [icon]="'ban'" class="mr-2"></fa-icon>
+					{{ orderItem.type }}</small
+				>
+			</div>
+		</div>
 		<div class="row" *ngIf="orderItem.type === 'sell'">
-            <div class="col text-secondary">
-                <small><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon> {{orderItem.type}}</small>
-            </div>
-        </div>
-        <div class="row justify-content-between text-secondary" *ngIf="orderItem.type === 'rent' || orderItem.type === 'extend'">
-            <div class="col-auto">
-                <small>
-                    <span><fa-icon [icon]="'calendar-alt'" class="mr-2"></fa-icon> {{orderItem.type}}</span>
-                    <span class="ml-2"><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon> {{orderItem.info['to'] | blDate}}</span>
-                </small>
-            </div>
-			<div class="col-auto text-success" *ngIf="orderItem.info && orderItem.info.customerItem">
-				<small class="bl-link-black" routerLink="{{'/customerItem/' + orderItem.info.customerItem + '/detail'}}">
+			<div class="col text-secondary">
+				<small
+					><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon>
+					{{ orderItem.type }}</small
+				>
+			</div>
+		</div>
+		<div
+			class="row justify-content-between text-secondary"
+			*ngIf="
+				orderItem.type === 'rent' ||
+				orderItem.type === 'extend' ||
+				orderItem.type === 'partly-payment'
+			"
+		>
+			<div
+				class="col-auto"
+				*ngIf="orderItem.type === 'rent' || orderItem.type === 'extend'"
+			>
+				<small>
+					<span
+						><fa-icon
+							[icon]="'calendar-alt'"
+							class="mr-2"
+						></fa-icon>
+						{{ orderItem.type }}</span
+					>
+					<span class="ml-2"
+						><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon>
+						{{ orderItem.info["to"] | blDate }}</span
+					>
+				</small>
+			</div>
+			<div class="col-auto" *ngIf="orderItem.type === 'partly-payment'">
+				<small>
+					<span>
+						<fa-icon
+							[icon]="'money-bill-alt'"
+							class="mr-1"
+						></fa-icon>
+						<fa-icon [icon]="'calendar-alt'" class="mr-1"></fa-icon>
+						{{ orderItem.type }}</span
+					>
+					<span class="ml-2"
+						><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon>
+						<fa-icon [icon]="'clock'" class="mr-2"></fa-icon>
+						{{ orderItem.info["to"] | blDate }}</span
+					>
+				</small>
+			</div>
+
+			<div
+				class="col-auto text-success"
+				*ngIf="orderItem.info && orderItem.info.customerItem"
+			>
+				<small
+					class="bl-link-black"
+					routerLink="{{
+						'/customerItem/' +
+							orderItem.info.customerItem +
+							'/detail'
+					}}"
+				>
 					<span>
 						<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>
-						<span i18n="@@orderItemDetailListDelivered">delivered</span>
+						<span i18n="@@orderItemDetailListDelivered"
+							>delivered</span
+						>
 					</span>
 				</small>
 			</div>
-        </div>
+		</div>
 		<div class="row justify-content-md-end" *ngIf="orderItem.movedToOrder">
-			<div class="col-auto bl-link-black font-italic" routerLink="{{'/order/' + orderItem.movedToOrder + '/detail'}}">
+			<div
+				class="col-auto bl-link-black font-italic"
+				routerLink="{{
+					'/order/' + orderItem.movedToOrder + '/detail'
+				}}"
+			>
 				<small i18n="@@orderItemDetailListMovedToAnotherOrder">
 					moved to another order
 				</small>
 			</div>
 		</div>
-    </li>
+	</li>
 </ul>
