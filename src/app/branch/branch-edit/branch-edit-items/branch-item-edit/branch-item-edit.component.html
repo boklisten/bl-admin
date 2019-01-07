@@ -7,7 +7,7 @@
 			<thead>
 				<tr>
 					<td scope="col"></td>
-					<!--<td scope="col" i18n="@@branchItemEditRent">Rent</td>-->
+					<td scope="col" i18n="@@branchItemEditRent">Rent</td>
 					<td scope="col" i18n="@@branchItemEditPartlyPayment">
 						Partly payment
 					</td>
@@ -23,14 +23,16 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td scope="row text-secondary">Online</td>
+					<td scope="row text-secondary" i18n="@@branchItemEditBlWeb">
+						bl-web
+					</td>
 
-					<!--<td>-->
-					<!--<app-bl-common-toggle-button-->
-					<!--[(value)]="branchItem.rent"-->
-					<!--(update)="onUpdate()"-->
-					<!--></app-bl-common-toggle-button>-->
-					<!--</td>-->
+					<td>
+						<app-bl-common-toggle-button
+							[(value)]="branchItem.rent"
+							(update)="onUpdate()"
+						></app-bl-common-toggle-button>
+					</td>
 
 					<td>
 						<app-bl-common-toggle-button
@@ -60,13 +62,18 @@
           -->
 				</tr>
 				<tr>
-					<td scope="row text-secondary">At Branch</td>
-					<!--<td>-->
-					<!--<app-bl-common-toggle-button-->
-					<!--[(value)]="branchItem.rentAtBranch"-->
-					<!--(update)="onUpdate()"-->
-					<!--></app-bl-common-toggle-button>-->
-					<!--</td>-->
+					<td
+						scope="row text-secondary"
+						i18n="@@branchItemEditBladmin"
+					>
+						bladmin
+					</td>
+					<td>
+						<app-bl-common-toggle-button
+							[(value)]="branchItem.rentAtBranch"
+							(update)="onUpdate()"
+						></app-bl-common-toggle-button>
+					</td>
 
 					<td>
 						<app-bl-common-toggle-button
