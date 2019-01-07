@@ -3,56 +3,81 @@
 		<div class="col-lg-4 col-12">
 			<div class="row">
 				<div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h1>
-                                <app-blc-edit-string-value [(value)]="branch.name" (update)="onUpdate()"></app-blc-edit-string-value>
-                            </h1>
-                        </div>
-                    </div>
+					<div class="card">
+						<div class="card-header">
+							<h1>
+								<app-blc-edit-string-value
+									[(value)]="branch.name"
+									(update)="onUpdate()"
+								></app-blc-edit-string-value>
+							</h1>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row mt-2">
 				<div class="col-12">
-					<ngb-accordion [closeOthers]="true" activeIds="periodSettings">
-						<ngb-panel id="generalSettings" title="General settings">
+					<ngb-accordion
+						[closeOthers]="true"
+						activeIds="periodSettings"
+					>
+						<ngb-panel
+							id="generalSettings"
+							title="General settings"
+						>
 							<ng-template ngbPanelContent>
-                                <div class="row justify-content-between">
-                                    <div class="col-auto text-secondary">
-										<span i18n="@@branchEditDescription">Desc</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <app-blc-edit-string-value [(value)]="branch.desc" (update)="onUpdate()"></app-blc-edit-string-value>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-between mt-2">
-                                    <div class="col-auto text-secondary">
-										<span i18n="@@branchEditActiveToggle">Active</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <app-bl-common-toggle-button [(value)]="branch.active" (update)="onUpdate()"></app-bl-common-toggle-button>
-                                    </div>
-                                </div>
+								<div class="row justify-content-between">
+									<div class="col-auto text-secondary">
+										<span i18n="@@branchEditDescription"
+											>Desc</span
+										>
+									</div>
+									<div class="col-auto">
+										<app-blc-edit-string-value
+											[(value)]="branch.desc"
+											(update)="onUpdate()"
+										></app-blc-edit-string-value>
+									</div>
+								</div>
+								<div class="row justify-content-between mt-2">
+									<div class="col-auto text-secondary">
+										<span i18n="@@branchEditActiveToggle"
+											>Active</span
+										>
+									</div>
+									<div class="col-auto">
+										<app-bl-common-toggle-button
+											[(value)]="branch.active"
+											(update)="onUpdate()"
+										></app-bl-common-toggle-button>
+									</div>
+								</div>
 							</ng-template>
 						</ngb-panel>
 						<ngb-panel id="periodSettings" title="Period settings">
 							<ng-template ngbPanelContent>
-            					<app-branch-edit-price-info [branch]="branch"></app-branch-edit-price-info>
+								<app-branch-edit-price-info
+									[branch]="branch"
+								></app-branch-edit-price-info>
 							</ng-template>
 						</ngb-panel>
 
 						<ngb-panel id="openingHourEdit" title="Opening hours">
 							<ng-template ngbPanelContent>
-								<app-branch-opening-hours-edit [branch]="branch"></app-branch-opening-hours-edit>
+								<app-branch-opening-hours-edit
+									[branch]="branch"
+								></app-branch-opening-hours-edit>
 							</ng-template>
 						</ngb-panel>
-
 					</ngb-accordion>
 				</div>
 			</div>
 		</div>
 		<div class="col-lg-8 col-12 mt-lg-0 mt-2">
-			<app-branch-edit-items [branch]="branch"></app-branch-edit-items>
+			<app-branch-edit-items
+				[(branch)]="branch"
+				(branchChange)="onUpdate()"
+			></app-branch-edit-items>
 		</div>
-    </div>
+	</div>
 </div>

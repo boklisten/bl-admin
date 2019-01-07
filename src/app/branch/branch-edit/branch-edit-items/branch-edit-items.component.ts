@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, EventEmitter, Output } from "@angular/core";
 import { Branch, BranchItem, Item } from "@wizardcoder/bl-model";
 import {
 	NgbActiveModal,
@@ -15,6 +15,7 @@ import { BranchItemService } from "@wizardcoder/bl-connect";
 })
 export class BranchEditItemsComponent implements OnInit {
 	@Input() branch: Branch;
+	@Output() branchChange: EventEmitter<Branch>;
 	public branchItems: BranchItem[];
 	public selectedItems: Item[];
 	private modalRef: NgbModalRef;
@@ -24,11 +25,19 @@ export class BranchEditItemsComponent implements OnInit {
 		private _branchItemHandlerService: BranchItemHandlerService,
 		private _branchItemService: BranchItemService
 	) {
+		this.branchChange = new EventEmitter<Branch>();
 		this.selectedItems = [];
 		this.branchItems = [];
 	}
 
 	ngOnInit() {
+		if (!this.branch.isBranchItemsLive) {
+			this.branch.isBranchItemsLive = {
+				online: false,
+				atBranch: false
+			};
+			this.onBranchItemsLiveUpdate();
+		}
 		this._branchItemService
 			.getManyByIds(this.branch.branchItems as string[])
 			.then((branchItems: BranchItem[]) => {
@@ -39,6 +48,10 @@ export class BranchEditItemsComponent implements OnInit {
 					"BranchEditItemsComponent: could not get branchItems"
 				);
 			});
+	}
+
+	onBranchItemsLiveUpdate() {
+		this.branchChange.emit(this.branch);
 	}
 
 	onSelectedItems(selectedItems: Item[]) {

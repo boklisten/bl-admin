@@ -1,4 +1,9 @@
+<span *ngIf="name" class="mr-2">{{ name }}</span>
 <span (click)="onUpdate(!value)">
-    <span *ngIf="value" class="bl-toggle-on"><fa-icon [icon]="'toggle-on'"></fa-icon></span>
-    <span *ngIf="!value" class="bl-toggle-off"><fa-icon [icon]="'toggle-off'"></fa-icon></span>
+	<span *ngIf="value" class="bl-toggle-on"
+		><fa-icon [icon]="'toggle-on'"></fa-icon
+	></span>
+	<span *ngIf="!value" class="bl-toggle-off"
+		><fa-icon [icon]="'toggle-off'"></fa-icon
+	></span>
 </span>

@@ -1,53 +1,98 @@
 <div class="card" *ngIf="branch">
 	<div class="card-header">
-		<h3 i18n="@@branchEditItemsTitle">Items</h3>
-	</div>
-	<div class="card-body" *ngIf="branchItems.length <= 0">
-		<app-bl-common-alert [type]="'secondary'" [text]="'No items on branch yet'"></app-bl-common-alert>
-	</div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let branchItem of branchItems; let i = index">
-			<div class="row align-items-center">
-				<div class="col-11">
-            		<app-branch-item-edit [branchItem]="branchItem"></app-branch-item-edit>
-				</div>
-				<div class="col-1 text-right">
-					<fa-icon [icon]="'times'" (click)="onRemoveItem(i)"></fa-icon>
-				</div>
-			</div>
-        </li>
-    </ul>
-	<div class="card-footer">
-        <button class="btn btn-sm btn-outline-success" (click)="openAddItems(itemAddList)">
-			<span i18n="@@branchEditItemsAddItems">Add items</span>
-        </button>
-	</div>
-</div>
-
-<ng-template #itemAddList let-c="close" let-d="dismiss">
-	<div class="modal-header">
-		<h4 class="modal-title" i18n="@@branchEditItemsAddItemsModalTitle">Add items to branch</h4>
-		<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-			<span aria-hidden="true">
-				<fa-icon [icon]="'times'"></fa-icon>
-			</span>
-		</button>
-	</div>
-	<div class="modal-body">
-		<app-item-select-list (selectedItems)="onSelectedItems($event)"></app-item-select-list>
-	</div>
-	<div class="modal-footer">
 		<div class="row justify-content-between">
 			<div class="col-auto">
-				<button type="button" class="btn btn-success"
-						[disabled]="selectedItems.length <= 0"
-						(click)="onAddSelectedItems()">
-					<span i18n="@@branchEditItemsAddSelectedItemsButton">Add selected items</span>
-				</button>
+				<h3 i18n="@@branchEditItemsTitle">Items</h3>
+			</div>
+			<div class="col-auto">
+				<span class="mr-2">
+					<app-bl-common-toggle-button
+						[(value)]="branch.isBranchItemsLive.online"
+						[name]="'live in bl-web'"
+						(update)="onBranchItemsLiveUpdate()"
+					></app-bl-common-toggle-button>
+				</span>
+				<span>
+					<app-bl-common-toggle-button
+						[(value)]="branch.isBranchItemsLive.atBranch"
+						[name]="'live in bladmin'"
+						(update)="onBranchItemsLiveUpdate()"
+					></app-bl-common-toggle-button>
+				</span>
 			</div>
 		</div>
+		<div class="card-body" *ngIf="branchItems.length <= 0">
+			<app-bl-common-alert
+				[type]="'secondary'"
+				[text]="'No items on branch yet'"
+			></app-bl-common-alert>
+		</div>
+		<ul class="list-group list-group-flush">
+			<li
+				class="list-group-item"
+				*ngFor="let branchItem of branchItems; let i = index"
+			>
+				<div class="row align-items-center">
+					<div class="col-11">
+						<app-branch-item-edit
+							[branchItem]="branchItem"
+						></app-branch-item-edit>
+					</div>
+					<div class="col-1 text-right">
+						<fa-icon
+							[icon]="'times'"
+							(click)="onRemoveItem(i)"
+						></fa-icon>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class="card-footer">
+			<button
+				class="btn btn-sm btn-outline-success"
+				(click)="openAddItems(itemAddList)"
+			>
+				<span i18n="@@branchEditItemsAddItems">Add items</span>
+			</button>
+		</div>
 	</div>
-</ng-template>
 
-
-
+	<ng-template #itemAddList let-c="close" let-d="dismiss">
+		<div class="modal-header">
+			<h4 class="modal-title" i18n="@@branchEditItemsAddItemsModalTitle">
+				Add items to branch
+			</h4>
+			<button
+				type="button"
+				class="close"
+				aria-label="Close"
+				(click)="d('Cross click')"
+			>
+				<span aria-hidden="true">
+					<fa-icon [icon]="'times'"></fa-icon>
+				</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<app-item-select-list
+				(selectedItems)="onSelectedItems($event)"
+			></app-item-select-list>
+		</div>
+		<div class="modal-footer">
+			<div class="row justify-content-between">
+				<div class="col-auto">
+					<button
+						type="button"
+						class="btn btn-success"
+						[disabled]="selectedItems.length <= 0"
+						(click)="onAddSelectedItems()"
+					>
+						<span i18n="@@branchEditItemsAddSelectedItemsButton"
+							>Add selected items</span
+						>
+					</button>
+				</div>
+			</div>
+		</div>
+	</ng-template>
+</div>
