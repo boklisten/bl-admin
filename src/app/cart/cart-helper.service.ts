@@ -14,11 +14,13 @@ import { Period } from "@wizardcoder/bl-model/dist/period/period";
 import { CustomerItemPriceService } from "../price/customer-item-price/customer-item-price.service";
 import { BranchItemHelperService } from "../branch/branch-item-helper/branch-item-helper.service";
 import { AuthService } from "../auth/auth.service";
+import { BranchHelperService } from "../branch/branch-helper/branch-helper.service";
 
 @Injectable()
 export class CartHelperService {
 	constructor(
 		private _branchStoreService: BranchStoreService,
+		private _branchHelperService: BranchHelperService,
 		private _customerService: CustomerService,
 		private _itemPriceService: ItemPriceService,
 		private _dateService: DateService,
@@ -30,7 +32,7 @@ export class CartHelperService {
 
 	public cartItemActionValidOnBranch(action: CartItemAction): boolean {
 		const branch = this._branchStoreService.getCurrentBranch();
-		return true;
+		return this._branchHelperService.actionValidOnBranch(branch, action);
 	}
 
 	public isActionValidOnItem(action, item: Item, period?: Period): boolean {

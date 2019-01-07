@@ -17,7 +17,7 @@ export class BranchItemHelperService {
 	public isRentValid(item: Item, periodType: Period): boolean {
 		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
 			if (branchItem.item === item.id) {
-				if (branchItem.rent) {
+				if (branchItem.rentAtBranch) {
 					for (const rentPeriod of this._branchStoreService.getCurrentBranch()
 						.paymentInfo.rentPeriods) {
 						if (rentPeriod.type === periodType) {
@@ -36,7 +36,7 @@ export class BranchItemHelperService {
 	public isPartlyPaymentValid(item: Item, period: Period): boolean {
 		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
 			if (branchItem.item === item.id) {
-				if (branchItem.partlyPayment) {
+				if (branchItem.partlyPaymentAtBranch) {
 					for (const partlyPaymentPeriod of this._branchStoreService.getCurrentBranch()
 						.paymentInfo.partlyPaymentPeriods) {
 						if (partlyPaymentPeriod.type === period) {
