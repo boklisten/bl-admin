@@ -113,13 +113,7 @@ export class CustomerItemPriceService {
 
 	public priceReturn(customerItem: CustomerItem) {
 		// if the customerItem was handed out less than two weeks ago, the customer should get the money back
-		if (
-			customerItem.totalAmount &&
-			customerItem.handout &&
-			this._dateService.isCustomerItemCancelValid(
-				customerItem.handoutInfo.time
-			)
-		) {
+		if (customerItem.totalAmount && customerItem.handout) {
 			return 0 - customerItem.totalAmount;
 		}
 		return 0;
@@ -127,22 +121,16 @@ export class CustomerItemPriceService {
 
 	public async priceCancel(customerItem: CustomerItem): Promise<number> {
 		if (customerItem.handout && customerItem.handoutInfo) {
-			if (
-				this._dateService.isCustomerItemCancelValid(
-					customerItem.handoutInfo.time
-				)
-			) {
-				let totalCancelAmount = 0;
+			let totalCancelAmount = 0;
 
-				for (const orderId of customerItem.orders) {
-					totalCancelAmount += await this.calculateOrderItemCancelAmount(
-						orderId as string,
-						customerItem.item as string
-					);
-				}
-
-				return 0 - totalCancelAmount;
+			for (const orderId of customerItem.orders) {
+				totalCancelAmount += await this.calculateOrderItemCancelAmount(
+					orderId as string,
+					customerItem.item as string
+				);
 			}
+
+			return 0 - totalCancelAmount;
 		}
 
 		throw new Error("could not calculate total cancel amount");

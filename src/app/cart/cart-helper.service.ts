@@ -145,17 +145,22 @@ export class CartHelperService {
 		switch (action) {
 			case "buyout":
 				return (
-					customerItem.handout &&
-					!this._dateService.isCustomerItemCancelValid(
-						customerItem.deadline
-					)
+					(customerItem.handout &&
+						!this._dateService.isCustomerItemCancelValid(
+							customerItem.handoutInfo.time
+						) &&
+						this._dateService.isCustomerItemReturnValid(
+							customerItem.deadline
+						)) ||
+					this._authService.isAdmin()
 				);
 			case "cancel":
 				return (
-					customerItem.handout &&
-					this._dateService.isCustomerItemCancelValid(
-						customerItem.handoutInfo.time
-					)
+					(customerItem.handout &&
+						this._dateService.isCustomerItemCancelValid(
+							customerItem.handoutInfo.time
+						)) ||
+					this._authService.isAdmin()
 				);
 			default:
 				return false;
