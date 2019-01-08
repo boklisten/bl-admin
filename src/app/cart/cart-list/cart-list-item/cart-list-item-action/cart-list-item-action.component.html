@@ -16,7 +16,7 @@
 		<input
 			ngbButton
 			type="radio"
-			[value]="action.action + action.period"
+			[value]="calculateActionValue(action.action, action.period)"
 			[disabled]="!showAction(action.action, action.period)"
 			(click)="onActionChange(action.action, action.period)"
 		/>

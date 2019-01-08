@@ -86,8 +86,14 @@ export class CartListItemActionComponent implements OnInit {
 		);
 	}
 
+	public calculateActionValue(action: CartItemAction, period: Period) {
+		let selectedActionString = action;
+		selectedActionString += !period ? "" : period;
+		return selectedActionString;
+	}
+
 	public onActionChange(action: CartItemAction, period?: Period) {
-		this.selectedAction = action + period;
+		this.selectedAction = this.calculateActionValue(action, period);
 		this.cartItem.action = action;
 		this.cartItem.period = period;
 		this.updateOrderItemBasedOnAction(this.cartItem.action, period);
