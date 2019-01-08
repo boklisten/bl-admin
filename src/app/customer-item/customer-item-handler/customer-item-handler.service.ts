@@ -45,7 +45,10 @@ export class CustomerItemHandlerService {
 		const customerItems: CustomerItem[] = [];
 
 		for (const orderItemWithOrder of orderItemsWithOrder) {
-			if (orderItemWithOrder.orderItem.type === "rent") {
+			if (
+				orderItemWithOrder.orderItem.type === "rent" ||
+				orderItemWithOrder.orderItem.type === "partly-payment"
+			) {
 				const customerItem = this.convertOrderItemToCustomerItem(
 					orderItemWithOrder.orderItem,
 					orderItemWithOrder.order.customer as string,
@@ -57,7 +60,7 @@ export class CustomerItemHandlerService {
 
 		if (customerItems.length <= 0) {
 			throw new Error(
-				"customerITemHandlerService: no customerItems to add"
+				"customerItemHandlerService: no customerItems to add"
 			);
 		}
 
@@ -213,6 +216,10 @@ export class CustomerItemHandlerService {
 		return {
 			id: null,
 			item: orderItem.item,
+			type:
+				orderItem.type === "rent" || orderItem.type === "partly-payment"
+					? orderItem.type
+					: null,
 			customer: customerId,
 			deadline: orderItem.info.to,
 			handout: true,
@@ -224,6 +231,14 @@ export class CustomerItemHandlerService {
 				handoutEmployee: this._userService.getUserDetailId(),
 				time: new Date()
 			},
+			amountLeftToPay:
+				orderItem.type === "partly-payment"
+					? orderItem.info["amountLeftToPay"]
+					: null,
+			totalAmount:
+				orderItem.type === "partly-payment"
+					? orderItem.amount + orderItem.info["amountLeftToPay"]
+					: null,
 			customerInfo: {
 				name: customerDetail.name,
 				phone: customerDetail.phone,
