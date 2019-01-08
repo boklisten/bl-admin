@@ -15,6 +15,7 @@ import { CustomerItemPriceService } from "../price/customer-item-price/customer-
 import { BranchItemHelperService } from "../branch/branch-item-helper/branch-item-helper.service";
 import { AuthService } from "../auth/auth.service";
 import { BranchHelperService } from "../branch/branch-helper/branch-helper.service";
+import { OrderItemAmounts } from "../price/customer-item-price/customer-item-price.service";
 
 @Injectable()
 export class CartHelperService {
@@ -72,48 +73,139 @@ export class CartHelperService {
 			return this.isActionValidOnItem(action, cartItem.item, period);
 		}
 
-		switch (action) {
-			case "cancel":
-				return (
-					cartItem.customerItem.handout &&
-					this._dateService.isCustomerItemCancelValid(
-						cartItem.customerItem.handoutInfo.time
-					)
-				);
-			case "return":
-				return (
-					cartItem.customerItem.handout &&
-					this._dateService.isCustomerItemReturnValid(
-						cartItem.customerItem.deadline
-					) &&
-					!this._dateService.isCustomerItemCancelValid(
-						cartItem.customerItem.handoutInfo.time
-					)
-				);
-			case "buyout":
-				return (
-					cartItem.customerItem.handout &&
-					this._dateService.isCustomerItemReturnValid(
-						cartItem.customerItem.deadline
-					)
-				);
-			case "extend":
-				return (
-					cartItem.customerItem.handout &&
-					this._dateService.isCustomerItemReturnValid(
-						cartItem.customerItem.deadline
-					) &&
-					this._dateService.isCustomerItemExtendValid(
-						cartItem.customerItem.deadline,
-						"semester"
-					)
-				);
+		if (
+			!cartItem.customerItem.type ||
+			cartItem.customerItem.type === "rent"
+		) {
+			return this.isActionValidOnCustomerItemTypeRent(
+				action,
+				cartItem.customerItem
+			);
+		}
+
+		if (cartItem.customerItem.type === "partly-payment") {
+			return this.isActionValidOnCustomerItemTypePartlyPayment(
+				action,
+				cartItem.customerItem
+			);
 		}
 
 		return false;
 	}
 
+	private isActionValidOnCustomerItemTypeRent(
+		action: CartItemAction,
+		customerItem: CustomerItem
+	): boolean {
+		switch (action) {
+			case "cancel":
+				return (
+					customerItem.handout &&
+					this._dateService.isCustomerItemCancelValid(
+						customerItem.handoutInfo.time
+					)
+				);
+			case "return":
+				return (
+					customerItem.handout &&
+					this._dateService.isCustomerItemReturnValid(
+						customerItem.deadline
+					) &&
+					!this._dateService.isCustomerItemCancelValid(
+						customerItem.handoutInfo.time
+					)
+				);
+			case "buyout":
+				return (
+					customerItem.handout &&
+					this._dateService.isCustomerItemReturnValid(
+						customerItem.deadline
+					)
+				);
+			case "extend":
+				return (
+					customerItem.handout &&
+					this._dateService.isCustomerItemReturnValid(
+						customerItem.deadline
+					) &&
+					this._dateService.isCustomerItemExtendValid(
+						customerItem.deadline,
+						"semester"
+					)
+				);
+			default:
+				return false;
+		}
+	}
+
+	private isActionValidOnCustomerItemTypePartlyPayment(
+		action: CartItemAction,
+		customerItem: CustomerItem
+	): boolean {
+		switch (action) {
+			case "buyout":
+				return (
+					customerItem.handout &&
+					!this._dateService.isCustomerItemCancelValid(
+						customerItem.deadline
+					)
+				);
+			case "cancel":
+				return (
+					customerItem.handout &&
+					this._dateService.isCustomerItemCancelValid(
+						customerItem.handoutInfo.time
+					)
+				);
+			default:
+				return false;
+		}
+	}
+
 	public async createOrderItemBasedOnCustomerItem(
+		customerItem: CustomerItem,
+		item: Item
+	) {
+		if (!customerItem.type || customerItem.type === "rent") {
+			return this.createOrderItemBasedOnCustomerItemTypeRent(
+				customerItem,
+				item
+			);
+		}
+
+		if (customerItem.type === "partly-payment") {
+			return this.createOrderItemBasedOnCustomerItemTypePartlyPayment(
+				customerItem,
+				item
+			);
+		}
+
+		throw new Error(
+			`customerItem.type '${customerItem.type}' is not supported`
+		);
+	}
+
+	private async createOrderItemBasedOnCustomerItemTypePartlyPayment(
+		customerItem: CustomerItem,
+		item: Item
+	) {
+		if (
+			this._dateService.isCustomerItemCancelValid(
+				customerItem.handoutInfo.time
+			) &&
+			this._authService.isManager()
+		) {
+			// cancel
+			return await this.createOrderItemTypeCancel(customerItem, item);
+		} else if (this._branchItemHelperService.isBuyValid(item)) {
+			// buyout
+			return this.createOrderItemTypeBuyout(customerItem, item);
+		} else {
+			throw new Error("no actions valid on customerItem");
+		}
+	}
+
+	private async createOrderItemBasedOnCustomerItemTypeRent(
 		customerItem: CustomerItem,
 		item: Item
 	) {
@@ -231,9 +323,22 @@ export class CartHelperService {
 		customerItem: CustomerItem,
 		item: Item
 	): OrderItem {
-		const orderItemAmounts = this._customerItemPriceService.calculateAmountsBuyout(
-			item
-		);
+		let orderItemAmounts: OrderItemAmounts;
+
+		if (!customerItem.type || customerItem.type === "rent") {
+			orderItemAmounts = this._customerItemPriceService.calculateAmountsBuyout(
+				item
+			);
+		} else if (customerItem.type === "partly-payment") {
+			orderItemAmounts = this._customerItemPriceService.calculateAmountPartlyPaymentBuyout(
+				customerItem,
+				item
+			);
+		} else {
+			throw new Error(
+				`customerItem.type '${customerItem.type}' is not supported`
+			);
+		}
 
 		return {
 			type: "buyout",

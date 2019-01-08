@@ -148,9 +148,22 @@ export class OrderItemHelperService {
 	): Promise<OrderItem> {
 		orderItem.type = "buyout";
 		orderItem.delivered = true;
-		const orderItemAmounts: OrderItemAmounts = this._customerItemPriceService.calculateAmountsBuyout(
-			item
-		);
+		let orderItemAmounts: OrderItemAmounts;
+
+		if (!customerItem.type || customerItem.type === "rent") {
+			orderItemAmounts = this._customerItemPriceService.calculateAmountsBuyout(
+				item
+			);
+		} else if (customerItem.type === "partly-payment") {
+			orderItemAmounts = this._customerItemPriceService.calculateAmountPartlyPaymentBuyout(
+				customerItem,
+				item
+			);
+		} else {
+			throw new Error(
+				`customerItem.type '${customerItem.type}' is not supported`
+			);
+		}
 
 		orderItem.taxRate = item.taxRate;
 		orderItem.amount = orderItemAmounts.amount;

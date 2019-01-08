@@ -38,6 +38,7 @@ export class CartListItemActionComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		console.log("creating actionList", this.cartItem.orderItem.type);
 		this.createActionList();
 		this.updating = false;
 	}
@@ -51,11 +52,19 @@ export class CartListItemActionComponent implements OnInit {
 				{ action: "cancel" }
 			];
 		} else if (this.cartItem.customerItem) {
-			this.actionList = [
-				{ action: "return" },
-				{ action: "buyout" },
-				{ action: "cancel" }
-			];
+			if (
+				this.cartItem.customerItem.type &&
+				this.cartItem.customerItem.type === "partly-payment"
+			) {
+				this.actionList = [{ action: "buyout" }, { action: "cancel" }];
+			} else {
+				// the customerItem has type "rent" or no type
+				this.actionList = [
+					{ action: "return" },
+					{ action: "buyout" },
+					{ action: "cancel" }
+				];
+			}
 		} else if (this._customerService.haveCustomer()) {
 			this.actionList = [
 				{ action: "partly-payment", period: "semester" },

@@ -32,6 +32,22 @@ export class CustomerItemPriceService {
 		return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
 	}
 
+	public calculateAmountPartlyPaymentBuyout(
+		customerItem: CustomerItem,
+		item: Item
+	): OrderItemAmounts {
+		if (!customerItem.type || customerItem.type !== "partly-payment") {
+			throw new Error(
+				`customerItem is not of type 'partly-payment' when asking for partly-payment amounts`
+			);
+		}
+
+		const unitPrice = this._priceService.sanitize(
+			customerItem.amountLeftToPay
+		);
+		return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
+	}
+
 	public calculateAmountsExtend(
 		customerItem: CustomerItem,
 		period: Period,
