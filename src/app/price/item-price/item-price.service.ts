@@ -58,7 +58,7 @@ export class ItemPriceService {
 	public partlyPaymentPrice(
 		item: Item,
 		period: Period,
-		numberOfPeriods: number,
+		itemAge: "new" | "used",
 		alreadyPayed?: number
 	): { upFront: number; amountLeftToPay: number } {
 		const branch = this._branchStoreService.getCurrentBranch();
@@ -74,12 +74,13 @@ export class ItemPriceService {
 		const branchPartlyPaymentUpFrontPrice = this._branchPriceService.partlyPaymentPrice(
 			item,
 			period,
-			numberOfPeriods
+			itemAge
 		);
 
 		const branchPartlyPaymentBuyoutPrice = this._branchPriceService.getPartlyPaymentBuyoutPrice(
 			item,
-			period
+			period,
+			itemAge
 		);
 
 		if (

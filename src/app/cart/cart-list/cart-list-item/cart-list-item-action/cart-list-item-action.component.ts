@@ -38,7 +38,6 @@ export class CartListItemActionComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		console.log("creating actionList", this.cartItem.orderItem.type);
 		this.createActionList();
 		this.updating = false;
 	}
@@ -90,6 +89,7 @@ export class CartListItemActionComponent implements OnInit {
 	public onActionChange(action: CartItemAction, period?: Period) {
 		this.selectedAction = action + period;
 		this.cartItem.action = action;
+		this.cartItem.period = period;
 		this.updateOrderItemBasedOnAction(this.cartItem.action, period);
 		this.actionChange.emit(this.cartItem.action);
 	}

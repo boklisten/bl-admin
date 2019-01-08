@@ -263,6 +263,7 @@ export class CartService {
 	private addNewOrderItem(orderItem: OrderItem, order: Order, item: Item) {
 		const newOrderItem: OrderItem = {
 			type: orderItem.type,
+			age: "new",
 			item: orderItem.item,
 			title: orderItem.title,
 			amount: 0,

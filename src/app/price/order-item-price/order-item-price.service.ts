@@ -125,7 +125,7 @@ export class OrderItemPriceService {
 		return this._itemPriceService.partlyPaymentPrice(
 			item,
 			orderItem.info.periodType,
-			1,
+			orderItem.age ? orderItem.age : "new",
 			this.alreadyPayed(originalOrderItem, originalOrder)
 		);
 	}

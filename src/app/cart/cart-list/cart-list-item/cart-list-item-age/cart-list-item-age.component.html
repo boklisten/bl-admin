@@ -1,0 +1,16 @@
+<div
+	class="btn-group btn-group-toggle btn-group-sm"
+	ngbRadioGroup
+	name="orderItemAge"
+	[(ngModel)]="cartItem.orderItem.age"
+	(click)="onAgeChange()"
+>
+	<label ngbButtonLabel class="btn-outline-secondary">
+		<input ngbButton type="radio" [value]="'new'" />
+		<span class="mr-3 ml-3" i18n="@@cartListItemAgeNew">new</span>
+	</label>
+	<label ngbButtonLabel class="btn-outline-secondary">
+		<input ngbButton type="radio" [value]="'used'" />
+		<span class="mr-3 ml-3" i18n="@@cartListItemAgeUsed">used</span>
+	</label>
+</div>

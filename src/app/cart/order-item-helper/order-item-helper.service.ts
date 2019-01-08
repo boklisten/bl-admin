@@ -123,6 +123,7 @@ export class OrderItemHelperService {
 		period: Period
 	): Promise<OrderItem> {
 		orderItem.type = "partly-payment";
+		orderItem.age = "new";
 
 		const fromToDate = this._dateService.partlyPaymentPeriod(period);
 

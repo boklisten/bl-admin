@@ -59,7 +59,7 @@ export class BranchPriceService {
 	public partlyPaymentPrice(
 		item: Item,
 		period: Period,
-		numberOfPeriods
+		itemAge: "new" | "used"
 	): number {
 		if (!this._branch || !this._branch.paymentInfo) {
 			return -1;
@@ -70,19 +70,26 @@ export class BranchPriceService {
 		}
 
 		if (this.isPartlyPaymentValid(item)) {
-			return this.getPartlyPaymentUpFrontPrice(
-				item,
-				period,
-				numberOfPeriods
-			);
+			return this.getPartlyPaymentUpFrontPrice(item, period, itemAge);
 		}
 	}
 
-	public getPartlyPaymentBuyoutPrice(item: Item, periodType: Period): number {
+	public getPartlyPaymentBuyoutPrice(
+		item: Item,
+		periodType: Period,
+		itemAge: "new" | "used"
+	): number {
 		for (const partlyPaymentPeriod of this._branch.paymentInfo
 			.partlyPaymentPeriods) {
 			if (partlyPaymentPeriod.type === periodType) {
-				return item.price * partlyPaymentPeriod.percentageBuyout;
+				if (itemAge === "new") {
+					return item.price * partlyPaymentPeriod.percentageBuyout;
+				}
+				if (itemAge === "used") {
+					return (
+						item.price * partlyPaymentPeriod.percentageBuyoutUsed
+					);
+				}
 			}
 		}
 		return -1;
@@ -91,12 +98,20 @@ export class BranchPriceService {
 	public getPartlyPaymentUpFrontPrice(
 		item: Item,
 		periodType: Period,
-		numberOfPeriods: number
+		itemAge: "new" | "used"
 	): number {
 		for (const partlyPaymentPeriod of this._branch.paymentInfo
 			.partlyPaymentPeriods) {
 			if (partlyPaymentPeriod.type === periodType) {
-				return item.price * partlyPaymentPeriod.percentageUpFront;
+				if (itemAge === "new") {
+					return item.price * partlyPaymentPeriod.percentageUpFront;
+				}
+
+				if (itemAge === "used") {
+					return (
+						item.price * partlyPaymentPeriod.percentageUpFrontUsed
+					);
+				}
 			}
 		}
 		return -1;

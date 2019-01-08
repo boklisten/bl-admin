@@ -55,6 +55,10 @@ export class CartListItemComponent implements OnInit {
 		this.setShowAlreadyPayed();
 	}
 
+	public onItemAgeChange() {
+		this.onActionChange(this.cartItem.action);
+	}
+
 	public setAlreadyPayedAmount() {
 		if (
 			this.cartItem.originalOrder &&

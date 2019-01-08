@@ -24,6 +24,7 @@ import { CartDeliveryComponent } from './cart-delivery/cart-delivery.component';
 import {CartItemSearchService} from './cart-item-search/cart-item-search.service';
 import {CustomerItemListService} from '../customer-item/customer-item-list/customer-item-list.service';
 import {CustomerOrderItemListService} from '../order/customer-order/customer-order-item-list/customer-order-item-list.service';
+import { CartListItemAgeComponent } from './cart-list/cart-list-item/cart-list-item-age/cart-list-item-age.component';
 
 @NgModule({
 	imports: [
@@ -49,7 +50,8 @@ import {CustomerOrderItemListService} from '../order/customer-order/customer-ord
 		CartListItemActionComponent,
 		CartConfirmComponent,
 		CartListSmallComponent,
-		CartDeliveryComponent
+		CartDeliveryComponent,
+		CartListItemAgeComponent
 	],
 	providers: [
 		CustomerOrderResolverService,
