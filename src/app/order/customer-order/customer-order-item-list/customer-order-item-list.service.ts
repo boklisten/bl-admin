@@ -118,7 +118,6 @@ export class CustomerOrderItemListService {
 					customerOrderItem.item
 				);
 			}
-			console.log("we found order item");
 			return true;
 		}
 
@@ -151,7 +150,11 @@ export class CustomerOrderItemListService {
 					continue;
 				}
 
-				if (orderItem.type === "rent" || orderItem.type === "buy") {
+				if (
+					orderItem.type === "rent" ||
+					orderItem.type === "buy" ||
+					orderItem.type === "partly-payment"
+				) {
 					const item = await this._itemService.getById(
 						orderItem.item as string
 					);

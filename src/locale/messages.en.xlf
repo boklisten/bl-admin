@@ -78,15 +78,14 @@
           <context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
           <context context-type="linenumber">34</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="04d611d19c117c60c9e14d0a04399a027184bc77" datatype="html">
+      </trans-unit><trans-unit id="ngb.progressbar.value" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{getPercentValue()}}"/>%</source><target state="final"><x id="INTERPOLATION" equiv-text="{{getPercentValue()}}"/>%</target>
         <context-group purpose="location">
           <context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/progressbar/progressbar.d.ts</context>
           <context context-type="linenumber">6</context>
         </context-group>
-        <note priority="1" from="description">ngb.progressbar.value</note>
       </trans-unit>
+      
       <trans-unit id="ngb.timepicker.increment-hours" datatype="html">
         <source>Increment hours</source><target state="final">Increment hours</target>
         <context-group purpose="location">
@@ -209,320 +208,176 @@
       </trans-unit>
       <trans-unit id="loginLogo" datatype="html">
         <source>Boklisten.no logo</source><target state="final">Boklisten.no logo</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
+        
         <note priority="1" from="description">the message shown if image is not found </note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login.component.d.ts</context><context context-type="linenumber">8</context></context-group></trans-unit>
       <trans-unit id="userDetailEditCouldNotRetrieveError" datatype="html">
         <source>Could not retrieve user details</source><target state="final">Could not retrieve user details</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="userDetailEditEmailTitle" datatype="html">
         <source>Email</source><target state="final">Email</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="userDetailEditNameTitle" datatype="html">
         <source>Name</source><target state="final">Name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">23</context></context-group></trans-unit>
       <trans-unit id="userDetailEditNamePlaceholder" datatype="html">
         <source>Name</source><target state="final">Name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">33</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">33</context></context-group></trans-unit>
       <trans-unit id="userDetailEditNameIsRequired" datatype="html">
         <source>Name is required</source><target state="final">Name is required</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">41</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPhoneTitle" datatype="html">
         <source>Phone</source><target state="final">Phone</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">45</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">45</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPhonePlaceholder" datatype="html">
         <source>Phone</source><target state="final">Phone</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">55</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">55</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPhoneNumberMustBeValid" datatype="html">
         <source>Phone number must be a valid number</source><target state="final">Phone number must be a valid number</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">62</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">62</context></context-group></trans-unit>
       <trans-unit id="userDetailEditAddressTitle" datatype="html">
         <source>Address</source><target state="final">Address</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">67</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">67</context></context-group></trans-unit>
       <trans-unit id="userDetailEditAddressPlaceholder" datatype="html">
         <source>Address</source><target state="final">Address</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">78</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">78</context></context-group></trans-unit>
       <trans-unit id="userDetailEditAddressMustBeValid" datatype="html">
         <source>Address must be valid</source><target state="final">Address must be valid</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">86</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">86</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostalTitle" datatype="html">
         <source>Postal code and city</source><target state="final">Postal code and city</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">91</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">91</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostCodePlaceholder" datatype="html">
         <source>Post code</source><target state="final">Post code</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">101</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">101</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostCityPlaceholder" datatype="html">
         <source>Post city</source><target state="final">Post city</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">108</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">108</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostCityRequired" datatype="html">
         <source>Post city is required</source><target state="final">Post city is required</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">116</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">116</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostalCodeError" datatype="html">
         <source>Postal code must be 4 numbers</source><target state="final">Postal code must be 4 numbers</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">122</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">122</context></context-group></trans-unit>
       <trans-unit id="userDetailEditBirthdayTitle" datatype="html">
         <source>Birthday</source><target state="final">Birthday</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">126</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">126</context></context-group></trans-unit>
       <trans-unit id="userDetailEditMustProvideDob" datatype="html">
         <source>You must provide a date of birth</source><target state="final">You must provide a date of birth</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">132</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">132</context></context-group></trans-unit>
       <trans-unit id="userDetailEditUnder18Info" datatype="html">
         <source>Since you are under the age of 18 we need information about your guardian. </source><target state="final">Since you are under the age of 18 we need information about your guardian. </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">138</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">138</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianName" datatype="html">
         <source>Guardian's full name</source><target state="final">Guardian's full name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">142</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">142</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianNamePlaceholder" datatype="html">
         <source>Gardian's full name</source><target state="final">Gardian's full name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">152</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">152</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianNameError" datatype="html">
         <source>Guardian's full name is required</source><target state="final">Guardian's full name is required</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">159</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">159</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianEmail" datatype="html">
         <source>Guardian's email</source><target state="final">Guardian's email</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">163</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">163</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianEmailPlaceholder" datatype="html">
         <source>Gardian's email</source><target state="final">Gardian's email</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">173</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">173</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianEmailError" datatype="html">
         <source>Must provide a valid email</source><target state="final">Must provide a valid email</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">179</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">179</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianPhoneTitle" datatype="html">
         <source>Guardian's phone</source><target state="final">Guardian's phone</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">184</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">184</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianPhonePlaceholder" datatype="html">
         <source>Guardian's phone </source><target state="final">Guardian's phone </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">194</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">194</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianPhoneError" datatype="html">
         <source>A valid phone number must be provided</source><target state="final">A valid phone number must be provided</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">200</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">200</context></context-group></trans-unit>
       <trans-unit id="userDetailEditSaveButton" datatype="html">
         <source>Save</source><target state="final">Save</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">217</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">217</context></context-group></trans-unit>
       <trans-unit id="registerDetailTitle" datatype="html">
         <source>Register user details</source><target state="final">Register user details</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">4</context></context-group></trans-unit>
       <trans-unit id="registerDetailUpdateDetailsFor" datatype="html">
         <source>Update the details for</source><target state="final">Update the details for</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">11</context></context-group></trans-unit>
       <trans-unit id="registerDetailErrorMsg" datatype="html">
         <source>User details could not be updated</source><target state="final">User details could not be updated</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">20</context></context-group></trans-unit>
       <trans-unit id="registerDetailFullName" datatype="html">
         <source>Full name</source><target state="final">Full name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">32</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">32</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">41</context></context-group></trans-unit>
       <trans-unit id="registerDetailPhoneNumber" datatype="html">
         <source>Phone number</source><target state="final">Phone number</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">53</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">62</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">53</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">62</context></context-group></trans-unit>
       <trans-unit id="registerDetailBirthday" datatype="html">
         <source>Birthday</source><target state="final">Birthday</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">74</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">83</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">74</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">83</context></context-group></trans-unit>
       <trans-unit id="registerDetailAddress" datatype="html">
         <source>Address</source><target state="final">Address</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">100</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">109</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">120</context>
-        </context-group>
-      </trans-unit>
+        
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">100</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">109</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">120</context></context-group></trans-unit>
       <trans-unit id="registerDetailPostCode" datatype="html">
         <source>Post code</source><target state="final">Post code</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">129</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">129</context></context-group></trans-unit>
       <trans-unit id="registerDetailPostCity" datatype="html">
         <source>Post city</source><target state="final">Post city</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">135</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">135</context></context-group></trans-unit>
       <trans-unit id="registerDetailBranch" datatype="html">
         <source>Branch</source><target state="final">Branch</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">148</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">160</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">158</context>
-        </context-group>
-      </trans-unit>
+        
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">148</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">160</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">158</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianTitle" datatype="html">
         <source>Guardian details</source><target state="final">Guardian details</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">173</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">173</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianUnder18Info" datatype="html">
         <source>
 							Since you are under the age of 18, we need details about your guardian. You can read more about why we need this by
@@ -531,1215 +386,935 @@
 							Since you are under the age of 18, we need details about your guardian. You can read more about why we need this by
 							visiting our
 						</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">177</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">177</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianUserAgreement" datatype="html">
         <source>user agreement page</source><target state="final">user agreement page</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">182</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">182</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianFullName" datatype="html">
         <source>Guardian full name</source><target state="final">Guardian full name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">202</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">202</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianEmail" datatype="html">
         <source>Guardian email</source><target state="final">Guardian email</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">210</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">219</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">210</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">219</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianPhone" datatype="html">
         <source>Guardian phone</source><target state="final">Guardian phone</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">227</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">236</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">227</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">236</context></context-group></trans-unit>
       <trans-unit id="registerDetailUpdateDetailButton" datatype="html">
         <source>Update details</source><target state="final">Update details</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">248</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">248</context></context-group></trans-unit>
       <trans-unit id="registerDetailGoBackButton" datatype="html">
         <source>Go back</source><target state="final">Go back</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">253</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">253</context></context-group></trans-unit>
       <trans-unit id="registerTitle" datatype="html">
         <source>Register new user</source><target state="final">Register new user</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="registerMustAgree" datatype="html">
         <source>You must agree to our terms to register</source><target state="final">You must agree to our terms to register</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
+        
         <note priority="1" from="description">the user must accept the user agreement before registering </note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">14</context></context-group></trans-unit>
       <trans-unit id="registerOrUseEmail" datatype="html">
         <source>Or use your email to register</source><target state="final">Or use your email to register</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">31</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">31</context></context-group></trans-unit>
       <trans-unit id="registerGoToLoginPage" datatype="html">
         <source>Go to login page</source><target state="final">Go to login page</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">42</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">42</context></context-group></trans-unit>
       <trans-unit id="socialRegisterWithFacebook" datatype="html">
         <source>Register with Facebook</source><target state="final">Register with Facebook</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/social-register/social-register.component.d.ts</context><context context-type="linenumber">8</context></context-group></trans-unit>
       <trans-unit id="socialRegisterWithGoogle" datatype="html">
         <source>Register with Google</source><target state="final">Register with Google</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/social-register/social-register.component.d.ts</context><context context-type="linenumber">17</context></context-group></trans-unit>
       <trans-unit id="localRegisterErrorMsg" datatype="html">
         <source>Could not register</source><target state="final">Could not register</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="localRegisterUserAlreadyExistsError" datatype="html">
+        <source>
+				The user already exists
+			</source><target state="final">
+				The user already exists
+			</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit><trans-unit id="localRegisterClickHereForLogin" datatype="html">
+        <source>
+				Click here if you intended to login
+			</source><target state="final">
+				Click here if you intended to login
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="localRegisterEmail" datatype="html">
         <source>Email</source><target state="final">Email</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">32</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">44</context></context-group></trans-unit>
       <trans-unit id="localRegisterPassword" datatype="html">
         <source>Password</source><target state="final">Password</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">40</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">50</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">56</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">66</context></context-group></trans-unit>
       <trans-unit id="localRegisterButton" datatype="html">
         <source>Register</source><target state="final">Register</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">56</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">72</context></context-group></trans-unit>
       <trans-unit id="registerAgreementIHaveUnderstood" datatype="html">
         <source>
 			I have read and understood the user-agreement
 		</source><target state="final">
 			I have read and understood the user-agreement
 		</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="registerAgreementTitle" datatype="html">
         <source>User agreement</source><target state="final">User agreement</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">20</context></context-group></trans-unit>
       <trans-unit id="registerDetailIAgree" datatype="html">
         <source>I Agree</source><target state="final">I Agree</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">30</context></context-group></trans-unit>
       <trans-unit id="loginMenuRegisterButton" datatype="html">
         <source>Register new user</source><target state="final">Register new user</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-menu/login-menu.component.d.ts</context><context context-type="linenumber">7</context></context-group></trans-unit>
       <trans-unit id="loginMenuLoginButton" datatype="html">
         <source>Login</source><target state="final">Login</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-menu/login-menu.component.d.ts</context><context context-type="linenumber">16</context></context-group></trans-unit>
       <trans-unit id="loginAuthTitle" datatype="html">
         <source>Login</source><target state="final">Login</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-auth/login-auth.component.d.ts</context><context context-type="linenumber">4</context></context-group></trans-unit>
       <trans-unit id="loginAuthOrUseEmail" datatype="html">
         <source>Or use your email to login</source><target state="final">Or use your email to login</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-auth/login-auth.component.d.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="loginAuthForgotPassword" datatype="html">
         <source>Forgot your password?</source><target state="final">Forgot your password?</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-auth/login-auth.component.d.ts</context><context context-type="linenumber">23</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordTitle" datatype="html">
         <source>Forgot password</source><target state="final">Forgot password</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordEmailError" datatype="html">
         <source>Please provide a valid email</source><target state="final">Please provide a valid email</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordNoResetLinkError" datatype="html">
         <source>Something went wrong, could not send you the reset link. Are you sure you have the correct email?</source><target state="final">Something went wrong, could not send you the reset link. Are you sure you have the correct email?</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">22</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordSuccessMsg" datatype="html">
         <source>An email with instructions on how to reset your password is sent to you.</source><target state="final">An email with instructions on how to reset your password is sent to you.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">30</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordHowTo" datatype="html">
         <source>
 			Write in your email and we will send you a link about how to reset your password
 		</source><target state="final">
 			Write in your email and we will send you a link about how to reset your password
 		</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">37</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordEmail" datatype="html">
         <source>Email</source><target state="final">Email</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">49</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">49</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordGoBackToLogin" datatype="html">
         <source>Go back to login page</source><target state="final">Go back to login page</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">78</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">78</context></context-group></trans-unit>
       <trans-unit id="passwordResetTitle" datatype="html">
         <source>Create new password</source><target state="final">Create new password</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">3</context></context-group></trans-unit>
       <trans-unit id="passwordResetError" datatype="html">
         <source>Failed to update password</source><target state="final">Failed to update password</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="passwordResetPasswordNotValid" datatype="html">
         <source>Password not valid. Must at least be 6 characters long</source><target state="final">Password not valid. Must at least be 6 characters long</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
+        
         <note priority="1" from="description">should be at least 6 characters long </note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">21</context></context-group></trans-unit>
       <trans-unit id="passwordResetSuccessMsg" datatype="html">
         <source>Your password was reset!</source><target state="final">Your password was reset!</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">29</context></context-group></trans-unit>
       <trans-unit id="passwordResetLoginButton" datatype="html">
         <source>Login</source><target state="final">Login</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">34</context></context-group></trans-unit>
       <trans-unit id="passwordResetNewPassword" datatype="html">
         <source>New password</source><target state="final">New password</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">44</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">44</context></context-group></trans-unit>
       <trans-unit id="passwordResetGoBackToLogin" datatype="html">
         <source>Go back to login page</source><target state="final">Go back to login page</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">71</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">71</context></context-group></trans-unit>
       <trans-unit id="emailValidationEmailConfirmed" datatype="html">
         <source>Email was confirmed</source><target state="final">Email was confirmed</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">15</context></context-group></trans-unit><trans-unit id="emailValidationNoConnection" datatype="html">
+        <source>Could not connect to the server</source><target state="final">Could not connect to the server</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="emailValidationConfirmError" datatype="html">
         <source>Email could not be confirmed.</source><target state="final">Email could not be confirmed.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">37</context></context-group></trans-unit>
       <trans-unit id="emailValidationLinkMayBeExpired" datatype="html">
         <source>The link may be expired.</source><target state="final">The link may be expired.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">39</context></context-group></trans-unit>
       <trans-unit id="emailValidationClickForNewLink" datatype="html">
         <source>Click here to send a new confirmation link</source><target state="final">Click here to send a new confirmation link</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">45</context></context-group></trans-unit>
       <trans-unit id="emailValidationNotLoggedInError" datatype="html">
         <source>You must login to send a new confirmation link</source><target state="final">You must login to send a new confirmation link</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">52</context></context-group></trans-unit>
       <trans-unit id="emailValidationClickToLogin" datatype="html">
         <source>Click her to login</source><target state="final">Click her to login</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">45</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">56</context></context-group></trans-unit>
       <trans-unit id="emailValidationNewLinkSent" datatype="html">
         <source>A new confirmation link has been sent to your email.</source><target state="final">A new confirmation link has been sent to your email.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">57</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">68</context></context-group></trans-unit>
       <trans-unit id="socialLoginFailureErrorMsg" datatype="html">
         <source>Failed to log you in, please try again soon.</source><target state="final">Failed to log you in, please try again soon.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-social-failure/auth-social-failure.component.d.ts</context><context context-type="linenumber">8</context></context-group></trans-unit>
       <trans-unit id="socialLoginFailureGoBackButton" datatype="html">
         <source>Go back</source><target state="final">Go back</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-social-failure/auth-social-failure.component.d.ts</context><context context-type="linenumber">16</context></context-group></trans-unit><trans-unit id="authTokenComponentWeAreLoggingYouIn" datatype="html">
+        <source>We are logging you in, please wait</source><target state="final">We are logging you in, please wait</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-token/auth-token.component.d.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit><trans-unit id="authTokenFailedToLoginError" datatype="html">
+        <source>
+				Failed to log you in.
+			</source><target state="final">
+				Failed to log you in.
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-token/auth-token.component.d.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit><trans-unit id="authTokenTryToLoginAgain" datatype="html">
+        <source>
+				Click here to try again
+			</source><target state="final">
+				Click here to try again
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/auth/auth-token/auth-token.component.d.ts</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="loginPermissionFailureTitle" datatype="html">
         <source>Permission denied</source><target state="final">Permission denied</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-permission-failure/login-permission-failure.component.d.ts</context><context context-type="linenumber">9</context></context-group></trans-unit>
       <trans-unit id="loginPermissionFailureNotRightPermission" datatype="html">
         <source>You don't have the right permission to access this content. You have been logged out.</source><target state="final">You don't have the right permission to access this content. You have been logged out.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-permission-failure/login-permission-failure.component.d.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="loginPermissionFailureWhatToDo" datatype="html">
         <source>You can try login with another user or ask an administrator for details.</source><target state="final">You can try login with another user or ask an administrator for details.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-permission-failure/login-permission-failure.component.d.ts</context><context context-type="linenumber">15</context></context-group></trans-unit>
       <trans-unit id="loginPermissionFailureLoginButton" datatype="html">
         <source>Login</source><target state="final">Login</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-permission-failure/login-permission-failure.component.d.ts</context><context context-type="linenumber">23</context></context-group></trans-unit><trans-unit id="userDetailDobDateFormatMustBe" datatype="html">
+        <source>Date must be on the format "dd.mm.yyyy"</source><target state="final">Date must be on the format "dd.mm.yyyy"</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-dob/user-detail-dob.component.d.ts</context>
+          <context context-type="linenumber">1</context>
         </context-group>
       </trans-unit>
       <trans-unit id="localLoginUserOrPasswordError" datatype="html">
         <source>Username or password is incorrect</source><target state="final">Username or password is incorrect</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="localLoginConnectionError" datatype="html">
         <source>Something went wrong with the connection</source><target state="final">Something went wrong with the connection</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">14</context></context-group></trans-unit>
       <trans-unit id="localLoginEmail" datatype="html">
         <source>Email</source><target state="final">Email</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">26</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">37</context></context-group></trans-unit>
       <trans-unit id="localLoginPassword" datatype="html">
         <source>Password</source><target state="final">Password</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">48</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">58</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">48</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">58</context></context-group></trans-unit>
       <trans-unit id="localLoginButton" datatype="html">
         <source>Login</source><target state="final">Login</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">64</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">64</context></context-group></trans-unit>
       <trans-unit id="socialLoginWithFacebook" datatype="html">
         <source>Login with Facebook</source><target state="final">Login with Facebook</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/social-login/social-login.component.d.ts</context><context context-type="linenumber">8</context></context-group></trans-unit>
       <trans-unit id="socialLoginWithGoogle" datatype="html">
         <source>Login with Google</source><target state="final">Login with Google</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/wizardcoder-bl-login.d.ts</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/social-login/social-login.component.d.ts</context><context context-type="linenumber">19</context></context-group></trans-unit>
       <trans-unit id="branchEditListUploadSelected" datatype="html">
         <source>Upload selected</source><target state="final">Upload selected</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit-list/branch-edit-list.component.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit-list/branch-edit-list.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="branchEditListDownloadSelected" datatype="html">
         <source>Download selected</source><target state="final">Download selected</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit-list/branch-edit-list.component.ts</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit-list/branch-edit-list.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit>
       <trans-unit id="branchEditListFilterByNamePlaceholder" datatype="html">
         <source>Filter by name</source><target state="final">Filter by name</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit-list/branch-edit-list.component.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit-list/branch-edit-list.component.html</context><context context-type="linenumber">22</context></context-group></trans-unit>
       <trans-unit id="branchUploadChooseFile" datatype="html">
         <source>Choose File</source><target state="final">Choose File</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-upload/branch-upload.component.ts</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit><trans-unit id="customerDetailNotValidError" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-upload/branch-upload.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit><trans-unit id="customerDetailNotValidError" datatype="html">
         <source>Customer detail does not have all required fields!</source><target state="final">Customer detail does not have all required fields!</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer/customer-detail/customer-detail-small/customer-detail-small.component.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-small/customer-detail-small.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="blCommonUpdateButtonDefaultText" datatype="html">
         <source>Update</source><target state="final">Update</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/bl-common-update-button/bl-common-update-button.component.html</context><context context-type="linenumber">4</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/bl-common/buttons/bl-common-update-button/bl-common-update-button.component.d.ts</context><context context-type="linenumber">3</context></context-group></trans-unit><trans-unit id="blcPeriodSelectFrom" datatype="html">
+        <source>
+                From
+            </source><target state="final">
+                From
+            </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/bl-common/bl-common-update-button/bl-common-update-button.component.ts</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="sourcefile">app/bl-common/blc-period/blc-period-select/blc-period-select.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/bl-common/blc-period/blc-period-select/blc-period-select.component.d.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit><trans-unit id="blcPeriodSelectTo" datatype="html">
+        <source>
+                To
+            </source><target state="final">
+                To
+            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bl-common/blc-period/blc-period-select/blc-period-select.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/bl-common/blc-period/blc-period-select/blc-period-select.component.d.ts</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="itemSearchBarPlaceholder" datatype="html">
         <source>Item Search</source><target state="final">Item Search</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-search-bar/item-search-bar.component.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-search-bar/item-search-bar.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="itemUploadChooseFile" datatype="html">
         <source>Choose File</source><target state="final">Choose File</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-upload/item-upload.component.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-upload/item-upload.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="itemEditListUploadSelected" datatype="html">
         <source>Upload selected</source><target state="final">Upload selected</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="itemEditListDownloadSelected" datatype="html">
         <source>Download selected</source><target state="final">Download selected</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.ts</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit>
       <trans-unit id="itemEditListFilterByTitleOrIsbnPlaceholder" datatype="html">
         <source>Filter by title or isbn</source><target state="final">Filter by title or isbn</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.ts</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.html</context><context context-type="linenumber">21</context></context-group></trans-unit>
       <trans-unit id="itemEditListArchived" datatype="html">
         <source>Archived</source><target state="final">Archived</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.ts</context>
-          <context context-type="linenumber">121</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.html</context><context context-type="linenumber">121</context></context-group></trans-unit>
       <trans-unit id="itemEditListArchive" datatype="html">
         <source>Archive</source><target state="final">Archive</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.ts</context>
-          <context context-type="linenumber">124</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.html</context><context context-type="linenumber">124</context></context-group></trans-unit>
       <trans-unit id="itemSelectListFilterByTitleOrIsbnPlaceholder" datatype="html">
         <source>Filter by title or isbn</source><target state="final">Filter by title or isbn</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-select-list/item-select-list.component.ts</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-select-list/item-select-list.component.html</context><context context-type="linenumber">9</context></context-group></trans-unit>
       <trans-unit id="headerBladminName" datatype="html">
         <source>bladmin</source><target state="final">bladmin</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit><trans-unit id="headerCustomerSearch" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="headerCustomerSearch" datatype="html">
         <source>Customer search</source><target state="final">Customer search</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/header/header.component.ts</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">17</context></context-group></trans-unit>
       <trans-unit id="blUserPermissionEmployee" datatype="html">
         <source>employee</source><target state="final">employee</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.ts</context><context context-type="linenumber">52</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">52</context></context-group></trans-unit>
       <trans-unit id="blUserPermissionManager" datatype="html">
         <source>manager</source><target state="final">manager</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.ts</context><context context-type="linenumber">53</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">53</context></context-group></trans-unit>
       <trans-unit id="blUserPermissionAdmin" datatype="html">
         <source>administrator</source><target state="final">administrator</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.ts</context><context context-type="linenumber">54</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">54</context></context-group></trans-unit>
       <trans-unit id="blUserPermissionSuper" datatype="html">
         <source>wizard</source><target state="final">wizard</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.ts</context><context context-type="linenumber">55</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit>
       <trans-unit id="headerEditUserDetailButton" datatype="html">
         <source>Edit user details</source><target state="final">Edit user details</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.ts</context><context context-type="linenumber">63</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">63</context></context-group></trans-unit>
       <trans-unit id="headerLogoutButton" datatype="html">
         <source>Log out</source><target state="final">Log out</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.ts</context><context context-type="linenumber">70</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">70</context></context-group></trans-unit>
       <trans-unit id="branchSelectBranchTitle" datatype="html">
         <source>Select a branch</source><target state="final">Select a branch</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-select/branch-select.component.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-select/branch-select.component.html</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="branchInfoEditButton" datatype="html">
         <source>Edit</source><target state="final">Edit</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-info/branch-info.component.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-info/branch-info.component.html</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="branchEditDescription" datatype="html">
         <source>Desc</source><target state="final">Desc</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit.component.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit.component.html</context><context context-type="linenumber">32</context></context-group></trans-unit>
       <trans-unit id="branchEditActiveToggle" datatype="html">
         <source>Active</source><target state="final">Active</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit.component.html</context><context context-type="linenumber">45</context></context-group></trans-unit><trans-unit id="branchEditPeriodSettinsPartlyPaymentsPeriodsTitle" datatype="html">
+        <source>
+					Partly payment periods
+				</source><target state="final">
+					Partly payment periods
+				</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit.component.ts</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="branchEditPeriodSettingsTitle" datatype="html">
         <source>Rent periods</source><target state="final">Rent periods</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">187</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingType" datatype="html">
         <source>Type</source><target state="final">Type</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">94</context>
-        </context-group>
+        
+        
         <note priority="1" from="description">type of period</note>
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">30</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">210</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">345</context></context-group></trans-unit><trans-unit id="branchEditPeriodSettingUpfrontPercentage" datatype="html">
+        <source>Upfront percentage</source><target state="final">Upfront percentage</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit><trans-unit id="branchEditPeriodSettingUpfrontUsedPercentage" datatype="html">
+        <source>Upfront percentage used</source><target state="final">Upfront percentage used</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit><trans-unit id="branchEditPeriodSettingBuyoutPercentage" datatype="html">
+        <source>Buyout percentage</source><target state="final">Buyout percentage</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit><trans-unit id="branchEditPeriodSettingBuyoutUsedPercentage" datatype="html">
+        <source>Buyout percentage used</source><target state="final">Buyout percentage used</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit><trans-unit id="branchEditPeriodSettingDeadline" datatype="html">
+        <source>Deadline</source><target state="final">Deadline</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="branchEditPeriodSettingLimit" datatype="html">
         <source>Limit</source><target state="final">Limit</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">27</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">104</context>
-        </context-group>
+        
+        
         <note priority="1" from="description">limit of how many periods</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">226</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">361</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingPercentage" datatype="html">
         <source>Percentage</source><target state="final">Percentage</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">244</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingDate" datatype="html">
         <source>Date</source><target state="final">Date</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">47</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">124</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">260</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">395</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsAddButton" datatype="html">
         <source>Add</source><target state="final">Add</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">71</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">148</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">176</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">309</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">446</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettinsExtendPeriodsTitle" datatype="html">
-        <source>Extend periods</source><target state="final">Extend periods</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">83</context>
-        </context-group>
-      </trans-unit>
+        <source>
+					Extend periods
+				</source><target state="final">
+					Extend periods
+				</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">320</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingPrice" datatype="html">
         <source>Price</source><target state="final">Price</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">114</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">379</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsBuyoutPercentage" datatype="html">
         <source>Buyout percentage</source><target state="final">Buyout percentage</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">158</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">456</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsSellPercentage" datatype="html">
         <source>
 			Sell percentage
 		</source><target state="final">
 			Sell percentage
 		</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">169</context>
-        </context-group>
+        
         <note priority="1" from="description">sell is when customer sells the item to branch</note>
-      </trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">471</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsFreeDeliveryToggle" datatype="html">
         <source>Free delivery</source><target state="final">Free delivery</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">182</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">486</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsDeliveryByMailToggle" datatype="html">
         <source>Delivery by mail</source><target state="final">Delivery by mail</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">191</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">500</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsDeliveryAtBranchToggle" datatype="html">
         <source>Delivery at branch</source><target state="final">Delivery at branch</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">200</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">514</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsPayLaterToggle" datatype="html">
         <source>Pay later</source><target state="final">Pay later</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">209</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">527</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsResponsibleForPaymentToggle" datatype="html">
         <source>Responsible for payment</source><target state="final">Responsible for payment</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.ts</context>
-          <context context-type="linenumber">218</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">540</context></context-group></trans-unit>
       <trans-unit id="branchEditItemsTitle" datatype="html">
         <source>Items</source><target state="final">Items</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.ts</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="branchEditItemsAddItems" datatype="html">
         <source>Add items</source><target state="final">Add items</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit>
       <trans-unit id="branchEditItemsAddItemsModalTitle" datatype="html">
-        <source>Add items to branch</source><target state="final">Add items to branch</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.ts</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
-      </trans-unit>
+        <source>
+				Add items to branch
+			</source><target state="final">
+				Add items to branch
+			</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.html</context><context context-type="linenumber">62</context></context-group></trans-unit>
       <trans-unit id="branchEditItemsAddSelectedItemsButton" datatype="html">
         <source>Add selected items</source><target state="final">Add selected items</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.ts</context>
-          <context context-type="linenumber">45</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.html</context><context context-type="linenumber">91</context></context-group></trans-unit>
       <trans-unit id="branchItemEditRent" datatype="html">
+        <source>Rent</source><target state="final">Rent</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.html</context><context context-type="linenumber">10</context></context-group></trans-unit><trans-unit id="branchItemEditPartlyPayment" datatype="html">
         <source>
-                Rent
-            </source><target state="final">
-                Rent
-            </target>
+						Partly payment
+					</source><target state="final">
+						Partly payment
+					</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.ts</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.html</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="branchItemEditBuy" datatype="html">
-        <source>
-                Buy
-            </source><target state="final">
-                Buy
-            </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.ts</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-      </trans-unit>
+        <source>Buy</source><target state="final">Buy</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.html</context><context context-type="linenumber">14</context></context-group></trans-unit>
       <trans-unit id="branchItemEditSell" datatype="html">
         <source>
-                Sell
-            </source><target state="final">
-                Sell
-            </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.ts</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
+						Sell
+					</source><target state="final">
+						Sell
+					</target>
+        
         <note priority="1" from="description">if the customer can sell the item to branch </note>
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.html</context><context context-type="linenumber">18</context></context-group></trans-unit><trans-unit id="branchItemEditBlWeb" datatype="html">
+        <source>
+						bl-web
+					</source><target state="final">
+						bl-web
+					</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit><trans-unit id="branchItemEditBladmin" datatype="html">
+        <source>
+						bladmin
+					</source><target state="final">
+						bladmin
+					</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="branchItemCategorySelectAddCategory" datatype="html">
         <source>Add category</source><target state="final">Add category</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.component.ts</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.component.html</context><context context-type="linenumber">17</context></context-group></trans-unit>
       <trans-unit id="branchItemCategorySelectPopoverTitle" datatype="html">
         <source>Category select</source><target state="final">Category select</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.component.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.component.html</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="branchItemCategorySelectNewCategoryPlaceholder" datatype="html">
         <source>New category</source><target state="final">New category</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.component.ts</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.component.html</context><context context-type="linenumber">28</context></context-group></trans-unit>
       <trans-unit id="blAddButton" datatype="html">
         <source>Add</source><target state="final">Add</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component.ts</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component.html</context><context context-type="linenumber">35</context></context-group></trans-unit>
       <trans-unit id="branchOpeningHoursEditAddOpeningHour" datatype="html">
         <source>Add opening hour</source><target state="final">Add opening hour</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component.ts</context>
-          <context context-type="linenumber">42</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/branch/branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component.ts</context>
-          <context context-type="linenumber">83</context>
-        </context-group>
-      </trans-unit>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component.html</context><context context-type="linenumber">42</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component.html</context><context context-type="linenumber">83</context></context-group></trans-unit>
       <trans-unit id="customerOrderListTitle" datatype="html">
-        <source>Orders</source><target state="final">Orders</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/customer-order/customer-order-list/customer-order-list.component.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
+        <source>
+					Orders
+				</source><target state="final">
+					Orders
+				</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/customer-order/customer-order-list/customer-order-list.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="customerOrderItemListNoOrderedItems" datatype="html">
         <source>No ordered items</source><target state="final">No ordered items</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list.component.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list.component.html</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="customerItemListTitle" datatype="html">
         <source>Customer items</source><target state="final">Customer items</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list.component.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit>
       <trans-unit id="customerItemListCustomerDontHaveItem" datatype="html">
         <source>Customer does not have items</source><target state="final">Customer does not have items</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list.component.ts</context>
-          <context context-type="linenumber">10</context>
-        </context-group>
-      </trans-unit><trans-unit id="customerDetailModalContentEmailNotConfirmed" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list.component.html</context><context context-type="linenumber">31</context></context-group></trans-unit><trans-unit id="customerDetailModalContentEmailNotConfirmed" datatype="html">
         <source>
                         User has not confirmed his or her email
                     </source><target state="final">
                         User has not confirmed his or her email
                     </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit><trans-unit id="customerDetailModalContentEmailConfirmed" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">12</context></context-group></trans-unit><trans-unit id="customerDetailModalContentEmailConfirmed" datatype="html">
         <source>
 					email confirmed
 				</source><target state="final">
 					email confirmed
 				</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.ts</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">18</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalFullNamePlaceholder" datatype="html">
         <source>Full name</source><target state="final">Full name</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.ts</context><context context-type="linenumber">36</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">36</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalPhonePlaceholder" datatype="html">
         <source>Phone</source><target state="final">Phone</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.ts</context><context context-type="linenumber">49</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">49</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalDobPlaceholder" datatype="html">
         <source>Dob</source><target state="final">Dob</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.ts</context><context context-type="linenumber">107</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">107</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalAddressPlaceholder" datatype="html">
         <source>Address</source><target state="final">Address</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.ts</context><context context-type="linenumber">64</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">64</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalPostCodePlaceholder" datatype="html">
         <source>Post code</source><target state="final">Post code</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.ts</context><context context-type="linenumber">77</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">77</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalPostCityPlaceholder" datatype="html">
         <source>Post city</source><target state="final">Post city</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.ts</context><context context-type="linenumber">81</context></context-group></trans-unit><trans-unit id="customerDetailModalContentDobNotProvided" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">81</context></context-group></trans-unit><trans-unit id="customerDetailModalContentDobNotProvided" datatype="html">
         <source>
 						date of birth not provided
 					</source><target state="final">
 						date of birth not provided
 					</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.ts</context>
-          <context context-type="linenumber">88</context>
-        </context-group>
-      </trans-unit><trans-unit id="customerDetailModalContentDateMustBeOnFormat" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">88</context></context-group></trans-unit><trans-unit id="customerDetailModalContentDateMustBeOnFormat" datatype="html">
         <source>
 						date must be on format "DD.MM.YYYY"
 					</source><target state="final">
 						date must be on format "DD.MM.YYYY"
 					</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.ts</context>
-          <context context-type="linenumber">93</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">93</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalCloseButton" datatype="html">
         <source>Close</source><target state="final">Close</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.ts</context><context context-type="linenumber">122</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">122</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalEditButton" datatype="html">
         <source>Edit</source><target state="final">Edit</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal.component.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="customerDetailCartDobNotProvided" datatype="html">
         <source>date of birth not provided</source><target state="final">date of birth not provided</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer/customer-detail/customer-detail-card/customer-detail-card.component.ts</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-card/customer-detail-card.component.html</context><context context-type="linenumber">26</context></context-group></trans-unit>
       <trans-unit id="orderDetailCouldNotGetOrderError" datatype="html">
         <source>could not get order</source><target state="final">could not get order</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-detail.component.ts</context><context context-type="linenumber">12</context></context-group></trans-unit><trans-unit id="orderDetailPrintReceiptButton" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-detail.component.html</context><context context-type="linenumber">12</context></context-group></trans-unit><trans-unit id="orderDetailPrintReceiptButton" datatype="html">
         <source>Print receipt</source><target state="final">Print receipt</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-detail.component.ts</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-      </trans-unit><trans-unit id="orderDetailPrintAgreementButton" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-detail.component.html</context><context context-type="linenumber">30</context></context-group></trans-unit><trans-unit id="orderDetailPrintAgreementButton" datatype="html">
         <source>Print agreement</source><target state="final">Print agreement</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-detail.component.ts</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-detail.component.html</context><context context-type="linenumber">35</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailTitle" datatype="html">
         <source>
 				Payments
 			</source><target state="final">
 				Payments
 			</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.ts</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">7</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailCouldNotGetError" datatype="html">
         <source>could not get payments</source><target state="final">could not get payments</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.ts</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">14</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailNoPaymentsFound" datatype="html">
         <source>no payments found on order</source><target state="final">no payments found on order</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.ts</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">20</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodCash" datatype="html">
         <source>Cash</source><target state="final">Cash</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.ts</context>
-          <context context-type="linenumber">34</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">34</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodDibs" datatype="html">
         <source>Dibs</source><target state="final">Dibs</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.ts</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodVipps" datatype="html">
         <source>Vipps</source><target state="final">Vipps</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.ts</context>
-          <context context-type="linenumber">40</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">40</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodCard" datatype="html">
         <source>Card</source><target state="final">Card</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.ts</context>
-          <context context-type="linenumber">43</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">43</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailNoPaymentYet" datatype="html">
         <source>Not payed yet</source><target state="final">Not payed yet</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.ts</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">46</context></context-group></trans-unit>
       <trans-unit id="orderDetailCardConfirmed" datatype="html">
         <source>Confirmed</source><target state="final">Confirmed</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-detail-card/order-detail-card.component.ts</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-detail-card/order-detail-card.component.html</context><context context-type="linenumber">7</context></context-group></trans-unit>
       <trans-unit id="orderDetailCardNotConfirmed" datatype="html">
         <source>Not Confirmed</source><target state="final">Not Confirmed</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-detail-card/order-detail-card.component.ts</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-detail-card/order-detail-card.component.html</context><context context-type="linenumber">11</context></context-group></trans-unit>
       <trans-unit id="orderDeliveryDetailTitle" datatype="html">
         <source>
 				Delivery
 			</source><target state="final">
 				Delivery
 			</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.ts</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit>
       <trans-unit id="orderDeliveryDetailNoOrderAttached" datatype="html">
         <source>Order has no delivery attached</source><target state="final">Order has no delivery attached</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.ts</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">9</context></context-group></trans-unit>
       <trans-unit id="orderDeliveryDetailWarning" datatype="html">
         <source>could not get delivery</source><target state="final">could not get delivery</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.ts</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="orderDeliveryDetailTrackingNumber" datatype="html">
         <source>Tracking number</source><target state="final">Tracking number</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.ts</context>
-          <context context-type="linenumber">68</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">68</context></context-group></trans-unit>
       <trans-unit id="orderItemListTitle" datatype="html">
         <source>Items</source><target state="final">Items</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-item-list/order-item-list.component.ts</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-list/order-item-list.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="orderItemListNoItemsAttachedError" datatype="html">
         <source>There was no items attached to order</source><target state="final">There was no items attached to order</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-list/order-item-list.component.html</context><context context-type="linenumber">12</context></context-group></trans-unit><trans-unit id="orderITemDetailListLeftToPay" datatype="html">
+        <source>left to pay</source><target state="final">left to pay</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-item-list/order-item-list.component.ts</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.html</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderItemDetailListDelivered" datatype="html">
         <source>delivered</source><target state="final">delivered</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.ts</context>
-          <context context-type="linenumber">47</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.html</context><context context-type="linenumber">126</context></context-group></trans-unit>
       <trans-unit id="orderItemDetailListMovedToAnotherOrder" datatype="html">
         <source>
 					moved to another order
 				</source><target state="final">
 					moved to another order
 				</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.ts</context>
-          <context context-type="linenumber">54</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.html</context><context context-type="linenumber">139</context></context-group></trans-unit>
       <trans-unit id="orderManagerListNoOrdersFoundError" datatype="html">
         <source>
                     No orders found
                 </source><target state="final">
                     No orders found
                 </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-manager/order-manager-list/order-manager-list.component.ts</context>
-          <context context-type="linenumber">44</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-manager/order-manager-list/order-manager-list.component.html</context><context context-type="linenumber">44</context></context-group></trans-unit>
       <trans-unit id="orderManagerListItemNumberOfItems" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no items} =1 {one item} other {<x id="INTERPOLATION" equiv-text="{{order.orderItems.length}}"/> items } }</source><target state="final">{VAR_PLURAL, plural, =0 {no items} =1 {one item} other {<x id="INTERPOLATION" equiv-text="{{order.orderItems.length}}"/> items } }</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/order-manager/order-manager-list/order-manager-list-item/order-manager-list-item.component.ts</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-manager/order-manager-list/order-manager-list-item/order-manager-list-item.component.html</context><context context-type="linenumber">24</context></context-group></trans-unit>
       <trans-unit id="addOrderToCartButton" datatype="html">
         <source>Add to cart</source><target state="final">Add to cart</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/add-order-to-cart/add-order-to-cart.component.html</context><context context-type="linenumber">7</context></context-group></trans-unit><trans-unit id="customerOrderItemListItemBuy" datatype="html">
+        <source>buy</source><target state="final">buy</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/order/add-order-to-cart/add-order-to-cart.component.ts</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerOrderItemListItemRent" datatype="html">
+        <source>rent</source><target state="final">rent</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerOrderItemListItemExtend" datatype="html">
+        <source>extend</source><target state="final">extend</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerOrderItemListItemPartlyPayment" datatype="html">
+        <source>partly payment</source><target state="final">partly payment</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component.html</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="customerOrderItemListItemWrongBranchError" datatype="html">
-        <source>item is from another branch</source><target state="final">item is from another branch</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component.ts</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit>
+        <source>
+				item is from another branch
+			</source><target state="final">
+				item is from another branch
+			</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component.html</context><context context-type="linenumber">83</context></context-group></trans-unit>
       <trans-unit id="paymentPay" datatype="html">
         <source>
                         pay
                     </source><target state="final">
                         pay
                     </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment.component.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/payment/payment.component.html</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="paymentWith" datatype="html">
         <source>
 						with
 					</source><target state="final">
 						with
 					</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment.component.ts</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/payment/payment.component.html</context><context context-type="linenumber">18</context></context-group></trans-unit>
       <trans-unit id="cartOrderWasConfirmed" datatype="html">
         <source>Order was confirmed!</source><target state="final">Order was confirmed!</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart.component.ts</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">7</context></context-group></trans-unit>
       <trans-unit id="cartFailureText" datatype="html">
         <source>could not confirm order</source><target state="final">could not confirm order</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart.component.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="cartOrderedItems" datatype="html">
         <source>Ordered items</source><target state="final">Ordered items</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart.component.ts</context>
-          <context context-type="linenumber">24</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">24</context></context-group></trans-unit>
       <trans-unit id="cartCustomerItems" datatype="html">
         <source>Customer items</source><target state="final">Customer items</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart.component.ts</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit>
       <trans-unit id="cartSearch" datatype="html">
         <source>Search</source><target state="final">Search</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart.component.ts</context>
-          <context context-type="linenumber">51</context>
-        </context-group>
-      </trans-unit><trans-unit id="cartListSearchingForBook" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">51</context></context-group></trans-unit><trans-unit id="cartListSearchingForBook" datatype="html">
         <source>Searching</source><target state="final">Searching</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart-list/cart-list.component.ts</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
-      </trans-unit><trans-unit id="cartListCartIsEmpty" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">29</context></context-group></trans-unit><trans-unit id="cartListCartIsEmpty" datatype="html">
         <source>Cart is empty</source><target state="final">Cart is empty</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart-list/cart-list.component.ts</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">41</context></context-group></trans-unit>
       <trans-unit id="blConfirmButton" datatype="html">
         <source>Confirm</source><target state="final">Confirm</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.ts</context><context context-type="linenumber">49</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">49</context></context-group></trans-unit><trans-unit id="cartListItemPayLater" datatype="html">
+        <source>pay later</source><target state="final">pay later</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="cartListItemActionCancelThisItem" datatype="html">
         <source>cancel this item</source><target state="final">cancel this item</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.ts</context><context context-type="linenumber">27</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">96</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionBuyThisItemFromCustomer" datatype="html">
         <source>
 	buy this item from customer
@@ -1747,7 +1322,7 @@
 	buy this item from customer
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.ts</context><context context-type="linenumber">33</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">109</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionSellItemToCustomer" datatype="html">
         <source>
 	sell this item
@@ -1755,7 +1330,7 @@
 	sell this item
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.ts</context><context context-type="linenumber">39</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">117</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionReturnItem" datatype="html">
         <source>
 	return this item
@@ -1763,7 +1338,7 @@
 	return this item
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.ts</context><context context-type="linenumber">47</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">125</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionCustomerToBuyoutItem" datatype="html">
         <source>
 	customer to buyout this item
@@ -1771,92 +1346,251 @@
 	customer to buyout this item
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.ts</context><context context-type="linenumber">54</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">133</context></context-group></trans-unit>
       
       <trans-unit id="cartConfirmSummaryConfirmButton" datatype="html">
         <source>Confirm</source><target state="final">Confirm</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-confirm/cart-confirm.component.ts</context><context context-type="linenumber">15</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-confirm/cart-confirm.component.html</context><context context-type="linenumber">15</context></context-group></trans-unit>
       <trans-unit id="cartConfirmSummarySendByMailButton" datatype="html">
         <source>Send by mail</source><target state="final">Send by mail</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-confirm/cart-confirm.component.ts</context><context context-type="linenumber">21</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-confirm/cart-confirm.component.html</context><context context-type="linenumber">21</context></context-group></trans-unit>
       <trans-unit id="cartConfirmSummaryGoToPayment" datatype="html">
         <source>Go to payment</source><target state="final">Go to payment</target>
         
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-confirm/cart-confirm.component.ts</context><context context-type="linenumber">24</context></context-group></trans-unit><trans-unit id="cartConfirmPayment" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-confirm/cart-confirm.component.html</context><context context-type="linenumber">24</context></context-group></trans-unit><trans-unit id="cartConfirmPayment" datatype="html">
         <source>Confirm payment</source><target state="final">Confirm payment</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart-confirm/cart-confirm.component.ts</context>
-          <context context-type="linenumber">36</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-confirm/cart-confirm.component.html</context><context context-type="linenumber">36</context></context-group></trans-unit>
       <trans-unit id="cartListSmallCartSummaryCaption" datatype="html">
-        <source>Cart summary</source><target state="final">Cart summary</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart-list-small/cart-list-small.component.ts</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit>
+        <source>
+				Cart summary
+			</source><target state="final">
+				Cart summary
+			</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list-small/cart-list-small.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit>
       <trans-unit id="cartListSmallTitle" datatype="html">
         <source>Title</source><target state="final">Title</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart-list-small/cart-list-small.component.ts</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list-small/cart-list-small.component.html</context><context context-type="linenumber">9</context></context-group></trans-unit>
       <trans-unit id="cartListSmallAction" datatype="html">
         <source>Action</source><target state="final">Action</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart-list-small/cart-list-small.component.ts</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list-small/cart-list-small.component.html</context><context context-type="linenumber">10</context></context-group></trans-unit>
       <trans-unit id="cartDeliverySendWithBring" datatype="html">
         <source>send with Bring</source><target state="final">send with Bring</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart-delivery/cart-delivery.component.ts</context>
-          <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-delivery/cart-delivery.component.html</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="cartDeliveryTrackingNumberPlaceholder" datatype="html">
         <source>tracking number</source><target state="final">tracking number</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart-delivery/cart-delivery.component.ts</context>
-          <context context-type="linenumber">58</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-delivery/cart-delivery.component.html</context><context context-type="linenumber">58</context></context-group></trans-unit>
       <trans-unit id="cartDeliveryConfirmDeliveryButton" datatype="html">
         <source>Confirm delivery</source><target state="final">Confirm delivery</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-delivery/cart-delivery.component.html</context><context context-type="linenumber">71</context></context-group></trans-unit><trans-unit id="cartListItemAgeNew" datatype="html">
+        <source>new</source><target state="final">new</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart-delivery/cart-delivery.component.ts</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-age/cart-list-item-age.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit><trans-unit id="cartListItemAgeUsed" datatype="html">
+        <source>used</source><target state="final">used</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-age/cart-list-item-age.component.html</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="paymentMethodSelectCard" datatype="html">
         <source>Card</source><target state="final">Card</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.ts</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit>
       <trans-unit id="paymentMethodSelectCash" datatype="html">
         <source>Cash</source><target state="final">Cash</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.ts</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="paymentMethodSelectVipps" datatype="html">
         <source>Vipps</source><target state="final">Vipps</target>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">16</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">62</context></context-group></trans-unit><trans-unit id="orderDownloadTitle" datatype="html">
+        <source>
+        Orders
+      </source><target state="final">
+        Orders
+      </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.ts</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/order-download/order-download.component.d.ts</context>
+          <context context-type="linenumber">4</context>
         </context-group>
+      </trans-unit><trans-unit id="orderDownloadNoOrdersFound" datatype="html">
+        <source>
+              No orders found
+            </source><target state="final">
+              No orders found
+            </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.ts</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/order-download/order-download.component.d.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit><trans-unit id="orderDownloadNotDelivered" datatype="html">
+        <source>
+            Not delivered
+          </source><target state="final">
+            Not delivered
+          </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/order-download/order-download.component.d.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit><trans-unit id="orderDownloadByCustomer" datatype="html">
+        <source>
+              By customer
+          </source><target state="final">
+              By customer
+          </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/order-download/order-download.component.d.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit><trans-unit id="orderDownloadPrintOrdersButton" datatype="html">
+        <source>Print orders</source><target state="final">Print orders</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/order-download/order-download.component.d.ts</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDownloadTitle" datatype="html">
+        <source>
+          Customer Items
+        </source><target state="final">
+          Customer Items
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/customer-item-download/customer-item-download.component.d.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDownloadReturned" datatype="html">
+        <source>
+            Returned
+          </source><target state="final">
+            Returned
+          </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/customer-item-download/customer-item-download.component.d.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDownloadNotReturned" datatype="html">
+        <source>
+            Not returned
+          </source><target state="final">
+            Not returned
+          </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/customer-item-download/customer-item-download.component.d.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDownloadBuyout" datatype="html">
+        <source>
+            Buyout 
+          </source><target state="final">
+            Buyout 
+          </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/customer-item-download/customer-item-download.component.d.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit><trans-unit id="[reportPrintCustomerItemsButton]" datatype="html">
+        <source>Print customer items</source><target state="final">Print customer items</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/customer-item-download/customer-item-download.component.d.ts</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit><trans-unit id="reportPaymentsTitle" datatype="html">
+        <source>Payments</source><target state="final">Payments</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/payment-download/payment-download.component.d.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit><trans-unit id="paymentDownloadNoPaymentsFound" datatype="html">
+        <source>
+              No payments found
+            </source><target state="final">
+              No payments found
+            </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/payment-download/payment-download.component.d.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit><trans-unit id="reportPrintPaymentButton" datatype="html">
+        <source>Print payments</source><target state="final">Print payments</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/payment-download/payment-download.component.d.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit><trans-unit id="userDetailDownloadTitle" datatype="html">
+        <source>
+          User details
+        </source><target state="final">
+          User details
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/user-detail-download/user-detail-download.component.d.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit><trans-unit id="reportPrintUserDetailButton" datatype="html">
+        <source>Print user details</source><target state="final">Print user details</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/reporter/report-download/user-detail-download/user-detail-download.component.d.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit><trans-unit id="databaseReportOrderTitle" datatype="html">
+        <source>
+				Orders
+			</source><target state="final">
+				Orders
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/database/database-reports/database-report-order/database-report-order.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit><trans-unit id="databaseReportOrderNoOrdersFound" datatype="html">
+        <source>
+                            No orders found
+                        </source><target state="final">
+                            No orders found
+                        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/database/database-reports/database-report-order/database-report-order.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit><trans-unit id="databaseReportOrderNotDelivered" datatype="html">
+        <source>
+                        Not delivered
+                    </source><target state="final">
+                        Not delivered
+                    </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/database/database-reports/database-report-order/database-report-order.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit><trans-unit id="databaseReportOrderByCustomer" datatype="html">
+        <source>
+                       	By customer
+                    </source><target state="final">
+                       	By customer
+                    </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/database/database-reports/database-report-order/database-report-order.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit><trans-unit id="databaseReportOrderGetOrdersButton" datatype="html">
+        <source>Get orders</source><target state="final">Get orders</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/database/database-reports/database-report-order/database-report-order.component.html</context>
+          <context context-type="linenumber">64</context>
         </context-group>
       </trans-unit>
     </body>
