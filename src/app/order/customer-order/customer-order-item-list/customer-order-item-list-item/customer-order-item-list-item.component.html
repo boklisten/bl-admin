@@ -27,32 +27,41 @@
 	</div>
 </div>
 
-<div class="row justify-content-between mt-2 align-items-center">
+<div class="row mt-2 align-items-center">
 	<div class="col-auto text-secondary">
 		<small>
 			<span *ngIf="customerOrderItem.orderItem.type === 'buy'"
-				><fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon>
-				{{ customerOrderItem.orderItem.type }}</span
-			>
+				><fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
+				<span i18n="@@customerOrderItemListItemBuy">buy</span>
+			</span>
 
-			<span
-				*ngIf="
-					customerOrderItem.orderItem.type === 'rent' ||
-					customerOrderItem.orderItem.type === 'extend'
-				"
-			>
-				<span
-					><fa-icon [icon]="'calendar-alt'" class="mr-2"></fa-icon>
-					{{ customerOrderItem.orderItem.type }}</span
+			<span *ngIf="customerOrderItem.orderItem.type === 'rent'">
+				<fa-icon [icon]="'calendar-alt'" class="mr-1"></fa-icon>
+				<span i18n="@@customerOrderItemListItemRent">rent</span>
+				<fa-icon [icon]="'arrow-right'" class="mr-1 ml-1"></fa-icon>
+				{{ customerOrderItem.orderItem.info["to"] | blDate }}
+			</span>
+
+			<span *ngIf="customerOrderItem.orderItem.type === 'extend'">
+				<fa-icon [icon]="'calendar-alt'" class="mr-1"></fa-icon>
+				<span i18n="@@customerOrderItemListItemExtend">extend</span>
+				<fa-icon [icon]="'arrow-right'" class="mr-1 ml-1"></fa-icon>
+				{{ customerOrderItem.orderItem.info["to"] | blDate }}
+			</span>
+
+			<span *ngIf="customerOrderItem.orderItem.type === 'partly-payment'">
+				<fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
+				<span i18n="@@customerOrderItemListItemPartlyPayment"
+					>partly payment</span
 				>
-				<span class="ml-2"
-					><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon>
-					{{ customerOrderItem.orderItem.info["to"] | blDate }}</span
-				>
+				<fa-icon [icon]="'arrow-right'" class="mr-1 ml-1"></fa-icon>
+				<fa-icon [icon]="'clock'" class="mr-1"></fa-icon>
+				{{ customerOrderItem.orderItem.info["to"] | blDate }}
 			</span>
 		</small>
 	</div>
-
+</div>
+<div class="row justify-content-end">
 	<div
 		class="col-6"
 		*ngIf="currentBranchId === customerOrderItem.order.branch"
