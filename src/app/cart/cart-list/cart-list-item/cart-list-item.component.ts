@@ -19,8 +19,6 @@ import { DeliveryService } from "@wizardcoder/bl-connect";
 export class CartListItemComponent implements OnInit {
 	@Input() cartItem: CartItem;
 	public cartItemAction: CartItemAction;
-	public alreadyPayedAmount: number;
-	public showAlreadyPayed: boolean;
 	public delivery: Delivery;
 
 	constructor(
@@ -33,9 +31,6 @@ export class CartListItemComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.setShowAlreadyPayed();
-		this.setAlreadyPayedAmount();
-
 		if (
 			this.cartItem.originalOrder &&
 			this.cartItem.originalOrder.delivery
@@ -52,40 +47,14 @@ export class CartListItemComponent implements OnInit {
 	}
 
 	public onActionChange(action: CartItemAction) {
-		this.setShowAlreadyPayed();
 	}
 
 	public onItemAgeChange() {
 		this.onActionChange(this.cartItem.action);
 	}
 
-	public setAlreadyPayedAmount() {
-		if (
-			this.cartItem.originalOrder &&
-			this.cartItem.originalOrder.payments &&
-			this.cartItem.originalOrder.payments.length > 0
-		) {
-			this.alreadyPayedAmount = this.cartItem.originalOrderItem.amount;
-			return;
-		}
-
-		this.alreadyPayedAmount = 0;
-	}
 
 	public remove() {
 		this._cartService.remove(this.cartItem.item.id);
-	}
-
-	public setShowAlreadyPayed() {
-		if (!this.cartItem.originalOrder) {
-			this.showAlreadyPayed = false;
-			return;
-		}
-
-		this.showAlreadyPayed = this._orderItemPriceService.orderItemTypePayedFor(
-			this.cartItem.orderItem,
-			this.cartItem.originalOrderItem,
-			this.cartItem.originalOrder
-		);
 	}
 }

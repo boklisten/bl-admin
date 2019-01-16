@@ -119,8 +119,8 @@ export class OrderItemPriceService {
 	public pricePartlyPayment(
 		orderItem: OrderItem,
 		item: Item,
-		originalOrderItem: OrderItem,
-		originalOrder: Order
+		originalOrderItem?: OrderItem,
+		originalOrder?: Order
 	): { upFront: number; amountLeftToPay: number } {
 		return this._itemPriceService.partlyPaymentPrice(
 			item,
@@ -144,7 +144,11 @@ export class OrderItemPriceService {
 
 		if (originalOrderItem.item === orderItem.item) {
 			if (originalOrderItem.type === orderItem.type) {
-				if (orderItem.type === "rent" || orderItem.type === "extend") {
+				if (
+					orderItem.type === "rent" ||
+					orderItem.type === "extend" ||
+					orderItem.type === "partly-payment"
+				) {
 					if (
 						originalOrderItem.info.periodType !==
 						orderItem.info.periodType
@@ -152,7 +156,6 @@ export class OrderItemPriceService {
 						return false;
 					}
 				}
-
 				return true;
 			}
 		}

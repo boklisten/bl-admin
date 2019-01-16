@@ -3,55 +3,12 @@
 		<h5>{{ cartItem.item.title }}</h5>
 	</div>
 	<div class="col-auto text-right">
-		<div
-			*ngIf="showAlreadyPayed && alreadyPayedAmount > 0"
-			class="text-right"
-		>
-			<small class="text-success"
-				><fa-icon [icon]="'dollar-sign'" class="mr-2"></fa-icon
-				>{{ cartItem.originalOrderItem.amount | blcPrice }}</small
-			>
-		</div>
-		<span
-			*ngIf="delivery && delivery.method === 'bring'"
-			class="text-secondary"
-		>
-			<fa-icon [icon]="'truck'" class="mr-2"></fa-icon>
-		</span>
-		<span
-			*ngIf="
-				cartItem.orderItem.amount &&
-				!showAlreadyPayed &&
-				cartItem.orderItem.amount >= 0
-			"
-			class="text-right"
-			>{{ cartItem.orderItem.amount | blcPrice }}</span
-		>
-		<div
-			*ngIf="
-				!showAlreadyPayed &&
-				cartItem.orderItem.type === 'partly-payment'
-			"
-		>
-			<small class="text-secondary">
-				<span i18n="@@cartListItemPayLater">pay later</span>:
-				<span>
-					{{ cartItem.orderItem.info.amountLeftToPay | blcPrice }}
-				</span>
-			</small>
-		</div>
-		<span
-			*ngIf="!showAlreadyPayed && cartItem.orderItem.amount < 0"
-			class="text-danger"
-			>{{ cartItem.orderItem.amount | blcPrice }}</span
-		>
-		<span
-			*ngIf="showAlreadyPayed"
-			class="text-success bl-link-black"
-			routerLink="{{ '/order/' + cartItem.originalOrder.id + '/detail' }}"
-			><fa-icon [icon]="'dollar-sign'" class="mr-1"></fa-icon
-			><fa-icon [icon]="'check-circle'"></fa-icon
-		></span>
+		<app-cart-list-item-amount
+			[orderItem]="cartItem.orderItem"
+			[originalOrderItem]="cartItem.originalOrderItem"
+			[originalOrder]="cartItem.originalOrder"
+			[delivery]="delivery"
+		></app-cart-list-item-amount>
 	</div>
 </div>
 <div

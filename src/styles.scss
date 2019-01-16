@@ -9,7 +9,7 @@ $inactive-color: #d7dbdd;
 
 $link-border: 2px solid #ffffff;
 $link-border-black: 2px solid #000000;
-$border-color: rgba(0,0,0,.125);
+$border-color: rgba(0, 0, 0, 0.125);
 
 :focus {
 	outline: none !important;
@@ -38,11 +38,16 @@ $border-color: rgba(0,0,0,.125);
 	overflow-y: scroll;
 }
 
-//BOOTSTRAP SPECIFIC
-
-
 .bl-link {
 	cursor: pointer;
+}
+
+.bl-text-sm {
+	font-size: 0.8em;
+}
+
+.bl-text-lg {
+	font-size: 1.2em;
 }
 
 .bl-link:hover {
@@ -70,7 +75,7 @@ $border-color: rgba(0,0,0,.125);
 }
 
 .bl-toggle-on:hover {
-	color: #337f37
+	color: #337f37;
 }
 
 .bl-toggle-off {
@@ -82,8 +87,6 @@ $border-color: rgba(0,0,0,.125);
 	color: #9f0600;
 }
 
-
 .datatable-body-row.active {
 	background-color: #c7ffbc;
-
 }
