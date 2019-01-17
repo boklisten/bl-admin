@@ -24,7 +24,7 @@
 	class="bl-text-sm bl-link-black"
 	*ngIf="
 		this.orderItem.info &&
-		this.orderItem.info.amountLeftToPay &&
+		this.orderItem.info['amountLeftToPay'] &&
 		orderItem.type === 'partly-payment'
 	"
 	[ngbTooltip]="leftToPayContent"
