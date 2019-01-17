@@ -4,79 +4,126 @@
 			<div class="card-header" i18n="@@orderDeliveryDetailTitle">
 				Delivery
 			</div>
-				<app-bl-common-alert [type]="'secondary'"
-									 i18n-text="@@orderDeliveryDetailNoOrderAttached"
-									 text="Order has no delivery attached"
-									 *ngIf="notFoundText" (exit)="notFoundText = null"></app-bl-common-alert>
-				<app-bl-common-alert [type]="'warning'"
-									 i18n-text="@@orderDeliveryDetailWarning"
-									 text="could not get delivery"
-									 *ngIf="warningText"
-									 (exit)="warningText = null"></app-bl-common-alert>
-				<app-bl-common-update-button *ngIf="wait" [wait]="wait"></app-bl-common-update-button>
+			<app-bl-common-alert
+				[type]="'secondary'"
+				i18n-text="@@orderDeliveryDetailNoOrderAttached"
+				text="Order has no delivery attached"
+				*ngIf="notFoundText"
+				(exit)="notFoundText = null"
+			></app-bl-common-alert>
+			<app-bl-common-alert
+				[type]="'warning'"
+				i18n-text="@@orderDeliveryDetailWarning"
+				text="could not get delivery"
+				*ngIf="warningText"
+				(exit)="warningText = null"
+			></app-bl-common-alert>
+			<app-bl-common-update-button
+				*ngIf="wait"
+				[wait]="wait"
+			></app-bl-common-update-button>
 
 			<ul class="list-group list-group-flush" *ngIf="delivery">
-                <li class="list-group-item" *ngIf="delivery.method == 'branch'">
-					<span><fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon> {{delivery.info['branch'] | branchName | async}}</span>
-                </li>
+				<li class="list-group-item" *ngIf="delivery.method == 'branch'">
+					<span
+						><fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon>
+						{{ delivery.info["branch"] | branchName | async }}</span
+					>
+				</li>
 				<li class="list-group-item" *ngIf="delivery.method === 'bring'">
 					<div class="row justify-content-between">
 						<div class="col-auto">
-							<span *ngIf="delivery.method === 'bring'"><fa-icon [icon]="'truck'" class="mr-2"></fa-icon> Bring</span>
+							<span *ngIf="delivery.method === 'bring'"
+								><fa-icon
+									[icon]="'truck'"
+									class="mr-2"
+								></fa-icon>
+								Bring</span
+							>
 						</div>
 						<div class="col-auto">
-							<span *ngIf="delivery.info['estimatedDelivery']"><fa-icon [icon]="'clock'" class="mr-2"></fa-icon>{{delivery.info['estimatedDelivery'] | blDate}}</span>
+							<span *ngIf="delivery.info['estimatedDelivery']"
+								><fa-icon
+									[icon]="'clock'"
+									class="mr-2"
+								></fa-icon
+								>{{
+									delivery.info["estimatedDelivery"] | blDate
+								}}</span
+							>
 						</div>
 					</div>
 					<div class="row mt-2 justify-content-center">
 						<div class="col-auto">
 							<span *ngIf="delivery.info['shipmentAddress']">
-								{{delivery.info['shipmentAddress']['name']}}
+								{{ delivery.info["shipmentAddress"]["name"] }}
 							</span>
 						</div>
 					</div>
-					<div class="row justify-content-center">
+					<div
+						class="row justify-content-center"
+						*ngIf="customerDetail"
+					>
 						<div class="col-auto">
 							<span *ngIf="customerDetail.phone">
-								{{customerDetail.phone}}
+								{{ customerDetail.phone }}
 							</span>
 						</div>
 					</div>
 					<div class="row justify-content-center">
 						<div class="col-auto">
 							<span *ngIf="customerDetail.email">
-								{{customerDetail.email}}
+								{{ customerDetail.email }}
 							</span>
 						</div>
 					</div>
 					<div class="row justify-content-center">
 						<div class="col-auto">
 							<span *ngIf="delivery.info['shipmentAddress']">
-								{{delivery.info['shipmentAddress']['address']}}
+								{{
+									delivery.info["shipmentAddress"]["address"]
+								}}
 							</span>
 						</div>
 					</div>
 					<div class="row justify-content-center">
 						<div class="col-auto">
 							<span *ngIf="delivery.info['shipmentAddress']">
-								{{delivery.info['shipmentAddress']['postalCode']}} {{delivery.info['shipmentAddress']['postalCity']}}
+								{{
+									delivery.info["shipmentAddress"][
+										"postalCode"
+									]
+								}}
+								{{
+									delivery.info["shipmentAddress"][
+										"postalCity"
+									]
+								}}
 							</span>
 						</div>
 					</div>
 					<div class="row mt-2">
 						<div class="col-auto text-secondary">
-							<span class="mr-2" i18n="@@orderDeliveryDetailTrackingNumber">Tracking number</span>:
-							<span *ngIf="delivery.info['trackingNumber']" class="bl-link-black" (click)="onBringClick()">
-								{{delivery.info['trackingNumber']}}
+							<span
+								class="mr-2"
+								i18n="@@orderDeliveryDetailTrackingNumber"
+								>Tracking number</span
+							>:
+							<span
+								*ngIf="delivery.info['trackingNumber']"
+								class="bl-link-black"
+								(click)="onBringClick()"
+							>
+								{{ delivery.info["trackingNumber"] }}
 							</span>
 						</div>
 					</div>
 				</li>
-            </ul>
+			</ul>
 			<div class="card-footer" *ngIf="delivery">
 				<div class="row">
 					<div class="col-auto ml-auto">
-						<div>{{delivery.amount | blcPrice}}</div>
+						<div>{{ delivery.amount | blcPrice }}</div>
 					</div>
 				</div>
 			</div>

@@ -271,8 +271,8 @@ export class OrderItemHelperService {
 			let partlyPaymentAmounts = this._orderItemPriceService.pricePartlyPayment(
 				orderItem,
 				item,
-				movedOrderAndOrderItem.movedFromOrderItem,
-				movedOrderAndOrderItem.movedFromOrder
+        movedOrderAndOrderItem.movedFromOrderItem,
+        movedOrderAndOrderItem.movedFromOrder
 			);
 
 			orderItem.info["amountLeftToPay"] =

@@ -1176,15 +1176,15 @@
       <trans-unit id="orderDeliveryDetailNoOrderAttached" datatype="html">
         <source>Order has no delivery attached</source><target state="final">Order has no delivery attached</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">9</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">10</context></context-group></trans-unit>
       <trans-unit id="orderDeliveryDetailWarning" datatype="html">
         <source>could not get delivery</source><target state="final">could not get delivery</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">13</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">17</context></context-group></trans-unit>
       <trans-unit id="orderDeliveryDetailTrackingNumber" datatype="html">
         <source>Tracking number</source><target state="final">Tracking number</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">68</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">110</context></context-group></trans-unit>
       <trans-unit id="orderItemListTitle" datatype="html">
         <source>Items</source><target state="final">Items</target>
         
@@ -1306,9 +1306,28 @@
         
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">49</context></context-group></trans-unit><trans-unit id="cartListItemPayLater" datatype="html">
         <source>pay later</source><target state="final">pay later</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-amount/cart-list-item-amount.component.html</context><context context-type="linenumber">32</context></context-group></trans-unit><trans-unit id="cartItemAmountCustomerHaveAlreadyPayed" datatype="html">
+        <source>
+			Customer have already payed
+		</source><target state="final">
+			Customer have already payed
+		</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-amount/cart-list-item-amount.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit><trans-unit id="cartItemAmountCustomerMustPayBeforeDeadline" datatype="html">
+        <source>
+			Customer must pay
+			<x id="INTERPOLATION" equiv-text="{{ orderItem.info[&quot;amountLeftToPay&quot;] | blcPrice }}"/> before deadline
+		</source><target state="final">
+			Customer must pay
+			<x id="INTERPOLATION" equiv-text="{{ orderItem.info[&quot;amountLeftToPay&quot;] | blcPrice }}"/> before deadline
+		</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-amount/cart-list-item-amount.component.html</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cartListItemActionCancelThisItem" datatype="html">
