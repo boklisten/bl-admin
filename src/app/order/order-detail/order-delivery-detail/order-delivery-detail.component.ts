@@ -6,7 +6,7 @@ import {
 	SimpleChanges
 } from "@angular/core";
 import { BlApiError, Delivery, Order, UserDetail } from "@wizardcoder/bl-model";
-import { DeliveryService } from "@wizardcoder/bl-connect";
+import { DeliveryService, UserDetailService } from "@wizardcoder/bl-connect";
 import { CustomerService } from "../../../customer/customer.service";
 
 @Component({
@@ -25,11 +25,16 @@ export class OrderDeliveryDetailComponent implements OnInit, OnChanges {
 
 	constructor(
 		private _deliveryService: DeliveryService,
-		private _customerService: CustomerService
+		private _customerService: CustomerService,
+		private _userDetailService: UserDetailService
 	) {}
 
 	ngOnInit() {
 		this.customerDetail = this._customerService.getCustomerDetail();
+
+		if (!this.customerDetail) {
+			this.getCustomer(this.order.customer as string);
+		}
 	}
 
 	getDelivery() {
@@ -50,6 +55,15 @@ export class OrderDeliveryDetailComponent implements OnInit, OnChanges {
 					this.wait = false;
 				});
 		}
+	}
+
+	getCustomer(customerId: string) {
+		this._userDetailService
+			.getById(customerId)
+			.then(customerDetail => {
+				this.customerDetail = customerDetail;
+			})
+			.catch(() => {});
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
