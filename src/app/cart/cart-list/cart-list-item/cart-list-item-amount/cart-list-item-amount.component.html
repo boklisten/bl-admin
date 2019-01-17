@@ -30,7 +30,7 @@
 	[ngbTooltip]="leftToPayContent"
 >
 	<span i18n="@@cartListItemPayLater">pay later</span>:
-	<span> {{ orderItem.info.amountLeftToPay | blcPrice }} </span>
+	<span> {{ orderItem.info["amountLeftToPay"] | blcPrice }} </span>
 </div>
 
 <span
@@ -56,7 +56,7 @@
 			class="bl-text-sm"
 		>
 			Customer must pay
-			{{ orderItem.info.amountLeftToPay | blcPrice }} before deadline
+			{{ orderItem.info["amountLeftToPay"] | blcPrice }} before deadline
 		</div>
 		<div class="font-weight-bold">{{ orderItem.info.to | blDate }}</div>
 	</div>
