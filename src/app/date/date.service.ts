@@ -60,6 +60,17 @@ export class DateService {
 		};
 	}
 
+	public getPartlyPaymentPeriodDate(period: Period) {
+		const branch = this._branchStoreService.getCurrentBranch();
+
+		for (const partlyPaymentPeriod of branch.paymentInfo
+			.partlyPaymentPeriods) {
+			if (partlyPaymentPeriod.type === period) {
+				return partlyPaymentPeriod.date;
+			}
+		}
+	}
+
 	public getCurrentSemesterPeriod(): { fromDate: Date; toDate: Date } {
 		if (
 			moment().isAfter(this._defaultSpringSemesterDeadlineDate) &&

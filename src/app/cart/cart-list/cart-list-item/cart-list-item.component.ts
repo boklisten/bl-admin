@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 import { Delivery, OrderItem } from "@wizardcoder/bl-model";
 import { OrderItemType } from "@wizardcoder/bl-model/dist/order/order-item/order-item-type";
 import { CartService } from "../../cart.service";
@@ -18,6 +18,7 @@ import { DeliveryService } from "@wizardcoder/bl-connect";
 })
 export class CartListItemComponent implements OnInit {
 	@Input() cartItem: CartItem;
+	@Output() cartItemChange: EventEmitter<boolean>;
 	public cartItemAction: CartItemAction;
 	public delivery: Delivery;
 
@@ -28,7 +29,9 @@ export class CartListItemComponent implements OnInit {
 		private _orderItemPriceService: OrderItemPriceService,
 		private _deliveryService: DeliveryService,
 		private _dateService: DateService
-	) {}
+	) {
+		this.cartItemChange = new EventEmitter<boolean>();
+	}
 
 	ngOnInit() {
 		if (
@@ -47,12 +50,13 @@ export class CartListItemComponent implements OnInit {
 	}
 
 	public onActionChange(action: CartItemAction) {
+		this.cartItemChange.emit(true);
 	}
 
 	public onItemAgeChange() {
 		this.onActionChange(this.cartItem.action);
+		this.cartItemChange.emit(true);
 	}
-
 
 	public remove() {
 		this._cartService.remove(this.cartItem.item.id);

@@ -19,6 +19,13 @@
 	</span>
 </div>
 
+<span
+	*ngIf="orderItem.amount !== 0"
+	class="text-right font-weight-bold bl-text-lg"
+	[ngClass]="{ 'text-danger': orderItem.amount < 0 }"
+	>{{ orderItem.amount | blcPrice }}</span
+>
+
 <!--if it is a partly payment, show how much is left-->
 <div
 	class="bl-text-sm bl-link-black"
@@ -32,13 +39,6 @@
 	<span i18n="@@cartListItemPayLater">pay later</span>:
 	<span> {{ orderItem.info["amountLeftToPay"] | blcPrice }} </span>
 </div>
-
-<span
-	*ngIf="orderItem.amount !== 0"
-	class="text-right font-weight-bold bl-text-lg"
-	[ngClass]="{ 'text-danger': orderItem.amount < 0 }"
-	>{{ orderItem.amount | blcPrice }}</span
->
 
 <ng-template #alreadyPayedContent>
 	<div>
