@@ -94,3 +94,8 @@ $border-color: rgba(0, 0, 0, 0.125);
 .datatable-body-row.active {
 	background-color: #c7ffbc;
 }
+
+.ngb-highlight {
+	background-color: $primary-color;
+	color: white;
+}

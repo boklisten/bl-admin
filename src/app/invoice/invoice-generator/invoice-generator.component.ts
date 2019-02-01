@@ -38,8 +38,10 @@ export class InvoiceGeneratorComponent implements OnInit {
 	public addInvoices() {
 		this.invoiceGeneratorService
 			.addInvoices(this.invoices)
-			.then(invoices => {
-				console.log("added invoices", invoices);
+			.then(addedInvoices => {
+				if (addedInvoices.length === this.invoices.length) {
+					this.invoices = [];
+				}
 			})
 			.catch(err => {
 				console.log("could not add invoices", err);

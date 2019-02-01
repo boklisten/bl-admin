@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid mt-3">
 	<div class="row">
 		<div class="col">
 			<app-blc-period-select
@@ -26,37 +26,9 @@
 			</button>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row mt-5">
 		<div class="col">
-			<table class="table table-sm table-hover">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Name</th>
-						<th scope="col">Deadline</th>
-						<th scope="col">Gross amount</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr *ngFor="let invoice of invoices">
-						<th>{{ invoice.reference }}</th>
-						<td>
-							<span
-								class="bl-link-black"
-								[routerLink]="
-									'/customer/' +
-									invoice.customerInfo.userDetail +
-									'/detail'
-								"
-							>
-								{{ invoice.customerInfo.name }}
-							</span>
-						</td>
-						<td>{{ invoice.duedate | blDate }}</td>
-						<td>{{ invoice.payment.total.gross | blcPrice }}</td>
-					</tr>
-				</tbody>
-			</table>
+			<app-invoice-table [invoices]="invoices"></app-invoice-table>
 		</div>
 	</div>
 </div>
