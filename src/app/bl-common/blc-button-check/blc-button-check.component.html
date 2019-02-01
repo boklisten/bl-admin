@@ -1,0 +1,6 @@
+<fa-icon
+	(click)="onClick()"
+	[icon]="value ? 'check-square' : 'square'"
+	size="lg"
+	[ngClass]="{ 'text-success': value, 'text-dark': !value }"
+></fa-icon>

@@ -8,12 +8,15 @@ import { BlCommonModule } from "../bl-common/bl-common.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InvoiceTableComponent } from "./invoice-table/invoice-table.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { InvoiceViewComponent } from "./invoice-view/invoice-view.component";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
 	declarations: [
 		InvoiceGeneratorComponent,
 		InvoiceComponent,
-		InvoiceTableComponent
+		InvoiceTableComponent,
+		InvoiceViewComponent
 	],
 	imports: [
 		CommonModule,
@@ -21,7 +24,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 		BlCommonModule,
 		NgbModule,
 		FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		FontAwesomeModule
 	],
 	exports: [InvoiceComponent]
 })

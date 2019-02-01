@@ -39,7 +39,7 @@
 		"@wizardcoder/bl-connect": "^0.11.0",
 		"@wizardcoder/bl-login": "^0.7.1",
 		"@wizardcoder/bl-model": "^0.19.2",
-		"@wizardcoder/bl-reporter": "^0.2.1",
+		"@wizardcoder/bl-reporter": "^0.2.4",
 		"bootstrap": "4.0.0",
 		"core-js": "^2.4.1",
 		"email-validator": "^2.0.3",
