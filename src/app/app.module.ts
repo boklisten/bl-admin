@@ -13,6 +13,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
+import { InvoiceModule } from "./invoice/invoice.module";
 import { BranchStoreService } from "./branch/branch-store.service";
 import { BranchModule } from "./branch/branch.module";
 import { BranchGuardService } from "./branch/branch-guard.service";
@@ -76,7 +77,8 @@ import {
 	faTrashAlt,
 	faDownload,
 	faFileExcel,
-	faMoneyBillWave
+	faMoneyBillWave,
+	faFileInvoiceDollar
 } from "@fortawesome/free-solid-svg-icons";
 import { BlCommonModule } from "./bl-common/bl-common.module";
 import { ItemModule } from "./item/item.module";
@@ -154,7 +156,8 @@ library.add(
 	faTrashAlt,
 	faDownload,
 	faFileExcel,
-	faMoneyBillWave
+	faMoneyBillWave,
+	faFileInvoiceDollar
 );
 
 @NgModule({
@@ -181,7 +184,8 @@ library.add(
 		SearchModule,
 		DatabaseModule,
 		PriceModule,
-		NgbDropdownModule
+		NgbDropdownModule,
+		InvoiceModule
 	],
 	providers: [
 		AuthLoginService,

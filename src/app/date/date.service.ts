@@ -17,11 +17,13 @@ export class DateService {
 
 	private _defaultSpringSemesterDeadlineDate;
 	private _defaultFallSemesterDeadlineDate;
+	private _apiDateFormat: string;
 
 	constructor(
 		private _branchStoreService: BranchStoreService,
 		private _branchHelperService: BranchHelperService
 	) {
+		this._apiDateFormat = "DDMMYYYYHHmm";
 		this._defaultSpringSemesterDeadlineDate = moment()
 			.month(6)
 			.date(1)
@@ -49,6 +51,16 @@ export class DateService {
 			.set("minutes", 0)
 			.set("seconds", 0)
 			.set("ms", 0);
+	}
+
+	public addDays(date: Date, days: number): Date {
+		return moment(date)
+			.add(days, "days")
+			.toDate();
+	}
+
+	public dateOnApiFormat(date: Date): string {
+		return moment(date).format(this._apiDateFormat);
 	}
 
 	public getCurrentDayPeriod(): { fromDate: Date; toDate: Date } {

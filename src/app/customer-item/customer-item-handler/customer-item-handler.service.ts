@@ -10,6 +10,7 @@ import { UserService } from "../../user/user.service";
 import { CustomerItemService } from "@wizardcoder/bl-connect";
 import { reject } from "q";
 import { CustomerService } from "../../customer/customer.service";
+import { DateService } from "../../date/date.service";
 
 @Injectable()
 export class CustomerItemHandlerService {
@@ -17,7 +18,8 @@ export class CustomerItemHandlerService {
 		private _branchStoreService: BranchStoreService,
 		private _userService: UserService,
 		private _customerItemService: CustomerItemService,
-		private _customerService: CustomerService
+		private _customerService: CustomerService,
+		private _dateService: DateService
 	) {}
 
 	public async updateCustomerItems(
@@ -71,6 +73,18 @@ export class CustomerItemHandlerService {
 				"customerItemHandlerService: could not add customer items: " + e
 			);
 		}
+	}
+
+	public getNotReturned(period: {
+		fromDate: Date;
+		toDate: Date;
+	}): Promise<CustomerItem[]> {
+		const fromDate = this._dateService.dateOnApiFormat(period.fromDate);
+		const toDate = this._dateService.dateOnApiFormat(period.toDate);
+
+		return this._customerItemService.get(
+			`?deadline=>${fromDate}&deadline=<${toDate}&returned=false`
+		);
 	}
 
 	private createCustomerItemPatch(

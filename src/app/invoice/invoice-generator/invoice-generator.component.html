@@ -1,0 +1,62 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<app-blc-period-select
+				(periodChange)="onPeriodChange($event)"
+			></app-blc-period-select>
+		</div>
+		<div class="col">
+			<app-blc-edit-number-value
+				[value]="reference"
+				(valueChange)="reference = $event"
+			></app-blc-edit-number-value>
+		</div>
+
+		<div class="col">
+			<button
+				class="btn btn-sm btn-outline-primary"
+				(click)="createInvoices()"
+			>
+				Generate
+			</button>
+		</div>
+		<div class="col" *ngIf="invoices && invoices.length > 0">
+			<button class="btn btn-sm btn-success" (click)="addInvoices()">
+				Push to database
+			</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<table class="table table-sm table-hover">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Name</th>
+						<th scope="col">Deadline</th>
+						<th scope="col">Gross amount</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let invoice of invoices">
+						<th>{{ invoice.reference }}</th>
+						<td>
+							<span
+								class="bl-link-black"
+								[routerLink]="
+									'/customer/' +
+									invoice.customerInfo.userDetail +
+									'/detail'
+								"
+							>
+								{{ invoice.customerInfo.name }}
+							</span>
+						</td>
+						<td>{{ invoice.duedate | blDate }}</td>
+						<td>{{ invoice.payment.total.gross | blcPrice }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
