@@ -12,21 +12,34 @@ import { CustomerItemHandlerService } from "../../customer-item/customer-item-ha
 })
 export class InvoiceGeneratorService {
 	private unsavedInvoices: Invoice[];
+  private feePercentage: number;
+  private feeVatPercentage: number;
+  private fee: number;
 
 	constructor(
 		private invoiceService: InvoiceService,
 		private customerItemHandlerService: CustomerItemHandlerService,
 		private userDetailService: UserDetailService,
 		private itemService: ItemService
-	) {}
+  ) {
+    this.feePercentage = 1.1;
+    this.feeVatPercentage = 0.25;
+    this.fee = 75;
+  }
 
 	/**
 	 * Creates invoices based on customerItems not delivered on a set deadline
 	 */
 	public async createInvoices(
-		reference: number,
+    settings: {feePercentage: number, fee: number},
+		reference: string,
+		invoiceNumber: number,
 		period: { fromDate: Date; toDate: Date }
 	): Promise<Invoice[]> {
+
+    this.fee = settings.fee;
+    this.feePercentage = settings.feePercentage;
+
 		const notReturnedCustomerItems = await this.customerItemHandlerService.getNotReturned(
 			period
 		);
@@ -37,6 +50,7 @@ export class InvoiceGeneratorService {
 
 		const generatedInvoices = await this.generateInvoices(
 			reference,
+			invoiceNumber,
 			groupedCustomerItems
 		);
 
@@ -92,7 +106,8 @@ export class InvoiceGeneratorService {
 	}
 
 	private async generateInvoices(
-		reference: number,
+		reference: string,
+		invoiceNumber: number,
 		customersWithCustomerItems: {
 			customer: string | UserDetail;
 			customerItems: CustomerItem[];
@@ -109,19 +124,21 @@ export class InvoiceGeneratorService {
 			invoices.push(
 				this.convertToInvoice(
 					reference,
+					invoiceNumber,
 					duedate,
 					customerWithCustomerItem.customer,
 					customerWithCustomerItem.customerItems
 				)
 			);
-			reference += 1;
+			invoiceNumber += 1;
 		}
 
 		return invoices;
 	}
 
 	private convertToInvoice(
-		reference: number,
+		reference: string,
+		invoiceNumber: number,
 		duedate: Date,
 		userDetail: UserDetail,
 		customerItems: CustomerItem[]
@@ -160,10 +177,12 @@ export class InvoiceGeneratorService {
 					discount: 0
 				}
 			},
-			reference: reference.toString()
+			reference: reference,
+			invoiceId: invoiceNumber.toString()
 		} as Invoice;
 
 		invoice = this.calculateTotalPayment(invoice);
+    invoice = this.calculateFeePayment(invoice);
 
 		return invoice;
 	}
@@ -190,7 +209,7 @@ export class InvoiceGeneratorService {
 		return customerItemPayments;
 	}
 
-	private calculateTotalPayment(invoice) {
+	private calculateTotalPayment(invoice: Invoice) {
 		for (let customerItemPayment of invoice.customerItemPayments) {
 			invoice.payment.total.gross += customerItemPayment.payment.gross;
 			invoice.payment.total.net += customerItemPayment.payment.net;
@@ -198,14 +217,21 @@ export class InvoiceGeneratorService {
 		}
 
 		return invoice;
-	}
+  }
+
+  private calculateFeePayment(invoice: Invoice) {
+    invoice.payment.fee.net = invoice.customerItemPayments.length * this.fee;
+    invoice.payment.fee.vat = invoice.customerItemPayments.length * (this.fee * this.feeVatPercentage);
+    invoice.payment.fee.gross = invoice.payment.fee.net - invoice.payment.fee.vat;
+    return invoice;
+  }
 
 	private itemUnitPrice(item: Item): number {
 		return item.price;
 	}
 
 	private itemGrossPrice(item: Item): number {
-		return item.price;
+		return item.price * this.feePercentage;
 	}
 
 	private itemNetPrice(item: Item): number {
@@ -213,7 +239,7 @@ export class InvoiceGeneratorService {
 	}
 
 	private itemVatPrice(item: Item): number {
-		return item.price * item.taxRate;
+		return item.price * this.feePercentage * item.taxRate;
 	}
 
 	private itemDiscountPrice(item: Item): number {

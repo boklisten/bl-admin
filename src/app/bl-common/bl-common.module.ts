@@ -31,6 +31,7 @@ import { BlcScannerDirective } from "./blc-scanner/blc-scanner.directive";
 import { BlcKeyeventDoubleShiftDirective } from "./blc-keyevent/blc-keyevent-double-shift.directive";
 import { BlcPeriodSelectComponent } from "./blc-period/blc-period-select/blc-period-select.component";
 import { BlcButtonCheckComponent } from "./blc-button-check/blc-button-check.component";
+import { BlPrintComponent } from './bl-print/bl-print.component';
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -62,7 +63,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcScannerDirective,
 		BlcKeyeventDoubleShiftDirective,
 		BlcPeriodSelectComponent,
-		BlcButtonCheckComponent
+		BlcButtonCheckComponent,
+		BlPrintComponent
 	],
 	exports: [
 		BlCommonUpdateButtonComponent,

@@ -63,6 +63,10 @@ export class DateService {
 		return moment(date).format(this._apiDateFormat);
 	}
 
+	public dateOnFormat(date: Date, format: string): string {
+		return moment(date).format(format);
+	}
+
 	public getCurrentDayPeriod(): { fromDate: Date; toDate: Date } {
 		const currentDate = this.getCurrentDate();
 

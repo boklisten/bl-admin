@@ -11,15 +11,21 @@ import { Invoice } from "@wizardcoder/bl-model";
 export class InvoiceGeneratorComponent implements OnInit {
 	public invoices: Invoice[];
 	public period: { fromDate: Date; toDate: Date };
-	public reference: number;
+	public invoiceNumber: number;
+	public reference: string;
+  public fee: number;
+  public feePercentage: number;
 
 	constructor(
 		customerItemService: CustomerItemService,
 		private invoiceGeneratorService: InvoiceGeneratorService,
 		private invoiceService: InvoiceService
 	) {
-		this.reference = 201800000;
+		this.invoiceNumber = 201800000;
 		this.invoices = [];
+		this.reference = "Manglende levering av skolebøker";
+    this.fee = 75;
+    this.feePercentage = 1.1;
 	}
 
 	ngOnInit() {
@@ -28,7 +34,7 @@ export class InvoiceGeneratorComponent implements OnInit {
 
 	public createInvoices() {
 		this.invoiceGeneratorService
-			.createInvoices(this.reference, this.period)
+      .createInvoices({fee: this.fee, feePercentage: this.feePercentage},this.reference, this.invoiceNumber, this.period)
 			.then(invoices => {
 				this.invoices = invoices;
 				this.invoiceGeneratorService.setUnsavedInvoices(invoices);

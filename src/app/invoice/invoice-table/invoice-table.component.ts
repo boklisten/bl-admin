@@ -3,6 +3,7 @@ import { Invoice } from "@wizardcoder/bl-model";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
+import { InvoiceVismaService } from "../invoice-visma/invoice-visma.service";
 
 @Component({
 	selector: "app-invoice-table",
@@ -16,7 +17,7 @@ export class InvoiceTableComponent implements OnInit {
 	public selectAll: boolean;
 	public selectedList: any;
 
-	constructor() {
+	constructor(private invoiceVismaService: InvoiceVismaService) {
 		this.selectAll = false;
 		this.filter = new FormControl("");
 		this.invoices = [];
@@ -33,7 +34,7 @@ export class InvoiceTableComponent implements OnInit {
 
 	public exportToExcel() {
 		let selectedInvoices = this.getSelected();
-		console.log("to excel", selectedInvoices);
+		this.invoiceVismaService.printToVismaInvoices(selectedInvoices);
 	}
 
 	public search(text: string): Invoice[] {

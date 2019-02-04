@@ -12,13 +12,13 @@
 			</div>
 		</form>
 	</div>
-	<div class="col">
+  <div class="col" *ngIf="selectedList !== {}">
 		<button
 			class="btn btn-sm btn-outline-primary"
 			(click)="exportToExcel()"
 		>
 			<fa-icon icon="file-excel" class="mr-2"></fa-icon>
-			<span>Print to excel</span>
+			<span>Print to visma invoice format</span>
 		</button>
 	</div>
 </div>
@@ -54,7 +54,7 @@
 					</th>
 					<th>
 						<ngb-highlight
-							[result]="invoice.reference"
+							[result]="invoice.invoiceId"
 							[term]="filter.value"
 						></ngb-highlight>
 					</th>
@@ -75,7 +75,20 @@
 					</td>
 					<td>{{ invoice.duedate | blDate }}</td>
 					<td>{{ invoice.payment.total.gross | blcPrice }}</td>
-					<td>{{ invoice.havePayed }}</td>
+					<td
+						[ngClass]="{
+							'text-success': invoice.customerHavePayed,
+							'text-danger': !invoice.customerHavePayed
+						}"
+					>
+						<fa-icon
+							[icon]="
+								invoice.customerHavePayed
+									? 'check-circle'
+									: 'times-circle'
+							"
+						></fa-icon>
+					</td>
 				</tr>
 			</tbody>
 		</table>

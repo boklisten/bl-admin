@@ -6,9 +6,21 @@
 			></app-blc-period-select>
 		</div>
 		<div class="col">
+      <b>invoice number</b>
 			<app-blc-edit-number-value
-				[value]="reference"
-				(valueChange)="reference = $event"
+				[(value)]="invoiceNumber"
+			></app-blc-edit-number-value>
+		</div>
+		<div class="col">
+      <b>fee per item</b>
+			<app-blc-edit-number-value
+				[(value)]="fee"
+			></app-blc-edit-number-value>
+		</div>
+		<div class="col">
+      <b>Fee percentage per item</b>
+			<app-blc-edit-number-value
+				[(value)]="feePercentage"
 			></app-blc-edit-number-value>
 		</div>
 
@@ -26,7 +38,7 @@
 			</button>
 		</div>
 	</div>
-	<div class="row mt-5">
+  <div class="row mt-5" *ngIf="invoices && invoices.length > 0">
 		<div class="col">
 			<app-invoice-table [invoices]="invoices"></app-invoice-table>
 		</div>
