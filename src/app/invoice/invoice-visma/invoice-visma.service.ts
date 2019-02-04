@@ -7,15 +7,24 @@ import { BlPrintService } from "../../bl-common/bl-print/bl-print.service";
 	providedIn: "root"
 })
 export class InvoiceVismaService {
+  textFields: string[];
+
 	constructor(
 		private dateService: DateService,
 		private printService: BlPrintService
-	) {}
+  ) {
+    this.textFields = [
+      "Fakturaen gjelder manglende/for sent leverte leiebøker fra forrige semester",
+      "Det er IKKE mulig å levere bøker nå.",
+      "Kundens fødselsdato: ",
+      "Kundens telefonnummer: ",
+      "Alle fakturahenvendelser sendes til info@boklisten.no"
+    ];
+  }
 
 	public printToVismaInvoices(invoices: Invoice[]) {
 		const vismaRows = this.invoicesToVismaRows(invoices);
-    console.log('visma rows', vismaRows);
-    //this.printService.printVismaRows(vismaRows);
+    this.printService.printVismaRows(vismaRows);
 	}
 
 	//[[], [], []]
@@ -45,9 +54,13 @@ export class InvoiceVismaService {
 
 		for (let row of this.createVismaL1Fields(lineNum, invoice)) {
 			rows.push(row);
+		  lineNum++;
 		}
 
     rows.push(this.createVismaL1FeeField(lineNum, invoice));
+
+
+		lineNum++;
 
 		for (let row of this.createVismaL1TextFields(lineNum, invoice)) {
 			rows.push(row);
@@ -57,7 +70,7 @@ export class InvoiceVismaService {
 	}
 
 	private asEars(num: number) {
-		return num;
+		return num * 100;
 	}
 
 	private createVismaL1Fields(lineNumber: number, invoice: Invoice): any[] {
@@ -73,14 +86,20 @@ export class InvoiceVismaService {
 			);
     }
 
-    console.log('visma L1 fields', rows);
-
 		return rows;
 	}
 
-	private createVismaL1TextFields(lineNumber: number, invoice: Invoice) {
-		let rows = [];
-		return rows;
+	private createVismaL1TextFields(lineNumber: number, invoice: Invoice): any[] {
+    let rows = [];
+    rows.push(this.createVismaL1TextField(lineNumber, invoice.invoiceId, this.textFields[0]));
+    lineNumber++;
+    rows.push(this.createVismaL1TextField(lineNumber, invoice.invoiceId, this.textFields[1]));
+    lineNumber++;
+    rows.push(this.createVismaL1TextField(lineNumber, invoice.invoiceId, this.textFields[2] + this.dateService.dateOnFormat(invoice.customerInfo.dob, "DD.MM.YYYY")));
+    lineNumber++;
+    rows.push(this.createVismaL1TextField(lineNumber, invoice.invoiceId, this.textFields[3] + invoice.customerInfo.phone));
+    lineNumber++;
+    return rows;
 	}
 
 	private createVismaH1Field(lineNum: number, invoice: Invoice) {
@@ -264,7 +283,7 @@ export class InvoiceVismaService {
 
 	private createVismaL1TextField(
 		lineNum: number,
-		invoiceId: number,
+		invoiceId: string,
 		text: string
 	): any[] {
 		return [
