@@ -52,7 +52,7 @@
 						>
 						</app-blc-button-check>
 					</th>
-					<th>
+          <th class="bl-link-black" [routerLink]="'/invoice/' + invoice.id">
 						<ngb-highlight
 							[result]="invoice.invoiceId"
 							[term]="filter.value"

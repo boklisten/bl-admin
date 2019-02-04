@@ -10,13 +10,15 @@ import { InvoiceTableComponent } from "./invoice-table/invoice-table.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { InvoiceViewComponent } from "./invoice-view/invoice-view.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
 
 @NgModule({
 	declarations: [
 		InvoiceGeneratorComponent,
 		InvoiceComponent,
 		InvoiceTableComponent,
-		InvoiceViewComponent
+		InvoiceViewComponent,
+		InvoiceDetailComponent
 	],
 	imports: [
 		CommonModule,
