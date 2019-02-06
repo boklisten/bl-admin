@@ -1,33 +1,96 @@
-<div class="container">
-  <div class="row">
-    <div class="col" *ngIf="invoice">
-      Invoice Number: {{invoice.invoiceId}}
-     <div>
-     <div class="col">
-       Total Gross amount: {{invoice.payment.total.gross | blcPrice}}
-     </div>
-
-     <div class="col">
-       Total Fee amount: {{invoice.payment.fee.gross | blcPrice}}
-     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-		<table class="table table-sm table-hover table-striped">
-			<thead>
-				<tr>
-					<th scope="col" i18n="@@invoiceTableItemName">Title</th>
-					<th scope="col" i18n="@@invoiceTableItemDeadline">
-						Amount
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let customerItemPayment of invoice.customerItemPayments">
-          <td>{{customerItemPayment.title}}</td>
-          <td>{{customerItemPayment.payment.gross | blcPrice}}</td>
-				</tr>
-			</tbody>
-		</table>
-    </div>
+<div class="container" *ngIf="invoice">
+	<div class="row mb-2">
+		<div class="col">
+			<div class="card">
+				<div class="card-body">
+					<div>
+						<fa-icon icon="hashtag"></fa-icon>
+						<span class="float-right">{{ invoice.invoiceId }}</span>
+					</div>
+					<div>
+						<span i18n="@@invoiceDetailDeadline">Deadline</span>
+						<span class="float-right">{{
+							invoice.duedate | blDate
+						}}</span>
+					</div>
+					<div>
+						<span i18n="@@invoiceDetailCustomerHavePayed"
+							>Customer have payed</span
+						>
+						<app-bl-common-toggle-button
+							class="align-middle float-right"
+							[value]="invoice.customerHavePayed"
+							(valueChange)="onCustomerHavePayedChange($event)"
+						>
+						</app-bl-common-toggle-button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<table class="table table-hover table-borderless">
+				<thead>
+					<tr>
+						<th scope="col" i18n="@@invoiceDetailItemTitle">
+							Title
+						</th>
+						<th scope="col" i18n="@@invoiceDetailItemDeadline">
+							Amount
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr
+						*ngFor="
+							let customerItemPayment of invoice.customerItemPayments
+						"
+						[ngbTooltip]="customerItemPaymentContent"
+					>
+						<th scope="row">{{ customerItemPayment.title }}</th>
+						<td>
+							{{ customerItemPayment.payment.gross | blcPrice }}
+						</td>
+					</tr>
+					<tr class="table-light font-italic">
+						<td i18n="@@invoiceDetailItemsTotal">Items total</td>
+						<td>{{ invoice.payment.total.gross | blcPrice }}</td>
+					</tr>
+					<tr
+						class="table-light font-italic"
+						[ngbTooltip]="invoiceFeeContent"
+					>
+						<td i18n="@@invoiceDetailFee">Fee</td>
+						<td>{{ invoice.payment.fee.gross | blcPrice }}</td>
+					</tr>
+					<tr class="table-secondary">
+						<th>Total</th>
+						<th>
+							{{
+								invoice.payment.total.gross +
+									invoice.payment.fee.gross | blcPrice
+							}}
+						</th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
+
+<ng-template #customerItemPaymentContent>
+	<div>
+		<div i18n="@@invoiceDetailCustomerItemPayment" class="bl-text-sm">
+			The full price of item * a set fee
+		</div>
+	</div>
+</ng-template>
+
+<ng-template #invoiceFeeContent>
+	<div>
+		<div i18n="@@invoiceDetailInvoiceFeeContent" class="bl-text-sm">
+			A set fee * number of items
+		</div>
+	</div>
+</ng-template>

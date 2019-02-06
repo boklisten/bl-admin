@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, SimpleChanges } from "@angular/core";
+import {
+	Component,
+	Output,
+	OnInit,
+	Input,
+	SimpleChanges,
+	EventEmitter,
+	OnChanges
+} from "@angular/core";
 import { Invoice } from "@wizardcoder/bl-model";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
@@ -10,14 +18,18 @@ import { InvoiceVismaService } from "../invoice-visma/invoice-visma.service";
 	templateUrl: "./invoice-table.component.html",
 	styleUrls: ["./invoice-table.component.scss"]
 })
-export class InvoiceTableComponent implements OnInit {
+export class InvoiceTableComponent implements OnInit, OnChanges {
 	@Input() invoices: Invoice[];
+	@Output() selectInvoice: EventEmitter<Invoice>;
+
 	invoices$: Observable<Invoice[]>;
 	public filter: FormControl;
 	public selectAll: boolean;
 	public selectedList: any;
+	public selectedInvoice: Invoice;
 
 	constructor(private invoiceVismaService: InvoiceVismaService) {
+		this.selectInvoice = new EventEmitter<Invoice>();
 		this.selectAll = false;
 		this.filter = new FormControl("");
 		this.invoices = [];
@@ -32,6 +44,12 @@ export class InvoiceTableComponent implements OnInit {
 
 	ngOnInit() {}
 
+	ngOnChanges(simpleChanges: SimpleChanges) {
+		if (simpleChanges["invoices"].currentValue) {
+			this.onSelectInvoice(simpleChanges["invoices"].currentValue[0]);
+		}
+	}
+
 	public exportToExcel() {
 		let selectedInvoices = this.getSelected();
 		this.invoiceVismaService.printToVismaInvoices(selectedInvoices);
@@ -45,6 +63,11 @@ export class InvoiceTableComponent implements OnInit {
 				invoice.reference.toString().includes(term)
 			);
 		});
+	}
+
+	public onSelectInvoice(invoice: Invoice) {
+		this.selectedInvoice = invoice;
+		this.selectInvoice.emit(invoice);
 	}
 
 	public onSelectAll() {

@@ -9,6 +9,7 @@ import { Invoice } from "@wizardcoder/bl-model";
 })
 export class InvoiceViewComponent implements OnInit {
 	invoices: Invoice[];
+	selectedInvoice: Invoice;
 
 	constructor(private invoiceService: InvoiceService) {}
 

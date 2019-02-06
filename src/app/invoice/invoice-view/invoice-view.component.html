@@ -1,7 +1,15 @@
 <div class="container-fluid">
 	<div class="row">
-		<div class="col">
-			<app-invoice-table [invoices]="invoices"></app-invoice-table>
+		<div class="col-8">
+			<app-invoice-table
+				[invoices]="invoices"
+				(selectInvoice)="selectedInvoice = $event"
+			></app-invoice-table>
+		</div>
+		<div class="col-4">
+			<app-invoice-detail
+				[invoice]="selectedInvoice"
+			></app-invoice-detail>
 		</div>
 	</div>
 </div>

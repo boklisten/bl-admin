@@ -25,7 +25,8 @@ import {
 	faUsers,
 	faMoneyBillAlt,
 	faUserCircle,
-	faCheck,
+  faCheck,
+  faHashtag,
 	faLocationArrow,
 	faSearch,
 	faAt,
@@ -159,7 +160,8 @@ library.add(
 	faDownload,
 	faFileExcel,
 	faMoneyBillWave,
-	faFileInvoiceDollar
+  faFileInvoiceDollar,
+  faHashtag
 );
 
 @NgModule({

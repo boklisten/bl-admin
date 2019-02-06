@@ -12,7 +12,7 @@
 			</div>
 		</form>
 	</div>
-  <div class="col" *ngIf="selectedList !== {}">
+	<div class="col" *ngIf="selectedList !== {}">
 		<button
 			class="btn btn-sm btn-outline-primary"
 			(click)="exportToExcel()"
@@ -45,14 +45,21 @@
 				</tr>
 			</thead>
 			<tbody *ngIf="invoices">
-				<tr *ngFor="let invoice of (invoices$ | async); let i = index">
+				<tr
+					*ngFor="let invoice of (invoices$ | async); let i = index"
+					[ngClass]="{
+						'table-primary':
+							selectedInvoice && selectedInvoice.id == invoice.id
+					}"
+					(click)="onSelectInvoice(invoice)"
+				>
 					<th (click)="onSelect(invoice.id)">
 						<app-blc-button-check
 							[value]="selectedList[invoice.id]"
 						>
 						</app-blc-button-check>
 					</th>
-          <th class="bl-link-black" [routerLink]="'/invoice/' + invoice.id">
+					<th>
 						<ngb-highlight
 							[result]="invoice.invoiceId"
 							[term]="filter.value"
