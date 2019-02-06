@@ -6,6 +6,7 @@ import {
 	ItemService
 } from "@wizardcoder/bl-connect";
 import { CustomerItemHandlerService } from "../../customer-item/customer-item-handler/customer-item-handler.service";
+import { PriceService } from "../../price/price.service";
 
 @Injectable({
 	providedIn: "root"
@@ -20,7 +21,8 @@ export class InvoiceGeneratorService {
 		private invoiceService: InvoiceService,
 		private customerItemHandlerService: CustomerItemHandlerService,
 		private userDetailService: UserDetailService,
-		private itemService: ItemService
+    private itemService: ItemService,
+    private priceService: PriceService
   ) {
     this.feePercentage = 1.1;
     this.feeVatPercentage = 0.25;
@@ -220,9 +222,9 @@ export class InvoiceGeneratorService {
   }
 
   private calculateFeePayment(invoice: Invoice) {
-    invoice.payment.fee.net = invoice.customerItemPayments.length * this.fee;
-    invoice.payment.fee.vat = invoice.customerItemPayments.length * (this.fee * this.feeVatPercentage);
-    invoice.payment.fee.gross = invoice.payment.fee.net - invoice.payment.fee.vat;
+    invoice.payment.fee.net = this.priceService.sanitize(invoice.customerItemPayments.length * this.fee);
+    invoice.payment.fee.vat = this.priceService.sanitize(invoice.customerItemPayments.length * (this.fee * this.feeVatPercentage));
+    invoice.payment.fee.gross = this.priceService.sanitize(invoice.payment.fee.net - invoice.payment.fee.vat);
     return invoice;
   }
 
@@ -231,15 +233,15 @@ export class InvoiceGeneratorService {
 	}
 
 	private itemGrossPrice(item: Item): number {
-		return item.price * this.feePercentage;
+		return this.priceService.sanitize(item.price * this.feePercentage);
 	}
 
 	private itemNetPrice(item: Item): number {
-		return this.itemGrossPrice(item) - this.itemVatPrice(item);
+		return this.priceService.sanitize(this.itemGrossPrice(item) - this.itemVatPrice(item));
 	}
 
 	private itemVatPrice(item: Item): number {
-		return item.price * this.feePercentage * item.taxRate;
+		return this.priceService.sanitize(item.price * this.feePercentage * item.taxRate);
 	}
 
 	private itemDiscountPrice(item: Item): number {
