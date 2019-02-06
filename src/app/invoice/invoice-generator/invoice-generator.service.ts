@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { CustomerItem, UserDetail, Invoice, Item } from "@wizardcoder/bl-model";
+import { DateService } from "../../date/date.service";
 import {
 	InvoiceService,
 	UserDetailService,
@@ -13,34 +14,41 @@ import { PriceService } from "../../price/price.service";
 })
 export class InvoiceGeneratorService {
 	private unsavedInvoices: Invoice[];
-  private feePercentage: number;
-  private feeVatPercentage: number;
-  private fee: number;
+	private feePercentage: number;
+	private feeVatPercentage: number;
+	private fee: number;
+	private daysToDeadline: number;
 
 	constructor(
 		private invoiceService: InvoiceService,
 		private customerItemHandlerService: CustomerItemHandlerService,
 		private userDetailService: UserDetailService,
-    private itemService: ItemService,
-    private priceService: PriceService
-  ) {
-    this.feePercentage = 1.1;
-    this.feeVatPercentage = 0.25;
-    this.fee = 75;
-  }
+		private itemService: ItemService,
+		private priceService: PriceService,
+		private dateService: DateService
+	) {
+		this.feePercentage = 1.1;
+		this.feeVatPercentage = 0.25;
+		this.fee = 75;
+		this.daysToDeadline = 14;
+	}
 
 	/**
 	 * Creates invoices based on customerItems not delivered on a set deadline
 	 */
 	public async createInvoices(
-    settings: {feePercentage: number, fee: number},
+		settings: {
+			feePercentage: number;
+			fee: number;
+			daysToDeadline: number;
+		},
 		reference: string,
 		invoiceNumber: number,
 		period: { fromDate: Date; toDate: Date }
 	): Promise<Invoice[]> {
-
-    this.fee = settings.fee;
-    this.feePercentage = settings.feePercentage;
+		this.fee = settings.fee;
+		this.feePercentage = settings.feePercentage;
+		this.daysToDeadline = settings.daysToDeadline;
 
 		const notReturnedCustomerItems = await this.customerItemHandlerService.getNotReturned(
 			period
@@ -116,7 +124,7 @@ export class InvoiceGeneratorService {
 		}[]
 	): Promise<Invoice[]> {
 		let invoices = [];
-		let duedate = new Date();
+		let duedate = this.dateService.addDays(new Date(), this.daysToDeadline);
 
 		for (let customerWithCustomerItem of customersWithCustomerItems) {
 			customerWithCustomerItem.customer = await this.userDetailService.getById(
@@ -184,7 +192,7 @@ export class InvoiceGeneratorService {
 		} as Invoice;
 
 		invoice = this.calculateTotalPayment(invoice);
-    invoice = this.calculateFeePayment(invoice);
+		invoice = this.calculateFeePayment(invoice);
 
 		return invoice;
 	}
@@ -219,14 +227,21 @@ export class InvoiceGeneratorService {
 		}
 
 		return invoice;
-  }
+	}
 
-  private calculateFeePayment(invoice: Invoice) {
-    invoice.payment.fee.net = this.priceService.sanitize(invoice.customerItemPayments.length * this.fee);
-    invoice.payment.fee.vat = this.priceService.sanitize(invoice.customerItemPayments.length * (this.fee * this.feeVatPercentage));
-    invoice.payment.fee.gross = this.priceService.sanitize(invoice.payment.fee.net - invoice.payment.fee.vat);
-    return invoice;
-  }
+	private calculateFeePayment(invoice: Invoice) {
+		invoice.payment.fee.net = this.priceService.sanitize(
+			invoice.customerItemPayments.length * this.fee
+		);
+		invoice.payment.fee.vat = this.priceService.sanitize(
+			invoice.customerItemPayments.length *
+				(this.fee * this.feeVatPercentage)
+		);
+		invoice.payment.fee.gross = this.priceService.sanitize(
+			invoice.payment.fee.net - invoice.payment.fee.vat
+		);
+		return invoice;
+	}
 
 	private itemUnitPrice(item: Item): number {
 		return item.price;
@@ -237,11 +252,15 @@ export class InvoiceGeneratorService {
 	}
 
 	private itemNetPrice(item: Item): number {
-		return this.priceService.sanitize(this.itemGrossPrice(item) - this.itemVatPrice(item));
+		return this.priceService.sanitize(
+			this.itemGrossPrice(item) - this.itemVatPrice(item)
+		);
 	}
 
 	private itemVatPrice(item: Item): number {
-		return this.priceService.sanitize(item.price * this.feePercentage * item.taxRate);
+		return this.priceService.sanitize(
+			item.price * this.feePercentage * item.taxRate
+		);
 	}
 
 	private itemDiscountPrice(item: Item): number {
