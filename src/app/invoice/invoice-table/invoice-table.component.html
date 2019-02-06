@@ -54,7 +54,9 @@
 					*ngFor="let invoice of (invoices$ | async); let i = index"
 					[ngClass]="{
 						'table-primary':
-							selectedInvoice && selectedInvoice.id == invoice.id
+							selectedInvoice &&
+							invoice.id &&
+							selectedInvoice.id == invoice.id
 					}"
 					(click)="onSelectInvoice(invoice)"
 				>
