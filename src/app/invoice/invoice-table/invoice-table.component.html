@@ -1,24 +1,29 @@
-<div class="row">
-	<div class="col">
-		<form>
-			<div class="form-group form-inline">
-				<input
-					class="form-control ml-2"
-					type="text"
-					placeholder="search name or reference"
-					name="searchFilter"
-					[formControl]="filter"
-				/>
+<div class="row justify-content-between align-items-center p-2">
+	<div class="col-auto">
+		<div class="input-group input-group-sm mb-3">
+			<input
+				class="form-control"
+				type="text"
+				i18n-placeholder="@@invoiceTableFilterPlaceholder"
+				placeholder="Filter by name or invoice id"
+				name="searchFilter"
+				[formControl]="filter"
+			/>
+			<div class="input-group-append">
+				<fa-icon icon="filter" class="input-group-text p-3"></fa-icon>
 			</div>
-		</form>
+		</div>
 	</div>
-	<div class="col" *ngIf="selectedList !== {}">
+
+	<div class="col-auto">
 		<button
 			class="btn btn-sm btn-outline-primary"
 			(click)="exportToExcel()"
 		>
 			<fa-icon icon="file-excel" class="mr-2"></fa-icon>
-			<span>Print to visma invoice format</span>
+			<span i18n="@@invoiceTablePrintSelected"
+				>Print selected to visma invoice format</span
+			>
 		</button>
 	</div>
 </div>

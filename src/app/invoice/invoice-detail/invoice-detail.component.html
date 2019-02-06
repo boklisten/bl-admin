@@ -2,18 +2,15 @@
 	<div class="row mb-2">
 		<div class="col">
 			<div class="card">
-				<div class="card-body">
-					<div>
+				<div class="card-header">
+					<span i18n="@@invoiceDetailHeaderTitle"> Invoice </span>
+					<span class="float-right">
 						<fa-icon icon="hashtag"></fa-icon>
-						<span class="float-right">{{ invoice.invoiceId }}</span>
-					</div>
-					<div>
-						<span i18n="@@invoiceDetailDeadline">Deadline</span>
-						<span class="float-right">{{
-							invoice.duedate | blDate
-						}}</span>
-					</div>
-					<div>
+						{{ invoice.invoiceId }}</span
+					>
+				</div>
+				<div class="card-body">
+					<div class="mb-3">
 						<span i18n="@@invoiceDetailCustomerHavePayed"
 							>Customer have payed</span
 						>
@@ -24,65 +21,125 @@
 						>
 						</app-bl-common-toggle-button>
 					</div>
+					<div>
+						<span i18n="@@invoiceDetailName">Name</span>
+						<span
+							class="float-right bl-link-black"
+							[routerLink]="
+								'/customer/' +
+								invoice.customerInfo.customerDetail +
+								'/detail'
+							"
+							>{{ invoice.customerInfo.name }}</span
+						>
+					</div>
+					<div>
+						<span i18n="@@invoiceDetailDeadline">Deadline</span>
+						<span class="float-right font-weight-bold">{{
+							invoice.duedate | blDate
+						}}</span>
+					</div>
+
+					<div>
+						<span i18n="@@invoiceDetailAddress">Address</span>
+						<span class="float-right"
+							>{{ invoice.customerInfo.postal.address }},
+							{{ invoice.customerInfo.postal.code }}
+							{{ invoice.customerInfo.postal.city }}</span
+						>
+					</div>
+					<div>
+						<span i18n="@@invoiceDetailPhone">Phone</span>
+						<span class="float-right">{{
+							invoice.customerInfo.phone
+						}}</span>
+					</div>
+					<div>
+						<span i18n="@@invoiceDetailEmail">Email</span>
+						<span class="float-right">{{
+							invoice.customerInfo.email
+						}}</span>
+					</div>
+					<div>
+						<span i18n="@@invoiceDetailCreationTime"
+							>Creation time</span
+						>
+						<span class="float-right">{{
+							invoice.creationTime | blDate
+						}}</span>
+					</div>
+					<table
+						class="table table-hover table-borderless table-sm mt-3"
+					>
+						<thead>
+							<tr>
+								<th scope="col" i18n="@@invoiceDetailItemTitle">
+									Title
+								</th>
+								<th
+									scope="col"
+									i18n="@@invoiceDetailItemDeadline"
+								>
+									Amount
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr
+								*ngFor="
+									let customerItemPayment of invoice.customerItemPayments
+								"
+								[ngbTooltip]="customerItemPaymentContent"
+							>
+								<th scope="row">
+									{{ customerItemPayment.title }}
+								</th>
+								<td>
+									{{
+										customerItemPayment.payment.gross
+											| blcPrice
+									}}
+								</td>
+							</tr>
+							<tr class="table-light font-italic">
+								<td i18n="@@invoiceDetailItemsTotal">
+									Items total
+								</td>
+								<td>
+									{{ invoice.payment.total.gross | blcPrice }}
+								</td>
+							</tr>
+							<tr
+								class="table-light font-italic"
+								[ngbTooltip]="invoiceFeeContent"
+							>
+								<td i18n="@@invoiceDetailFee">Fee</td>
+								<td>
+									{{ invoice.payment.fee.gross | blcPrice }}
+								</td>
+							</tr>
+							<tr class="table-secondary">
+								<th>Total</th>
+								<th>
+									{{
+										invoice.payment.total.gross +
+											invoice.payment.fee.gross | blcPrice
+									}}
+								</th>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col">
-			<table class="table table-hover table-borderless">
-				<thead>
-					<tr>
-						<th scope="col" i18n="@@invoiceDetailItemTitle">
-							Title
-						</th>
-						<th scope="col" i18n="@@invoiceDetailItemDeadline">
-							Amount
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr
-						*ngFor="
-							let customerItemPayment of invoice.customerItemPayments
-						"
-						[ngbTooltip]="customerItemPaymentContent"
-					>
-						<th scope="row">{{ customerItemPayment.title }}</th>
-						<td>
-							{{ customerItemPayment.payment.gross | blcPrice }}
-						</td>
-					</tr>
-					<tr class="table-light font-italic">
-						<td i18n="@@invoiceDetailItemsTotal">Items total</td>
-						<td>{{ invoice.payment.total.gross | blcPrice }}</td>
-					</tr>
-					<tr
-						class="table-light font-italic"
-						[ngbTooltip]="invoiceFeeContent"
-					>
-						<td i18n="@@invoiceDetailFee">Fee</td>
-						<td>{{ invoice.payment.fee.gross | blcPrice }}</td>
-					</tr>
-					<tr class="table-secondary">
-						<th>Total</th>
-						<th>
-							{{
-								invoice.payment.total.gross +
-									invoice.payment.fee.gross | blcPrice
-							}}
-						</th>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+	<div class="row"><div class="col"></div></div>
 </div>
 
 <ng-template #customerItemPaymentContent>
 	<div>
 		<div i18n="@@invoiceDetailCustomerItemPayment" class="bl-text-sm">
-			The full price of item * a set fee
+			The full price of item * a set fee percentage
 		</div>
 	</div>
 </ng-template>

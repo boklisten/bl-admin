@@ -60,7 +60,7 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 			const term = text.toLowerCase();
 			return (
 				invoice.customerInfo.name.toLowerCase().includes(term) ||
-				invoice.reference.toString().includes(term)
+				invoice.invoiceId.toString().includes(term)
 			);
 		});
 	}
