@@ -122,8 +122,8 @@
 								<th>Total</th>
 								<th>
 									{{
-										invoice.payment.total.gross +
-											invoice.payment.fee.gross | blcPrice
+										invoice.payment.totalIncludingFee
+											| blcPrice
 									}}
 								</th>
 							</tr>

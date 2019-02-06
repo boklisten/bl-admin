@@ -86,7 +86,7 @@
 						</span>
 					</td>
 					<td>{{ invoice.duedate | blDate }}</td>
-					<td>{{ invoice.payment.total.gross | blcPrice }}</td>
+					<td>{{ invoice.payment.totalIncludingFee | blcPrice }}</td>
 					<td
 						[ngClass]="{
 							'text-success': invoice.customerHavePayed,

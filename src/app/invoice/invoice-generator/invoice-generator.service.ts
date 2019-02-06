@@ -185,7 +185,8 @@ export class InvoiceGeneratorService {
 					net: 0,
 					vat: 0,
 					discount: 0
-				}
+				},
+				totalIncludingFee: 0
 			},
 			reference: reference,
 			invoiceId: invoiceNumber.toString()
@@ -193,6 +194,9 @@ export class InvoiceGeneratorService {
 
 		invoice = this.calculateTotalPayment(invoice);
 		invoice = this.calculateFeePayment(invoice);
+
+		invoice.payment.totalIncludingFee =
+			invoice.payment.total.gross + invoice.payment.fee.gross;
 
 		return invoice;
 	}
