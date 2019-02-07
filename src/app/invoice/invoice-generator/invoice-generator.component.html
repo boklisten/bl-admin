@@ -6,39 +6,40 @@
 			></app-blc-period-select>
 		</div>
 		<div class="col">
-      <b>invoice number</b>
+			<b>invoice number</b>
 			<app-blc-edit-number-value
 				[(value)]="invoiceNumber"
 			></app-blc-edit-number-value>
 		</div>
 		<div class="col">
-      <b>fee per item</b>
+			<b>fee per item</b>
 			<app-blc-edit-number-value
 				[(value)]="fee"
 			></app-blc-edit-number-value>
 		</div>
 		<div class="col">
-      <b>Fee percentage per item</b>
+			<b>Fee percentage per item</b>
 			<app-blc-edit-number-value
 				[(value)]="feePercentage"
 			></app-blc-edit-number-value>
 		</div>
 
 		<div class="col">
-			<button
-				class="btn btn-sm btn-outline-primary"
-				(click)="createInvoices()"
-			>
-				Generate
-			</button>
+			<app-bl-common-update-button
+				[wait]="wait"
+				text="Generate"
+				(clicked)="createInvoices()"
+			></app-bl-common-update-button>
 		</div>
 		<div class="col" *ngIf="invoices && invoices.length > 0">
-			<button class="btn btn-sm btn-success" (click)="addInvoices()">
-				Push to database
-			</button>
+			<app-bl-common-update-button
+				[wait]="waitAdd"
+				text="Push to database"
+				(clicked)="addInvoices()"
+			></app-bl-common-update-button>
 		</div>
 	</div>
-  <div class="row mt-5" *ngIf="invoices && invoices.length > 0">
+	<div class="row mt-5" *ngIf="invoices && invoices.length > 0">
 		<div class="col">
 			<app-invoice-table [invoices]="invoices"></app-invoice-table>
 		</div>

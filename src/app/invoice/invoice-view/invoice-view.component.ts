@@ -10,17 +10,21 @@ import { Invoice } from "@wizardcoder/bl-model";
 export class InvoiceViewComponent implements OnInit {
 	invoices: Invoice[];
 	selectedInvoice: Invoice;
+	public wait: boolean;
 
 	constructor(private invoiceService: InvoiceService) {}
 
 	ngOnInit() {
+		this.wait = true;
 		this.invoiceService
 			.get()
 			.then(invoices => {
 				this.invoices = invoices;
+				this.wait = false;
 			})
 			.catch(err => {
 				console.log("invoice err", err);
+				this.wait = false;
 			});
 	}
 }

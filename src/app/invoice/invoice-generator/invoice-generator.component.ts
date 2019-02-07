@@ -16,6 +16,8 @@ export class InvoiceGeneratorComponent implements OnInit {
 	public fee: number;
 	public feePercentage: number;
 	public daysToDeadline: number;
+	public wait: boolean;
+	public waitAdd: boolean;
 
 	constructor(
 		customerItemService: CustomerItemService,
@@ -35,6 +37,7 @@ export class InvoiceGeneratorComponent implements OnInit {
 	}
 
 	public createInvoices() {
+		this.wait = true;
 		this.invoiceGeneratorService
 			.createInvoices(
 				{
@@ -47,20 +50,27 @@ export class InvoiceGeneratorComponent implements OnInit {
 				this.period
 			)
 			.then(invoices => {
+				this.wait = false;
 				this.invoices = invoices;
 				this.invoiceGeneratorService.setUnsavedInvoices(invoices);
+			})
+			.catch(() => {
+				this.wait = false;
 			});
 	}
 
 	public addInvoices() {
+		this.waitAdd = true;
 		this.invoiceGeneratorService
 			.addInvoices(this.invoices)
 			.then(addedInvoices => {
+				this.waitAdd = false;
 				if (addedInvoices.length === this.invoices.length) {
 					this.invoices = [];
 				}
 			})
 			.catch(err => {
+				this.waitAdd = false;
 				console.log("could not add invoices", err);
 			});
 	}
