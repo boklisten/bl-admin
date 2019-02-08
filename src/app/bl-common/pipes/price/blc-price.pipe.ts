@@ -7,7 +7,7 @@ import { ItemPriceService } from "../../../price/item-price/item-price.service";
 export class BlcPricePipe implements PipeTransform {
 	constructor(private _itemPriceService: ItemPriceService) {}
 	transform(price: number): any {
-		if (!price) {
+		if (price === undefined || price === null) {
 			return "-1 kr";
 		}
 		return price.toString() + " kr";
