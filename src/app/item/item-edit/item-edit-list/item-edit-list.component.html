@@ -1,10 +1,23 @@
-
 <div class="row" *ngIf="temp.length > 0">
 	<div class="col-12 mb-3">
-		<button class="btn btn-sm mr-1" [ngClass]="{'btn-outline-success': selected.length > 0, 'btn-outline-secondary': selected.length <= 0}" [disabled]="selected.length <= 0" *ngIf="!autoUpdate" (click)="uploadSelected()">
+		<button
+			class="btn btn-sm mr-1"
+			[ngClass]="{
+				'btn-outline-success': selected.length > 0,
+				'btn-outline-secondary': selected.length <= 0
+			}"
+			[disabled]="selected.length <= 0"
+			*ngIf="!autoUpdate"
+			(click)="uploadSelected()"
+		>
 			<span i18n="@@itemEditListUploadSelected">Upload selected</span>
 		</button>
-		<button class="btn btn-sm" [ngClass]="{'btn-outline-info': selected.length > 0}" [disabled]="selected.length <= 0" (click)="onDownloadSelected()">
+		<button
+			class="btn btn-sm"
+			[ngClass]="{ 'btn-outline-info': selected.length > 0 }"
+			[disabled]="selected.length <= 0"
+			(click)="onDownloadSelected()"
+		>
 			<span i18n="@@itemEditListDownloadSelected">Download selected</span>
 		</button>
 	</div>
@@ -13,14 +26,13 @@
 <div class="row">
 	<div class="col-12">
 		<div class="input-group mb-3" *ngIf="temp.length > 0">
-
-            <input
-                type='text'
+			<input
+				type="text"
 				class="form-control"
 				i18n-placeholder="@@itemEditListFilterByTitleOrIsbnPlaceholder"
-                placeholder='Filter by title or isbn'
-                (keyup)='updateFilter($event)'
-            />
+				placeholder="Filter by title or isbn"
+				(keyup)="updateFilter($event)"
+			/>
 			<div class="input-group-append">
 				<span class="input-group-text">
 					<fa-icon [icon]="'filter'"></fa-icon>
@@ -29,7 +41,6 @@
 		</div>
 	</div>
 </div>
-
 
 <div class="row">
 	<div class="col-12" style="min-height: 500px">
@@ -44,46 +55,73 @@
 			[columnMode]="'force'"
 			[selected]="selected"
 			[selectionType]="'checkbox'"
-			(select)='onSelect($event)'>
-
-
-			<ngx-datatable-column
-				[width]="25"
-				[sortable]="false">
-				<ng-template ngx-datatable-header-template let-value="value" let-allRowsSelectedj="allRowsSelected" let-selectFn="selectFn">
-					<input type="checkbox" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"/>
+			(select)="onSelect($event)"
+		>
+			<ngx-datatable-column [width]="25" [sortable]="false">
+				<ng-template
+					ngx-datatable-header-template
+					let-value="value"
+					let-allRowsSelectedj="allRowsSelected"
+					let-selectFn="selectFn"
+				>
+					<input
+						type="checkbox"
+						[checked]="allRowsSelected"
+						(change)="selectFn(!allRowsSelected)"
+					/>
 				</ng-template>
-				<ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
-					<input type="checkbox" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"/>
+				<ng-template
+					ngx-datatable-cell-template
+					let-value="value"
+					let-isSelected="isSelected"
+					let-onCheckboxChangeFn="onCheckboxChangeFn"
+				>
+					<input
+						type="checkbox"
+						[checked]="isSelected"
+						(change)="onCheckboxChangeFn($event)"
+					/>
 				</ng-template>
 			</ngx-datatable-column>
 
 			<ngx-datatable-column name="isbn">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                    <app-blc-datatable-string-cell
+				<ng-template
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+					let-row="row"
+				>
+					<app-blc-datatable-string-cell
 						[rowIndex]="rowIndex"
-                        [name]="'isbn'"
-                        [(value)]="items[rowIndex].info.isbn"
+						[name]="'isbn'"
+						[(value)]="items[rowIndex].info.isbn"
 						[editingObj]="editing"
 						(update)="updateRowItem($event.rowIndex, $event.name)"
-                    ></app-blc-datatable-string-cell>
-                </ng-template>
-            </ngx-datatable-column>
+					></app-blc-datatable-string-cell>
+				</ng-template>
+			</ngx-datatable-column>
 
 			<ngx-datatable-column name="title" [width]="500">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                    <app-blc-datatable-string-cell
+				<ng-template
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+					let-row="row"
+				>
+					<app-blc-datatable-string-cell
 						[rowIndex]="rowIndex"
-                        [name]="'title'"
-                        [(value)]="items[rowIndex].title"
+						[name]="'title'"
+						[(value)]="items[rowIndex].title"
 						[editingObj]="editing"
 						(update)="updateRowItem($event.rowIndex, $event.name)"
-                    ></app-blc-datatable-string-cell>
-                </ng-template>
-            </ngx-datatable-column>
+					></app-blc-datatable-string-cell>
+				</ng-template>
+			</ngx-datatable-column>
 
 			<ngx-datatable-column name="price">
-				<ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+				<ng-template
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+					let-row="row"
+				>
 					<app-blc-datatable-string-cell
 						[rowIndex]="rowIndex"
 						[name]="'price'"
@@ -95,7 +133,11 @@
 			</ngx-datatable-column>
 
 			<ngx-datatable-column name="year">
-				<ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
+				<ng-template
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+					let-row="row"
+				>
 					<app-blc-datatable-string-cell
 						[rowIndex]="rowIndex"
 						[name]="'year'"
@@ -107,43 +149,94 @@
 			</ngx-datatable-column>
 
 			<ngx-datatable-column name="active">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-					<app-bl-common-toggle-button [(value)]="items[rowIndex].active" (update)="updateRowItem(rowIndex, 'active')" [tooltip]="'change active state'"></app-bl-common-toggle-button>
-                </ng-template>
-            </ngx-datatable-column>
-
+				<ng-template
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+					let-value="value"
+					let-row="row"
+				>
+					<app-bl-common-toggle-button
+						[(value)]="items[rowIndex].active"
+						(update)="updateRowItem(rowIndex, 'active')"
+						[tooltip]="'change active state'"
+					></app-bl-common-toggle-button>
+				</ng-template>
+			</ngx-datatable-column>
 
 			<ngx-datatable-column name="archived">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-                    <span>
-                        <button class="btn btn-sm" [disabled]="!editable" [ngClass]="{'btn-danger': value, 'btn-outline-secondary': !value}" (click)="updateValue(!value, 'archived', rowIndex)">
-							<span *ngIf="value"><fa-icon [icon]="'check'" class="mr-2"></fa-icon>
-								<span i18n="@@itemEditListArchived">Archived</span>
+				<ng-template
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+					let-value="value"
+					let-row="row"
+				>
+					<span>
+						<button
+							class="btn btn-sm"
+							[disabled]="!editable"
+							[ngClass]="{
+								'btn-danger': value,
+								'btn-outline-secondary': !value
+							}"
+							(click)="updateValue(!value, 'archived', rowIndex)"
+						>
+							<span *ngIf="value"
+								><fa-icon
+									[icon]="'check'"
+									class="mr-2"
+								></fa-icon>
+								<span i18n="@@itemEditListArchived"
+									>Archived</span
+								>
 							</span>
-							<span *ngIf="!value"><fa-icon [icon]="'archive'" class="mr-2"></fa-icon>
-								<span i18n="@@itemEditListArchive">Archive</span>
+							<span *ngIf="!value"
+								><fa-icon
+									[icon]="'archive'"
+									class="mr-2"
+								></fa-icon>
+								<span i18n="@@itemEditListArchive"
+									>Archive</span
+								>
 							</span>
-                        </button>
-                    </span>
-                </ng-template>
-            </ngx-datatable-column>
+						</button>
+					</span>
+				</ng-template>
+			</ngx-datatable-column>
 
-			<ngx-datatable-column
-				[frozenRight]="true">
-				<ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+			<ngx-datatable-column [frozenRight]="true">
+				<ng-template
+					let-row="row"
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+				>
 					<div>
-
-                        <span *ngIf="uploadList && items[rowIndex].id" class="text-danger mr-2">
-                            <fa-icon [icon]="'eraser'" [size]="'1x'" ngbTooltip="'Will erase some data'" placement="left"></fa-icon>
-                        </span>
+						<span
+							*ngIf="uploadList && items[rowIndex].id"
+							class="text-danger mr-2"
+						>
+							<fa-icon
+								[icon]="'eraser'"
+								[size]="'1x'"
+								ngbTooltip="'May override some data'"
+								placement="left"
+							></fa-icon>
+						</span>
 
 						<span>
-                            <button class="btn btn-sm btn-outline-secondary" *ngIf="items[rowIndex].id">
-                                <fa-icon [icon]="'info-circle'"></fa-icon>
-                            </button>
+							<button
+								class="btn btn-sm btn-outline-secondary"
+								*ngIf="items[rowIndex].id"
+							>
+								<fa-icon [icon]="'info-circle'"></fa-icon>
+							</button>
 						</span>
 						<span>
-							<fa-icon [icon]="'circle-notch'" class="ml-2" [spin]="true" *ngIf="updating[rowIndex]"></fa-icon>
+							<fa-icon
+								[icon]="'circle-notch'"
+								class="ml-2"
+								[spin]="true"
+								*ngIf="updating[rowIndex]"
+							></fa-icon>
 						</span>
 					</div>
 				</ng-template>
