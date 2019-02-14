@@ -255,7 +255,7 @@ export class InvoiceGeneratorService {
 	}
 
 	private itemGrossPrice(item: Item): number {
-		return item.price * this.feePercentage;
+		return this.priceService.toFixed(item.price * this.feePercentage);
 	}
 
 	private itemNetPrice(item: Item): number {
