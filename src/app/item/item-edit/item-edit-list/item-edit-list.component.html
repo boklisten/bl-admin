@@ -91,6 +91,7 @@
 					let-row="row"
 				>
 					<app-blc-datatable-string-cell
+						*ngIf="items[rowIndex] && items[rowIndex].info"
 						[rowIndex]="rowIndex"
 						[name]="'isbn'"
 						[(value)]="items[rowIndex].info.isbn"
@@ -139,6 +140,7 @@
 					let-row="row"
 				>
 					<app-blc-datatable-string-cell
+						*ngIf="items[rowIndex] && items[rowIndex].info"
 						[rowIndex]="rowIndex"
 						[name]="'year'"
 						[(value)]="items[rowIndex].info.year"
