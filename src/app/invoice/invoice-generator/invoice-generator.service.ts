@@ -237,7 +237,8 @@ export class InvoiceGeneratorService {
 	}
 
 	private calculateFeePayment(invoice: Invoice) {
-		invoice.payment.fee.unit = this.fee + this.fee * this.feePercentage;
+		invoice.payment.fee.unit =
+			this.fee + this.priceService.toFixed(this.fee * this.feePercentage);
 		invoice.payment.fee.net = this.priceService.toFixed(
 			invoice.customerItemPayments.length * this.fee
 		);
@@ -259,14 +260,12 @@ export class InvoiceGeneratorService {
 	}
 
 	private itemNetPrice(item: Item): number {
-		return this.priceService.toFixed(
-			this.itemGrossPrice(item) - this.itemVatPrice(item)
-		);
+		return this.itemGrossPrice(item) - this.itemVatPrice(item);
 	}
 
 	private itemVatPrice(item: Item): number {
 		return this.priceService.toFixed(
-			item.price * this.feePercentage * item.taxRate
+			this.itemGrossPrice(item) * item.taxRate
 		);
 	}
 
