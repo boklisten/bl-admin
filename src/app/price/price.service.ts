@@ -1,20 +1,21 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class PriceService {
-
-	constructor() {
-	}
+	constructor() {}
 
 	public sanitize(price: number): number {
-
 		/*if (price <= 0) {
 			return this.sanitizeNum(price);
 		}*/
 
-		return this.sanitizeNum((parseInt((price / 10).toString(), 10)) * 10);
+		return this.sanitizeNum(parseInt((price / 10).toString(), 10) * 10);
+	}
+
+	public toFixed(num: number): number {
+		return this.sanitizeNum(num);
 	}
 
 	private sanitizeNum(sanitizeNumber: number): number {

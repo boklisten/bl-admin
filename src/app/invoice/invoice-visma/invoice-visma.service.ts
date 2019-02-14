@@ -7,38 +7,35 @@ import { BlPrintService } from "../../bl-common/bl-print/bl-print.service";
 	providedIn: "root"
 })
 export class InvoiceVismaService {
-  textFields: string[];
+	textFields: string[];
+	feeTitle: string;
 
 	constructor(
 		private dateService: DateService,
 		private printService: BlPrintService
-  ) {
-    this.textFields = [
-      "Fakturaen gjelder manglende/for sent leverte leiebøker fra forrige semester",
-      "Det er IKKE mulig å levere bøker nå.",
-      "Kundens fødselsdato: ",
-      "Kundens telefonnummer: ",
-      "Alle fakturahenvendelser sendes til info@boklisten.no"
-    ];
-  }
+	) {
+		this.textFields = [
+			"Fakturaen gjelder manglende/for sent leverte leiebøker fra forrige semester",
+			"Det er IKKE mulig å levere bøker nå.",
+			"Kundens fødselsdato: ",
+			"Kundens telefonnummer: ",
+			"Alle fakturahenvendelser sendes til info@boklisten.no"
+		];
+		this.feeTitle = "Administrasjonsgebyr";
+	}
 
 	public printToVismaInvoices(invoices: Invoice[]) {
 		const vismaRows = this.invoicesToVismaRows(invoices);
-    this.printService.printVismaRows(vismaRows);
+		this.printService.printVismaRows(vismaRows);
 	}
-
-	//[[], [], []]
 
 	public invoicesToVismaRows(invoices: Invoice[]) {
 		let vismaRows = [];
 
 		for (let invoice of invoices) {
-
-      for (let row of this.invoiceToVismaRows(invoice)) {
-        vismaRows.push(row);
-      }
-
-      //vismaRows.push(this.invoiceToVismaRows(invoice));
+			for (let row of this.invoiceToVismaRows(invoice)) {
+				vismaRows.push(row);
+			}
 		}
 
 		return vismaRows;
@@ -54,11 +51,11 @@ export class InvoiceVismaService {
 
 		for (let row of this.createVismaL1Fields(lineNum, invoice)) {
 			rows.push(row);
-		  lineNum++;
+
+			lineNum++;
 		}
 
-    rows.push(this.createVismaL1FeeField(lineNum, invoice));
-
+		rows.push(this.createVismaL1FeeField(lineNum, invoice));
 
 		lineNum++;
 
@@ -80,26 +77,67 @@ export class InvoiceVismaService {
 			rows.push(
 				this.createVismaL1Field(
 					lineNumber,
-					invoice.reference,
+					invoice.invoiceId,
 					customerItemPayment
 				)
 			);
-    }
+			lineNumber++;
+		}
 
 		return rows;
 	}
 
-	private createVismaL1TextFields(lineNumber: number, invoice: Invoice): any[] {
-    let rows = [];
-    rows.push(this.createVismaL1TextField(lineNumber, invoice.invoiceId, this.textFields[0]));
-    lineNumber++;
-    rows.push(this.createVismaL1TextField(lineNumber, invoice.invoiceId, this.textFields[1]));
-    lineNumber++;
-    rows.push(this.createVismaL1TextField(lineNumber, invoice.invoiceId, this.textFields[2] + this.dateService.dateOnFormat(invoice.customerInfo.dob, "DD.MM.YYYY")));
-    lineNumber++;
-    rows.push(this.createVismaL1TextField(lineNumber, invoice.invoiceId, this.textFields[3] + invoice.customerInfo.phone));
-    lineNumber++;
-    return rows;
+	private createVismaL1TextFields(
+		lineNumber: number,
+		invoice: Invoice
+	): any[] {
+		let rows = [];
+		rows.push(
+			this.createVismaL1TextField(
+				lineNumber,
+				invoice.invoiceId,
+				this.textFields[0]
+			)
+		);
+		lineNumber++;
+		rows.push(
+			this.createVismaL1TextField(
+				lineNumber,
+				invoice.invoiceId,
+				this.textFields[1]
+			)
+		);
+		lineNumber++;
+		rows.push(
+			this.createVismaL1TextField(
+				lineNumber,
+				invoice.invoiceId,
+				this.textFields[2] +
+					this.dateService.dateOnFormat(
+						invoice.customerInfo.dob,
+						"DD.MM.YYYY"
+					)
+			)
+		);
+		lineNumber++;
+		rows.push(
+			this.createVismaL1TextField(
+				lineNumber,
+				invoice.invoiceId,
+				this.textFields[3] + invoice.customerInfo.phone
+			)
+		);
+		lineNumber++;
+
+		rows.push(
+			this.createVismaL1TextField(
+				lineNumber,
+				invoice.invoiceId,
+				this.textFields[4]
+			)
+		);
+		lineNumber++;
+		return rows;
 	}
 
 	private createVismaH1Field(lineNum: number, invoice: Invoice) {
@@ -139,7 +177,7 @@ export class InvoiceVismaService {
 			this.asEars(invoice.payment.total.gross), //21 'Invoice gross amount': (M)
 			this.asEars(invoice.payment.total.net), //22 'Invoice net amunt': (M)
 			this.asEars(invoice.payment.total.vat), //23 'VAT': (M)
-			invoice.payment.total.gross > 0 ? "IN" : "CR", //24 'Document Type': (M) IN = invoice, CR = credit nota
+			invoice.payment.total.gross >= 0 ? "IN" : "CR", //24 'Document Type': (M) IN = invoice, CR = credit nota
 			"", //25 'Order number':
 			"", //26 'Project Number':
 			"", //27 'Department/Dimension':
@@ -192,13 +230,13 @@ export class InvoiceVismaService {
 
 	private createVismaL1Field(
 		lineNumber: number,
-		reference: string,
+		invoiceNumber: string,
 		customerItemPayment
 	) {
 		return [
 			"L1", //1 'Record type'
 			lineNumber, //2 'Line number':
-			reference, //3 'Invoice number':
+			invoiceNumber, //3 'Invoice number':
 			"V", //4 'Line type': (M)
 			"", //5 'VAT type': (M)
 			customerItemPayment["customerItem"], //6 'Article number':
@@ -245,7 +283,7 @@ export class InvoiceVismaService {
 			"V", //4 'Line type': (M)
 			"PLH", //5 'VAT type': (M)
 			"1000", //6 'Article number':
-			"Some text", //7 'Article name': (M)
+			this.feeTitle, //7 'Article name': (M)
 			invoice.customerItemPayments.length, //8 'Invoiced quantity (no of units)': (M)
 			invoice.payment.total.discount, //9 'Discount%':
 			"", //10 Currency

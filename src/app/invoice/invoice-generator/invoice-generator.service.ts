@@ -192,11 +192,10 @@ export class InvoiceGeneratorService {
 			invoiceId: invoiceNumber.toString()
 		} as Invoice;
 
-		invoice = this.calculateTotalPayment(invoice);
 		invoice = this.calculateFeePayment(invoice);
+		invoice = this.calculateTotalPayment(invoice);
 
-		invoice.payment.totalIncludingFee =
-			invoice.payment.total.gross + invoice.payment.fee.gross;
+		invoice.payment.totalIncludingFee = invoice.payment.total.gross;
 
 		return invoice;
 	}
@@ -230,20 +229,24 @@ export class InvoiceGeneratorService {
 			invoice.payment.total.vat += customerItemPayment.payment.vat;
 		}
 
+		invoice.payment.total.gross += invoice.payment.fee.gross;
+		invoice.payment.total.net += invoice.payment.fee.net;
+		invoice.payment.total.vat += invoice.payment.fee.vat;
+
 		return invoice;
 	}
 
 	private calculateFeePayment(invoice: Invoice) {
-		invoice.payment.fee.net = this.priceService.sanitize(
+		invoice.payment.fee.unit = this.fee + this.fee * this.feePercentage;
+		invoice.payment.fee.net = this.priceService.toFixed(
 			invoice.customerItemPayments.length * this.fee
 		);
-		invoice.payment.fee.vat = this.priceService.sanitize(
+		invoice.payment.fee.vat = this.priceService.toFixed(
 			invoice.customerItemPayments.length *
 				(this.fee * this.feeVatPercentage)
 		);
-		invoice.payment.fee.gross = this.priceService.sanitize(
-			invoice.payment.fee.net - invoice.payment.fee.vat
-		);
+		invoice.payment.fee.gross =
+			invoice.payment.fee.net + invoice.payment.fee.vat;
 		return invoice;
 	}
 
@@ -252,17 +255,17 @@ export class InvoiceGeneratorService {
 	}
 
 	private itemGrossPrice(item: Item): number {
-		return this.priceService.sanitize(item.price * this.feePercentage);
+		return item.price * this.feePercentage;
 	}
 
 	private itemNetPrice(item: Item): number {
-		return this.priceService.sanitize(
+		return this.priceService.toFixed(
 			this.itemGrossPrice(item) - this.itemVatPrice(item)
 		);
 	}
 
 	private itemVatPrice(item: Item): number {
-		return this.priceService.sanitize(
+		return this.priceService.toFixed(
 			item.price * this.feePercentage * item.taxRate
 		);
 	}

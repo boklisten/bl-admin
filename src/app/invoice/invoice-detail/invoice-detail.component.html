@@ -106,7 +106,10 @@
 									Items total
 								</td>
 								<td>
-									{{ invoice.payment.total.gross | blcPrice }}
+									{{
+										invoice.payment.total.gross -
+											invoice.payment.fee.gross | blcPrice
+									}}
 								</td>
 							</tr>
 							<tr
@@ -121,10 +124,7 @@
 							<tr class="table-secondary">
 								<th>Total</th>
 								<th>
-									{{
-										invoice.payment.totalIncludingFee
-											| blcPrice
-									}}
+									{{ invoice.payment.total.gross | blcPrice }}
 								</th>
 							</tr>
 						</tbody>
