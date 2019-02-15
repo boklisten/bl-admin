@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { InvoiceGeneratorService } from "./invoice-generator/invoice-generator.service";
+import { PriceService } from "../price/price.service";
 
 @Component({
 	selector: "app-invoice",
@@ -7,8 +8,9 @@ import { InvoiceGeneratorService } from "./invoice-generator/invoice-generator.s
 	styleUrls: ["./invoice.component.scss"]
 })
 export class InvoiceComponent implements OnInit {
-	constructor(private invoiceGeneratorService: InvoiceGeneratorService) {}
+	constructor(private priceService: PriceService) {}
 
 	ngOnInit() {
+		//console.log("@", this.priceService.toFixed(750 * 1.1));
 	}
 }

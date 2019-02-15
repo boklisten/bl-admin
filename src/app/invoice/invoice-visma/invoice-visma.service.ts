@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Invoice } from "@wizardcoder/bl-model";
 import { DateService } from "../../date/date.service";
 import { BlPrintService } from "../../bl-common/bl-print/bl-print.service";
+import { BranchService } from "@wizardcoder/bl-connect";
 
 @Injectable({
 	providedIn: "root"
@@ -12,10 +13,11 @@ export class InvoiceVismaService {
 
 	constructor(
 		private dateService: DateService,
-		private printService: BlPrintService
+		private printService: BlPrintService,
+		private branchService: BranchService
 	) {
 		this.textFields = [
-			"Fakturaen gjelder manglende/for sent leverte leiebøker fra forrige semester",
+			"Fakturaen gjelder manglende/for sent leverte bøker fra forrige semester hos: ",
 			"Det er IKKE mulig å levere bøker nå.",
 			"Kundens fødselsdato: ",
 			"Kundens telefonnummer: ",
@@ -24,9 +26,11 @@ export class InvoiceVismaService {
 		this.feeTitle = "Administrasjonsgebyr";
 	}
 
-	public printToVismaInvoices(invoices: Invoice[]) {
+	public async printToVismaInvoices(invoices: Invoice[]): Promise<boolean> {
+		await this.addBranchNames(invoices);
 		const vismaRows = this.invoicesToVismaRows(invoices);
 		this.printService.printVismaRows(vismaRows);
+		return true;
 	}
 
 	public invoicesToVismaRows(invoices: Invoice[]) {
@@ -39,6 +43,21 @@ export class InvoiceVismaService {
 		}
 
 		return vismaRows;
+	}
+
+	private async addBranchNames(invoices): Promise<boolean> {
+		let branches = {};
+
+		for (let invoice of invoices) {
+			let branch = branches[invoice.branch];
+			if (!branch) {
+				branch = await this.branchService.getById(invoice.branch);
+				branches[branch.id] = branch;
+			}
+
+			invoice.customerInfo.branchName = branches[invoice.branch].name;
+			return invoice;
+		}
 	}
 
 	private invoiceToVismaRows(invoice: Invoice): any[] {
@@ -96,7 +115,7 @@ export class InvoiceVismaService {
 			this.createVismaL1TextField(
 				lineNumber,
 				invoice.invoiceId,
-				this.textFields[0]
+				this.textFields[0] + invoice.customerInfo.branchName
 			)
 		);
 		lineNumber++;
@@ -238,7 +257,7 @@ export class InvoiceVismaService {
 			lineNumber, //2 'Line number':
 			invoiceNumber, //3 'Invoice number':
 			"V", //4 'Line type': (M)
-			"", //5 'VAT type': (M)
+			customerItemPayment["payment"]["vat"] <= 0 ? "FRI" : "", //5 'VAT type': (M)
 			customerItemPayment["customerItem"], //6 'Article number':
 			customerItemPayment["title"], //7 'Article name': (M)
 			1, //8 'Invoiced quantity (no of units)': (M)

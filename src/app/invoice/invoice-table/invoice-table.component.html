@@ -21,7 +21,12 @@
 			(click)="exportToExcel()"
 		>
 			<fa-icon icon="file-excel" class="mr-2"></fa-icon>
-			<span i18n="@@invoiceTablePrintSelected"
+			<fa-icon
+				icon="circle-notch"
+				[spin]="true"
+				*ngIf="printToExcelWait"
+			></fa-icon>
+			<span i18n="@@invoiceTablePrintSelected" *ngIf="!printToExcelWait"
 				>Print selected to visma invoice format</span
 			>
 		</button>

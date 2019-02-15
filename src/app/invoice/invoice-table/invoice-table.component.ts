@@ -27,6 +27,7 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 	public selectAll: boolean;
 	public selectedList: any;
 	public selectedInvoice: Invoice;
+	public printToExcelWait: boolean;
 
 	constructor(private invoiceVismaService: InvoiceVismaService) {
 		this.selectInvoice = new EventEmitter<Invoice>();
@@ -52,7 +53,16 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 
 	public exportToExcel() {
 		let selectedInvoices = this.getSelected();
-		this.invoiceVismaService.printToVismaInvoices(selectedInvoices);
+		this.printToExcelWait = true;
+
+		this.invoiceVismaService
+			.printToVismaInvoices(selectedInvoices)
+			.then(() => {
+				this.printToExcelWait = false;
+			})
+			.catch(() => {
+				this.printToExcelWait = false;
+			});
 	}
 
 	public search(text: string): Invoice[] {

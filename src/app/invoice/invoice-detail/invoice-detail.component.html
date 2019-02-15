@@ -34,6 +34,12 @@
 						>
 					</div>
 					<div>
+						<span i18n="@@invoiceDetailBranch">Branch</span>
+						<span class="float-right bl-link-black">{{
+							invoice.branch | branchName | async
+						}}</span>
+					</div>
+					<div>
 						<span i18n="@@invoiceDetailDeadline">Deadline</span>
 						<span class="float-right font-weight-bold">{{
 							invoice.duedate | blDate

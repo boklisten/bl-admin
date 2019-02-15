@@ -156,6 +156,7 @@ export class InvoiceGeneratorService {
 		let invoice = {
 			duedate: duedate,
 			customerHavePayed: false,
+			branch: userDetail.branch,
 			customerItemPayments: this.createCustomerItemPayments(
 				customerItems
 			),
