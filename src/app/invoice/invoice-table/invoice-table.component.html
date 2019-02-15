@@ -45,7 +45,19 @@
 						>
 						</app-blc-button-check>
 					</th>
-					<th scope="col">#</th>
+					<th scope="col" (click)="sortInvoiceId()">
+						#
+						<span class="ml-2">
+							<fa-icon
+								*ngIf="sortByInvoiceIdDirection === 'asc'"
+								icon="arrow-up"
+							></fa-icon>
+							<fa-icon
+								*ngIf="sortByInvoiceIdDirection === 'desc'"
+								icon="arrow-down"
+							></fa-icon>
+						</span>
+					</th>
 					<th scope="col" i18n="@@invoiceTableItemName">Name</th>
 					<th scope="col" i18n="@@invoiceTableItemDeadline">
 						Deadline
