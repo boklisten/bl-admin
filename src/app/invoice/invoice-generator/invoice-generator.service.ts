@@ -153,10 +153,17 @@ export class InvoiceGeneratorService {
 		userDetail: UserDetail,
 		customerItems: CustomerItem[]
 	): Invoice {
+		let branch =
+			userDetail.branch !== undefined
+				? userDetail.branch
+				: customerItems[0].handoutInfo &&
+				  customerItems[0].handoutInfo["handoutById"]
+				? customerItems[0].handoutInfo["handoutById"]
+				: "";
 		let invoice = {
 			duedate: duedate,
 			customerHavePayed: false,
-			branch: userDetail.branch,
+			branch: branch,
 			customerItemPayments: this.createCustomerItemPayments(
 				customerItems
 			),
