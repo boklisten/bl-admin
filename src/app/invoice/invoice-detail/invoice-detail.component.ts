@@ -46,4 +46,15 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 			.then(() => {})
 			.catch(err => {});
 	}
+
+	public onCustomerItemPaymentCancel(index: number) {
+		this.invoice.customerItemPayments[index].cancel = !this.invoice
+			.customerItemPayments[index].cancel;
+		this.invoiceService
+			.update(this.invoice.id, {
+				customerItemPayments: this.invoice.customerItemPayments
+			})
+			.then(() => {})
+			.catch(err => {});
+	}
 }

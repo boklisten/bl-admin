@@ -88,14 +88,19 @@
 								>
 									Amount
 								</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr
 								*ngFor="
-									let customerItemPayment of invoice.customerItemPayments
+									let customerItemPayment of invoice.customerItemPayments;
+									let i = index
 								"
 								[ngbTooltip]="customerItemPaymentContent"
+								[ngClass]="{
+									'bl-cancel-line': customerItemPayment.cancel
+								}"
 							>
 								<th scope="row">
 									{{ customerItemPayment.title }}
@@ -105,6 +110,23 @@
 										customerItemPayment.payment.gross
 											| blcPrice
 									}}
+								</td>
+								<td>
+									<button
+										class="btn btn-link float-right"
+										(click)="onCustomerItemPaymentCancel(i)"
+									>
+										<span
+											i18n="@@invoiceDetailCancel"
+											*ngIf="!customerItemPayment.cancel"
+											>cancel</span
+										>
+										<span
+											i18n="@@invoiceDetailUndo"
+											*ngIf="customerItemPayment.cancel"
+											>undo</span
+										>
+									</button>
 								</td>
 							</tr>
 							<tr class="table-light font-italic">
@@ -117,6 +139,7 @@
 											invoice.payment.fee.gross | blcPrice
 									}}
 								</td>
+								<td></td>
 							</tr>
 							<tr
 								class="table-light font-italic"
@@ -132,6 +155,7 @@
 								<th>
 									{{ invoice.payment.total.gross | blcPrice }}
 								</th>
+								<td></td>
 							</tr>
 						</tbody>
 					</table>
