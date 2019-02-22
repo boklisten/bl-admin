@@ -61,6 +61,14 @@ export class InvoiceVismaService {
 		return true;
 	}
 
+	private mongoIdToNumber(mongoId: string): number {
+		let timestamp = mongoId.substring(0, 8);
+		let epoch = new Date(parseInt(timestamp, 16) * 1000).getTime();
+		let randomVal = parseInt(mongoId.substring(8, 18), 16);
+		let counter = parseInt(mongoId.substring(18, 24), 16);
+		return epoch + randomVal + counter;
+	}
+
 	private invoiceToVismaRows(invoice: Invoice): any[] {
 		let rows = [];
 		let lineNum = 0;
@@ -176,7 +184,7 @@ export class InvoiceVismaService {
 		return [
 			"H1", //1 Record Type (M)
 			lineNum, //2 Line number (M)
-			invoice.customerInfo.userDetail, //3 Customer no (M)
+			this.mongoIdToNumber(invoice.customerInfo.userDetail as string), //3 Customer no (M)
 			invoice.customerInfo.name, //4 'Customer name': (M)
 			invoice.customerInfo.postal.address, //5 'Address 1':
 			"", //6 'Address 2':
@@ -259,7 +267,7 @@ export class InvoiceVismaService {
 			invoiceNumber, //3 'Invoice number':
 			"V", //4 'Line type': (M)
 			customerItemPayment["payment"]["vat"] <= 0 ? "FRI" : "", //5 'VAT type': (M)
-			customerItemPayment["customerItem"], //6 'Article number':
+			this.mongoIdToNumber(customerItemPayment["customerItem"]), //6 'Article number':
 			customerItemPayment["title"], //7 'Article name': (M)
 			1, //8 'Invoiced quantity (no of units)': (M)
 			customerItemPayment["payment"]["discount"], //9 'Discount%':
