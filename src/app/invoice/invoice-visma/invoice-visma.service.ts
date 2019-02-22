@@ -50,14 +50,15 @@ export class InvoiceVismaService {
 
 		for (let invoice of invoices) {
 			let branch = branches[invoice.branch];
+
 			if (!branch) {
 				branch = await this.branchService.getById(invoice.branch);
 				branches[branch.id] = branch;
 			}
 
 			invoice.customerInfo.branchName = branches[invoice.branch].name;
-			return invoice;
 		}
+		return true;
 	}
 
 	private invoiceToVismaRows(invoice: Invoice): any[] {
