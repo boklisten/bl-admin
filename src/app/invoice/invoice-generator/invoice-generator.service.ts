@@ -216,6 +216,7 @@ export class InvoiceGeneratorService {
 			customerItemPayments.push({
 				customerItem: customerItemObj.id,
 				title: item.title,
+				item: item.id,
 				numberOfItems: 1,
 				payment: {
 					unit: this.itemUnitPrice(item),

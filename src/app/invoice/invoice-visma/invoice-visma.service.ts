@@ -268,9 +268,7 @@ export class InvoiceVismaService {
 			invoiceNumber, //3 'Invoice number':
 			"V", //4 'Line type': (M)
 			customerItemPayment["payment"]["vat"] <= 0 ? "FRI" : "", //5 'VAT type': (M)
-			this.mongoIdToNumber(
-				customerItemPayment["customerItem"]
-			).toString(), //6 'Article number':
+			this.mongoIdToNumber(customerItemPayment["item"]).toString(), //6 'Article number':
 			customerItemPayment["title"], //7 'Article name': (M)
 			1, //8 'Invoiced quantity (no of units)': (M)
 			customerItemPayment["payment"]["discount"], //9 'Discount%':
