@@ -47,6 +47,22 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 			.catch(err => {});
 	}
 
+	public onInvoiceToDebtCollection(toDebtCollection: boolean) {
+		this.invoice.toDebtCollection = toDebtCollection;
+		this.invoiceService
+			.update(this.invoice.id, { toDebtCollection: toDebtCollection })
+			.then(() => {})
+			.catch(err => {});
+	}
+
+	public onInvoiceToCreditNote(toCreditNote: boolean) {
+		this.invoice.toCreditNote = toCreditNote;
+		this.invoiceService
+			.update(this.invoice.id, { toCreditNote: toCreditNote })
+			.then(() => {})
+			.catch(err => {});
+	}
+
 	public onCustomerItemPaymentCancel(index: number) {
 		this.invoice.customerItemPayments[index].cancel = !this.invoice
 			.customerItemPayments[index].cancel;

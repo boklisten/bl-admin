@@ -29,7 +29,7 @@ export class InvoiceVismaService {
 	public async printToVismaInvoices(invoices: Invoice[]): Promise<boolean> {
 		await this.addBranchNames(invoices);
 		const vismaRows = this.invoicesToVismaRows(invoices);
-		this.printService.printVismaRows(vismaRows);
+    this.printService.printVismaRows(vismaRows);
 		return true;
 	}
 
@@ -59,15 +59,30 @@ export class InvoiceVismaService {
 			invoice.customerInfo.branchName = branches[invoice.branch].name;
 		}
 		return true;
-	}
+  }
+
+  private getMongoIdEpoch(mongoId: string): number {
+		let timestamp = mongoId.substring(0, 8);
+    //1993350442166 -- mongoIdNumber
+    // 770658889500 -- mongoIdNumber
+    // 770658889442 -- epoch + counter
+    //   1551362211 -- epoch
+		return new Date(parseInt(timestamp, 16)).getTime();
+  }
+
+  private getMongoIdCounter(mongoId: string): number {
+		 return parseInt(mongoId.substring(18, 24), 16);
+  }
 
 	private mongoIdToNumber(mongoId: string): number {
 		let timestamp = mongoId.substring(0, 8);
-		let epoch = new Date(parseInt(timestamp, 16) * 1000).getTime();
+		let epoch = new Date(parseInt(timestamp, 16)).getTime();
 		let randomVal = parseInt(mongoId.substring(8, 18), 16);
 		let counter = parseInt(mongoId.substring(18, 24), 16);
-		return epoch + randomVal + counter;
-	}
+    return epoch + counter;
+    //return epoch + randomVal + counter;
+  }
+
 
 	private invoiceToVismaRows(invoice: Invoice): any[] {
 		let rows = [];
@@ -172,7 +187,6 @@ export class InvoiceVismaService {
 		let distributionChannel: string = "";
 		let eInvoiceCode: string = "";
 		let eInvoiceRef: string = "";
-
 		/*
     if (ehf) {
       distributionChannel = 'H';
@@ -184,7 +198,7 @@ export class InvoiceVismaService {
 		return [
 			"H1", //1 Record Type (M)
 			lineNum, //2 Line number (M)
-			this.mongoIdToNumber(invoice.customerInfo
+			this.getMongoIdEpoch(invoice.customerInfo
 				.userDetail as string).toString(), //3 Customer no (M)
 			invoice.customerInfo.name, //4 'Customer name': (M)
 			invoice.customerInfo.postal.address, //5 'Address 1':
@@ -268,7 +282,7 @@ export class InvoiceVismaService {
 			invoiceNumber, //3 'Invoice number':
 			"V", //4 'Line type': (M)
 			customerItemPayment["payment"]["vat"] <= 0 ? "FRI" : "", //5 'VAT type': (M)
-			this.mongoIdToNumber(customerItemPayment["item"]).toString(), //6 'Article number':
+			this.getMongoIdCounter(customerItemPayment["item"]).toString(), //6 'Article number':
 			customerItemPayment["title"], //7 'Article name': (M)
 			1, //8 'Invoiced quantity (no of units)': (M)
 			customerItemPayment["payment"]["discount"], //9 'Discount%':
