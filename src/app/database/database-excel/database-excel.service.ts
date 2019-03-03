@@ -1,12 +1,10 @@
-import {Injectable} from '@angular/core';
-import {read, write, utils, WorkBook, writeFile} from 'xlsx';
-import {DateService} from '../../date/date.service';
+import { Injectable } from "@angular/core";
+import { read, write, utils, WorkBook, writeFile } from "xlsx";
+import { DateService } from "../../date/date.service";
 
 @Injectable()
 export class DatabaseExcelService {
-
-	constructor(private _dateService: DateService) {
-	}
+	constructor(private _dateService: DateService) {}
 
 	public objectsToExcelFile(objects: any[], fileName: string) {
 		const flattenObjects = [];
@@ -18,19 +16,21 @@ export class DatabaseExcelService {
 		const sheet = utils.json_to_sheet(flattenObjects);
 		const workBook: WorkBook = utils.book_new();
 
-		const fileNameWithDate = fileName + '_' + this._dateService.currentDateCompact() + '.xlsx';
+		const fileNameWithDate =
+			fileName + "_" + this._dateService.currentDateCompact() + ".xlsx";
 
 		utils.book_append_sheet(workBook, sheet, fileNameWithDate);
 
-		writeFile(workBook, fileNameWithDate);
+    writeFile(workBook, fileNameWithDate);
 	}
 
 	public excelFileToObjects(excelBinaryFile: any): any[] {
+		const workbook = read(excelBinaryFile, { type: "array" });
 
-		const workbook = read(excelBinaryFile, {type: 'array'});
-
-		const jsonWorkbook = utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], {raw: true});
-
+		const jsonWorkbook = utils.sheet_to_json(
+			workbook.Sheets[workbook.SheetNames[0]],
+			{ raw: true }
+    );
 
 		const objectArray = [];
 
@@ -38,24 +38,26 @@ export class DatabaseExcelService {
 			objectArray.push(this.flattenObjToRegular(obj));
 		}
 
-		console.log('the object array', objectArray);
-
 		return objectArray;
-
 	}
 
 	private flattenObjToRegular(flattenObj: any) {
+
 		const regularObj = {};
 
 		for (const objKey in flattenObj) {
-
 			if (!flattenObj.hasOwnProperty(objKey)) {
 				continue;
 			}
 
-			const splittedKey = objKey.toString().split('.');
+			const splittedKey = objKey.toString().split(".");
 
-			this.addFlattenObjToRegular(regularObj, splittedKey, flattenObj[objKey]);
+
+			this.addFlattenObjToRegular(
+				regularObj,
+				splittedKey,
+				flattenObj[objKey]
+			);
 		}
 
 		return regularObj;
@@ -64,19 +66,16 @@ export class DatabaseExcelService {
 	private addFlattenObjToRegular(parentObj: any, keys: string[], value: any) {
 		const currentKey = keys[0];
 
-
 		if (keys.length <= 1) {
-			if (value === 'false') {
+			if (value === "false") {
 				parentObj[keys[0]] = false;
-			} else if (value === 'true') {
+			} else if (value === "true") {
 				parentObj[keys[0]] = true;
 			} else {
 				parentObj[keys[0]] = value;
 			}
-
 			return;
 		}
-
 
 		if (!parentObj.hasOwnProperty(currentKey)) {
 			parentObj[currentKey] = {};
@@ -84,7 +83,6 @@ export class DatabaseExcelService {
 
 		keys.shift(); // removes the current key from array
 		return this.addFlattenObjToRegular(parentObj[currentKey], keys, value);
-
 	}
 
 	private flattenObj(obj: any): any {
@@ -94,17 +92,22 @@ export class DatabaseExcelService {
 		for (const objKey in obj) {
 			if (!obj.hasOwnProperty(objKey)) {
 				continue;
-			}
+      }
 
-			if ((typeof obj[objKey]) === 'object') {
+
+			if (typeof obj[objKey] === "object") {
 				flatObject = this.flattenObj(obj[objKey]);
 
-				for (const i in flatObject) {
-					if (!flatObject.hasOwnProperty(i)) {
-						continue;
-					}
 
-					toReturn[objKey + (!!isNaN(i as any) ? '.' + i : '')] = flatObject[i];
+				for (const key in flatObject) {
+					if (!flatObject.hasOwnProperty(key)) {
+						continue;
+          }
+
+          let flattenKey = objKey + '.' + key;
+
+					toReturn[flattenKey] =
+            flatObject[key];
 				}
 			} else {
 				toReturn[objKey] = obj[objKey];
@@ -112,5 +115,4 @@ export class DatabaseExcelService {
 		}
 		return toReturn;
 	}
-
 }

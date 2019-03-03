@@ -74,7 +74,7 @@ export class CartService {
 		if (this.contains(orderItem.item as string)) {
 			return;
 		}
-
+    //416
 		if (!item) {
 			this._itemService
 				.getById(orderItem.item as string)
@@ -152,6 +152,15 @@ export class CartService {
 		return cartItems;
 	}
 
+	public cartIncludesPartlyPayments(): boolean {
+		for (let cartItem of this._cart) {
+			if (cartItem.orderItem.type === "partly-payment") {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public getCartItemsNotApartOfNewOrder(): CartItem[] {
 		const cartItems: CartItem[] = [];
 
@@ -195,6 +204,50 @@ export class CartService {
 		});
 
 		return totalAmount;
+	}
+
+	public getTotalAmountWithPartlyPayments() {
+		let total = 0;
+
+		this._cart.forEach(cartItem => {
+			total += cartItem.orderItem.amount;
+
+			if (cartItem.orderItem.type === "partly-payment") {
+				total += cartItem.orderItem.info["amountLeftToPay"];
+			}
+		});
+
+		return total;
+	}
+
+	public getPartlyPaymentTotals(): { date: Date; total: number }[] {
+		let periods = [];
+		let periodTotals = {};
+
+		this._cart.forEach(cartItem => {
+			if (cartItem.orderItem.type === "partly-payment") {
+				if (periods.indexOf(cartItem.orderItem.info.periodType) >= 0) {
+					periodTotals[cartItem.orderItem.info.periodType] =
+						periodTotals[cartItem.orderItem.info.periodType] +
+						cartItem.orderItem.info["amountLeftToPay"];
+				} else {
+					periods.push(cartItem.orderItem.info.periodType);
+					periodTotals[cartItem.orderItem.info.periodType] =
+						cartItem.orderItem.info["amountLeftToPay"];
+				}
+			}
+		});
+
+		let partlyPaymentTotals = [];
+
+		periods.forEach(period => {
+			partlyPaymentTotals.push({
+				date: this._dateService.getPartlyPaymentPeriodDate(period),
+				total: periodTotals[period]
+			});
+		});
+
+		return partlyPaymentTotals;
 	}
 
 	private onCustomerChange() {

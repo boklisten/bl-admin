@@ -1,0 +1,21 @@
+<div class="container-fluid mt-2">
+	<div class="row">
+		<div class="col-lg-6 col-8">
+			<app-bl-common-update-button
+				[wait]="wait"
+				*ngIf="wait"
+			></app-bl-common-update-button>
+			<app-invoice-table
+				*ngIf="!wait"
+				[invoices]="invoices"
+				(selectInvoice)="selectedInvoice = $event"
+			></app-invoice-table>
+		</div>
+		<div class="col-lg-6 col-4">
+			<app-invoice-detail
+				*ngIf="!wait"
+				[invoice]="selectedInvoice"
+			></app-invoice-detail>
+		</div>
+	</div>
+</div>

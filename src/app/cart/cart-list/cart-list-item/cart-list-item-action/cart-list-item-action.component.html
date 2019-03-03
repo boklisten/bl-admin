@@ -22,6 +22,28 @@
 		/>
 		<span
 			*ngIf="
+				action.action === 'rent' &&
+				action.period === 'semester'
+			"
+			class="mr-3 ml-3"
+		>
+
+			<fa-icon [icon]="'calendar-alt'"></fa-icon>
+		</span>
+
+		<span
+			*ngIf="
+				action.action === 'rent' &&
+				action.period === 'year'
+			"
+			class="mr-3 ml-3"
+		>
+
+			<fa-icon [icon]="'calendar'"></fa-icon>
+		</span>
+
+		<span
+			*ngIf="
 				action.action === 'partly-payment' &&
 				action.period === 'semester'
 			"

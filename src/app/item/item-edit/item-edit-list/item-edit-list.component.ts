@@ -1,20 +1,28 @@
-import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {Item} from '@wizardcoder/bl-model';
-import {ItemService} from '@wizardcoder/bl-connect';
-import {selectRows} from '@swimlane/ngx-datatable/release/utils';
-import {DatabaseExcelService} from '../../../database/database-excel/database-excel.service';
+import {
+	ChangeDetectorRef,
+	Component,
+	Input,
+	OnChanges,
+	OnInit,
+	SimpleChanges,
+	ViewChild
+} from "@angular/core";
+import { Item } from "@wizardcoder/bl-model";
+import { ItemService } from "@wizardcoder/bl-connect";
+import { selectRows } from "@swimlane/ngx-datatable/release/utils";
+import { DatabaseExcelService } from "../../../database/database-excel/database-excel.service";
 
 @Component({
-	selector: 'app-item-edit-list',
-	templateUrl: './item-edit-list.component.html',
-	styleUrls: ['./item-edit-list.component.scss']
+	selector: "app-item-edit-list",
+	templateUrl: "./item-edit-list.component.html",
+	styleUrls: ["./item-edit-list.component.scss"]
 })
 export class ItemEditListComponent implements OnInit, OnChanges {
 	@Input() items: Item[];
 	@Input() autoUpdate: boolean;
 	@Input() editable: boolean;
 	@Input() uploadList: boolean;
-	@ViewChild('itemEditTable') table: any;
+	@ViewChild("itemEditTable") table: any;
 
 	public rows: Item[];
 	public columns: any[];
@@ -24,7 +32,11 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 	public temp: Item[];
 	public selected: Item[];
 
-	constructor(private _itemService: ItemService, private _changeDetectionRef: ChangeDetectorRef, private _databaseExcelService: DatabaseExcelService) {
+	constructor(
+		private _itemService: ItemService,
+		private _changeDetectionRef: ChangeDetectorRef,
+		private _databaseExcelService: DatabaseExcelService
+	) {
 		this.columns = [];
 		this.selected = [];
 		this.items = [];
@@ -33,15 +45,14 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 	}
 
 	onDownloadSelected() {
-		this._databaseExcelService.objectsToExcelFile(this.selected, 'items');
+		this._databaseExcelService.objectsToExcelFile(this.selected, "items");
 	}
 
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	ngOnChanges(changes: SimpleChanges) {
 		for (const propName in changes) {
-			if (propName === 'items' && this.items) {
+			if (propName === "items" && this.items) {
 				this.temp = [...this.items];
 			}
 		}
@@ -52,8 +63,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 		this.selected.push(...selected);
 	}
 
-	add() {
-	}
+	add() {}
 
 	updateRowItem(rowIndex: number, colName: string) {
 		this.editing[rowIndex + colName] = false;
@@ -62,7 +72,6 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 			this.updateItemToDb(rowIndex, colName);
 		}
 	}
-
 
 	updateValue(value, cell: string, rowIndex: number) {
 		this.editing[rowIndex + cell] = false;
@@ -77,17 +86,22 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 	private updateItemToDb(rowIndex: number, colName: string) {
 		this.updating[rowIndex] = true;
 
-		this._itemService.update(this.items[rowIndex].id, this.items[rowIndex]).then((updatedItem: Item) => {
-			this.editing[rowIndex + colName] = false;
-			this.updating[rowIndex] = false;
-			this.items[rowIndex] = updatedItem;
-			this.items = [...this.items];
-		}).catch((updateItemError) => {
-			console.log('itemEditListComponent: could not update item', updateItemError);
-			this.updating[rowIndex] = false;
-		});
+		this._itemService
+			.update(this.items[rowIndex].id, this.items[rowIndex])
+			.then((updatedItem: Item) => {
+				this.editing[rowIndex + colName] = false;
+				this.updating[rowIndex] = false;
+				this.items[rowIndex] = updatedItem;
+				this.items = [...this.items];
+			})
+			.catch(updateItemError => {
+				console.log(
+					"itemEditListComponent: could not update item",
+					updateItemError
+				);
+				this.updating[rowIndex] = false;
+			});
 	}
-
 
 	private updateItem(rowIndex: number, cell: string) {
 		const updateData = {};
@@ -97,36 +111,41 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 
 		this.updating[itemCell] = true;
 
-		this._itemService.update(this.items[rowIndex].id, updateData).then((updatedItem: Item) => {
-			this.updating[itemCell] = false;
-			this.items[rowIndex] = updatedItem;
-			this.items = [...this.items];
-			this._changeDetectionRef.markForCheck();
-		}).catch((updateError) => {
-			console.log('itemEditListComponent: could not update item', updateError);
-			this.updating[itemCell] = false;
-		});
+		this._itemService
+			.update(this.items[rowIndex].id, updateData)
+			.then((updatedItem: Item) => {
+				this.updating[itemCell] = false;
+				this.items[rowIndex] = updatedItem;
+				this.items = [...this.items];
+				this._changeDetectionRef.markForCheck();
+			})
+			.catch(updateError => {
+				console.log(
+					"itemEditListComponent: could not update item",
+					updateError
+				);
+				this.updating[itemCell] = false;
+			});
 	}
-
-
 
 	public toggleExpandRow(row) {
 		this.table.rowDetail.toggleExpandRow(row);
 	}
 
-	public onDetailToggle(event) {
-
-	}
+	public onDetailToggle(event) {}
 
 	public updateFilter(event) {
 		const val = event.target.value.toLowerCase();
 
 		this.items = this.temp.filter((item: Item) => {
-			return (item.title.toLowerCase().indexOf(val) !== -1
-				|| (item.info && item.info.isbn
-					&& (typeof item.info.isbn) === 'string'
-					&& item.info.isbn.toLowerCase().indexOf(val) !== -1)
-				|| val.length <= 0);
+			return (
+				item.title.toLowerCase().indexOf(val) !== -1 ||
+				(item.info &&
+					item.info.isbn &&
+					typeof item.info.isbn === "string" &&
+					item.info.isbn.toLowerCase().indexOf(val) !== -1) ||
+				val.length <= 0
+			);
 		});
 	}
 
@@ -137,24 +156,45 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 			if (!selectedItem.id || selectedItem.id.length <= 0) {
 				this.updating[itemCell] = true;
 
-				this._itemService.add(selectedItem).then((addedItem: Item) => {
-					this.updating[itemCell] = false;
+				this._itemService
+					.add(selectedItem)
+					.then((addedItem: Item) => {
+						this.updating[itemCell] = false;
+						this.removeItemFromList(addedItem.title);
 
-					for (let i = 0; i < this.items.length; i++) {
-						if (this.items[i].title === addedItem.title) {
-							this.items.splice(i, 1);
-							break;
-						}
-					}
+						this.items = [...this.items];
+					})
+					.catch(err => {
+						console.log(
+							"itemEditListComponent: could not add item",
+							err
+						);
+					});
+			} else {
+				this.updating[itemCell] = true;
+				this._itemService
+					.update(selectedItem.id, selectedItem)
+					.then(updatedItem => {
+						this.updating[itemCell] = false;
+						this.removeItemFromList(updatedItem.title);
+					})
+					.catch(err => {
+						this.updating[itemCell] = false;
+						console.log(
+							"itemEditListComponent: could not update item",
+							err
+						);
+					});
+			}
+    }
+	}
 
-					this.items = [...this.items];
-
-				}).catch((updateErr) => {
-					console.log('itemEditListComponent: could not add item');
-				});
+	private removeItemFromList(title) {
+		for (let i = 0; i < this.items.length; i++) {
+			if (this.items[i].title === title) {
+				this.items.splice(i, 1);
+				break;
 			}
 		}
 	}
-
-
 }

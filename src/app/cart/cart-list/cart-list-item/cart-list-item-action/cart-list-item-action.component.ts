@@ -45,6 +45,8 @@ export class CartListItemActionComponent implements OnInit {
 	createActionList() {
 		if (this.cartItem.originalOrder) {
 			this.actionList = [
+				{ action: "rent", period: "semester" },
+				{ action: "rent", period: "year" },
 				{ action: "partly-payment", period: "semester" },
 				{ action: "partly-payment", period: "year" },
 				{ action: "buy" },
@@ -66,6 +68,8 @@ export class CartListItemActionComponent implements OnInit {
 			}
 		} else if (this._customerService.haveCustomer()) {
 			this.actionList = [
+				{ action: "rent", period: "semester" },
+				{ action: "rent", period: "year" },
 				{ action: "partly-payment", period: "semester" },
 				{ action: "partly-payment", period: "year" },
 				{ action: "buy" },
@@ -73,7 +77,11 @@ export class CartListItemActionComponent implements OnInit {
 			];
 		} else {
 			this.actionList = [{ action: "buy" }];
-		}
+    }
+
+    this.actionList = this.actionList.filter((action) => {
+      return this.showAction(action.action, action.period);
+    });
 
 		this.selectDefaultAction();
 	}

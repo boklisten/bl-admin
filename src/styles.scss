@@ -50,6 +50,10 @@ $border-color: rgba(0, 0, 0, 0.125);
 	font-size: 1.2em;
 }
 
+.bl-text-xl {
+	font-size: 1.5em;
+}
+
 .bl-link:hover {
 	border-bottom: $link-border;
 }
@@ -89,4 +93,14 @@ $border-color: rgba(0, 0, 0, 0.125);
 
 .datatable-body-row.active {
 	background-color: #c7ffbc;
+}
+
+.ngb-highlight {
+	background-color: $primary-color;
+	color: white;
+}
+
+.bl-cancel-line {
+	text-decoration: line-through;
+	color: $inactive-color;
 }

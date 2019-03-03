@@ -377,7 +377,7 @@ export class CartHelperService {
 			action.action === "buy"
 		) {
 			orderItem.handout = true;
-		}
+    }
 
 		orderItem.info = this.createDefaultOrderItemInfo(
 			this.orderItemTypeBasedOnAction(action.action),
@@ -483,21 +483,13 @@ export class CartHelperService {
 		period?: Period
 	): any {
 		if (type === "rent") {
-			let periodType: "semester" | "year";
-
-			if (this.cartItemActionValidOnBranch("rent")) {
-				periodType = "semester";
-			} else {
-				return null;
-			}
-
-			const fromTo = this._dateService.rentPeriod(periodType);
+			const fromTo = this._dateService.rentPeriod(period);
 
 			return {
 				from: fromTo.from,
 				to: fromTo.to,
 				numberOfPeriods: 1,
-				periodType: periodType
+				periodType: period
 			};
 		} else if (type === "partly-payment") {
 			const fromTo = this._dateService.partlyPaymentPeriod(period);

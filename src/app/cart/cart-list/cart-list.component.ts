@@ -6,6 +6,7 @@ import { CartItem } from "../cartItem";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { NgbModalWindow } from "@ng-bootstrap/ng-bootstrap/modal/modal-window";
 import { CartItemSearchService } from "../cart-item-search/cart-item-search.service";
+import { DateService } from "../../date/date.service";
 
 @Component({
 	selector: "app-cart-list",
@@ -17,6 +18,7 @@ export class CartListComponent implements OnInit {
 	@Output() cartConfirmationFailed: EventEmitter<boolean>;
 
 	public cart: CartItem[];
+	public partlyPaymentTotals: { date: Date; total: number }[];
 	private _cartConfirmModal: NgbModalRef;
 	public searching: boolean;
 
@@ -24,7 +26,8 @@ export class CartListComponent implements OnInit {
 		private _cartService: CartService,
 		private _modalService: NgbModal,
 		private _cartItemSearchService: CartItemSearchService,
-		private _itemService: ItemService
+		private _itemService: ItemService,
+		private _dateService: DateService
 	) {
 		this.cart = [];
 		this.cartConfirmed = new EventEmitter<boolean>();
@@ -36,6 +39,7 @@ export class CartListComponent implements OnInit {
 
 		this._cartService.onCartChange().subscribe(() => {
 			this.cart = this._cartService.getCart();
+			//this.partlyPaymentTotals = this._cartService.getPartlyPaymentTotals();
 		});
 
 		this._cartItemSearchService
@@ -43,6 +47,10 @@ export class CartListComponent implements OnInit {
 			.subscribe((searching: boolean) => {
 				this.searching = searching;
 			});
+	}
+
+	public onCartItemChange() {
+		//this.partlyPaymentTotals = this._cartService.getPartlyPaymentTotals();
 	}
 
 	public onClearCart() {
@@ -53,6 +61,10 @@ export class CartListComponent implements OnInit {
 		this._cartService.remove(orderItem.item as string);
 	}
 
+	public cartIncludesPartlyPayments(): boolean {
+		return this._cartService.cartIncludesPartlyPayments();
+	}
+
 	getTotalAmount(): number {
 		let totalAmount = 0;
 
@@ -61,6 +73,14 @@ export class CartListComponent implements OnInit {
 		}
 
 		return totalAmount;
+	}
+
+	getTotalAmountWithPartlyPayments() {
+		return this._cartService.getTotalAmountWithPartlyPayments();
+	}
+
+	private getPartlyPaymentTotals(): { date: Date; total: number }[] {
+		return this._cartService.getPartlyPaymentTotals();
 	}
 
 	onShowConfirm(content) {

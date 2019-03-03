@@ -17,11 +17,13 @@ export class DateService {
 
 	private _defaultSpringSemesterDeadlineDate;
 	private _defaultFallSemesterDeadlineDate;
+	private _apiDateFormat: string;
 
 	constructor(
 		private _branchStoreService: BranchStoreService,
 		private _branchHelperService: BranchHelperService
 	) {
+		this._apiDateFormat = "DDMMYYYYHHmm";
 		this._defaultSpringSemesterDeadlineDate = moment()
 			.month(6)
 			.date(1)
@@ -51,6 +53,20 @@ export class DateService {
 			.set("ms", 0);
 	}
 
+	public addDays(date: Date, days: number): Date {
+		return moment(date)
+			.add(days, "days")
+			.toDate();
+	}
+
+	public dateOnApiFormat(date: Date): string {
+		return moment(date).format(this._apiDateFormat);
+	}
+
+	public dateOnFormat(date: Date, format: string): string {
+		return moment(date).format(format);
+	}
+
 	public getCurrentDayPeriod(): { fromDate: Date; toDate: Date } {
 		const currentDate = this.getCurrentDate();
 
@@ -58,6 +74,17 @@ export class DateService {
 			fromDate: currentDate.toDate(),
 			toDate: currentDate.add(1, "day").toDate()
 		};
+	}
+
+	public getPartlyPaymentPeriodDate(period: Period) {
+		const branch = this._branchStoreService.getCurrentBranch();
+
+		for (const partlyPaymentPeriod of branch.paymentInfo
+			.partlyPaymentPeriods) {
+			if (partlyPaymentPeriod.type === period) {
+				return partlyPaymentPeriod.date;
+			}
+		}
 	}
 
 	public getCurrentSemesterPeriod(): { fromDate: Date; toDate: Date } {
@@ -185,7 +212,7 @@ export class DateService {
 		);
 
 		if (!rentPeriod) {
-			throw new Error("could not find period type on branch");
+			throw new Error("could not find period semester on branch");
 		}
 
 		return { from: new Date(), to: rentPeriod.date };
@@ -200,7 +227,7 @@ export class DateService {
 		);
 
 		if (!rentPeriod) {
-			throw new Error("could not find period type on branch");
+			throw new Error("could not find period year on branch");
 		}
 
 		return { from: new Date(), to: rentPeriod.date };

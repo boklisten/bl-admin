@@ -1,0 +1,127 @@
+<div class="row justify-content-between align-items-center p-2">
+	<div class="col-auto">
+		<div class="input-group input-group-sm mb-3">
+			<input
+				class="form-control"
+				type="text"
+				i18n-placeholder="@@invoiceTableFilterPlaceholder"
+				placeholder="Filter by name or invoice id"
+				name="searchFilter"
+				[formControl]="filter"
+			/>
+			<div class="input-group-append">
+				<fa-icon icon="filter" class="input-group-text p-3"></fa-icon>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-auto">
+		<button
+			class="btn btn-sm btn-outline-primary"
+			(click)="exportToExcel()"
+		>
+			<fa-icon icon="file-excel" class="mr-2"></fa-icon>
+			<fa-icon
+				icon="circle-notch"
+				[spin]="true"
+				*ngIf="printToExcelWait"
+			></fa-icon>
+			<span i18n="@@invoiceTablePrintSelected" *ngIf="!printToExcelWait"
+				>Print selected to visma invoice format</span
+			>
+		</button>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col">
+		<table class="table table-sm table-hover table-striped">
+			<thead>
+				<tr>
+					<th scope="col">
+						<app-blc-button-check
+							[value]="selectAll"
+							(valueChange)="onSelectAll()"
+						>
+						</app-blc-button-check>
+					</th>
+					<th scope="col" (click)="sortInvoiceId()">
+						#
+						<span class="ml-2">
+							<fa-icon
+								*ngIf="sortByInvoiceIdDirection === 'asc'"
+								icon="arrow-up"
+							></fa-icon>
+							<fa-icon
+								*ngIf="sortByInvoiceIdDirection === 'desc'"
+								icon="arrow-down"
+							></fa-icon>
+						</span>
+					</th>
+					<th scope="col" i18n="@@invoiceTableItemName">Name</th>
+					<th scope="col" i18n="@@invoiceTableItemDeadline">
+						Deadline
+					</th>
+					<th scope="col" i18n="@@invoiceTableItemAmount">Amount</th>
+					<th scope="col" i18n="@@invoiceTableItemPayed">Payed</th>
+				</tr>
+			</thead>
+			<tbody *ngIf="invoices">
+				<tr
+					*ngFor="let invoice of (invoices$ | async); let i = index"
+					[ngClass]="{
+						'table-primary':
+							selectedInvoice &&
+							invoice.id &&
+							selectedInvoice.id == invoice.id
+					}"
+					(click)="onSelectInvoice(invoice)"
+				>
+					<th (click)="onSelect(invoice.id)">
+						<app-blc-button-check
+							[value]="selectedList[invoice.id]"
+						>
+						</app-blc-button-check>
+					</th>
+					<th>
+						<ngb-highlight
+							[result]="invoice.invoiceId"
+							[term]="filter.value"
+						></ngb-highlight>
+					</th>
+					<td>
+						<span
+							class="bl-link-black"
+							[routerLink]="
+								'/customer/' +
+								invoice.customerInfo.userDetail +
+								'/detail'
+							"
+						>
+							<ngb-highlight
+								[result]="invoice.customerInfo.name"
+								[term]="filter.value"
+							></ngb-highlight>
+						</span>
+					</td>
+					<td>{{ invoice.duedate | blDate }}</td>
+					<td>{{ invoice.payment.totalIncludingFee | blcPrice }}</td>
+					<td
+						[ngClass]="{
+							'text-success': invoice.customerHavePayed,
+							'text-danger': !invoice.customerHavePayed
+						}"
+					>
+						<fa-icon
+							[icon]="
+								invoice.customerHavePayed
+									? 'check-circle'
+									: 'times-circle'
+							"
+						></fa-icon>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
