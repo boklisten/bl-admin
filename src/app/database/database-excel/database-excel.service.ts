@@ -21,7 +21,7 @@ export class DatabaseExcelService {
 
 		utils.book_append_sheet(workBook, sheet, fileNameWithDate);
 
-		writeFile(workBook, fileNameWithDate);
+    writeFile(workBook, fileNameWithDate);
 	}
 
 	public excelFileToObjects(excelBinaryFile: any): any[] {
@@ -29,8 +29,8 @@ export class DatabaseExcelService {
 
 		const jsonWorkbook = utils.sheet_to_json(
 			workbook.Sheets[workbook.SheetNames[0]],
-			{ raw: true, range: 1 }
-		);
+			{ raw: true }
+    );
 
 		const objectArray = [];
 
@@ -42,6 +42,7 @@ export class DatabaseExcelService {
 	}
 
 	private flattenObjToRegular(flattenObj: any) {
+
 		const regularObj = {};
 
 		for (const objKey in flattenObj) {
@@ -50,6 +51,7 @@ export class DatabaseExcelService {
 			}
 
 			const splittedKey = objKey.toString().split(".");
+
 
 			this.addFlattenObjToRegular(
 				regularObj,
@@ -90,18 +92,22 @@ export class DatabaseExcelService {
 		for (const objKey in obj) {
 			if (!obj.hasOwnProperty(objKey)) {
 				continue;
-			}
+      }
+
 
 			if (typeof obj[objKey] === "object") {
 				flatObject = this.flattenObj(obj[objKey]);
 
-				for (const i in flatObject) {
-					if (!flatObject.hasOwnProperty(i)) {
-						continue;
-					}
 
-					toReturn[objKey + (!!isNaN(i as any) ? "." + i : "")] =
-						flatObject[i];
+				for (const key in flatObject) {
+					if (!flatObject.hasOwnProperty(key)) {
+						continue;
+          }
+
+          let flattenKey = objKey + '.' + key;
+
+					toReturn[flattenKey] =
+            flatObject[key];
 				}
 			} else {
 				toReturn[objKey] = obj[objKey];

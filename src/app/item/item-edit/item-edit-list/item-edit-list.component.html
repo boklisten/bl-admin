@@ -44,6 +44,33 @@
 
 <div class="row">
 	<div class="col-12" style="min-height: 500px">
+<!--
+
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Country</th>
+          <th scope="col">Area</th>
+          <th scope="col">Population</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of items">
+          <th scope="row">{{ item.id }}</th>
+          <td>
+            {{ item.title }}
+          </td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.info.isbn }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+-->
+
+
 		<ngx-datatable
 			#itemEditTable
 			class="bootstrap"
@@ -244,5 +271,7 @@
 				</ng-template>
 			</ngx-datatable-column>
 		</ngx-datatable>
+
 	</div>
 </div>
+

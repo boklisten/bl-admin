@@ -186,7 +186,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 						);
 					});
 			}
-		}
+    }
 	}
 
 	private removeItemFromList(title) {
