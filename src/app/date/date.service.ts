@@ -212,7 +212,7 @@ export class DateService {
 		);
 
 		if (!rentPeriod) {
-			throw new Error("could not find period type on branch");
+			throw new Error("could not find period semester on branch");
 		}
 
 		return { from: new Date(), to: rentPeriod.date };
@@ -227,7 +227,7 @@ export class DateService {
 		);
 
 		if (!rentPeriod) {
-			throw new Error("could not find period type on branch");
+			throw new Error("could not find period year on branch");
 		}
 
 		return { from: new Date(), to: rentPeriod.date };

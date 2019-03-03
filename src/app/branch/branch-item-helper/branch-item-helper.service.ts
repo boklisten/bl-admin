@@ -18,20 +18,24 @@ export class BranchItemHelperService {
 		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
 			if (branchItem.item === item.id) {
 				if (branchItem.rentAtBranch) {
-					for (const rentPeriod of this._branchStoreService.getCurrentBranch()
-						.paymentInfo.rentPeriods) {
-						if (rentPeriod.type === periodType) {
-							return true;
-						}
-					}
-					return false;
+          return this.rentPeriodValidOnCurrentBranch(periodType);
 				} else {
 					return false;
 				}
 			}
-		}
-		return true; // if item are not in the branchItem list of branch, all options are by default valid
-	}
+    }
+    return this.rentPeriodValidOnCurrentBranch(periodType);
+  }
+
+  private rentPeriodValidOnCurrentBranch(period) {
+    for (const rentPeriod of this._branchStoreService.getCurrentBranch()
+      .paymentInfo.rentPeriods) {
+      if (rentPeriod.type === period) {
+        return true;
+      }
+    }
+    return false;
+  }
 
 	public isPartlyPaymentValid(item: Item, period: Period): boolean {
 		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
@@ -96,13 +100,18 @@ export class BranchItemHelperService {
 	}
 
 	public isBuyValid(item: Item) {
+		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
+			if (branchItem.item === item.id) {
+				return branchItem.buyAtBranch;
+			}
+		}
 		return true; // if the item is not found, the action is allowed
 	}
 
 	public isSellValid(item: Item) {
 		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
 			if (branchItem.item === item.id) {
-				return branchItem.sell;
+				return branchItem.sellAtBranch;
 			}
 		}
 		return true; // if the item is not found, the action is allowed
