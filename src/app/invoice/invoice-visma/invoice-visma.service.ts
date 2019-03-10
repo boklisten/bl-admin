@@ -70,6 +70,12 @@ export class InvoiceVismaService {
 		return new Date(parseInt(timestamp, 16)).getTime();
   }
 
+  private getMongoIdMiniEpoch(mongoId: string): number {
+    let mongoEpoch = this.getMongoIdEpoch(mongoId);
+    let shortEpoch = mongoEpoch.toString().substring(2, mongoEpoch.toString().length);
+    return parseInt(shortEpoch);
+  }
+
   private getMongoIdCounter(mongoId: string): number {
 		 return parseInt(mongoId.substring(18, 24), 16);
   }
@@ -198,7 +204,7 @@ export class InvoiceVismaService {
 		return [
 			"H1", //1 Record Type (M)
 			lineNum, //2 Line number (M)
-			this.getMongoIdEpoch(invoice.customerInfo
+			this.getMongoIdMiniEpoch(invoice.customerInfo
 				.userDetail as string).toString(), //3 Customer no (M)
 			invoice.customerInfo.name, //4 'Customer name': (M)
 			invoice.customerInfo.postal.address, //5 'Address 1':
