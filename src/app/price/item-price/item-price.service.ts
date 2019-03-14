@@ -26,7 +26,8 @@ export class ItemPriceService {
 		item: Item,
 		period: Period,
 		numberOfPeriods: number,
-		alreadyPayed?: number
+    alreadyPayed?: number,
+    originalOrderItem?: OrderItem,
 	): number {
 		const branch = this._branchStoreService.getCurrentBranch();
 
@@ -46,20 +47,20 @@ export class ItemPriceService {
 
 		if (branchPrice === -1) {
 			return -1;
-		}
+    }
 
-		if (alreadyPayed) {
-			return this._priceService.sanitize(branchPrice - alreadyPayed);
-		}
+    return this.calculateAmount("rent", branchPrice, alreadyPayed, originalOrderItem, period);
 
-		return this._priceService.sanitize(branchPrice);
-	}
+  }
+
+
 
 	public partlyPaymentPrice(
 		item: Item,
 		period: Period,
 		itemAge: "new" | "used",
-		alreadyPayed?: number
+    alreadyPayed?: number,
+    originalOrderItem?: OrderItem
 	): { upFront: number; amountLeftToPay: number } {
 		const branch = this._branchStoreService.getCurrentBranch();
 
@@ -94,24 +95,19 @@ export class ItemPriceService {
 			alreadyPayed && alreadyPayed > 0 ? alreadyPayed : 0;
 
 		return {
-			upFront: this._priceService.sanitize(
-				branchPartlyPaymentUpFrontPrice - alreadyPayedAmount
-			),
+			upFront: this.calculateAmount("partly-payment", branchPartlyPaymentUpFrontPrice, alreadyPayed, originalOrderItem, period),
 			amountLeftToPay: this._priceService.sanitize(
 				branchPartlyPaymentBuyoutPrice
 			)
 		};
 	}
 
-	public buyPrice(item: Item, alreadyPayed?: number): number {
+	public buyPrice(item: Item, alreadyPayed?: number, originalOrderItem?: OrderItem): number {
 		if (!this._branchItemHelperService.isBuyValid(item)) {
 			return -1;
-		}
+    }
 
-		if (alreadyPayed) {
-			return this._priceService.sanitize(item.price - alreadyPayed);
-		}
-		return this._priceService.sanitize(item.price);
+    return this.calculateAmount("buy", item.price, alreadyPayed, originalOrderItem);
 	}
 
 	public sellPrice(item: Item): number {
@@ -128,5 +124,25 @@ export class ItemPriceService {
 			);
 		}
 		return -1;
-	}
+  }
+
+  private calculateAmount(orderItemType: OrderItemType, price: number, alreadyPayed?: number, originalOrderItem?: OrderItem, period?: Period): number {
+    if (alreadyPayed) {
+      if (originalOrderItem && originalOrderItem.type == orderItemType) {
+        // if the order item is already payed for
+        // it should return 0 as default;
+
+        if (originalOrderItem.type == "rent" || originalOrderItem.type == "partly-payment") {
+          if (originalOrderItem.info.periodType == period) {
+            return 0;
+          }
+        } else {
+          return 0;
+        }
+      }
+			return this._priceService.sanitize(price - alreadyPayed);
+		}
+
+		return this._priceService.sanitize(price);
+  }
 }
