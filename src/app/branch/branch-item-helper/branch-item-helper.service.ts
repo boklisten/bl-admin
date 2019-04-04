@@ -18,24 +18,24 @@ export class BranchItemHelperService {
 		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
 			if (branchItem.item === item.id) {
 				if (branchItem.rentAtBranch) {
-          return this.rentPeriodValidOnCurrentBranch(periodType);
+					return this.rentPeriodValidOnCurrentBranch(periodType);
 				} else {
 					return false;
 				}
 			}
-    }
-    return this.rentPeriodValidOnCurrentBranch(periodType);
-  }
+		}
+		return this.rentPeriodValidOnCurrentBranch(periodType);
+	}
 
-  private rentPeriodValidOnCurrentBranch(period) {
-    for (const rentPeriod of this._branchStoreService.getCurrentBranch()
-      .paymentInfo.rentPeriods) {
-      if (rentPeriod.type === period) {
-        return true;
-      }
-    }
-    return false;
-  }
+	private rentPeriodValidOnCurrentBranch(period) {
+		for (const rentPeriod of this._branchStoreService.getCurrentBranch()
+			.paymentInfo.rentPeriods) {
+			if (rentPeriod.type === period) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public isPartlyPaymentValid(item: Item, period: Period): boolean {
 		for (const branchItem of this._branchItemStoreService.getBranchItems()) {

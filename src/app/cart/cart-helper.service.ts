@@ -202,11 +202,8 @@ export class CartHelperService {
 		) {
 			// cancel
 			return await this.createOrderItemTypeCancel(customerItem, item);
-		} else if (this._branchItemHelperService.isBuyValid(item)) {
-			// buyout
-			return this.createOrderItemTypeBuyout(customerItem, item);
 		} else {
-			throw new Error("no actions valid on customerItem");
+			return this.createOrderItemTypeBuyout(customerItem, item);
 		}
 	}
 
@@ -377,7 +374,7 @@ export class CartHelperService {
 			action.action === "buy"
 		) {
 			orderItem.handout = true;
-    }
+		}
 
 		orderItem.info = this.createDefaultOrderItemInfo(
 			this.orderItemTypeBasedOnAction(action.action),
