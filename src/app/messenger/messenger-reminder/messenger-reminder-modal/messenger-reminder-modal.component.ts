@@ -40,7 +40,7 @@ export class MessengerReminderModalComponent implements OnInit {
 
 	onConfirm() {
 		this.confirmed = true;
-		this.sendReminders(this.createFakeCustomerIds());
+		this.sendReminders(this.customerIds);
 	}
 
 	private createFakeCustomerIds(): string[] {

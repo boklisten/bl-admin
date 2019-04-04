@@ -20,18 +20,17 @@ export class MessengerReminderService {
 		deadline: Date,
 		textBlocks: TextBlock[]
 	) {
+
 		for (let userId of userIds) {
-			/*
 			this.messageService
 				.sendReminder(userId, deadline, textBlocks)
-				.then(() => {
+				.then((val) => {
 					this.successfullMessage$.next(userId);
 				})
-				.catch(() => {
+				.catch((err) => {
 					this.failedMessages$.next(userId);
-				});
-       */
-
+        });
+      /*
 			this.simulatedSendReminder(userId)
 				.then(() => {
 					this.successfullMessage$.next(userId);
@@ -39,6 +38,7 @@ export class MessengerReminderService {
 				.catch(() => {
 					this.failedMessages$.next(userId);
 				});
+       */
 		}
 	}
 

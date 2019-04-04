@@ -24,8 +24,12 @@ export class MessengerReminderComponent implements OnInit {
 		private messengerReminderService: MessengerReminderService,
 		private modalService: NgbModal
 	) {
-		this.deadline = new Date();
-		this.textBlocks = [];
+		this.deadline = new Date(2019, 11, 20);
+		this.textBlocks = [
+			{
+				text: "hi"
+			}
+		];
 		this.loading = false;
 	}
 
@@ -35,7 +39,7 @@ export class MessengerReminderComponent implements OnInit {
 		console.log("selected branches", selectedBranches);
 	}
 
-	public openSendRemindersModal(content) {
+	public openSendRemindersModal() {
 		this.loading = true;
 
 		this.getUniqueCustomerWithNotReturnedCustomerItems()
@@ -56,7 +60,7 @@ export class MessengerReminderComponent implements OnInit {
 		const modalRef = this.modalService.open(
 			MessengerReminderModalComponent,
 			{
-				size: "lg",
+				size: "lg"
 			}
 		);
 
