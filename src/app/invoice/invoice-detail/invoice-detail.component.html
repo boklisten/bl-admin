@@ -10,146 +10,147 @@
 					>
 				</div>
 				<div class="card-body">
+					<div class="row justify-content-between">
+						<div class="col-auto">
+							<span i18n="@@invoiceDetailDeadline">Deadline</span>
+						</div>
+						<div class="col-auto">
+							<span class="float-right font-weight-bold">{{
+								invoice.duedate | blDate
+							}}</span>
+						</div>
+					</div>
 
-          <div class="row justify-content-between">
-            <div class="col-auto">
-						  <span i18n="@@invoiceDetailDeadline">Deadline</span>
-            </div>
-            <div class="col-auto">
-              <span class="float-right font-weight-bold">{{
-                invoice.duedate | blDate
-              }}</span>
-            </div>
-          </div>
-
-          <div class="row justify-content-between">
-            <div class="col-auto"
+					<div class="row justify-content-between">
+						<div
+							class="col-auto"
 							i18n="@@invoiceDetailCustomerHavePayed"
-              >
+						>
 							Invoice payed
-            </div>
-            <div class="col-auto">
+						</div>
+						<div class="col-auto">
 							<app-bl-common-toggle-button
 								class="align-middle float-right"
 								[value]="invoice.customerHavePayed"
-								(valueChange)="onCustomerHavePayedChange($event)"
+								(valueChange)="
+									onCustomerHavePayedChange($event)
+								"
 							>
 							</app-bl-common-toggle-button>
-            </div>
-          </div>
+						</div>
+					</div>
 
-          <div class="row justify-content-between">
-            <div class="col-auto"
+					<div class="row justify-content-between">
+						<div
+							class="col-auto"
 							i18n="@@invoiceDetailToCreditNote"
-              >
+						>
 							Invoice to credit note
-            </div>
-            <div class="col-auto">
+						</div>
+						<div class="col-auto">
 							<app-bl-common-toggle-button
 								class="align-middle float-right"
 								[value]="invoice.toCreditNote"
 								(valueChange)="onInvoiceToCreditNote($event)"
 							>
 							</app-bl-common-toggle-button>
-            </div>
-          </div>
+						</div>
+					</div>
 
-
-          <div class="row justify-content-between">
-            <div class="col-auto"
+					<div class="row justify-content-between">
+						<div
+							class="col-auto"
 							i18n="@@invoiceDetailInvoiceToDebtCollection"
-              >
+						>
 							Invoice to debt collection
-            </div>
-            <div class="col-auto">
+						</div>
+						<div class="col-auto">
 							<app-bl-common-toggle-button
 								class="align-middle float-right"
 								[value]="invoice.toDebtCollection"
-								(valueChange)="onInvoiceToDebtCollection($event)"
+								(valueChange)="
+									onInvoiceToDebtCollection($event)
+								"
 							>
 							</app-bl-common-toggle-button>
-            </div>
-          </div>
+						</div>
+					</div>
 
-          <div class="row justify-content-between">
-            <div class="col-auto"
-              i18n="@@invoiceDetailName"
-              >Name</div>
-            <div class="col-auto">
-						<span
-							class="float-right bl-link-black"
-							[routerLink]="
-								'/customer/' +
-								invoice.customerInfo.customerDetail +
-								'/detail'
-							"
-							>{{ invoice.customerInfo.name }}</span
-						>
-            </div>
-          </div>
+					<div class="row justify-content-between">
+						<div class="col-auto" i18n="@@invoiceDetailName">
+							Name
+						</div>
+						<div class="col-auto">
+							<span
+								class="float-right bl-link-black"
+								[routerLink]="
+									'/customer/' +
+									invoice.customerInfo.customerDetail +
+									'/detail'
+								"
+								>{{ invoice.customerInfo.name }}</span
+							>
+						</div>
+					</div>
 
-          <div class="row justify-content-between">
-            <div class="col-auto"
-              i18n="@@invoiceDetailBranch"
-              >Branch</div>
-            <div class="col-auto">
-						<span class="float-right bl-link-black">{{
-							invoice.branch | branchName | async
-						}}</span>
-            </div>
-          </div>
+					<div class="row justify-content-between">
+						<div class="col-auto" i18n="@@invoiceDetailBranch">
+							Branch
+						</div>
+						<div class="col-auto">
+							<span class="float-right bl-link-black">{{
+								invoice.branch | branchName | async
+							}}</span>
+						</div>
+					</div>
 
+					<div class="row justify-content-between">
+						<div class="col-auto">
+							<span i18n="@@invoiceDetailAddress">Address</span>
+						</div>
+						<div class="col-auto">
+							<span class="float-right"
+								>{{ invoice.customerInfo.postal.address }},
+								{{ invoice.customerInfo.postal.code }}
+								{{ invoice.customerInfo.postal.city }}
+							</span>
+						</div>
+					</div>
 
+					<div class="row justify-content-between">
+						<div class="col-auto">
+							<span i18n="@@invoiceDetailPhone">Phone</span>
+						</div>
+						<div class="col-auto">
+							<span class="float-right">{{
+								invoice.customerInfo.phone
+							}}</span>
+						</div>
+					</div>
 
+					<div class="row justify-content-between">
+						<div class="col-auto">
+							<span i18n="@@invoiceDetailEmail">Email</span>
+						</div>
+						<div class="col-auto">
+							<span class="float-right">{{
+								invoice.customerInfo.email
+							}}</span>
+						</div>
+					</div>
 
-          <div class="row justify-content-between">
-            <div class="col-auto">
-						  <span i18n="@@invoiceDetailAddress">Address</span>
-            </div>
-            <div class="col-auto">
-              <span class="float-right"
-                >{{ invoice.customerInfo.postal.address }},
-                {{ invoice.customerInfo.postal.code }}
-                {{ invoice.customerInfo.postal.city }}
-              </span>
-            </div>
-          </div>
-
-          <div class="row justify-content-between">
-            <div class="col-auto">
-						  <span i18n="@@invoiceDetailPhone">Phone</span>
-            </div>
-            <div class="col-auto">
-						<span class="float-right">{{
-							invoice.customerInfo.phone
-						}}</span>
-            </div>
-          </div>
-
-          <div class="row justify-content-between">
-            <div class="col-auto">
-
-						<span i18n="@@invoiceDetailEmail">Email</span>
-            </div>
-            <div class="col-auto">
-              <span class="float-right">{{
-                invoice.customerInfo.email
-              }}</span>
-            </div>
-          </div>
-
-          <div class="row justify-content-between">
-            <div class="col-auto">
-              <span i18n="@@invoiceDetailCreationTime"
-                >Creation time</span
-              >
-            </div>
-            <div class="col-auto">
-              <span class="float-right">{{
-                invoice.creationTime | blDate
-              }}</span>
-            </div>
-          </div>
+					<div class="row justify-content-between">
+						<div class="col-auto">
+							<span i18n="@@invoiceDetailCreationTime"
+								>Creation time</span
+							>
+						</div>
+						<div class="col-auto">
+							<span class="float-right">{{
+								invoice.creationTime | blDate
+							}}</span>
+						</div>
+					</div>
 
 					<table
 						class="table table-hover table-borderless table-sm mt-3"

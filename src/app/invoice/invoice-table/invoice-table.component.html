@@ -63,7 +63,9 @@
 						Deadline
 					</th>
 					<th scope="col" i18n="@@invoiceTableItemAmount">Amount</th>
-					<th scope="col" i18n="@@invoiceTableItemPayed">Payed</th>
+					<th scope="col" i18n="@@invoiceTableItemProcessed">
+						Processed
+					</th>
 				</tr>
 			</thead>
 			<tbody *ngIf="invoices">
@@ -106,15 +108,25 @@
 					</td>
 					<td>{{ invoice.duedate | blDate }}</td>
 					<td>{{ invoice.payment.totalIncludingFee | blcPrice }}</td>
+					<td *ngIf="invoice.toDebtCollection" class="text-danger">
+						<fa-icon [icon]="'hand-holding-usd'"></fa-icon>
+					</td>
 					<td
+						*ngIf="!invoice.toDebtCollection"
+						class="text-danger"
 						[ngClass]="{
-							'text-success': invoice.customerHavePayed,
-							'text-danger': !invoice.customerHavePayed
+							'text-success':
+								invoice.customerHavePayed ||
+								invoice.toCreditNote,
+							'text-danger':
+								!invoice.customerHavePayed &&
+								!invoice.toCreditNote
 						}"
 					>
 						<fa-icon
 							[icon]="
-								invoice.customerHavePayed
+								invoice.customerHavePayed ||
+								invoice.toCreditNote
 									? 'check-circle'
 									: 'times-circle'
 							"

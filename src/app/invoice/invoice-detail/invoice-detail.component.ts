@@ -41,24 +41,32 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 
 	public onCustomerHavePayedChange(customerHavePayed: boolean) {
 		this.invoice.customerHavePayed = customerHavePayed;
-		this.invoiceService
-			.update(this.invoice.id, { customerHavePayed: customerHavePayed })
-			.then(() => {})
-			.catch(err => {});
+		this.invoice.toDebtCollection = false;
+		this.invoice.toCreditNote = false;
+		this.updateInvoiceStatus();
 	}
 
 	public onInvoiceToDebtCollection(toDebtCollection: boolean) {
 		this.invoice.toDebtCollection = toDebtCollection;
-		this.invoiceService
-			.update(this.invoice.id, { toDebtCollection: toDebtCollection })
-			.then(() => {})
-			.catch(err => {});
+		this.invoice.customerHavePayed = false;
+		this.invoice.toCreditNote = false;
+		this.updateInvoiceStatus();
 	}
 
 	public onInvoiceToCreditNote(toCreditNote: boolean) {
 		this.invoice.toCreditNote = toCreditNote;
+		this.invoice.customerHavePayed = false;
+		this.invoice.toDebtCollection = false;
+		this.updateInvoiceStatus();
+	}
+
+	private updateInvoiceStatus() {
 		this.invoiceService
-			.update(this.invoice.id, { toCreditNote: toCreditNote })
+			.update(this.invoice.id, {
+				toCreditNote: this.invoice.toCreditNote,
+				toDebtCollection: this.invoice.toDebtCollection,
+				customerHavePayed: this.invoice.customerHavePayed
+			})
 			.then(() => {})
 			.catch(err => {});
 	}

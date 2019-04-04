@@ -64,21 +64,23 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 			this.sortByInvoiceIdDirection = "asc";
 			this.invoices$ = this.filter.valueChanges.pipe(
 				startWith(""),
-				map(text =>
+				map(text => {
 					this.invoices.sort(
 						(a, b) => parseInt(b.invoiceId) - parseInt(a.invoiceId)
-					)
-				)
+					);
+					return this.search(text);
+				})
 			);
 		} else if (this.sortByInvoiceIdDirection === "asc") {
 			this.sortByInvoiceIdDirection = "desc";
 			this.invoices$ = this.filter.valueChanges.pipe(
 				startWith(""),
-				map(text =>
+				map(text => {
 					this.invoices.sort(
 						(a, b) => parseInt(a.invoiceId) - parseInt(b.invoiceId)
-					)
-				)
+					);
+					return this.search(text);
+				})
 			);
 		} else {
 			this.sortByInvoiceIdDirection = "none";
