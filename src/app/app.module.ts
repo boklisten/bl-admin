@@ -13,7 +13,10 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
+<<<<<<< HEAD
 import { InvoiceModule } from "./invoice/invoice.module";
+=======
+>>>>>>> 3fc47335516e0dcc80aaec9ad03d92bba0d5b309
 import { BranchStoreService } from "./branch/branch-store.service";
 import { BranchModule } from "./branch/branch.module";
 import { BranchGuardService } from "./branch/branch-guard.service";
@@ -28,8 +31,11 @@ import {
 	faMoneyBillAlt,
 	faUserCircle,
 	faCheck,
+<<<<<<< HEAD
 	faHashtag,
 	faHandHoldingUsd,
+=======
+>>>>>>> 3fc47335516e0dcc80aaec9ad03d92bba0d5b309
 	faLocationArrow,
 	faSearch,
 	faAt,
@@ -38,7 +44,10 @@ import {
 	faQrcode,
 	faSyncAlt,
 	faTimes,
+<<<<<<< HEAD
 	faTimesCircle,
+=======
+>>>>>>> 3fc47335516e0dcc80aaec9ad03d92bba0d5b309
 	faShoppingCart,
 	faClock,
 	faWarehouse,
@@ -82,8 +91,11 @@ import {
 	faTrashAlt,
 	faDownload,
 	faFileExcel,
+<<<<<<< HEAD
 	faMoneyBillWave,
 	faFileInvoiceDollar,
+=======
+>>>>>>> 3fc47335516e0dcc80aaec9ad03d92bba0d5b309
 	faEnvelope,
 	faBell,
 	faPaperPlane
@@ -119,13 +131,19 @@ library.add(
 	faLocationArrow,
 	faSearch,
 	faAt,
+<<<<<<< HEAD
 	faHandHoldingUsd,
+=======
+>>>>>>> 3fc47335516e0dcc80aaec9ad03d92bba0d5b309
 	faPhone,
 	faAddressCard,
 	faQrcode,
 	faSyncAlt,
 	faTimes,
+<<<<<<< HEAD
 	faTimesCircle,
+=======
+>>>>>>> 3fc47335516e0dcc80aaec9ad03d92bba0d5b309
 	faShoppingCart,
 	faClock,
 	faWarehouse,
@@ -169,9 +187,12 @@ library.add(
 	faTrashAlt,
 	faDownload,
 	faFileExcel,
+<<<<<<< HEAD
 	faMoneyBillWave,
 	faFileInvoiceDollar,
 	faHashtag,
+=======
+>>>>>>> 3fc47335516e0dcc80aaec9ad03d92bba0d5b309
 	faEnvelope,
 	faBell,
 	faPaperPlane,
@@ -203,7 +224,10 @@ library.add(
 		DatabaseModule,
 		PriceModule,
 		NgbDropdownModule,
+<<<<<<< HEAD
 		InvoiceModule,
+=======
+>>>>>>> 3fc47335516e0dcc80aaec9ad03d92bba0d5b309
 		MessengerModule
 	],
 	providers: [
