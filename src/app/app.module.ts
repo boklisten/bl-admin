@@ -184,7 +184,8 @@ library.add(
 		HomeComponent,
 		HeaderComponent,
 		SideBarComponent,
-		SideBarButtonComponent
+		SideBarButtonComponent,
+		MessagesComponent
 	],
 	imports: [
 		BrowserModule,
