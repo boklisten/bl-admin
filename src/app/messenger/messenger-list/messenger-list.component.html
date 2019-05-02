@@ -1,0 +1,78 @@
+
+<div class="row">
+  <div class="col">
+		<table class="table table-sm table-hover table-striped">
+			<thead>
+				<tr>
+					<th scope="col">
+						<app-blc-button-check
+							[value]="selectAll"
+							(valueChange)="onSelectAll()"
+						>
+						</app-blc-button-check>
+					</th>
+					<th scope="col" (click)="sortInvoiceId()">
+            Time
+					</th>
+					<th scope="col" i18n="@@messageListType">Type</th>
+					<th scope="col" i18n="@@massageListSubtype">
+            Subtype
+					</th>
+					<th scope="col" i18n="@@messageListCustomer">Customer</th>
+					<th scope="col" i18n="@@messageListStatus">
+						Status
+					</th>
+				</tr>
+			</thead>
+			<tbody *ngIf="messages">
+				<tr
+					*ngFor="let message of (messages$ | async); let i = index"
+					[ngClass]="{
+						'table-primary':
+							selectedMessage &&
+							message.id &&
+							selectedMessage.id == message.id
+					}"
+					(click)="onSelectMessage(message)"
+				>
+					<th (click)="onSelect(message.id)">
+						<app-blc-button-check
+							[value]="selectedList[message.id]"
+						>
+						</app-blc-button-check>
+					</th>
+					<th>
+            {{message.creationTime | blDate}}
+            <!--
+						<ngb-highlight
+							[result]="message.invoiceId"
+							[term]="filter.value"
+						></ngb-highlight>
+            -->
+					</th>
+					<td>
+            {{message.messageType}}
+          <!--
+						<span
+							class="bl-link-black"
+							[routerLink]="
+								'/customer/' +
+								invoice.customerInfo.userDetail +
+								'/detail'
+							"
+						>
+							<ngb-highlight
+								[result]="invoice.customerInfo.name"
+								[term]="filter.value"
+							></ngb-highlight>
+						</span>
+          -->
+					</td>
+					<td>{{ message.messageSubtype}}</td>
+					<td>{{ message.customerId | customerName | async}}</td>
+          <td>{{message.events.length}} </td>
+				</tr>
+			</tbody>
+		</table>
+  </div>
+</div>

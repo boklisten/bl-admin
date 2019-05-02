@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { TextBlock, CustomerItemType } from "@wizardcoder/bl-model";
+import { TextBlock, CustomerItemType, Message } from "@wizardcoder/bl-model";
 import { MessageService } from "@wizardcoder/bl-connect";
 import { Observable, Subject } from "rxjs";
 
@@ -17,13 +17,22 @@ export class MessengerReminderService {
 
 	public sendReminders(
 		userIds: string[],
-    deadline: Date,
-    type: CustomerItemType | 'all',
+		deadline: Date,
+		type: CustomerItemType | "all",
+		sequenceNumber: number,
 		textBlocks: TextBlock[]
 	) {
 		for (let userId of userIds) {
 			this.messageService
-				.sendReminder(userId, deadline, type, textBlocks)
+				.add(
+					this.createMessage(
+						userId,
+						deadline,
+						type,
+						sequenceNumber,
+						textBlocks
+					)
+				)
 				.then(val => {
 					this.successfullMessage$.next(userId);
 				})
@@ -39,6 +48,27 @@ export class MessengerReminderService {
 
 	public onFailedMessage(): Observable<string> {
 		return this.failedMessages$.asObservable();
+	}
+
+	private createMessage(
+		userId: string,
+		deadline: Date,
+		type: CustomerItemType | "all",
+		sequenceNumber: number,
+		textBlocks: TextBlock[]
+	): Message {
+		return {
+			id: "",
+			messageType: "reminder",
+			messageSubtype: type as any,
+			messageMethod: "all",
+			sequenceNumber: sequenceNumber,
+			customerId: userId,
+			info: {
+				deadline: deadline
+			},
+			textBlocks: textBlocks && textBlocks.length > 0 ? textBlocks : []
+		};
 	}
 
 	private simulatedSendReminder(userId: string): Promise<boolean> {

@@ -12,8 +12,9 @@ export class MessengerReminderModalComponent implements OnInit {
 	@Input() name: string;
 	@Input() customerIds: string[];
 	@Input() deadline: Date;
-  @Input() type: CustomerItemType | 'all';
+	@Input() type: CustomerItemType | "all";
 	@Input() textBlocks: TextBlock[];
+	@Input() sequenceNumber: number;
 	public confirmed: boolean;
 	public progressbarValue: number;
 	public successfullMessages: number;
@@ -21,7 +22,7 @@ export class MessengerReminderModalComponent implements OnInit {
 	public remindersDone: boolean;
 	private progressBarValuePart: number;
 	private progressbarValueFull: number;
-  public finished: boolean;
+	public finished: boolean;
 
 	constructor(
 		public activeModal: NgbActiveModal,
@@ -31,7 +32,7 @@ export class MessengerReminderModalComponent implements OnInit {
 		this.successfullMessages = 0;
 		this.failedMessages = [];
 		this.remindersDone = false;
-    this.finished = false;
+		this.finished = false;
 	}
 
 	ngOnInit() {
@@ -42,7 +43,7 @@ export class MessengerReminderModalComponent implements OnInit {
 	}
 
 	onConfirm() {
-    this.confirmed = true;
+		this.confirmed = true;
 		this.sendReminders(this.customerIds);
 	}
 
@@ -68,11 +69,13 @@ export class MessengerReminderModalComponent implements OnInit {
 		this.progressbarValue = 0;
 		this.progressBarValuePart = 1;
 		this.progressbarValueFull = customerIds.length;
+		console.log("the seq num", this.sequenceNumber);
 
 		this.messengerReminderService.sendReminders(
 			customerIds,
-      this.deadline,
-      this.type,
+			this.deadline,
+			this.type,
+			this.sequenceNumber,
 			this.textBlocks
 		);
 	}
@@ -91,17 +94,17 @@ export class MessengerReminderModalComponent implements OnInit {
 			this.progressbarValue += this.progressBarValuePart;
 			this.checkIfDone();
 		});
-  }
+	}
 
-  onDone() {
-    this.activeModal.close();
-  }
+	onDone() {
+		this.activeModal.close();
+	}
 
 	private checkIfDone() {
 		if (this.progressbarValue >= this.progressbarValueFull) {
 			setTimeout(() => {
 				this.remindersDone = true;
-        this.finished = true;
+				this.finished = true;
 			}, 2000);
 		}
 	}

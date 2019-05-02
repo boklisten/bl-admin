@@ -6,14 +6,21 @@
 			></app-blc-branch-select>
 		</div>
 	</div>
-  <div class="row mb-4">
-    <div class="col">
-      <app-blc-type-select
-        (selectedType)="onSelectType($event)">
-      </app-blc-type-select>
-
-    </div>
-  </div>
+	<div class="row mb-4">
+		<div class="col">
+			<app-blc-type-select (selectedType)="onSelectType($event)">
+			</app-blc-type-select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<app-messenger-sequence-picker
+				[messageType]="selectedType"
+				(sequencePicked)="onSequencePicked($event)"
+			>
+			</app-messenger-sequence-picker>
+		</div>
+	</div>
 	<div class="row mb-4">
 		<div class="col">
 			<app-blc-deadline-select
@@ -28,15 +35,16 @@
 			></app-blc-textblock-edit>
 		</div>
 	</div>
-  <div class="row" *ngIf="noCustomerItemsFoundError">
-    <div class="col">
-      <app-bl-common-alert
-         [type]="'secondary'"
-         i18n-text="@@messengerReminderNoCustomerItemsFound"
-          text="No customerItems found">
-      </app-bl-common-alert>
-    </div>
-  </div>
+	<div class="row" *ngIf="noCustomerItemsFoundError">
+		<div class="col">
+			<app-bl-common-alert
+				[type]="'secondary'"
+				i18n-text="@@messengerReminderNoCustomerItemsFound"
+				text="No customerItems found"
+			>
+			</app-bl-common-alert>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col">
 			<button

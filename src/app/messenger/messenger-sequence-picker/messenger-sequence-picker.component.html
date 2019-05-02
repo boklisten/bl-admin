@@ -3,16 +3,16 @@
 		<div
 			class="btn-group btn-group-toggle"
 			ngbRadioGroup
-			[(ngModel)]="currentType"
-			(ngModelChange)="selectType($event)"
+			[(ngModel)]="sequence"
+			(ngModelChange)="selectSequence($event)"
 		>
 			<label
 				ngbButtonLabel
 				class="btn-outline-secondary"
-				*ngFor="let typeOption of typeOptions"
+				*ngFor="let sequence of sequences"
 			>
-				<input ngbButton type="radio" [value]="typeOption" />
-				{{ typeOption }}
+				<input ngbButton type="radio" [value]="sequence" />
+				{{ sequence }}
 			</label>
 		</div>
 	</div>
