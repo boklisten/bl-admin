@@ -62,9 +62,19 @@
 			<button
 				class="btn btn-success btn-block"
 				i18n="@@messengerReminderConfirmButton"
+        *ngIf="!finished"
 				(click)="onConfirm()"
 			>
 				Confirm
+			</button>
+
+			<button
+				class="btn btn-success btn-block"
+				i18n="@@messengerReminderDone"
+        *ngIf="finished"
+				(click)="onDone()"
+			>
+				Done
 			</button>
 		</div>
 	</div>

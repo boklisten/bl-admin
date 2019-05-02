@@ -33,7 +33,11 @@ export class BlCommonAlertComponent implements OnInit {
 					break;
 				case 'secondary':
 					this.showSecondary();
-					break;
+          break;
+        default:
+          this.showSecondary();
+          this.type = 'secondary';
+          break;
 			}
 			this.showAlert = true;
 		}

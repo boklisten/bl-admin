@@ -1,12 +1,19 @@
 <div class="mt-2">
-	<div class="row mb-4">
-		<div class="col">
+	<div class="row">
+		<div class="col mb-2">
 			<app-blc-branch-select
 				(selectBranches)="onSelectBranches($event)"
 			></app-blc-branch-select>
 		</div>
 	</div>
-	<!--
+  <div class="row mb-4">
+    <div class="col">
+      <app-blc-type-select
+        (selectedType)="onSelectType($event)">
+      </app-blc-type-select>
+
+    </div>
+  </div>
 	<div class="row mb-4">
 		<div class="col">
 			<app-blc-deadline-select
@@ -14,15 +21,23 @@
 			></app-blc-deadline-select>
 		</div>
 	</div>
-  -->
-	<div class="row">
+	<div class="row mb-5">
 		<div class="col">
 			<app-blc-textblock-edit
 				[(textBlocks)]="textBlocks"
 			></app-blc-textblock-edit>
 		</div>
 	</div>
-	<div class="row mt-5">
+  <div class="row" *ngIf="noCustomerItemsFoundError">
+    <div class="col">
+      <app-bl-common-alert
+         [type]="'secondary'"
+         i18n-text="@@messengerReminderNoCustomerItemsFound"
+          text="No customerItems found">
+      </app-bl-common-alert>
+    </div>
+  </div>
+	<div class="row">
 		<div class="col">
 			<button
 				class="btn btn-outline-secondary btn-block"

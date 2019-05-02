@@ -59,7 +59,7 @@ export class CustomerItemListComponent implements OnInit {
 
 	public onSendReminder() {
 		this._messageService
-			.sendReminder(this.customerDetail.id, this.reminderDate)
+			.sendReminder(this.customerDetail.id, this.reminderDate, 'partly-payment')
 			.then(data => {
 				console.log("reminder sent", data);
 			})

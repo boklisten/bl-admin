@@ -11,7 +11,7 @@ export class BlcTextblockEditComponent implements OnInit {
   @Input() textBlocks: TextBlock[];
   @Output() textBlocksChange: EventEmitter<TextBlock[]>;
 
-  constructor() { 
+  constructor() {
     this.textBlocks = [];
     this.textBlocksChange = new EventEmitter<TextBlock[]>()
   }
@@ -25,7 +25,7 @@ export class BlcTextblockEditComponent implements OnInit {
     this.textBlocks[index].alert = false;
 
     switch (textblockType) {
-      case "secondary": 
+      case "secondary":
         this.textBlocks[index].secondary = true;
         break;
       case "warning":
@@ -36,8 +36,6 @@ export class BlcTextblockEditComponent implements OnInit {
         break;
 
     }
-
-    console.log("hello", this.textBlocks[index]);
   }
 
   public addTextBlock() {

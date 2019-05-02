@@ -8,6 +8,10 @@
             <input ngbButton type="radio" value="custom" i18n="@@blcPeriodSelectCustom"> Custom
         </label>
     </div>
+    <p>
+    <span i18n="@@blcDeadlineSelectSelectedDeadline">Selected deadline:</span> <b> {{deadline | blDate:"date"}}</b>
+    </p>
+  </div>
   <div class="col-12">
     <div class="row mt-2" *ngIf="customDeadline">
       <div class="col-12">
@@ -26,5 +30,4 @@
     </div>
   </div>
 </div>
-
 

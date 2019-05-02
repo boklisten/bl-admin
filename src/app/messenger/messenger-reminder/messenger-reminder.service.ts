@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { TextBlock } from "@wizardcoder/bl-model";
+import { TextBlock, CustomerItemType } from "@wizardcoder/bl-model";
 import { MessageService } from "@wizardcoder/bl-connect";
 import { Observable, Subject } from "rxjs";
 
@@ -17,28 +17,19 @@ export class MessengerReminderService {
 
 	public sendReminders(
 		userIds: string[],
-		deadline: Date,
+    deadline: Date,
+    type: CustomerItemType | 'all',
 		textBlocks: TextBlock[]
 	) {
-
 		for (let userId of userIds) {
 			this.messageService
-				.sendReminder(userId, deadline, textBlocks)
-				.then((val) => {
+				.sendReminder(userId, deadline, type, textBlocks)
+				.then(val => {
 					this.successfullMessage$.next(userId);
 				})
-				.catch((err) => {
-					this.failedMessages$.next(userId);
-        });
-      /*
-			this.simulatedSendReminder(userId)
-				.then(() => {
-					this.successfullMessage$.next(userId);
-				})
-				.catch(() => {
+				.catch(err => {
 					this.failedMessages$.next(userId);
 				});
-       */
 		}
 	}
 

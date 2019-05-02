@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { MessengerReminderService } from "../messenger-reminder.service";
-import { TextBlock } from "@wizardcoder/bl-model";
+import { TextBlock, CustomerItemType } from "@wizardcoder/bl-model";
 
 @Component({
 	selector: "app-messenger-reminder-modal",
@@ -12,6 +12,7 @@ export class MessengerReminderModalComponent implements OnInit {
 	@Input() name: string;
 	@Input() customerIds: string[];
 	@Input() deadline: Date;
+  @Input() type: CustomerItemType | 'all';
 	@Input() textBlocks: TextBlock[];
 	public confirmed: boolean;
 	public progressbarValue: number;
@@ -20,6 +21,7 @@ export class MessengerReminderModalComponent implements OnInit {
 	public remindersDone: boolean;
 	private progressBarValuePart: number;
 	private progressbarValueFull: number;
+  public finished: boolean;
 
 	constructor(
 		public activeModal: NgbActiveModal,
@@ -29,6 +31,7 @@ export class MessengerReminderModalComponent implements OnInit {
 		this.successfullMessages = 0;
 		this.failedMessages = [];
 		this.remindersDone = false;
+    this.finished = false;
 	}
 
 	ngOnInit() {
@@ -39,7 +42,7 @@ export class MessengerReminderModalComponent implements OnInit {
 	}
 
 	onConfirm() {
-		this.confirmed = true;
+    this.confirmed = true;
 		this.sendReminders(this.customerIds);
 	}
 
@@ -68,7 +71,8 @@ export class MessengerReminderModalComponent implements OnInit {
 
 		this.messengerReminderService.sendReminders(
 			customerIds,
-			this.deadline,
+      this.deadline,
+      this.type,
 			this.textBlocks
 		);
 	}
@@ -87,12 +91,17 @@ export class MessengerReminderModalComponent implements OnInit {
 			this.progressbarValue += this.progressBarValuePart;
 			this.checkIfDone();
 		});
-	}
+  }
+
+  onDone() {
+    this.activeModal.close();
+  }
 
 	private checkIfDone() {
 		if (this.progressbarValue >= this.progressbarValueFull) {
 			setTimeout(() => {
 				this.remindersDone = true;
+        this.finished = true;
 			}, 2000);
 		}
 	}
