@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 import { MessengerRoutingModule } from "./messenger-routing.module";
@@ -26,7 +26,8 @@ import { MessengerSequencePickerComponent } from "./messenger-sequence-picker/me
 		BlCommonModule,
 		NgbProgressbarModule,
 		FormsModule,
-		NgbButtonsModule
+		NgbButtonsModule,
+		ReactiveFormsModule
 	],
 	declarations: [
 		MessengerComponent,

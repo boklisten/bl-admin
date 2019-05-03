@@ -20,6 +20,7 @@ export class MessengerReminderService {
 		deadline: Date,
 		type: CustomerItemType | "all",
 		sequenceNumber: number,
+		mediums: { email: boolean; sms: boolean; voice: boolean },
 		textBlocks: TextBlock[]
 	) {
 		for (let userId of userIds) {
@@ -30,6 +31,7 @@ export class MessengerReminderService {
 						deadline,
 						type,
 						sequenceNumber,
+						this.getMessageMethod(mediums),
 						textBlocks
 					)
 				)
@@ -39,6 +41,18 @@ export class MessengerReminderService {
 				.catch(err => {
 					this.failedMessages$.next(userId);
 				});
+		}
+	}
+
+	private getMessageMethod(mediums: {
+		email: boolean;
+		sms: boolean;
+		voice: boolean;
+	}): "email" | "sms" | "all" {
+		if (mediums.sms) {
+			return "all";
+		} else {
+			return "email";
 		}
 	}
 
@@ -55,15 +69,17 @@ export class MessengerReminderService {
 		deadline: Date,
 		type: CustomerItemType | "all",
 		sequenceNumber: number,
+		messageMethod: "email" | "sms" | "all",
 		textBlocks: TextBlock[]
 	): Message {
 		return {
 			id: "",
 			messageType: "reminder",
 			messageSubtype: type as any,
-			messageMethod: "all",
+			messageMethod: messageMethod,
 			sequenceNumber: sequenceNumber,
 			customerId: userId,
+
 			info: {
 				deadline: deadline
 			},

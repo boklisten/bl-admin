@@ -14,7 +14,7 @@ export class BlcTypeSelectComponent implements OnInit {
 
 	constructor() {
 		this.selectedType = new EventEmitter();
-		this.typeOptions = ["partly-payment", "rent", "loan", "all"];
+		this.typeOptions = ["partly-payment", "rent", "loan"];
 		this.currentType = this.typeOptions[0];
 	}
 

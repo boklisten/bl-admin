@@ -1,6 +1,25 @@
+<!--
+<div class="row justify-content-between align-items-center p-2">
+	<div class="col-auto">
+		<div class="input-group input-group-sm mb-3">
+			<input
+				class="form-control"
+				type="text"
+				i18n-placeholder="@@messengerListFilterPlaceholder"
+				placeholder="Filter by name"
+				name="searchFilter"
+				[formControl]="filter"
+			/>
+			<div class="input-group-append">
+				<fa-icon icon="filter" class="input-group-text p-3"></fa-icon>
+			</div>
+		</div>
+	</div>
+</div>
+-->
 
 <div class="row">
-  <div class="col">
+	<div class="col">
 		<table class="table table-sm table-hover table-striped">
 			<thead>
 				<tr>
@@ -11,17 +30,19 @@
 						>
 						</app-blc-button-check>
 					</th>
-					<th scope="col" (click)="sortInvoiceId()">
-            Time
-					</th>
+					<th scope="col" (click)="sortInvoiceId()">Time</th>
 					<th scope="col" i18n="@@messageListType">Type</th>
-					<th scope="col" i18n="@@massageListSubtype">
-            Subtype
+					<th scope="col" i18n="@@massageListSubtype">Subtype</th>
+					<th scope="col" i18n="@@messageListStatus">Seq</th>
+					<th
+						*ngIf="!customerId"
+						scope="col"
+						i18n="@@messageListCustomer"
+					>
+						Customer
 					</th>
-					<th scope="col" i18n="@@messageListCustomer">Customer</th>
-					<th scope="col" i18n="@@messageListStatus">
-						Status
-					</th>
+					<th scope="col" i18n="@@messageListStatus">Email status</th>
+					<th scope="col" i18n="@@messageListStatus">Sms status</th>
 				</tr>
 			</thead>
 			<tbody *ngIf="messages">
@@ -41,18 +62,18 @@
 						>
 						</app-blc-button-check>
 					</th>
-					<th>
-            {{message.creationTime | blDate}}
-            <!--
+					<td>
+						{{ message.creationTime | blDate: "timestamp" }}
+						<!--
 						<ngb-highlight
 							[result]="message.invoiceId"
 							[term]="filter.value"
 						></ngb-highlight>
             -->
-					</th>
+					</td>
 					<td>
-            {{message.messageType}}
-          <!--
+						{{ message.messageType }}
+						<!--
 						<span
 							class="bl-link-black"
 							[routerLink]="
@@ -68,11 +89,31 @@
 						</span>
           -->
 					</td>
-					<td>{{ message.messageSubtype}}</td>
-					<td>{{ message.customerId | customerName | async}}</td>
-          <td>{{message.events.length}} </td>
+					<td>{{ message.messageSubtype }}</td>
+					<td>{{ message.sequenceNumber }}</td>
+					<td *ngIf="!customerId">
+						{{ message.customerId | customerName | async }}
+					</td>
+					<td
+						[ngClass]="{
+							'text-danger':
+								getEmailStatus(message) == 'dropped' ||
+								getEmailStatus(message) == 'bounce',
+							'text-success': getEmailStatus(message) == 'open'
+						}"
+					>
+						{{ getEmailStatus(message) }}
+					</td>
+					<td
+						[ngClass]="{
+							'text-danger': getSmsStatus(message) == 'failed',
+							'text-success': getSmsStatus(message) == 'delivered'
+						}"
+					>
+						{{ getSmsStatus(message) }}
+					</td>
 				</tr>
 			</tbody>
 		</table>
-  </div>
+	</div>
 </div>

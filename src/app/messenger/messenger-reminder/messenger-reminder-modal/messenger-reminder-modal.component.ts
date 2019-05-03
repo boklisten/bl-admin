@@ -15,6 +15,7 @@ export class MessengerReminderModalComponent implements OnInit {
 	@Input() type: CustomerItemType | "all";
 	@Input() textBlocks: TextBlock[];
 	@Input() sequenceNumber: number;
+	@Input() smsMedium: boolean;
 	public confirmed: boolean;
 	public progressbarValue: number;
 	public successfullMessages: number;
@@ -76,8 +77,18 @@ export class MessengerReminderModalComponent implements OnInit {
 			this.deadline,
 			this.type,
 			this.sequenceNumber,
+			this.getMessageMediums(),
 			this.textBlocks
 		);
+	}
+
+	private getMessageMediums() {
+		let mediums = { email: true, sms: false, voice: false };
+		if (this.smsMedium && this.smsMedium == true) {
+			mediums.sms = true;
+		}
+
+		return mediums;
 	}
 
 	onSuccessfulMessage() {

@@ -6,19 +6,26 @@
 			></app-blc-branch-select>
 		</div>
 	</div>
-	<div class="row mb-4">
-		<div class="col">
+	<div class="row mb-2">
+		<div class="col-auto">
 			<app-blc-type-select (selectedType)="onSelectType($event)">
 			</app-blc-type-select>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col">
+		<div class="col-auto">
 			<app-messenger-sequence-picker
 				[messageType]="selectedType"
 				(sequencePicked)="onSequencePicked($event)"
 			>
 			</app-messenger-sequence-picker>
+		</div>
+		<div class="col-auto">
+			<app-bl-common-toggle-button
+				[(ngModel)]="smsMedium"
+				(valueChange)="smsMedium = $event"
+				i18n-name="@@messengerReminderSms"
+				name="sms"
+			>
+			</app-bl-common-toggle-button>
 		</div>
 	</div>
 	<div class="row mb-4">
