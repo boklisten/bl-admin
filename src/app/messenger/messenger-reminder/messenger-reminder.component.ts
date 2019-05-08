@@ -119,15 +119,18 @@ export class MessengerReminderComponent implements OnInit {
 			if (uniqueCustomerIds.indexOf(customerItem.customer) < 0) {
 				uniqueCustomerIds.push(customerItem.customer);
 			}
-		}
+    }
+    console.log('unique', uniqueCustomerIds);
 		return uniqueCustomerIds;
 	}
 
 	private getNotReturnedCustomerItems(
 		type: CustomerItemType | "all"
 	): Promise<CustomerItem[]> {
-		let deadlineString = moment(this.deadline).format("DDMMYYYYHHmm");
-		let query = `?returned=false&deadline=${deadlineString}`;
+
+		let deadlineAboveString = moment(this.deadline).subtract('day', 1).format("DDMMYYYYHHmm");
+		let deadlineBelowString = moment(this.deadline).add('day', 1).format("DDMMYYYYHHmm");
+    let query = `?returned=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
 
 		for (let branchId of this.selectedBranches) {
 			query += `&handoutInfo.handoutById=${branchId}`;
