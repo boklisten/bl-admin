@@ -40,10 +40,10 @@ export class BlcDeadlineSelectComponent implements OnInit {
     }
 
     for (let period of branch.paymentInfo.partlyPaymentPeriods) {
-			this.deadlineOptions.push(period.date);
+      if (this.deadlineOptions.indexOf(period.date) <= -1) {
+			  this.deadlineOptions.push(period.date);
+      }
     }
-
-    console.log("the deadline options", this.deadlineOptions[0]);
 
 		this.selectDeadline(this.deadlineOptions[0]);
   }
