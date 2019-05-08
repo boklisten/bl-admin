@@ -133,8 +133,8 @@ export class MessengerReminderComponent implements OnInit {
     let query = `?returned=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
 
     // we currently have no notion of "loan" and therefore need to create this 'hack'
+    let loanBranches = await this.getLoanBranches();
     if (type === 'loan') {
-      let loanBranches = await this.getLoanBranches();
       let filteredBranches = [];
       if (this.selectedBranches.length > 0) {
         for (let branchId of this.selectedBranches) {
@@ -150,7 +150,19 @@ export class MessengerReminderComponent implements OnInit {
       }
       query += this.getBranchQuery(filteredBranches);
     } else {
-      query += this.getBranchQuery(this.selectedBranches);
+      let filteredBranches = [];
+      let noLoanBranches = await this.getNoLoanBranches();
+
+      if (this.selectedBranches.length > 0) {
+        for (let branchId of this.selectedBranches) {
+          if (noLoanBranches.indexOf(branchId) >= 0) {
+            filteredBranches.push(branchId);
+          }
+        }
+      } else {
+        filteredBranches = noLoanBranches;
+      }
+      query += this.getBranchQuery(filteredBranches);
     }
 
 		if (type === "rent") {
@@ -168,6 +180,20 @@ export class MessengerReminderComponent implements OnInit {
       query += `&handoutInfo.handoutById=${branchId}`;
     }
     return query;
+  }
+
+  private async getNoLoanBranches() {
+    let branches = await this.branchStoreService.getAllBranches();
+
+    let noLoanBranches = [];
+
+    for (let branch of branches) {
+      if (!branch.paymentInfo.responsible) {
+        noLoanBranches.push(branch.id);
+      }
+    }
+
+    return noLoanBranches;
   }
 
   private async getLoanBranches() {
