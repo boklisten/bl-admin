@@ -43,7 +43,17 @@ export class DateService {
 
 	public currentDateCompact(): string {
 		return moment().format("DD_MM_YY");
-	}
+  }
+
+  public toDeadlineFormat(deadline: Date): Date {
+    let hour = moment(deadline).hour();
+    if (hour !== 0) {
+      let hoursToDeadline = 24 - hour;
+      let m = moment(deadline).add('hour', hoursToDeadline);
+      return m.toDate();
+    }
+    return deadline;
+  }
 
 	private getCurrentDate() {
 		return moment()

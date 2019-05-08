@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { BranchStoreService } from "../../branch/branch-store.service";
-import * as moment from 'moment';
 
 @Component({
 	selector: "app-blc-deadline-select",
@@ -26,10 +25,10 @@ export class BlcDeadlineSelectComponent implements OnInit {
 	public selectDeadline(deadline: any) {
 		if (typeof deadline == "string" && deadline === "custom") {
 			this.customDeadline = true;
-			this.deadlineChange.emit(this.toDeadline(new Date()));
+			this.deadlineChange.emit(new Date());
 		} else {
 			this.customDeadline = false;
-			this.deadlineChange.emit(this.toDeadline(this.deadline));
+			this.deadlineChange.emit(this.deadline);
 		}
 	}
 
@@ -41,10 +40,5 @@ export class BlcDeadlineSelectComponent implements OnInit {
 		}
 
 		this.selectDeadline(this.deadlineOptions[0]);
-  }
-
-  private toDeadline(date: Date): Date {
-    let m = moment(date).add('hour', 2);
-    return m.toDate();
   }
 }
