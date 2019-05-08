@@ -45,14 +45,9 @@ export class DateService {
 		return moment().format("DD_MM_YY");
   }
 
-  public toDeadlineFormat(deadline: Date): Date {
-    let hour = moment(deadline).hour();
-    if (hour !== 0) {
-      let hoursToDeadline = 24 - hour;
-      let m = moment(deadline).add('hour', hoursToDeadline);
-      return m.toDate();
-    }
-    return deadline;
+  public toDeadlineFormat(deadline: Date): String {
+
+		return moment(deadline).format("YYYY-MM-DDTHH:mm:ss.SSSZ");
   }
 
 	private getCurrentDate() {

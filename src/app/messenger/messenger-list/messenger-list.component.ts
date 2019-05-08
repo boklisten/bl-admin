@@ -36,7 +36,6 @@ export class MessengerListComponent implements OnInit {
 	constructor(private messageService: MessageService) {
 		this.filter = new FormControl("");
 		this.selectedList = {};
-		this.customerId = "5c33b6137eab87644f7e75e2";
 	}
 
 	ngOnInit() {

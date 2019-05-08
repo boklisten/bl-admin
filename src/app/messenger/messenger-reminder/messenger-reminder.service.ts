@@ -81,7 +81,7 @@ export class MessengerReminderService {
 			sequenceNumber: sequenceNumber,
 			customerId: userId,
 			info: {
-				deadline: this.dateService.toDeadlineFormat(deadline)
+				deadline: this.dateService.toDeadlineFormat(deadline) as any
 			},
 			textBlocks: textBlocks && textBlocks.length > 0 ? textBlocks : []
 		};

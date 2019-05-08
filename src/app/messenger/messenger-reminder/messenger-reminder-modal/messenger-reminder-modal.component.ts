@@ -48,15 +48,6 @@ export class MessengerReminderModalComponent implements OnInit {
 		this.sendReminders(this.customerIds);
 	}
 
-	private createFakeCustomerIds(): string[] {
-		let randomNumOfCustomers = Math.floor(Math.random() * 10000) + 500;
-		let customerIds = [];
-		for (let i = 0; i < randomNumOfCustomers; i++) {
-			customerIds.push(i).toString();
-		}
-		return customerIds;
-	}
-
 	retryFailedMessages() {
 		this.remindersDone = false;
 
