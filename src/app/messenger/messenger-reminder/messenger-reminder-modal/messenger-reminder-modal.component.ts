@@ -70,7 +70,6 @@ export class MessengerReminderModalComponent implements OnInit {
 		this.progressbarValue = 0;
 		this.progressBarValuePart = 1;
 		this.progressbarValueFull = customerIds.length;
-		console.log("the seq num", this.sequenceNumber);
 
 		this.messengerReminderService.sendReminders(
 			customerIds,
