@@ -129,11 +129,6 @@ export class MessengerReminderComponent implements OnInit {
 		let deadlineString = moment(this.deadline).format("DDMMYYYYHHmm");
 		let query = `?returned=false&deadline=${deadlineString}`;
 
-		if (this.selectedBranches.length <= 0) {
-			let branch = this.branchStoreService.getCurrentBranch();
-			this.selectedBranches.push(branch.id);
-		}
-
 		for (let branchId of this.selectedBranches) {
 			query += `&handoutInfo.handoutById=${branchId}`;
 		}
