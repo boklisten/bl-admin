@@ -57,17 +57,6 @@ export class CustomerItemListComponent implements OnInit {
 		});
 	}
 
-	public onSendReminder() {
-		this._messageService
-			.sendReminder(this.customerDetail.id, this.reminderDate, 'partly-payment')
-			.then(data => {
-				console.log("reminder sent", data);
-			})
-			.catch(err => {
-				console.log("could not send reminder", err);
-			});
-	}
-
 	getCustomerItems() {
 		this.wait = true;
 		this._customerItemListService

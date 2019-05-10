@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {ItemService} from '@wizardcoder/bl-connect';
-import {BlApiError, Item} from '@wizardcoder/bl-model';
-import {Subject, Observable} from 'rxjs';
-import {StorageService} from '../../storage/storage.service';
-import {CartService} from '../../cart/cart.service';
+import { Injectable } from "@angular/core";
+import { ItemService } from "@wizardcoder/bl-connect";
+import { BlApiError, Item } from "@wizardcoder/bl-model";
+import { Subject, Observable } from "rxjs";
+import { StorageService } from "../../storage/storage.service";
+import { CartService } from "../../cart/cart.service";
 
 @Injectable()
 export class ItemSearchService {
@@ -13,15 +13,20 @@ export class ItemSearchService {
 	private _searchResult: Item[];
 	private _storageSearchTermName: string;
 
-	constructor(private _itemService: ItemService,
-	            private _cartService: CartService,
-	            private _storageService: StorageService) {
+	constructor(
+		private _itemService: ItemService,
+		private _cartService: CartService,
+		private _storageService: StorageService
+	) {
 		this._searchResultError$ = new Subject<any>();
 		this._searchResult$ = new Subject<boolean>();
-		this._storageSearchTermName = 'bl-item-search-term';
+		this._storageSearchTermName = "bl-item-search-term";
 	}
 
-	public async search(searchTerm: string, addToCart?: boolean): Promise<Item[]> {
+	public async search(
+		searchTerm: string,
+		addToCart?: boolean
+	): Promise<Item[]> {
 		if (!searchTerm || searchTerm.length < 3) {
 			return;
 		}
@@ -31,10 +36,14 @@ export class ItemSearchService {
 		let items: Item[] = [];
 
 		try {
-			items = await this._itemService.get('?s=' + this._searchTerm);
+			items = await this._itemService.get({
+				query: "?s=" + this._searchTerm
+			});
 		} catch (e) {
 			try {
-				items = await this._itemService.get('?info.isbn=' + this._searchTerm);
+				items = await this._itemService.get({
+					query: "?info.isbn=" + this._searchTerm
+				});
 			} catch (e) {
 				items = [];
 			}
@@ -43,7 +52,7 @@ export class ItemSearchService {
 		if (items.length === 1 && addToCart) {
 			if (!this._cartService.contains(items[0].id)) {
 				this._cartService.add(items[0]);
-				this.setSearchTerm('');
+				this.setSearchTerm("");
 				return items;
 			}
 		}

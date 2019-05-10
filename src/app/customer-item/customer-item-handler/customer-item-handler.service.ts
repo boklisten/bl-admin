@@ -82,9 +82,9 @@ export class CustomerItemHandlerService {
 		const fromDate = this._dateService.dateOnApiFormat(period.fromDate);
 		const toDate = this._dateService.dateOnApiFormat(period.toDate);
 
-		return this._customerItemService.get(
-			`?deadline=>${fromDate}&deadline=<${toDate}&returned=false&buyout=false`
-		);
+		return this._customerItemService.get({
+			query: `?deadline=>${fromDate}&deadline=<${toDate}&returned=false&buyout=false`
+		});
 	}
 
 	private createCustomerItemPatch(

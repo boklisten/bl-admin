@@ -36,9 +36,9 @@ export class OrderManagerListService {
 
 	public async getPlacedOrders(): Promise<Order[]> {
 		try {
-			const orders = await this._orderService.getAll(
-				this.getOrderQueryBasedOnFilter(this.orderFilter)
-			);
+			const orders = await this._orderService.get({
+				query: this.getOrderQueryBasedOnFilter(this.orderFilter)
+			});
 			return await this.filterOrders(orders);
 		} catch (e) {
 			throw new Error("OrderManagerListService: could not get orders");

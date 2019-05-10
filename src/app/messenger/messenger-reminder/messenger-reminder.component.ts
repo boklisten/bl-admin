@@ -119,96 +119,97 @@ export class MessengerReminderComponent implements OnInit {
 			if (uniqueCustomerIds.indexOf(customerItem.customer) < 0) {
 				uniqueCustomerIds.push(customerItem.customer);
 			}
-    }
-    console.log('unique', uniqueCustomerIds);
+		}
+		console.log("unique", uniqueCustomerIds);
 		return uniqueCustomerIds;
 	}
 
 	private async getNotReturnedCustomerItems(
 		type: CustomerItemType | "all"
 	): Promise<CustomerItem[]> {
+		let deadlineAboveString = moment(this.deadline)
+			.subtract("day", 1)
+			.format("DDMMYYYYHHmm");
+		let deadlineBelowString = moment(this.deadline)
+			.add("day", 1)
+			.format("DDMMYYYYHHmm");
+		let query = `?returned=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
 
-		let deadlineAboveString = moment(this.deadline).subtract('day', 1).format("DDMMYYYYHHmm");
-		let deadlineBelowString = moment(this.deadline).add('day', 1).format("DDMMYYYYHHmm");
-    let query = `?returned=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
+		// we currently have no notion of "loan" and therefore need to create this 'hack'
+		let loanBranches = await this.getLoanBranches();
+		if (type === "loan") {
+			let filteredBranches = [];
+			if (this.selectedBranches.length > 0) {
+				for (let branchId of this.selectedBranches) {
+					if (loanBranches.indexOf(branchId) >= 0) {
+						filteredBranches.push(branchId);
+					}
+				}
+			} else {
+				filteredBranches = loanBranches;
+			}
+			if (filteredBranches.length <= 0) {
+				throw `none of the branches have 'loan' as a possebility`;
+			}
+			query += this.getBranchQuery(filteredBranches);
+		} else {
+			let filteredBranches = [];
+			let noLoanBranches = await this.getNoLoanBranches();
 
-    // we currently have no notion of "loan" and therefore need to create this 'hack'
-    let loanBranches = await this.getLoanBranches();
-    if (type === 'loan') {
-      let filteredBranches = [];
-      if (this.selectedBranches.length > 0) {
-        for (let branchId of this.selectedBranches) {
-          if (loanBranches.indexOf(branchId) >= 0) {
-            filteredBranches.push(branchId);
-          }
-        }
-      } else {
-        filteredBranches = loanBranches;
-      }
-      if (filteredBranches.length <= 0) {
-        throw `none of the branches have 'loan' as a possebility`;
-      }
-      query += this.getBranchQuery(filteredBranches);
-    } else {
-      let filteredBranches = [];
-      let noLoanBranches = await this.getNoLoanBranches();
-
-      if (this.selectedBranches.length > 0) {
-        for (let branchId of this.selectedBranches) {
-          if (noLoanBranches.indexOf(branchId) >= 0) {
-            filteredBranches.push(branchId);
-          }
-        }
-      } else {
-        filteredBranches = noLoanBranches;
-      }
-      query += this.getBranchQuery(filteredBranches);
-    }
+			if (this.selectedBranches.length > 0) {
+				for (let branchId of this.selectedBranches) {
+					if (noLoanBranches.indexOf(branchId) >= 0) {
+						filteredBranches.push(branchId);
+					}
+				}
+			} else {
+				filteredBranches = noLoanBranches;
+			}
+			query += this.getBranchQuery(filteredBranches);
+		}
 
 		if (type === "rent") {
 			query += `&type=rent`;
-    } else if (type === 'loan') {
-      query += `&type=rent`;
-    }
+		} else if (type === "loan") {
+			query += `&type=rent`;
+		}
 
-	  return this.customerItemService.get(query)
-  }
+		return this.customerItemService.get({ query: query });
+	}
 
-  private getBranchQuery(branchIds: string[]) {
-    let query = '';
-    for (let branchId of branchIds) {
-      query += `&handoutInfo.handoutById=${branchId}`;
-    }
-    return query;
-  }
+	private getBranchQuery(branchIds: string[]) {
+		let query = "";
+		for (let branchId of branchIds) {
+			query += `&handoutInfo.handoutById=${branchId}`;
+		}
+		return query;
+	}
 
-  private async getNoLoanBranches() {
-    let branches = await this.branchStoreService.getAllBranches();
+	private async getNoLoanBranches() {
+		let branches = await this.branchStoreService.getAllBranches();
 
-    let noLoanBranches = [];
+		let noLoanBranches = [];
 
-    for (let branch of branches) {
-      if (!branch.paymentInfo.responsible) {
-        noLoanBranches.push(branch.id);
-      }
-    }
+		for (let branch of branches) {
+			if (!branch.paymentInfo.responsible) {
+				noLoanBranches.push(branch.id);
+			}
+		}
 
-    return noLoanBranches;
-  }
+		return noLoanBranches;
+	}
 
-  private async getLoanBranches() {
-    let branches = await this.branchStoreService.getAllBranches();
+	private async getLoanBranches() {
+		let branches = await this.branchStoreService.getAllBranches();
 
-    let loanBranches = [];
+		let loanBranches = [];
 
-    for (let branch of branches) {
-      if (branch.paymentInfo.responsible) {
-        loanBranches.push(branch.id);
-      }
-    }
+		for (let branch of branches) {
+			if (branch.paymentInfo.responsible) {
+				loanBranches.push(branch.id);
+			}
+		}
 
-    return loanBranches;
-  }
+		return loanBranches;
+	}
 }
-
-

@@ -49,7 +49,7 @@ export class MessengerListComponent implements OnInit {
 		let query = this.customerId ? `?customerId=${this.customerId}` : null;
 
 		this.messageService
-			.get(query)
+			.get({ query: query })
 			.then(messages => {
 				console.log(messages);
 				this.messages = messages;
