@@ -70,7 +70,8 @@ export class CustomerItemListService {
 		this._wait$.next(true);
 
 		const customerItems = await this._customerItemService.getManyByIds(
-			customerDetail.customerItems as string[]
+			customerDetail.customerItems as string[],
+			{ fresh: true }
 		);
 
 		for (const customerItem of customerItems) {

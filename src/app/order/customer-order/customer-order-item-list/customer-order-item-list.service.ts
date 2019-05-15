@@ -133,7 +133,8 @@ export class CustomerOrderItemListService {
 		this._wait$.next(true);
 		const customerDetail = this._customerService.getCustomerDetail();
 		const orders = await this._orderService.getManyByIds(
-			customerDetail.orders as string[]
+			customerDetail.orders as string[],
+			{ fresh: true }
 		);
 
 		for (const order of orders) {
