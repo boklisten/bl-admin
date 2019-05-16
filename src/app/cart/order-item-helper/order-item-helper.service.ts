@@ -51,6 +51,12 @@ export class OrderItemHelperService {
 					item,
 					customerItem
 				);
+			case "buyback":
+				return await this.updateOrderItemBuyback(
+					orderItem,
+					item,
+					customerItem
+				);
 			case "return":
 				return await this.updateOrderItemReturn(
 					orderItem,
@@ -138,6 +144,35 @@ export class OrderItemHelperService {
 		orderItem.handout = true;
 
 		await this.updateOrderItemAmounts(orderItem, item);
+
+		return orderItem;
+	}
+
+	private async updateOrderItemBuyback(
+		orderItem: OrderItem,
+		item: Item,
+		customerItem: CustomerItem
+	): Promise<OrderItem> {
+		orderItem.type = "buyback";
+		orderItem.delivered = true;
+		let orderItemAmounts: OrderItemAmounts;
+		let buybackAmount = 0;
+
+		if (orderItem.info && orderItem.info["buybackAmount"]) {
+			buybackAmount = parseInt(orderItem.info["buybackAmount"]);
+		}
+
+		orderItemAmounts = this._customerItemPriceService.calculateAmountsPartlyPaymentBuyback(
+			item,
+			buybackAmount
+		);
+
+		orderItem.taxRate = item.taxRate;
+		orderItem.amount = orderItemAmounts.amount;
+		orderItem.unitPrice = orderItemAmounts.unitPrice;
+		orderItem.taxAmount = orderItemAmounts.taxAmount;
+		orderItem.customerItem = customerItem.id;
+		orderItem.info = null;
 
 		return orderItem;
 	}
@@ -271,8 +306,8 @@ export class OrderItemHelperService {
 			let partlyPaymentAmounts = this._orderItemPriceService.pricePartlyPayment(
 				orderItem,
 				item,
-        movedOrderAndOrderItem.movedFromOrderItem,
-        movedOrderAndOrderItem.movedFromOrder
+				movedOrderAndOrderItem.movedFromOrderItem,
+				movedOrderAndOrderItem.movedFromOrder
 			);
 
 			orderItem.info["amountLeftToPay"] =

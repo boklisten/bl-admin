@@ -21,24 +21,16 @@
 			(click)="onActionChange(action.action, action.period)"
 		/>
 		<span
-			*ngIf="
-				action.action === 'rent' &&
-				action.period === 'semester'
-			"
+			*ngIf="action.action === 'rent' && action.period === 'semester'"
 			class="mr-3 ml-3"
 		>
-
 			<fa-icon [icon]="'calendar-alt'"></fa-icon>
 		</span>
 
 		<span
-			*ngIf="
-				action.action === 'rent' &&
-				action.period === 'year'
-			"
+			*ngIf="action.action === 'rent' && action.period === 'year'"
 			class="mr-3 ml-3"
 		>
-
 			<fa-icon [icon]="'calendar'"></fa-icon>
 		</span>
 
@@ -51,6 +43,10 @@
 		>
 			<fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
 			<fa-icon [icon]="'calendar-alt'"></fa-icon>
+		</span>
+
+		<span *ngIf="action.action === 'buyback'" class="mr-3 ml-3">
+			<fa-icon [icon]="'exchange-alt'"></fa-icon>
 		</span>
 
 		<span
@@ -130,6 +126,14 @@
 	class="ml-2 text-secondary"
 >
 	buy this item from customer
+</span>
+
+<span
+	*ngIf="cartItem.orderItem.type === 'buyback'"
+	i18n="@@cartListItemActionBuybackThisItemFromCustomer"
+	class="ml-2 text-secondary"
+>
+	buyback this item from customer
 </span>
 
 <span

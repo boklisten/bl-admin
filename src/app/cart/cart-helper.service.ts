@@ -162,6 +162,8 @@ export class CartHelperService {
 						)) ||
 					this._authService.isAdmin()
 				);
+			case "buyback":
+				return true;
 			default:
 				return false;
 		}

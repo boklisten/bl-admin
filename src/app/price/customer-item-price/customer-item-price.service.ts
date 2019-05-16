@@ -48,6 +48,14 @@ export class CustomerItemPriceService {
 		return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
 	}
 
+	public calculateAmountsPartlyPaymentBuyback(
+		item: Item,
+		buybackAmount: number
+	): OrderItemAmounts {
+		const unitPrice = this._priceService.sanitize(buybackAmount);
+		return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
+	}
+
 	public calculateAmountsExtend(
 		customerItem: CustomerItem,
 		period: Period,

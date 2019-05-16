@@ -1,15 +1,46 @@
-
 <div class="row justify-content-between" *ngIf="item">
 	<div class="col-auto">
-		<fa-icon [icon]="'book'" class="mr-2" *ngIf="item.type === 'book'"></fa-icon>{{item.title}}
+		<fa-icon
+			[icon]="'book'"
+			class="mr-2"
+			*ngIf="item.type === 'book'"
+		></fa-icon
+		>{{ item.title }}
 	</div>
 	<div class="col-4">
-		<app-blc-item-add [item]="item" [customerItem]="customerItem"></app-blc-item-add>
+		<app-blc-item-add
+			[item]="item"
+			[customerItem]="customerItem"
+		></app-blc-item-add>
 	</div>
 </div>
 
-<div class="row text-secondary" *ngIf="customerItem" routerLink="{{'/customerItem/' + customerItem.id + '/detail'}}">
+<div class="row text-secondary" *ngIf="customerItem">
 	<div class="col-auto">
-		<fa-icon [icon]="'clock'" class="mr-2"></fa-icon> {{customerItem.deadline | blDate}}
+		<fa-icon [icon]="'clock'" class="mr-2"></fa-icon>
+		{{ customerItem.deadline | blDate }}
+	</div>
+	<div class="col-auto">
+		<span *ngIf="customerItem.type === 'partly-payment'"
+			><fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon>
+			<span i18n="@@customerItemListItemPartlyPayment"
+				>partly-payment</span
+			>
+		</span>
+		<span *ngIf="customerItem.type === 'rent'"
+			><fa-icon [icon]="'calendar'" class="mr-2"></fa-icon>
+			<span i18n="@@customerItemListItemRent">rent</span>
+		</span>
+	</div>
+</div>
+
+<div
+	class="row text-secondary"
+	*ngIf="customerItem && customerItem.type === 'partly-payment'"
+>
+	<div class="col-auto">
+		<span i18n="@@customerItemListItemAmountLeftToPay"
+			>amount left to pay</span
+		>: {{ customerItem.amountLeftToPay | blcPrice }}
 	</div>
 </div>

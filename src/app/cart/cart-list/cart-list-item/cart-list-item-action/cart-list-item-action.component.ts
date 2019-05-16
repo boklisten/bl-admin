@@ -57,7 +57,11 @@ export class CartListItemActionComponent implements OnInit {
 				this.cartItem.customerItem.type &&
 				this.cartItem.customerItem.type === "partly-payment"
 			) {
-				this.actionList = [{ action: "buyout" }, { action: "cancel" }];
+				this.actionList = [
+					{ action: "buyout" },
+					{ action: "buyback" },
+					{ action: "cancel" }
+				];
 			} else {
 				// the customerItem has type "rent" or no type
 				this.actionList = [
@@ -77,11 +81,11 @@ export class CartListItemActionComponent implements OnInit {
 			];
 		} else {
 			this.actionList = [{ action: "buy" }];
-    }
+		}
 
-    this.actionList = this.actionList.filter((action) => {
-      return this.showAction(action.action, action.period);
-    });
+		this.actionList = this.actionList.filter(action => {
+			return this.showAction(action.action, action.period);
+		});
 
 		this.selectDefaultAction();
 	}
