@@ -72,8 +72,19 @@
 					>
 						<fa-icon [icon]="'money-bill-alt'"></fa-icon>
 					</td>
-					<td *ngIf="cartItem.orderItem.type === 'sell'">
+					<td
+						*ngIf="
+							cartItem.orderItem.type === 'sell' ||
+							cartItem.orderItem.type === 'buyback'
+						"
+					>
 						<fa-icon [icon]="'exchange-alt'"></fa-icon>
+						<span
+							*ngIf="cartItem.orderItem.type === 'buyback'"
+							i18n="@@cartListSmallBuybackItem"
+							class="ml-2"
+							>buyback item</span
+						>
 					</td>
 					<td *ngIf="cartItem.action === 'cancel'">
 						<fa-icon [icon]="'ban'"></fa-icon>
