@@ -22,7 +22,7 @@ import { CustomerModule } from "./customer/customer.module";
 import { MessengerModule } from "./messenger/messenger.module";
 
 import {
-  faStream,
+	faStream,
 	faAtom,
 	faUser,
 	faUsers,
@@ -112,7 +112,7 @@ import { MessagesComponent } from "./messages/messages.component";
 import { MessengerComponent } from "./messenger/messenger.component";
 import { MessengerReminderComponent } from "./messenger/messenger-reminder/messenger-reminder.component";
 library.add(
-  faStream,
+	faStream,
 	faUser,
 	faUsers,
 	faMoneyBillAlt,
@@ -233,6 +233,7 @@ export class AppModule {
 			apiPath: environment.apiPath,
 			userAgreementUrl: "/",
 			logoutPath: "/auth/login",
+			userDetailNotValidPath: "/",
 			permissionDeniedPath: "/auth/permission/denied",
 			permissions: ["employee", "manager", "admin", "super"]
 		});
