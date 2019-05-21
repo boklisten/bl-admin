@@ -29,7 +29,7 @@
 					},
 					"configurations": {
 						"local-nb": {
-							"optimization": false,
+							"aot": true,
 							"outputHashing": "all",
 							"sourceMap": false,
 							"extractCss": true,
@@ -47,6 +47,7 @@
 							]
 						},
 						"dev-nb": {
+							"aot": true,
 							"optimization": false,
 							"outputHashing": "all",
 							"sourceMap": false,
