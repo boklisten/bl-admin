@@ -66,6 +66,7 @@
 							]
 						},
 						"production-nb": {
+							"aot": true,
 							"optimization": false,
 							"outputHashing": "all",
 							"sourceMap": false,
