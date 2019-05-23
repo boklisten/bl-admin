@@ -1,14 +1,24 @@
+<div class="row mb-2">
+	<div class="col-6">
+		<app-order-download
+			[currentBranchId]="currentBranchId"
+		></app-order-download>
+	</div>
+	<div class="col-6">
+		<app-payment-download
+			[currentBranchId]="currentBranchId"
+		></app-payment-download>
+	</div>
+</div>
 <div class="row">
-  <div class="col-3">
-    <app-order-download [currentBranchId]="currentBranchId"></app-order-download>
-  </div>
-  <div class="col-3">
-    <app-payment-download [currentBranchId]="currentBranchId"></app-payment-download>
-  </div>
-  <div class="col-3">
-    <app-customer-item-download [currentBranchId]="currentBranchId"></app-customer-item-download>
-  </div>
-  <div class="col-3">
-    <app-user-detail-download></app-user-detail-download>
-  </div>
+	<div class="col-6">
+		<app-customer-item-download
+			[currentBranchId]="currentBranchId"
+		></app-customer-item-download>
+	</div>
+	<div class="col-6">
+		<app-user-detail-download
+			[currentBranchId]="currentBranchId"
+		></app-user-detail-download>
+	</div>
 </div>
