@@ -133,7 +133,7 @@ export class MessengerReminderComponent implements OnInit {
 		let deadlineBelowString = moment(this.deadline)
 			.add("day", 1)
 			.format("DDMMYYYYHHmm");
-		let query = `?returned=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
+		let query = `?returned=false&buyout=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
 
 		// we currently have no notion of "loan" and therefore need to create this 'hack'
 		let loanBranches = await this.getLoanBranches();
@@ -174,7 +174,7 @@ export class MessengerReminderComponent implements OnInit {
 			query += `&type=rent`;
 		}
 
-		return this.customerItemService.get({ query: query });
+		return this.customerItemService.get({ query: query, fresh: true });
 	}
 
 	private getBranchQuery(branchIds: string[]) {

@@ -54,6 +54,10 @@ export class MessengerReminderModalComponent implements OnInit {
 		this.sendReminders(this.failedMessages);
 	}
 
+	jsonStringify(data) {
+		return JSON.stringify(data);
+	}
+
 	sendReminders(customerIds: string[]) {
 		this.successfullMessages = 0;
 		this.failedMessages = [];
@@ -90,11 +94,13 @@ export class MessengerReminderModalComponent implements OnInit {
 	}
 
 	onFailedMessage() {
-		this.messengerReminderService.onFailedMessage().subscribe(userId => {
-			this.failedMessages.push(userId);
-			this.progressbarValue += this.progressBarValuePart;
-			this.checkIfDone();
-		});
+		this.messengerReminderService
+			.onFailedMessage()
+			.subscribe(failedMessage => {
+				this.failedMessages.push(failedMessage);
+				this.progressbarValue += this.progressBarValuePart;
+				this.checkIfDone();
+			});
 	}
 
 	onDone() {
