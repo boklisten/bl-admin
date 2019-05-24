@@ -58,8 +58,8 @@ export class CartListItemActionComponent implements OnInit {
 				this.cartItem.customerItem.type === "partly-payment"
 			) {
 				this.actionList = [
-					{ action: "buyout" },
 					{ action: "buyback" },
+					{ action: "buyout" },
 					{ action: "cancel" }
 				];
 			} else {

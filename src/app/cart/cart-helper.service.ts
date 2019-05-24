@@ -206,6 +206,8 @@ export class CartHelperService {
 		) {
 			// cancel
 			return await this.createOrderItemTypeCancel(customerItem, item);
+		} else if (item.buyback) {
+			return this.createOrderItemTypeBuyback(customerItem, item);
 		} else {
 			return this.createOrderItemTypeBuyout(customerItem, item);
 		}
@@ -348,6 +350,39 @@ export class CartHelperService {
 
 		return {
 			type: "buyout",
+			item: item.id,
+			title: item.title,
+			amount: orderItemAmounts.amount,
+			unitPrice: orderItemAmounts.unitPrice,
+			taxAmount: orderItemAmounts.taxAmount,
+			taxRate: item.taxRate,
+			customerItem: customerItem.id
+		};
+	}
+
+	public createOrderItemTypeBuyback(
+		customerItem: CustomerItem,
+		item: Item
+	): OrderItem {
+		let orderItemAmounts: OrderItemAmounts;
+
+		if (!customerItem.type || customerItem.type === "rent") {
+			orderItemAmounts = this._customerItemPriceService.calculateAmountsBuyout(
+				item
+			);
+		} else if (customerItem.type === "partly-payment") {
+			orderItemAmounts = this._customerItemPriceService.calculateAmountsPartlyPaymentBuyback(
+				item,
+				0
+			);
+		} else {
+			throw new Error(
+				`customerItem.type '${customerItem.type}' is not supported`
+			);
+		}
+
+		return {
+			type: "buyback",
 			item: item.id,
 			title: item.title,
 			amount: orderItemAmounts.amount,
