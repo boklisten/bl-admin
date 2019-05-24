@@ -2,16 +2,19 @@ import { Injectable } from "@angular/core";
 import { TextBlock, CustomerItemType, Message } from "@wizardcoder/bl-model";
 import { MessageService } from "@wizardcoder/bl-connect";
 import { Observable, Subject } from "rxjs";
-import { DateService } from '../../date/date.service';
+import { DateService } from "../../date/date.service";
 
 @Injectable({
 	providedIn: "root"
 })
 export class MessengerReminderService {
 	private successfullMessage$: Subject<string>;
-	private failedMessages$: Subject<string>;
+	private failedMessages$: Subject<{ userId: string; error: any }>;
 
-	constructor(private messageService: MessageService, private dateService: DateService) {
+	constructor(
+		private messageService: MessageService,
+		private dateService: DateService
+	) {
 		this.successfullMessage$ = new Subject();
 		this.failedMessages$ = new Subject();
 	}
@@ -40,7 +43,7 @@ export class MessengerReminderService {
 					this.successfullMessage$.next(userId);
 				})
 				.catch(err => {
-					this.failedMessages$.next(userId);
+					this.failedMessages$.next({ userId: userId, error: err });
 				});
 		}
 	}
@@ -61,7 +64,7 @@ export class MessengerReminderService {
 		return this.successfullMessage$.asObservable();
 	}
 
-	public onFailedMessage(): Observable<string> {
+	public onFailedMessage(): Observable<{ userId: string; error: any }> {
 		return this.failedMessages$.asObservable();
 	}
 

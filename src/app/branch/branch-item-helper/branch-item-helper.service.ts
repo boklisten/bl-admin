@@ -24,7 +24,7 @@ export class BranchItemHelperService {
 				}
 			}
 		}
-		return this.rentPeriodValidOnCurrentBranch(periodType);
+		return false;
 	}
 
 	private rentPeriodValidOnCurrentBranch(period) {
