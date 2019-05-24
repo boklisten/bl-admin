@@ -64,7 +64,7 @@ export class MessengerReminderService {
 		return this.successfullMessage$.asObservable();
 	}
 
-	public onFailedMessage(): Observable<string> {
+	public onFailedMessage(): Observable<{ userId: string; error: any }> {
 		return this.failedMessages$.asObservable();
 	}
 
