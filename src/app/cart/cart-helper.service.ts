@@ -86,7 +86,8 @@ export class CartHelperService {
 		if (cartItem.customerItem.type === "partly-payment") {
 			return this.isActionValidOnCustomerItemTypePartlyPayment(
 				action,
-				cartItem.customerItem
+				cartItem.customerItem,
+				cartItem.item
 			);
 		}
 
@@ -140,7 +141,8 @@ export class CartHelperService {
 
 	private isActionValidOnCustomerItemTypePartlyPayment(
 		action: CartItemAction,
-		customerItem: CustomerItem
+		customerItem: CustomerItem,
+		item: Item
 	): boolean {
 		switch (action) {
 			case "buyout":
@@ -163,7 +165,7 @@ export class CartHelperService {
 					this._authService.isAdmin()
 				);
 			case "buyback":
-				return true;
+				return item.buyback;
 			default:
 				return false;
 		}
