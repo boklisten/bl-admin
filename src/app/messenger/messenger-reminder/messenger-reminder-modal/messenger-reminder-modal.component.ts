@@ -19,7 +19,7 @@ export class MessengerReminderModalComponent implements OnInit {
 	public confirmed: boolean;
 	public progressbarValue: number;
 	public successfullMessages: number;
-	public failedMessages: string[];
+	public failedMessages: { userId: string; error: any }[];
 	public remindersDone: boolean;
 	private progressBarValuePart: number;
 	private progressbarValueFull: number;
@@ -51,7 +51,12 @@ export class MessengerReminderModalComponent implements OnInit {
 	retryFailedMessages() {
 		this.remindersDone = false;
 
-		this.sendReminders(this.failedMessages);
+		let rerunMessages = [];
+		this.failedMessages.forEach(failedMessage => {
+			rerunMessages.push(failedMessage.userId);
+		});
+
+		this.sendReminders(rerunMessages);
 	}
 
 	jsonStringify(data) {
