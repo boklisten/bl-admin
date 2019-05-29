@@ -116,7 +116,7 @@ export class MessengerListComponent implements OnInit {
 				return event["email"];
 			}
 		}
-		return "unknown email";
+		return message.customerId;
 	}
 
 	public getEmailStatus(
