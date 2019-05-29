@@ -36,6 +36,7 @@ import { MessengerSequencePickerComponent } from "./messenger-sequence-picker/me
 		MessengerListComponent,
 		MessengerSequencePickerComponent
 	],
+	exports: [MessengerListComponent],
 	entryComponents: [MessengerReminderModalComponent]
 })
 export class MessengerModule {}
