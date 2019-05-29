@@ -110,6 +110,15 @@ export class MessengerListComponent implements OnInit {
 		}
 	}
 
+	public getRecipientEmail(message: Message) {
+		for (let event of message.events) {
+			if (event["email"]) {
+				return event["email"];
+			}
+		}
+		return "unknown email";
+	}
+
 	public getEmailStatus(
 		message: Message
 	): "delivered" | "bounce" | "open" | "span" | "report" | "unsubscribe" {

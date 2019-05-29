@@ -92,7 +92,7 @@
 					<td>{{ message.messageSubtype }}</td>
 					<td>{{ message.sequenceNumber }}</td>
 					<td *ngIf="!customerId">
-						{{ message.customerId | customerName | async }}
+						{{ getRecipientEmail(message) }}
 					</td>
 					<td
 						[ngClass]="{
