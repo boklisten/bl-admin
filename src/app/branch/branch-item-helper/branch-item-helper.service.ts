@@ -114,6 +114,6 @@ export class BranchItemHelperService {
 				return branchItem.sellAtBranch;
 			}
 		}
-		return true; // if the item is not found, the action is allowed
+		return false;
 	}
 }
