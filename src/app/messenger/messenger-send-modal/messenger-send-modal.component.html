@@ -1,0 +1,91 @@
+<div class="modal-header"></div>
+<div class="modal-body">
+	<div *ngIf="!confirmed">
+		<div class="row bg-secondary p-3 m-3 text-white">
+			<div class="col" style="word-break: break-all">
+				<p>{{ htmlContent }}</p>
+				<p></p>
+			</div>
+		</div>
+		<div class="row">
+			<div
+				class="col-auto"
+				i18n="@@messengerReminderModalShouldSendMessageTo"
+			>
+				Should send message to {{ customerIds.length }} customers
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="confirmed && !messagesDone">
+		<div class="row">
+			<div class="col-12 mb-2 text-center">
+				<span i18n="@@messengerSendModalSendingMessageTo"
+					>Sending message to {{ customerIds.length }} customers</span
+				>
+			</div>
+			<div class="col-12">
+				<ngb-progressbar
+					[value]="progressbarValue"
+					[height]="50"
+					[striped]="true"
+					[animated]="true"
+					[showValue]="true"
+					[max]="progressbarValueFull"
+				></ngb-progressbar>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="messagesDone">
+		<div class="row" *ngIf="failedMessages.length > 0">
+			<div
+				class="col-12"
+				i18n="@@messengerReminderModalNumberOfSuccessfullMessages"
+			>
+				Number of successfull messages: {{ successfullMessages }}
+			</div>
+			<div class="col-12">
+				<div i18n="@@messengerReminderModalNumberOfFailedMessages">
+					Number of failed messages: {{ failedMessages.length }}
+				</div>
+			</div>
+		</div>
+		<div
+			class="row justify-content-center mb-2"
+			*ngIf="failedMessages.length <= 0"
+		>
+			<div class="col-auto">
+				<fa-icon
+					icon="check-circle"
+					class="text-success"
+					size="5x"
+				></fa-icon>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<div class="row">
+			<div class="col-12">
+				<button
+					class="btn btn-success btn-block"
+					i18n="@@messengerSendConfirmButton"
+					*ngIf="!finished"
+					(click)="onConfirm()"
+				>
+					Confirm
+				</button>
+
+				<button
+					class="btn btn-success btn-block"
+					i18n="@@messengerSendDone"
+					*ngIf="finished"
+					(click)="onDone()"
+				>
+					Done
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
