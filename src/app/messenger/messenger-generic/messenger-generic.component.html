@@ -1,0 +1,77 @@
+<div class="row mt-2">
+	<div class="col-auto">
+		<app-blc-branch-select
+			(selectBranches)="onSelectBranches($event)"
+		></app-blc-branch-select>
+	</div>
+</div>
+
+<div class="row mt-5">
+	<div class="col-12">
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">Subject</span>
+			</div>
+			<input type="text" class="form-control" [(ngModel)]="subject" />
+		</div>
+	</div>
+</div>
+
+<div class="row mt-2">
+	<div class="col-12">
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">HTML</span>
+			</div>
+			<textarea class="form-control" [(ngModel)]="htmlText"></textarea>
+		</div>
+	</div>
+</div>
+
+<div class="row mt-2" *ngIf="htmlTextEmptyError">
+	<div class="col">
+		<app-bl-common-alert
+			[type]="'secondary'"
+			i18n-text="@@messengerSendGeneriHtmlTextEmptyError"
+			text="Html text can not be empty"
+		>
+		</app-bl-common-alert>
+	</div>
+</div>
+
+<div class="row mt-2" *ngIf="subjectEmptyError">
+	<div class="col">
+		<app-bl-common-alert
+			[type]="'secondary'"
+			i18n-text="@@messengerSendGenericSubjectEmptyError"
+			text="Subject is empty"
+		>
+		</app-bl-common-alert>
+	</div>
+</div>
+
+<div class="row mt-2" *ngIf="noCustomersFoundError">
+	<div class="col">
+		<app-bl-common-alert
+			[type]="'secondary'"
+			i18n-text="@@messengerSendGenericNoCustomersFound"
+			text="No customers found"
+		>
+		</app-bl-common-alert>
+	</div>
+</div>
+
+<div class="row mt-2">
+	<div class="col-12">
+		<button
+			class="btn btn-outline-secondary btn-block"
+			(click)="openSendGenericModal()"
+		>
+			<span *ngIf="!loading">
+				<fa-icon [icon]="'paper-plane'" class="mr-2"></fa-icon>
+				<span i18n="@@messengerSendGeneric">Send</span>
+			</span>
+			<fa-icon [icon]="'atom'" [spin]="true" *ngIf="loading"></fa-icon>
+		</button>
+	</div>
+</div>

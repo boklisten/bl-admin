@@ -16,6 +16,8 @@ import { BlCommonModule } from "../bl-common/bl-common.module";
 import { MessengerReminderModalComponent } from "./messenger-reminder/messenger-reminder-modal/messenger-reminder-modal.component";
 import { MessengerListComponent } from "./messenger-list/messenger-list.component";
 import { MessengerSequencePickerComponent } from "./messenger-sequence-picker/messenger-sequence-picker.component";
+import { MessengerGenericComponent } from "./messenger-generic/messenger-generic.component";
+import { MessengerSendModalComponent } from "./messenger-send-modal/messenger-send-modal.component";
 
 @NgModule({
 	imports: [
@@ -34,9 +36,14 @@ import { MessengerSequencePickerComponent } from "./messenger-sequence-picker/me
 		MessengerReminderComponent,
 		MessengerReminderModalComponent,
 		MessengerListComponent,
-		MessengerSequencePickerComponent
+		MessengerSequencePickerComponent,
+		MessengerGenericComponent,
+		MessengerSendModalComponent
 	],
 	exports: [MessengerListComponent],
-	entryComponents: [MessengerReminderModalComponent]
+	entryComponents: [
+		MessengerReminderModalComponent,
+		MessengerSendModalComponent
+	]
 })
 export class MessengerModule {}
