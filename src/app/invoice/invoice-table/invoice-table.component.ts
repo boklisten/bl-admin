@@ -26,6 +26,7 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 	@Output() selectInvoice: EventEmitter<Invoice>;
 
 	invoices$: Observable<Invoice[]>;
+	public idSearchString: string;
 	public filter: FormControl;
 	public selectAll: boolean;
 	public selectedList: any;
@@ -41,6 +42,7 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 		this.invoices = [];
 		this.invoicesOrg = [];
 		this.sortByInvoiceIdDirection = "none";
+		this.idSearchString = "";
 
 		this.selectedList = {};
 
@@ -55,8 +57,20 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 	ngOnChanges(simpleChanges: SimpleChanges) {
 		if (simpleChanges["invoices"].currentValue) {
 			this.invoicesOrg = simpleChanges["invoices"].currentValue;
-			this.onSelectInvoice(simpleChanges["invoices"].currentValue[0]);
+			//this.onSelectInvoice(simpleChanges["invoices"].currentValue[0]);
 		}
+	}
+
+	public setIdSearchString(idSearchString: string) {
+		this.idSearchString = idSearchString;
+		this.invoices$ = this.filter.valueChanges.pipe(
+			startWith(""),
+			map(() => {
+				return this.search(idSearchString);
+			})
+		);
+		this.selectedInvoice = null;
+		this.selectInvoice.emit(null);
 	}
 
 	public sortInvoiceId() {

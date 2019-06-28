@@ -11,6 +11,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { InvoiceViewComponent } from "./invoice-view/invoice-view.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.component';
+import { InvoiceIdSelectComponent } from './invoice-id-select/invoice-id-select.component';
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,8 @@ import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.componen
 		InvoiceComponent,
 		InvoiceTableComponent,
 		InvoiceViewComponent,
-		InvoiceDetailComponent
+		InvoiceDetailComponent,
+		InvoiceIdSelectComponent
 	],
 	imports: [
 		CommonModule,
