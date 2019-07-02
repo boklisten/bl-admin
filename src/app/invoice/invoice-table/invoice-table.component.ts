@@ -136,8 +136,13 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 
 	public onSelectAll() {
 		this.selectAll = !this.selectAll;
+		let searchString = this.filter.value;
 
-		for (const invoice of this.search(this.filter.value)) {
+		if (!searchString || searchString.length <= 0) {
+			searchString = this.idSearchString;
+		}
+
+		for (const invoice of this.search(searchString)) {
 			this.selectedList[invoice.id] = this.selectAll;
 		}
 	}

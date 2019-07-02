@@ -8,6 +8,7 @@ import {
 } from "@wizardcoder/bl-model";
 import { MessageService, CustomerItemService } from "@wizardcoder/bl-connect";
 import { BranchStoreService } from "../../branch/branch-store.service";
+import { BranchHelperService } from "../../branch/branch-helper/branch-helper.service";
 import { MessengerReminderService } from "./messenger-reminder.service";
 import { MessengerReminderModalComponent } from "./messenger-reminder-modal/messenger-reminder-modal.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -33,7 +34,8 @@ export class MessengerReminderComponent implements OnInit {
 		private customerItemService: CustomerItemService,
 		private branchStoreService: BranchStoreService,
 		private messengerReminderService: MessengerReminderService,
-		private modalService: NgbModal
+		private modalService: NgbModal,
+		private branchHelperService: BranchHelperService
 	) {
 		this.deadline = new Date(2019, 11, 20);
 		this.textBlocks = [];
@@ -113,35 +115,34 @@ export class MessengerReminderComponent implements OnInit {
 	}
 
 	private getUniqueUserIds(customerItems: CustomerItem[]): string[] {
-		let uniqueCustomerIds = [];
+		const uniqueCustomerIds = [];
 
-		for (let customerItem of customerItems) {
+		for (const customerItem of customerItems) {
 			if (uniqueCustomerIds.indexOf(customerItem.customer) < 0) {
 				uniqueCustomerIds.push(customerItem.customer);
 			}
 		}
-		console.log("unique", uniqueCustomerIds);
 		return uniqueCustomerIds;
 	}
 
 	private async getNotReturnedCustomerItems(
 		type: CustomerItemType | "all"
 	): Promise<CustomerItem[]> {
-		let deadlineAboveString = moment(this.deadline)
+		const deadlineAboveString = moment(this.deadline)
 			.subtract("day", 1)
 			.format("DDMMYYYYHHmm");
-		let deadlineBelowString = moment(this.deadline)
+		const deadlineBelowString = moment(this.deadline)
 			.add("day", 1)
 			.format("DDMMYYYYHHmm");
 
 		let query = `?returned=false&buyout=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
 
 		// we currently have no notion of "loan" and therefore need to create this 'hack'
-		let loanBranches = await this.getLoanBranches();
+		const loanBranches = await this.getLoanBranches();
 		if (type === "loan") {
 			let filteredBranches = [];
 			if (this.selectedBranches.length > 0) {
-				for (let branchId of this.selectedBranches) {
+				for (const branchId of this.selectedBranches) {
 					if (loanBranches.indexOf(branchId) >= 0) {
 						filteredBranches.push(branchId);
 					}
@@ -150,15 +151,17 @@ export class MessengerReminderComponent implements OnInit {
 				filteredBranches = loanBranches;
 			}
 			if (filteredBranches.length <= 0) {
-				throw `none of the branches have 'loan' as a possebility`;
+				throw new Error(
+					`none of the branches have 'loan' as a possebility`
+				);
 			}
 			query += this.getBranchQuery(filteredBranches);
 		} else {
 			let filteredBranches = [];
-			let noLoanBranches = await this.getNoLoanBranches();
+			const noLoanBranches = await this.branchHelperService.getNoneLoanBranches();
 
 			if (this.selectedBranches.length > 0) {
-				for (let branchId of this.selectedBranches) {
+				for (const branchId of this.selectedBranches) {
 					if (noLoanBranches.indexOf(branchId) >= 0) {
 						filteredBranches.push(branchId);
 					}
@@ -169,7 +172,7 @@ export class MessengerReminderComponent implements OnInit {
 			query += this.getBranchQuery(filteredBranches);
 		}
 
-		let queryType = type !== "partly-payment" ? "rent" : "partly-payment";
+		const queryType = type !== "partly-payment" ? "rent" : "partly-payment";
 
 		query += `&type=${queryType}`;
 
@@ -178,18 +181,18 @@ export class MessengerReminderComponent implements OnInit {
 
 	private getBranchQuery(branchIds: string[]) {
 		let query = "";
-		for (let branchId of branchIds) {
+		for (const branchId of branchIds) {
 			query += `&handoutInfo.handoutById=${branchId}`;
 		}
 		return query;
 	}
 
 	private async getNoLoanBranches() {
-		let branches = await this.branchStoreService.getAllBranches();
+		const branches = await this.branchStoreService.getAllBranches();
 
-		let noLoanBranches = [];
+		const noLoanBranches = [];
 
-		for (let branch of branches) {
+		for (const branch of branches) {
 			if (!branch.paymentInfo.responsible) {
 				noLoanBranches.push(branch.id);
 			}
@@ -199,11 +202,11 @@ export class MessengerReminderComponent implements OnInit {
 	}
 
 	private async getLoanBranches() {
-		let branches = await this.branchStoreService.getAllBranches();
+		const branches = await this.branchStoreService.getAllBranches();
 
-		let loanBranches = [];
+		const loanBranches = [];
 
-		for (let branch of branches) {
+		for (const branch of branches) {
 			if (branch.paymentInfo.responsible) {
 				loanBranches.push(branch.id);
 			}

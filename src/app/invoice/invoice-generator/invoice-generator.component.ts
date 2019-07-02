@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { CustomerItemService, InvoiceService } from "@wizardcoder/bl-connect";
 import { InvoiceGeneratorService } from "./invoice-generator.service";
-import { Invoice } from "@wizardcoder/bl-model";
+import { Invoice, CustomerItemType } from "@wizardcoder/bl-model";
 
 @Component({
 	selector: "app-invoice-generator",
@@ -18,15 +18,15 @@ export class InvoiceGeneratorComponent implements OnInit {
 	public daysToDeadline: number;
 	public wait: boolean;
 	public waitAdd: boolean;
+	public customerItemType: CustomerItemType;
 
 	constructor(
 		customerItemService: CustomerItemService,
 		private invoiceGeneratorService: InvoiceGeneratorService,
 		private invoiceService: InvoiceService
 	) {
-		this.invoiceNumber = 201800000;
+		this.invoiceNumber = 201900000;
 		this.invoices = [];
-		this.reference = "Manglende levering av skolebøker";
 		this.fee = 75;
 		this.feePercentage = 1.1;
 		this.daysToDeadline = 14;
@@ -34,6 +34,20 @@ export class InvoiceGeneratorComponent implements OnInit {
 
 	ngOnInit() {
 		this.invoices = this.invoiceGeneratorService.getCurrentUnsavedInvoices();
+	}
+
+	public onTypeSelect(customerItemType: CustomerItemType) {
+		this.customerItemType = customerItemType;
+
+		if (customerItemType === "partly-payment") {
+			this.fee = 150;
+			this.feePercentage = 0.33;
+			this.reference = "Manglende delbetaling av skolebøker";
+		} else {
+			this.fee = 90;
+			this.feePercentage = 1.1;
+			this.reference = "Manglende levering av skolebøker";
+		}
 	}
 
 	public createInvoices() {
@@ -45,6 +59,7 @@ export class InvoiceGeneratorComponent implements OnInit {
 					feePercentage: this.feePercentage,
 					daysToDeadline: this.daysToDeadline
 				},
+				this.customerItemType,
 				this.reference,
 				this.invoiceNumber,
 				this.period

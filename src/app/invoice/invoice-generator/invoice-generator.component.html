@@ -1,29 +1,51 @@
 <div class="container-fluid mt-3">
-	<div class="row">
+	<div class="row mb-2">
 		<div class="col">
+			<app-blc-type-select
+				(selectedType)="onTypeSelect($event)"
+			></app-blc-type-select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6">
 			<app-blc-period-select
 				(periodChange)="onPeriodChange($event)"
 			></app-blc-period-select>
 		</div>
+	</div>
+	<div class="row mt-2">
 		<div class="col">
-			<b>invoice number</b>
+			<b>Invoice number</b>
 			<app-blc-edit-number-value
 				[(value)]="invoiceNumber"
 			></app-blc-edit-number-value>
 		</div>
+	</div>
+	<div class="row">
 		<div class="col">
-			<b>fee per item</b>
+			<b>Fee per item</b>
 			<app-blc-edit-number-value
 				[(value)]="fee"
 			></app-blc-edit-number-value>
 		</div>
+	</div>
+	<div class="row">
 		<div class="col">
-			<b>Fee percentage per item</b>
+			<b>Fee percentage of fullprice per item</b>
 			<app-blc-edit-number-value
 				[(value)]="feePercentage"
 			></app-blc-edit-number-value>
 		</div>
-
+	</div>
+	<div class="row">
+		<div class="col">
+			<b>Reference</b>
+			<app-blc-edit-string-value
+				[(value)]="reference"
+			></app-blc-edit-string-value>
+		</div>
+	</div>
+	<div class="row mt-5">
 		<div class="col">
 			<app-bl-common-update-button
 				[wait]="wait"

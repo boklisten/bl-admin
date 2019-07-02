@@ -1,13 +1,13 @@
 import { Injectable } from "@angular/core";
-import { Branch } from "@wizardcoder/bl-model";
-import { Period } from "@wizardcoder/bl-model/dist/period/period";
+import { Branch, CustomerItemType, Period } from "@wizardcoder/bl-model";
 import { CartItemAction } from "../../cart/cartItemAction";
+import { BranchStoreService } from "../branch-store.service";
 
 @Injectable({
 	providedIn: "root"
 })
 export class BranchHelperService {
-	constructor() {}
+	constructor(private branchStoreService: BranchStoreService) {}
 
 	public actionValidOnBranch(
 		branch: Branch,
@@ -84,5 +84,73 @@ export class BranchHelperService {
 				return rentPeriod;
 			}
 		}
+	}
+
+	public async getBranchesWithType(
+		customerItemType: CustomerItemType,
+		selectedBranches: string[]
+	) {
+		let filteredBranches = [];
+
+		if (customerItemType === "loan") {
+			const loanBranches = await this.getLoanBranches();
+
+			if (selectedBranches.length > 0) {
+				for (const branchId of selectedBranches) {
+					if (loanBranches.indexOf(branchId) >= 0) {
+						filteredBranches.push(branchId);
+					}
+				}
+			} else {
+				filteredBranches = loanBranches;
+			}
+			if (filteredBranches.length <= 0) {
+				throw new Error(
+					`none of the branches have 'loan' as a possebility`
+				);
+			}
+		} else {
+			const noLoanBranches = await this.getNoneLoanBranches();
+
+			if (selectedBranches.length > 0) {
+				for (const branchId of selectedBranches) {
+					if (noLoanBranches.indexOf(branchId) >= 0) {
+						filteredBranches.push(branchId);
+					}
+				}
+			} else {
+				filteredBranches = noLoanBranches;
+			}
+		}
+
+		return filteredBranches;
+	}
+
+	public async getLoanBranches() {
+		const branches = await this.branchStoreService.getAllBranches();
+
+		const loanBranches = [];
+
+		for (const branch of branches) {
+			if (branch.paymentInfo.responsible) {
+				loanBranches.push(branch.id);
+			}
+		}
+
+		return loanBranches;
+	}
+
+	public async getNoneLoanBranches() {
+		const branches = await this.branchStoreService.getAllBranches();
+
+		const noneLoanBranches = [];
+
+		for (const branch of branches) {
+			if (!branch.paymentInfo.responsible) {
+				noneLoanBranches.push(branch.id);
+			}
+		}
+
+		return noneLoanBranches;
 	}
 }

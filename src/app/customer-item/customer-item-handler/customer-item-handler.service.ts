@@ -3,7 +3,8 @@ import {
 	BlApiError,
 	CustomerItem,
 	Order,
-	OrderItem
+	OrderItem,
+	CustomerItemType
 } from "@wizardcoder/bl-model";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { UserService } from "../../user/user.service";
@@ -11,6 +12,8 @@ import { CustomerItemService } from "@wizardcoder/bl-connect";
 import { reject } from "q";
 import { CustomerService } from "../../customer/customer.service";
 import { DateService } from "../../date/date.service";
+import { BranchHelperService } from "../../branch/branch-helper/branch-helper.service";
+import * as moment from "moment";
 
 @Injectable()
 export class CustomerItemHandlerService {
@@ -19,7 +22,8 @@ export class CustomerItemHandlerService {
 		private _userService: UserService,
 		private _customerItemService: CustomerItemService,
 		private _customerService: CustomerService,
-		private _dateService: DateService
+		private _dateService: DateService,
+		private _branchHelperService: BranchHelperService
 	) {}
 
 	public async updateCustomerItems(
@@ -75,16 +79,60 @@ export class CustomerItemHandlerService {
 		}
 	}
 
-	public getNotReturned(period: {
-		fromDate: Date;
-		toDate: Date;
-	}): Promise<CustomerItem[]> {
+	public getNotReturned(
+		customerItemType: CustomerItemType,
+		period: {
+			fromDate: Date;
+			toDate: Date;
+		}
+	): Promise<CustomerItem[]> {
 		const fromDate = this._dateService.dateOnApiFormat(period.fromDate);
 		const toDate = this._dateService.dateOnApiFormat(period.toDate);
 
+		if (customerItemType === "loan") {
+			customerItemType = "rent";
+		}
+
 		return this._customerItemService.get({
-			query: `?deadline=>${fromDate}&deadline=<${toDate}&returned=false&buyout=false`
+			query: `?deadline=>${fromDate}&deadline=<${toDate}&returned=false&buyout=false&type=${customerItemType}`
 		});
+	}
+
+	public async getNotReturnedCustomerItems(
+		type: CustomerItemType,
+		deadline: Date,
+		selectedBranches: string[]
+	): Promise<CustomerItem[]> {
+		const deadlineAboveString = moment(deadline)
+			.subtract("day", 1)
+			.format("DDMMYYYYHHmm");
+		const deadlineBelowString = moment(deadline)
+			.add("day", 1)
+			.format("DDMMYYYYHHmm");
+
+		let query = `?returned=false&buyout=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
+
+		// we currently have no notion of "loan" and therefore need to create this 'hack'
+		const branchIds = await this._branchHelperService.getBranchesWithType(
+			type,
+			selectedBranches
+		);
+
+		query += this.getBranchQuery(branchIds);
+
+		const queryType = type !== "partly-payment" ? "rent" : "partly-payment";
+
+		query += `&type=${queryType}`;
+
+		return this._customerItemService.get({ query: query, fresh: true });
+	}
+
+	private getBranchQuery(branchIds: string[]) {
+		let query = "";
+		for (const branchId of branchIds) {
+			query += `&handoutInfo.handoutById=${branchId}`;
+		}
+		return query;
 	}
 
 	private createCustomerItemPatch(

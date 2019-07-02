@@ -1,5 +1,11 @@
 import { Injectable } from "@angular/core";
-import { CustomerItem, UserDetail, Invoice, Item } from "@wizardcoder/bl-model";
+import {
+	CustomerItem,
+	CustomerItemType,
+	UserDetail,
+	Invoice,
+	Item
+} from "@wizardcoder/bl-model";
 import { DateService } from "../../date/date.service";
 import {
 	InvoiceService,
@@ -42,6 +48,7 @@ export class InvoiceGeneratorService {
 			fee: number;
 			daysToDeadline: number;
 		},
+		customerItemType: CustomerItemType,
 		reference: string,
 		invoiceNumber: number,
 		period: { fromDate: Date; toDate: Date }
@@ -50,8 +57,10 @@ export class InvoiceGeneratorService {
 		this.feePercentage = settings.feePercentage;
 		this.daysToDeadline = settings.daysToDeadline;
 
-		const notReturnedCustomerItems = await this.customerItemHandlerService.getNotReturned(
-			period
+		const notReturnedCustomerItems = await this.customerItemHandlerService.getNotReturnedCustomerItems(
+			customerItemType,
+			period.fromDate,
+			[]
 		);
 
 		const groupedCustomerItems = await this.groupCustomerItemsByCustomer(
@@ -61,6 +70,7 @@ export class InvoiceGeneratorService {
 		const generatedInvoices = await this.generateInvoices(
 			reference,
 			invoiceNumber,
+			customerItemType,
 			groupedCustomerItems
 		);
 
@@ -68,7 +78,7 @@ export class InvoiceGeneratorService {
 	}
 
 	public async addInvoices(invoices: Invoice[]): Promise<Invoice[]> {
-		let promiseArr: Promise<Invoice>[] = invoices.map(invoice => {
+		const promiseArr: Promise<Invoice>[] = invoices.map(invoice => {
 			return this.invoiceService.add(invoice);
 		});
 
@@ -86,9 +96,9 @@ export class InvoiceGeneratorService {
 	private async groupCustomerItemsByCustomer(
 		customerItems: CustomerItem[]
 	): Promise<{ customer: string; customerItems: CustomerItem[] }[]> {
-		let customersAndCustomerItems = {}; //{customer: string, customerItems: CustomerItem[]};
+		const customersAndCustomerItems = {}; // {customer: string, customerItems: CustomerItem[]};
 
-		for (let customerItem of customerItems) {
+		for (const customerItem of customerItems) {
 			customerItem.item = await this.itemService.getById(
 				customerItem.item as string
 			);
@@ -103,13 +113,16 @@ export class InvoiceGeneratorService {
 			].push(customerItem);
 		}
 
-		let customersAndCustomerItemsArray = [];
+		const customersAndCustomerItemsArray = [];
 
 		for (const key in customersAndCustomerItems) {
-			customersAndCustomerItemsArray.push({
-				customer: key,
-				customerItems: customersAndCustomerItems[key]["customerItems"]
-			});
+			if (key) {
+				customersAndCustomerItemsArray.push({
+					customer: key,
+					customerItems:
+						customersAndCustomerItems[key]["customerItems"]
+				});
+			}
 		}
 
 		return customersAndCustomerItemsArray;
@@ -118,15 +131,19 @@ export class InvoiceGeneratorService {
 	private async generateInvoices(
 		reference: string,
 		invoiceNumber: number,
+		customerItemType: CustomerItemType,
 		customersWithCustomerItems: {
 			customer: string | UserDetail;
 			customerItems: CustomerItem[];
 		}[]
 	): Promise<Invoice[]> {
-		let invoices = [];
-		let duedate = this.dateService.addDays(new Date(), this.daysToDeadline);
+		const invoices = [];
+		const duedate = this.dateService.addDays(
+			new Date(),
+			this.daysToDeadline
+		);
 
-		for (let customerWithCustomerItem of customersWithCustomerItems) {
+		for (const customerWithCustomerItem of customersWithCustomerItems) {
 			customerWithCustomerItem.customer = await this.userDetailService.getById(
 				customerWithCustomerItem.customer as string
 			);
@@ -136,6 +153,7 @@ export class InvoiceGeneratorService {
 					reference,
 					invoiceNumber,
 					duedate,
+					customerItemType,
 					customerWithCustomerItem.customer,
 					customerWithCustomerItem.customerItems
 				)
@@ -150,10 +168,11 @@ export class InvoiceGeneratorService {
 		reference: string,
 		invoiceNumber: number,
 		duedate: Date,
+		customerItemType: CustomerItemType,
 		userDetail: UserDetail,
 		customerItems: CustomerItem[]
 	): Invoice {
-		let branch =
+		const branch =
 			userDetail.branch !== undefined
 				? userDetail.branch
 				: customerItems[0].handoutInfo &&
@@ -164,6 +183,7 @@ export class InvoiceGeneratorService {
 			duedate: duedate,
 			customerHavePayed: false,
 			branch: branch,
+			type: customerItemType,
 			customerItemPayments: this.createCustomerItemPayments(
 				customerItems
 			),
@@ -209,12 +229,13 @@ export class InvoiceGeneratorService {
 	}
 
 	private createCustomerItemPayments(customerItems: CustomerItem[]): any[] {
-		let customerItemPayments = [];
+		const customerItemPayments = [];
 
-		for (let customerItemObj of customerItems) {
-			let item = customerItemObj.item as Item;
+		for (const customerItemObj of customerItems) {
+			const item = customerItemObj.item as Item;
 			customerItemPayments.push({
 				customerItem: customerItemObj.id,
+				customerItemType: customerItemObj.type,
 				title: item.title,
 				item: item.id,
 				numberOfItems: 1,
@@ -232,7 +253,7 @@ export class InvoiceGeneratorService {
 	}
 
 	private calculateTotalPayment(invoice: Invoice) {
-		for (let customerItemPayment of invoice.customerItemPayments) {
+		for (const customerItemPayment of invoice.customerItemPayments) {
 			invoice.payment.total.gross += customerItemPayment.payment.gross;
 			invoice.payment.total.net += customerItemPayment.payment.net;
 			invoice.payment.total.vat += customerItemPayment.payment.vat;
