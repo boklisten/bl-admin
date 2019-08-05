@@ -239,17 +239,42 @@ export class InvoiceGeneratorService {
 				title: item.title,
 				item: item.id,
 				numberOfItems: 1,
-				payment: {
-					unit: this.itemUnitPrice(item),
-					gross: this.itemGrossPrice(item),
-					net: this.itemNetPrice(item),
-					vat: this.itemVatPrice(item),
-					discount: this.itemDiscountPrice(item)
-				}
+				payment: this.createCustomerItemInvoicePayment(
+					customerItemObj,
+					customerItemObj.item as Item
+				)
 			});
 		}
 
 		return customerItemPayments;
+	}
+
+	private createCustomerItemInvoicePayment(
+		customerItem: CustomerItem,
+		item: Item
+	): {
+		unit: number;
+		gross: number;
+		net: number;
+		vat: number;
+		discount: number;
+	} {
+		if (customerItem.type === "partly-payment") {
+			return {
+				unit: customerItem.amountLeftToPay,
+				gross: customerItem.amountLeftToPay,
+				net: customerItem.amountLeftToPay,
+				vat: 0,
+				discount: 0
+			};
+		}
+		return {
+			unit: this.itemUnitPrice(item),
+			gross: this.itemGrossPrice(item),
+			net: this.itemNetPrice(item),
+			vat: this.itemVatPrice(item),
+			discount: this.itemDiscountPrice(item)
+		};
 	}
 
 	private calculateTotalPayment(invoice: Invoice) {
@@ -267,8 +292,7 @@ export class InvoiceGeneratorService {
 	}
 
 	private calculateFeePayment(invoice: Invoice) {
-		invoice.payment.fee.unit =
-			this.fee + this.priceService.toFixed(this.fee * this.feePercentage);
+		invoice.payment.fee.unit = this.fee;
 		invoice.payment.fee.net = this.priceService.toFixed(
 			invoice.customerItemPayments.length * this.fee
 		);
