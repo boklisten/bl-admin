@@ -19,17 +19,19 @@ export class InvoiceGeneratorComponent implements OnInit {
 	public wait: boolean;
 	public waitAdd: boolean;
 	public customerItemType: CustomerItemType;
+	public feeVatPercentage: number;
 
 	constructor(
 		customerItemService: CustomerItemService,
 		private invoiceGeneratorService: InvoiceGeneratorService,
 		private invoiceService: InvoiceService
 	) {
-		this.invoiceNumber = 201900000;
+		this.invoiceNumber = 20190000;
 		this.invoices = [];
 		this.fee = 75;
 		this.feePercentage = 1.1;
 		this.daysToDeadline = 14;
+		this.feeVatPercentage = 0.25;
 	}
 
 	ngOnInit() {
@@ -40,11 +42,11 @@ export class InvoiceGeneratorComponent implements OnInit {
 		this.customerItemType = customerItemType;
 
 		if (customerItemType === "partly-payment") {
-			this.fee = 150;
+			this.fee = 120;
 			this.feePercentage = 0.33;
 			this.reference = "Manglende delbetaling av skolebøker";
 		} else {
-			this.fee = 90;
+			this.fee = 72;
 			this.feePercentage = 1.1;
 			this.reference = "Manglende levering av skolebøker";
 		}
@@ -57,7 +59,8 @@ export class InvoiceGeneratorComponent implements OnInit {
 				{
 					fee: this.fee,
 					feePercentage: this.feePercentage,
-					daysToDeadline: this.daysToDeadline
+					daysToDeadline: this.daysToDeadline,
+					feeVatPercentage: this.feeVatPercentage
 				},
 				this.customerItemType,
 				this.reference,

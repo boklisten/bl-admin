@@ -24,7 +24,7 @@ export class InvoiceVismaService {
 	) {
 		this.textFields = [
 			"Fakturaen gjelder manglende/for sent leverte bøker fra forrige semester hos: ",
-			"Det er IKKE mulig å levere/kjøpe ut bøker nå.",
+			"",
 			"Kundens fødselsdato: ",
 			"Kundens telefonnummer: ",
 			"Alle fakturahenvendelser sendes til info@boklisten.no",
@@ -181,14 +181,6 @@ export class InvoiceVismaService {
 
 		lineNumber++;
 
-		rows.push(
-			this.createVismaL1TextField(
-				lineNumber,
-				invoice.invoiceId,
-				this.textFields[1]
-			)
-		);
-		lineNumber++;
 		rows.push(
 			this.createVismaL1TextField(
 				lineNumber,

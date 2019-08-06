@@ -34,7 +34,7 @@ export class InvoiceGeneratorService {
 		private dateService: DateService
 	) {
 		this.feePercentage = 1.1;
-		this.feeVatPercentage = 0;
+		this.feeVatPercentage = 0.25;
 		this.fee = 75;
 		this.daysToDeadline = 14;
 	}
@@ -47,6 +47,7 @@ export class InvoiceGeneratorService {
 			feePercentage: number;
 			fee: number;
 			daysToDeadline: number;
+			feeVatPercentage: number;
 		},
 		customerItemType: CustomerItemType,
 		reference: string,
@@ -55,6 +56,7 @@ export class InvoiceGeneratorService {
 	): Promise<Invoice[]> {
 		this.fee = settings.fee;
 		this.feePercentage = settings.feePercentage;
+		this.feeVatPercentage = settings.feeVatPercentage;
 		this.daysToDeadline = settings.daysToDeadline;
 
 		const notReturnedCustomerItems = await this.customerItemHandlerService.getNotReturnedCustomerItems(
