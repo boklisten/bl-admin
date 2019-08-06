@@ -43,12 +43,11 @@ export class DateService {
 
 	public currentDateCompact(): string {
 		return moment().format("DD_MM_YY");
-  }
+	}
 
-  public toDeadlineFormat(deadline: Date): String {
-
+	public toDeadlineFormat(deadline: Date): String {
 		return moment(deadline).format("YYYY-MM-DDTHH:mm:ss.SSSZ");
-  }
+	}
 
 	private getCurrentDate() {
 		return moment()
@@ -141,7 +140,11 @@ export class DateService {
 
 	public isCustomerItemReturnValid(deadline: Date): boolean {
 		return true;
-		//return moment().isSameOrBefore(moment(deadline));
+		// return moment().isSameOrBefore(moment(deadline));
+	}
+
+	public isDeadlineExpired(deadline: Date): boolean {
+		return moment().isAfter(moment(deadline).endOf("day"));
 	}
 
 	public isCustomerItemCancelValid(handoutDate: Date): boolean {
