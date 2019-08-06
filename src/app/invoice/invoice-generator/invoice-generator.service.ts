@@ -34,7 +34,7 @@ export class InvoiceGeneratorService {
 		private dateService: DateService
 	) {
 		this.feePercentage = 1.1;
-		this.feeVatPercentage = 0.25;
+		this.feeVatPercentage = 0;
 		this.fee = 75;
 		this.daysToDeadline = 14;
 	}
@@ -297,8 +297,7 @@ export class InvoiceGeneratorService {
 			invoice.customerItemPayments.length * this.fee
 		);
 		invoice.payment.fee.vat = this.priceService.toFixed(
-			invoice.customerItemPayments.length *
-				(this.fee * this.feeVatPercentage)
+			invoice.payment.fee.net * this.feeVatPercentage
 		);
 		invoice.payment.fee.gross =
 			invoice.payment.fee.net + invoice.payment.fee.vat;
