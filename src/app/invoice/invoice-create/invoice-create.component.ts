@@ -11,10 +11,10 @@ import { Router } from "@angular/router";
 	styleUrls: ["./invoice-create.component.scss"]
 })
 export class InvoiceCreateComponent implements OnInit {
-	private invoiceItemList: InvoiceItem[];
-	private company: Company;
+	public invoiceItemList: InvoiceItem[];
+	public company: Company;
 	public companyInvoiceForm: FormGroup;
-	private total: number;
+	public total: number;
 	public wait: boolean;
 
 	constructor(

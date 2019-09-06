@@ -7,7 +7,7 @@ import { CompanyService } from "@wizardcoder/bl-connect";
 	styleUrls: ["./database-company-list.component.scss"]
 })
 export class DatabaseCompanyListComponent implements OnInit {
-	private companies;
+	public companies = [];
 	constructor(private companyService: CompanyService) {}
 
 	ngOnInit() {
