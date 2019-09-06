@@ -25,7 +25,9 @@ export class InvoiceCreateService {
 			id: "",
 			invoiceId: invoiceNumber,
 			reference: reference,
-			duedate: moment().add(2, "weeks"),
+			duedate: moment()
+				.add(2, "weeks")
+				.toDate(),
 			customerHavePayed: false,
 			toCreditNote: false,
 			toDebtCollection: false,
