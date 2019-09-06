@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { InvoiceGeneratorService } from "./invoice-generator/invoice-generator.service";
 import { PriceService } from "../price/price.service";
+import { ActivatedRoute, Params } from "@angular/router";
+import { NgbTabsetConfig } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
 	selector: "app-invoice",
@@ -8,9 +10,24 @@ import { PriceService } from "../price/price.service";
 	styleUrls: ["./invoice.component.scss"]
 })
 export class InvoiceComponent implements OnInit {
-	constructor(private priceService: PriceService) {}
+	public tab: string;
+	@ViewChild("tabset") tabset;
+
+	constructor(
+		private priceService: PriceService,
+		private _tabConfig: NgbTabsetConfig,
+		private _route: ActivatedRoute
+	) {}
 
 	ngOnInit() {
-		//console.log("@", this.priceService.toFixed(750 * 1.1));
+		this._route.params.subscribe((params: Params) => {
+			this.tab = params["tab"];
+
+			if (this.tab) {
+				setTimeout(() => {
+					this.tabset.select(this.tab);
+				}, 10);
+			}
+		});
 	}
 }

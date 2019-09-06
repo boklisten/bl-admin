@@ -23,6 +23,7 @@ import { MessengerModule } from "./messenger/messenger.module";
 
 import {
 	faStream,
+	faBuilding,
 	faAtom,
 	faUser,
 	faUsers,
@@ -112,6 +113,7 @@ import { MessagesComponent } from "./messages/messages.component";
 import { MessengerComponent } from "./messenger/messenger.component";
 import { MessengerReminderComponent } from "./messenger/messenger-reminder/messenger-reminder.component";
 library.add(
+	faBuilding,
 	faStream,
 	faUser,
 	faUsers,

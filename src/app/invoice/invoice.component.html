@@ -1,6 +1,6 @@
 <div class="container-fluid mt-2">
-	<ngb-tabset>
-		<ngb-tab>
+	<ngb-tabset #tabset="ngbTabset" id="ngbTabset">
+		<ngb-tab id="view">
 			<ng-template ngbTabTitle>
 				<span i18n="@@invoiceView">View</span>
 			</ng-template>
@@ -8,12 +8,21 @@
 				<app-invoice-view></app-invoice-view>
 			</ng-template>
 		</ngb-tab>
-		<ngb-tab>
+		<ngb-tab id="generate">
 			<ng-template ngbTabTitle>
 				<span i18n="@@invoiceGenerate">Generate</span>
 			</ng-template>
 			<ng-template ngbTabContent>
 				<app-invoice-generator></app-invoice-generator>
+			</ng-template>
+		</ngb-tab>
+
+		<ngb-tab id="create">
+			<ng-template ngbTabTitle>
+				<span i18n="@@invoiceCreate">Create</span>
+			</ng-template>
+			<ng-template ngbTabContent>
+				<app-invoice-create></app-invoice-create>
 			</ng-template>
 		</ngb-tab>
 	</ngb-tabset>

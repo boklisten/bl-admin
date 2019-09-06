@@ -213,8 +213,8 @@
 								</td>
 								<td>
 									{{
-										invoice.payment.total.gross -
-											invoice.payment.fee.gross | blcPrice
+										invoice.payment.totalIncludingFee
+											| blcPrice
 									}}
 								</td>
 								<td></td>
@@ -223,15 +223,23 @@
 								class="table-light font-italic"
 								[ngbTooltip]="invoiceFeeContent"
 							>
-								<td i18n="@@invoiceDetailFee">Fee</td>
-								<td>
+								<td
+									i18n="@@invoiceDetailFee"
+									*ngIf="invoice.payment.fee"
+								>
+									Fee
+								</td>
+								<td *ngIf="invoice.payment.fee">
 									{{ invoice.payment.fee.gross | blcPrice }}
 								</td>
 							</tr>
 							<tr class="table-secondary">
 								<th>Total</th>
 								<th>
-									{{ invoice.payment.total.gross | blcPrice }}
+									{{
+										invoice.payment.totalIncludingFee
+											| blcPrice
+									}}
 								</th>
 								<td></td>
 							</tr>

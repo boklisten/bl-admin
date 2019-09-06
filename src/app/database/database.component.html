@@ -49,6 +49,22 @@
 						</div>
 					</ng-template>
 				</ngb-tab>
+
+				<ngb-tab id="companies">
+					<ng-template ngbTabTitle>
+						<span class="text-secondary ml-3 mr-3">
+							<fa-icon [icon]="'building'"></fa-icon>
+						</span>
+					</ng-template>
+
+					<ng-template ngbTabContent>
+						<div class="row mt-3 justify-content-center">
+							<div class="col-12">
+								<app-database-companies></app-database-companies>
+							</div>
+						</div>
+					</ng-template>
+				</ngb-tab>
 			</ngb-tabset>
 		</div>
 	</div>

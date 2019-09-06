@@ -39,6 +39,8 @@ export class InvoiceGeneratorService {
 		this.daysToDeadline = 14;
 	}
 
+	public createCompanyInvoice() {}
+
 	/**
 	 * Creates invoices based on customerItems not delivered on a set deadline
 	 */

@@ -18,7 +18,7 @@
 	<div class="col-auto">
 		<button
 			class="btn btn-sm btn-outline-primary"
-			(click)="exportToExcel()"
+			(click)="exportToExcel(false)"
 		>
 			<fa-icon icon="file-excel" class="mr-2"></fa-icon>
 			<fa-icon
@@ -27,7 +27,26 @@
 				*ngIf="printToExcelWait"
 			></fa-icon>
 			<span i18n="@@invoiceTablePrintSelected" *ngIf="!printToExcelWait"
-				>Print selected to visma invoice format</span
+				>Print to visma invoice format</span
+			>
+		</button>
+	</div>
+
+	<div class="col-auto">
+		<button
+			class="btn btn-sm btn-outline-primary"
+			(click)="exportToExcel(true)"
+		>
+			<fa-icon icon="file-excel" class="mr-2"></fa-icon>
+			<fa-icon
+				icon="circle-notch"
+				[spin]="true"
+				*ngIf="printToExcelWait"
+			></fa-icon>
+			<span
+				i18n="@@invoiceTablePrintSelectedEhf"
+				*ngIf="!printToExcelWait"
+				>Print to visma EHF invoice format</span
 			>
 		</button>
 	</div>

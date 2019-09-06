@@ -1,0 +1,128 @@
+<div class="row">
+	<div class="col-12" [formGroup]="companyForm">
+		<h3>Company</h3>
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">
+					<fa-icon [icon]="'user'"></fa-icon>
+				</span>
+			</div>
+			<input
+				id="name"
+				class="form-control"
+				formControlName="name"
+				i18n-placeholder="@@companyAddComponentName"
+				placeholder="Name of company"
+			/>
+		</div>
+
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">
+					<fa-icon [icon]="'building'"></fa-icon>
+				</span>
+			</div>
+			<input
+				id="organizationNumber"
+				class="form-control"
+				formControlName="organizationNumber"
+				i18n-placeholder="@@companyAddOrganizationNumber"
+				placeholder="Organization number"
+			/>
+		</div>
+
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">
+					<fa-icon [icon]="'building'"></fa-icon>
+				</span>
+			</div>
+			<input
+				id="customerNumber"
+				class="form-control"
+				formControlName="customerNumber"
+				i18n-placeholder="@@companyAddCustomerNumber"
+				placeholder="Customer number"
+			/>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12" [formGroup]="contactInfoForm">
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">
+					<fa-icon [icon]="'phone'"></fa-icon>
+				</span>
+			</div>
+			<input
+				id="phone"
+				class="form-control"
+				formControlName="phone"
+				i18n-placeholder="@@companyAddComponentPhone"
+				placeholder="Phone"
+			/>
+		</div>
+
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">
+					<fa-icon [icon]="'at'"></fa-icon>
+				</span>
+			</div>
+			<input
+				id="email"
+				class="form-control"
+				formControlName="email"
+				i18n-placeholder="@@companyAddComponentEmail"
+				placeholder="Email"
+			/>
+		</div>
+
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">
+					<fa-icon [icon]="'address-card'"></fa-icon>
+				</span>
+			</div>
+			<input
+				id="address"
+				class="form-control"
+				formControlName="address"
+				i18n-placeholder="@@companyAddComponentAddress"
+				placeholder="Address"
+			/>
+
+			<input
+				id="postCode"
+				class="form-control"
+				formControlName="postCode"
+				i18n-placeholder="@@companyAddComponentPostCode"
+				placeholder="Post code"
+			/>
+
+			<input
+				id="postCity"
+				class="form-control"
+				formControlName="postCity"
+				i18n-placeholder="@@companyAddComponentPostCity"
+				placeholder="Post city"
+			/>
+		</div>
+	</div>
+</div>
+<div class="row mt-2">
+	<div class="col-12">
+		<button
+			(click)="add()"
+			class="btn btn-block btn-success"
+			[disabled]="
+				contactInfoForm.status === 'INVALID' ||
+				companyForm.status === 'INVALID'
+			"
+		>
+			Add
+		</button>
+	</div>
+</div>

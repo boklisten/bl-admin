@@ -1,0 +1,72 @@
+<div class="row mt-2">
+	<div class="col-12" [formGroup]="companyInvoiceForm">
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text">
+					<fa-icon [icon]="'file-invoice-dollar'"></fa-icon>
+				</span>
+			</div>
+			<input
+				id="reference"
+				class="form-control"
+				formControlName="reference"
+				i18n-placeholder="@@invoiceCreateComponentReference"
+				placeholder="reference"
+			/>
+
+			<input
+				id="ourReference"
+				class="form-control"
+				formControlName="ourReference"
+				i18n-placeholder="@@invoiceCreateComponentOurReference"
+				placeholder="our reference"
+			/>
+
+			<input
+				id="invoiceNumber"
+				class="form-control"
+				formControlName="invoiceNumber"
+				i18n-placeholder="@@invoiceCreateComponentInvoiceNumber"
+				placeholder="invoice number"
+			/>
+			<div class="input-group-append">
+				<button
+					class="btn btn-outline-success"
+					type="button"
+					(click)="createInvoice()"
+					[disabled]="
+						companyInvoiceForm.status === 'INVALID' ||
+						!company ||
+						invoiceItemList.length <= 0
+					"
+				>
+					<span *ngIf="!wait">Create invoice</span>
+					<fa-icon
+						icon="circle-notch"
+						[spin]="true"
+						*ngIf="wait"
+					></fa-icon>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-auto">
+		<h5>Total: {{ total }}</h5>
+	</div>
+</div>
+<div class="row mt-3">
+	<div class="col-4"><app-item-search></app-item-search></div>
+	<div class="col-4">
+		<app-invoice-create-item-list
+			(invoiceItemList)="onInvoiceItemListUpdate($event)"
+		></app-invoice-create-item-list>
+	</div>
+	<div class="col-4">
+		<h5 i18n="@@invoiceCreateComponentSelectCompany">Select a company</h5>
+		<app-company-select-list
+			(selected)="onCompanyUpdate($event)"
+		></app-company-select-list>
+	</div>
+</div>

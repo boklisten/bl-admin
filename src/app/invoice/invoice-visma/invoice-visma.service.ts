@@ -41,18 +41,21 @@ export class InvoiceVismaService {
 		this.feeTitle = "Administrasjonsgebyr";
 	}
 
-	public async printToVismaInvoices(invoices: Invoice[]): Promise<boolean> {
+	public async printToVismaInvoices(
+		invoices: Invoice[],
+		ehf: boolean
+	): Promise<boolean> {
 		await this.addBranchNames(invoices);
-		const vismaRows = this.invoicesToVismaRows(invoices);
+		const vismaRows = this.invoicesToVismaRows(invoices, ehf);
 		this.printService.printVismaRows(vismaRows);
 		return true;
 	}
 
-	public invoicesToVismaRows(invoices: Invoice[]) {
+	public invoicesToVismaRows(invoices: Invoice[], ehf: boolean) {
 		const vismaRows = [];
 
 		for (const invoice of invoices) {
-			for (const row of this.invoiceToVismaRows(invoice)) {
+			for (const row of this.invoiceToVismaRows(invoice, ehf)) {
 				vismaRows.push(row);
 			}
 		}
@@ -64,14 +67,16 @@ export class InvoiceVismaService {
 		const branches = {};
 
 		for (const invoice of invoices) {
-			let branch = branches[invoice.branch];
+			if (invoice.branch) {
+				let branch = branches[invoice.branch];
 
-			if (!branch) {
-				branch = await this.branchService.getById(invoice.branch);
-				branches[branch.id] = branch;
+				if (!branch) {
+					branch = await this.branchService.getById(invoice.branch);
+					branches[branch.id] = branch;
+				}
+
+				invoice.customerInfo.branchName = branches[invoice.branch].name;
 			}
-
-			invoice.customerInfo.branchName = branches[invoice.branch].name;
 		}
 		return true;
 	}
@@ -105,11 +110,10 @@ export class InvoiceVismaService {
 		return epoch + counter; // return epoch + randomVal + counter;
 	}
 
-	private invoiceToVismaRows(invoice: Invoice): any[] {
+	private invoiceToVismaRows(invoice: Invoice, ehf: boolean): any[] {
 		const rows = [];
 		let lineNum = 0;
-
-		rows.push(this.createVismaH1Field(lineNum, invoice));
+		rows.push(this.createVismaH1Field(lineNum, invoice, ehf));
 
 		lineNum++;
 
@@ -119,12 +123,15 @@ export class InvoiceVismaService {
 			lineNum++;
 		}
 
-		rows.push(this.createVismaL1FeeField(lineNum, invoice));
+		if (invoice.payment.fee) {
+			rows.push(this.createVismaL1FeeField(lineNum, invoice));
+			lineNum++;
+		}
 
-		lineNum++;
-
-		for (const row of this.createVismaL1TextFields(lineNum, invoice)) {
-			rows.push(row);
+		if (!invoice.customerInfo.organizationNumber) {
+			for (const row of this.createVismaL1TextFields(lineNum, invoice)) {
+				rows.push(row);
+			}
 		}
 
 		return rows;
@@ -213,23 +220,43 @@ export class InvoiceVismaService {
 		return rows;
 	}
 
-	private createVismaH1Field(lineNum: number, invoice: Invoice) {
-		const distributionChannel = "";
-		const eInvoiceCode = "";
-		const eInvoiceRef = "";
-		/*
-    if (ehf) {
-      distributionChannel = 'H';
-      eInvoiceCode = 'EHF';
-      eInvoiceRef = orgNumOrDob;
-    }
-     */
+	private createVismaH1Field(
+		lineNum: number,
+		invoice: Invoice,
+		ehf: boolean
+	) {
+		let distributionChannel = "";
+		let eInvoiceCode = "";
+		let eInvoiceRef = "";
+
+		if (ehf) {
+			distributionChannel = "H";
+			eInvoiceCode = "EHF";
+			eInvoiceRef = invoice.customerInfo.organizationNumber;
+		}
+
+		console.log("1");
+
+		let dobOrOrganizationNumber = "";
+		const customerNumber = invoice.customerInfo.userDetail
+			? (invoice.customerInfo.userDetail as string)
+			: invoice.customerInfo.customerNumber;
+
+		if (invoice.customerInfo.organizationNumber) {
+			dobOrOrganizationNumber = invoice.customerInfo.organizationNumber;
+		} else {
+			dobOrOrganizationNumber = this.dateService.dateOnFormat(
+				invoice.customerInfo.dob,
+				"DDMMYYYY"
+			);
+		}
+
+		console.log("2");
 
 		return [
 			"H1", // 1 Record Type (M)
 			lineNum, // 2 Line number (M)
-			this.getMongoIdMiniEpoch(invoice.customerInfo
-				.userDetail as string).toString(), // 3 Customer no (M)
+			this.getMongoIdMiniEpoch(customerNumber).toString(), // 3 Customer no (M)
 			invoice.customerInfo.name, // 4 'Customer name': (M)
 			invoice.customerInfo.postal.address, // 5 'Address 1':
 			"", // 6 'Address 2':
@@ -246,7 +273,7 @@ export class InvoiceVismaService {
 			"", // 17 'Currency':
 			"", // 18 'Exchange Rate':
 			this.dateService.dateOnFormat(invoice.duedate, "DDMMYYYY"), // 19 'Invoice due date': (M)
-			this.dateService.dateOnFormat(invoice.customerInfo.dob, "DDMMYYYY"), // 20 'Customer organisation no':
+			dobOrOrganizationNumber, // 20 'Customer organisation no':
 			this.asEars(invoice.payment.total.gross), // 21 'Invoice gross amount': (M)
 			this.asEars(invoice.payment.total.net), // 22 'Invoice net amunt': (M)
 			this.asEars(invoice.payment.total.vat), // 23 'VAT': (M)
@@ -254,7 +281,9 @@ export class InvoiceVismaService {
 			"", // 25 'Order number':
 			"", // 26 'Project Number':
 			"", // 27 'Department/Dimension':
-			invoice.customerInfo["branchName"], // 28 'Our reference':
+			invoice.customerInfo["branchName"]
+				? invoice.customerInfo["branchName"]
+				: invoice.ourReference, // 28 'Our reference':
 			"", // 29 'Your reference':
 			invoice.reference, // 30 'Reference':
 			"", // 31 'Ref. 1':
@@ -314,7 +343,7 @@ export class InvoiceVismaService {
 			customerItemPayment["payment"]["vat"] <= 0 ? "FRI" : "", // 5 'VAT type': (M)
 			this.getMongoIdCounter(customerItemPayment["item"]).toString(), // 6 'Article number':
 			customerItemPayment["title"], // 7 'Article name': (M)
-			1, // 8 'Invoiced quantity (no of units)': (M)
+			customerItemPayment["numberOfItems"], // 8 'Invoiced quantity (no of units)': (M)
 			customerItemPayment["payment"]["discount"], // 9 'Discount%':
 			"", // 10 Currency
 			this.asEars(customerItemPayment["payment"]["gross"]), // 11 Gross amount (M)

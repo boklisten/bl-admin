@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="col-12">
+		<ul class="list-group">
+			<li class="list-group-item" *ngFor="let company of companies">
+				<div>
+					<h5>{{ company.name }}</h5>
+				</div>
+				<div>
+					<small>
+						<fa-icon [icon]="'building'"></fa-icon>
+						{{ company.organizationNumber }}</small
+					>
+				</div>
+				<small>
+					<fa-icon [icon]="'address-card'"></fa-icon>
+					{{ company.contactInfo.address }}
+					{{ company.contactInfo.postCode }}
+					{{ company.contactInfo.postCity }}
+				</small>
+			</li>
+		</ul>
+	</div>
+</div>

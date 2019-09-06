@@ -1,0 +1,8 @@
+<ul class="list-group">
+	<li class="list-group-item" *ngFor="let invoiceItem of invoiceItems">
+		<app-invoice-create-item-list-item
+			[invoiceItem]="invoiceItem"
+			(update)="onInvoiceItemUpdate()"
+		></app-invoice-create-item-list-item>
+	</li>
+</ul>

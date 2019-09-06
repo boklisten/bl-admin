@@ -47,7 +47,8 @@ import { ItemSelectListComponent } from "./item-select-list/item-select-list.com
 		ItemSearchBarComponent,
 		ItemUploadComponent,
 		ItemEditListComponent,
-		ItemSelectListComponent
+		ItemSelectListComponent,
+		ItemSearchComponent
 	]
 })
 export class ItemModule {}
