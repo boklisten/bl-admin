@@ -132,6 +132,17 @@ export class InvoiceVismaService {
 			for (const row of this.createVismaL1TextFields(lineNum, invoice)) {
 				rows.push(row);
 			}
+		} else {
+			for (const comment of invoice.comments) {
+				rows.push(
+					this.createVismaL1TextField(
+						lineNum,
+						invoice.invoiceId,
+						comment.msg
+					)
+				);
+				lineNum++;
+			}
 		}
 
 		return rows;
@@ -235,8 +246,6 @@ export class InvoiceVismaService {
 			eInvoiceRef = invoice.customerInfo.organizationNumber;
 		}
 
-		console.log("1");
-
 		let dobOrOrganizationNumber = "";
 		const customerNumber = invoice.customerInfo.userDetail
 			? (invoice.customerInfo.userDetail as string)
@@ -250,8 +259,6 @@ export class InvoiceVismaService {
 				"DDMMYYYY"
 			);
 		}
-
-		console.log("2");
 
 		return [
 			"H1", // 1 Record Type (M)
@@ -341,7 +348,9 @@ export class InvoiceVismaService {
 			invoiceNumber, // 3 'Invoice number':
 			"V", // 4 'Line type': (M)
 			customerItemPayment["payment"]["vat"] <= 0 ? "FRI" : "", // 5 'VAT type': (M)
-			this.getMongoIdCounter(customerItemPayment["item"]).toString(), // 6 'Article number':
+			customerItemPayment["item"]
+				? this.getMongoIdCounter(customerItemPayment["item"]).toString()
+				: "", // 6 'Article number':
 			customerItemPayment["title"], // 7 'Article name': (M)
 			customerItemPayment["numberOfItems"], // 8 'Invoiced quantity (no of units)': (M)
 			customerItemPayment["payment"]["discount"], // 9 'Discount%':

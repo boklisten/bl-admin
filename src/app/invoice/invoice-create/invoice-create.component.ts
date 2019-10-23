@@ -14,6 +14,7 @@ export class InvoiceCreateComponent implements OnInit {
 	public invoiceItemList: InvoiceItem[];
 	public company: Company;
 	public companyInvoiceForm: FormGroup;
+	public invoiceCommentForm: FormGroup;
 	public total: number;
 	public wait: boolean;
 
@@ -28,6 +29,10 @@ export class InvoiceCreateComponent implements OnInit {
 			reference: new FormControl("", [Validators.required]),
 			ourReference: new FormControl("", [Validators.required]),
 			invoiceNumber: new FormControl("", [Validators.required])
+		});
+
+		this.invoiceCommentForm = new FormGroup({
+			comment: new FormControl("")
 		});
 	}
 
@@ -59,7 +64,8 @@ export class InvoiceCreateComponent implements OnInit {
 				this.companyInvoiceForm.controls["ourReference"].value,
 				this.companyInvoiceForm.controls["invoiceNumber"].value,
 				this.company,
-				this.invoiceItemList
+				this.invoiceItemList,
+				this.invoiceCommentForm.controls["comment"].value
 			)
 			.then(() => {
 				this.wait = false;

@@ -52,6 +52,8 @@ export class InvoiceCreateItemListComponent implements OnInit {
 
 			if (!alreadyAddedInvoiceItem) {
 				newInvoiceItems.push({
+					title: cartItem.item.title,
+					comment: "",
 					item: cartItem.item,
 					price: cartItem.item.price,
 					discount: 0,

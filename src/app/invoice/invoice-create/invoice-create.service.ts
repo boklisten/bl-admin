@@ -19,7 +19,8 @@ export class InvoiceCreateService {
 		ourReference: string,
 		invoiceNumber: string,
 		company: Company,
-		invoiceItems: InvoiceItem[]
+		invoiceItems: InvoiceItem[],
+		comment?: string
 	): Promise<Invoice> {
 		let invoice: Invoice = {
 			id: "",
@@ -57,7 +58,8 @@ export class InvoiceCreateService {
 				},
 				fee: null,
 				totalIncludingFee: 0
-			}
+			},
+			comments: comment ? [{ msg: comment }] : [comment]
 		};
 
 		invoice = this.calculateTotalPayment(invoice);
@@ -96,8 +98,8 @@ export class InvoiceCreateService {
 			invoiceItemPayments.push({
 				customerItem: null,
 				customerItemType: null,
-				title: invoiceItem.item.title,
-				item: invoiceItem.item.id,
+				title: invoiceItem.title,
+				item: null,
 				numberOfItems: parseFloat(invoiceItem.numberOfUnits + ""),
 				payment: {
 					unit: this.itemUnitPrice(invoiceItem),

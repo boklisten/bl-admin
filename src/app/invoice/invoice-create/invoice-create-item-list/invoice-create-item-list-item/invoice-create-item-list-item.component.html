@@ -1,13 +1,15 @@
 <div class="row">
 	<div class="col-8">
 		<div>
-			<h5>{{ invoiceItem.item.title }}</h5>
-		</div>
-		<div>
-			<small class="text-secondary"
-				><fa-icon [icon]="'barcode'" class="mr-2"></fa-icon
-				>{{ invoiceItem.item.info["isbn"] }}</small
-			>
+			<h5>
+				<app-blc-edit-string-value
+					name="invoiceItemTitle"
+					[value]="invoiceItem.title"
+					[(ngModel)]="invoiceItem.title"
+					(valueChange)="updateTotal()"
+					ngDefaultControl
+				></app-blc-edit-string-value>
+			</h5>
 		</div>
 	</div>
 	<div class="col-4">
