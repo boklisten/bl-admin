@@ -1,4 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	Input,
+	SimpleChanges,
+	OnChanges
+} from "@angular/core";
 import { CompanyService } from "@wizardcoder/bl-connect";
 
 @Component({
@@ -6,18 +12,46 @@ import { CompanyService } from "@wizardcoder/bl-connect";
 	templateUrl: "./database-company-list.component.html",
 	styleUrls: ["./database-company-list.component.scss"]
 })
-export class DatabaseCompanyListComponent implements OnInit {
+export class DatabaseCompanyListComponent implements OnInit, OnChanges {
+	@Input() update: any;
+
 	public companies = [];
+	public wait: boolean;
 	constructor(private companyService: CompanyService) {}
 
 	ngOnInit() {
+		this.getCompanies();
+	}
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes.update.currentValue) {
+			this.getCompanies();
+		}
+	}
+
+	private getCompanies() {
+		this.wait = true;
 		this.companyService
-			.get()
+			.get({ fresh: true })
 			.then(companies => {
 				this.companies = companies;
+				this.wait = false;
 			})
 			.catch(err => {
 				console.log("could not get companies", err);
+				this.companies = [];
+				this.wait = false;
+			});
+	}
+
+	public removeCompany(id: string) {
+		this.companyService
+			.remove(id)
+			.then(() => {
+				this.getCompanies();
+			})
+			.catch(() => {
+				console.log("could not remove company");
 			});
 	}
 }

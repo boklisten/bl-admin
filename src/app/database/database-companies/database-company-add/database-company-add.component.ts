@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CompanyService } from "@wizardcoder/bl-connect";
 import { Company } from "@wizardcoder/bl-model";
@@ -9,6 +9,7 @@ import { Company } from "@wizardcoder/bl-model";
 	styleUrls: ["./database-company-add.component.scss"]
 })
 export class DatabaseCompanyAddComponent implements OnInit {
+	@Output() added: EventEmitter<Company>;
 	companyForm: FormGroup;
 	contactInfoForm: FormGroup;
 
@@ -18,6 +19,8 @@ export class DatabaseCompanyAddComponent implements OnInit {
 			customerNumber: new FormControl(""),
 			organizationNumber: new FormControl("")
 		});
+
+		this.added = new EventEmitter<Company>();
 
 		this.contactInfoForm = new FormGroup({
 			phone: new FormControl("", [Validators.required]),
@@ -49,7 +52,7 @@ export class DatabaseCompanyAddComponent implements OnInit {
 		this.companyService
 			.add(company)
 			.then(companyResponse => {
-				console.log("added company", companyResponse);
+				this.added.emit(companyResponse);
 			})
 			.catch(err => {
 				console.log("could not add company", err);
