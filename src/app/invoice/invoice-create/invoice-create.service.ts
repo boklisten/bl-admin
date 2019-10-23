@@ -59,7 +59,9 @@ export class InvoiceCreateService {
 				fee: null,
 				totalIncludingFee: 0
 			},
-			comments: comment ? [{ msg: comment }] : [comment]
+			comments: comment
+				? [{ id: "", msg: comment, creationTime: new Date(), user: "" }]
+				: []
 		};
 
 		invoice = this.calculateTotalPayment(invoice);
