@@ -63,26 +63,12 @@
 </div>
 
 <div class="row">
-	<div class="col-6">
+	<div class="col">
 		<span i18n="@@invoiceCreateItemListPrice">Product number:</span>
 		<app-blc-edit-number-value
 			name="invoiceItemPrice"
 			[value]="invoiceItem.productNumber"
 			[(ngModel)]="invoiceItem.productNumber"
-			(valueChange)="updateTotal()"
-			ngDefaultControl
-		></app-blc-edit-number-value>
-	</div>
-
-	<div class="col-6">
-		<span i18n="@@invoiceCreateItemListNumberOfUnits"
-			>number of units:
-		</span>
-
-		<app-blc-edit-number-value
-			name="invoiceItemNumberOfUnits"
-			[value]="invoiceItem.numberOfUnits"
-			[(ngModel)]="invoiceItem.numberOfUnits"
 			(valueChange)="updateTotal()"
 			ngDefaultControl
 		></app-blc-edit-number-value>
