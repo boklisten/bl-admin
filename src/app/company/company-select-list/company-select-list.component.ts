@@ -12,24 +12,34 @@ export class CompanySelectListComponent implements OnInit {
 
 	public companies: Company[];
 	public selectedCompany: Company;
+	public wait: boolean;
 
 	constructor(private companyService: CompanyService) {
 		this.selected = new EventEmitter();
+		this.companies = [];
 	}
 
 	ngOnInit() {
+		this.wait = true;
 		this.companyService
-			.get()
+			.get({ fresh: true })
 			.then(companies => {
 				this.companies = companies;
+				this.wait = false;
 			})
 			.catch(err => {
 				console.log("error getting companies", err);
+				this.wait = false;
 			});
 	}
 
 	public selectCompany(company: Company) {
-		this.selectedCompany = company;
-		this.selected.emit(company);
+		if (this.selectedCompany === company) {
+			this.selectedCompany = null;
+		} else {
+			this.selectedCompany = company;
+		}
+
+		this.selected.emit(this.selectedCompany);
 	}
 }

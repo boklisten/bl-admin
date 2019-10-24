@@ -1,13 +1,38 @@
 <div class="row">
 	<div class="col-12">
 		<ul class="list-group">
+			<li class="list-group-item text-center">
+				<b i18n="@@companySelectListTitle">Companies</b>
+			</li>
+			<li
+				class="list-group-item bg-secondary text-white"
+				*ngIf="companies.length <= 0 && !wait"
+			>
+				<fa-icon [icon]="'exclamation-circle'" class="mr-2"></fa-icon>
+				<span>No companies found</span>
+			</li>
+
+			<li
+				class="list-group-item bg-warning text-white text-center"
+				*ngIf="wait"
+			>
+				<fa-icon [icon]="'circle-notch'" [spin]="true"></fa-icon>
+			</li>
 			<li
 				class="list-group-item"
 				*ngFor="let company of companies"
 				[ngClass]="{ active: selectedCompany === company }"
 				(click)="selectCompany(company)"
 			>
-				{{ company.name }}
+				<div class="row justify-content-between align-items-center">
+					<div class="col-auto">
+						<div>{{ company.name }}</div>
+						<small>{{ company.organizationNumber }}</small>
+					</div>
+					<div *ngIf="selectedCompany === company" class="col-auto">
+						<fa-icon [icon]="'check'"></fa-icon>
+					</div>
+				</div>
 			</li>
 		</ul>
 	</div>
