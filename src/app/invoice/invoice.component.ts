@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { InvoiceGeneratorService } from "./invoice-generator/invoice-generator.service";
 import { PriceService } from "../price/price.service";
 import { ActivatedRoute, Params } from "@angular/router";
@@ -9,7 +9,7 @@ import { NgbTabsetConfig } from "@ng-bootstrap/ng-bootstrap";
 	templateUrl: "./invoice.component.html",
 	styleUrls: ["./invoice.component.scss"]
 })
-export class InvoiceComponent implements OnInit {
+export class InvoiceComponent implements OnInit, AfterViewInit {
 	public tab: string;
 	@ViewChild("tabset") tabset;
 
@@ -20,14 +20,10 @@ export class InvoiceComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this._route.params.subscribe((params: Params) => {
-			this.tab = params["tab"];
+		this.tab = this._route.snapshot.firstChild.url[0].path;
+	}
 
-			if (this.tab) {
-				setTimeout(() => {
-					this.tabset.select(this.tab);
-				}, 10);
-			}
-		});
+	ngAfterViewInit() {
+		this.tabset.select(this.tab);
 	}
 }

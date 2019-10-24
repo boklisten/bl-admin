@@ -2,27 +2,33 @@
 	<ngb-tabset #tabset="ngbTabset" id="ngbTabset">
 		<ngb-tab id="view">
 			<ng-template ngbTabTitle>
-				<span i18n="@@invoiceView">View</span>
+				<span i18n="@@invoiceView" routerLink="/invoices/view"
+					>View</span
+				>
 			</ng-template>
 			<ng-template ngbTabContent>
-				<app-invoice-view></app-invoice-view>
+				<router-outlet></router-outlet>
 			</ng-template>
 		</ngb-tab>
 		<ngb-tab id="generate">
 			<ng-template ngbTabTitle>
-				<span i18n="@@invoiceGenerate">Generate</span>
+				<span i18n="@@invoiceGenerate" routerLink="/invoices/generate"
+					>Generate</span
+				>
 			</ng-template>
 			<ng-template ngbTabContent>
-				<app-invoice-generator></app-invoice-generator>
+				<router-outlet></router-outlet>
 			</ng-template>
 		</ngb-tab>
 
 		<ngb-tab id="create">
 			<ng-template ngbTabTitle>
-				<span i18n="@@invoiceCreate">Create</span>
+				<span i18n="@@invoiceCreate" routerLink="/invoices/create"
+					>Create</span
+				>
 			</ng-template>
 			<ng-template ngbTabContent>
-				<app-invoice-create></app-invoice-create>
+				<router-outlet></router-outlet>
 			</ng-template>
 		</ngb-tab>
 	</ngb-tabset>

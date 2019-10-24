@@ -71,11 +71,10 @@ export class InvoiceCreateComponent implements OnInit {
 			)
 			.then(() => {
 				this.wait = false;
-				this.router.navigateByUrl("/invoices;tab=view");
+				this.router.navigate(["/invoices/view"]);
 			})
 			.catch(err => {
 				this.wait = false;
-				console.log("INVOICE error", err);
 				this.createInvoiceError = true;
 			});
 	}

@@ -87,11 +87,18 @@ export class InvoiceCreateService {
 
 	private calculateTotalPayment(invoice: Invoice): Invoice {
 		for (const customerItemPayment of invoice.customerItemPayments) {
-			invoice.payment.total.gross += customerItemPayment.payment.gross;
-			invoice.payment.total.net += customerItemPayment.payment.net;
-			invoice.payment.total.vat += customerItemPayment.payment.vat;
+			invoice.payment.total.gross +=
+				customerItemPayment.payment.gross *
+				customerItemPayment.numberOfItems;
+			invoice.payment.total.net +=
+				customerItemPayment.payment.net *
+				customerItemPayment.numberOfItems;
+			invoice.payment.total.vat +=
+				customerItemPayment.payment.vat *
+				customerItemPayment.numberOfItems;
 			invoice.payment.total.discount +=
-				customerItemPayment.payment.discount;
+				parseFloat(customerItemPayment.payment.discount + "") *
+				customerItemPayment.numberOfItems;
 		}
 
 		invoice.payment.totalIncludingFee = invoice.payment.total.gross;
@@ -102,7 +109,8 @@ export class InvoiceCreateService {
 		const invoiceItemPayments = [];
 
 		for (const invoiceItem of invoiceItems) {
-			invoiceItem.discount = 1 - parseFloat(invoiceItem.discount + "");
+			invoiceItem.discount =
+				1 - parseFloat(invoiceItem.discount + "") / 100;
 
 			invoiceItemPayments.push({
 				customerItem: null,
@@ -130,7 +138,6 @@ export class InvoiceCreateService {
 	private itemGrossPrice(invoiceItem: InvoiceItem): number {
 		return this.priceService.sanitize(
 			this.itemUnitPrice(invoiceItem) *
-				parseFloat(invoiceItem.numberOfUnits + "") *
 				parseFloat(invoiceItem.discount + "")
 		);
 	}
