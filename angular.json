@@ -28,6 +28,19 @@
 						"scripts": []
 					},
 					"configurations": {
+						"local": {
+							"sourceMap": true,
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.local.ts"
+								},
+								{
+									"replace": "src/main.ts",
+									"with": "src/main.local.ts"
+								}
+							]
+						},
 						"local-nb": {
 							"aot": true,
 							"outputHashing": "all",
@@ -43,6 +56,10 @@
 								{
 									"replace": "src/environments/environment.ts",
 									"with": "src/environments/environment.local.ts"
+								},
+								{
+									"replace": "src/main.ts",
+									"with": "src/main.local.ts"
 								}
 							]
 						},
@@ -81,15 +98,6 @@
 								{
 									"replace": "src/environments/environment.ts",
 									"with": "src/environments/environment.prod.ts"
-								}
-							]
-						},
-						"local": {
-							"sourceMap": true,
-							"fileReplacements": [
-								{
-									"replace": "src/environments/environment.ts",
-									"with": "src/environments/environment.local.ts"
 								}
 							]
 						}
