@@ -108,6 +108,7 @@
 							"browserTarget": "bl-admin:build:production"
 						},
 						"local": {
+							"hmr": true,
 							"browserTarget": "bl-admin:build:local"
 						}
 					}
