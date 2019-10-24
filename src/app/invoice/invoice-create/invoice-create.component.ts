@@ -71,8 +71,9 @@ export class InvoiceCreateComponent implements OnInit {
 				this.wait = false;
 				this.router.navigateByUrl("/invoices;tab=view");
 			})
-			.catch(() => {
+			.catch(err => {
 				this.wait = false;
+				console.log("INVOICE error", err);
 			});
 	}
 }

@@ -30,8 +30,6 @@ export class InvoiceCreateItemListComponent implements OnInit {
 		for (const invoiceItem of this.invoiceItems) {
 			grandTotal += parseFloat(invoiceItem.total + "");
 		}
-
-		console.log("GT:::", grandTotal);
 	}
 
 	public onInvoiceItemUpdate() {
@@ -40,6 +38,7 @@ export class InvoiceCreateItemListComponent implements OnInit {
 
 	private setInvoiceItems() {
 		const newInvoiceItems: any[] = [];
+		let productNumber = 1;
 
 		for (const cartItem of this.cart) {
 			let alreadyAddedInvoiceItem = null;
@@ -58,6 +57,7 @@ export class InvoiceCreateItemListComponent implements OnInit {
 					price: cartItem.item.price,
 					discount: 0,
 					numberOfUnits: 1,
+					productNumber: productNumber,
 					total: cartItem.item.price
 				});
 			} else {

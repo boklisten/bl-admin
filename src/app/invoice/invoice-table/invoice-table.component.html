@@ -1,6 +1,17 @@
-<div class="row justify-content-between align-items-center p-2">
+<div class="row mb-2 justify-content-center">
 	<div class="col-auto">
-		<div class="input-group input-group-sm mb-3">
+		<app-invoice-id-select
+			[invoices]="invoices"
+			[id]="idSearchString"
+			(idChange)="setIdSearchString($event)"
+		>
+		</app-invoice-id-select>
+	</div>
+</div>
+
+<div class="row align-items-center mb-2" *ngIf="idSearchString">
+	<div class="col-auto">
+		<div class="input-group input-group-sm">
 			<input
 				class="form-control"
 				type="text"
@@ -14,7 +25,9 @@
 			</div>
 		</div>
 	</div>
+</div>
 
+<div class="row align-items-center mt-2 mb-2" *ngIf="haveSelected()">
 	<div class="col-auto">
 		<button
 			class="btn btn-sm btn-outline-primary"
@@ -27,7 +40,7 @@
 				*ngIf="printToExcelWait"
 			></fa-icon>
 			<span i18n="@@invoiceTablePrintSelected" *ngIf="!printToExcelWait"
-				>Print to visma invoice format</span
+				>Visma format</span
 			>
 		</button>
 	</div>
@@ -46,24 +59,13 @@
 			<span
 				i18n="@@invoiceTablePrintSelectedEhf"
 				*ngIf="!printToExcelWait"
-				>Print to visma EHF invoice format</span
+				>Visma EHF format</span
 			>
 		</button>
 	</div>
 </div>
 
-<div class="row">
-	<div class="col">
-		<app-invoice-id-select
-			[invoices]="invoices"
-			[id]="idSearchString"
-			(idChange)="setIdSearchString($event)"
-		>
-		</app-invoice-id-select>
-	</div>
-</div>
-
-<div class="row mt-2">
+<div class="row mt-2" *ngIf="idSearchString">
 	<div class="col">
 		<table class="table table-sm table-hover table-striped">
 			<thead>

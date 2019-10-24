@@ -17,13 +17,12 @@ export class InvoiceViewComponent implements OnInit {
 	ngOnInit() {
 		this.wait = true;
 		this.invoiceService
-			.get()
+			.get({ fresh: true })
 			.then(invoices => {
 				this.invoices = invoices;
 				this.wait = false;
 			})
 			.catch(err => {
-				console.log("invoice err", err);
 				this.wait = false;
 			});
 	}

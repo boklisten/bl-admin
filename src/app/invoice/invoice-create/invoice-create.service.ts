@@ -60,7 +60,14 @@ export class InvoiceCreateService {
 				totalIncludingFee: 0
 			},
 			comments: comment
-				? [{ id: "", msg: comment, creationTime: new Date(), user: "" }]
+				? [
+						{
+							id: "",
+							msg: comment,
+							creationTime: new Date(),
+							user: null
+						}
+				  ]
 				: []
 		};
 
@@ -103,6 +110,7 @@ export class InvoiceCreateService {
 				title: invoiceItem.title,
 				item: null,
 				numberOfItems: parseFloat(invoiceItem.numberOfUnits + ""),
+				productNumber: invoiceItem.productNumber,
 				payment: {
 					unit: this.itemUnitPrice(invoiceItem),
 					gross: this.itemGrossPrice(invoiceItem),

@@ -31,9 +31,7 @@ export class InvoiceIdSelectComponent implements OnInit, OnChanges {
 			simpleChanges["invoices"] &&
 			simpleChanges["invoices"].currentValue
 		) {
-			console.log(this.invoices);
 			this.idOptions = this.generateIdOptions();
-			this.selectId(this.idOptions[0]);
 		}
 	}
 

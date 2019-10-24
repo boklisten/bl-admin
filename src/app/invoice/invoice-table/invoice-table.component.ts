@@ -5,10 +5,7 @@ import {
 	Input,
 	SimpleChanges,
 	EventEmitter,
-	OnChanges,
-	Directive,
-	ViewChildren,
-	QueryList
+	OnChanges
 } from "@angular/core";
 import { Invoice } from "@wizardcoder/bl-model";
 import { FormControl } from "@angular/forms";
@@ -42,7 +39,7 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 		this.invoices = [];
 		this.invoicesOrg = [];
 		this.sortByInvoiceIdDirection = "none";
-		this.idSearchString = "";
+		this.idSearchString = null;
 
 		this.selectedList = {};
 
@@ -57,7 +54,6 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 	ngOnChanges(simpleChanges: SimpleChanges) {
 		if (simpleChanges["invoices"].currentValue) {
 			this.invoicesOrg = simpleChanges["invoices"].currentValue;
-			//this.onSelectInvoice(simpleChanges["invoices"].currentValue[0]);
 		}
 	}
 
@@ -132,6 +128,10 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 	public onSelectInvoice(invoice: Invoice) {
 		this.selectedInvoice = invoice;
 		this.selectInvoice.emit(invoice);
+	}
+
+	public haveSelected() {
+		return this.getSelected().length > 0;
 	}
 
 	public onSelectAll() {
