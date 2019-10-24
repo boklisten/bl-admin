@@ -37,7 +37,7 @@
 								},
 								{
 									"replace": "src/main.ts",
-									"with": "src/main.local.ts"
+									"with": "src/main.hmr.ts"
 								}
 							]
 						},
@@ -59,7 +59,7 @@
 								},
 								{
 									"replace": "src/main.ts",
-									"with": "src/main.local.ts"
+									"with": "src/main.hmr.ts"
 								}
 							]
 						},
