@@ -17,6 +17,7 @@ export class InvoiceCreateComponent implements OnInit {
 	public invoiceCommentForm: FormGroup;
 	public total: number;
 	public wait: boolean;
+	public createInvoiceError: boolean;
 
 	constructor(
 		private invoiceCreateService: InvoiceCreateService,
@@ -58,6 +59,7 @@ export class InvoiceCreateComponent implements OnInit {
 
 	public createInvoice() {
 		this.wait = true;
+		this.createInvoiceError = false;
 		this.invoiceCreateService
 			.createCompanyInvoice(
 				this.companyInvoiceForm.controls["reference"].value,
@@ -74,6 +76,7 @@ export class InvoiceCreateComponent implements OnInit {
 			.catch(err => {
 				this.wait = false;
 				console.log("INVOICE error", err);
+				this.createInvoiceError = true;
 			});
 	}
 }

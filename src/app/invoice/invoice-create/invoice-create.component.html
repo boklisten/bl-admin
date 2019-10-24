@@ -1,4 +1,12 @@
 <div class="row mt-2">
+	<div class="col-12">
+		<div class="alert alert-danger" *ngIf="createInvoiceError">
+			<fa-icon [icon]="'exclamation-circle'" class="mr-2"></fa-icon>
+			<span>Failed to create invoice</span>
+		</div>
+	</div>
+</div>
+<div class="row mt-2">
 	<div class="col-12" [formGroup]="companyInvoiceForm">
 		<div class="input-group">
 			<div class="input-group-prepend">
