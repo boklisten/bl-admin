@@ -87,18 +87,11 @@ export class InvoiceCreateService {
 
 	private calculateTotalPayment(invoice: Invoice): Invoice {
 		for (const customerItemPayment of invoice.customerItemPayments) {
-			invoice.payment.total.gross +=
-				customerItemPayment.payment.gross *
-				customerItemPayment.numberOfItems;
-			invoice.payment.total.net +=
-				customerItemPayment.payment.net *
-				customerItemPayment.numberOfItems;
-			invoice.payment.total.vat +=
-				customerItemPayment.payment.vat *
-				customerItemPayment.numberOfItems;
+			invoice.payment.total.gross += customerItemPayment.payment.gross;
+			invoice.payment.total.net += customerItemPayment.payment.net;
+			invoice.payment.total.vat += customerItemPayment.payment.vat;
 			invoice.payment.total.discount +=
-				parseFloat(customerItemPayment.payment.discount + "") *
-				customerItemPayment.numberOfItems;
+				customerItemPayment.payment.discount;
 		}
 
 		invoice.payment.totalIncludingFee = invoice.payment.total.gross;
@@ -109,8 +102,14 @@ export class InvoiceCreateService {
 		const invoiceItemPayments = [];
 
 		for (const invoiceItem of invoiceItems) {
-			invoiceItem.discount =
-				1 - parseFloat(invoiceItem.discount + "") / 100;
+			invoiceItem.numberOfUnits = parseFloat(
+				invoiceItem.numberOfUnits + ""
+			);
+			invoiceItem.discount = parseFloat(invoiceItem.discount + "");
+			invoiceItem.total = parseFloat(invoiceItem.total + "");
+			invoiceItem.price = parseFloat(invoiceItem.price + "");
+
+			invoiceItem.discount = 1 - invoiceItem.discount / 100;
 
 			invoiceItemPayments.push({
 				customerItem: null,
@@ -132,32 +131,32 @@ export class InvoiceCreateService {
 	}
 
 	private itemUnitPrice(invoiceItem: InvoiceItem): number {
-		return parseFloat(invoiceItem.price + "");
+		return invoiceItem.price;
 	}
 
 	private itemGrossPrice(invoiceItem: InvoiceItem): number {
-		return this.priceService.sanitize(
+		return this.priceService.withTwoDecimals(
 			this.itemUnitPrice(invoiceItem) *
-				parseFloat(invoiceItem.discount + "")
+				invoiceItem.discount *
+				invoiceItem.numberOfUnits
 		);
 	}
 
 	private itemNetPrice(invoiceItem: InvoiceItem): number {
-		return this.priceService.sanitize(
+		return this.priceService.withTwoDecimals(
 			this.itemGrossPrice(invoiceItem) - this.itemVatPrice(invoiceItem)
 		);
 	}
 
 	private itemVatPrice(invoiceItem: InvoiceItem): number {
-		return this.priceService.sanitize(
-			this.itemGrossPrice(invoiceItem) * invoiceItem.item.taxRate
+		return this.priceService.withTwoDecimals(
+			this.itemGrossPrice(invoiceItem) *
+				invoiceItem.item.taxRate *
+				invoiceItem.numberOfUnits
 		);
 	}
 
 	private itemDiscountPrice(invoiceItem: InvoiceItem): number {
-		return this.priceService.sanitize(
-			parseFloat(invoiceItem.price + "") *
-				parseFloat(invoiceItem.discount + "")
-		);
+		return (1 - invoiceItem.discount) * 100;
 	}
 }

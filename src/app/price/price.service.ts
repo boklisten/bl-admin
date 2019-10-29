@@ -14,6 +14,10 @@ export class PriceService {
 		return this.sanitizeNum(parseInt((price / 10).toString(), 10) * 10);
 	}
 
+	public withTwoDecimals(num: number): number {
+		return +num.toFixed(2);
+	}
+
 	public toFixed(num: number): number {
 		return this.sanitizeNum(num);
 	}

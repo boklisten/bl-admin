@@ -160,14 +160,25 @@
 								<th scope="col" i18n="@@invoiceDetailItemTitle">
 									Title
 								</th>
-								<th
-									scope="col"
-									i18n="@@invoiceDetailItemDeadline"
-								>
-									Amount
-								</th>
 
 								<th scope="col">x</th>
+								<th
+									scope="col"
+									i18n="@@invoiceDetailItemUnitPrice"
+								>
+									Unit price
+								</th>
+
+								<th
+									scope="col"
+									i18n="@@invoiceDetailItemDiscount"
+								>
+									Discount
+								</th>
+
+								<th scope="col" i18n="@@invoiceDetailItemGross">
+									Gross
+								</th>
 								<th></th>
 							</tr>
 						</thead>
@@ -185,14 +196,23 @@
 								<th scope="row">
 									{{ customerItemPayment.title }}
 								</th>
+								<td>{{ customerItemPayment.numberOfItems }}</td>
+								<td>
+									{{
+										customerItemPayment.payment.unit
+											| blcPrice
+									}}
+								</td>
+								<td>
+									{{ customerItemPayment.payment.discount }} %
+								</td>
+
 								<td>
 									{{
 										customerItemPayment.payment.gross
 											| blcPrice
 									}}
 								</td>
-
-								<td>{{ customerItemPayment.numberOfItems }}</td>
 								<td>
 									<button
 										class="btn btn-link float-right"
@@ -212,7 +232,10 @@
 								</td>
 							</tr>
 							<tr class="table-light font-italic">
-								<td i18n="@@invoiceDetailItemsTotal">
+								<td
+									i18n="@@invoiceDetailItemsTotal"
+									colspan="4"
+								>
 									Items total
 								</td>
 								<td>
@@ -238,7 +261,7 @@
 								</td>
 							</tr>
 							<tr class="table-secondary">
-								<th>Total</th>
+								<th colspan="4">Total</th>
 								<th>
 									{{
 										invoice.payment.totalIncludingFee
