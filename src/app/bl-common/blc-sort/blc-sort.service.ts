@@ -6,14 +6,21 @@ import { Injectable } from "@angular/core";
 export class BlcSortService {
 	constructor() {}
 
-	public sortByName(list: any[]): any[] {
+	public sortByField(list: any[], field: string): any[] {
 		return list.sort((a: any, b: any) => {
-			if (a && a.name && b && b.name) {
-				const nameA = a.name.toLowerCase();
-				const nameB = b.name.toLowerCase();
-				if (nameA < nameB) {
+			if (
+				a &&
+				a[field] &&
+				typeof a[field] === "string" &&
+				b &&
+				b[field] &&
+				typeof b[field] === "string"
+			) {
+				const fieldA = a[field].toLowerCase();
+				const fieldB = b[field].toLowerCase();
+				if (fieldA < fieldB) {
 					return -1;
-				} else if (nameA > nameB) {
+				} else if (fieldA > fieldB) {
 					return 1;
 				}
 			}

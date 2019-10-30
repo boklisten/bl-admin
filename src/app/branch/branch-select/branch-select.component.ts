@@ -21,7 +21,10 @@ export class BranchSelectComponent implements OnInit {
 		this._branchStoreService
 			.getAllBranches()
 			.then((branches: Branch[]) => {
-				this.branches = this.blcSortService.sortByName(branches);
+				this.branches = this.blcSortService.sortByField(
+					branches,
+					"name"
+				);
 			})
 			.catch(() => {
 				console.log("branchSelectComponent: could not get branches");

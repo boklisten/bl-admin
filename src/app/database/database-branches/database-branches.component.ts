@@ -19,7 +19,10 @@ export class DatabaseBranchesComponent implements OnInit {
 		this._branchService
 			.get()
 			.then((branches: Branch[]) => {
-				this.branches = this.blcSortService.sortByName(branches);
+				this.branches = this.blcSortService.sortByField(
+					branches,
+					"name"
+				);
 			})
 			.catch(getBranchesError => {
 				console.log(
