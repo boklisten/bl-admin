@@ -1,4 +1,3 @@
-
 <div class="row">
 	<div class="col">
 		<div class="card">
@@ -16,43 +15,66 @@
 					-->
 					<div class="col-2">
 						<span class="mr-2 pb-2">
-                            <fa-icon [icon]="'sync-alt'" [spin]="fetching"></fa-icon>
-                        </span>
-                        <span>
-							<app-bl-common-toggle-button [(value)]="orderFilter.autoFetch"></app-bl-common-toggle-button>
-                        </span>
+							<fa-icon
+								[icon]="'sync-alt'"
+								[spin]="fetching"
+							></fa-icon>
+						</span>
+						<span>
+							<app-bl-common-toggle-button
+								[(value)]="orderFilter.autoFetch"
+							></app-bl-common-toggle-button>
+						</span>
 					</div>
 					<div class="col-2">
 						<span class="mr-2 pb-2">
-                            <fa-icon [icon]="'location-arrow'"></fa-icon>
-                        </span>
-                        <span>
-							<app-bl-common-toggle-button [(value)]="orderFilter.onlyCurrentBranch" (update)="onFilterUpdate()"></app-bl-common-toggle-button>
-                        </span>
+							<fa-icon [icon]="'location-arrow'"></fa-icon>
+						</span>
+						<span>
+							<app-bl-common-toggle-button
+								[(value)]="orderFilter.onlyCurrentBranch"
+								(update)="onFilterUpdate()"
+							></app-bl-common-toggle-button>
+						</span>
 					</div>
 					<div class="col-2">
 						<span class="mr-2 pb-2">
-                            <fa-icon [icon]="'truck'"></fa-icon>
-                        </span>
-                        <span>
-							<app-bl-common-toggle-button [(value)]="orderFilter.delivery" (update)="onFilterUpdate()"></app-bl-common-toggle-button>
-                        </span>
+							<fa-icon [icon]="'truck'"></fa-icon>
+						</span>
+						<span>
+							<app-bl-common-toggle-button
+								[(value)]="orderFilter.delivery"
+								(update)="onFilterUpdate()"
+							></app-bl-common-toggle-button>
+						</span>
 					</div>
 				</div>
 			</div>
-            <div class="card-body" *ngIf="placedOrders && placedOrders.length <= 0">
-                <div class="alert alert-secondary" i18n="@@orderManagerListNoOrdersFoundError">
-                    No orders found
-                </div>
-            </div>
-            <div class="list-group list-group-flush bl-col-scroll">
-                <div class="list-group-item list-group-item-action"
-                     (click)="onOrderClick(placedOrder)"
-                     *ngFor="let placedOrder of placedOrders"
-                     [ngClass]="{'active': activeOrder && activeOrder.id === placedOrder.id }">
-                    <app-order-manager-list-item [order]="placedOrder"></app-order-manager-list-item>
-                </div>
-            </div>
-        </div>
+			<div
+				class="card-body"
+				*ngIf="placedOrders && placedOrders.length <= 0"
+			>
+				<div
+					class="alert alert-secondary"
+					i18n="@@orderManagerListNoOrdersFoundError"
+				>
+					No orders found
+				</div>
+			</div>
+			<div class="list-group list-group-flush bl-col-scroll">
+				<div
+					class="list-group-item list-group-item-action"
+					(click)="onOrderClick(placedOrder)"
+					*ngFor="let placedOrder of placedOrders"
+					[ngClass]="{
+						active: activeOrder && activeOrder.id === placedOrder.id
+					}"
+				>
+					<app-order-manager-list-item
+						[order]="placedOrder"
+					></app-order-manager-list-item>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

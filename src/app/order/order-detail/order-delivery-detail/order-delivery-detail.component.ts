@@ -30,11 +30,7 @@ export class OrderDeliveryDetailComponent implements OnInit, OnChanges {
 	) {}
 
 	ngOnInit() {
-		this.customerDetail = this._customerService.getCustomerDetail();
-
-		if (!this.customerDetail) {
-			this.getCustomer(this.order.customer as string);
-		}
+		this.getCustomer(this.order.customer as string);
 	}
 
 	getDelivery() {
@@ -69,6 +65,7 @@ export class OrderDeliveryDetailComponent implements OnInit, OnChanges {
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes["order"].currentValue !== changes["order"].previousValue) {
 			this.getDelivery();
+			this.getCustomer(this.order.customer as string);
 		}
 	}
 

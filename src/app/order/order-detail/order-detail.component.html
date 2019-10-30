@@ -1,23 +1,27 @@
 <div class="container-fluid mt-2">
+	<div class="row"><div class="col-12"></div></div>
 	<div class="row">
 		<div class="col-12">
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-12">
-			<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
-			<app-bl-common-alert [type]="'warning'"
-								 *ngIf="warningText"
-								 i18n-text="@@orderDetailCouldNotGetOrderError"
-								 text="could not get order"
-								 (exit)="warningText = null"></app-bl-common-alert>
+			<app-bl-common-update-button
+				[wait]="wait"
+				*ngIf="wait"
+			></app-bl-common-update-button>
+			<app-bl-common-alert
+				[type]="'warning'"
+				*ngIf="warningText"
+				i18n-text="@@orderDetailCouldNotGetOrderError"
+				text="could not get order"
+				(exit)="warningText = null"
+			></app-bl-common-alert>
 		</div>
 	</div>
 	<div class="row" *ngIf="order">
 		<div class="col-3">
 			<div class="row">
 				<div class="col-12">
-					<app-order-detail-card [order]="order"></app-order-detail-card>
+					<app-order-detail-card
+						[order]="order"
+					></app-order-detail-card>
 				</div>
 			</div>
 			<div class="row mt-2">
@@ -26,24 +30,37 @@
 						<div class="card-body">
 							<div class="row justify-content-between">
 								<div class="col-6">
-                                    <button class="btn btn-outline-secondary btn-block btn-sm" (click)="printReceipt()">
-										<span i18n="@@orderDetailPrintReceiptButton">Print receipt</span>
-                                    </button>
-                                </div>
-								<div class="col-6">
-                                    <button class="btn btn-outline-secondary btn-block btn-sm" (click)="printAgreement()">
-										<span i18n="@@orderDetailPrintAgreementButton">Print agreement</span>
-                                	</button>
+									<button
+										class="btn btn-outline-secondary btn-block btn-sm"
+										(click)="printReceipt()"
+									>
+										<span
+											i18n="@@orderDetailPrintReceiptButton"
+											>Print receipt</span
+										>
+									</button>
 								</div>
-                            </div>
-
+								<div class="col-6">
+									<button
+										class="btn btn-outline-secondary btn-block btn-sm"
+										(click)="printAgreement()"
+									>
+										<span
+											i18n="@@orderDetailPrintAgreementButton"
+											>Print agreement</span
+										>
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row mt-4">
 				<div class="col-12">
-					<app-order-delivery-detail [order]="order"></app-order-delivery-detail>
+					<app-order-delivery-detail
+						[order]="order"
+					></app-order-delivery-detail>
 				</div>
 			</div>
 		</div>
@@ -52,7 +69,9 @@
 			<app-order-item-list [order]="order"></app-order-item-list>
 		</div>
 		<div class="col-3">
-			<app-order-payment-detail [order]="order"></app-order-payment-detail>
+			<app-order-payment-detail
+				[order]="order"
+			></app-order-payment-detail>
 		</div>
 	</div>
 </div>
