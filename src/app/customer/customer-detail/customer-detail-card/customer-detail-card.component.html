@@ -1,37 +1,76 @@
 <div class="row" *ngIf="customerDetail">
 	<div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{customerDetail.name}}</h5>
-				<app-bl-common-alert [type]="'success'" [text]="'user details was updated'" *ngIf="customerDetailUpdated" (exit)="customerDetailUpdated = false"></app-bl-common-alert>
-            </div>
+		<div class="card">
+			<div class="card-header text-center">
+				<h4>{{ customerDetail.name }}</h4>
+			</div>
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<fa-icon [icon]="'at'" class="mr-2"></fa-icon> {{customerDetail.email}}
+				<li
+					class="list-group-item bg-success text-white text-center"
+					*ngIf="customerDetailUpdated"
+				>
+					<span i18n="@@customerDetailCardUserDetailWasUpdated"
+						>User details was updated!</span
+					>
 				</li>
 				<li class="list-group-item">
-					<fa-icon [icon]="'phone'" class="mr-2"></fa-icon> {{customerDetail.phone}}
+					<fa-icon [icon]="'at'" class="mr-2"></fa-icon>
+					{{ customerDetail.email }}
 				</li>
 				<li class="list-group-item">
-					<fa-icon [icon]="'address-card'" class="mr-2"></fa-icon> {{customerDetail.address}}
+					<fa-icon [icon]="'phone'" class="mr-2"></fa-icon>
+					{{ customerDetail.phone }}
 				</li>
 				<li class="list-group-item">
-					<fa-icon [icon]="'address-card'" class="mr-2"></fa-icon> {{customerDetail.postCode}} {{customerDetail.postCity}}
+					<fa-icon [icon]="'address-card'" class="mr-2"></fa-icon>
+					{{ customerDetail.address }} {{ customerDetail.postCode }}
+					{{ customerDetail.postCity }}
 				</li>
 				<li class="list-group-item">
 					<fa-icon [icon]="'birthday-cake'" class="mr-2"></fa-icon>
-					<span *ngIf="customerDetail.dob">{{customerDetail.dob | blDate}}</span>
-					<span *ngIf="!customerDetail.dob"
-						  i18n="@@customerDetailCartDobNotProvided"
-						  class="text-danger">date of birth not provided</span>
+					<span *ngIf="customerDetail.dob">{{
+						customerDetail.dob | blDate
+					}}</span>
+					<span
+						*ngIf="!customerDetail.dob"
+						i18n="@@customerDetailCartDobNotProvided"
+						class="text-danger"
+						>date of birth not provided</span
+					>
 				</li>
+
+				<li
+					class="list-group-item list-group-item-dark"
+					*ngIf="showGuardian"
+				>
+					<div class="text-center">
+						<h5 i18n="@@customerDetailCardGuardian">Guardian</h5>
+					</div>
+					<div>
+						<fa-icon [icon]="'user'" class="mr-2"></fa-icon>
+						{{ customerDetail.guardian.name }}
+					</div>
+					<div>
+						<fa-icon [icon]="'at'" class="mr-2"></fa-icon>
+						{{ customerDetail.guardian.email }}
+					</div>
+					<div>
+						<fa-icon [icon]="'phone'" class="mr-2"></fa-icon>
+						{{ customerDetail.guardian.phone }}
+					</div>
+				</li>
+
 				<li class="list-group-item">
-					<fa-icon [icon]="'qrcode'" class="mr-2"></fa-icon> {{customerDetail.id}}
+					<fa-icon [icon]="'qrcode'" class="mr-2"></fa-icon>
+					{{ customerDetail.id }}
 				</li>
 			</ul>
-            <div class="card-footer">
-                <app-customer-detail-modal [customerDetail]="customerDetail" (updated)="onCustomerDetailUpdated()"></app-customer-detail-modal>
-            </div>
-        </div>
+			<div class="card-footer">
+				<app-customer-detail-modal
+					[customerDetail]="customerDetail"
+					(updated)="onCustomerDetailUpdated()"
+				></app-customer-detail-modal>
+			</div>
+		</div>
 	</div>
 </div>
