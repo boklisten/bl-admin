@@ -1,15 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {Branch, UserPermission} from '@wizardcoder/bl-model';
-import {BranchStoreService} from '../branch/branch-store.service';
-import {AuthService} from '../auth/auth.service';
-import {CustomerSearchService} from '../customer/customer-search/customer-search.service';
-import {Router} from '@angular/router';
-import {BlcKeyeventDoubleShiftService} from '../bl-common/blc-keyevent/blc-keyevent-double-shift.service';
+import { Component, OnInit } from "@angular/core";
+import { Branch, UserPermission } from "@wizardcoder/bl-model";
+import { BranchStoreService } from "../branch/branch-store.service";
+import { AuthService } from "../auth/auth.service";
+import { CustomerSearchService } from "../customer/customer-search/customer-search.service";
+import { Router } from "@angular/router";
+import { BlcKeyeventDoubleShiftService } from "../bl-common/blc-keyevent/blc-keyevent-double-shift.service";
+import { BlcSortService } from "../bl-common/blc-sort/blc-sort.service";
 
 @Component({
-	selector: 'app-header',
-	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.scss']
+	selector: "app-header",
+	templateUrl: "./header.component.html",
+	styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
 	public currentBranch: Branch;
@@ -21,13 +22,16 @@ export class HeaderComponent implements OnInit {
 	public searchTerm: string;
 	public headerCustomerSearchId: string;
 
-	constructor(private _branchStoreService: BranchStoreService,
-	            private _authService: AuthService,
-	            private _router: Router,
-	            private _blcKeyeventDoubleShiftService: BlcKeyeventDoubleShiftService,
-	            private _customerSearchService: CustomerSearchService) {
-		this.searchTerm = '';
-		this.headerCustomerSearchId = 'headerCustomerSearch';
+	constructor(
+		private _branchStoreService: BranchStoreService,
+		private _authService: AuthService,
+		private _router: Router,
+		private _blcKeyeventDoubleShiftService: BlcKeyeventDoubleShiftService,
+		private blcSortService: BlcSortService,
+		private _customerSearchService: CustomerSearchService
+	) {
+		this.searchTerm = "";
+		this.headerCustomerSearchId = "headerCustomerSearch";
 	}
 
 	ngOnInit() {
@@ -36,15 +40,23 @@ export class HeaderComponent implements OnInit {
 			this.currentBranch = this._branchStoreService.getCurrentBranch();
 		}
 
-		this._branchStoreService.onBranchChange().subscribe((branch: Branch) => {
-			this.currentBranch = branch;
-		});
+		this._branchStoreService
+			.onBranchChange()
+			.subscribe((branch: Branch) => {
+				this.currentBranch = branch;
+			});
 
-		this._branchStoreService.getAllBranches().then((branches: Branch[]) => {
-			this.branches = branches;
-		}).catch((getBranchesError) => {
-			console.log('HeaderComponent: could not get branches');
-		});
+		this._branchStoreService
+			.getAllBranches()
+			.then((branches: Branch[]) => {
+				this.branches = this.blcSortService.sortByName(branches);
+			})
+			.catch(getBranchesError => {
+				console.log(
+					"HeaderComponent: could not get branches",
+					getBranchesError
+				);
+			});
 
 		this._blcKeyeventDoubleShiftService.onDoubleShift().subscribe(() => {
 			document.getElementById(this.headerCustomerSearchId).focus();
@@ -71,16 +83,16 @@ export class HeaderComponent implements OnInit {
 
 	private translateUserPermission(userPermission: UserPermission) {
 		switch (userPermission) {
-			case 'employee':
-				return 'ansatt';
-			case 'manager':
-				return 'filialsjef';
-			case 'admin':
-				return 'administrator';
-			case 'super':
-				return 'wizard';
+			case "employee":
+				return "ansatt";
+			case "manager":
+				return "filialsjef";
+			case "admin":
+				return "administrator";
+			case "super":
+				return "wizard";
 			default:
-				return 'ansatt';
+				return "ansatt";
 		}
 	}
 
@@ -96,7 +108,7 @@ export class HeaderComponent implements OnInit {
 		if (searchTerm && searchTerm.length > 3) {
 			this.wait = true;
 			this._customerSearchService.search(searchTerm);
-			this._router.navigate(['/search/customer/result']);
+			this._router.navigate(["/search/customer/result"]);
 		}
 	}
 }

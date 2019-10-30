@@ -1,25 +1,31 @@
-import {Component, OnInit} from '@angular/core';
-import {Branch} from '@wizardcoder/bl-model';
-import {BranchStoreService} from '../branch-store.service';
+import { Component, OnInit } from "@angular/core";
+import { Branch } from "@wizardcoder/bl-model";
+import { BranchStoreService } from "../branch-store.service";
+import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 
 @Component({
-	selector: 'app-branch-select',
-	templateUrl: './branch-select.component.html',
-	styleUrls: ['./branch-select.component.scss']
+	selector: "app-branch-select",
+	templateUrl: "./branch-select.component.html",
+	styleUrls: ["./branch-select.component.scss"]
 })
 export class BranchSelectComponent implements OnInit {
 	public branches: Branch[];
 	public selectedBranch: Branch;
 
-	constructor(private _branchStoreService: BranchStoreService) {
-	}
+	constructor(
+		private _branchStoreService: BranchStoreService,
+		private blcSortService: BlcSortService
+	) {}
 
 	ngOnInit() {
-		this._branchStoreService.getAllBranches().then((branches: Branch[]) => {
-			this.branches = branches;
-		}).catch(() => {
-			console.log('branchSelectComponent: could not get branches');
-		});
+		this._branchStoreService
+			.getAllBranches()
+			.then((branches: Branch[]) => {
+				this.branches = this.blcSortService.sortByName(branches);
+			})
+			.catch(() => {
+				console.log("branchSelectComponent: could not get branches");
+			});
 
 		this.selectedBranch = this._branchStoreService.getCurrentBranch();
 	}
@@ -28,5 +34,4 @@ export class BranchSelectComponent implements OnInit {
 		this._branchStoreService.setCurrentBranch(branch);
 		this.selectedBranch = branch;
 	}
-
 }

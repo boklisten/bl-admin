@@ -35,7 +35,7 @@ import { BlPrintComponent } from "./bl-print/bl-print.component";
 import { BlcDeadlineSelectComponent } from "./blc-deadline-select/blc-deadline-select.component";
 import { BlcTextblockEditComponent } from "./blc-textblock-edit/blc-textblock-edit.component";
 import { BlcBranchSelectComponent } from "./blc-branch/blc-branch-select/blc-branch-select.component";
-import { BlcTypeSelectComponent } from './blc-type-select/blc-type-select.component';
+import { BlcTypeSelectComponent } from "./blc-type-select/blc-type-select.component";
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -94,8 +94,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcButtonCheckComponent,
 		BlcDeadlineSelectComponent,
 		BlcTextblockEditComponent,
-    BlcBranchSelectComponent,
-    BlcTypeSelectComponent
+		BlcBranchSelectComponent,
+		BlcTypeSelectComponent
 	]
 })
 export class BlCommonModule {}
