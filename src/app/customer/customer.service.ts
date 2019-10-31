@@ -36,13 +36,26 @@ export class CustomerService {
 		this._customerDetailService.reloadCustomerDetail();
 	}
 
-	public haveOrderedItem(
+	public isItemOrdered(itemId: string): boolean {
+		try {
+			this.getOrderedItem(itemId);
+			return true;
+		} catch (e) {
+			return false;
+		}
+	}
+
+	public getOrderedItem(
 		itemId: string
 	): { orderItem: OrderItem; order: Order } {
 		for (const order of this._customer.orders) {
 			for (const orderItem of order.orderItems) {
 				if (orderItem.item === itemId) {
-					if (orderItem.type === "rent" || orderItem.type === "buy") {
+					if (
+						orderItem.type === "rent" ||
+						orderItem.type === "buy" ||
+						orderItem.type === "partly-payment"
+					) {
 						return { orderItem: orderItem, order: order };
 					}
 				}
@@ -64,14 +77,20 @@ export class CustomerService {
 	private handleCustomerDetailChange() {
 		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
 			const customerDetail = this._customerDetailService.getCustomerDetail();
-
 			if (!customerDetail) {
 				this._customer = null;
 				this._customerChange$.next(true);
 				return;
 			}
 
-			this.setCustomer(customerDetail);
+			this._customerOrderService
+				.getCustomerOrders()
+				.then((orders: Order[]) => {
+					this.setCustomer(customerDetail, orders);
+				})
+				.catch(() => {
+					this.setCustomer(customerDetail);
+				});
 		});
 	}
 

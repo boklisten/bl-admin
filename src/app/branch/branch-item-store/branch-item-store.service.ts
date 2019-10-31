@@ -45,6 +45,15 @@ export class BranchItemStoreService {
 		});
 	}
 
+	public isItemInBranchItems(itemId: string): boolean {
+		for (let branchItem of this._branchItems) {
+			if ((branchItem.item as string) === itemId) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public fetchBranchItems(): Promise<boolean> {
 		return this._branchItemService
 			.getManyByIds(this._branch.branchItems as string[])

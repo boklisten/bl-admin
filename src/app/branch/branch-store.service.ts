@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {Branch} from '@wizardcoder/bl-model';
-import {BranchService} from '@wizardcoder/bl-connect';
-import {Subject, Observable} from 'rxjs';
-import {Router} from '@angular/router';
-import {StorageService} from '../storage/storage.service';
-import {AuthService} from '../auth/auth.service';
+import { Injectable } from "@angular/core";
+import { Branch } from "@wizardcoder/bl-model";
+import { BranchService } from "@wizardcoder/bl-connect";
+import { Subject, Observable } from "rxjs";
+import { Router } from "@angular/router";
+import { StorageService } from "../storage/storage.service";
+import { AuthService } from "../auth/auth.service";
 
 @Injectable()
 export class BranchStoreService {
@@ -13,20 +13,25 @@ export class BranchStoreService {
 	private _currentBranch: Branch;
 	private _branchChange$: Subject<Branch>;
 
-	constructor(private _branchService: BranchService, private _router: Router, private _storageService: StorageService, private _authService: AuthService) {
+	constructor(
+		private _branchService: BranchService,
+		private _router: Router,
+		private _storageService: StorageService,
+		private _authService: AuthService
+	) {
 		this._branchChange$ = new Subject<Branch>();
 		this.redirectUrl = null;
 
-		if (this._storageService.get('bl-branch')) {
-			this._currentBranch = this._storageService.get('bl-branch');
+		if (this._storageService.get("bl-branch")) {
+			this._currentBranch = this._storageService.get("bl-branch");
 			this._branchChange$.next(this._currentBranch);
 		}
 
-		this.getAllBranches().then((branches: Branch[]) => {
-
-		}).catch(() => {
-			console.log('could not get all branches');
-		});
+		this.getAllBranches()
+			.then((branches: Branch[]) => {})
+			.catch(() => {
+				console.log("could not get all branches");
+			});
 
 		this.onLogout();
 	}
@@ -46,9 +51,16 @@ export class BranchStoreService {
 		return this._currentBranch;
 	}
 
+	public getBranchId(): string {
+		if (!this._currentBranch) {
+			return null;
+		}
+		return this._currentBranch.id;
+	}
+
 	public setCurrentBranch(branch: Branch) {
 		this._currentBranch = branch;
-		this._storageService.store('bl-branch', branch);
+		this._storageService.store("bl-branch", branch);
 		this._branchChange$.next(this._currentBranch);
 
 		if (this.redirectUrl) {
@@ -66,5 +78,4 @@ export class BranchStoreService {
 			this._currentBranch = null;
 		});
 	}
-
 }

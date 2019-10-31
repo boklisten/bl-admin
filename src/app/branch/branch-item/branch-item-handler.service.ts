@@ -93,8 +93,6 @@ export class BranchItemHandlerService {
 				branchItemIds.push(branchItem.id);
 			});
 
-			console.log("the branchItems to update branch with", branchItemIds);
-
 			this._branchService
 				.update(branch.id, { branchItems: branchItemIds })
 				.then((updatedBranch: Branch) => {

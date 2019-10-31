@@ -60,7 +60,7 @@ export class CartService {
 			const orderAndOrderItem: {
 				orderItem: OrderItem;
 				order: Order;
-			} = this._customerService.haveOrderedItem(item.id);
+			} = this._customerService.getOrderedItem(item.id);
 			this.addOrderItem(
 				orderAndOrderItem.orderItem,
 				orderAndOrderItem.order
