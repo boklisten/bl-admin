@@ -71,9 +71,11 @@ export class ItemSearchResultComponent implements OnInit {
 	}
 
 	private getSearchResult(): Item[] {
-		return this.blcSortService.sortByField(
-			this._itemSearchService.getSearchResult(),
-			"title"
+		return this.blcSortService.sortItemsByRelevance(
+			this.blcSortService.sortByField(
+				this._itemSearchService.getSearchResult(),
+				"title"
+			)
 		);
 	}
 
