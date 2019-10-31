@@ -1,51 +1,29 @@
 <div class="card">
 	<div class="card-header" *ngIf="title">
-		<h4 class="card-title">
-			<span i18n="@@customerItemListTitle">Customer items</span>
+		<h4 class="text-center" i18n="@@customerItemListTitle">
+			Customer items
 		</h4>
 	</div>
-	<!--
-	<div class="row">
-		<div class="col-12">
-			<div class="row justify-content-between">
-				<div class="col-auto">deadline</div>
-				<div class="col-auto">
-					<app-blc-edit-date-value
-						[(value)]="reminderDate"
-					></app-blc-edit-date-value>
-				</div>
-			</div>
-			<button
-				class="btn btn-outline-secondary btn-block btn-sm"
-				(click)="onSendReminder()"
+	<ul class="list-group list-group-flush">
+		<li
+			class="list-group-item list-group-item-secondary text-center"
+			*ngIf="customerItemsWithItem.length <= 0 && !wait && !error"
+		>
+			<fa-icon [icon]="'exclamation-circle'" class="mr-2"></fa-icon>
+			<span i18n="@@customerItemListNoCustomerItemsFound"
+				>No customer-items found</span
 			>
-				Send reminder
-			</button>
-		</div>
-	</div>
-  -->
+		</li>
 
-	<app-bl-common-alert
-		*ngIf="customerItemsWithItem.length <= 0 && !wait && !error"
-		i18n-text="@@customerItemListCustomerDontHaveItem"
-		text="Customer does not have items"
-		[type]="'secondary'"
-	></app-bl-common-alert>
-	<app-bl-common-alert
-		*ngIf="error"
-		i18n-text="@@customerItemListCouldNotRetrieve"
-		[text]="'Something went wrong with retrieving customerItems'"
-		[type]="'danger'"
-	></app-bl-common-alert>
-	<app-bl-common-update-button
-		[wait]="wait"
-		*ngIf="wait && !error"
-	></app-bl-common-update-button>
-
-	<ul
-		class="list-group list-group-flush"
-		*ngIf="customerItemsWithItem.length > 0 && !wait && !error"
-	>
+		<li class="list-group-item list-group-item-danger" *ngIf="error">
+			<span>Something went wrong with retrieving the customerItems</span>
+		</li>
+		<li
+			class="list-group-item list-group-item-warning text-center"
+			*ngIf="wait && !error"
+		>
+			<fa-icon [icon]="'circle-notch'" [spin]="true"></fa-icon>
+		</li>
 		<li
 			class="list-group-item list-group-item-action"
 			*ngFor="let customerItemWithItem of customerItemsWithItem"
