@@ -35,12 +35,15 @@ export class BlcSortService {
 
 	public sortItemsByRelevance(itemList: any[]): any[] {
 		let orderedItems = [];
+		let customerItems = [];
 		let itemsAtBranch = [];
 		let itemsNotAtBranch = [];
 
 		for (let item of itemList) {
 			if (this.customerService.isItemOrdered(item.id)) {
 				orderedItems.push(item);
+			} else if (this.customerService.isActiveCustomerItem(item.id)) {
+				customerItems.push(item);
 			} else {
 				if (this.branchItemStoreService.isItemInBranchItems(item.id)) {
 					itemsAtBranch.push(item);
@@ -50,6 +53,10 @@ export class BlcSortService {
 			}
 		}
 
-		return orderedItems.concat(itemsAtBranch, itemsNotAtBranch);
+		return orderedItems.concat(
+			customerItems,
+			itemsAtBranch,
+			itemsNotAtBranch
+		);
 	}
 }

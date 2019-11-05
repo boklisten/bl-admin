@@ -78,6 +78,14 @@ export class CustomerService {
 		throw new Error("customerService: did not have ordered item");
 	}
 
+	public isActiveCustomerItem(itemId: string): boolean {
+		try {
+			this.getActiveCustomerItem(itemId);
+			return true;
+		} catch (e) {}
+		return false;
+	}
+
 	public getActiveCustomerItem(itemId: string): CustomerItem {
 		for (let customerItem of this._customer.customerItems) {
 			if (customerItem.item === itemId) {
