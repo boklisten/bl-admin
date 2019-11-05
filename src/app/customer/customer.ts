@@ -1,6 +1,7 @@
-import {Order, UserDetail} from '@wizardcoder/bl-model';
+import { Order, UserDetail, CustomerItem } from "@wizardcoder/bl-model";
 
 export class Customer {
 	detail: UserDetail;
 	orders?: Order[];
+	customerItems?: CustomerItem[];
 }

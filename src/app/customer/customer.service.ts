@@ -3,8 +3,16 @@ import { CustomerDetailService } from "./customer-detail/customer-detail.service
 import { Observable, Subject } from "rxjs";
 import { Customer } from "./customer";
 import { CustomerOrderService } from "../order/customer-order/customer-order.service";
-import { Order, OrderItem, UserDetail } from "@wizardcoder/bl-model";
-import { CartService } from "../cart/cart.service";
+import {
+	Order,
+	OrderItem,
+	UserDetail,
+	CustomerItem
+} from "@wizardcoder/bl-model";
+import {
+	CustomerItemService,
+	UserDetailService
+} from "@wizardcoder/bl-connect";
 
 @Injectable()
 export class CustomerService {
@@ -13,7 +21,9 @@ export class CustomerService {
 
 	constructor(
 		private _customerDetailService: CustomerDetailService,
-		private _customerOrderService: CustomerOrderService
+		private _customerOrderService: CustomerOrderService,
+		private _customerItemService: CustomerItemService,
+		private userDetailService: UserDetailService
 	) {
 		this._customerChange$ = new Subject<boolean>();
 		this._customer = null;
@@ -52,9 +62,12 @@ export class CustomerService {
 			for (const orderItem of order.orderItems) {
 				if (orderItem.item === itemId) {
 					if (
-						orderItem.type === "rent" ||
-						orderItem.type === "buy" ||
-						orderItem.type === "partly-payment"
+						((orderItem.type === "rent" ||
+							orderItem.type === "buy" ||
+							orderItem.type === "partly-payment") &&
+							!orderItem.customerItem &&
+							!orderItem.movedToOrder,
+						!orderItem.handout)
 					) {
 						return { orderItem: orderItem, order: order };
 					}
@@ -63,6 +76,16 @@ export class CustomerService {
 		}
 
 		throw new Error("customerService: did not have ordered item");
+	}
+
+	public getActiveCustomerItem(itemId: string): CustomerItem {
+		for (let customerItem of this._customer.customerItems) {
+			if (customerItem.item === itemId) {
+				if (!customerItem.returned) return customerItem;
+			}
+		}
+
+		throw new Error("not found");
 	}
 
 	public onCustomerChange(): Observable<boolean> {
@@ -75,27 +98,41 @@ export class CustomerService {
 	}
 
 	private handleCustomerDetailChange() {
-		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
-			const customerDetail = this._customerDetailService.getCustomerDetail();
-			if (!customerDetail) {
-				this._customer = null;
-				this._customerChange$.next(true);
-				return;
-			}
+		this._customerDetailService
+			.onCustomerDetailChange()
+			.subscribe(async () => {
+				const customerDetail = this._customerDetailService.getCustomerDetail();
+				if (!customerDetail) {
+					this._customer = null;
+					this._customerChange$.next(true);
+					return;
+				}
 
-			this._customerOrderService
-				.getCustomerOrders()
-				.then((orders: Order[]) => {
-					this.setCustomer(customerDetail, orders);
-				})
-				.catch(() => {
-					this.setCustomer(customerDetail);
-				});
-		});
+				try {
+					const orders = await this._customerOrderService.getOrders(
+						customerDetail
+					);
+
+					const customerItems = await this._customerItemService.getManyByIds(
+						customerDetail.customerItems as string[]
+					);
+
+					this.setCustomer(customerDetail, orders, customerItems);
+				} catch (e) {}
+			});
 	}
 
-	private setCustomer(detail: UserDetail, orders?: Order[]) {
-		this._customer = { detail: detail, orders: orders ? orders : null };
+	private setCustomer(
+		detail: UserDetail,
+		orders?: Order[],
+		customerItems?: CustomerItem[]
+	) {
+		this._customer = {
+			detail: detail,
+			orders: orders ? orders : null,
+			customerItems: customerItems ? customerItems : null
+		};
+
 		this._customerChange$.next(true);
 	}
 }

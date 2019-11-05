@@ -11,6 +11,10 @@ export class CustomerOrderService {
 		private _orderService: OrderService
 	) {}
 
+	public async getOrders(userDetail: UserDetail): Promise<Order[]> {
+		return this._orderService.getManyByIds(userDetail.orders as string[]);
+	}
+
 	public getCustomerOrders(): Promise<Order[]> {
 		const customerDetail = this._customerDetailService.getCustomerDetail();
 

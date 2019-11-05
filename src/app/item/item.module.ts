@@ -20,6 +20,7 @@ import {
 	NgbTooltipModule
 } from "@ng-bootstrap/ng-bootstrap";
 import { ItemSelectListComponent } from "./item-select-list/item-select-list.component";
+import { ItemSearchResultItemComponent } from './item-search/item-search-result/item-search-result-item/item-search-result-item.component';
 
 @NgModule({
 	imports: [
@@ -40,7 +41,8 @@ import { ItemSelectListComponent } from "./item-select-list/item-select-list.com
 		ItemSearchBarComponent,
 		ItemUploadComponent,
 		ItemEditListComponent,
-		ItemSelectListComponent
+		ItemSelectListComponent,
+		ItemSearchResultItemComponent
 	],
 	providers: [ItemSearchService],
 	exports: [

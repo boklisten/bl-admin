@@ -1,0 +1,118 @@
+<li
+	*ngIf="item"
+	class="list-group-item"
+	[ngClass]="{
+		'list-group-item-success':
+			isItemOrdered(item.id) || isActiveCustomerItem(item.id),
+		'list-group-item-warning': !isItemOrderedOnCorrectBranch(item.id),
+		'list-group-item-secondary': !isItemValidOnBranch(item.id)
+	}"
+>
+	<div class="row justify-content-between">
+		<div class="col-8">
+			<span
+				routerLink="{{ '/item/' + item.id + '/detail' }}"
+				class="bl-link-black bl-item-search-item-title"
+				>{{ item.title }}</span
+			>
+		</div>
+		<div class="col-4">
+			<div>
+				<app-blc-item-add
+					[item]="item"
+					[customerItem]="customerItem"
+				></app-blc-item-add>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-auto">
+			<small
+				><fa-icon
+					[icon]="'barcode'"
+					*ngIf="item.type === 'book'"
+					class="mr-2"
+				></fa-icon
+				>{{ item.info["isbn"] }}</small
+			>
+		</div>
+		<div class="col-auto" *ngIf="isItemOrdered(item.id)">
+			<small>
+				<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>
+				<span i18n="@@itemSearchResultOrdered">Ordered</span>
+			</small>
+		</div>
+
+		<div class="col-auto" *ngIf="isActiveCustomerItem(item.id)">
+			<small>
+				<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>
+				<span i18n="@@itemSearchResultOrdered">Customer item</span>
+			</small>
+		</div>
+
+		<div class="col-auto" *ngIf="!isItemOrderedOnCorrectBranch(item.id)">
+			<small>
+				<fa-icon [icon]="'exclamation-circle'" class="mr-2"></fa-icon>
+				<span i18n="@@itemSearchResultOrderedOnAnotherBranch"
+					>Ordered on another branch</span
+				>
+			</small>
+		</div>
+
+		<div class="col-auto" *ngIf="!isItemValidOnBranch(item.id)">
+			<small>
+				<fa-icon [icon]="'exclamation-triangle'" class="mr-2"></fa-icon>
+				<span
+					i18n="@@itemSearchResultNotAtCurrentBranch"
+					class="font-weight-bold"
+					>Not at current branch</span
+				>
+			</small>
+		</div>
+	</div>
+	<div class="row justify-content-between">
+		<div class="col-auto" *ngIf="isRentValid(item, 'semester')">
+			<small>
+				<span>
+					<span
+						><fa-icon [icon]="'calendar-alt'" class="mr-1"></fa-icon
+					></span>
+					{{ item | itemPrice: "rent":"semester":1 }}
+				</span>
+			</small>
+		</div>
+		<div class="col-auto" *ngIf="isRentValid(item, 'year')">
+			<small>
+				<span>
+					<span
+						><fa-icon [icon]="'calendar'" class="mr-1"></fa-icon
+					></span>
+					{{ item | itemPrice: "rent":"year":1 }}
+				</span>
+			</small>
+		</div>
+		<div class="col-auto" *ngIf="isBuyValid(item)">
+			<small>
+				<span>
+					<span
+						><fa-icon
+							[icon]="'money-bill-alt'"
+							class="mr-1"
+						></fa-icon
+					></span>
+					{{ item | itemPrice: "buy" }}
+				</span>
+			</small>
+		</div>
+		<div class="col-auto" *ngIf="isSellValid(item)">
+			<small>
+				<span>
+					<span
+						><fa-icon [icon]="'exchange-alt'" class="mr-1"></fa-icon
+					></span>
+					{{ item | itemPrice: "sell" }}
+				</span>
+			</small>
+		</div>
+	</div>
+</li>

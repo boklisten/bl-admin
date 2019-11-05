@@ -19,11 +19,7 @@ export class ItemSearchResultComponent implements OnInit {
 
 	constructor(
 		private _itemSearchService: ItemSearchService,
-		private _branchItemHelperService: BranchItemHelperService,
-		private _customerService: CustomerService,
-		private blcSortService: BlcSortService,
-		private _branchStoreService: BranchStoreService,
-		private _branchItemStoreService: BranchItemStoreService
+		private blcSortService: BlcSortService
 	) {}
 
 	ngOnInit() {
@@ -42,34 +38,6 @@ export class ItemSearchResultComponent implements OnInit {
 		});
 	}
 
-	public isItemOrdered(itemId: string): boolean {
-		try {
-			this._customerService.getOrderedItem(itemId);
-			return true;
-		} catch (e) {
-			return false;
-		}
-	}
-
-	public isItemValidOnBranch(itemId: string): boolean {
-		return this._branchItemStoreService.isItemInBranchItems(itemId);
-	}
-
-	public isItemOrderedOnCorrectBranch(itemId: string): boolean {
-		try {
-			const { orderItem, order } = this._customerService.getOrderedItem(
-				itemId
-			);
-
-			return (
-				(order.branch as string) ===
-				this._branchStoreService.getBranchId()
-			);
-		} catch (e) {
-			return true;
-		}
-	}
-
 	private getSearchResult(): Item[] {
 		return this.blcSortService.sortItemsByRelevance(
 			this.blcSortService.sortByField(
@@ -77,17 +45,5 @@ export class ItemSearchResultComponent implements OnInit {
 				"title"
 			)
 		);
-	}
-
-	isRentValid(item: Item, periodType: Period): boolean {
-		return this._branchItemHelperService.isRentValid(item, periodType);
-	}
-
-	isBuyValid(item: Item) {
-		return this._branchItemHelperService.isBuyValid(item);
-	}
-
-	isSellValid(item: Item) {
-		return this._branchItemHelperService.isSellValid(item);
 	}
 }
