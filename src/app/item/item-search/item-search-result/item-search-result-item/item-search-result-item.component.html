@@ -2,8 +2,8 @@
 	*ngIf="item"
 	class="list-group-item"
 	[ngClass]="{
-		'list-group-item-success':
-			isItemOrdered(item.id) || isActiveCustomerItem(item.id),
+		'list-group-item-success': isItemOrdered(item.id),
+		'list-group-item-info': isActiveCustomerItem(item.id),
 		'list-group-item-warning': !isItemOrderedOnCorrectBranch(item.id),
 		'list-group-item-secondary': !isItemValidOnBranch(item.id)
 	}"
