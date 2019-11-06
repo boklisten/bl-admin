@@ -1,13 +1,4 @@
-<li
-	*ngIf="item"
-	class="list-group-item"
-	[ngClass]="{
-		'list-group-item-success': isItemOrdered(item.id),
-		'list-group-item-info': isActiveCustomerItem(item.id),
-		'list-group-item-warning': !isItemOrderedOnCorrectBranch(item.id),
-		'list-group-item-secondary': !isItemValidOnBranch(item.id)
-	}"
->
+<div *ngIf="item" class="p-3">
 	<div class="row justify-content-between">
 		<div class="col-8">
 			<span
@@ -36,21 +27,29 @@
 				>{{ item.info["isbn"] }}</small
 			>
 		</div>
-		<div class="col-auto" *ngIf="isItemOrdered(item.id)">
+		<div class="col-auto text-success" *ngIf="isItemOrdered(item.id)">
 			<small>
-				<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>
+				<fa-icon [icon]="'receipt'" class="mr-2"></fa-icon>
 				<span i18n="@@itemSearchResultOrdered">Ordered</span>
 			</small>
 		</div>
 
-		<div class="col-auto" *ngIf="isActiveCustomerItem(item.id)">
+		<div class="col-auto text-info" *ngIf="isActiveCustomerItem(item.id)">
 			<small>
-				<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>
-				<span i18n="@@itemSearchResultOrdered">Customer item</span>
+				<fa-icon [icon]="'book'" class="mr-2"></fa-icon>
+				<span i18n="@@itemSearchResultCustomerHaveItem"
+					>Customer have this item</span
+				>
 			</small>
 		</div>
 
-		<div class="col-auto" *ngIf="!isItemOrderedOnCorrectBranch(item.id)">
+		<div
+			class="col-auto text-secondary"
+			*ngIf="
+				!isItemOrderedOnCorrectBranch(item.id) &&
+				isItemValidOnBranch(item.id)
+			"
+		>
 			<small>
 				<fa-icon [icon]="'exclamation-circle'" class="mr-2"></fa-icon>
 				<span i18n="@@itemSearchResultOrderedOnAnotherBranch"
@@ -59,7 +58,10 @@
 			</small>
 		</div>
 
-		<div class="col-auto" *ngIf="!isItemValidOnBranch(item.id)">
+		<div
+			class="col-auto text-secondary"
+			*ngIf="!isItemValidOnBranch(item.id)"
+		>
 			<small>
 				<fa-icon [icon]="'exclamation-triangle'" class="mr-2"></fa-icon>
 				<span
@@ -115,4 +117,4 @@
 			</small>
 		</div>
 	</div>
-</li>
+</div>

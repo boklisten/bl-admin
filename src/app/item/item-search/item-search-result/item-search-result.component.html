@@ -8,10 +8,12 @@
 		></app-bl-common-alert>
 	</div>
 	<div class="col-12">
-		<app-item-search-result-item
-			class="list-group"
-			*ngFor="let item of items"
-			[item]="item"
-		></app-item-search-result-item>
+		<ul class="list-group">
+			<app-item-search-result-item
+				class="list-group-item p-0"
+				*ngFor="let item of items"
+				[item]="item"
+			></app-item-search-result-item>
+		</ul>
 	</div>
 </div>
