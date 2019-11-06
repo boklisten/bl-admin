@@ -1,4 +1,54 @@
-<button class="btn btn-sm btn-block" [ngClass]="{'btn-secondary': added, 'btn-outline-secondary': !added}" (click)="onClick()">
-    <fa-icon [icon]="'cart-plus'" *ngIf="!added"></fa-icon>
+<button
+	class="btn btn-sm btn-block"
+	[ngClass]="{ 'btn-secondary': added, 'btn-outline-secondary': !added }"
+	(click)="onClick()"
+>
+	<fa-icon [icon]="'cart-plus'" *ngIf="!added"></fa-icon>
 	<fa-icon [icon]="'check'" *ngIf="added"></fa-icon>
 </button>
+
+<ng-template #addWithWarningContent let-modal>
+	<div class="modal-header text-center">
+		<h4 class="modal-title" id="modal-basic-title">
+			<fa-icon [icon]="'exclamation-triangle'" class="mr-2"></fa-icon>
+			<span i18n="@@blcItemAddWarning">Warning</span>
+		</h4>
+		<button
+			type="button"
+			class="close"
+			aria-label="Close"
+			(click)="modal.dismiss('Cross click')"
+		>
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<h2>{{ item.title }}</h2>
+		<h5 *ngIf="item.info">
+			<fa-icon class="mr-2" [icon]="'barcode'"></fa-icon
+			>{{ item.info["isbn"] }}
+		</h5>
+		<p i18n="@@blcItemAddItemNotPartOfBranchItems" class="mt-5">
+			This item is not present in the branchItem list of the current
+			branch
+		</p>
+	</div>
+	<div class="modal-footer">
+		<button
+			type="button"
+			class="btn btn-danger"
+			(click)="modal.close('cancel click')"
+			i18n="@@blcItemAddCancel"
+		>
+			Cancel
+		</button>
+		<button
+			type="button"
+			class="btn btn-outline-success"
+			i18n="@@blcItemAddAnyway"
+			(click)="addItem()"
+		>
+			Add anyway
+		</button>
+	</div>
+</ng-template>
