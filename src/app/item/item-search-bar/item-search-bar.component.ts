@@ -1,18 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ItemSearchService} from "../item-search/item-search.service";
+import { Component, OnInit } from "@angular/core";
+import { ItemSearchService } from "../item-search/item-search.service";
 
 @Component({
-	selector: 'app-item-search-bar',
-	templateUrl: './item-search-bar.component.html',
-	styleUrls: ['./item-search-bar.component.scss']
+	selector: "app-item-search-bar",
+	templateUrl: "./item-search-bar.component.html",
+	styleUrls: ["./item-search-bar.component.scss"]
 })
 export class ItemSearchBarComponent implements OnInit {
 	public wait: boolean;
 	public searchTerm: string;
 
-	constructor(private _itemSearchService: ItemSearchService) {
-
-	}
+	constructor(private _itemSearchService: ItemSearchService) {}
 
 	ngOnInit() {
 		if (this._itemSearchService.getSearchTerm()) {

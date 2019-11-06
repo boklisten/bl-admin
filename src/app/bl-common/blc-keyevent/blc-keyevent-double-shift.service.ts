@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/internal/Observable';
-import {Subject} from 'rxjs/internal/Subject';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/internal/Observable";
+import { Subject } from "rxjs/internal/Subject";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class BlcKeyeventDoubleShiftService {
 	private _doubleShift$: Subject<boolean>;

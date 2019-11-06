@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/internal/Observable';
-import {Subject} from 'rxjs/internal/Subject';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/internal/Observable";
+import { Subject } from "rxjs/internal/Subject";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class BlcScannerService {
 	private _isbn$: Subject<string>;
@@ -17,18 +17,20 @@ export class BlcScannerService {
 	}
 
 	public scanIsbn(scannedString: string) {
-		const reversedSearchString = scannedString.split('').reverse();
-		let isbn = '';
+		const reversedSearchString = scannedString.split("").reverse();
+		let isbn = "";
 		const isbnMaxLength = 12;
 		let isbnLength = 0;
 		for (const num of reversedSearchString) {
-			if (parseInt(num, 10) || num === '0') {
+			if (parseInt(num, 10) || num === "0") {
 				if (isbnLength <= isbnMaxLength) {
 					isbn += num;
 
 					if (isbnLength === isbnMaxLength) {
-						const isbnSearchString = isbn.split('').reverse().join('');
-						console.log(`"${isbnSearchString}"`);
+						const isbnSearchString = isbn
+							.split("")
+							.reverse()
+							.join("");
 						this._isbn$.next(isbnSearchString);
 					}
 
@@ -37,6 +39,4 @@ export class BlcScannerService {
 			}
 		}
 	}
-
-
 }

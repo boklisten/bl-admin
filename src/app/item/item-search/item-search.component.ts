@@ -1,18 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ItemSearchService} from './item-search.service';
+import { Component, OnInit } from "@angular/core";
+import { ItemSearchService } from "./item-search.service";
 
 @Component({
-	selector: 'app-item-search',
-	templateUrl: './item-search.component.html',
-	styleUrls: ['./item-search.component.scss']
+	selector: "app-item-search",
+	templateUrl: "./item-search.component.html",
+	styleUrls: ["./item-search.component.scss"]
 })
 export class ItemSearchComponent implements OnInit {
 	public wait: boolean;
 	public searchTerm: string;
 
-	constructor(private _itemSearchService: ItemSearchService) {
-
-	}
+	constructor(private _itemSearchService: ItemSearchService) {}
 
 	ngOnInit() {
 		if (this._itemSearchService.getSearchTerm()) {
@@ -32,5 +30,4 @@ export class ItemSearchComponent implements OnInit {
 		this.wait = true;
 		this._itemSearchService.search(term);
 	}
-
 }

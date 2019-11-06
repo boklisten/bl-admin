@@ -4,6 +4,7 @@ import { BlApiError, Item } from "@wizardcoder/bl-model";
 import { Subject, Observable } from "rxjs";
 import { StorageService } from "../../storage/storage.service";
 import { CartService } from "../../cart/cart.service";
+import { CustomerService } from "../../customer/customer.service";
 
 @Injectable()
 export class ItemSearchService {
@@ -16,7 +17,8 @@ export class ItemSearchService {
 	constructor(
 		private _itemService: ItemService,
 		private _cartService: CartService,
-		private _storageService: StorageService
+		private _storageService: StorageService,
+		private _customerService: CustomerService
 	) {
 		this._searchResultError$ = new Subject<any>();
 		this._searchResult$ = new Subject<boolean>();
@@ -28,6 +30,7 @@ export class ItemSearchService {
 		addToCart?: boolean
 	): Promise<Item[]> {
 		if (!searchTerm || searchTerm.length < 3) {
+			this._searchResultError$.next(true);
 			return;
 		}
 
@@ -49,9 +52,10 @@ export class ItemSearchService {
 			}
 		}
 
-		if (items.length === 1 && addToCart) {
+		if (items.length == 1 && addToCart) {
 			if (!this._cartService.contains(items[0].id)) {
-				this._cartService.add(items[0]);
+				this.addItem(items[0]);
+
 				this.setSearchTerm("");
 				return items;
 			}
@@ -60,6 +64,25 @@ export class ItemSearchService {
 		this.setSearchResult(items);
 
 		return items;
+	}
+
+	public addItem(item: Item) {
+		try {
+			const { order, orderItem } = this._customerService.getOrderedItem(
+				item.id
+			);
+			this._cartService.addOrderItem(orderItem, order, item);
+			return;
+		} catch (e) {}
+		try {
+			const customerItem = this._customerService.getActiveCustomerItem(
+				item.id
+			);
+			this._cartService.addCustomerItem(customerItem);
+			return;
+		} catch (e) {}
+
+		this._cartService.add(item);
 	}
 
 	public getSearchTerm(): string {
