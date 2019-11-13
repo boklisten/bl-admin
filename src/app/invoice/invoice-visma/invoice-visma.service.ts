@@ -248,7 +248,8 @@ export class InvoiceVismaService {
 
 		let dobOrOrganizationNumber = "";
 		const customerNumber = invoice.customerInfo.userDetail
-			? (invoice.customerInfo.userDetail as string)
+			? this.getMongoIdMiniEpoch(invoice.customerInfo
+					.userDetail as string).toString()
 			: invoice.customerInfo.customerNumber;
 
 		if (invoice.customerInfo.organizationNumber) {
@@ -263,7 +264,7 @@ export class InvoiceVismaService {
 		return [
 			"H1", // 1 Record Type (M)
 			lineNum, // 2 Line number (M)
-			this.getMongoIdMiniEpoch(customerNumber).toString(), // 3 Customer no (M)
+			customerNumber, // 3 Customer no (M)
 			invoice.customerInfo.name, // 4 'Customer name': (M)
 			invoice.customerInfo.postal.address, // 5 'Address 1':
 			"", // 6 'Address 2':
