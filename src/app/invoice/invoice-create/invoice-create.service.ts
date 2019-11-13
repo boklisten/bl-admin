@@ -41,7 +41,7 @@ export class InvoiceCreateService {
 				email: company.contactInfo.email,
 				phone: company.contactInfo.phone,
 				organizationNumber: company.organizationNumber,
-				customerNumber: company.id,
+				customerNumber: company.customerNumber,
 				postal: {
 					address: company.contactInfo.address,
 					city: company.contactInfo.postCity,
