@@ -30,10 +30,9 @@
 						>
 						</app-blc-button-check>
 					</th>
-					<th scope="col">Time</th>
 					<th scope="col" i18n="@@messageListType">Type</th>
 					<th scope="col" i18n="@@massageListSubtype">Subtype</th>
-					<th scope="col" i18n="@@messageListStatus">Seq</th>
+					<th scope="col" i18n="@@messageListSequence">Sequence</th>
 					<th
 						*ngIf="!customerId"
 						scope="col"
@@ -41,8 +40,14 @@
 					>
 						Customer
 					</th>
-					<th scope="col" i18n="@@messageListStatus">Email status</th>
-					<th scope="col" i18n="@@messageListStatus">Sms status</th>
+					<th scope="col" i18n="@@messageListEmailStatus">
+						Email status
+					</th>
+					<th scope="col" i18n="@@messageListSmsStatus">
+						Sms status
+					</th>
+
+					<th scope="col">Time</th>
 				</tr>
 			</thead>
 			<tbody *ngIf="messages">
@@ -62,37 +67,15 @@
 						>
 						</app-blc-button-check>
 					</th>
-					<td>
-						{{ message.creationTime | blDate: "timestamp" }}
-						<!--
-						<ngb-highlight
-							[result]="message.invoiceId"
-							[term]="filter.value"
-						></ngb-highlight>
-            -->
-					</td>
-					<td>
-						{{ message.messageType }}
-						<!--
-						<span
-							class="bl-link-black"
-							[routerLink]="
-								'/customer/' +
-								invoice.customerInfo.userDetail +
-								'/detail'
-							"
-						>
-							<ngb-highlight
-								[result]="invoice.customerInfo.name"
-								[term]="filter.value"
-							></ngb-highlight>
-						</span>
-          -->
-					</td>
+					<td>{{ message.messageType }}</td>
 					<td>{{ message.messageSubtype }}</td>
 					<td>{{ message.sequenceNumber }}</td>
-					<td *ngIf="!customerId">
-						{{ getRecipientEmail(message) }}
+					<td
+						*ngIf="!customerId"
+						class="bl-link-black"
+						routerLink="/customer/{{ message.customerId }}/detail"
+					>
+						{{ message.customerId }}
 					</td>
 					<td
 						[ngClass]="{
@@ -112,6 +95,8 @@
 					>
 						{{ getSmsStatus(message) }}
 					</td>
+
+					<td>{{ message.creationTime | blDate: "timestamp" }}</td>
 				</tr>
 			</tbody>
 		</table>
