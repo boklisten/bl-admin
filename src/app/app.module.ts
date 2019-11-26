@@ -22,6 +22,7 @@ import { CustomerModule } from "./customer/customer.module";
 import { MessengerModule } from "./messenger/messenger.module";
 
 import {
+	faUserFriends,
 	faExclamationCircle,
 	faStream,
 	faBuilding,
@@ -181,7 +182,8 @@ library.add(
 	faBell,
 	faPaperPlane,
 	faAtom,
-	faExclamationCircle
+	faExclamationCircle,
+	faUserFriends
 );
 
 @NgModule({

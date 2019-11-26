@@ -18,6 +18,7 @@ import { MessengerListComponent } from "./messenger-list/messenger-list.componen
 import { MessengerSequencePickerComponent } from "./messenger-sequence-picker/messenger-sequence-picker.component";
 import { MessengerGenericComponent } from "./messenger-generic/messenger-generic.component";
 import { MessengerSendModalComponent } from "./messenger-send-modal/messenger-send-modal.component";
+import { MessengerMatchComponent } from './messenger-match/messenger-match.component';
 
 @NgModule({
 	imports: [
@@ -38,7 +39,8 @@ import { MessengerSendModalComponent } from "./messenger-send-modal/messenger-se
 		MessengerListComponent,
 		MessengerSequencePickerComponent,
 		MessengerGenericComponent,
-		MessengerSendModalComponent
+		MessengerSendModalComponent,
+		MessengerMatchComponent
 	],
 	exports: [MessengerListComponent],
 	entryComponents: [

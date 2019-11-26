@@ -1,35 +1,51 @@
 <div class="container-fluid mt-2">
 	<div class="row">
 		<div class="col-12">
-			<ngb-tabset #tabset="ngbTabset" id="ngbTabset">
-				<ngb-tab id="messengerGeneric">
+			<ngb-tabset
+				#tabset="ngbTabset"
+				id="ngbTabset"
+				[activeId]="activeTab"
+				(tabChange)="onTabChange($event)"
+			>
+				<ngb-tab id="generic">
 					<ng-template ngbTabTitle>
 						<span class="text-secondary ml-3 mr-3">
 							<fa-icon [icon]="'envelope'"></fa-icon>
 						</span>
 					</ng-template>
 					<ng-template ngbTabContent>
-						<app-messenger-generic></app-messenger-generic>
+						<router-outlet></router-outlet>
 					</ng-template>
 				</ngb-tab>
-				<ngb-tab id="messengerList">
+				<ngb-tab id="list">
 					<ng-template ngbTabTitle>
 						<span class="text-secondary ml-3 mr-3">
 							<fa-icon [icon]="'stream'"></fa-icon>
 						</span>
 					</ng-template>
 					<ng-template ngbTabContent>
-						<app-messenger-list></app-messenger-list>
+						<router-outlet></router-outlet>
 					</ng-template>
 				</ngb-tab>
-				<ngb-tab id="reminders">
+				<ngb-tab id="reminder">
 					<ng-template ngbTabTitle>
 						<span class="text-secondary ml-3 mr-3">
 							<fa-icon [icon]="'bell'"></fa-icon>
 						</span>
 					</ng-template>
 					<ng-template ngbTabContent>
-						<app-messenger-reminder></app-messenger-reminder>
+						<router-outlet></router-outlet>
+					</ng-template>
+				</ngb-tab>
+
+				<ngb-tab id="match">
+					<ng-template ngbTabTitle>
+						<span class="text-secondary ml-3 mr-3">
+							<fa-icon [icon]="'user-friends'"></fa-icon>
+						</span>
+					</ng-template>
+					<ng-template ngbTabContent>
+						<router-outlet></router-outlet>
 					</ng-template>
 				</ngb-tab>
 			</ngb-tabset>
