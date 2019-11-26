@@ -52,6 +52,17 @@
 					Number of failed messages: {{ failedMessages.length }}
 				</div>
 			</div>
+			<div class="col-12">
+				<ul class="list-group">
+					<li
+						class="list-group-item"
+						*ngFor="let failedMessage of failedMessages"
+					>
+						<b>{{ failedMessage.userId }}</b>
+						<p>{{ failedMessage.error }}</p>
+					</li>
+				</ul>
+			</div>
 		</div>
 		<div
 			class="row justify-content-center mb-2"

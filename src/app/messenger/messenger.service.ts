@@ -26,7 +26,7 @@ export class MessengerService {
 				.catch(err => {
 					this.failedMessages$.next({
 						userId: customerId,
-						error: err
+						error: JSON.stringify(err)
 					});
 				});
 		}
