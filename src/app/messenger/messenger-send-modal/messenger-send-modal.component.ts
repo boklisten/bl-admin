@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { CustomerItemType } from "@wizardcoder/bl-model";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { MessengerGenericService } from "../messenger-generic/messenger-generic.service";
+import { MessengerService } from "../messenger.service";
+import { MessageSettings } from "../message-settings";
 
 @Component({
 	selector: "app-messenger-send-modal",
@@ -10,11 +10,7 @@ import { MessengerGenericService } from "../messenger-generic/messenger-generic.
 })
 export class MessengerSendModalComponent implements OnInit {
 	@Input() customerIds: string[];
-	@Input() deadline: Date;
-	@Input() type: CustomerItemType | "all";
-	@Input() sequenceNumber: number;
-	@Input() htmlContent: string;
-	@Input() subject: string;
+	@Input() settings: MessageSettings;
 
 	public confirmed: boolean;
 	public progressbarValue: number;
@@ -27,7 +23,7 @@ export class MessengerSendModalComponent implements OnInit {
 
 	constructor(
 		public activeModal: NgbActiveModal,
-		private messengerGenericService: MessengerGenericService
+		private messengerService: MessengerService
 	) {
 		this.confirmed = false;
 		this.successfullMessages = 0;
@@ -67,15 +63,11 @@ export class MessengerSendModalComponent implements OnInit {
 		this.progressBarValuePart = 1;
 		this.progressbarValueFull = customerIds.length;
 
-		this.messengerGenericService.sendMessages(
-			customerIds,
-			this.subject,
-			this.htmlContent
-		);
+		this.messengerService.send(customerIds, this.settings);
 	}
 
 	private onSuccessfulMessage() {
-		this.messengerGenericService.onSuccessfulMessage().subscribe(() => {
+		this.messengerService.onSuccessfulMessage().subscribe(() => {
 			this.successfullMessages++;
 			this.progressbarValue += this.progressBarValuePart;
 			this.checkIfDone();
@@ -83,12 +75,10 @@ export class MessengerSendModalComponent implements OnInit {
 	}
 
 	private onFailedMessage() {
-		this.messengerGenericService
-			.onFailedMessage()
-			.subscribe(failedMessage => {
-				this.failedMessages.push(failedMessage);
-				this.progressbarValue += this.progressBarValuePart;
-				this.checkIfDone();
-			});
+		this.messengerService.onFailedMessage().subscribe(failedMessage => {
+			this.failedMessages.push(failedMessage);
+			this.progressbarValue += this.progressBarValuePart;
+			this.checkIfDone();
+		});
 	}
 }

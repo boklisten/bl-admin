@@ -3,6 +3,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { MessengerSendModalComponent } from "../messenger-send-modal/messenger-send-modal.component";
 import { UserDetailService } from "@wizardcoder/bl-connect";
 import { MessengerGenericService } from "./messenger-generic.service";
+import { MessageSettings } from "../message-settings";
 
 @Component({
 	selector: "app-messenger-generic",
@@ -65,8 +66,14 @@ export class MessengerGenericComponent implements OnInit {
 
 		modalRef.componentInstance.name = "MessageModal";
 		modalRef.componentInstance.customerIds = customerIds;
-		modalRef.componentInstance.subject = this.subject;
-		modalRef.componentInstance.htmlContent = this.htmlText;
+		modalRef.componentInstance.settings = {
+			messageType: "generic",
+			sequenceNumber: 0,
+			messageSubtype: "none",
+			messageMethod: "email",
+			subject: this.subject,
+			htmlContent: this.htmlText
+		};
 	}
 
 	public onSelectBranches(branchIds: string[]) {

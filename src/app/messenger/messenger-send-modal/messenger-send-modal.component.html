@@ -1,10 +1,12 @@
 <div class="modal-header"></div>
 <div class="modal-body">
 	<div *ngIf="!confirmed">
-		<div class="row bg-secondary p-3 m-3 text-white">
+		<div
+			class="row bg-secondary p-3 m-3 text-white"
+			*ngIf="settings.htmlContent"
+		>
 			<div class="col" style="word-break: break-all">
-				<p>{{ htmlContent }}</p>
-				<p></p>
+				<p>{{ settings.htmlContent }}</p>
 			</div>
 		</div>
 		<div class="row">
