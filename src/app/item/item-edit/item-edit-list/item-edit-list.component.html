@@ -44,7 +44,7 @@
 
 <div class="row">
 	<div class="col-12" style="min-height: 500px">
-<!--
+		<!--
 
     <table>
       <thead>
@@ -69,7 +69,6 @@
   </div>
 </div>
 -->
-
 
 		<ngx-datatable
 			#itemEditTable
@@ -192,43 +191,18 @@
 				</ng-template>
 			</ngx-datatable-column>
 
-			<ngx-datatable-column name="archived">
+			<ngx-datatable-column name="buyback">
 				<ng-template
 					ngx-datatable-cell-template
 					let-rowIndex="rowIndex"
 					let-value="value"
 					let-row="row"
 				>
-					<span>
-						<button
-							class="btn btn-sm"
-							[disabled]="!editable"
-							[ngClass]="{
-								'btn-danger': value,
-								'btn-outline-secondary': !value
-							}"
-							(click)="updateValue(!value, 'archived', rowIndex)"
-						>
-							<span *ngIf="value"
-								><fa-icon
-									[icon]="'check'"
-									class="mr-2"
-								></fa-icon>
-								<span i18n="@@itemEditListArchived"
-									>Archived</span
-								>
-							</span>
-							<span *ngIf="!value"
-								><fa-icon
-									[icon]="'archive'"
-									class="mr-2"
-								></fa-icon>
-								<span i18n="@@itemEditListArchive"
-									>Archive</span
-								>
-							</span>
-						</button>
-					</span>
+					<app-bl-common-toggle-button
+						[(value)]="items[rowIndex].buyback"
+						(update)="updateRowItem(rowIndex, 'buyback')"
+						[tooltip]="'change buyback state'"
+					></app-bl-common-toggle-button>
 				</ng-template>
 			</ngx-datatable-column>
 
@@ -271,7 +245,5 @@
 				</ng-template>
 			</ngx-datatable-column>
 		</ngx-datatable>
-
 	</div>
 </div>
-
