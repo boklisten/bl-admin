@@ -14,7 +14,7 @@ import {
 	UserDetailService
 } from "@wizardcoder/bl-connect";
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class CustomerService {
 	private _customerChange$: Subject<boolean>;
 	private _customer: Customer;

@@ -10,7 +10,7 @@ interface FromToDate {
 	to: Date;
 }
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class DateService {
 	numOfPeriodsCancel: number;
 	cancelPeriod: string;

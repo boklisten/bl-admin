@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { UserDetailService, MessageService } from "@wizardcoder/bl-connect";
-import { UserDetail, Message } from "@wizardcoder/bl-model";
+import { MessageService } from "@wizardcoder/bl-connect";
+import { Message } from "@wizardcoder/bl-model";
 import { Observable, Subject } from "rxjs";
+import { BranchCustomerService } from "../../branch/branch-customer/branch-customer.service";
 
 @Injectable({
 	providedIn: "root"
@@ -11,8 +12,8 @@ export class MessengerGenericService {
 	private failedMessages$: Subject<{ userId: string; error: any }>;
 
 	constructor(
-		private userDetailService: UserDetailService,
-		private messageService: MessageService
+		private messageService: MessageService,
+		private branchCustomerService: BranchCustomerService
 	) {
 		this.successfullMessage$ = new Subject();
 		this.failedMessages$ = new Subject();
@@ -56,9 +57,21 @@ export class MessengerGenericService {
 	}
 
 	public async getCustomerIds(branchIds: string[]): Promise<string[]> {
-		let query = `?${this.getBranchIdQuery(branchIds)}`;
-		const userDetails = await this.userDetailService.get({ query: query });
-		return this.filterUserDetailIds(userDetails);
+		let userIds = [];
+		for (let branchId of branchIds) {
+			let branchUserIds = [];
+
+			try {
+				branchUserIds = await this.branchCustomerService.getAllActiveCustomers(
+					branchId
+				);
+			} catch (e) {
+				branchUserIds = [];
+			}
+
+			userIds = userIds.concat(branchUserIds);
+		}
+		return userIds;
 	}
 
 	public onSuccessfulMessage(): Observable<string> {
@@ -67,21 +80,5 @@ export class MessengerGenericService {
 
 	public onFailedMessage(): Observable<{ userId: string; error: any }> {
 		return this.failedMessages$.asObservable();
-	}
-
-	private filterUserDetailIds(userDetails: UserDetail[]): string[] {
-		let userDetailIds = [];
-		for (let userDetail of userDetails) {
-			userDetailIds.push(userDetail.id);
-		}
-		return userDetailIds;
-	}
-
-	private getBranchIdQuery(branchIds: string[]) {
-		let query = "";
-		for (let branchId of branchIds) {
-			query += `branch=${branchId}&`;
-		}
-		return query;
 	}
 }
