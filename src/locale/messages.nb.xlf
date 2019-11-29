@@ -1166,7 +1166,7 @@ Egendefinert
 				</source><target state="translated">Ordre</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app/order/customer-order/customer-order-list/customer-order-list.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="customerOrderItemListNoOrderItemsFound" datatype="html">
-        <source>No ordered items found</source><target state="final">Ingen bestillte bøker funnet</target>
+        <source>No ordered items found</source><target state="final">Ingen bestilte bøker funnet</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list.component.html</context>
           <context context-type="linenumber">14</context>
