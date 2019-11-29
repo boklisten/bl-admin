@@ -94,7 +94,7 @@ export class MessengerMatchComponent implements OnInit {
 		modalRef.componentInstance.customerIds = customerIds;
 		modalRef.componentInstance.settings = {
 			messageType: "match",
-			mesaggeMethod: "sms",
+			messageMethod: "sms",
 			sequenceNumber: 0,
 			deadline: this.deadline
 		};
