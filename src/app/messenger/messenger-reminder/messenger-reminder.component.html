@@ -20,8 +20,19 @@
 		</div>
 		<div class="col-auto">
 			<app-bl-common-toggle-button
-				[(ngModel)]="smsMedium"
-				(valueChange)="smsMedium = $event"
+				[value]="mediums.email"
+				[(ngModel)]="mediums.email"
+				(valueChange)="mediums.email = $event"
+				i18n-name="@@messengerReminderEmail"
+				name="email"
+			>
+			</app-bl-common-toggle-button>
+		</div>
+		<div class="col-auto">
+			<app-bl-common-toggle-button
+				[value]="mediums.sms"
+				[(ngModel)]="mediums.sms"
+				(valueChange)="mediums.sms = $event"
 				i18n-name="@@messengerReminderSms"
 				name="sms"
 			>

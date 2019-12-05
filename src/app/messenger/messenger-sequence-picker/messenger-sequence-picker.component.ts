@@ -38,7 +38,7 @@ export class MessengerSequencePickerComponent implements OnInit, OnChanges {
 				this.sequences = [0, 1, 2];
 				break;
 			case "loan":
-				this.sequences = [0, 1];
+				this.sequences = [0, 1, 2];
 				break;
 			default:
 				this.sequences = [0];
