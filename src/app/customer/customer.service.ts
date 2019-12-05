@@ -89,7 +89,12 @@ export class CustomerService {
 	public getActiveCustomerItem(itemId: string): CustomerItem {
 		for (let customerItem of this._customer.customerItems) {
 			if (customerItem.item === itemId) {
-				if (!customerItem.returned) return customerItem;
+				if (
+					!customerItem.returned &&
+					!customerItem.buyout &&
+					!customerItem.buyback
+				)
+					return customerItem;
 			}
 		}
 

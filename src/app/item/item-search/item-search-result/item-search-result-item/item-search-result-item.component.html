@@ -27,6 +27,7 @@
 				>{{ item.info["isbn"] }}</small
 			>
 		</div>
+
 		<div class="col-auto text-success" *ngIf="isItemOrdered(item.id)">
 			<small>
 				<fa-icon [icon]="'receipt'" class="mr-2"></fa-icon>
