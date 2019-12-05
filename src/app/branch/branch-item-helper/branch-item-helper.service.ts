@@ -109,11 +109,6 @@ export class BranchItemHelperService {
 	}
 
 	public isSellValid(item: Item) {
-		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
-			if (branchItem.item === item.id) {
-				return branchItem.sellAtBranch;
-			}
-		}
-		return false;
+		return item.buyback;
 	}
 }
