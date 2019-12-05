@@ -28,6 +28,8 @@ export class MessengerReminderComponent implements OnInit {
 	public noCustomerItemsFoundError: boolean;
 	public sequenceNumber: number;
 	public smsMedium: boolean;
+	public emailMedium: boolean;
+	public mediums: { sms: boolean; email: boolean; voice: boolean };
 
 	constructor(
 		private messageService: MessageService,
@@ -42,7 +44,7 @@ export class MessengerReminderComponent implements OnInit {
 		this.loading = false;
 		this.selectedBranches = [];
 		this.sequenceNumber = 0;
-		this.smsMedium = false;
+		this.mediums = { sms: false, email: true, voice: false };
 	}
 
 	ngOnInit() {}
@@ -97,7 +99,7 @@ export class MessengerReminderComponent implements OnInit {
 		modalRef.componentInstance.textBlocks = this.textBlocks;
 		modalRef.componentInstance.sequenceNumber = this.sequenceNumber;
 		modalRef.componentInstance.type = this.selectedType;
-		modalRef.componentInstance.smsMedium = this.smsMedium;
+		modalRef.componentInstance.mediums = this.mediums;
 	}
 
 	private getUniqueCustomerWithNotReturnedCustomerItems(

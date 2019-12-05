@@ -53,10 +53,12 @@ export class MessengerReminderService {
 		sms: boolean;
 		voice: boolean;
 	}): "email" | "sms" | "all" {
-		if (mediums.sms) {
+		if (mediums.sms && mediums.email) {
 			return "all";
-		} else {
+		} else if (mediums.email && !mediums.sms) {
 			return "email";
+		} else if (mediums.sms && !mediums.email) {
+			return "sms";
 		}
 	}
 
