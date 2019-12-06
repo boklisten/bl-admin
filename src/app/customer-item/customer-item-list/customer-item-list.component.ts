@@ -51,10 +51,6 @@ export class CustomerItemListComponent implements OnInit {
 			}
 		});
 		this.reminderDate = new Date(2018, 11, 20);
-
-		this._customerItemListService.onWait().subscribe(wait => {
-			this.wait = wait;
-		});
 	}
 
 	getCustomerItems() {
@@ -62,8 +58,8 @@ export class CustomerItemListComponent implements OnInit {
 		this._customerItemListService
 			.getCustomerItems()
 			.then(customerItemsWithItem => {
-				this.wait = false;
 				this.customerItemsWithItem = customerItemsWithItem;
+				this.wait = false;
 			})
 			.catch(err => {
 				this.wait = false;
