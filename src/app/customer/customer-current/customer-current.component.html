@@ -1,31 +1,44 @@
-<div class="row no-gutters bl-customer-current justify-content-center" *ngIf="customerDetail">
-    <div class="col-12 text-center bl-customer-current-container no-gutters"
-         [ngbPopover]="customerDetailPopover"
-         placement="bottom"
-         #customerDetailPopoverRef="ngbPopover"
-         (click)="setCurrentPopoverOpen(customerDetailPopoverRef)">
-
-        <span class="bl-customer-current-details bl-link">
-            <fa-icon [icon]="'user-circle'" class="ml-2 mr-2"></fa-icon> {{customerDetail.name}}
-        </span>
-        <span class="ml-2 bl-link" (click)="onClearCustomer()">
-            <fa-icon [icon]="'times'"></fa-icon>
-        </span>
-    </div>
+<div
+	*ngIf="customerDetail"
+	class="btn btn-outline-dark btn-sm btn-block bl-customer-name"
+	[ngbPopover]="customerDetailPopover"
+	placement="bottom"
+	#customerDetailPopoverRef="ngbPopover"
+	(click)="setCurrentPopoverOpen(customerDetailPopoverRef)"
+>
+	<fa-icon [icon]="'user'" class="mr-2"></fa-icon>
+	<span>{{ customerDetail.name }}</span>
 </div>
 
 <ng-template #customerDetailPopover>
 	<div class="row mb-4 mt-2">
 		<div class="col-6">
-			<button class="btn btn-outline-secondary btn-block btn-sm" (click)="onChangeCustomerDetail()">
-				<fa-icon [icon]="'user'"></fa-icon><fa-icon [icon]="'search'"></fa-icon>
+			<button
+				class="btn btn-outline-secondary btn-block btn-sm"
+				(click)="onChangeCustomerDetail()"
+			>
+				<fa-icon [icon]="'user'"></fa-icon
+				><fa-icon [icon]="'search'"></fa-icon>
 			</button>
 		</div>
 		<div class="col-6">
-			<button class="btn btn-outline-secondary btn-block btn-sm" (click)="onViewCustomerDetail()">
+			<button
+				class="btn btn-outline-secondary btn-block btn-sm"
+				(click)="onViewCustomerDetail()"
+			>
 				<fa-icon [icon]="'address-card'"></fa-icon>
 			</button>
 		</div>
 	</div>
 	<app-customer-detail-popover></app-customer-detail-popover>
+	<div class="row mt-2">
+		<div class="col-12">
+			<button
+				class="btn btn-outline-secondary btn-block btn-sm"
+				(click)="onClearCustomer()"
+			>
+				<fa-icon [icon]="'times'"></fa-icon>
+			</button>
+		</div>
+	</div>
 </ng-template>

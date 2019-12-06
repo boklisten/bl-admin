@@ -1,0 +1,31 @@
+<div
+	class="btn btn-outline-dark btn-sm btn-block bl-branch-current"
+	[ngbPopover]="branchSelectPopover"
+	placement="bottom"
+	#branchSelectPopoverRef="ngbPopover"
+	(click)="setCurrentPopoverOpen(branchSelectPopoverRef)"
+>
+	<fa-icon [icon]="'location-arrow'" class="mr-2"></fa-icon>
+	<span class="d-lg-inline d-md-none d-sm-none d-none">{{
+		currentBranch.name
+	}}</span>
+</div>
+
+<ng-template #branchSelectPopover>
+	<button
+		class="dropdown-item"
+		*ngFor="let branch of branches"
+		(click)="onSelectBranch(branch)"
+		[ngClass]="{
+			'btn-secondary': currentBranch && currentBranch.id === branch.id,
+			'btn-outline-secondary':
+				!currentBranch || currentBranch.id !== branch.id
+		}"
+	>
+		<fa-icon
+			[icon]="'check'"
+			*ngIf="currentBranch && currentBranch.id === branch.id"
+		></fa-icon>
+		{{ branch.name }}
+	</button>
+</ng-template>

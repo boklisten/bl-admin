@@ -1,11 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Branch, UserPermission } from "@wizardcoder/bl-model";
-import { BranchStoreService } from "../branch/branch-store.service";
 import { AuthService } from "../auth/auth.service";
 import { CustomerSearchService } from "../customer/customer-search/customer-search.service";
 import { Router } from "@angular/router";
 import { BlcKeyeventDoubleShiftService } from "../bl-common/blc-keyevent/blc-keyevent-double-shift.service";
-import { BlcSortService } from "../bl-common/blc-sort/blc-sort.service";
 
 @Component({
 	selector: "app-header",
@@ -23,11 +21,9 @@ export class HeaderComponent implements OnInit {
 	public headerCustomerSearchId: string;
 
 	constructor(
-		private _branchStoreService: BranchStoreService,
 		private _authService: AuthService,
 		private _router: Router,
 		private _blcKeyeventDoubleShiftService: BlcKeyeventDoubleShiftService,
-		private blcSortService: BlcSortService,
 		private _customerSearchService: CustomerSearchService
 	) {
 		this.searchTerm = "";
@@ -36,30 +32,6 @@ export class HeaderComponent implements OnInit {
 
 	ngOnInit() {
 		this.wait = false;
-		if (this._branchStoreService.getCurrentBranch()) {
-			this.currentBranch = this._branchStoreService.getCurrentBranch();
-		}
-
-		this._branchStoreService
-			.onBranchChange()
-			.subscribe((branch: Branch) => {
-				this.currentBranch = branch;
-			});
-
-		this._branchStoreService
-			.getAllBranches()
-			.then((branches: Branch[]) => {
-				this.branches = this.blcSortService.sortByField(
-					branches,
-					"name"
-				);
-			})
-			.catch(getBranchesError => {
-				console.log(
-					"HeaderComponent: could not get branches",
-					getBranchesError
-				);
-			});
 
 		this._blcKeyeventDoubleShiftService.onDoubleShift().subscribe(() => {
 			document.getElementById(this.headerCustomerSearchId).focus();
@@ -97,10 +69,6 @@ export class HeaderComponent implements OnInit {
 			default:
 				return "ansatt";
 		}
-	}
-
-	public onSelectBranch(branch: Branch) {
-		this._branchStoreService.setCurrentBranch(branch);
 	}
 
 	public onUserLogout() {
