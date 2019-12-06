@@ -1107,7 +1107,17 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="blcItemAddCustomerItemWithMatch" datatype="html">
+        <source>
+			This item is apart of a match, are you sure you want to add this to
+			the cart?
+		</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="blcItemAddCancel" datatype="html">
@@ -1116,7 +1126,7 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="blcItemAddAnyway" datatype="html">
@@ -1125,7 +1135,7 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="editStringValueNoValue" datatype="html">
@@ -1767,28 +1777,28 @@
         <source>Ordered</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="itemSearchResultCustomerHaveItem" datatype="html">
         <source>Customer have this item</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="itemSearchResultOrderedOnAnotherBranch" datatype="html">
         <source>Ordered on another branch</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="itemSearchResultNotAtCurrentBranch" datatype="html">
         <source>Not at current branch</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="customerOrderListTitle" datatype="html">
@@ -2182,7 +2192,7 @@
         <source>amount left to pay</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list-item/customer-item-list-item.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="messengerReminderModalShouldSendMessageTo" datatype="html">
@@ -2267,18 +2277,25 @@
           <context context-type="linenumber">106</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="messengerReminderEmail" datatype="html">
+        <source>email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="messengerReminderSms" datatype="html">
         <source>sms</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="messengerReminderNoCustomerItemsFound" datatype="html">
         <source>No customerItems found</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/messenger/messenger-match/messenger-match.component.html</context>
@@ -2289,7 +2306,7 @@
         <source>Send reminders</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="messengerSendModalSendingMessageTo" datatype="html">
