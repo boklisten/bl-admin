@@ -14,6 +14,8 @@ export class BlcItemAddComponent implements OnInit {
 	@Input() orderItem: OrderItem;
 	@Input() order: Order;
 	@Input() customerItem: CustomerItem;
+	public addWarningItem: boolean;
+	public addWarningCustomerItem: boolean;
 	@ViewChild("addWithWarningContent") private addWithWarningContent;
 
 	public added: boolean;
@@ -34,6 +36,8 @@ export class BlcItemAddComponent implements OnInit {
 		});
 	}
 
+	public add() {}
+
 	private checkIfAdded() {
 		this.added = this._cartService.contains(
 			this.orderItem ? (this.orderItem.item as string) : this.item.id
@@ -41,14 +45,25 @@ export class BlcItemAddComponent implements OnInit {
 	}
 
 	public addItem() {
-		this.handleItem();
+		if (!this.customerItem) {
+			this.handleItem();
+		} else {
+			this.handleCustomerItem();
+		}
+		this._modalService.dismissAll();
 	}
 
 	public onClick() {
 		if (this.order && this.orderItem) {
 			this.handleOrderItem();
 		} else if (this.customerItem) {
-			this.handleCustomerItem();
+			if (!this.added && this.customerItem["match"]) {
+				this.addWarningCustomerItem = true;
+				this.addWarningItem = false;
+				this.openModal();
+			} else {
+				this.handleCustomerItem();
+			}
 		} else {
 			if (
 				!this._branchItemStoreService.isItemInBranchItems(
@@ -56,14 +71,20 @@ export class BlcItemAddComponent implements OnInit {
 				) &&
 				!this.added
 			) {
-				this._modalService.open(this.addWithWarningContent, {
-					size: "lg",
-					centered: true
-				});
+				this.addWarningItem = true;
+				this.addWarningCustomerItem = false;
+				this.openModal();
 			} else {
 				this.handleItem();
 			}
 		}
+	}
+
+	private openModal() {
+		this._modalService.open(this.addWithWarningContent, {
+			size: "lg",
+			centered: true
+		});
 	}
 
 	private handleCustomerItem() {
@@ -97,6 +118,5 @@ export class BlcItemAddComponent implements OnInit {
 			this._cartService.add(this.item);
 			this.added = true;
 		}
-		this._modalService.dismissAll();
 	}
 }

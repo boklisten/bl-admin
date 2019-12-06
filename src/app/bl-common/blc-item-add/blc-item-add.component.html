@@ -28,9 +28,22 @@
 			<fa-icon class="mr-2" [icon]="'barcode'"></fa-icon
 			>{{ item.info["isbn"] }}
 		</h5>
-		<p i18n="@@blcItemAddItemNotPartOfBranchItems" class="mt-5">
+		<p
+			i18n="@@blcItemAddItemNotPartOfBranchItems"
+			class="mt-5"
+			*ngIf="addWarningItem"
+		>
 			This item is not present in the branchItem list of the current
 			branch
+		</p>
+
+		<p
+			i18n="@@blcItemAddCustomerItemWithMatch"
+			class="mt-5"
+			*ngIf="addWarningCustomerItem"
+		>
+			This item is apart of a match, are you sure you want to add this to
+			the cart?
 		</p>
 	</div>
 	<div class="modal-footer">
