@@ -23,7 +23,7 @@ export class MessengerMatchComponent implements OnInit {
 	public deadline: Date;
 	public textBlocks: TextBlock[];
 	public loading: boolean;
-	public selectedType: CustomerItemType | "all";
+	public selectedType: CustomerItemType | "all" | "match";
 	public selectedBranches: string[];
 	public noCustomerItemsFoundError: boolean;
 	public sequenceNumber: number;
@@ -44,7 +44,7 @@ export class MessengerMatchComponent implements OnInit {
 		this.selectedBranches = [];
 		this.sequenceNumber = 0;
 		this.smsMedium = false;
-		this.selectedType = "partly-payment";
+		this.selectedType = "match";
 	}
 
 	ngOnInit() {}
@@ -65,7 +65,7 @@ export class MessengerMatchComponent implements OnInit {
 		this.loading = true;
 		this.noCustomerItemsFoundError = false;
 
-		this.getUniqueCustomerWithNotReturnedCustomerItems(this.selectedType)
+		this.getUniqueCustomerWithNotReturnedCustomerItems("partly-payment")
 			.then((uniqueCustomerIds: string[]) => {
 				this.loading = false;
 				this.openModal(uniqueCustomerIds);
@@ -95,7 +95,7 @@ export class MessengerMatchComponent implements OnInit {
 		modalRef.componentInstance.settings = {
 			messageType: "match",
 			messageMethod: "sms",
-			sequenceNumber: 0,
+			sequenceNumber: this.sequenceNumber,
 			deadline: this.deadline
 		};
 	}
