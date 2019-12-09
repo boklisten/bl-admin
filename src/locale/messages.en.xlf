@@ -705,9 +705,18 @@
 			This item is not present in the branchItem list of the current
 			branch
 		</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">35</context></context-group></trans-unit><trans-unit id="blcItemAddCustomerItemWithMatch" datatype="html">
+        <source>
+			This item is apart of a match, are you sure you want to add this to
+			the cart?
+		</source><target state="final">
+			This item is apart of a match, are you sure you want to add this to
+			the cart?
+		</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit><trans-unit id="blcItemAddCancel" datatype="html">
         <source>
@@ -715,21 +724,15 @@
 		</source><target state="final">
 			Cancel
 		</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">42</context>
-        </context-group>
-      </trans-unit><trans-unit id="blcItemAddAnyway" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit><trans-unit id="blcItemAddAnyway" datatype="html">
         <source>
 			Add anyway
 		</source><target state="final">
 			Add anyway
 		</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">50</context>
-        </context-group>
-      </trans-unit><trans-unit id="editStringValueNoValue" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">63</context></context-group></trans-unit><trans-unit id="editStringValueNoValue" datatype="html">
         <source>[NO VALUE]</source><target state="final">[NO VALUE]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-edit/blc-edit-string-value/blc-edit-string-value.component.html</context>
@@ -1143,29 +1146,17 @@
         
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component.html</context><context context-type="linenumber">42</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component.html</context><context context-type="linenumber">83</context></context-group></trans-unit><trans-unit id="itemSearchResultOrdered" datatype="html">
         <source>Ordered</source><target state="final">Ordered</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context>
-          <context context-type="linenumber">33</context>
-        </context-group>
-      </trans-unit><trans-unit id="itemSearchResultCustomerHaveItem" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context><context context-type="linenumber">34</context></context-group></trans-unit><trans-unit id="itemSearchResultCustomerHaveItem" datatype="html">
         <source>Customer have this item</source><target state="final">Customer have this item</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-      </trans-unit><trans-unit id="itemSearchResultOrderedOnAnotherBranch" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context><context context-type="linenumber">42</context></context-group></trans-unit><trans-unit id="itemSearchResultOrderedOnAnotherBranch" datatype="html">
         <source>Ordered on another branch</source><target state="final">Ordered on another branch</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context>
-          <context context-type="linenumber">56</context>
-        </context-group>
-      </trans-unit><trans-unit id="itemSearchResultNotAtCurrentBranch" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context><context context-type="linenumber">57</context></context-group></trans-unit><trans-unit id="itemSearchResultNotAtCurrentBranch" datatype="html">
         <source>Not at current branch</source><target state="final">Not at current branch</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context>
-          <context context-type="linenumber">70</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context><context context-type="linenumber">71</context></context-group></trans-unit>
       <trans-unit id="customerOrderListTitle" datatype="html">
         <source>
 					Orders
@@ -1435,7 +1426,7 @@
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list-item/customer-item-list-item.component.html</context><context context-type="linenumber">44</context></context-group></trans-unit><trans-unit id="customerItemListItemAmountLeftToPay" datatype="html">
         <source>amount left to pay</source><target state="final">amount left to pay</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list-item/customer-item-list-item.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list-item/customer-item-list-item.component.html</context><context context-type="linenumber">58</context></context-group></trans-unit>
       <trans-unit id="paymentPay" datatype="html">
         <source>
                         pay
@@ -2176,22 +2167,22 @@
 				Done
 			</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder-modal/messenger-reminder-modal.component.html</context><context context-type="linenumber">106</context></context-group></trans-unit><trans-unit id="messengerReminderSms" datatype="html">
-        <source>sms</source><target state="final">sms</target>
+      <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder-modal/messenger-reminder-modal.component.html</context><context context-type="linenumber">106</context></context-group></trans-unit><trans-unit id="messengerReminderEmail" datatype="html">
+        <source>email</source><target state="final">email</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">27</context>
         </context-group>
-      </trans-unit><trans-unit id="messengerReminderNoCustomerItemsFound" datatype="html">
+      </trans-unit><trans-unit id="messengerReminderSms" datatype="html">
+        <source>sms</source><target state="final">sms</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit><trans-unit id="messengerReminderNoCustomerItemsFound" datatype="html">
         <source>No customerItems found</source><target state="final">No customerItems found</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context><context context-type="linenumber">50</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-match/messenger-match.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit><trans-unit id="messengerReminderSendReminders" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context><context context-type="linenumber">61</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-match/messenger-match.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit><trans-unit id="messengerReminderSendReminders" datatype="html">
         <source>Send reminders</source><target state="final">Send reminders</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context>
-          <context context-type="linenumber">64</context>
-        </context-group>
-      </trans-unit><trans-unit id="messengerSendModalSendingMessageTo" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context><context context-type="linenumber">75</context></context-group></trans-unit><trans-unit id="messengerSendModalSendingMessageTo" datatype="html">
         <source>Sending message to <x id="INTERPOLATION" equiv-text="{{ customerIds.length }}"/> customers</source><target state="final">Sending message to <x id="INTERPOLATION" equiv-text="{{ customerIds.length }}"/> customers</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/messenger/messenger-send-modal/messenger-send-modal.component.html</context>
