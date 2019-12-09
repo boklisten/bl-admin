@@ -62,12 +62,12 @@ export class CustomerService {
 			for (const orderItem of order.orderItems) {
 				if (orderItem.item === itemId) {
 					if (
-						((orderItem.type === "rent" ||
+						(orderItem.type === "rent" ||
 							orderItem.type === "buy" ||
 							orderItem.type === "partly-payment") &&
-							!orderItem.customerItem &&
-							!orderItem.movedToOrder,
-						!orderItem.handout)
+						!orderItem.customerItem &&
+						!orderItem.movedToOrder &&
+						!orderItem.handout
 					) {
 						return { orderItem: orderItem, order: order };
 					}
