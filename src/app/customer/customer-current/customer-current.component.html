@@ -7,7 +7,9 @@
 	(click)="setCurrentPopoverOpen(customerDetailPopoverRef)"
 >
 	<fa-icon [icon]="'user'" class="mr-2"></fa-icon>
-	<span>{{ customerDetail.name }}</span>
+	<span class="d-lg-inline d-md-none d-sm-none d-none">{{
+		customerDetail.name
+	}}</span>
 </div>
 
 <ng-template #customerDetailPopover>
