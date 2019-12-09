@@ -18,6 +18,7 @@ export class MessengerGenericComponent implements OnInit {
 	public htmlTextEmptyError: boolean;
 	public subjectEmptyError: boolean;
 	public subject: string;
+	public allCustomers: boolean;
 
 	constructor(
 		private modalService: NgbModal,
@@ -27,6 +28,7 @@ export class MessengerGenericComponent implements OnInit {
 		this.loading = false;
 		this.branchIds = [];
 		this.subject = "";
+		this.allCustomers = false;
 	}
 
 	ngOnInit() {}
@@ -46,7 +48,7 @@ export class MessengerGenericComponent implements OnInit {
 		}
 
 		this.messengerGenericService
-			.getCustomerIds(this.branchIds)
+			.getCustomerIds(this.branchIds, this.allCustomers)
 			.then((userDetailIds: string[]) => {
 				this.openModal(userDetailIds);
 			})

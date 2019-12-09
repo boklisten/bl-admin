@@ -56,15 +56,24 @@ export class MessengerGenericService {
 		};
 	}
 
-	public async getCustomerIds(branchIds: string[]): Promise<string[]> {
+	public async getCustomerIds(
+		branchIds: string[],
+		allCustomers?: boolean
+	): Promise<string[]> {
 		let userIds = [];
 		for (let branchId of branchIds) {
 			let branchUserIds = [];
 
 			try {
-				branchUserIds = await this.branchCustomerService.getAllActiveCustomers(
-					branchId
-				);
+				if (allCustomers) {
+					branchUserIds = await this.branchCustomerService.getAllCustomers(
+						branchId
+					);
+				} else {
+					branchUserIds = await this.branchCustomerService.getAllActiveCustomers(
+						branchId
+					);
+				}
 			} catch (e) {
 				branchUserIds = [];
 			}
