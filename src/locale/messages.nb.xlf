@@ -889,34 +889,34 @@ Egendefinert
       <trans-unit id="headerBladminName" datatype="html">
         <source>bladmin</source><target state="final">bladmin</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="headerCustomerSearch" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">13</context></context-group></trans-unit><trans-unit id="headerCustomerSearch" datatype="html">
         <source>Customer search</source><target state="final">Kundesøk</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">17</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">27</context></context-group></trans-unit>
       <trans-unit id="blUserPermissionEmployee" datatype="html">
         <source>employee</source><target state="final">ansatt</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">52</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">91</context></context-group></trans-unit>
       <trans-unit id="blUserPermissionManager" datatype="html">
         <source>manager</source><target state="final">filialsjef</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">53</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">96</context></context-group></trans-unit>
       <trans-unit id="blUserPermissionAdmin" datatype="html">
         <source>administrator</source><target state="final">administrator</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">54</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">101</context></context-group></trans-unit>
       <trans-unit id="blUserPermissionSuper" datatype="html">
         <source>wizard</source><target state="final">trollmann</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">106</context></context-group></trans-unit>
       <trans-unit id="headerEditUserDetailButton" datatype="html">
         <source>Edit user details</source><target state="final">Rediger brukerdetaljer</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">63</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">119</context></context-group></trans-unit>
       <trans-unit id="headerLogoutButton" datatype="html">
         <source>Log out</source><target state="final">Logg ut</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">70</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/header/header.component.html</context><context context-type="linenumber">130</context></context-group></trans-unit>
       <trans-unit id="branchSelectBranchTitle" datatype="html">
         <source>Select a branch</source><target state="final">Velg en filial</target>
         
@@ -2045,15 +2045,9 @@ Egendefinert
         </context-group>
       </trans-unit><trans-unit id="invoiceCreateItemListPrice" datatype="html">
         <source>Price:</source><target state="final">Pris:</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context>
-          <context context-type="linenumber">67</context>
-        </context-group>
-      </trans-unit><trans-unit id="invoiceCreateItemListNumberOfUnits" datatype="html">
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context><context context-type="linenumber">22</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context><context context-type="linenumber">74</context></context-group></trans-unit><trans-unit id="invoiceCreateItemListNumberOfUnits" datatype="html">
         <source>number of units:
 		</source><target state="final">Antall:</target>
         <context-group purpose="location">
@@ -2066,11 +2060,20 @@ Egendefinert
           <context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context>
           <context context-type="linenumber">48</context>
         </context-group>
-      </trans-unit><trans-unit id="invoiceCreateItemListTotal" datatype="html">
-        <source>Total: </source><target state="final">Total: </target>
+      </trans-unit><trans-unit id="invoiceCreateItemListTaxRate" datatype="html">
+        <source>Tax rate: </source><target state="final">MVA %</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context>
           <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit><trans-unit id="invoiceCreateItemListTotal" datatype="html">
+        <source>Total: </source><target state="final">Total: </target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context><context context-type="linenumber">85</context></context-group></trans-unit><trans-unit id="invoiceCreateItemListTax" datatype="html">
+        <source>Tax: </source><target state="final">MVA:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit><trans-unit id="messengerReminderModalShouldSendMessageTo" datatype="html">
         <source>
@@ -2158,31 +2161,25 @@ Egendefinert
           <context context-type="sourcefile">app/messenger/messenger-send-modal/messenger-send-modal.component.html</context>
           <context context-type="linenumber">98</context>
         </context-group>
+      </trans-unit><trans-unit id="messengerGenericAllCustomers" datatype="html">
+        <source>all customers</source><target state="final">Alle kunder</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
       </trans-unit><trans-unit id="messengerSendGeneriHtmlTextEmptyError" datatype="html">
         <source>Html text can not be empty</source><target state="final">Html-felt kan ikke være tom</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context>
-          <context context-type="linenumber">36</context>
-        </context-group>
-      </trans-unit><trans-unit id="messengerSendGenericSubjectEmptyError" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context><context context-type="linenumber">46</context></context-group></trans-unit><trans-unit id="messengerSendGenericSubjectEmptyError" datatype="html">
         <source>Subject is empty</source><target state="final">Emne er tomt</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context>
-          <context context-type="linenumber">47</context>
-        </context-group>
-      </trans-unit><trans-unit id="messengerSendGenericNoCustomersFound" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context><context context-type="linenumber">57</context></context-group></trans-unit><trans-unit id="messengerSendGenericNoCustomersFound" datatype="html">
         <source>No customers found</source><target state="final">Ingen kunder funnet</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context>
-          <context context-type="linenumber">58</context>
-        </context-group>
-      </trans-unit><trans-unit id="messengerSendGeneric" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context><context context-type="linenumber">68</context></context-group></trans-unit><trans-unit id="messengerSendGeneric" datatype="html">
         <source>Send</source><target state="final">Send</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context>
-          <context context-type="linenumber">72</context>
-        </context-group>
-      </trans-unit><trans-unit id="messengerReminderSendMatchMessages" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context><context context-type="linenumber">82</context></context-group></trans-unit><trans-unit id="messengerReminderSendMatchMessages" datatype="html">
         <source>Send match messages</source><target state="final">Send match meldinger</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/messenger/messenger-match/messenger-match.component.html</context>

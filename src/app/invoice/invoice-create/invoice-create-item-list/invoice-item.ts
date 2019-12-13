@@ -8,4 +8,6 @@ export interface InvoiceItem {
 	discount: number;
 	numberOfUnits: number;
 	total: number;
+	tax: number;
+	taxPercentage: number;
 }

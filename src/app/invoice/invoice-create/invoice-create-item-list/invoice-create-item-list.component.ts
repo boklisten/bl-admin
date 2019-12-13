@@ -58,7 +58,9 @@ export class InvoiceCreateItemListComponent implements OnInit {
 					discount: 0,
 					numberOfUnits: 1,
 					productNumber: productNumber,
-					total: cartItem.item.price
+					total: cartItem.item.price,
+					tax: 0,
+					taxPercentage: 0
 				});
 			} else {
 				newInvoiceItems.push(alreadyAddedInvoiceItem);

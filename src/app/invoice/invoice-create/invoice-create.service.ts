@@ -108,6 +108,10 @@ export class InvoiceCreateService {
 			invoiceItem.discount = parseFloat(invoiceItem.discount + "");
 			invoiceItem.total = parseFloat(invoiceItem.total + "");
 			invoiceItem.price = parseFloat(invoiceItem.price + "");
+			invoiceItem.taxPercentage = parseFloat(
+				invoiceItem.taxPercentage + ""
+			);
+			invoiceItem.tax = parseFloat(invoiceItem.tax + "");
 
 			invoiceItem.discount = 1 - invoiceItem.discount / 100;
 
@@ -149,11 +153,7 @@ export class InvoiceCreateService {
 	}
 
 	private itemVatPrice(invoiceItem: InvoiceItem): number {
-		return this.priceService.withTwoDecimals(
-			this.itemGrossPrice(invoiceItem) *
-				invoiceItem.item.taxRate *
-				invoiceItem.numberOfUnits
-		);
+		return invoiceItem.tax;
 	}
 
 	private itemDiscountPrice(invoiceItem: InvoiceItem): number {

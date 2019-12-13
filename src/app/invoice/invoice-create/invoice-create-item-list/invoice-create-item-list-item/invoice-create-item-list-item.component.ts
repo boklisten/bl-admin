@@ -18,11 +18,26 @@ export class InvoiceCreateItemListItemComponent implements OnInit {
 	ngOnInit() {}
 
 	public updateTotal() {
-		this.invoiceItem.total = this.priceService.toFixed(
+		this.invoiceItem.tax = this.calculateTax();
+		this.invoiceItem.total = this.calculateGross();
+		this.update.emit(true);
+	}
+
+	private calculateTax(): number {
+		let taxPercentage = parseInt(this.invoiceItem.taxPercentage + "") / 100;
+
+		if (taxPercentage === 0) {
+			return 0;
+		}
+
+		return this.calculateGross() * taxPercentage;
+	}
+
+	private calculateGross(): number {
+		return this.priceService.toFixed(
 			this.invoiceItem.price *
 				this.invoiceItem.numberOfUnits *
 				(1 - parseInt(this.invoiceItem.discount + "") / 100)
 		);
-		this.update.emit(true);
 	}
 }

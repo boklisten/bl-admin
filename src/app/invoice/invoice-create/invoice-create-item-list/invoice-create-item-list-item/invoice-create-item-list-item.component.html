@@ -57,13 +57,20 @@
 	</div>
 
 	<div class="col-6">
-		<span i18n="@@invoiceCreateItemListTotal">Total: </span>
-		<span>{{ invoiceItem.total }}</span>
+		<span i18n="@@invoiceCreateItemListTaxRate">Tax rate: </span>
+
+		<app-blc-edit-number-value
+			name="invoiceItemTaxPercentage"
+			[value]="invoiceItem.taxPercentage"
+			[(ngModel)]="invoiceItem.taxPercentage"
+			(valueChange)="updateTotal()"
+			ngDefaultControl
+		></app-blc-edit-number-value>
 	</div>
 </div>
 
 <div class="row">
-	<div class="col">
+	<div class="col-6">
 		<span i18n="@@invoiceCreateItemListPrice">Product number:</span>
 		<app-blc-edit-number-value
 			name="invoiceItemPrice"
@@ -72,5 +79,14 @@
 			(valueChange)="updateTotal()"
 			ngDefaultControl
 		></app-blc-edit-number-value>
+	</div>
+
+	<div class="col-6">
+		<span i18n="@@invoiceCreateItemListTotal">Total: </span>
+		<span>{{ invoiceItem.total | blcPrice }}</span>
+
+		(<span i18n="@@invoiceCreateItemListTax">Tax: </span>
+		<span>{{ invoiceItem.tax | blcPrice: "international" }}</span
+		>)
 	</div>
 </div>
