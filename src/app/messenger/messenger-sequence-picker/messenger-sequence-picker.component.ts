@@ -32,7 +32,7 @@ export class MessengerSequencePickerComponent implements OnInit, OnChanges {
 	private setSequences() {
 		switch (this.messageType) {
 			case "partly-payment":
-				this.sequences = [0, 1, 2];
+				this.sequences = [0, 1, 2, 3];
 				break;
 			case "rent":
 				this.sequences = [0, 1, 2];
