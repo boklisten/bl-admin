@@ -60,6 +60,7 @@ export class CartListItemActionComponent implements OnInit {
 				this.actionList = [
 					{ action: "buyback" },
 					{ action: "buyout" },
+					{ action: "extend", period: "semester" },
 					{ action: "cancel" }
 				];
 			} else {
@@ -67,6 +68,7 @@ export class CartListItemActionComponent implements OnInit {
 				this.actionList = [
 					{ action: "return" },
 					{ action: "buyout" },
+					{ action: "extend", period: "semester" },
 					{ action: "cancel" }
 				];
 			}

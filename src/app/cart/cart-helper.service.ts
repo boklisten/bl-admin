@@ -166,6 +166,17 @@ export class CartHelperService {
 				);
 			case "buyback":
 				return item.buyback;
+			case "extend":
+				return (
+					(customerItem.handout &&
+						!this._dateService.isCustomerItemCancelValid(
+							customerItem.handoutInfo.time
+						) &&
+						this._dateService.isCustomerItemReturnValid(
+							customerItem.deadline
+						)) ||
+					this._authService.isAdmin()
+				);
 			default:
 				return false;
 		}
