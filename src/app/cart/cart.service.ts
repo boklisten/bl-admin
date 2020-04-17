@@ -26,6 +26,7 @@ import { BranchItemHelperService } from "../branch/branch-item-helper/branch-ite
 @Injectable()
 export class CartService {
 	private _cart: CartItem[];
+	private _notificationSettings: { email: boolean };
 
 	private _cartChange$: Subject<boolean>;
 	private _cartConfirm$: Subject<boolean>;
@@ -43,6 +44,7 @@ export class CartService {
 		this._cart = [];
 		this._cartChange$ = new Subject<boolean>();
 		this._cartConfirm$ = new Subject<boolean>();
+		this._notificationSettings = { email: true };
 
 		if (this._customerService.haveCustomer()) {
 			this._customerDetailId = this._customerService.get().detail.id;
@@ -53,6 +55,14 @@ export class CartService {
 		this._branchStoreService.onBranchChange().subscribe(() => {
 			this.clear();
 		});
+	}
+
+	public setNotificationSettings(notfications: { email: boolean }) {
+		this._notificationSettings = notfications;
+	}
+
+	public getNotificationSettings(): { email: boolean } {
+		return this._notificationSettings;
 	}
 
 	public add(item: Item) {

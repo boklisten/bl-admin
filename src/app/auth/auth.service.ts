@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {UserPermission} from '@wizardcoder/bl-model';
-import {TokenService} from '@wizardcoder/bl-connect';
-import {Router} from '@angular/router';
-import {Observable, Subject} from 'rxjs';
-import {AuthLoginService} from '@wizardcoder/bl-login';
+import { Injectable } from "@angular/core";
+import { UserPermission } from "@wizardcoder/bl-model";
+import { TokenService } from "@wizardcoder/bl-connect";
+import { Router } from "@angular/router";
+import { Observable, Subject } from "rxjs";
+import { AuthLoginService } from "@wizardcoder/bl-login";
 
 @Injectable()
 export class AuthService {
@@ -12,9 +12,11 @@ export class AuthService {
 	private _login$: Subject<boolean>;
 	private _applicationLogout$: Subject<boolean>;
 
-	constructor(private _tokenService: TokenService,
-	            private _router: Router,
-	            private _authLoginService: AuthLoginService) {
+	constructor(
+		private _tokenService: TokenService,
+		private _router: Router,
+		private _authLoginService: AuthLoginService
+	) {
 		this._logout$ = new Subject<boolean>();
 		this._login$ = new Subject<boolean>();
 		this._applicationLogout$ = new Subject<boolean>();
@@ -49,9 +51,8 @@ export class AuthService {
 			return false;
 		}
 
-		return (permission === 'admin');
+		return permission === "admin";
 	}
-
 
 	public isManager(): boolean {
 		let permission: UserPermission;
@@ -62,7 +63,7 @@ export class AuthService {
 			return false;
 		}
 
-		return (this.isAdmin() || permission === 'manager');
+		return this.isAdmin() || permission === "manager";
 	}
 
 	public isEmployee(): boolean {
@@ -74,7 +75,7 @@ export class AuthService {
 			return false;
 		}
 
-		return (this.isAdmin() || this.isManager() || permission === 'employee');
+		return this.isAdmin() || this.isManager() || permission === "employee";
 	}
 
 	private getUserPermission(): UserPermission {
@@ -92,7 +93,7 @@ export class AuthService {
 
 	public logout() {
 		this._logout$.next(true);
-		this._authLoginService.logout('/auth/menu');
+		this._authLoginService.logout("/auth/menu");
 	}
 
 	public onLogin(): Observable<boolean> {

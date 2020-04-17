@@ -30,7 +30,8 @@ export class CartConfirmService {
 	public async addOrder(): Promise<Order> {
 		return this._orderHandlerService.addOrder(
 			this._cartService.getCart(),
-			await this.orderShouldHaveDelivery()
+			await this.orderShouldHaveDelivery(),
+			this._cartService.getNotificationSettings()
 		);
 	}
 

@@ -7,6 +7,7 @@ import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { NgbModalWindow } from "@ng-bootstrap/ng-bootstrap/modal/modal-window";
 import { CartItemSearchService } from "../cart-item-search/cart-item-search.service";
 import { DateService } from "../../date/date.service";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
 	selector: "app-cart-list",
@@ -21,17 +22,22 @@ export class CartListComponent implements OnInit {
 	public partlyPaymentTotals: { date: Date; total: number }[];
 	private _cartConfirmModal: NgbModalRef;
 	public searching: boolean;
+	public notfifyByEmail: boolean;
+	public showNotifyByEmailEdit: boolean;
 
 	constructor(
 		private _cartService: CartService,
 		private _modalService: NgbModal,
 		private _cartItemSearchService: CartItemSearchService,
 		private _itemService: ItemService,
-		private _dateService: DateService
+		private _dateService: DateService,
+		private _authService: AuthService
 	) {
 		this.cart = [];
 		this.cartConfirmed = new EventEmitter<boolean>();
 		this.cartConfirmationFailed = new EventEmitter<boolean>();
+		this.notfifyByEmail = true;
+		this.showNotifyByEmailEdit = this._authService.isAdmin();
 	}
 
 	ngOnInit() {
@@ -51,6 +57,10 @@ export class CartListComponent implements OnInit {
 
 	public onCartItemChange() {
 		//this.partlyPaymentTotals = this._cartService.getPartlyPaymentTotals();
+	}
+
+	public onNotifyByEmailUpdate(notfifyByEmail: boolean) {
+		this._cartService.setNotificationSettings({ email: notfifyByEmail });
 	}
 
 	public onClearCart() {

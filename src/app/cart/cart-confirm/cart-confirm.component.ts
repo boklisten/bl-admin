@@ -1,13 +1,13 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {CartService} from '../cart.service';
-import {CustomerService} from '../../customer/customer.service';
-import {CartConfirmService} from './cart-confirm.service';
-import {Delivery, Order} from '@wizardcoder/bl-model';
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { CartService } from "../cart.service";
+import { CustomerService } from "../../customer/customer.service";
+import { CartConfirmService } from "./cart-confirm.service";
+import { Delivery, Order } from "@wizardcoder/bl-model";
 
 @Component({
-	selector: 'app-cart-confirm',
-	templateUrl: './cart-confirm.component.html',
-	styleUrls: ['./cart-confirm.component.scss']
+	selector: "app-cart-confirm",
+	templateUrl: "./cart-confirm.component.html",
+	styleUrls: ["./cart-confirm.component.scss"]
 })
 export class CartConfirmComponent implements OnInit {
 	@Output() confirmed: EventEmitter<boolean>;
@@ -31,9 +31,11 @@ export class CartConfirmComponent implements OnInit {
 	public orderShouldHaveDelivery: boolean;
 	public originalDelivery: Delivery;
 
-
-	constructor(private _cartService: CartService, private _customerService: CustomerService,
-	            private _cartConfirmService: CartConfirmService) {
+	constructor(
+		private _cartService: CartService,
+		private _customerService: CustomerService,
+		private _cartConfirmService: CartConfirmService
+	) {
 		this.confirmed = new EventEmitter<boolean>();
 		this.failure = new EventEmitter<boolean>();
 	}
@@ -53,13 +55,15 @@ export class CartConfirmComponent implements OnInit {
 		if (this.totalAmount !== 0) {
 			this.showGoToPaymentButton = true;
 		} else {
-			this._cartConfirmService.orderShouldHaveDelivery().then((shouldHaveDelivery) => {
-				if (shouldHaveDelivery) {
-					this.showDeliveryButton = true;
-				} else {
-					this.showConfirmOrderButton = true;
-				}
-			});
+			this._cartConfirmService
+				.orderShouldHaveDelivery()
+				.then(shouldHaveDelivery => {
+					if (shouldHaveDelivery) {
+						this.showDeliveryButton = true;
+					} else {
+						this.showConfirmOrderButton = true;
+					}
+				});
 		}
 	}
 
@@ -67,30 +71,40 @@ export class CartConfirmComponent implements OnInit {
 		this.wait = true;
 		this.errorText = null;
 
-		this.addOrder().then((addedOrder: Order) => {
-			this.showPayment = true;
-			this.order = addedOrder;
-			this.buttonDisabled = true;
-			this.showSummary = false;
-			this.wait = false;
-		}).catch((addOrderError) => {
-			console.log('cartConfirmComponent: could not add order', addOrderError);
-			this.wait = false;
-			this.errorText = 'There was an error creating order';
-		});
+		this.addOrder()
+			.then((addedOrder: Order) => {
+				this.showPayment = true;
+				this.order = addedOrder;
+				this.buttonDisabled = true;
+				this.showSummary = false;
+				this.wait = false;
+			})
+			.catch(addOrderError => {
+				console.log(
+					"cartConfirmComponent: could not add order",
+					addOrderError
+				);
+				this.wait = false;
+				this.errorText = "There was an error creating order";
+			});
 	}
 
 	async onGoToDelivery() {
 		this.originalDelivery = await this._cartConfirmService.getOriginalDelivery();
 
-		this.addOrder().then((order: Order) => {
-			this.showDelivery = true;
-			this.showSummary = false;
-			this.showPayment = false;
-			this.order = order;
-		}).catch((err) => {
-			console.log('cartConfirmComponent: could not add the order when going to delivery', err);
-		});
+		this.addOrder()
+			.then((order: Order) => {
+				this.showDelivery = true;
+				this.showSummary = false;
+				this.showPayment = false;
+				this.order = order;
+			})
+			.catch(err => {
+				console.log(
+					"cartConfirmComponent: could not add the order when going to delivery",
+					err
+				);
+			});
 	}
 
 	onDeliveryConfirmed() {
@@ -114,15 +128,27 @@ export class CartConfirmComponent implements OnInit {
 	onConfirmPayment() {
 		this.wait = true;
 
-		this._cartConfirmService.placeOrder(this.order).then(() => {
-			this._cartConfirmService.addOrUpdateCustomerItems(this.order).then(() => {
-				this.confirmed.emit(true);
-			}).catch((addOrUpdateCustomerItemError) => {
-				console.log('cartConfirmComponent: could not add or update customerItems', addOrUpdateCustomerItemError);
+		this._cartConfirmService
+			.placeOrder(this.order)
+			.then(() => {
+				this._cartConfirmService
+					.addOrUpdateCustomerItems(this.order)
+					.then(() => {
+						this.confirmed.emit(true);
+					})
+					.catch(addOrUpdateCustomerItemError => {
+						console.log(
+							"cartConfirmComponent: could not add or update customerItems",
+							addOrUpdateCustomerItemError
+						);
+					});
+			})
+			.catch(placeOrderError => {
+				console.log(
+					"cartConfirmComponent: could not place order",
+					placeOrderError
+				);
 			});
-		}).catch((placeOrderError) => {
-			console.log('cartConfirmComponent: could not place order', placeOrderError);
-		});
 	}
 
 	async onConfirm() {
@@ -138,15 +164,27 @@ export class CartConfirmComponent implements OnInit {
 			this.order = await this.addOrder();
 		}
 
-		this._cartConfirmService.placeOrder(this.order).then(() => {
-			this._cartConfirmService.addOrUpdateCustomerItems(this.order).then(() => {
-				this.confirmed.emit(true);
-			}).catch((addOrUpdateCustomerItemError) => {
-				console.log('cartConfirmComponent: could not add or update customerItems: ' + addOrUpdateCustomerItemError);
+		this._cartConfirmService
+			.placeOrder(this.order)
+			.then(() => {
+				this._cartConfirmService
+					.addOrUpdateCustomerItems(this.order)
+					.then(() => {
+						this.confirmed.emit(true);
+					})
+					.catch(addOrUpdateCustomerItemError => {
+						console.log(
+							"cartConfirmComponent: could not add or update customerItems: " +
+								addOrUpdateCustomerItemError
+						);
+					});
+			})
+			.catch(placeOrderError => {
+				console.log(
+					"cartConfirmComponent: could not place order: " +
+						placeOrderError
+				);
 			});
-		}).catch((placeOrderError) => {
-			console.log('cartConfirmComponent: could not place order: ' + placeOrderError);
-		});
 	}
 
 	onPaymentConfirmed() {
@@ -162,14 +200,19 @@ export class CartConfirmComponent implements OnInit {
 	}
 
 	private async addOrder(): Promise<Order> {
-		return await this._cartConfirmService.addOrder().then((addedOrder: Order) => {
-			return addedOrder;
-		}).catch((addOrderError) => {
-			console.log('cartConfirmComponent: could not add order', addOrderError);
-			this.wait = false;
-			this.errorText = 'There was an error creating order';
-			throw new Error('cartConfirmComponent: could not add order');
-		});
+		return await this._cartConfirmService
+			.addOrder()
+			.then((addedOrder: Order) => {
+				return addedOrder;
+			})
+			.catch(addOrderError => {
+				console.log(
+					"cartConfirmComponent: could not add order",
+					addOrderError
+				);
+				this.wait = false;
+				this.errorText = "There was an error creating order";
+				throw new Error("cartConfirmComponent: could not add order");
+			});
 	}
-
 }
