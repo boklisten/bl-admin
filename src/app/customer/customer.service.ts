@@ -131,7 +131,11 @@ export class CustomerService {
 					);
 
 					this.setCustomer(customerDetail, orders, customerItems);
-				} catch (e) {}
+				} catch (e) {
+					this._customer = null;
+					this._customerChange$.next(true);
+					console.log(e);
+				}
 			});
 	}
 
