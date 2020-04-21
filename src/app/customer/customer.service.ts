@@ -115,7 +115,6 @@ export class CustomerService {
 			.onCustomerDetailChange()
 			.subscribe(async () => {
 				const customerDetail = this._customerDetailService.getCustomerDetail();
-				console.log("customer changed", customerDetail);
 				if (!customerDetail) {
 					this._customer = null;
 					this._customerChange$.next(true);
@@ -132,8 +131,8 @@ export class CustomerService {
 				} catch (e) {
 					this._customer = null;
 					this._customerChange$.next(true);
-					console.log("customerService: could not get orders", e);
 				}
+
 				try {
 					customerItems = await this._customerItemService.getManyByIds(
 						customerDetail.customerItems as string[]
@@ -141,10 +140,6 @@ export class CustomerService {
 				} catch (e) {
 					this._customer = null;
 					this._customerChange$.next(true);
-					console.log(
-						"customerService: could not get customerItems",
-						e
-					);
 				}
 
 				this.setCustomer(customerDetail, orders, customerItems);
