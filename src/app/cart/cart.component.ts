@@ -29,12 +29,10 @@ export class CartComponent implements OnInit {
 
 	ngOnInit() {
 		this.haveCustomer = this._customerService.haveCustomer();
-		console.log("have customer 1", this.haveCustomer);
 		this.setCustomerDetail();
 		this._customerService.onCustomerChange().subscribe(() => {
 			this.haveCustomer = this._customerService.haveCustomer();
 			this.setCustomerDetail();
-			console.log("have customer 2", this.haveCustomer);
 
 			/*
 			this._itemService.get().then((items: Item[]) => {
@@ -47,7 +45,6 @@ export class CartComponent implements OnInit {
 
 	setCustomerDetail() {
 		if (this._customerService.haveCustomer()) {
-			console.log("set customer detail", this._customerService.get());
 			this.customerDetail = this._customerService.get().detail;
 		}
 	}

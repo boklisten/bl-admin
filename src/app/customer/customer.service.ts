@@ -115,27 +115,39 @@ export class CustomerService {
 			.onCustomerDetailChange()
 			.subscribe(async () => {
 				const customerDetail = this._customerDetailService.getCustomerDetail();
+				console.log("customer changed", customerDetail);
 				if (!customerDetail) {
 					this._customer = null;
 					this._customerChange$.next(true);
 					return;
 				}
 
+				let orders;
+				let customerItems;
+
 				try {
-					const orders = await this._customerOrderService.getOrders(
+					orders = await this._customerOrderService.getOrders(
 						customerDetail
 					);
-
-					const customerItems = await this._customerItemService.getManyByIds(
-						customerDetail.customerItems as string[]
-					);
-
-					this.setCustomer(customerDetail, orders, customerItems);
 				} catch (e) {
 					this._customer = null;
 					this._customerChange$.next(true);
-					console.log(e);
+					console.log("customerService: could not get orders", e);
 				}
+				try {
+					customerItems = await this._customerItemService.getManyByIds(
+						customerDetail.customerItems as string[]
+					);
+				} catch (e) {
+					this._customer = null;
+					this._customerChange$.next(true);
+					console.log(
+						"customerService: could not get customerItems",
+						e
+					);
+				}
+
+				this.setCustomer(customerDetail, orders, customerItems);
 			});
 	}
 
