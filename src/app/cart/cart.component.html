@@ -22,16 +22,19 @@
 			<div class="row">
 				<div class="col-12">
 					<ngb-tabset>
-						<ngb-tab
-							*ngIf="haveCustomer"
-							id="customerOrderItemsTab"
-						>
+						<ngb-tab id="customerOrderItemsTab">
 							<ng-template ngbTabTitle>
 								<span
 									class="text-secondary"
 									i18n="@@cartOrderedItems"
-									>Ordered items</span
-								>
+									>Ordered items
+								</span>
+								<fa-icon
+									[spin]="true"
+									[icon]="'circle-notch'"
+									class="ml-2 text-secondary"
+									*ngIf="!haveCustomer"
+								></fa-icon>
 							</ng-template>
 
 							<ng-template ngbTabContent>
@@ -42,13 +45,19 @@
 								</div>
 							</ng-template>
 						</ngb-tab>
-						<ngb-tab *ngIf="haveCustomer">
+						<ngb-tab>
 							<ng-template ngbTabTitle>
 								<span
 									class="text-secondary"
 									i18n="@@cartCustomerItems"
 									>Customer items</span
 								>
+								<fa-icon
+									[spin]="true"
+									[icon]="'circle-notch'"
+									class="ml-2 text-secondary"
+									*ngIf="!haveCustomer"
+								></fa-icon>
 							</ng-template>
 
 							<ng-template ngbTabContent>
