@@ -138,38 +138,40 @@ export class CustomerOrderItemListService {
 		);
 
 		for (const order of orders) {
-			for (const orderItem of order.orderItems) {
-				if (order.handoutByDelivery || !order.byCustomer) {
-					continue;
-				}
+			if (order.orderItems) {
+				for (const orderItem of order.orderItems) {
+					if (order.handoutByDelivery || !order.byCustomer) {
+						continue;
+					}
 
-				if (orderItem.handout) {
-					continue;
-				}
+					if (orderItem.handout) {
+						continue;
+					}
 
-				if (orderItem.movedToOrder) {
-					continue;
-				}
+					if (orderItem.movedToOrder) {
+						continue;
+					}
 
-				if (
-					orderItem.type === "rent" ||
-					orderItem.type === "buy" ||
-					orderItem.type === "partly-payment"
-				) {
-					const item = await this._itemService.getById(
-						orderItem.item as string
-					);
-					customerOrderItems.push({
-						order: order,
-						orderItem: orderItem,
-						item: item
-					});
+					if (
+						orderItem.type === "rent" ||
+						orderItem.type === "buy" ||
+						orderItem.type === "partly-payment"
+					) {
+						const item = await this._itemService.getById(
+							orderItem.item as string
+						);
+						customerOrderItems.push({
+							order: order,
+							orderItem: orderItem,
+							item: item
+						});
+					}
 				}
 			}
 		}
 
-		this._customerOrderItems = customerOrderItems;
 		this._wait$.next(false);
+		this._customerOrderItems = customerOrderItems;
 		this._customerOrderItemList$.next(true);
 		return customerOrderItems;
 	}
