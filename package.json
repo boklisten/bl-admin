@@ -36,7 +36,7 @@
 		"@fortawesome/free-solid-svg-icons": "^5.2.0",
 		"@ng-bootstrap/ng-bootstrap": "^4.0.2",
 		"@swimlane/ngx-datatable": "^13.0.0",
-		"@wizardcoder/bl-connect": "^0.15.4",
+		"@wizardcoder/bl-connect": "^0.16.0",
 		"@wizardcoder/bl-login": "^0.7.8",
 		"@wizardcoder/bl-model": "^0.23.0",
 		"@wizardcoder/bl-reporter": "^0.3.5",
