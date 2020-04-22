@@ -1,26 +1,26 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {EmployeeGuardService} from '../auth/guards/employee-guard.service';
-import {BranchSelectComponent} from './branch-select/branch-select.component';
-import {BranchInfoComponent} from './branch-info/branch-info.component';
-import {BranchEditComponent} from './branch-edit/branch-edit.component';
-import {AdminGuardService} from '../auth/guards/admin-guard.service';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { EmployeeGuardService } from "../auth/guards/employee-guard.service";
+import { BranchSelectComponent } from "./branch-select/branch-select.component";
+import { BranchInfoComponent } from "./branch-info/branch-info.component";
+import { BranchEditComponent } from "./branch-edit/branch-edit.component";
+import { AdminGuardService } from "../auth/guards/admin-guard.service";
 
 const routes: Routes = [
 	{
-		path: 'branch',
+		path: "branch",
 		canActivate: [EmployeeGuardService],
 		children: [
 			{
-				path: 'select',
+				path: "select",
 				component: BranchSelectComponent
 			},
 			{
-				path: ':id/info',
+				path: ":id/info",
 				component: BranchInfoComponent
 			},
 			{
-				path: ':id/edit',
+				path: ":id/edit",
 				canActivate: [AdminGuardService],
 				component: BranchEditComponent
 			}
@@ -32,5 +32,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule]
 })
-export class BranchRoutingModule {
-}
+export class BranchRoutingModule {}

@@ -20,6 +20,7 @@ import { BranchGuardService } from "./branch/branch-guard.service";
 import { StorageService } from "./storage/storage.service";
 import { CustomerModule } from "./customer/customer.module";
 import { MessengerModule } from "./messenger/messenger.module";
+import { BookingModule } from "./booking/booking.module";
 
 import {
 	faUserFriends,
@@ -213,7 +214,8 @@ library.add(
 		PriceModule,
 		NgbDropdownModule,
 		InvoiceModule,
-		MessengerModule
+		MessengerModule,
+		BookingModule
 	],
 	providers: [
 		AuthLoginService,

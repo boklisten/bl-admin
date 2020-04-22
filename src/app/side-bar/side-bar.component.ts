@@ -75,6 +75,13 @@ export class SideBarComponent implements OnInit {
 				selected: false
 			},
 			{
+				name: "booking",
+				link: "booking",
+				icon: "calendar-alt",
+				permission: "customer",
+				selected: false
+			},
+			{
 				name: "database",
 				link: "database",
 				icon: "database",
