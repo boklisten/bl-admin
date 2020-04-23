@@ -1,0 +1,62 @@
+<div class="container">
+	<!--<div class="row">-->
+	<!--<div class="col">{{createBookingsForm.value | json}}</div>-->
+	<!--</div>-->
+	<form
+		[formGroup]="createBookingsForm"
+		(ngSubmit)="onSubmit(createBookingsForm.value)"
+	>
+		<div class="row">
+			<div class="col-auto">
+				<div class="input-group mb-3" id="from-date">
+					<div class="input-group-prepend">
+						<span class="input-group-text">
+							<fa-icon icon="calendar-alt"></fa-icon>
+						</span>
+					</div>
+					<input
+						type="date"
+						class="form-control"
+						placeholder="from dato"
+						formControlName="from"
+					/>
+				</div>
+			</div>
+			<div class="col-auto">
+				<div class="input-group mb-3" id="to-date">
+					<div class="input-group-prepend">
+						<span class="input-group-text">
+							<fa-icon icon="calendar-alt"></fa-icon>
+						</span>
+					</div>
+					<input
+						type="date"
+						class="form-control"
+						placeholder="to dato"
+						formControlName="to"
+					/>
+				</div>
+			</div>
+			<div class="col-auto">
+				<div class="input-group mb-3" id="intervall">
+					<div class="input-group-prepend">
+						<span class="input-group-text">
+							<fa-icon icon="clock"></fa-icon>
+						</span>
+					</div>
+					<input
+						type="number"
+						class="form-control"
+						placeholder="interval in minutes"
+						formControlName="interval"
+					/>
+				</div>
+			</div>
+			<div class="col">
+				<button class="btn btn-outline-success" type="submit">
+					Generate
+				</button>
+			</div>
+		</div>
+	</form>
+</div>
