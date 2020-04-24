@@ -1,0 +1,43 @@
+<div class="row justify-content-end mb-2">
+	<div class="col-auto">
+		<button
+			class="btn btn-outline-danger btn-sm"
+			(click)="removeSelected()"
+		>
+			remove selected
+		</button>
+	</div>
+</div>
+<table class="table table-sm table-hover table-striped">
+	<thead>
+		<tr>
+			<th scope="col">
+				<app-blc-button-check
+					[value]="selectedAll"
+					(valueChange)="onSelectAll()"
+				>
+				</app-blc-button-check>
+			</th>
+			<th scope="col" i18n="@@invoiceListFromDate">From</th>
+			<th scope="col" i18n="@@invoiceListTo">To</th>
+			<th scope="col" i18n="@@invoiceListTo">Customer</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr
+			*ngFor="let booking of bookings; let i = index"
+			(click)="select(booking.from.toString())"
+		>
+			<th>
+				<app-blc-button-check
+					[value]="selectedList[booking.from.toString()]"
+				>
+				</app-blc-button-check>
+			</th>
+			<td>{{booking.from | blDate:"timestamp"}}</td>
+			<td>{{ booking.to | blDate:"timestamp"}}</td>
+			<td>{{ booking.customer | customerName | async }}</td>
+		</tr>
+	</tbody>
+</table>

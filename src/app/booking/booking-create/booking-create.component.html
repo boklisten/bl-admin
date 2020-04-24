@@ -1,27 +1,9 @@
 <div class="container-fluid">
-	<!--<div class="row">-->
-	<!--<div class="col">{{createBookingsForm.value | json}}</div>-->
-	<!--</div>-->
 	<form
 		[formGroup]="createBookingsForm"
 		(ngSubmit)="onSubmit(createBookingsForm.value)"
 	>
 		<div class="row align-items-center justify-content-center">
-			<!--<div class="col-auto">-->
-			<!--<div class="input-group mb-3" id="from-date">-->
-			<!--<div class="input-group-prepend">-->
-			<!--<span class="input-group-text">-->
-			<!--<fa-icon icon="calendar-alt"></fa-icon>-->
-			<!--</span>-->
-			<!--</div>-->
-			<!--<input-->
-			<!--type="date"-->
-			<!--class="form-control"-->
-			<!--placeholder="from dato"-->
-			<!--formControlName="from"-->
-			<!--/>-->
-			<!--</div>-->
-			<!--</div>-->
 			<div class="col-auto">
 				<div class="input-group mb-3" id="to-date">
 					<div class="input-group-prepend">
@@ -76,4 +58,9 @@
 		</div>
 		<div class="row align-items-center"></div>
 	</form>
+	<div class="row" *ngIf="bookings.length > 0">
+		<div class="col">
+			<app-booking-list [bookings]="bookings"></app-booking-list>
+		</div>
+	</div>
 </div>
