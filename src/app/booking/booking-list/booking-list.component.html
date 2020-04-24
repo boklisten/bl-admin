@@ -18,6 +18,7 @@
 				>
 				</app-blc-button-check>
 			</th>
+			<th>#</th>
 			<th scope="col" i18n="@@invoiceListFromDate">From</th>
 			<th scope="col" i18n="@@invoiceListTo">To</th>
 			<th scope="col" i18n="@@invoiceListTo">Customer</th>
@@ -35,6 +36,7 @@
 				>
 				</app-blc-button-check>
 			</th>
+			<td>{{booking.id}}</td>
 			<td>{{booking.from | blDate:"timestamp"}}</td>
 			<td>{{ booking.to | blDate:"timestamp"}}</td>
 			<td>{{ booking.customer | customerName | async }}</td>

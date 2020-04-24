@@ -3,6 +3,7 @@ import { Booking } from "@wizardcoder/bl-model";
 import { BookingService } from "@wizardcoder/bl-connect";
 import { FormBuilder } from "@angular/forms";
 import { BookingCreateService } from "./booking-create.service";
+import { DateService } from "../../date/date.service";
 
 @Component({
 	selector: "app-booking-create",
@@ -19,7 +20,8 @@ export class BookingCreateComponent implements OnInit {
 	constructor(
 		private bookingService: BookingService,
 		private formBuilder: FormBuilder,
-		private bookingCreateService: BookingCreateService
+		private bookingCreateService: BookingCreateService,
+		private dateService: DateService
 	) {
 		this.fromHour = 0;
 		this.toHour = 0;
@@ -43,12 +45,34 @@ export class BookingCreateComponent implements OnInit {
 	}
 
 	public onSubmit(data) {
-		console.log(data);
-		this.bookings = this.bookingCreateService.generateBookings(
-			data.date,
-			data.fromHour,
-			data.toHour,
-			data.interval
-		);
+		this.bookingService
+			.get({
+				fresh: true,
+				query: "?from=>" + this.dateService.dateOnApiFormat(data.date)
+			})
+			.then(bookings => {
+				this.bookings = this.bookingCreateService.generateBookings(
+					data.date,
+					data.fromHour,
+					data.toHour,
+					data.interval,
+					bookings
+				);
+			})
+			.catch(e => {
+				console.log("error", e);
+			});
+	}
+
+	public async onPush() {
+		for (let booking of this.bookings) {
+			if (!booking.id) {
+				try {
+					await this.bookingService.add(booking);
+				} catch (e) {
+					console.log("could not add booking", e);
+				}
+			}
+		}
 	}
 }

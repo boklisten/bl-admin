@@ -58,6 +58,13 @@
 		</div>
 		<div class="row align-items-center"></div>
 	</form>
+	<div class="row">
+		<div class="col">
+			<button class="btn btn-outline-success" (click)="onPush()">
+				add to db
+			</button>
+		</div>
+	</div>
 	<div class="row" *ngIf="bookings.length > 0">
 		<div class="col">
 			<app-booking-list [bookings]="bookings"></app-booking-list>

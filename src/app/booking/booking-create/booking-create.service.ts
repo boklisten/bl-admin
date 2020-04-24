@@ -18,10 +18,13 @@ export class BookingCreateService {
 		date: Date,
 		fromTime: Time,
 		toTime: Time,
-		interval: number
+		interval: number,
+		alreadyAddedBookings: Booking[]
 	): Booking[] {
 		let branchId = this.branchStoreService.getBranchId();
-		let bookings: Booking[] = [];
+		let bookings: Booking[] = alreadyAddedBookings
+			? alreadyAddedBookings
+			: [];
 		let currentDate = moment(date)
 			.set("hour", fromTime.hour)
 			.set("minute", fromTime.minute);
@@ -31,12 +34,35 @@ export class BookingCreateService {
 			.set("minute", toTime.minute);
 
 		while (moment(currentDate).isBefore(end)) {
-			bookings.push({
-				from: currentDate.toDate(),
-				to: currentDate.add(interval, "minutes").toDate(),
-				customer: null,
-				branch: branchId
-			} as Booking);
+			let fromDate = currentDate.toDate();
+			let alreadyAdded: boolean;
+
+			for (let booking of alreadyAddedBookings) {
+				if (
+					moment(fromDate.toISOString()).isSame(
+						booking.from.toString()
+					) ||
+					moment(fromDate.toISOString()).isBetween(
+						booking.from.toString(),
+						booking.to.toString(),
+						"minutes"
+					)
+				) {
+					alreadyAdded = true;
+					currentDate.add(interval, "minutes");
+					break;
+				}
+			}
+
+			if (!alreadyAdded) {
+				bookings.push({
+					from: fromDate,
+					to: currentDate.add(interval, "minutes").toDate(),
+					customer: null,
+					branch: branchId
+				} as Booking);
+			}
+			alreadyAdded = false;
 		}
 
 		return bookings;
