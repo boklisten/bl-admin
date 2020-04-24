@@ -5,8 +5,8 @@ import { BookingRoutingModule } from "./booking-routing.module";
 import { BookingComponent } from "./booking.component";
 import { BookingCreateComponent } from "./booking-create/booking-create.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { FormsModule } from "@angular/forms";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
 	declarations: [BookingComponent, BookingCreateComponent],
@@ -14,8 +14,9 @@ import { ReactiveFormsModule } from "@angular/forms";
 		CommonModule,
 		BookingRoutingModule,
 		FontAwesomeModule,
-		//FormsModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		NgbTimepickerModule,
+		FormsModule
 	]
 })
 export class BookingModule {}
