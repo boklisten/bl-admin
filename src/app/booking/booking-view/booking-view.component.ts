@@ -33,6 +33,7 @@ export class BookingViewComponent implements OnInit {
 			this.branchId = this.branchStoreService.getBranchId();
 			this.getBookings(this.bookingDate);
 		});
+		this.bookingDate = new Date();
 	}
 
 	public onBookingDateChange(date: Date) {

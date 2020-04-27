@@ -17,6 +17,9 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col">{{bookingDate | blDate:"daymonth"}}</div>
+	</div>
 	<div class="row" *ngIf="wait">
 		<div class="col text-center">
 			<div class="alert alert-warning">
@@ -39,9 +42,12 @@
 			<table class="table table-sm table-hover table-striped">
 				<thead>
 					<tr>
-						<th scope="col" i18n="@@bookingViewFrom">From</th>
-						<th scope="col" i18n="@@bookingViewTo">To</th>
-						<th scope="col" i18n="@@bookingViewCustomer">
+						<th scope="col" i18n="@@bookingViewTime">Time</th>
+						<th
+							scope="col"
+							i18n="@@bookingViewCustomer"
+							class="text-center"
+						>
 							Customer
 						</th>
 					</tr>
@@ -49,9 +55,26 @@
 
 				<tbody>
 					<tr *ngFor="let booking of bookings; let i = index">
-						<td>{{booking.from | blDate:"time"}}</td>
-						<td>{{ booking.to | blDate:"time"}}</td>
-						<td>{{ booking.customer | customerName | async }}</td>
+						<td>
+							{{booking.from | blDate:"time"}}
+							<small class="text-muted">
+								<fa-icon
+									[icon]="'arrow-right'"
+									class="mr-2 ml-2"
+								></fa-icon>
+								{{ booking.to | blDate:"time"}}
+							</small>
+						</td>
+						<td class="text-center">
+							<span *ngIf="!booking.customer"> - </span>
+							<span
+								*ngIf="booking.customer"
+								[routerLink]="'/customer/' + booking.customer + '/detail'"
+								class="bl-link-black"
+							>
+								{{ booking.customer | customerName | async }}
+							</span>
+						</td>
 					</tr>
 				</tbody>
 			</table>
