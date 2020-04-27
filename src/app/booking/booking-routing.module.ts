@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { BookingComponent } from "./booking.component";
 import { EmployeeGuardService } from "../auth/guards/employee-guard.service";
 import { BookingCreateComponent } from "./booking-create/booking-create.component";
+import { BookingViewComponent } from "./booking-view/booking-view.component";
 
 const routes: Routes = [
 	{
@@ -13,6 +14,10 @@ const routes: Routes = [
 			{
 				path: "create",
 				component: BookingCreateComponent
+			},
+			{
+				path: "view",
+				component: BookingViewComponent
 			}
 		]
 	}

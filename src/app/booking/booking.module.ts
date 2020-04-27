@@ -9,12 +9,14 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { BookingListComponent } from "./booking-list/booking-list.component";
 import { BlCommonModule } from "../bl-common/bl-common.module";
+import { BookingViewComponent } from './booking-view/booking-view.component';
 
 @NgModule({
 	declarations: [
 		BookingComponent,
 		BookingCreateComponent,
-		BookingListComponent
+		BookingListComponent,
+		BookingViewComponent
 	],
 	imports: [
 		CommonModule,
