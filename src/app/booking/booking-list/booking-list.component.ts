@@ -31,13 +31,15 @@ export class BookingListComponent implements OnInit {
 
 	public removeSelected() {
 		for (let key in this.selectedList) {
-			for (let i = 0; i < this.bookings.length; i++) {
-				if (this.bookings[i].from.toString() === key) {
-					this.bookings.splice(i, 1);
-					break;
+			if (this.selectedList[key]) {
+				for (let i = 0; i < this.bookings.length; i++) {
+					if (this.bookings[i].from.toString() === key) {
+						this.bookings.splice(i, 1);
+						break;
+					}
 				}
+				this.selectedList[key] = null;
 			}
-			this.selectedList[key] = null;
 		}
 	}
 }

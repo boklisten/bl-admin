@@ -1,9 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { Booking } from "@wizardcoder/bl-model";
+import { Booking, BlApiNotFoundError } from "@wizardcoder/bl-model";
 import { BookingService } from "@wizardcoder/bl-connect";
 import { FormBuilder } from "@angular/forms";
 import { BookingCreateService } from "./booking-create.service";
 import { DateService } from "../../date/date.service";
+import { BranchStoreService } from "../../branch/branch-store.service";
+import * as moment from "moment";
 
 @Component({
 	selector: "app-booking-create",
@@ -21,7 +23,8 @@ export class BookingCreateComponent implements OnInit {
 		private bookingService: BookingService,
 		private formBuilder: FormBuilder,
 		private bookingCreateService: BookingCreateService,
-		private dateService: DateService
+		private dateService: DateService,
+		private branchStoreService: BranchStoreService
 	) {
 		this.fromHour = 0;
 		this.toHour = 0;
@@ -44,35 +47,45 @@ export class BookingCreateComponent implements OnInit {
 		});
 	}
 
-	public onSubmit(data) {
-		this.bookingService
-			.get({
+	public async onSubmit(data) {
+		let alreadyAddedBookings = [];
+
+		let fromDate = moment(data.date)
+			.set("hour", data.fromHour.hour)
+			.set("minute", data.fromHour.minute)
+			.subtract(2, "hours")
+			.toDate();
+
+		try {
+			alreadyAddedBookings = await this.bookingService.get({
 				fresh: true,
-				query: "?from=>" + this.dateService.dateOnApiFormat(data.date)
-			})
-			.then(bookings => {
-				this.bookings = this.bookingCreateService.generateBookings(
-					data.date,
-					data.fromHour,
-					data.toHour,
-					data.interval,
-					bookings
-				);
-			})
-			.catch(e => {
-				console.log("error", e);
+				query: "?from=>" + this.dateService.dateOnApiFormat(fromDate)
 			});
+		} catch (e) {}
+
+		this.bookings = this.bookingCreateService.generateBookings(
+			data.date,
+			data.fromHour,
+			data.toHour,
+			data.interval,
+			alreadyAddedBookings
+		);
 	}
 
 	public async onPush() {
+		let newBookings = [];
 		for (let booking of this.bookings) {
 			if (!booking.id) {
 				try {
-					await this.bookingService.add(booking);
+					const addedBooking = await this.bookingService.add(booking);
+					newBookings.push(addedBooking);
 				} catch (e) {
 					console.log("could not add booking", e);
 				}
+			} else {
+				newBookings.push(booking);
 			}
 		}
+		this.bookings = newBookings;
 	}
 }
