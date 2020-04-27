@@ -5,7 +5,10 @@ import * as moment from "moment";
 	name: "blDate"
 })
 export class BlDatePipe implements PipeTransform {
-	transform(dateString: string, format?: "time" | "timestamp" | "day"): any {
+	transform(
+		dateString: string,
+		format?: "time" | "timestamp" | "day" | "daymonth"
+	): any {
 		const date = new Date(dateString);
 
 		switch (format) {
