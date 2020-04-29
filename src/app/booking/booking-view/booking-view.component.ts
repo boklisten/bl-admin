@@ -14,7 +14,7 @@ export class BookingViewComponent implements OnInit {
 	public bookingDate: Date;
 	public bookings: Booking[];
 	private branchId: string;
-	private wait: boolean;
+	public wait: boolean;
 
 	constructor(
 		private bookingService: BookingService,

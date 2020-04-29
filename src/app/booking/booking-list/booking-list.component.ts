@@ -9,7 +9,7 @@ import { Booking } from "@wizardcoder/bl-model";
 export class BookingListComponent implements OnInit {
 	@Input() bookings: Booking[];
 	public selectedList = {};
-	private selectedAll: boolean;
+	public selectedAll: boolean;
 
 	constructor() {}
 
