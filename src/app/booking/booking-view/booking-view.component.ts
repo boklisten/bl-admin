@@ -60,7 +60,7 @@ export class BookingViewComponent implements OnInit {
 				query:
 					"?from=>" +
 					this.dateService.dateOnApiFormat(gtDate) +
-					"&to=<" +
+					"&from=<" +
 					this.dateService.dateOnApiFormat(ltDate) +
 					"&branch=" +
 					this.branchId
