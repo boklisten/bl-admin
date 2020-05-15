@@ -65,6 +65,8 @@ export class BookingCreateService {
 			alreadyAdded = false;
 		}
 
+		bookings.sort((a, b) => moment(a.from).unix() - moment(b.from).unix());
+
 		return bookings;
 	}
 }

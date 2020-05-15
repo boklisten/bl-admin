@@ -18,6 +18,7 @@ export class BookingCreateComponent implements OnInit {
 	public toHour: number;
 	public minuteStep: number;
 	public bookings: Booking[];
+	public branchId: string;
 
 	constructor(
 		private bookingService: BookingService,
@@ -30,6 +31,10 @@ export class BookingCreateComponent implements OnInit {
 		this.toHour = 0;
 		this.minuteStep = 5;
 		this.bookings = [];
+		this.branchId = this.branchStoreService.getBranchId();
+		this.branchStoreService.onBranchChange().subscribe(() => {
+			this.branchId = this.branchStoreService.getBranchId();
+		});
 	}
 
 	ngOnInit() {
@@ -56,10 +61,21 @@ export class BookingCreateComponent implements OnInit {
 			.subtract(2, "hours")
 			.toDate();
 
+		let toDate = moment(data.date)
+			.set("hour", data.toHour.hour)
+			.set("minute", data.toHour.minute)
+			.toDate();
+
 		try {
 			alreadyAddedBookings = await this.bookingService.get({
 				fresh: true,
-				query: "?from=>" + this.dateService.dateOnApiFormat(fromDate)
+				query:
+					"?from=>" +
+					this.dateService.dateOnApiFormat(fromDate) +
+					"&from=<" +
+					this.dateService.dateOnApiFormat(toDate) +
+					"&branch=" +
+					this.branchId
 			});
 		} catch (e) {}
 

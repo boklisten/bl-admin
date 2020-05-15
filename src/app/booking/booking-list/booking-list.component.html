@@ -18,9 +18,9 @@
 				>
 				</app-blc-button-check>
 			</th>
-			<th>#</th>
 			<th scope="col" i18n="@@invoiceListFromDate">From</th>
 			<th scope="col" i18n="@@invoiceListTo">To</th>
+			<th>Db</th>
 			<th scope="col" i18n="@@invoiceListTo">Customer</th>
 		</tr>
 	</thead>
@@ -36,9 +36,24 @@
 				>
 				</app-blc-button-check>
 			</th>
-			<td>{{booking.id}}</td>
 			<td>{{booking.from | blDate:"timestamp"}}</td>
 			<td>{{ booking.to | blDate:"timestamp"}}</td>
+			<td>
+				<fa-icon
+					icon="database"
+					class="text-success"
+					*ngIf="booking.id"
+					data-toggle="tooltip"
+					title="is uploaded in db"
+				></fa-icon>
+				<fa-icon
+					icon="database"
+					class="text-warning"
+					*ngIf="!booking.id"
+					data-toggle="tooltip"
+					title="not uploaded yet"
+				></fa-icon>
+			</td>
 			<td>{{ booking.customer | customerName | async }}</td>
 		</tr>
 	</tbody>
