@@ -5,6 +5,7 @@ import { EmployeeGuardService } from "../auth/guards/employee-guard.service";
 import { AdminGuardService } from "../auth/guards/admin-guard.service";
 import { BookingCreateComponent } from "./booking-create/booking-create.component";
 import { BookingViewComponent } from "./booking-view/booking-view.component";
+import { BookingListEditComponent } from "./booking-list-edit/booking-list-edit.component";
 
 const routes: Routes = [
 	{
@@ -25,6 +26,10 @@ const routes: Routes = [
 			{
 				path: "view",
 				component: BookingViewComponent
+			},
+			{
+				path: "edit",
+				component: BookingListEditComponent
 			}
 		]
 	}

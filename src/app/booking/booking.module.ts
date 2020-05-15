@@ -10,13 +10,17 @@ import { NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { BookingListComponent } from "./booking-list/booking-list.component";
 import { BlCommonModule } from "../bl-common/bl-common.module";
 import { BookingViewComponent } from './booking-view/booking-view.component';
+import { BookingListEditComponent } from './booking-list-edit/booking-list-edit.component';
+import { BookingDisplayComponent } from './booking-display/booking-display.component';
 
 @NgModule({
 	declarations: [
 		BookingComponent,
 		BookingCreateComponent,
 		BookingListComponent,
-		BookingViewComponent
+		BookingViewComponent,
+		BookingListEditComponent,
+		BookingDisplayComponent
 	],
 	imports: [
 		CommonModule,

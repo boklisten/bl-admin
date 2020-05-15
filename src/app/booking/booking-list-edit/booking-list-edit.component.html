@@ -1,0 +1,83 @@
+<div class="row">
+	<div class="col-6">
+		<div class="row justify-content-end mb-2 sticky-top bg-white p-2">
+			<div class="col-auto" *ngIf="bookings.length > 0">
+				<button
+					class="btn btn-outline-danger btn-sm"
+					(click)="removeSelected()"
+				>
+					<span *ngIf="!wait">remove selected</span>
+					<fa-icon
+						icon="circle-notch"
+						spin="true"
+						*ngIf="wait"
+					></fa-icon>
+				</button>
+			</div>
+		</div>
+		<div class="alert alert-warning text-center" *ngIf="wait">
+			<fa-icon icon="circle-notch" spin="true"></fa-icon>
+		</div>
+		<div
+			class="alert alert-secondary text-center"
+			*ngIf="bookings.length <= 0"
+		>
+			No bookings found
+		</div>
+		<table
+			class="table table-sm table-hover table-striped"
+			*ngIf="bookings.length > 0"
+		>
+			<thead>
+				<tr>
+					<th scope="col">
+						<app-blc-button-check
+							[value]="selectedAll"
+							(valueChange)="onSelectAll()"
+						>
+						</app-blc-button-check>
+					</th>
+					<th scope="col" i18n="@@invoiceListFromDate">From</th>
+					<th
+						scope="col"
+						i18n="@@invoiceListTo"
+						style="text-align: center"
+					>
+						Booked
+					</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr
+					*ngFor="let booking of bookings; let i = index"
+					[ngClass]="{'bg-info': activeBooking && activeBooking.id == booking.id}"
+				>
+					<th>
+						<app-blc-button-check
+							[value]="selectedList[booking.from.toString()]"
+							(click)="select(booking.from.toString())"
+						>
+						</app-blc-button-check>
+					</th>
+					<td (click)="setActive(booking)">
+						{{booking.from | blDate:"timestamp"}}
+					</td>
+					<td (click)="setActive(booking)" style="text-align: center">
+						<fa-icon
+							icon="check-circle"
+							class="text-success"
+							*ngIf="booking.booked"
+						></fa-icon>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-6">
+		<app-booking-display
+			[booking]="activeBooking"
+			(removed)="onRemove($event)"
+		></app-booking-display>
+	</div>
+</div>
