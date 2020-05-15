@@ -73,7 +73,7 @@ export class BookingListEditComponent implements OnInit {
 		}
 	}
 
-	onRemove(booking: Booking) {
+	onCancel(booking: Booking) {
 		this.setActive(null);
 		this.selectedList = {};
 		this.getBookings();

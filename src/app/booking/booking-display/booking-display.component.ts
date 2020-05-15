@@ -9,26 +9,26 @@ import { BookingService } from "@wizardcoder/bl-connect";
 })
 export class BookingDisplayComponent implements OnInit {
 	@Input() booking: Booking;
-	@Output() removed: EventEmitter<Booking>;
+	@Output() canceled: EventEmitter<Booking>;
 	public wait: boolean;
 
 	constructor(private bookingService: BookingService) {
-		this.removed = new EventEmitter<Booking>();
+		this.canceled = new EventEmitter<Booking>();
 	}
 
 	ngOnInit() {}
 
-	onRemove() {
+	onCancel() {
 		this.wait = true;
 		this.bookingService
-			.remove(this.booking.id)
+			.update(this.booking.id, { customer: null, booked: false })
 			.then(() => {
 				this.wait = false;
-				this.removed.emit(this.booking);
+				this.canceled.emit(this.booking);
 			})
-			.catch(() => {
+			.catch(e => {
 				this.wait = false;
-				console.log("could not remove");
+				console.log("could not cancel", e);
 			});
 	}
 }
