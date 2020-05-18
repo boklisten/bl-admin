@@ -51,6 +51,10 @@ export class BranchStoreService {
 		return this._currentBranch;
 	}
 
+	public haveBranch(): boolean {
+		return this._currentBranch !== null;
+	}
+
 	public getBranchId(): string {
 		if (!this._currentBranch) {
 			return null;

@@ -37,6 +37,7 @@ export class BranchItemStoreService {
 		}
 
 		this._branchStoreService.onBranchChange().subscribe(() => {
+			console.log("branch updated");
 			this._branch = this._branchStoreService.getCurrentBranch();
 
 			this.fetchBranchItems()
