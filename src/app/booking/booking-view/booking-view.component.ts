@@ -13,7 +13,7 @@ import { BranchStoreService } from "../../branch/branch-store.service";
 export class BookingViewComponent implements OnInit {
 	public bookingDate: Date;
 	public bookings: Booking[];
-	private branchId: string;
+	public branchId: string;
 	public wait: boolean;
 
 	constructor(
