@@ -55,6 +55,7 @@ export class CustomerItemListComponent implements OnInit {
 
 	getCustomerItems() {
 		this.wait = true;
+		this.customerItemsWithItem = [];
 		this._customerItemListService
 			.getCustomerItems()
 			.then(customerItemsWithItem => {

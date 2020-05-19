@@ -51,8 +51,8 @@ export class BookingListEditComponent implements OnInit {
 					(a, b) => moment(a.from).unix() - moment(b.from).unix()
 				);
 				this.bookings = bookings;
-				this.wait = false;
 				this.numberOfBooked = this.countNumberOfBooked(this.bookings);
+				this.wait = false;
 			})
 			.catch(() => {
 				this.wait = false;
