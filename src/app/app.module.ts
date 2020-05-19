@@ -23,6 +23,7 @@ import { MessengerModule } from "./messenger/messenger.module";
 import { BookingModule } from "./booking/booking.module";
 
 import {
+	faBars,
 	faUserFriends,
 	faExclamationCircle,
 	faStream,
@@ -186,7 +187,8 @@ library.add(
 	faPaperPlane,
 	faAtom,
 	faExclamationCircle,
-	faUserFriends
+	faUserFriends,
+	faBars
 );
 
 @NgModule({

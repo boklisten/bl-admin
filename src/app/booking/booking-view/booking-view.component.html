@@ -1,33 +1,20 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-			<div class="input-group mb-3" id="to-date">
-				<div class="input-group-prepend">
-					<span class="input-group-text">
-						<fa-icon icon="calendar-alt"></fa-icon>
-					</span>
-				</div>
-				<input
-					type="date"
-					class="form-control"
-					placeholder="date"
-					[(ngModel)]="bookingDate"
-					(ngModelChange)="onBookingDateChange($event)"
-				/>
-			</div>
+			<app-booking-time-picker
+				[branchId]="branchId"
+				(picked)="onBookingDateChange($event)"
+			></app-booking-time-picker>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col">{{bookingDate | blDate:"daymonth"}}</div>
-	</div>
-	<div class="row" *ngIf="wait">
+	<div class="row mt-2" *ngIf="wait">
 		<div class="col text-center">
 			<div class="alert alert-warning">
 				<fa-icon [icon]="'circle-notch'" [spin]="true"> </fa-icon>
 			</div>
 		</div>
 	</div>
-	<div class="row" *ngIf="bookings.length <= 0 && !wait">
+	<div class="row mt-2" *ngIf="!wait && bookingDate && bookings.length <= 0">
 		<div class="col">
 			<div
 				class="alert alert-secondary"
@@ -37,7 +24,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" *ngIf="bookings.length > 0">
+	<div class="row mt-2" *ngIf="bookings.length > 0">
 		<div class="col">
 			<table class="table table-sm table-hover table-striped">
 				<thead>
