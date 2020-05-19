@@ -16,6 +16,7 @@ export class BookingListEditComponent implements OnInit {
 	branchId: string;
 	activeBooking: Booking;
 	wait: boolean;
+	public numberOfBooked: number;
 
 	constructor(
 		private bookingService: BookingService,
@@ -23,6 +24,7 @@ export class BookingListEditComponent implements OnInit {
 	) {
 		this.selectedList = {};
 		this.bookings = [];
+		this.numberOfBooked = 0;
 	}
 
 	ngOnInit() {
@@ -40,6 +42,7 @@ export class BookingListEditComponent implements OnInit {
 		this.wait = true;
 		let query = "?branch=" + this.branchId;
 		this.bookings = [];
+		this.numberOfBooked = 0;
 
 		this.bookingService
 			.get({ query: query, fresh: true })
@@ -49,10 +52,19 @@ export class BookingListEditComponent implements OnInit {
 				);
 				this.bookings = bookings;
 				this.wait = false;
+				this.numberOfBooked = this.countNumberOfBooked(this.bookings);
 			})
 			.catch(() => {
 				this.wait = false;
 			});
+	}
+
+	private countNumberOfBooked(bookings: Booking[]): number {
+		let num = 0;
+		for (let booking of bookings) {
+			if (booking.booked) num++;
+		}
+		return num;
 	}
 
 	onSelectAll() {
