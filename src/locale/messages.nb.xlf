@@ -1437,33 +1437,31 @@ Egendefinert
         
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">14</context></context-group></trans-unit>
       <trans-unit id="cartOrderedItems" datatype="html">
-        <source>Ordered items</source><target state="final">Bestilte bøker</target>
+        <source>Ordered items
+								</source><target state="translated">Bestilte bøker</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">33</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">30</context></context-group></trans-unit>
       <trans-unit id="cartCustomerItems" datatype="html">
         <source>Customer items</source><target state="final">Kundens bøker</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">50</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">53</context></context-group></trans-unit>
       <trans-unit id="cartSearch" datatype="html">
         <source>Search</source><target state="final">Søk</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">66</context></context-group></trans-unit><trans-unit id="cartListSearchingForBook" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">75</context></context-group></trans-unit><trans-unit id="cartListSearchingForBook" datatype="html">
         <source>Searching</source><target state="final">Søker</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">38</context></context-group></trans-unit><trans-unit id="cartListCartIsEmpty" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">53</context></context-group></trans-unit><trans-unit id="cartListCartIsEmpty" datatype="html">
         <source>Cart is empty</source><target state="final">Handlekurven er tom</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">56</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">71</context></context-group></trans-unit>
       <trans-unit id="blConfirmButton" datatype="html">
         <source>Confirm</source><target state="final">Bekreft</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">71</context></context-group></trans-unit><trans-unit id="cartListTotalWithPartlyPayments" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">86</context></context-group></trans-unit><trans-unit id="cartListTotalWithPartlyPayments" datatype="html">
         <source>Total to pay including partly payments</source><target state="final">Totalt å betale inkludert delbetaling</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context>
-          <context context-type="linenumber">83</context>
-        </context-group>
-      </trans-unit><trans-unit id="cartListItemPayLater" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">98</context></context-group></trans-unit><trans-unit id="cartListItemPayLater" datatype="html">
         <source>pay later</source><target state="final">betal senere</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-amount/cart-list-item-amount.component.html</context><context context-type="linenumber">39</context></context-group></trans-unit><trans-unit id="cartItemAmountCustomerHaveAlreadyPayed" datatype="html">
@@ -2074,6 +2072,162 @@ Egendefinert
         <context-group purpose="location">
           <context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context>
           <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingView" datatype="html">
+        <source>View</source><target state="new">View</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingEdit" datatype="html">
+        <source>Edit</source><target state="new">Edit</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingCreate" datatype="html">
+        <source>Create</source><target state="new">Create</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingCreateGenerateButton" datatype="html">
+        <source>
+					Generate
+				</source><target state="new">
+					Generate
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-create/booking-create.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingCreateAddToDbButton" datatype="html">
+        <source>
+				add to db
+			</source><target state="new">
+				add to db
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-create/booking-create.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingListRemoveSelected" datatype="html">
+        <source>
+			remove selected
+		</source><target state="new">
+			remove selected
+		</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-list/booking-list.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingListFrom" datatype="html">
+        <source>From</source><target state="new">From</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-list/booking-list.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingListTo" datatype="html">
+        <source>To</source><target state="new">To</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-list/booking-list.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingListDb" datatype="html">
+        <source>Db</source><target state="new">Db</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-list/booking-list.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingListCustomer" datatype="html">
+        <source>Customer</source><target state="new">Customer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-list/booking-list.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingViewNoBookingsFound" datatype="html">
+        <source>
+				No bookings found
+			</source><target state="new">
+				No bookings found
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-view/booking-view.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingViewTime" datatype="html">
+        <source>Time</source><target state="new">Time</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-view/booking-view.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingViewCustomer" datatype="html">
+        <source>
+							Customer
+						</source><target state="new">
+							Customer
+						</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-view/booking-view.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingListEditRemoveSelected" datatype="html">
+        <source>remove selected</source><target state="new">remove selected</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-list-edit/booking-list-edit.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingListEditNoBookingsFound" datatype="html">
+        <source>
+			No bookings found
+		</source><target state="new">
+			No bookings found
+		</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-list-edit/booking-list-edit.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit><trans-unit id="invoiceListFromDate" datatype="html">
+        <source>
+						From
+					</source><target state="new">
+						From
+					</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-list-edit/booking-list-edit.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingListEditBooked" datatype="html">
+        <source>
+						Booked
+					</source><target state="new">
+						Booked
+					</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-list-edit/booking-list-edit.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingDisplayNotBooked" datatype="html">
+        <source>Not booked</source><target state="new">Not booked</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-display/booking-display.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingDisplayCancel" datatype="html">
+        <source>Cancel</source><target state="new">Cancel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-display/booking-display.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit><trans-unit id="bookingTimePickerChooseADate" datatype="html">
+        <source>
+		Choose a date
+	</source><target state="new">
+		Choose a date
+	</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/booking/booking-time-picker/booking-time-picker.component.html</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit><trans-unit id="messengerReminderModalShouldSendMessageTo" datatype="html">
         <source>
