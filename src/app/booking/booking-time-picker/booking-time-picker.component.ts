@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	Input,
+	Output,
+	EventEmitter,
+	OnChanges,
+	SimpleChanges
+} from "@angular/core";
 import { Booking } from "@wizardcoder/bl-model";
 import { BranchService } from "@wizardcoder/bl-connect";
 import * as moment from "moment";
@@ -18,7 +26,18 @@ export class BookingTimePickerComponent implements OnInit {
 		this.picked = new EventEmitter<Date>();
 	}
 
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes["branchId"]) {
+			this.getBookingDates();
+		}
+	}
+
 	ngOnInit() {
+		if (this.branchId) this.getBookingDates();
+	}
+
+	private getBookingDates() {
+		this.pick(null);
 		this.branchService
 			.getWithOperation(this.branchId, "booking-dates")
 			.then((bookingDates: any[]) => {

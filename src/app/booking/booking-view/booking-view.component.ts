@@ -27,13 +27,11 @@ export class BookingViewComponent implements OnInit {
 
 	ngOnInit() {
 		this.branchId = this.branchStoreService.getBranchId();
-		this.getBookings(new Date());
+		this.bookingDate = null;
 
 		this.branchStoreService.onBranchChange().subscribe(() => {
 			this.branchId = this.branchStoreService.getBranchId();
-			this.getBookings(this.bookingDate);
 		});
-		this.bookingDate = null;
 	}
 
 	public onBookingDateChange(date: Date) {
