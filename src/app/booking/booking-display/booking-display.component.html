@@ -19,7 +19,7 @@
 						icon="times-circle"
 						class="text-secondary mr-2"
 					></fa-icon>
-					<span>Not booked</span>
+					<span i18n="@@bookingDisplayNotBooked">Not booked</span>
 				</span>
 				<span
 					*ngIf="booking.customer"
@@ -36,7 +36,9 @@
 					class="btn btn-outline-danger btn-sm"
 					(click)="onCancel()"
 				>
-					<span *ngIf="!wait">Cancel</span>
+					<span *ngIf="!wait" i18n="@@bookingDisplayCancel"
+						>Cancel</span
+					>
 					<fa-icon
 						icon="circle-notch"
 						spin="true"

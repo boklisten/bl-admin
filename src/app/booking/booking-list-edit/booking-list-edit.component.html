@@ -34,7 +34,9 @@
 					class="btn btn-outline-danger btn-sm"
 					(click)="removeSelected()"
 				>
-					<span *ngIf="!wait">remove selected</span>
+					<span *ngIf="!wait" i18n="@@bookingListEditRemoveSelected"
+						>remove selected</span
+					>
 					<fa-icon
 						icon="circle-notch"
 						spin="true"
@@ -49,6 +51,7 @@
 		<div
 			class="alert alert-secondary text-center"
 			*ngIf="bookings.length <= 0"
+			i18n="@@bookingListEditNoBookingsFound"
 		>
 			No bookings found
 		</div>
@@ -65,10 +68,16 @@
 						>
 						</app-blc-button-check>
 					</th>
-					<th scope="col" i18n="@@invoiceListFromDate">From</th>
 					<th
 						scope="col"
-						i18n="@@invoiceListTo"
+						i18n="@@invoiceListFromDate"
+						i18n="@@bookingListEditFrom"
+					>
+						From
+					</th>
+					<th
+						scope="col"
+						i18n="@@bookingListEditBooked"
 						style="text-align: center"
 					>
 						Booked
