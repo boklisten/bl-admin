@@ -9,10 +9,10 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { BookingListComponent } from "./booking-list/booking-list.component";
 import { BlCommonModule } from "../bl-common/bl-common.module";
-import { BookingViewComponent } from './booking-view/booking-view.component';
-import { BookingListEditComponent } from './booking-list-edit/booking-list-edit.component';
-import { BookingDisplayComponent } from './booking-display/booking-display.component';
-import { BookingTimePickerComponent } from './booking-time-picker/booking-time-picker.component';
+import { BookingViewComponent } from "./booking-view/booking-view.component";
+import { BookingListEditComponent } from "./booking-list-edit/booking-list-edit.component";
+import { BookingDisplayComponent } from "./booking-display/booking-display.component";
+import { BookingTimePickerComponent } from "./booking-time-picker/booking-time-picker.component";
 
 @NgModule({
 	declarations: [
@@ -32,6 +32,7 @@ import { BookingTimePickerComponent } from './booking-time-picker/booking-time-p
 		NgbTimepickerModule,
 		FormsModule,
 		BlCommonModule
-	]
+	],
+	exports: [BookingViewComponent, BookingListEditComponent]
 })
 export class BookingModule {}

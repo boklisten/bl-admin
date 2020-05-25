@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Booking } from "@wizardcoder/bl-model";
 import { BookingService } from "@wizardcoder/bl-connect";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
 	selector: "app-booking-display",
@@ -11,12 +12,18 @@ export class BookingDisplayComponent implements OnInit {
 	@Input() booking: Booking;
 	@Output() canceled: EventEmitter<Booking>;
 	public wait: boolean;
+	public isAdmin: boolean;
 
-	constructor(private bookingService: BookingService) {
+	constructor(
+		private bookingService: BookingService,
+		private authService: AuthService
+	) {
 		this.canceled = new EventEmitter<Booking>();
 	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.isAdmin = this.authService.isAdmin();
+	}
 
 	onCancel() {
 		this.wait = true;

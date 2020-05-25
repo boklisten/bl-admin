@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Booking } from "@wizardcoder/bl-model";
 import { BookingService } from "@wizardcoder/bl-connect";
 import { BranchStoreService } from "../../branch/branch-store.service";
@@ -10,6 +10,7 @@ import * as moment from "moment";
 	styleUrls: ["./booking-list-edit.component.scss"]
 })
 export class BookingListEditComponent implements OnInit {
+	@Input() customerId: string;
 	bookings: Booking[];
 	selectedList: any;
 	selectedAll: boolean;
@@ -40,7 +41,9 @@ export class BookingListEditComponent implements OnInit {
 
 	private getBookings() {
 		this.wait = true;
+
 		let query = "?branch=" + this.branchId;
+		query += this.customerId ? "&customer=" + this.customerId : "";
 		this.bookings = [];
 		this.numberOfBooked = 0;
 

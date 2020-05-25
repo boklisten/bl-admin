@@ -33,6 +33,7 @@
 				<button
 					class="btn btn-outline-danger btn-sm"
 					(click)="removeSelected()"
+					*ngIf="!customerId"
 				>
 					<span *ngIf="!wait" i18n="@@bookingListEditRemoveSelected"
 						>remove selected</span
@@ -61,7 +62,7 @@
 		>
 			<thead>
 				<tr>
-					<th scope="col">
+					<th scope="col" *ngIf="!customerId">
 						<app-blc-button-check
 							[value]="selectedAll"
 							(valueChange)="onSelectAll()"
@@ -90,7 +91,7 @@
 					*ngFor="let booking of bookings; let i = index"
 					[ngClass]="{'bg-info': activeBooking && activeBooking.id == booking.id}"
 				>
-					<th>
+					<th *ngIf="!customerId">
 						<app-blc-button-check
 							[value]="selectedList[booking.from.toString()]"
 							(click)="select(booking.from.toString())"
