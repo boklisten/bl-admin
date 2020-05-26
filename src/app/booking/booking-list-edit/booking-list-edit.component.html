@@ -69,12 +69,13 @@
 						>
 						</app-blc-button-check>
 					</th>
+					<th scope="col" i18n="@@bookingListEditFrom">From</th>
 					<th
 						scope="col"
-						i18n="@@invoiceListFromDate"
-						i18n="@@bookingListEditFrom"
+						i18n="@@bookingListEditBranch"
+						*ngIf="customerId"
 					>
-						From
+						Branch
 					</th>
 					<th
 						scope="col"
@@ -100,6 +101,9 @@
 					</th>
 					<td (click)="setActive(booking)">
 						{{booking.from | blDate:"timestamp"}}
+					</td>
+					<td *ngIf="customerId">
+						{{booking.branch | branchName | async }}
 					</td>
 					<td (click)="setActive(booking)" style="text-align: center">
 						<fa-icon

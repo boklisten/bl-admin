@@ -42,8 +42,9 @@ export class BookingListEditComponent implements OnInit {
 	private getBookings() {
 		this.wait = true;
 
-		let query = "?branch=" + this.branchId;
-		query += this.customerId ? "&customer=" + this.customerId : "";
+		let query = this.customerId
+			? "?customer=" + this.customerId
+			: "?branch=" + this.branchId;
 		this.bookings = [];
 		this.numberOfBooked = 0;
 
