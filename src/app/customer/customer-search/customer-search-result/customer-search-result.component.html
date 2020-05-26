@@ -1,24 +1,46 @@
-
-<app-bl-common-alert [type]="'warning'" [text]="warningText" *ngIf="warningText" (exit)="warningText = null"></app-bl-common-alert>
+<app-bl-common-alert
+	[type]="'warning'"
+	[text]="warningText"
+	*ngIf="warningText"
+	(exit)="warningText = null"
+></app-bl-common-alert>
 
 <div class="row" *ngIf="userDetails">
 	<div class="col-12">
 		<div class="list-group">
-			<div class="list-group-item list-group-item-action bl-customer-search-result-item" *ngFor="let userDetail of userDetails" (click)="onCustomerClick(userDetail)">
+			<div
+				class="list-group-item list-group-item-action bl-customer-search-result-item"
+				*ngFor="let userDetail of userDetails"
+				(click)="onCustomerClick(userDetail)"
+			>
 				<div class="row justify-content-between">
 					<div class="col-auto">
-						<fa-icon [icon]="'user'" class="mr-1"></fa-icon> {{userDetail.name}}
+						<fa-icon [icon]="'user'" class="mr-1"></fa-icon>
+						{{userDetail.name}}
 					</div>
 				</div>
 				<div class="row justify-content-between text-secondary">
 					<div class="col-auto">
-						<small><fa-icon [icon]="'address-card'" class="mr-1"></fa-icon> {{userDetail.address}} {{userDetail.postCode}} {{userDetail.postCity}}</small>
+						<small
+							><fa-icon
+								[icon]="'address-card'"
+								class="mr-1"
+							></fa-icon>
+							{{userDetail.address}} {{userDetail.postCode}}
+							{{userDetail.postCity}}</small
+						>
 					</div>
 					<div class="col-auto">
-						<small><fa-icon [icon]="'at'" class="mr-1"></fa-icon> {{userDetail.email}}</small>
+						<small
+							><fa-icon [icon]="'at'" class="mr-1"></fa-icon>
+							{{userDetail.email}}</small
+						>
 					</div>
 					<div class="col-auto">
-						<small><fa-icon [icon]="'phone'" class="mr-1"></fa-icon> {{userDetail.phone}}</small>
+						<small
+							><fa-icon [icon]="'phone'" class="mr-1"></fa-icon>
+							{{userDetail.phone}}</small
+						>
 					</div>
 				</div>
 			</div>

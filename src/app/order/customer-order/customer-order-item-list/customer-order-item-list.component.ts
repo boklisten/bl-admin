@@ -33,21 +33,26 @@ export class CustomerOrderItemListComponent implements OnInit {
 		private _customerService: CustomerService,
 		private _deliveryService: DeliveryService,
 		private _branchStoreService: BranchStoreService,
-		private _customerOrderItemListService: CustomerOrderItemListService,
-		private _orderService: OrderService
+		private _customerOrderItemListService: CustomerOrderItemListService
 	) {
 		this.customerOrderItems = [];
 		this.noOrderItemsText = "Customer has no ordered items";
 	}
 
 	ngOnInit() {
-		this.currentBranchId = this._branchStoreService.getCurrentBranch().id;
-
-		if (this._customerService.haveCustomer()) {
-			this.customerDetail = this._customerService.get().detail;
-		}
+		this.wait = true;
+		this._customerOrderItemListService.fetchOrderedItems();
+		//.then(orderedItems => {
+		//this.customerOrderItems = orderedItems;
+		//});
 
 		this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
+
+		this.currentBranchId = this._branchStoreService.getCurrentBranch().id;
+
+		this._customerService.onCustomerChange().subscribe(() => {
+			//this.customerOrderItems = [];
+		});
 
 		this._customerOrderItemListService
 			.onWait()
@@ -65,12 +70,7 @@ export class CustomerOrderItemListComponent implements OnInit {
 				this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
 			});
 
-		this._customerOrderItemListService
-			.fetchOrderedItems()
-			.then(customerOrderItems => {
-				//this.customerOrderItems = customerOrderItems;
-			})
-			.catch(() => {});
+		//this.customerOrderItems = this._customerOrderItemListService.fetchOrderedItems(
 	}
 
 	public async haveDelivery(customerOrderItem: {

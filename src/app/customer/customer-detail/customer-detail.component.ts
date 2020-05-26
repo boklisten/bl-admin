@@ -3,7 +3,6 @@ import { ActivatedRoute, ParamMap, Params } from "@angular/router";
 import { UserDetailService } from "@wizardcoder/bl-connect";
 import { BlApiError, UserDetail } from "@wizardcoder/bl-model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { V } from "@angular/core/src/render3";
 import { CustomerDetailModalComponent } from "./customer-detail-modal/customer-detail-modal.component";
 import { CustomerDetailService } from "./customer-detail.service";
 import { AuthService } from "../../auth/auth.service";
@@ -16,7 +15,7 @@ import { AuthService } from "../../auth/auth.service";
 export class CustomerDetailComponent implements OnInit {
 	public customerDetail: UserDetail;
 	public showUserDetail: boolean;
-	private _currentId: string;
+	public _currentId: string;
 	public customerDetailUpdated: boolean;
 	public wait: boolean;
 	public warningText: string;
@@ -32,19 +31,22 @@ export class CustomerDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.customerDetail = null;
+
 		this._route.params.subscribe((params: Params) => {
 			this._currentId = params["id"];
 
 			if (this._currentId) {
-				this.getUserDetails();
+				this.getCustomerDetails();
 			}
 		});
-
+		/*
 		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
 			this.customerDetail = this._customerDetailService.getCustomerDetail();
 			this.warningText = null;
 			this.wait = false;
 		});
+    */
 	}
 
 	public onUserDetailUpdated() {
@@ -55,7 +57,7 @@ export class CustomerDetailComponent implements OnInit {
 		return this._authService.isAdmin();
 	}
 
-	private getUserDetails() {
+	private getCustomerDetails() {
 		this.wait = true;
 		this.warningText = null;
 		this._customerDetailService
@@ -63,9 +65,12 @@ export class CustomerDetailComponent implements OnInit {
 			.then((customerDetail: UserDetail) => {
 				this.wait = false;
 				this.customerDetail = customerDetail;
+
+				/*
 				this._customerDetailService.setCustomerDetail(
 					this.customerDetail
 				);
+        */
 			})
 			.catch(() => {
 				this.warningText = "could not get customer details";

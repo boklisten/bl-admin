@@ -35,6 +35,7 @@ export class CustomerOrderListComponent implements OnInit {
 	fetchCustomerOrders() {
 		this.wait = true;
 		this.warningText = "";
+		this.customerOrders = [];
 		this._orderService
 			.getManyByIds(this.customerDetail.orders as string[])
 			.then((orders: Order[]) => {

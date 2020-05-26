@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { BranchStoreService } from "../../../branch/branch-store.service";
-import { CustomerService } from "../../../customer/customer.service";
 import {
 	DeliveryService,
 	ItemService,
@@ -10,6 +9,7 @@ import { Item, Order, OrderItem } from "@wizardcoder/bl-model";
 import { CartService } from "../../../cart/cart.service";
 import { Subject } from "rxjs/internal/Subject";
 import { Observable } from "rxjs/internal/Observable";
+import { CustomerDetailService } from "../../../customer/customer-detail/customer-detail.service";
 
 @Injectable({
 	providedIn: "root"
@@ -28,15 +28,16 @@ export class CustomerOrderItemListService {
 		private _orderService: OrderService,
 		private _itemService: ItemService,
 		private _cartService: CartService,
-		private _customerService: CustomerService
+		private _customerDetailService: CustomerDetailService
 	) {
-		this._customerOrderItems = [];
-		this.onCustomerChange();
-		this.onCartConfirmed();
 		this._customerOrderItemList$ = new Subject<boolean>();
 		this._wait$ = new Subject<boolean>();
 
-		if (this._customerService.haveCustomer()) {
+		this._customerOrderItems = [];
+		this.onCustomerChange();
+		this.onCartConfirmed();
+
+		if (this._customerDetailService.haveCustomerDetail()) {
 			this.fetchOrderedItems()
 				.then(customerOrderItems => {
 					this._customerOrderItems = customerOrderItems;
@@ -51,13 +52,15 @@ export class CustomerOrderItemListService {
 	}
 
 	private onCustomerChange() {
-		this._customerService.onCustomerChange().subscribe(() => {
+		this._customerOrderItems = [];
+
+		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
 			this.fetchOrderedItems()
 				.then(customerOrderItems => {
 					this._customerOrderItems = customerOrderItems;
-					this._customerOrderItemList$.next(true);
 				})
 				.catch(err => {
+					this._wait$.next(false);
 					console.log(
 						"CustomerOrderItemListService: could not get customer order items"
 					);
@@ -128,10 +131,9 @@ export class CustomerOrderItemListService {
 		{ orderItem: OrderItem; order: Order; item: Item }[]
 	> {
 		this._customerOrderItems = [];
-		// this._customerOrderItemList$.next(true);
 		const customerOrderItems = [];
 		this._wait$.next(true);
-		const customerDetail = this._customerService.getCustomerDetail();
+		const customerDetail = this._customerDetailService.getCustomerDetail();
 		const orders = await this._orderService.getManyByIds(
 			customerDetail.orders as string[],
 			{ fresh: true }

@@ -6,6 +6,7 @@ import { Customer } from "../customer/customer";
 import { s } from "@angular/core/src/render3";
 import { UserService } from "../user/user.service";
 import { CartService } from "../cart/cart.service";
+import { CustomerDetailService } from "../customer/customer-detail/customer-detail.service";
 
 @Component({
 	selector: "app-side-bar",
@@ -28,7 +29,8 @@ export class SideBarComponent implements OnInit {
 		private _customerService: CustomerService,
 		private _router: Router,
 		private _cartService: CartService,
-		private _userService: UserService
+		private _userService: UserService,
+		private _customerDetailService: CustomerDetailService
 	) {
 		this.sidebarLinks = [
 			{
@@ -108,13 +110,13 @@ export class SideBarComponent implements OnInit {
 			}
 		});
 
-		this._customerService.onCustomerChange().subscribe(() => {
-			if (this._customerService.haveCustomer()) {
+		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
+			if (this._customerDetailService.getCustomerDetail()) {
 				for (const sidebarLink of this.sidebarLinks) {
 					if (sidebarLink.name === "customer") {
 						sidebarLink.link =
 							"customer/" +
-							this._customerService.get().detail.id +
+							this._customerDetailService.getCustomerDetail().id +
 							"/detail";
 						sidebarLink.hide = false;
 						this.hideNoPermissionLinks();

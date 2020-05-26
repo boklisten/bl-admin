@@ -1,11 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Item, Order, UserDetail } from "@wizardcoder/bl-model";
-import { CustomerService } from "../customer/customer.service";
-import { ItemService } from "@wizardcoder/bl-connect";
+import { UserDetail } from "@wizardcoder/bl-model";
 import { CartService } from "./cart.service";
-import { tick } from "@angular/core/testing";
-import { CartItemSearchService } from "./cart-item-search/cart-item-search.service";
+import { CustomerDetailService } from "../customer/customer-detail/customer-detail.service";
 
 @Component({
 	selector: "app-cart",
@@ -19,34 +15,25 @@ export class CartComponent implements OnInit {
 	public customerDetail: UserDetail;
 
 	constructor(
-		private _customerService: CustomerService,
-		private _itemService: ItemService,
 		private _cartService: CartService,
-		private _cartItemSearchService: CartItemSearchService
+		private _customerDetailService: CustomerDetailService
 	) {
 		this.haveCustomer = false;
 	}
 
 	ngOnInit() {
-		this.haveCustomer = this._customerService.haveCustomer();
-		this.setCustomerDetail();
-		this._customerService.onCustomerChange().subscribe(() => {
-			this.haveCustomer = this._customerService.haveCustomer();
-			this.setCustomerDetail();
+		this.haveCustomer = this._customerDetailService.haveCustomerDetail();
 
-			/*
-			this._itemService.get().then((items: Item[]) => {
-				this._cartService.add(items[0]);
-				this._cartService.add(items[1]);
-			});
-			*/
+		this.setCustomerDetail();
+
+		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
+			this.haveCustomer = this._customerDetailService.haveCustomerDetail();
+			this.setCustomerDetail();
 		});
 	}
 
 	setCustomerDetail() {
-		if (this._customerService.haveCustomer()) {
-			this.customerDetail = this._customerService.get().detail;
-		}
+		this.customerDetail = this._customerDetailService.getCustomerDetail();
 	}
 
 	public onCartConfirmed() {

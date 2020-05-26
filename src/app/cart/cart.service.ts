@@ -39,18 +39,19 @@ export class CartService {
 		private _customerService: CustomerService,
 		private _branchStoreService: BranchStoreService,
 		private _cartHelperService: CartHelperService,
-		private _branchItemHelperService: BranchItemHelperService
+		private _branchItemHelperService: BranchItemHelperService,
+		private _customerDetailService: CustomerDetailService
 	) {
 		this._cart = [];
 		this._cartChange$ = new Subject<boolean>();
 		this._cartConfirm$ = new Subject<boolean>();
 		this._notificationSettings = { email: true };
 
-		if (this._customerService.haveCustomer()) {
-			this._customerDetailId = this._customerService.get().detail.id;
+		if (this._customerDetailService.getCustomerDetail()) {
+			this._customerDetailId = this._customerDetailService.getCustomerDetail().id;
 		}
 
-		this.onCustomerChange();
+		this.onCustomerDetailChange();
 
 		this._branchStoreService.onBranchChange().subscribe(() => {
 			this.clear();
@@ -260,17 +261,17 @@ export class CartService {
 		return partlyPaymentTotals;
 	}
 
-	private onCustomerChange() {
-		this._customerService.onCustomerChange().subscribe(() => {
+	private onCustomerDetailChange() {
+		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
 			if (this._customerService.haveCustomer()) {
 				if (
 					this._customerDetailId &&
-					this._customerService.get().detail.id ===
+					this._customerDetailService.getCustomerDetail().id ===
 						this._customerDetailId
 				) {
 					return;
 				} else {
-					this._customerDetailId = this._customerService.get().detail.id;
+					this._customerDetailId = this._customerDetailService.getCustomerDetail().id;
 					this.clear();
 				}
 			} else {

@@ -33,6 +33,10 @@ export class CustomerDetailService {
 		}
 	}
 
+	public haveCustomerDetail(): boolean {
+		return this.getCustomerDetail() ? true : false;
+	}
+
 	public reloadCustomerDetail() {
 		if (!this._currentCustomerDetail) {
 			return;
@@ -63,16 +67,19 @@ export class CustomerDetailService {
 	}
 
 	public fetchCustomerDetail(id: string): Promise<UserDetail> {
+		/*
 		if (
 			this._currentCustomerDetail &&
 			id === this._currentCustomerDetail.id
 		) {
 			return Promise.resolve(this._currentCustomerDetail);
 		}
+    */
 
 		return this._userDetailService
 			.getById(id, { fresh: true })
 			.then((customerDetail: UserDetail) => {
+				this.setCustomerDetail(customerDetail);
 				return customerDetail;
 			})
 			.catch((blApiError: BlApiError) => {
