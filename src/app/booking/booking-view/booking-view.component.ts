@@ -68,6 +68,10 @@ export class BookingViewComponent implements OnInit {
 			this.bookings = [];
 		}
 
+		this.bookings.sort(
+			(a, b) => moment(a.from).unix() - moment(b.from).unix()
+		);
+
 		this.wait = false;
 	}
 }
