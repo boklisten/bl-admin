@@ -37,7 +37,6 @@ export class BranchItemStoreService {
 		}
 
 		this._branchStoreService.onBranchChange().subscribe(() => {
-			console.log("branch updated");
 			this._branch = this._branchStoreService.getCurrentBranch();
 
 			this.fetchBranchItems()
@@ -57,7 +56,7 @@ export class BranchItemStoreService {
 
 	public fetchBranchItems(): Promise<boolean> {
 		return this._branchItemService
-			.getManyByIds(this._branch.branchItems as string[])
+			.get({ query: `?branch=${this._branch.id}` })
 			.then((branchItems: BranchItem[]) => {
 				this._branchItems = branchItems;
 				this._branchItemChange$.next(true);
