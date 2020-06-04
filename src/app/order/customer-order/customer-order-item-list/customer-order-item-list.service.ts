@@ -10,6 +10,7 @@ import { CartService } from "../../../cart/cart.service";
 import { Subject } from "rxjs/internal/Subject";
 import { Observable } from "rxjs/internal/Observable";
 import { CustomerDetailService } from "../../../customer/customer-detail/customer-detail.service";
+import { CustomerOrderService } from "../customer-order.service";
 
 @Injectable({
 	providedIn: "root"
@@ -22,13 +23,15 @@ export class CustomerOrderItemListService {
 	}[];
 	private _customerOrderItemList$: Subject<boolean>;
 	private _wait$: Subject<boolean>;
+	private fetching: boolean;
 
 	constructor(
 		private _branchStoreService: BranchStoreService,
 		private _orderService: OrderService,
 		private _itemService: ItemService,
 		private _cartService: CartService,
-		private _customerDetailService: CustomerDetailService
+		private _customerDetailService: CustomerDetailService,
+		private _customerOrderService: CustomerOrderService
 	) {
 		this._customerOrderItemList$ = new Subject<boolean>();
 		this._wait$ = new Subject<boolean>();
@@ -36,40 +39,35 @@ export class CustomerOrderItemListService {
 		this._customerOrderItems = [];
 		this.onCustomerChange();
 		this.onCartConfirmed();
-
-		if (this._customerDetailService.haveCustomerDetail()) {
-			this.fetchOrderedItems()
-				.then(customerOrderItems => {
-					this._customerOrderItems = customerOrderItems;
-				})
-				.catch(err => {
-					console.log(
-						"CustomerOrderItemListService: could not get customer order items",
-						err
-					);
-				});
-		}
 	}
 
 	private onCustomerChange() {
-		this._customerOrderItems = [];
-
 		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
-			this.fetchOrderedItems()
-				.then(customerOrderItems => {
-					this._customerOrderItems = customerOrderItems;
-				})
-				.catch(err => {
-					this._wait$.next(false);
-					console.log(
-						"CustomerOrderItemListService: could not get customer order items"
-					);
-				});
+			this.fetchOrdersIfCustomer();
 		});
 	}
 
 	onWait(): Observable<boolean> {
 		return this._wait$.asObservable();
+	}
+
+	public reload() {
+		this.fetchOrdersIfCustomer();
+	}
+
+	private fetchOrdersIfCustomer() {
+		this._customerOrderItems = [];
+		if (
+			this._customerDetailService.haveCustomerDetail() &&
+			!this.fetching
+		) {
+			this.fetchOrderedItems()
+				.then(customerOrderItems => {
+					this._customerOrderItems = customerOrderItems;
+					this._customerOrderItemList$.next(true);
+				})
+				.catch(e => {});
+		}
 	}
 
 	public onCustomerOrderItemListChange() {
@@ -131,12 +129,17 @@ export class CustomerOrderItemListService {
 		{ orderItem: OrderItem; order: Order; item: Item }[]
 	> {
 		this._customerOrderItems = [];
+
+		this.fetching = true;
 		const customerOrderItems = [];
 		this._wait$.next(true);
 		const customerDetail = this._customerDetailService.getCustomerDetail();
-		const orders = await this._orderService.get({
-			query: `?customer=${customerDetail.id}`
-		});
+
+		if (!customerDetail) {
+			throw new Error("no customer detail");
+		}
+
+		const orders = await this._customerOrderService.getCustomerOrders();
 
 		for (const order of orders) {
 			if (order.orderItems) {
@@ -174,6 +177,7 @@ export class CustomerOrderItemListService {
 		this._wait$.next(false);
 		this._customerOrderItems = customerOrderItems;
 		this._customerOrderItemList$.next(true);
+		this.fetching = false;
 		return customerOrderItems;
 	}
 }
