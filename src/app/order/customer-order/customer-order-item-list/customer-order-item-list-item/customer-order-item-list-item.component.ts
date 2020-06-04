@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Delivery, Item, Order, OrderItem } from "@wizardcoder/bl-model";
+import { Delivery, Order, OrderItem } from "@wizardcoder/bl-model";
 import { DeliveryService } from "@wizardcoder/bl-connect";
 import { BranchStoreService } from "../../../../branch/branch-store.service";
 
@@ -12,11 +12,11 @@ export class CustomerOrderItemListItemComponent implements OnInit {
 	@Input() customerOrderItem: {
 		orderItem: OrderItem;
 		order: Order;
-		item: Item;
 	};
 	public delivery: Delivery;
 	public haveDelivery: boolean;
 	public currentBranchId: string;
+	public wait: boolean;
 
 	constructor(
 		private _deliveryService: DeliveryService,
@@ -24,18 +24,23 @@ export class CustomerOrderItemListItemComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this._deliveryService
-			.getById(this.customerOrderItem.order.delivery as string)
-			.then(delivery => {
-				this.delivery = delivery;
-				this.haveDelivery =
-					this.delivery.method === "bring" && this.havePayed();
-			})
-			.catch(() => {
-				console.log(
-					"CustomerOrderItemListItemComponent: could not get delivery"
-				);
-			});
+		if (this.customerOrderItem.order.delivery) {
+			this.wait = true;
+			this._deliveryService
+				.getById(this.customerOrderItem.order.delivery as string)
+				.then(delivery => {
+					this.delivery = delivery;
+					this.haveDelivery =
+						this.delivery.method === "bring" && this.havePayed();
+					this.wait = false;
+				})
+				.catch(() => {
+					console.log(
+						"CustomerOrderItemListItemComponent: could not get delivery"
+					);
+					this.wait = false;
+				});
+		}
 
 		this.currentBranchId = this._branchStoreService.getCurrentBranch().id;
 

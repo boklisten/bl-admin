@@ -12,7 +12,6 @@ export class CustomerOrderItemListComponent implements OnInit {
 	public customerOrderItems: {
 		orderItem: OrderItem;
 		order: Order;
-		item: Item;
 	}[];
 	public showNoOrdersFoundError: boolean;
 	public wait: boolean;
@@ -34,6 +33,10 @@ export class CustomerOrderItemListComponent implements OnInit {
 			.onCustomerOrderItemListChange()
 			.subscribe(() => {
 				this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
+				console.log(
+					"got customerOrderItemList",
+					this.customerOrderItems.length
+				);
 				if (this.customerOrderItems.length <= 0) {
 					this.showNoOrdersFoundError = true;
 				} else {

@@ -1,10 +1,4 @@
 import { Injectable } from "@angular/core";
-import { BranchStoreService } from "../../../branch/branch-store.service";
-import {
-	DeliveryService,
-	ItemService,
-	OrderService
-} from "@wizardcoder/bl-connect";
 import { Item, Order, OrderItem } from "@wizardcoder/bl-model";
 import { CartService } from "../../../cart/cart.service";
 import { Subject } from "rxjs/internal/Subject";
@@ -19,16 +13,12 @@ export class CustomerOrderItemListService {
 	private _customerOrderItems: {
 		orderItem: OrderItem;
 		order: Order;
-		item: Item;
 	}[];
 	private _customerOrderItemList$: Subject<boolean>;
 	private _wait$: Subject<boolean>;
 	private fetching: boolean;
 
 	constructor(
-		private _branchStoreService: BranchStoreService,
-		private _orderService: OrderService,
-		private _itemService: ItemService,
 		private _cartService: CartService,
 		private _customerDetailService: CustomerDetailService,
 		private _customerOrderService: CustomerOrderService
@@ -83,11 +73,11 @@ export class CustomerOrderItemListService {
 	public getCustomerOrderItems(): {
 		orderItem: OrderItem;
 		order: Order;
-		item: Item;
 	}[] {
 		return this._customerOrderItems;
 	}
 
+	/*
 	public getItemWithIsbn(isbn: string) {
 		for (const customerOrderItem of this._customerOrderItems) {
 			if (
@@ -100,7 +90,8 @@ export class CustomerOrderItemListService {
 			}
 		}
 	}
-
+  */
+	/*
 	public async addItemWithIsbn(isbn: string): Promise<boolean> {
 		if (this._customerOrderItems.length <= 0) {
 			this._customerOrderItems = await this.fetchOrderedItems();
@@ -124,6 +115,7 @@ export class CustomerOrderItemListService {
 
 		return false;
 	}
+  */
 
 	public async fetchOrderedItems(): Promise<
 		{ orderItem: OrderItem; order: Order; item: Item }[]
@@ -161,22 +153,18 @@ export class CustomerOrderItemListService {
 						orderItem.type === "buy" ||
 						orderItem.type === "partly-payment"
 					) {
-						const item = await this._itemService.getById(
-							orderItem.item as string
-						);
 						customerOrderItems.push({
 							order: order,
-							orderItem: orderItem,
-							item: item
+							orderItem: orderItem
 						});
 					}
 				}
 			}
 		}
 
-		this._wait$.next(false);
 		this._customerOrderItems = customerOrderItems;
 		this._customerOrderItemList$.next(true);
+		this._wait$.next(false);
 		this.fetching = false;
 		return customerOrderItems;
 	}

@@ -21,9 +21,9 @@
 			<fa-icon [icon]="'dollar-sign'" class="mr-1"></fa-icon
 			><fa-icon [icon]="'check-circle'"></fa-icon>
 		</span>
-		<span *ngIf="!havePayed()">{{
-			customerOrderItem.orderItem.amount | blcPrice
-		}}</span>
+		<span *ngIf="!havePayed()"
+			>{{ customerOrderItem.orderItem.amount | blcPrice }}</span
+		>
 	</div>
 </div>
 
@@ -66,7 +66,12 @@
 		class="col-6"
 		*ngIf="currentBranchId === customerOrderItem.order.branch"
 	>
+		<div class="alert alert-warning text-center" *ngIf="wait">
+			<fa-icon spin="true" icon="circle-notch"></fa-icon>
+		</div>
+
 		<app-blc-item-add
+			*ngIf="!wait"
 			[orderItem]="customerOrderItem.orderItem"
 			[order]="customerOrderItem.order"
 		></app-blc-item-add>
@@ -83,9 +88,9 @@
 			>
 				item is from another branch
 			</div>
-			<span class="font-weight-bold">{{
-				customerOrderItem.order.branch | branchName | async
-			}}</span>
+			<span class="font-weight-bold"
+				>{{ customerOrderItem.order.branch | branchName | async }}</span
+			>
 		</div>
 	</div>
 </div>
