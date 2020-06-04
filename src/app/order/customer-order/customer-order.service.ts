@@ -12,14 +12,15 @@ export class CustomerOrderService {
 	) {}
 
 	public async getOrders(userDetail: UserDetail): Promise<Order[]> {
-		return this._orderService.getManyByIds(userDetail.orders as string[]);
+		return this._orderService.get({ query: `?customer=${userDetail.id}` });
 	}
 
 	public getCustomerOrders(): Promise<Order[]> {
 		const customerDetail = this._customerDetailService.getCustomerDetail();
 
 		return this._orderService
-			.getManyByIds(customerDetail.orders as string[])
+			.get({ query: `?customer=${customerDetail.id}` })
+
 			.then((orders: Order[]) => {
 				return orders;
 			})
