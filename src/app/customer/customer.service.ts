@@ -2,17 +2,8 @@ import { Injectable } from "@angular/core";
 import { CustomerDetailService } from "./customer-detail/customer-detail.service";
 import { Observable, Subject } from "rxjs";
 import { Customer } from "./customer";
-import { CustomerOrderService } from "../order/customer-order/customer-order.service";
-import {
-	Order,
-	OrderItem,
-	UserDetail,
-	CustomerItem
-} from "@wizardcoder/bl-model";
-import {
-	CustomerItemService,
-	UserDetailService
-} from "@wizardcoder/bl-connect";
+import { Order, UserDetail, CustomerItem } from "@wizardcoder/bl-model";
+import { CustomerItemService } from "@wizardcoder/bl-connect";
 
 @Injectable({ providedIn: "root" })
 export class CustomerService {
@@ -21,9 +12,7 @@ export class CustomerService {
 
 	constructor(
 		private _customerDetailService: CustomerDetailService,
-		private _customerOrderService: CustomerOrderService,
-		private _customerItemService: CustomerItemService,
-		private userDetailService: UserDetailService
+		private _customerItemService: CustomerItemService
 	) {
 		this._customerChange$ = new Subject<boolean>();
 		this._customer = null;
@@ -44,38 +33,6 @@ export class CustomerService {
 
 	public reloadCustomer() {
 		this._customerDetailService.reloadCustomerDetail();
-	}
-
-	public isItemOrdered(itemId: string): boolean {
-		try {
-			this.getOrderedItem(itemId);
-			return true;
-		} catch (e) {
-			return false;
-		}
-	}
-
-	public getOrderedItem(
-		itemId: string
-	): { orderItem: OrderItem; order: Order } {
-		for (const order of this._customer.orders) {
-			for (const orderItem of order.orderItems) {
-				if (orderItem.item === itemId) {
-					if (
-						(orderItem.type === "rent" ||
-							orderItem.type === "buy" ||
-							orderItem.type === "partly-payment") &&
-						!orderItem.customerItem &&
-						!orderItem.movedToOrder &&
-						!orderItem.handout
-					) {
-						return { orderItem: orderItem, order: order };
-					}
-				}
-			}
-		}
-
-		throw new Error("customerService: did not have ordered item");
 	}
 
 	public isActiveCustomerItem(itemId: string): boolean {
@@ -121,17 +78,7 @@ export class CustomerService {
 					return;
 				}
 
-				let orders;
 				let customerItems;
-
-				try {
-					orders = await this._customerOrderService.getOrders(
-						customerDetail
-					);
-				} catch (e) {
-					this._customer = null;
-					this._customerChange$.next(true);
-				}
 
 				try {
 					customerItems = await this._customerItemService.get({
@@ -142,7 +89,7 @@ export class CustomerService {
 					this._customerChange$.next(true);
 				}
 
-				this.setCustomer(customerDetail, orders, customerItems);
+				this.setCustomer(customerDetail, null, customerItems);
 			});
 	}
 

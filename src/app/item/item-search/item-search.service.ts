@@ -5,6 +5,7 @@ import { Subject, Observable } from "rxjs";
 import { StorageService } from "../../storage/storage.service";
 import { CartService } from "../../cart/cart.service";
 import { CustomerService } from "../../customer/customer.service";
+import { CustomerOrderService } from "../../order/customer-order/customer-order.service";
 
 @Injectable()
 export class ItemSearchService {
@@ -18,7 +19,8 @@ export class ItemSearchService {
 		private _itemService: ItemService,
 		private _cartService: CartService,
 		private _storageService: StorageService,
-		private _customerService: CustomerService
+		private _customerService: CustomerService,
+		private _customerOrderService: CustomerOrderService
 	) {
 		this._searchResultError$ = new Subject<any>();
 		this._searchResult$ = new Subject<boolean>();
@@ -68,9 +70,10 @@ export class ItemSearchService {
 
 	public addItem(item: Item) {
 		try {
-			const { order, orderItem } = this._customerService.getOrderedItem(
-				item.id
-			);
+			const {
+				order,
+				orderItem
+			} = this._customerOrderService.getOrderedItem(item.id);
 			this._cartService.addOrderItem(orderItem, order, item);
 			return;
 		} catch (e) {}

@@ -4,6 +4,7 @@ import { BranchItemStoreService } from "../../../../branch/branch-item-store/bra
 import { CustomerService } from "../../../../customer/customer.service";
 import { BranchStoreService } from "../../../../branch/branch-store.service";
 import { BranchItemHelperService } from "../../../../branch/branch-item-helper/branch-item-helper.service";
+import { CustomerOrderService } from "../../../../order/customer-order/customer-order.service";
 
 @Component({
 	selector: "app-item-search-result-item",
@@ -18,7 +19,8 @@ export class ItemSearchResultItemComponent implements OnInit {
 		private customerService: CustomerService,
 		private branchItemStoreService: BranchItemStoreService,
 		private branchStoreService: BranchStoreService,
-		private branchItemHelperService: BranchItemHelperService
+		private branchItemHelperService: BranchItemHelperService,
+		private customerOrderService: CustomerOrderService
 	) {}
 
 	ngOnInit() {
@@ -32,12 +34,7 @@ export class ItemSearchResultItemComponent implements OnInit {
 	}
 
 	public isItemOrdered(itemId: string): boolean {
-		try {
-			this.customerService.getOrderedItem(itemId);
-			return true;
-		} catch (e) {
-			return false;
-		}
+		return this.customerOrderService.isItemOrdered(itemId);
 	}
 
 	public isActiveCustomerItem(itemId: string): boolean {
@@ -55,9 +52,10 @@ export class ItemSearchResultItemComponent implements OnInit {
 
 	public isItemOrderedOnCorrectBranch(itemId: string): boolean {
 		try {
-			const { orderItem, order } = this.customerService.getOrderedItem(
-				itemId
-			);
+			const {
+				orderItem,
+				order
+			} = this.customerOrderService.getOrderedItem(itemId);
 
 			return (
 				(order.branch as string) ===

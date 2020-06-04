@@ -40,7 +40,8 @@ export class CartService {
 		private _branchStoreService: BranchStoreService,
 		private _cartHelperService: CartHelperService,
 		private _branchItemHelperService: BranchItemHelperService,
-		private _customerDetailService: CustomerDetailService
+		private _customerDetailService: CustomerDetailService,
+		private _customerOrderService: CustomerOrderService
 	) {
 		this._cart = [];
 		this._cartChange$ = new Subject<boolean>();
@@ -71,7 +72,7 @@ export class CartService {
 			const orderAndOrderItem: {
 				orderItem: OrderItem;
 				order: Order;
-			} = this._customerService.getOrderedItem(item.id);
+			} = this._customerOrderService.getOrderedItem(item.id);
 			this.addOrderItem(
 				orderAndOrderItem.orderItem,
 				orderAndOrderItem.order
