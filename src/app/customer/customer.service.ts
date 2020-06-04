@@ -134,9 +134,9 @@ export class CustomerService {
 				}
 
 				try {
-					customerItems = await this._customerItemService.getManyByIds(
-						customerDetail.customerItems as string[]
-					);
+					customerItems = await this._customerItemService.get({
+						query: `?customer=${customerDetail.id}`
+					});
 				} catch (e) {
 					this._customer = null;
 					this._customerChange$.next(true);

@@ -69,10 +69,9 @@ export class CustomerItemListService {
 		const customerDetail = this._customerService.getCustomerDetail();
 		this._wait$.next(true);
 
-		const customerItems = await this._customerItemService.getManyByIds(
-			customerDetail.customerItems as string[],
-			{ fresh: true }
-		);
+		const customerItems = await this._customerItemService.get({
+			query: `?customer=${customerDetail.id}`
+		});
 
 		for (const customerItem of customerItems) {
 			if (
