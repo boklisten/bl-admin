@@ -12,6 +12,7 @@ import { CustomerService } from "../customer.service";
 export class CustomerCurrentComponent implements OnInit {
 	public customerDetail: UserDetail;
 	public lastPopoverRef: any;
+	public wait: boolean;
 
 	constructor(
 		private _customerDetailService: CustomerDetailService,
@@ -20,24 +21,36 @@ export class CustomerCurrentComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+		this.wait = true;
+		this.onCustomerDetailChange();
+		this.onCustomerDetailWaitChange();
+	}
+
+	private onCustomerDetailChange() {
 		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
 			this.customerDetail = customerDetail;
 		});
 	}
 
-	onClearCustomer() {
+	private onCustomerDetailWaitChange() {
+		this._customerDetailService.onWait((wait: boolean) => {
+			this.wait = wait;
+		});
+	}
+
+	public onClearCustomer() {
 		this.customerDetail = null;
 		this._customerService.clear();
 	}
 
-	onViewCustomerDetail() {
+	public onViewCustomerDetail() {
 		this._router.navigate([
 			"/customer/" + this.customerDetail.id + "/detail"
 		]);
 		this.lastPopoverRef.close();
 	}
 
-	onChangeCustomerDetail() {
+	public onChangeCustomerDetail() {
 		this._router.navigate(["/search"]);
 		this.lastPopoverRef.close();
 	}
