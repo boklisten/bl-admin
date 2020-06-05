@@ -1,18 +1,19 @@
-<div class="row bl-col-scroll" *ngIf="customerDetail">
+<div class="row bl-col-scroll">
 	<div class="col-12">
 		<div class="card">
-			<div class="card-body">
+			<div class="card-header">
 				<h5 class="card-title" i18n="@@customerOrderListTitle">
 					Orders
 				</h5>
+			</div>
+			<div class="card-body" *ngIf="wait || customerOrders.length < 0">
 				<div class="row">
 					<div class="col-12">
 						<app-bl-common-alert
 							[type]="'secondary'"
-							i18n="@@customerOrderListCouldNotRetrieveError"
-							text="Could not retrieve customer orders"
-							*ngIf="warningText"
-							(exit)="warningText = null"
+							i18n-text="@@customerOrderListNoOrdersFound"
+							text="No orders found on customer"
+							*ngIf="!wait && customerOrders.length <= 0"
 						></app-bl-common-alert>
 						<app-bl-common-update-button
 							[wait]="wait"

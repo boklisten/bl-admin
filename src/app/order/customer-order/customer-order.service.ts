@@ -14,33 +14,23 @@ export class CustomerOrderService {
 	) {}
 
 	public async getOrders(userDetail: UserDetail): Promise<Order[]> {
+		let orders: Order[] = [];
+
 		try {
-			this._orders = await this._orderService.get({
+			orders = await this._orderService.get({
 				query: `?placed=true&customer=${userDetail.id}`
 			});
-			return this._orders;
 		} catch (e) {
 			throw e;
 		}
+
+		this._orders = this.sortOrders(orders);
+		return this._orders;
 	}
 
 	public getCustomerOrders(): Promise<Order[]> {
 		const customerDetail = this._customerDetailService.getCustomerDetail();
-
 		return this.getOrders(customerDetail);
-
-		/*
-		return this._orderService
-			.get({ query: `?customer=${customerDetail.id}&placed=true` })
-
-			.then((orders: Order[]) => {
-				this._orders = orders;
-				return this._orders;
-			})
-			.catch(() => {
-				throw new Error("customerOrderService: could not get orders");
-			});
-      */
 	}
 
 	public isItemOrdered(itemId: string): boolean {
@@ -73,5 +63,14 @@ export class CustomerOrderService {
 		}
 
 		throw new Error("customerService: did not have ordered item");
+	}
+
+	private sortOrders(orders: Order[]): Order[] {
+		return orders.sort((a, b) => {
+			return (
+				new Date(b.creationTime).getTime() -
+				new Date(a.creationTime).getTime()
+			);
+		});
 	}
 }
