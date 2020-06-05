@@ -16,7 +16,7 @@ export class CustomerOrderService {
 	public async getOrders(userDetail: UserDetail): Promise<Order[]> {
 		try {
 			this._orders = await this._orderService.get({
-				query: `?customer=${userDetail.id}`
+				query: `?placed=true&customer=${userDetail.id}`
 			});
 			return this._orders;
 		} catch (e) {
@@ -27,8 +27,11 @@ export class CustomerOrderService {
 	public getCustomerOrders(): Promise<Order[]> {
 		const customerDetail = this._customerDetailService.getCustomerDetail();
 
+		return this.getOrders(customerDetail);
+
+		/*
 		return this._orderService
-			.get({ query: `?customer=${customerDetail.id}` })
+			.get({ query: `?customer=${customerDetail.id}&placed=true` })
 
 			.then((orders: Order[]) => {
 				this._orders = orders;
@@ -37,6 +40,7 @@ export class CustomerOrderService {
 			.catch(() => {
 				throw new Error("customerOrderService: could not get orders");
 			});
+      */
 	}
 
 	public isItemOrdered(itemId: string): boolean {
