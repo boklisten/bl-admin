@@ -22,8 +22,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="list-group">
-				<div
+			<ul class="list-group list-group-flush" *ngIf="!wait">
+				<li
 					class="list-group-item list-group-item-action"
 					*ngFor="let customerOrder of customerOrders"
 					(click)="onCustomerOrderDetailClick(customerOrder.id)"
@@ -55,8 +55,8 @@
 						[orderItems]="customerOrder.orderItems"
 						class="mt-2"
 					></app-order-item-detail-list>
-				</div>
-			</div>
+				</li>
+			</ul>
 		</div>
 	</div>
 </div>

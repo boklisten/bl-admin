@@ -18,30 +18,25 @@ export class CustomerOrderListComponent implements OnInit {
 	constructor(
 		private _customerOrderService: CustomerOrderService,
 		private _router: Router
-	) {
-		this.wait = false;
-	}
+	) {}
 
 	ngOnInit() {
 		this.onCustomerOrderWait();
-		this.getCustomerOrders();
+		this.onCustomerOrderChange();
+		this.wait = true;
+	}
+
+	private onCustomerOrderChange() {
+		this._customerOrderService.subscribe(customerOrders => {
+			this.customerOrders = customerOrders;
+			//this.wait = false;
+		});
 	}
 
 	private onCustomerOrderWait() {
 		this._customerOrderService.onWait(wait => {
 			this.wait = wait;
 		});
-	}
-
-	private getCustomerOrders() {
-		this.customerOrders = [];
-
-		this._customerOrderService
-			.subscribe(orders => {
-				this.customerOrders = orders;
-				this.wait = false;
-			})
-			.unsubscribe();
 	}
 
 	public onCustomerOrderDetailClick(id: string) {

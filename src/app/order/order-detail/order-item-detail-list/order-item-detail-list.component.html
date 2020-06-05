@@ -1,6 +1,7 @@
-<ul class="list-group">
+<ul class="list-group list-group-flush">
 	<li
-		class="list-group-item list-group-item-action"
+		class="list-group-item"
+		style="border: 0.5px solid rgba(0, 0, 0, 0.13);"
 		[ngClass]="{ 'bl-inactive-item': orderItem.movedToOrder }"
 		*ngFor="let orderItem of orderItems"
 	>
@@ -51,16 +52,16 @@
 		<div class="row" *ngIf="orderItem.type === 'cancel'">
 			<div class="col text-secondary">
 				<small
-					><fa-icon [icon]="'ban'" class="mr-2"></fa-icon>
-					{{ orderItem.type }}</small
+					><fa-icon [icon]="'ban'" class="mr-2"></fa-icon> {{
+					orderItem.type }}</small
 				>
 			</div>
 		</div>
 		<div class="row" *ngIf="orderItem.type === 'sell'">
 			<div class="col text-secondary">
 				<small
-					><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon>
-					{{ orderItem.type }}</small
+					><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon> {{
+					orderItem.type }}</small
 				>
 			</div>
 		</div>

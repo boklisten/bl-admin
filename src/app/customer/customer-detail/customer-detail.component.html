@@ -10,20 +10,6 @@
 					</ng-template>
 					<ng-template ngbTabContent>
 						<div class="container-fluid mt-2">
-							<div class="row">
-								<div class="col-12">
-									<app-bl-common-alert
-										[type]="'warning'"
-										*ngIf="warningText"
-										[text]="warningText"
-										(exit)="warningText = null"
-									></app-bl-common-alert>
-									<app-bl-common-update-button
-										[wait]="wait"
-										*ngIf="wait"
-									></app-bl-common-update-button>
-								</div>
-							</div>
 							<div class="row" *ngIf="customerDetail">
 								<div class="col-lg-4 col-md-6 col-sm-12">
 									<app-customer-detail-card
