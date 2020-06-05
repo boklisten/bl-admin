@@ -31,22 +31,10 @@ export class CustomerDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.customerDetail = null;
-
-		this._route.params.subscribe((params: Params) => {
-			this._currentId = params["id"];
-
-			if (this._currentId) {
-				this.getCustomerDetails();
-			}
-		});
-		/*
-		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
+		if (this._customerDetailService.haveCustomerDetail()) {
 			this.customerDetail = this._customerDetailService.getCustomerDetail();
-			this.warningText = null;
-			this.wait = false;
-		});
-    */
+		}
+		this.onIdParamChange();
 	}
 
 	public onUserDetailUpdated() {
@@ -56,8 +44,17 @@ export class CustomerDetailComponent implements OnInit {
 	public isAdmin() {
 		return this._authService.isAdmin();
 	}
+	private onIdParamChange() {
+		this._route.params.subscribe((params: Params) => {
+			this._currentId = params["id"];
 
-	private getCustomerDetails() {
+			if (this._currentId) {
+				this.getCustomerDetail();
+			}
+		});
+	}
+
+	private getCustomerDetail() {
 		this.wait = true;
 		this.warningText = null;
 		this._customerDetailService
@@ -65,12 +62,6 @@ export class CustomerDetailComponent implements OnInit {
 			.then((customerDetail: UserDetail) => {
 				this.wait = false;
 				this.customerDetail = customerDetail;
-
-				/*
-				this._customerDetailService.setCustomerDetail(
-					this.customerDetail
-				);
-        */
 			})
 			.catch(() => {
 				this.warningText = "could not get customer details";

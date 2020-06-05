@@ -67,15 +67,6 @@ export class CustomerDetailService {
 	}
 
 	public fetchCustomerDetail(id: string): Promise<UserDetail> {
-		/*
-		if (
-			this._currentCustomerDetail &&
-			id === this._currentCustomerDetail.id
-		) {
-			return Promise.resolve(this._currentCustomerDetail);
-		}
-    */
-
 		return this._userDetailService
 			.getById(id, { fresh: true })
 			.then((customerDetail: UserDetail) => {
