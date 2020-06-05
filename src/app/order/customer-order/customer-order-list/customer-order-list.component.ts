@@ -21,7 +21,6 @@ export class CustomerOrderListComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.onCustomerOrderWait();
 		this.onCustomerOrderChange();
 		this.wait = true;
 	}
@@ -29,13 +28,7 @@ export class CustomerOrderListComponent implements OnInit {
 	private onCustomerOrderChange() {
 		this._customerOrderService.subscribe(customerOrders => {
 			this.customerOrders = customerOrders;
-			//this.wait = false;
-		});
-	}
-
-	private onCustomerOrderWait() {
-		this._customerOrderService.onWait(wait => {
-			this.wait = wait;
+			this.wait = false;
 		});
 	}
 

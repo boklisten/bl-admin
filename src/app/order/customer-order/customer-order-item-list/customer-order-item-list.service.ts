@@ -30,10 +30,6 @@ export class CustomerOrderItemListService {
 		return this._customerOrderItems$.asObservable().subscribe(func);
 	}
 
-	public onWait(func: (wait: boolean) => void): Subscription {
-		return this._customerOrderService.onWait(func);
-	}
-
 	private onCustomerOrderServiceChange(): void {
 		this._customerOrderService.subscribe((orders: Order[]) => {
 			let customerOrderItems = this.filterOrderdItems(orders);
