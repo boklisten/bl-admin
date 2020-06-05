@@ -23,29 +23,17 @@ export class CustomerOrderItemListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.handleOrderItremListServiceWait();
 		this.handleCustomerOrderItemListChange();
-		//this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
 	}
 
 	private handleCustomerOrderItemListChange() {
-		this._customerOrderItemListService
-			.onCustomerOrderItemListChange()
-			.subscribe(() => {
-				this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
-				if (this.customerOrderItems.length <= 0) {
-					this.showNoOrdersFoundError = true;
-				} else {
-					this.showNoOrdersFoundError = false;
-				}
-			});
-	}
-
-	private handleOrderItremListServiceWait() {
-		this._customerOrderItemListService
-			.onWait()
-			.subscribe((wait: boolean) => {
-				this.wait = wait;
-			});
+		this._customerOrderItemListService.subscribe(customerOrderItems => {
+			this.customerOrderItems = customerOrderItems;
+			if (this.customerOrderItems.length <= 0) {
+				this.showNoOrdersFoundError = true;
+			} else {
+				this.showNoOrdersFoundError = false;
+			}
+		});
 	}
 }

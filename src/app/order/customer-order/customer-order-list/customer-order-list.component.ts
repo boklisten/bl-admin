@@ -24,26 +24,18 @@ export class CustomerOrderListComponent implements OnInit {
 
 	ngOnInit() {
 		this.wait = true;
-		this.getCustomerOrders()
-			.then(() => {
-				this.wait = false;
-			})
-			.catch(() => {
-				this.wait = false;
-			});
+		this.getCustomerOrders();
 	}
 
-	private async getCustomerOrders() {
+	private getCustomerOrders() {
 		this.customerOrders = [];
-		let orders;
 
-		try {
-			orders = await this._customerOrderService.getCustomerOrders();
-		} catch (e) {
-			throw e;
-		}
-
-		this.customerOrders = orders;
+		this._customerOrderService
+			.subscribe(orders => {
+				this.customerOrders = orders;
+				this.wait = false;
+			})
+			.unsubscribe();
 	}
 
 	public onCustomerOrderDetailClick(id: string) {

@@ -1,143 +1,56 @@
 import { Injectable } from "@angular/core";
-import { Item, Order, OrderItem, UserDetail } from "@wizardcoder/bl-model";
+import { Order, OrderItem } from "@wizardcoder/bl-model";
 import { CartService } from "../../../cart/cart.service";
-import { Subject } from "rxjs/internal/Subject";
-import { Observable } from "rxjs/internal/Observable";
-import { CustomerDetailService } from "../../../customer/customer-detail/customer-detail.service";
+import { ReplaySubject, Subscription } from "rxjs";
 import { CustomerOrderService } from "../customer-order.service";
+
+type CustomerOrderItem = {
+	order: Order;
+	orderItem: OrderItem;
+};
 
 @Injectable({
 	providedIn: "root"
 })
 export class CustomerOrderItemListService {
-	private _customerOrderItems: {
-		orderItem: OrderItem;
-		order: Order;
-	}[];
-	private _customerOrderItemList$: Subject<boolean>;
-	private _wait$: Subject<boolean>;
+	private _customerOrderItems$: ReplaySubject<CustomerOrderItem[]>;
 
 	constructor(
 		private _cartService: CartService,
-		private _customerDetailService: CustomerDetailService,
 		private _customerOrderService: CustomerOrderService
 	) {
-		this._customerOrderItemList$ = new Subject<boolean>();
-		this._wait$ = new Subject<boolean>();
-
-		this._customerOrderItems = [];
-		this.onCustomerChange();
+		this._customerOrderItems$ = new ReplaySubject(1);
 		this.onCartConfirmed();
+		this.onCustomerOrderServiceChange();
 	}
 
-	private onCustomerChange() {
-		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
-			console.log("customer changed", customerDetail);
-			if (!customerDetail) {
-				this.setOrderedItems([]);
-			} else {
-				this.fetchOrderedItems(customerDetail).then(
-					customerOrderItems => {
-						this.setOrderedItems(customerOrderItems);
-					}
-				);
-			}
+	public subscribe(
+		func: (customerOrderItems: CustomerOrderItem[]) => void
+	): Subscription {
+		return this._customerOrderItems$.asObservable().subscribe(func);
+	}
+
+	private onCustomerOrderServiceChange(): void {
+		this._customerOrderService.subscribe((orders: Order[]) => {
+			let customerOrderItems = this.filterOrderdItems(orders);
+			this.setOrderedItems(customerOrderItems);
 		});
-	}
-
-	onWait(): Observable<boolean> {
-		return this._wait$.asObservable();
-	}
-	/*
-	public reload() {
-		this._customerDetailService
-			.subscribe(userDetail => {
-				this.fetchOrderedItems(userDetail).then(customerOrderItems => {
-					this.setOrderedItems(customerOrderItems);
-				});
-			})
-			.unsubscribe();
-	}
-  */
-
-	private setOrderedItems(customerOrderItems) {
-		this._customerOrderItems = customerOrderItems;
-		this._customerOrderItemList$.next(true);
-	}
-
-	public onCustomerOrderItemListChange() {
-		return this._customerOrderItemList$.asObservable();
 	}
 
 	private onCartConfirmed() {
 		this._cartService.onCartConfirm().subscribe(() => {
-			this._customerOrderItems = [];
+			this.setOrderedItems([]);
 		});
 	}
 
-	public getCustomerOrderItems(): {
-		orderItem: OrderItem;
-		order: Order;
-	}[] {
-		return this._customerOrderItems;
+	private setOrderedItems(customerOrderItems) {
+		this._customerOrderItems$.next(customerOrderItems);
 	}
 
-	/*
-	public getItemWithIsbn(isbn: string) {
-		for (const customerOrderItem of this._customerOrderItems) {
-			if (
-				customerOrderItem.item.info &&
-				customerOrderItem.item.info["isbn"]
-			) {
-				if (customerOrderItem.item.info["isbn"].toString() === isbn) {
-					return customerOrderItem;
-				}
-			}
-		}
-	}
-  */
-	/*
-	public async addItemWithIsbn(isbn: string): Promise<boolean> {
-		if (this._customerOrderItems.length <= 0) {
-			this._customerOrderItems = await this.fetchOrderedItems();
-		}
-
-		const customerOrderItem = this.getItemWithIsbn(isbn);
-
-		if (customerOrderItem) {
-			if (
-				!this._cartService.contains(customerOrderItem.orderItem
-					.item as string)
-			) {
-				this._cartService.addOrderItem(
-					customerOrderItem.orderItem,
-					customerOrderItem.order,
-					customerOrderItem.item
-				);
-			}
-			return true;
-		}
-
-		return false;
-	}
-  */
-
-	public async fetchOrderedItems(
-		customerDetail: UserDetail
-	): Promise<{ orderItem: OrderItem; order: Order; item: Item }[]> {
-		console.log("fetching");
-		this._customerOrderItems = [];
-
-		const customerOrderItems = [];
-		this._wait$.next(true);
-
-		if (!customerDetail) {
-			throw new Error("no customer detail");
-		}
-
-		const orders = await this._customerOrderService.getOrders(
-			customerDetail
-		);
+	private filterOrderdItems(
+		orders: Order[]
+	): { order: Order; orderItem: OrderItem }[] {
+		let customerOrderItems = [];
 
 		for (const order of orders) {
 			if (order.orderItems) {
@@ -167,11 +80,6 @@ export class CustomerOrderItemListService {
 				}
 			}
 		}
-
-		this._customerOrderItems = customerOrderItems;
-		this._customerOrderItemList$.next(true);
-		this._wait$.next(false);
-		this.fetching = false;
 		return customerOrderItems;
 	}
 }

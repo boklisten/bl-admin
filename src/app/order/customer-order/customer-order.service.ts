@@ -2,44 +2,48 @@ import { Injectable } from "@angular/core";
 import { Order, OrderItem, Payment, UserDetail } from "@wizardcoder/bl-model";
 import { OrderService, PaymentService } from "@wizardcoder/bl-connect";
 import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
-import { Subject, Observable } from "rxjs";
+import { Subject, Observable, Subscription, ReplaySubject } from "rxjs";
 
 @Injectable()
 export class CustomerOrderService {
 	private _orders: Order[];
+	private _orders$: ReplaySubject<Order[]>;
 
 	constructor(
 		private _customerDetailService: CustomerDetailService,
 		private _orderService: OrderService
-	) {}
-
-	public async getOrders(userDetail: UserDetail): Promise<Order[]> {
-		let orders: Order[] = [];
-
-		try {
-			orders = await this._orderService.get({
-				query: `?placed=true&customer=${userDetail.id}`
-			});
-		} catch (e) {
-			throw e;
-		}
-
-		this._orders = this.sortOrders(orders);
-		return this._orders;
+	) {
+		this._orders$ = new ReplaySubject(1);
+		this.onCustomerDetailChange();
 	}
 
-	public getCustomerOrders(): Promise<Order[]> {
-		return new Promise<Order[]>((resolve, reject) => {
-			this._customerDetailService
-				.subscribe((customerDetail: UserDetail) => {
-					this.getOrders(customerDetail)
-						.then(orders => {
-							resolve(orders);
-						})
-						.catch(e => reject(e));
-				})
-				.unsubscribe();
+	public subscribe(func: (orders: Order[]) => void): Subscription {
+		return this._orders$.asObservable().subscribe(func);
+	}
+
+	private get(userDetailId: string) {
+		this._orderService
+			.get({
+				query: `?placed=true&customer=${userDetailId}`
+			})
+			.then(orders => {
+				orders = this.sortOrders(orders);
+				this.setOrders(orders);
+			})
+			.catch(() => {
+				this.setOrders([]);
+			});
+	}
+
+	private onCustomerDetailChange() {
+		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+			this.get(customerDetail.id);
 		});
+	}
+
+	private setOrders(orders: Order[]) {
+		this._orders = orders;
+		this._orders$.next(orders);
 	}
 
 	public isItemOrdered(itemId: string): boolean {

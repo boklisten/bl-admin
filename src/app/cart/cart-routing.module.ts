@@ -1,13 +1,12 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {EmployeeGuardService} from "../auth/guards/employee-guard.service";
-import {BranchGuardService} from "../branch/branch-guard.service";
-import {CartComponent} from "./cart.component";
-import {CustomerOrderResolverService} from '../order/customer-order/customer-order-resolver.service';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { EmployeeGuardService } from "../auth/guards/employee-guard.service";
+import { BranchGuardService } from "../branch/branch-guard.service";
+import { CartComponent } from "./cart.component";
 
 const routes: Routes = [
 	{
-		path: 'cart',
+		path: "cart",
 		canActivate: [EmployeeGuardService, BranchGuardService],
 		component: CartComponent
 	}
@@ -17,5 +16,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule]
 })
-export class CartRoutingModule {
-}
+export class CartRoutingModule {}
