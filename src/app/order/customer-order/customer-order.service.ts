@@ -37,7 +37,7 @@ export class CustomerOrderService {
 
 	private onCustomerDetailChange() {
 		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
-			this.setOrders([]); // clear before change
+			//this.setOrders([]); // clear before change
 			this.get(customerDetail.id);
 		});
 	}

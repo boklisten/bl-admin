@@ -38,11 +38,13 @@ export class CustomerOrderItemListComponent implements OnInit, OnDestroy {
 			customerOrderItems => {
 				this.customerOrderItems = customerOrderItems;
 				this.wait = false;
+				/*
 				if (this.customerOrderItems.length <= 0) {
 					this.showNoOrdersFoundError = true;
 				} else {
 					this.showNoOrdersFoundError = false;
 				}
+        */
 			}
 		);
 	}
