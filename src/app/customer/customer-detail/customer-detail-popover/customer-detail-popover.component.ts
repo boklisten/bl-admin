@@ -1,24 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {CustomerDetailService} from '../customer-detail.service';
-import {UserDetail} from '@wizardcoder/bl-model';
+import { Component, OnInit } from "@angular/core";
+import { CustomerDetailService } from "../customer-detail.service";
+import { UserDetail } from "@wizardcoder/bl-model";
 
 @Component({
-	selector: 'app-customer-detail-popover',
-	templateUrl: './customer-detail-popover.component.html',
-	styleUrls: ['./customer-detail-popover.component.scss']
+	selector: "app-customer-detail-popover",
+	templateUrl: "./customer-detail-popover.component.html",
+	styleUrls: ["./customer-detail-popover.component.scss"]
 })
 export class CustomerDetailPopoverComponent implements OnInit {
 	public customerDetail: UserDetail;
 
-	constructor(private _customerDetailService: CustomerDetailService) {
-	}
+	constructor(private _customerDetailService: CustomerDetailService) {}
 
 	ngOnInit() {
-		this.customerDetail = this._customerDetailService.getCustomerDetail();
-
-		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
-			this.customerDetail = this._customerDetailService.getCustomerDetail();
+		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+			this.customerDetail = customerDetail;
 		});
 	}
-
 }

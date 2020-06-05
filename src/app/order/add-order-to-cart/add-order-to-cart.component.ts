@@ -23,6 +23,8 @@ export class AddOrderToCartComponent implements OnInit {
 	ngOnInit() {}
 
 	public onAddToCart() {
+		throw new Error("addToOrderToCartComponent: not implemented");
+		/*
 		this._customerDetailService
 			.getAndSetCustomerDetailById(this.order.customer as string)
 			.then((customerDetail: UserDetail) => {
@@ -39,5 +41,6 @@ export class AddOrderToCartComponent implements OnInit {
 					"addOrderToCartComponent: could not get customer detail"
 				);
 			});
+      */
 	}
 }

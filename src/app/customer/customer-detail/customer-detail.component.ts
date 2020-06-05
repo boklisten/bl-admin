@@ -31,9 +31,11 @@ export class CustomerDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		if (this._customerDetailService.haveCustomerDetail()) {
-			this.customerDetail = this._customerDetailService.getCustomerDetail();
-		}
+		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+			this.customerDetail = customerDetail;
+			this.wait = false;
+		});
+
 		this.onIdParamChange();
 	}
 
@@ -57,17 +59,6 @@ export class CustomerDetailComponent implements OnInit {
 	private getCustomerDetail() {
 		this.wait = true;
 		this.warningText = null;
-		this._customerDetailService
-			.fetchCustomerDetail(this._currentId)
-			.then((customerDetail: UserDetail) => {
-				this.wait = false;
-				this.customerDetail = customerDetail;
-			})
-			.catch(() => {
-				this.warningText = "could not get customer details";
-				console.log(
-					"customerDetailComponent: could not fetch customerDetail"
-				);
-			});
+		this._customerDetailService.set(this._currentId);
 	}
 }

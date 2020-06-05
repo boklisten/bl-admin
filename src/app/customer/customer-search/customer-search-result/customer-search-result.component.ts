@@ -35,7 +35,7 @@ export class CustomerSearchResultComponent implements OnInit {
 	ngOnInit() {}
 
 	onCustomerClick(customerDetail: UserDetail) {
-		this._customerDetailService.setCustomerDetail(customerDetail);
+		this._customerDetailService.set(customerDetail.id);
 		this._router.navigate(["/cart"]);
 	}
 }

@@ -25,7 +25,7 @@ export class CustomerOrderItemListComponent implements OnInit {
 	ngOnInit() {
 		this.handleOrderItremListServiceWait();
 		this.handleCustomerOrderItemListChange();
-		this._customerOrderItemListService.reload();
+		//this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
 	}
 
 	private handleCustomerOrderItemListChange() {
@@ -33,10 +33,6 @@ export class CustomerOrderItemListComponent implements OnInit {
 			.onCustomerOrderItemListChange()
 			.subscribe(() => {
 				this.customerOrderItems = this._customerOrderItemListService.getCustomerOrderItems();
-				console.log(
-					"got customerOrderItemList",
-					this.customerOrderItems.length
-				);
 				if (this.customerOrderItems.length <= 0) {
 					this.showNoOrdersFoundError = true;
 				} else {

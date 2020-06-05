@@ -10,10 +10,7 @@ export class CustomerService {
 	private _customerChange$: Subject<boolean>;
 	private _customer: Customer;
 
-	constructor(
-		private _customerDetailService: CustomerDetailService,
-		private _customerItemService: CustomerItemService
-	) {
+	constructor(private _customerDetailService: CustomerDetailService) {
 		this._customerChange$ = new Subject<boolean>();
 		this._customer = null;
 		this.handleCustomerDetailChange();
@@ -32,7 +29,7 @@ export class CustomerService {
 	}
 
 	public reloadCustomer() {
-		this._customerDetailService.reloadCustomerDetail();
+		throw new Error("customerDetailService.reload() deprecated");
 	}
 
 	public isActiveCustomerItem(itemId: string): boolean {
@@ -64,33 +61,14 @@ export class CustomerService {
 
 	public clear() {
 		this._customer = null;
-		this._customerDetailService.clearCustomerDetail();
+		this._customerDetailService.clear();
 	}
 
 	private handleCustomerDetailChange() {
-		this._customerDetailService
-			.onCustomerDetailChange()
-			.subscribe(async () => {
-				const customerDetail = this._customerDetailService.getCustomerDetail();
-				if (!customerDetail) {
-					this._customer = null;
-					this._customerChange$.next(true);
-					return;
-				}
-
-				let customerItems;
-
-				try {
-					customerItems = await this._customerItemService.get({
-						query: `?customer=${customerDetail.id}`
-					});
-				} catch (e) {
-					this._customer = null;
-					this._customerChange$.next(true);
-				}
-
-				this.setCustomer(customerDetail, null, customerItems);
-			});
+		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+			this._customerChange$.next(true);
+			this.setCustomer(customerDetail, null, null);
+		});
 	}
 
 	private setCustomer(

@@ -110,14 +110,12 @@ export class SideBarComponent implements OnInit {
 			}
 		});
 
-		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
-			if (this._customerDetailService.getCustomerDetail()) {
+		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+			if (customerDetail) {
 				for (const sidebarLink of this.sidebarLinks) {
 					if (sidebarLink.name === "customer") {
 						sidebarLink.link =
-							"customer/" +
-							this._customerDetailService.getCustomerDetail().id +
-							"/detail";
+							"customer/" + customerDetail.id + "/detail";
 						sidebarLink.hide = false;
 						this.hideNoPermissionLinks();
 						return;

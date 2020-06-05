@@ -29,8 +29,17 @@ export class CustomerOrderService {
 	}
 
 	public getCustomerOrders(): Promise<Order[]> {
-		const customerDetail = this._customerDetailService.getCustomerDetail();
-		return this.getOrders(customerDetail);
+		return new Promise<Order[]>((resolve, reject) => {
+			this._customerDetailService
+				.subscribe((customerDetail: UserDetail) => {
+					this.getOrders(customerDetail)
+						.then(orders => {
+							resolve(orders);
+						})
+						.catch(e => reject(e));
+				})
+				.unsubscribe();
+		});
 	}
 
 	public isItemOrdered(itemId: string): boolean {

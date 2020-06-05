@@ -5,7 +5,8 @@ import {
 	Item,
 	Order,
 	OrderItem,
-	Period
+	Period,
+	UserDetail
 } from "@wizardcoder/bl-model";
 import { ItemPriceService } from "../price/item-price/item-price.service";
 import { OrderItemInfo } from "@wizardcoder/bl-model/dist/order/order-item/order-item-info";
@@ -48,9 +49,9 @@ export class CartService {
 		this._cartConfirm$ = new Subject<boolean>();
 		this._notificationSettings = { email: true };
 
-		if (this._customerDetailService.getCustomerDetail()) {
-			this._customerDetailId = this._customerDetailService.getCustomerDetail().id;
-		}
+		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+			this._customerDetailId = customerDetail.id;
+		});
 
 		this.onCustomerDetailChange();
 
@@ -263,16 +264,15 @@ export class CartService {
 	}
 
 	private onCustomerDetailChange() {
-		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
+		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
 			if (this._customerService.haveCustomer()) {
 				if (
 					this._customerDetailId &&
-					this._customerDetailService.getCustomerDetail().id ===
-						this._customerDetailId
+					customerDetail.id === this._customerDetailId
 				) {
 					return;
 				} else {
-					this._customerDetailId = this._customerDetailService.getCustomerDetail().id;
+					this._customerDetailId = customerDetail.id;
 					this.clear();
 				}
 			} else {

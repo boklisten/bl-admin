@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Item, Order, OrderItem } from "@wizardcoder/bl-model";
+import { Item, Order, OrderItem, UserDetail } from "@wizardcoder/bl-model";
 import { CartService } from "../../../cart/cart.service";
 import { Subject } from "rxjs/internal/Subject";
 import { Observable } from "rxjs/internal/Observable";
@@ -16,7 +16,6 @@ export class CustomerOrderItemListService {
 	}[];
 	private _customerOrderItemList$: Subject<boolean>;
 	private _wait$: Subject<boolean>;
-	private fetching: boolean;
 
 	constructor(
 		private _cartService: CartService,
@@ -32,32 +31,38 @@ export class CustomerOrderItemListService {
 	}
 
 	private onCustomerChange() {
-		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
-			this.fetchOrdersIfCustomer();
+		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+			console.log("customer changed", customerDetail);
+			if (!customerDetail) {
+				this.setOrderedItems([]);
+			} else {
+				this.fetchOrderedItems(customerDetail).then(
+					customerOrderItems => {
+						this.setOrderedItems(customerOrderItems);
+					}
+				);
+			}
 		});
 	}
 
 	onWait(): Observable<boolean> {
 		return this._wait$.asObservable();
 	}
-
+	/*
 	public reload() {
-		this.fetchOrdersIfCustomer();
+		this._customerDetailService
+			.subscribe(userDetail => {
+				this.fetchOrderedItems(userDetail).then(customerOrderItems => {
+					this.setOrderedItems(customerOrderItems);
+				});
+			})
+			.unsubscribe();
 	}
+  */
 
-	private fetchOrdersIfCustomer() {
-		this._customerOrderItems = [];
-		if (
-			this._customerDetailService.haveCustomerDetail() &&
-			!this.fetching
-		) {
-			this.fetchOrderedItems()
-				.then(customerOrderItems => {
-					this._customerOrderItems = customerOrderItems;
-					this._customerOrderItemList$.next(true);
-				})
-				.catch(e => {});
-		}
+	private setOrderedItems(customerOrderItems) {
+		this._customerOrderItems = customerOrderItems;
+		this._customerOrderItemList$.next(true);
 	}
 
 	public onCustomerOrderItemListChange() {
@@ -117,21 +122,22 @@ export class CustomerOrderItemListService {
 	}
   */
 
-	public async fetchOrderedItems(): Promise<
-		{ orderItem: OrderItem; order: Order; item: Item }[]
-	> {
+	public async fetchOrderedItems(
+		customerDetail: UserDetail
+	): Promise<{ orderItem: OrderItem; order: Order; item: Item }[]> {
+		console.log("fetching");
 		this._customerOrderItems = [];
 
-		this.fetching = true;
 		const customerOrderItems = [];
 		this._wait$.next(true);
-		const customerDetail = this._customerDetailService.getCustomerDetail();
 
 		if (!customerDetail) {
 			throw new Error("no customer detail");
 		}
 
-		const orders = await this._customerOrderService.getCustomerOrders();
+		const orders = await this._customerOrderService.getOrders(
+			customerDetail
+		);
 
 		for (const order of orders) {
 			if (order.orderItems) {

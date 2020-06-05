@@ -22,18 +22,10 @@ export class CartComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.haveCustomer = this._customerDetailService.haveCustomerDetail();
-
-		this.setCustomerDetail();
-
-		this._customerDetailService.onCustomerDetailChange().subscribe(() => {
-			this.haveCustomer = this._customerDetailService.haveCustomerDetail();
-			this.setCustomerDetail();
+		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+			this.customerDetail = customerDetail;
+			this.haveCustomer = this.customerDetail ? true : false;
 		});
-	}
-
-	setCustomerDetail() {
-		this.customerDetail = this._customerDetailService.getCustomerDetail();
 	}
 
 	public onCartConfirmed() {
