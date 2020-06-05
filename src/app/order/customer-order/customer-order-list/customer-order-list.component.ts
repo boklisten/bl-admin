@@ -23,8 +23,14 @@ export class CustomerOrderListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.wait = true;
+		this.onCustomerOrderWait();
 		this.getCustomerOrders();
+	}
+
+	private onCustomerOrderWait() {
+		this._customerOrderService.onWait(wait => {
+			this.wait = wait;
+		});
 	}
 
 	private getCustomerOrders() {

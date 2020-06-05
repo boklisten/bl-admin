@@ -2,23 +2,29 @@ import { Injectable } from "@angular/core";
 import { Order, OrderItem, Payment, UserDetail } from "@wizardcoder/bl-model";
 import { OrderService, PaymentService } from "@wizardcoder/bl-connect";
 import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
-import { Subject, Observable, Subscription, ReplaySubject } from "rxjs";
+import { Subject, Subscription, ReplaySubject } from "rxjs";
 
 @Injectable()
 export class CustomerOrderService {
 	private _orders: Order[];
 	private _orders$: ReplaySubject<Order[]>;
+	private _wait$: Subject<boolean>;
 
 	constructor(
 		private _customerDetailService: CustomerDetailService,
 		private _orderService: OrderService
 	) {
 		this._orders$ = new ReplaySubject(1);
+		this._wait$ = new Subject();
 		this.onCustomerDetailChange();
 	}
 
 	public subscribe(func: (orders: Order[]) => void): Subscription {
 		return this._orders$.asObservable().subscribe(func);
+	}
+
+	public onWait(func: (wait: boolean) => void): Subscription {
+		return this._wait$.asObservable().subscribe(func);
 	}
 
 	private get(userDetailId: string) {
@@ -37,6 +43,8 @@ export class CustomerOrderService {
 
 	private onCustomerDetailChange() {
 		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+			this.setOrders([]); // clear before change
+			this._wait$.next(true);
 			this.get(customerDetail.id);
 		});
 	}
@@ -44,6 +52,7 @@ export class CustomerOrderService {
 	private setOrders(orders: Order[]) {
 		this._orders = orders;
 		this._orders$.next(orders);
+		this._wait$.next(false);
 	}
 
 	public isItemOrdered(itemId: string): boolean {

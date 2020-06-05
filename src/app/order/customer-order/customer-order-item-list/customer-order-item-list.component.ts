@@ -23,7 +23,15 @@ export class CustomerOrderItemListComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.wait = true;
+		this.handleOnWait();
 		this.handleCustomerOrderItemListChange();
+	}
+
+	private handleOnWait() {
+		this._customerOrderItemListService.onWait((wait: boolean) => {
+			this.wait = wait;
+		});
 	}
 
 	private handleCustomerOrderItemListChange() {

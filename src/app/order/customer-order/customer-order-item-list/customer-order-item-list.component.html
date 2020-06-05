@@ -14,6 +14,8 @@
 			>No ordered items found</span
 		>
 	</li>
+</ul>
+<ul class="list-group" *ngIf="!wait">
 	<li
 		class="list-group-item"
 		*ngFor="let customerOrderItem of customerOrderItems"
