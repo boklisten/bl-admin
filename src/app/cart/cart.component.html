@@ -21,11 +21,13 @@
 		<div class="col-4">
 			<div class="row">
 				<div class="col-12">
-					<ngb-tabset>
-						<ngb-tab
-							id="customerOrderItemsTab"
-							*ngIf="haveCustomer"
-						>
+					<ngb-tabset
+						#tabset="ngbTabset"
+						id="ngbTabset"
+						[activeId]="activeTab"
+						(tabChange)="onTabChange($event)"
+					>
+						<ngb-tab id="order-items">
 							<ng-template ngbTabTitle>
 								<span
 									class="text-secondary"
@@ -42,7 +44,7 @@
 								</div>
 							</ng-template>
 						</ngb-tab>
-						<ngb-tab *ngIf="haveCustomer">
+						<ngb-tab id="customer-items">
 							<ng-template ngbTabTitle>
 								<span
 									class="text-secondary"
@@ -60,7 +62,7 @@
 							</ng-template>
 						</ngb-tab>
 
-						<ngb-tab>
+						<ngb-tab id="item-search">
 							<ng-template ngbTabTitle>
 								<span class="text-secondary" i18n="@@cartSearch"
 									>Search</span

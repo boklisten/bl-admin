@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UserDetail, UserPermission } from "@wizardcoder/bl-model";
-import { Router, RouterEvent } from "@angular/router";
+import { Router, RouterEvent, ActivatedRoute } from "@angular/router";
 import { CustomerService } from "../customer/customer.service";
 import { UserService } from "../user/user.service";
 import { CartService } from "../cart/cart.service";
@@ -26,7 +26,8 @@ export class SideBarComponent implements OnInit {
 		private _customerService: CustomerService,
 		private _router: Router,
 		private _cartService: CartService,
-		private _userService: UserService
+		private _userService: UserService,
+		private _route: ActivatedRoute
 	) {
 		this.sidebarLinks = [
 			{
@@ -92,7 +93,9 @@ export class SideBarComponent implements OnInit {
 	ngOnInit() {
 		this._router.events.subscribe((event: RouterEvent) => {
 			if (event.url) {
-				this.selectSidebarLinkBasedOnRoute(event.url);
+				this.selectSidebarLinkBasedOnRoute(
+					this.getFirstSegment(event.url)
+				);
 			}
 		});
 
@@ -107,6 +110,17 @@ export class SideBarComponent implements OnInit {
 		});
 
 		this.handleCustomerChange();
+	}
+
+	private getFirstSegment(url: string) {
+		if (url) {
+			let a = url.split("/");
+			if (a[1]) {
+				let b = a[1].split("?")[0];
+				return b;
+			}
+			return "";
+		}
 	}
 
 	private handleCustomerChange() {
