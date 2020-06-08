@@ -15,6 +15,7 @@ export class CustomerOrderService {
 	) {
 		this._orders$ = new Subject();
 		this.onCustomerChange();
+		this.onCustomerClear();
 	}
 
 	public subscribe(func: (orders: Order[]) => void): Subscription {
@@ -37,9 +38,19 @@ export class CustomerOrderService {
 
 	private onCustomerChange() {
 		this._customerService.subscribe((customerDetail: UserDetail) => {
-			//this.setOrders([]); // clear before change
 			this.get(customerDetail.id);
 		});
+	}
+	private onCustomerClear() {
+		this._customerService.onClear(cleared => {
+			if (cleared) {
+				this.clear();
+			}
+		});
+	}
+
+	private clear() {
+		this.setOrders([]);
 	}
 
 	private setOrders(orders: Order[]) {
