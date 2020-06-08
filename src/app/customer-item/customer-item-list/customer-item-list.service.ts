@@ -38,6 +38,17 @@ export class CustomerItemListService {
 		return this._customerItems$.asObservable().subscribe(func);
 	}
 
+	public getByCustomerItemId(customerItemId: string): CustomerItemWithItem {
+		for (let customerItemWithItem of this._customerItemList) {
+			if (customerItemWithItem.customerItem.id === customerItemId) {
+				return customerItemWithItem;
+			}
+		}
+		throw new ReferenceError(
+			"customerItem.id does not exist in customerItemList"
+		);
+	}
+
 	public getItemWithIsbn(isbn: string) {
 		for (const customerItemWithItem of this._customerItemList) {
 			if (
@@ -51,6 +62,9 @@ export class CustomerItemListService {
 				}
 			}
 		}
+		throw new ReferenceError(
+			"item isbn does not exist in customerItemList"
+		);
 	}
 
 	public async addItemWithIsbn(isbn: string): Promise<boolean> {
