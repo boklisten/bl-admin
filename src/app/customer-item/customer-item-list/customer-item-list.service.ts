@@ -3,16 +3,21 @@ import { CustomerItem, Item } from "@wizardcoder/bl-model";
 import { CustomerService } from "../../customer/customer.service";
 import { CustomerItemService, ItemService } from "@wizardcoder/bl-connect";
 import { CartService } from "../../cart/cart.service";
-import { Observable } from "rxjs/internal/Observable";
+import { Observable, ReplaySubject, Subscription } from "rxjs";
 import { Subject } from "rxjs/internal/Subject";
 import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
+
+type CustomerItemWithItem = {
+	customerItem: CustomerItem;
+	item: Item;
+};
 
 @Injectable({
 	providedIn: "root"
 })
 export class CustomerItemListService {
 	private _customerItemList: { customerItem: CustomerItem; item: Item }[];
-	private _wait$: Subject<boolean>;
+	private _customerItems$: ReplaySubject<CustomerItemWithItem[]>;
 
 	constructor(
 		private _customerService: CustomerService,
@@ -22,7 +27,15 @@ export class CustomerItemListService {
 		private _customerDetailService: CustomerDetailService
 	) {
 		this._customerItemList = [];
-		this._wait$ = new Subject<boolean>();
+		this._customerItems$ = new ReplaySubject(1);
+		this.handleCustomerChange();
+		this.handleCustomerClear();
+	}
+
+	public subscribe(
+		func: (customerItems: CustomerItemWithItem[]) => void
+	): Subscription {
+		return this._customerItems$.asObservable().subscribe(func);
 	}
 
 	public getItemWithIsbn(isbn: string) {
@@ -40,13 +53,9 @@ export class CustomerItemListService {
 		}
 	}
 
-	public onWait(): Observable<boolean> {
-		return this._wait$.asObservable();
-	}
-
 	public async addItemWithIsbn(isbn: string): Promise<boolean> {
 		if (this._customerItemList.length <= 0) {
-			this._customerItemList = await this.getCustomerItems();
+			this._customerItemList = await this.getCustomerItemList();
 		}
 
 		const cartItemWithItem = this.getItemWithIsbn(isbn);
@@ -64,12 +73,34 @@ export class CustomerItemListService {
 		return false;
 	}
 
-	public async getCustomerItems(): Promise<
+	private handleCustomerChange() {
+		this._customerService.subscribe(() => {
+			this.getCustomerItemList()
+				.then(customerItemList => {
+					this.setCustomerItemList(customerItemList);
+				})
+				.catch(() => {});
+		});
+	}
+
+	private handleCustomerClear() {
+		this._customerService.onClear(cleared => {
+			if (cleared) {
+				this.setCustomerItemList([]);
+			}
+		});
+	}
+
+	private setCustomerItemList(customerItemList: CustomerItemWithItem[]) {
+		this._customerItemList = customerItemList;
+		this._customerItems$.next(customerItemList);
+	}
+
+	private async getCustomerItemList(): Promise<
 		{ customerItem: CustomerItem; item: Item }[]
 	> {
 		const customerItemList = [];
 		const customerDetail = this._customerDetailService.get();
-		this._wait$.next(true);
 
 		const customerItems = await this._customerItemService.get({
 			query: `?customer=${customerDetail.id}`
@@ -91,7 +122,6 @@ export class CustomerItemListService {
 			}
 		}
 
-		this._wait$.next(false);
 		return customerItemList;
 	}
 }
