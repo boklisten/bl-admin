@@ -36,7 +36,7 @@ export class CustomerService {
 	}
 
 	public clear() {
-		this.setCustomerDetail(null);
+		this._customerDetail = null;
 		this._storageService.remove(this._userDetailIdStorageName);
 		this._clear$.next(true);
 	}
@@ -72,8 +72,20 @@ export class CustomerService {
 	}
 
 	private setCustomerDetail(userDetail: UserDetail) {
+		if (!userDetail) {
+			throw new TypeError("customer detail is null or undefined");
+		}
+
 		this._customerDetail = userDetail;
 		this._customerDetail$.next(userDetail);
+		try {
+			this._storageService.add(
+				this._userDetailIdStorageName,
+				userDetail.id
+			);
+		} catch (e) {
+			throw e;
+		}
 	}
 
 	private getCustomerDetailIfInStorage() {

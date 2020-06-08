@@ -1,5 +1,6 @@
 <div
 	class="btn btn-outline-dark btn-sm btn-block bl-customer-name text-lg-left text-center"
+	*ngIf="customerDetail && !wait"
 >
 	<div *ngIf="wait" class="text-center">
 		<fa-icon icon="circle-notch" spin="true"></fa-icon>

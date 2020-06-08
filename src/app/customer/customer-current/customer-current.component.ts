@@ -26,6 +26,7 @@ export class CustomerCurrentComponent implements OnInit {
 	private onCustomerChange() {
 		this._customerService.subscribe((customerDetail: UserDetail) => {
 			this.customerDetail = customerDetail;
+			this.wait = false;
 		});
 	}
 
