@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UserDetail } from "@wizardcoder/bl-model";
 import { CartService } from "./cart.service";
-import { CustomerDetailService } from "../customer/customer-detail/customer-detail.service";
+import { CustomerService } from "../customer/customer.service";
 
 @Component({
 	selector: "app-cart",
@@ -16,14 +16,20 @@ export class CartComponent implements OnInit {
 
 	constructor(
 		private _cartService: CartService,
-		private _customerDetailService: CustomerDetailService
+		private _customerService: CustomerService
 	) {
 		this.haveCustomer = false;
 	}
 
 	ngOnInit() {
-		this.customerDetail = this._customerDetailService.get();
-		this.haveCustomer = this.customerDetail ? true : false;
+		this.onCustomerChange();
+	}
+
+	private onCustomerChange() {
+		this._customerService.subscribe((userDetail: UserDetail) => {
+			this.customerDetail = userDetail;
+			this.haveCustomer = this.customerDetail ? true : false;
+		});
 	}
 
 	public onCartConfirmed() {
