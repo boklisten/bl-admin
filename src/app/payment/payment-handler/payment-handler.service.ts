@@ -1,17 +1,24 @@
-import {Injectable} from '@angular/core';
-import {PaymentChoice} from '../payment-choice';
-import {Order, Payment, PaymentMethod, UserDetail} from '@wizardcoder/bl-model';
-import {PaymentService} from '@wizardcoder/bl-connect';
-import {BranchStoreService} from '../../branch/branch-store.service';
-import {CustomerService} from '../../customer/customer.service';
-import {Customer} from '../../customer/customer';
+import { Injectable } from "@angular/core";
+import { PaymentChoice } from "../payment-choice";
+import {
+	Order,
+	Payment,
+	PaymentMethod,
+	UserDetail
+} from "@wizardcoder/bl-model";
+import { PaymentService } from "@wizardcoder/bl-connect";
+import { BranchStoreService } from "../../branch/branch-store.service";
+import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 
 @Injectable()
 export class PaymentHandlerService {
 	private _paymentChoices: PaymentChoice[];
 
-	constructor(private _paymentService: PaymentService, private _branchStoreService: BranchStoreService, private _customerService: CustomerService) {
-	}
+	constructor(
+		private _paymentService: PaymentService,
+		private _branchStoreService: BranchStoreService,
+		private _customerDetailService: CustomerDetailService
+	) {}
 
 	public setPaymentChoices(paymentChoices: PaymentChoice[]) {
 		this._paymentChoices = paymentChoices;
@@ -27,33 +34,41 @@ export class PaymentHandlerService {
 		return true;
 	}
 
-
 	private createPayments(orderId: string): Payment[] {
 		const branch = this._branchStoreService.getCurrentBranch();
-		let customerDetail: UserDetail;
 		const payments: Payment[] = [];
-
-		if (this._customerService.haveCustomer()) {
-			customerDetail = this._customerService.get().detail;
-		}
+		let customerDetail = this._customerDetailService.get();
 
 		for (const paymentChoice of this._paymentChoices) {
-			payments.push(this.createPayment(orderId, paymentChoice.type, paymentChoice.amount, branch.id, customerDetail));
+			payments.push(
+				this.createPayment(
+					orderId,
+					paymentChoice.type,
+					paymentChoice.amount,
+					branch.id,
+					customerDetail
+				)
+			);
 		}
 
 		return payments;
 	}
 
-	private createPayment(orderId: string, method: PaymentMethod, amount: number, branchId: string, customerDetail: UserDetail): Payment {
+	private createPayment(
+		orderId: string,
+		method: PaymentMethod,
+		amount: number,
+		branchId: string,
+		customerDetail: UserDetail
+	): Payment {
 		return {
 			method: method,
 			order: orderId,
 			amount: amount,
 			branch: branchId,
-			customer: (this._customerService.haveCustomer()) ? customerDetail.id : null,
-			viewableFor: (this._customerService.haveCustomer()) ? [customerDetail.blid] : [],
+			customer: customerDetail.id,
+			viewableFor: [customerDetail.blid],
 			taxAmount: 0
 		} as Payment;
 	}
-
 }

@@ -13,8 +13,6 @@ export class CustomerDetailPopoverComponent implements OnInit {
 	constructor(private _customerDetailService: CustomerDetailService) {}
 
 	ngOnInit() {
-		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
-			this.customerDetail = customerDetail;
-		});
+		this.customerDetail = this._customerDetailService.get();
 	}
 }

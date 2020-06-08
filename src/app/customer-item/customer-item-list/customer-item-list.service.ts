@@ -5,6 +5,7 @@ import { CustomerItemService, ItemService } from "@wizardcoder/bl-connect";
 import { CartService } from "../../cart/cart.service";
 import { Observable } from "rxjs/internal/Observable";
 import { Subject } from "rxjs/internal/Subject";
+import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 
 @Injectable({
 	providedIn: "root"
@@ -17,7 +18,8 @@ export class CustomerItemListService {
 		private _customerService: CustomerService,
 		private _itemService: ItemService,
 		private _cartService: CartService,
-		private _customerItemService: CustomerItemService
+		private _customerItemService: CustomerItemService,
+		private _customerDetailService: CustomerDetailService
 	) {
 		this._customerItemList = [];
 		this._wait$ = new Subject<boolean>();
@@ -66,7 +68,7 @@ export class CustomerItemListService {
 		{ customerItem: CustomerItem; item: Item }[]
 	> {
 		const customerItemList = [];
-		const customerDetail = this._customerService.getCustomerDetail();
+		const customerDetail = this._customerDetailService.get();
 		this._wait$.next(true);
 
 		const customerItems = await this._customerItemService.get({

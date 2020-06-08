@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CustomerSearchService } from "../customer-search.service";
 import { UserDetail } from "@wizardcoder/bl-model";
 import { Router } from "@angular/router";
-import { CustomerDetailService } from "../../customer-detail/customer-detail.service";
+import { CustomerService } from "../../customer.service";
 
 @Component({
 	selector: "app-customer-search-result",
@@ -16,7 +16,7 @@ export class CustomerSearchResultComponent implements OnInit {
 	constructor(
 		private _customerSearchService: CustomerSearchService,
 		private _router: Router,
-		private _customerDetailService: CustomerDetailService
+		private _customerService: CustomerService
 	) {
 		this._customerSearchService
 			.onSearchResult()
@@ -35,7 +35,7 @@ export class CustomerSearchResultComponent implements OnInit {
 	ngOnInit() {}
 
 	onCustomerClick(customerDetail: UserDetail) {
-		this._customerDetailService.set(customerDetail.id);
+		this._customerService.set(customerDetail.id);
 		this._router.navigate(["/cart"]);
 	}
 }

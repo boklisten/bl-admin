@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CustomerDetailModalComponent } from "./customer-detail-modal/customer-detail-modal.component";
 import { CustomerDetailService } from "./customer-detail.service";
 import { AuthService } from "../../auth/auth.service";
+import { CustomerService } from "../customer.service";
 
 @Component({
 	selector: "app-customer-detail",
@@ -22,8 +23,8 @@ export class CustomerDetailComponent implements OnInit {
 
 	constructor(
 		private _route: ActivatedRoute,
-		private _customerDetailService: CustomerDetailService,
-		private _authService: AuthService
+		private _authService: AuthService,
+		private _customerService: CustomerService
 	) {
 		this.customerDetailUpdated = false;
 		this.wait = false;
@@ -31,7 +32,7 @@ export class CustomerDetailComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+		this._customerService.subscribe((customerDetail: UserDetail) => {
 			this.customerDetail = customerDetail;
 			this.wait = false;
 		});
@@ -59,6 +60,7 @@ export class CustomerDetailComponent implements OnInit {
 	private getCustomerDetail() {
 		this.wait = true;
 		this.warningText = null;
-		this._customerDetailService.set(this._currentId);
+
+		this._customerService.set(this._currentId);
 	}
 }

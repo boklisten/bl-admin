@@ -2,11 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { UserDetail, UserPermission } from "@wizardcoder/bl-model";
 import { Router, RouterEvent } from "@angular/router";
 import { CustomerService } from "../customer/customer.service";
-import { Customer } from "../customer/customer";
-import { s } from "@angular/core/src/render3";
 import { UserService } from "../user/user.service";
 import { CartService } from "../cart/cart.service";
-import { CustomerDetailService } from "../customer/customer-detail/customer-detail.service";
 
 @Component({
 	selector: "app-side-bar",
@@ -29,8 +26,7 @@ export class SideBarComponent implements OnInit {
 		private _customerService: CustomerService,
 		private _router: Router,
 		private _cartService: CartService,
-		private _userService: UserService,
-		private _customerDetailService: CustomerDetailService
+		private _userService: UserService
 	) {
 		this.sidebarLinks = [
 			{
@@ -110,7 +106,11 @@ export class SideBarComponent implements OnInit {
 			}
 		});
 
-		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+		this.handleCustomerChange();
+	}
+
+	private handleCustomerChange() {
+		this._customerService.subscribe((customerDetail: UserDetail) => {
 			if (customerDetail) {
 				for (const sidebarLink of this.sidebarLinks) {
 					if (sidebarLink.name === "customer") {

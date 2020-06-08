@@ -13,6 +13,7 @@ import {
 import { CartService } from "../../cart/cart.service";
 import { CustomerService } from "../../customer/customer.service";
 import { CustomerItemListService } from "./customer-item-list.service";
+import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 
 @Component({
 	selector: "app-customer-item-list",
@@ -28,27 +29,22 @@ export class CustomerItemListComponent implements OnInit {
 	public reminderDate: Date;
 
 	constructor(
-		private _customerItemService: CustomerItemService,
-		private itemService: ItemService,
 		private _customerItemListService: CustomerItemListService,
-		private _cartService: CartService,
-		private _messageService: MessageService,
-		private _customerService: CustomerService
+		private _customerService: CustomerService,
+		private _customerDetailService: CustomerDetailService
 	) {
 		this.customerItemsWithItem = [];
 	}
 
 	ngOnInit() {
 		if (this._customerService.haveCustomer()) {
-			this.customerDetail = this._customerService.get().detail;
+			this.customerDetail = this._customerDetailService.get();
 			this.getCustomerItems();
 		}
 
-		this._customerService.onCustomerChange().subscribe(() => {
-			if (this._customerService.haveCustomer()) {
-				this.customerDetail = this._customerService.get().detail;
-				this.getCustomerItems();
-			}
+		this._customerService.subscribe((userDetail: UserDetail) => {
+			this.customerDetail = userDetail;
+			this.getCustomerItems();
 		});
 		this.reminderDate = new Date(2018, 11, 20);
 	}

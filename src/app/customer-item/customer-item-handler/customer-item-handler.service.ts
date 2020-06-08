@@ -14,6 +14,7 @@ import { CustomerService } from "../../customer/customer.service";
 import { DateService } from "../../date/date.service";
 import { BranchHelperService } from "../../branch/branch-helper/branch-helper.service";
 import * as moment from "moment";
+import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 
 @Injectable()
 export class CustomerItemHandlerService {
@@ -23,7 +24,8 @@ export class CustomerItemHandlerService {
 		private _customerItemService: CustomerItemService,
 		private _customerService: CustomerService,
 		private _dateService: DateService,
-		private _branchHelperService: BranchHelperService
+		private _branchHelperService: BranchHelperService,
+		private _customerDetailService: CustomerDetailService
 	) {}
 
 	public async updateCustomerItems(
@@ -273,7 +275,7 @@ export class CustomerItemHandlerService {
 		orderId: string
 	): CustomerItem {
 		const branch = this._branchStoreService.getCurrentBranch();
-		const customerDetail = this._customerService.getCustomerDetail();
+		const customerDetail = this._customerDetailService.get();
 
 		return {
 			id: null,
@@ -286,7 +288,7 @@ export class CustomerItemHandlerService {
 			deadline: orderItem.info.to,
 			handout: true,
 			orders: [orderId],
-			viewableFor: [this._customerService.getCustomerDetail().blid],
+			viewableFor: [this._customerDetailService.get().blid],
 			handoutInfo: {
 				handoutBy: "branch",
 				handoutById: branch.id,

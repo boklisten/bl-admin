@@ -1,101 +1,55 @@
 import { Injectable } from "@angular/core";
-import { BlApiError, UserDetail } from "@wizardcoder/bl-model";
-import { Subject, ReplaySubject, Subscription } from "rxjs";
-import { UserDetailService } from "@wizardcoder/bl-connect";
-import { StorageService } from "../../storage/storage.service";
+import { UserDetail } from "@wizardcoder/bl-model";
+import { CustomerService } from "../customer.service";
 
 @Injectable()
 export class CustomerDetailService {
-	private _currentCustomerDetail: UserDetail;
-	private _customerDetail$: ReplaySubject<UserDetail>;
-	private _userDetailIdStorageName: string;
-	private _wait$: Subject<boolean>;
+	private _customerDetail: UserDetail;
 
-	constructor(
-		private _userDetailService: UserDetailService,
-		private _storageService: StorageService
-	) {
-		this._wait$ = new Subject();
-		this._customerDetail$ = new ReplaySubject(1);
-		this._userDetailIdStorageName = "bl-customer-id";
-		this.getCustomerDetailIfInStorage();
+	constructor(private _customerService: CustomerService) {
+		this.handleCustomerChange();
+		this.handleCustomerClear();
 	}
 
-	public set(id: string) {
-		this._wait$.next(true);
-		this.getCustomerDetail(id)
-			.then(userDetail => {
-				this.setCustomerDetail(userDetail);
-			})
-			.catch(e => {
-				console.log(e);
-			});
-	}
-
-	public subscribe(func: (userDetail: UserDetail) => void): Subscription {
-		return this._customerDetail$.asObservable().subscribe(func);
-	}
-
-	public onWait(func: (wait: boolean) => void): Subscription {
-		return this._wait$.asObservable().subscribe(func);
-	}
-
-	public clear() {
-		this._wait$.next(false);
-		this._storageService.remove(this._userDetailIdStorageName);
-		this._customerDetail$.next(null);
-	}
-
-	public update(patchCustomerDetailObject: any): Promise<UserDetail> {
-		return this._userDetailService
-			.update(this._currentCustomerDetail.id, patchCustomerDetailObject)
-			.then((customerDetail: UserDetail) => {
-				this.setCustomerDetail(customerDetail);
-				return this._currentCustomerDetail;
-			})
-			.catch((blApiError: BlApiError) => {
-				throw new Error(
-					"customerDetailService: could not update customerDetails: " +
-						blApiError.msg
-				);
-			});
-	}
-
-	private saveIdToStorage(userDetailId: string) {
-		this._storageService.store(this._userDetailIdStorageName, userDetailId);
-	}
-
-	private getCustomerDetailIfInStorage() {
-		let customerDetailId: string;
-
-		try {
-			customerDetailId = this.getCustomerDetailIdFromStorage();
-		} catch (e) {
-			throw e;
+	public get(): UserDetail {
+		if (!this._customerDetail) {
+			throw new ReferenceError("customer detail is not set");
 		}
-
-		return this.set(customerDetailId);
+		return this._customerDetail;
 	}
 
-	private getCustomerDetailIdFromStorage() {
+	public getId(): string {
 		try {
-			return this._storageService.get("bl-customer-id");
+			let userDetail = this.get();
+			return userDetail.id;
 		} catch (e) {
 			throw e;
 		}
 	}
 
-	private async getCustomerDetail(id: string): Promise<UserDetail> {
-		return this._userDetailService.getById(id);
+	private handleCustomerChange() {
+		this._customerService.subscribe((userDetail: UserDetail) => {
+			this.setCustomerDetail(userDetail);
+		});
 	}
 
 	private setCustomerDetail(customerDetail: UserDetail) {
-		this._wait$.next(false);
 		if (customerDetail) {
-			this.saveIdToStorage(customerDetail.id);
-			this._customerDetail$.next(customerDetail);
+			this._customerDetail = customerDetail;
 		} else {
 			throw new Error("no customerDetail to set");
 		}
+	}
+
+	private handleCustomerClear() {
+		this._customerService.onClear(cleared => {
+			if (cleared) {
+				this.clear();
+			}
+		});
+	}
+
+	private clear() {
+		this._customerDetail = null;
 	}
 }

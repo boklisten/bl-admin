@@ -48,12 +48,7 @@ export class CartService {
 		this._cartChange$ = new Subject<boolean>();
 		this._cartConfirm$ = new Subject<boolean>();
 		this._notificationSettings = { email: true };
-
-		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
-			this._customerDetailId = customerDetail.id;
-		});
-
-		this.onCustomerDetailChange();
+		this.onCustomerChange();
 
 		this._branchStoreService.onBranchChange().subscribe(() => {
 			this.clear();
@@ -193,7 +188,6 @@ export class CartService {
 
 	public confirmCart() {
 		this.clear();
-		this._customerService.reloadCustomer();
 		this._cartConfirm$.next(true);
 	}
 
@@ -263,8 +257,8 @@ export class CartService {
 		return partlyPaymentTotals;
 	}
 
-	private onCustomerDetailChange() {
-		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+	private onCustomerChange() {
+		this._customerService.subscribe((customerDetail: UserDetail) => {
 			if (this._customerService.haveCustomer()) {
 				if (
 					this._customerDetailId &&

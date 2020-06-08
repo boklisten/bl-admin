@@ -22,10 +22,8 @@ export class CartComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
-			this.customerDetail = customerDetail;
-			this.haveCustomer = this.customerDetail ? true : false;
-		});
+		this.customerDetail = this._customerDetailService.get();
+		this.haveCustomer = this.customerDetail ? true : false;
 	}
 
 	public onCartConfirmed() {

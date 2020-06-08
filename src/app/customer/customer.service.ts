@@ -1,47 +1,117 @@
 import { Injectable } from "@angular/core";
-import { CustomerDetailService } from "./customer-detail/customer-detail.service";
-import { Observable, Subject } from "rxjs";
-import { Customer } from "./customer";
-import { Order, UserDetail, CustomerItem } from "@wizardcoder/bl-model";
-import { CustomerItemService } from "@wizardcoder/bl-connect";
+import { Subject, ReplaySubject, Subscription } from "rxjs";
+import { UserDetail, CustomerItem } from "@wizardcoder/bl-model";
+import { UserDetailService, StorageService } from "@wizardcoder/bl-connect";
 
 @Injectable({ providedIn: "root" })
 export class CustomerService {
-	private _customerChange$: Subject<boolean>;
-	private _customer: Customer;
+	private _customerDetail$: ReplaySubject<UserDetail>;
+	private _userDetailIdStorageName: string;
+	private _clear$: Subject<boolean>;
+	private _customerDetail: UserDetail;
 
-	constructor(private _customerDetailService: CustomerDetailService) {
-		this._customerChange$ = new Subject<boolean>();
-		this._customer = null;
-		this.handleCustomerDetailChange();
+	constructor(
+		private _userDetailService: UserDetailService,
+		private _storageService: StorageService
+	) {
+		this._customerDetail$ = new ReplaySubject(1);
+		this._clear$ = new Subject<boolean>();
+		this._userDetailIdStorageName = "bl-customer-id";
+
+		this.getCustomerDetailIfInStorage();
 	}
 
-	public get(): Customer {
-		return this._customer;
+	public subscribe(func: (userDetail: UserDetail) => void): Subscription {
+		return this._customerDetail$.asObservable().subscribe(func);
 	}
 
-	public getCustomerDetail(): UserDetail {
-		return this._customer ? this._customer.detail : null;
+	public set(id: string): void {
+		this.getCustomerDetail(id)
+			.then((userDetail: UserDetail) => {
+				this.setCustomerDetail(userDetail);
+			})
+			.catch(e => {
+				console.log(e);
+			});
+	}
+
+	public clear() {
+		this.setCustomerDetail(null);
+		this._storageService.remove(this._userDetailIdStorageName);
+		this._clear$.next(true);
+	}
+
+	public onClear(func: (cleared: boolean) => void): Subscription {
+		return this._clear$.asObservable().subscribe(func);
+	}
+
+	public update(
+		id: string,
+		patchCustomerDetailObject: any
+	): Promise<UserDetail> {
+		return this._userDetailService
+			.update(id, patchCustomerDetailObject)
+			.then((customerDetail: UserDetail) => {
+				this.setCustomerDetail(customerDetail);
+				return customerDetail;
+			})
+			.catch((blApiError: any) => {
+				throw new Error(
+					"customerDetailService: could not update customerDetails: " +
+						blApiError.msg
+				);
+			});
 	}
 
 	public haveCustomer(): boolean {
-		return !!this._customer;
+		return this._customerDetail ? true : false;
 	}
 
-	public reloadCustomer() {
-		throw new Error("customerDetailService.reload() deprecated");
+	private getCustomerDetail(id: string): Promise<UserDetail> {
+		return this._userDetailService.getById(id);
 	}
+
+	private setCustomerDetail(userDetail: UserDetail) {
+		this._customerDetail = userDetail;
+		this._customerDetail$.next(userDetail);
+	}
+
+	private getCustomerDetailIfInStorage() {
+		let customerDetailId: string;
+
+		try {
+			customerDetailId = this.getCustomerDetailIdFromStorage();
+		} catch (e) {
+			return;
+		}
+
+		return this.set(customerDetailId);
+	}
+
+	private getCustomerDetailIdFromStorage() {
+		try {
+			return this._storageService.get("bl-customer-id");
+		} catch (e) {
+			throw e;
+		}
+	}
+
+	// ---------------------
 
 	public isActiveCustomerItem(itemId: string): boolean {
+		/*
 		try {
 			this.getActiveCustomerItem(itemId);
 			return true;
 		} catch (e) {}
 		return false;
+    */
+		throw new Error("isActiveCustomerItem() is deprecated");
 	}
 
 	public getActiveCustomerItem(itemId: string): CustomerItem {
-		for (let customerItem of this._customer.customerItems) {
+		/*
+		for (let customerItem of this._customerDetail.customerItems) {
 			if (customerItem.item === itemId) {
 				if (
 					!customerItem.returned &&
@@ -53,35 +123,7 @@ export class CustomerService {
 		}
 
 		throw new Error("not found");
-	}
-
-	public onCustomerChange(): Observable<boolean> {
-		return this._customerChange$;
-	}
-
-	public clear() {
-		this._customer = null;
-		this._customerDetailService.clear();
-	}
-
-	private handleCustomerDetailChange() {
-		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
-			this._customerChange$.next(true);
-			this.setCustomer(customerDetail, null, null);
-		});
-	}
-
-	private setCustomer(
-		detail: UserDetail,
-		orders?: Order[],
-		customerItems?: CustomerItem[]
-	) {
-		this._customer = {
-			detail: detail,
-			orders: orders ? orders : null,
-			customerItems: customerItems ? customerItems : null
-		};
-
-		this._customerChange$.next(true);
+    */
+		throw new Error("getActiveCustomerItem() is deprecated");
 	}
 }

@@ -1,11 +1,11 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {CustomerService} from '../../customer.service';
-import {UserDetail} from '@wizardcoder/bl-model';
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import { CustomerService } from "../../customer.service";
+import { UserDetail } from "@wizardcoder/bl-model";
 
 @Component({
-	selector: 'app-customer-detail-small',
-	templateUrl: './customer-detail-small.component.html',
-	styleUrls: ['./customer-detail-small.component.scss']
+	selector: "app-customer-detail-small",
+	templateUrl: "./customer-detail-small.component.html",
+	styleUrls: ["./customer-detail-small.component.scss"]
 })
 export class CustomerDetailSmallComponent implements OnInit {
 	public customerDetail: UserDetail;
@@ -16,20 +16,15 @@ export class CustomerDetailSmallComponent implements OnInit {
 
 	constructor(private _customerService: CustomerService) {
 		this.customerValid = true;
-		this.customerNotValidText = 'Customer details does not have all valid fields';
+		this.customerNotValidText =
+			"Customer details does not have all valid fields";
 		this.valid = new EventEmitter<boolean>();
 	}
 
 	ngOnInit() {
-		this._customerService.onCustomerChange().subscribe(() => {
-			if (this._customerService.haveCustomer()) {
-				this.setCustomerDetail(this._customerService.get().detail);
-			}
+		this._customerService.subscribe((userDetail: UserDetail) => {
+			this.setCustomerDetail(userDetail);
 		});
-
-		if (this._customerService.haveCustomer()) {
-			this.setCustomerDetail(this._customerService.get().detail);
-		}
 	}
 
 	private setCustomerDetail(customerDetail: UserDetail) {
@@ -38,10 +33,7 @@ export class CustomerDetailSmallComponent implements OnInit {
 		this.valid.emit(this.customerValid);
 	}
 
-	public onCustomerDetailUpdated() {
-		this.customerDetail = this._customerService.get().detail;
-		this.checkIfCustomerIsValid(this.customerDetail);
-	}
+	public onCustomerDetailUpdated() {}
 
 	private checkIfCustomerIsValid(customerDetail: UserDetail) {
 		if (!customerDetail.name) {
@@ -78,5 +70,4 @@ export class CustomerDetailSmallComponent implements OnInit {
 
 		return true;
 	}
-
 }

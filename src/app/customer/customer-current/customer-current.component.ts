@@ -1,5 +1,4 @@
 import { Component, HostListener, OnInit } from "@angular/core";
-import { CustomerDetailService } from "../customer-detail/customer-detail.service";
 import { UserDetail } from "@wizardcoder/bl-model";
 import { Router } from "@angular/router";
 import { CustomerService } from "../customer.service";
@@ -15,26 +14,18 @@ export class CustomerCurrentComponent implements OnInit {
 	public wait: boolean;
 
 	constructor(
-		private _customerDetailService: CustomerDetailService,
 		private _router: Router,
 		private _customerService: CustomerService
 	) {}
 
 	ngOnInit() {
 		this.wait = true;
-		this.onCustomerDetailChange();
-		this.onCustomerDetailWaitChange();
+		this.onCustomerChange();
 	}
 
-	private onCustomerDetailChange() {
-		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+	private onCustomerChange() {
+		this._customerService.subscribe((customerDetail: UserDetail) => {
 			this.customerDetail = customerDetail;
-		});
-	}
-
-	private onCustomerDetailWaitChange() {
-		this._customerDetailService.onWait((wait: boolean) => {
-			this.wait = wait;
 		});
 	}
 

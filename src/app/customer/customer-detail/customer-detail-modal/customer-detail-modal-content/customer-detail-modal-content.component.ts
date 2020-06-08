@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { BlApiError, UserDetail } from "@wizardcoder/bl-model";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { CustomerDetailService } from "../../customer-detail.service";
 import moment from "moment-es6";
+import { CustomerService } from "../../../customer.service";
 
 interface UserDetailPatch {
 	[key: string]: any;
@@ -26,7 +26,7 @@ export class CustomerDetailModalContentComponent implements OnInit {
 
 	constructor(
 		public activeModal: NgbActiveModal,
-		private _customerDetailService: CustomerDetailService
+		private _customerService: CustomerService
 	) {
 		this.showContent = false;
 		this.updated = new EventEmitter<boolean>();
@@ -71,8 +71,8 @@ export class CustomerDetailModalContentComponent implements OnInit {
 			Object.keys(patchedValues).length !== 0
 		) {
 			this.wait = true;
-			this._customerDetailService
-				.update(patchedValues)
+			this._customerService
+				.update(this._userDetail.id, patchedValues)
 				.then((updatedUserDetail: UserDetail) => {
 					this.updated.emit(true);
 					this.activeModal.close("user details updated");

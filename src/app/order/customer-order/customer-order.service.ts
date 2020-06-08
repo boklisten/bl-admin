@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Order, OrderItem, Payment, UserDetail } from "@wizardcoder/bl-model";
 import { OrderService, PaymentService } from "@wizardcoder/bl-connect";
-import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 import { Subject, Subscription, ReplaySubject } from "rxjs";
+import { CustomerService } from "../../customer/customer.service";
 
 @Injectable()
 export class CustomerOrderService {
@@ -10,11 +10,11 @@ export class CustomerOrderService {
 	private _orders$: Subject<Order[]>;
 
 	constructor(
-		private _customerDetailService: CustomerDetailService,
+		private _customerService: CustomerService,
 		private _orderService: OrderService
 	) {
 		this._orders$ = new Subject();
-		this.onCustomerDetailChange();
+		this.onCustomerChange();
 	}
 
 	public subscribe(func: (orders: Order[]) => void): Subscription {
@@ -35,8 +35,8 @@ export class CustomerOrderService {
 			});
 	}
 
-	private onCustomerDetailChange() {
-		this._customerDetailService.subscribe((customerDetail: UserDetail) => {
+	private onCustomerChange() {
+		this._customerService.subscribe((customerDetail: UserDetail) => {
 			//this.setOrders([]); // clear before change
 			this.get(customerDetail.id);
 		});

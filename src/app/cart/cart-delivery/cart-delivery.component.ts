@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Delivery, Order, UserDetail } from "@wizardcoder/bl-model";
 import { DeliveryService } from "@wizardcoder/bl-connect";
-import { Customer } from "../../customer/customer";
-import { CustomerService } from "../../customer/customer.service";
-
+import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 @Component({
 	selector: "app-cart-delivery",
 	templateUrl: "./cart-delivery.component.html",
@@ -13,7 +11,6 @@ export class CartDeliveryComponent implements OnInit {
 	@Input() order: Order;
 	@Input() originalDelivery: Delivery;
 	@Output() deliveryConfirmed: EventEmitter<boolean>;
-	customer: Customer;
 	delivery: Delivery;
 	trackingNumber: string;
 	canConfirmDelivery: boolean;
@@ -21,13 +18,12 @@ export class CartDeliveryComponent implements OnInit {
 
 	constructor(
 		private _deliveryService: DeliveryService,
-		private customerService: CustomerService
+		private customerDetailService: CustomerDetailService
 	) {
 		this.trackingNumber = "";
 		this.deliveryConfirmed = new EventEmitter<boolean>();
 		this.canConfirmDelivery = false;
-		this.customer = this.customerService.get();
-		this.customerDetail = this.customer.detail;
+		this.customerDetail = this.customerDetailService.get();
 	}
 
 	ngOnInit() {
@@ -36,7 +32,7 @@ export class CartDeliveryComponent implements OnInit {
 			method: "bring",
 			order: this.order.id,
 			amount: 0,
-			viewableFor: [this.customer.detail.blid],
+			viewableFor: [this.customerDetail.blid],
 			info: {
 				from: this.originalDelivery.info["from"],
 				to: this.originalDelivery.info["to"],

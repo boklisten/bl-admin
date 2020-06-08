@@ -6,6 +6,7 @@ import { BranchStoreService } from "../../branch/branch-store.service";
 import { CustomerService } from "../../customer/customer.service";
 import { UserService } from "../../user/user.service";
 import { OrderService } from "@wizardcoder/bl-connect";
+import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 
 @Injectable()
 export class OrderHandlerService {
@@ -14,7 +15,8 @@ export class OrderHandlerService {
 		private _branchStoreService: BranchStoreService,
 		private _customerService: CustomerService,
 		private _userService: UserService,
-		private _orderService: OrderService
+		private _orderService: OrderService,
+		private _customerDetailService: CustomerDetailService
 	) {}
 
 	public addOrder(
@@ -90,12 +92,12 @@ export class OrderHandlerService {
 			orderItems: orderItems,
 			branch: this._branchStoreService.getCurrentBranch().id,
 			customer: this._customerService.haveCustomer()
-				? this._customerService.getCustomerDetail().id
+				? this._customerDetailService.getId()
 				: null,
 			byCustomer: false,
 			employee: this._userService.getUserDetailId(),
 			viewableFor: this._customerService.haveCustomer()
-				? [this._customerService.getCustomerDetail().blid]
+				? [this._customerDetailService.get().blid]
 				: null
 		} as Order;
 	}
