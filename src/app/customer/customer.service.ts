@@ -35,6 +35,12 @@ export class CustomerService {
 			});
 	}
 
+	public reload() {
+		if (this._customerDetail) {
+			this.set(this._customerDetail.id);
+		}
+	}
+
 	public clear() {
 		this._customerDetail = null;
 		this._storageService.remove(this._userDetailIdStorageName);

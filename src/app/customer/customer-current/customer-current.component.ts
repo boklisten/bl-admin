@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from "@angular/core";
+
 import { UserDetail } from "@wizardcoder/bl-model";
 import { Router } from "@angular/router";
 import { CustomerService } from "../customer.service";
@@ -33,6 +34,10 @@ export class CustomerCurrentComponent implements OnInit {
 	public onClearCustomer() {
 		this.customerDetail = null;
 		this._customerService.clear();
+	}
+
+	public onReloadCustomer() {
+		this._customerService.reload();
 	}
 
 	public onViewCustomerDetail() {
