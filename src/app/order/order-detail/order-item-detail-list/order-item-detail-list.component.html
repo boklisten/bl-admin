@@ -34,8 +34,17 @@
 			<div class="col text-secondary">
 				<small
 					><fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon>
-					{{ orderItem.type }}</small
-				>
+					<span
+						i18n="@@orderItemDetailListBuyout"
+						*ngIf="orderItem.type === 'buyout'"
+						>buyout</span
+					>
+					<span
+						i18n="@@orderItemDetailListBuy"
+						*ngIf="orderItem.type === 'buy'"
+						>buy</span
+					>
+				</small>
 			</div>
 		</div>
 		<div class="row" *ngIf="orderItem.type === 'return'">
@@ -45,24 +54,34 @@
 						[icon]="'arrow-alt-down-circle'"
 						class="mr-2"
 					></fa-icon>
-					{{ orderItem.type }}</small
-				>
+					<span i18n="@@orderItemDetailListReturn">return</span>
+				</small>
+			</div>
+		</div>
+
+		<div class="row" *ngIf="orderItem.type === 'buyback'">
+			<div class="col text-secondary">
+				<small
+					><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon>
+
+					<span i18n="@@orderItemDetailListBuyback">buyback</span>
+				</small>
 			</div>
 		</div>
 		<div class="row" *ngIf="orderItem.type === 'cancel'">
 			<div class="col text-secondary">
 				<small
-					><fa-icon [icon]="'ban'" class="mr-2"></fa-icon> {{
-					orderItem.type }}</small
-				>
+					><fa-icon [icon]="'ban'" class="mr-2"></fa-icon>
+					<span i18n="@@orderItemDetailListCancel">cancel</span>
+				</small>
 			</div>
 		</div>
 		<div class="row" *ngIf="orderItem.type === 'sell'">
 			<div class="col text-secondary">
 				<small
-					><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon> {{
-					orderItem.type }}</small
-				>
+					><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon>
+					<span i18n="@@orderItemDetailListCancel">sell</span>
+				</small>
 			</div>
 		</div>
 		<div
@@ -83,8 +102,17 @@
 							[icon]="'calendar-alt'"
 							class="mr-2"
 						></fa-icon>
-						{{ orderItem.type }}</span
-					>
+						<span
+							i18n="@@orderItemDetailListRent"
+							*ngIf="orderItem.type === 'rent'"
+							>rent</span
+						>
+						<span
+							i18n="@@orderItemDetailListExtend"
+							*ngIf="orderItem.type === 'extend'"
+							>extend</span
+						>
+					</span>
 					<span class="ml-2"
 						><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon>
 						{{ orderItem.info["to"] | blDate }}</span
@@ -99,8 +127,10 @@
 							class="mr-1"
 						></fa-icon>
 						<fa-icon [icon]="'calendar-alt'" class="mr-1"></fa-icon>
-						{{ orderItem.type }}</span
-					>
+						<span i18n="@@orderItemDetailListPartlyPayment"
+							>partly-payment</span
+						>
+					</span>
 					<span class="ml-2"
 						><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon>
 						<fa-icon [icon]="'clock'" class="mr-2"></fa-icon>
