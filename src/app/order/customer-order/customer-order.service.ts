@@ -7,13 +7,13 @@ import { CustomerService } from "../../customer/customer.service";
 @Injectable()
 export class CustomerOrderService {
 	private _orders: Order[];
-	private _orders$: Subject<Order[]>;
+	private _orders$: ReplaySubject<Order[]>;
 
 	constructor(
 		private _customerService: CustomerService,
 		private _orderService: OrderService
 	) {
-		this._orders$ = new Subject();
+		this._orders$ = new ReplaySubject(1);
 		this.onCustomerChange();
 		this.onCustomerClear();
 	}

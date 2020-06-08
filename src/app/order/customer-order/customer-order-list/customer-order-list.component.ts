@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CustomerDetailService } from "../../../customer/customer-detail/customer-detail.service";
-import { BlApiError, Order, UserDetail } from "@wizardcoder/bl-model";
-import { OrderService } from "@wizardcoder/bl-connect";
+import { Order, UserDetail } from "@wizardcoder/bl-model";
 import { Router } from "@angular/router";
 import { CustomerOrderService } from "../customer-order.service";
 
@@ -21,8 +19,8 @@ export class CustomerOrderListComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		this.onCustomerOrderChange();
 		this.wait = true;
+		this.onCustomerOrderChange();
 	}
 
 	private onCustomerOrderChange() {

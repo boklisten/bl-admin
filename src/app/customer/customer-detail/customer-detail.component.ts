@@ -24,7 +24,8 @@ export class CustomerDetailComponent implements OnInit {
 	constructor(
 		private _route: ActivatedRoute,
 		private _authService: AuthService,
-		private _customerService: CustomerService
+		private _customerService: CustomerService,
+		private _customerDetailService: CustomerDetailService
 	) {
 		this.customerDetailUpdated = false;
 		this.wait = false;
@@ -47,17 +48,27 @@ export class CustomerDetailComponent implements OnInit {
 	public isAdmin() {
 		return this._authService.isAdmin();
 	}
+
 	private onIdParamChange() {
 		this._route.params.subscribe((params: Params) => {
 			this._currentId = params["id"];
-
-			if (this._currentId) {
-				this.getCustomerDetail();
-			}
+			this.setCustomerDetailIfNotSet();
 		});
 	}
 
-	private getCustomerDetail() {
+	private setCustomerDetailIfNotSet() {
+		try {
+			let customerDetailId = this._customerDetailService.getId();
+
+			if (this._currentId !== customerDetailId) {
+				this.setCustomerDetail();
+			}
+		} catch (e) {
+			this.setCustomerDetail();
+		}
+	}
+
+	private setCustomerDetail() {
 		this.wait = true;
 		this.warningText = null;
 
