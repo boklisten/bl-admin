@@ -33,7 +33,16 @@
 			<div class="col text-secondary">
 				<small
 					><fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon>
-					<span i18n="@@orderItemDetailListBuyout">buyout</span>
+					<span
+						i18n="@@orderItemDetailListBuyout"
+						*ngIf="orderItem.type === 'buyout'"
+						>buyout</span
+					>
+					<span
+						i18n="@@orderItemDetailListBuy"
+						*ngIf="orderItem.type === 'buy'"
+						>buy</span
+					>
 				</small>
 			</div>
 		</div>
