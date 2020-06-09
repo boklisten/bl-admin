@@ -1,0 +1,16 @@
+<app-bl-search-bar
+	[design]="'dark'"
+	[searchFieldId]="headerCustomerSearchId"
+	[small]="true"
+	i18n-placeholder="@@headerCustomerSearch"
+	placeholder="Customer search"
+	[wait]="wait"
+	[term]="searchTerm"
+	(search)="onCustomerSearch($event)"
+></app-bl-search-bar>
+
+<div class="bl-header-customer-search-result" *ngIf="showSearchResult">
+	<app-customer-search-result
+		(clicked)="onSearchResultClick($event)"
+	></app-customer-search-result>
+</div>

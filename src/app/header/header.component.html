@@ -12,16 +12,7 @@
 	</div>
 
 	<div class="bl-header-search-bar">
-		<app-bl-search-bar
-			[design]="'dark'"
-			[searchFieldId]="headerCustomerSearchId"
-			[small]="true"
-			i18n-placeholder="@@headerCustomerSearch"
-			placeholder="Customer search"
-			[wait]="wait"
-			[term]="searchTerm"
-			(search)="onCustomerSearch($event)"
-		></app-bl-search-bar>
+		<app-header-customer-search></app-header-customer-search>
 	</div>
 	<div class="bl-header-branch-current">
 		<app-branch-current></app-branch-current>

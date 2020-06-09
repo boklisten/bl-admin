@@ -1,0 +1,12 @@
+@import "../../../styles.scss";
+
+.bl-header-customer-search-result {
+	z-index: 9999;
+	position: absolute;
+	//background-color: red;
+	border-left: 1px solid $secondary_color;
+	border-bottom: 1px solid $secondary_color;
+	border-right: 1px solid $secondary_color;
+	border-radius: 5px;
+	width: inherit;
+}

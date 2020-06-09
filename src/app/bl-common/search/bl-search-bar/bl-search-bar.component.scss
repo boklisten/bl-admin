@@ -1,6 +1,10 @@
-.bl-search-input-dark {
+.bl-search-input {
 	border-color: #283d3b;
-	//background-color: #283d3b;
-	background-color: #bcbcbcbc;
-	text-align: center;
+	background-color: #283d3b;
+	//text-align: center;
+}
+
+.bl-search-input[type="text"]:focus {
+	background-color: white;
+	color: black !important;
 }

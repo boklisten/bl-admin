@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Branch, UserPermission } from "@wizardcoder/bl-model";
 import { AuthService } from "../auth/auth.service";
-import { CustomerSearchService } from "../customer/customer-search/customer-search.service";
-import { Router } from "@angular/router";
 import { BlcKeyeventDoubleShiftService } from "../bl-common/blc-keyevent/blc-keyevent-double-shift.service";
 
 @Component({
@@ -22,9 +20,7 @@ export class HeaderComponent implements OnInit {
 
 	constructor(
 		private _authService: AuthService,
-		private _router: Router,
-		private _blcKeyeventDoubleShiftService: BlcKeyeventDoubleShiftService,
-		private _customerSearchService: CustomerSearchService
+		private _blcKeyeventDoubleShiftService: BlcKeyeventDoubleShiftService
 	) {
 		this.searchTerm = "";
 		this.headerCustomerSearchId = "headerCustomerSearch";
@@ -40,20 +36,6 @@ export class HeaderComponent implements OnInit {
 		this.permission = this._authService.getPermission();
 		this.userPermission = this.translateUserPermission(this.permission);
 		this.username = this._authService.getUsername();
-		this.onSearchResult();
-		this.onSearchResultError();
-	}
-
-	private onSearchResult() {
-		this._customerSearchService.onSearchResult().subscribe(() => {
-			this.wait = false;
-		});
-	}
-
-	private onSearchResultError() {
-		this._customerSearchService.onSearchResultError().subscribe(() => {
-			this.wait = false;
-		});
 	}
 
 	private translateUserPermission(userPermission: UserPermission) {
@@ -73,13 +55,5 @@ export class HeaderComponent implements OnInit {
 
 	public onUserLogout() {
 		this._authService.logout();
-	}
-
-	public onCustomerSearch(searchTerm: string) {
-		if (searchTerm && searchTerm.length > 3) {
-			this.wait = true;
-			this._customerSearchService.search(searchTerm);
-			this._router.navigate(["/search/customer/result"]);
-		}
 	}
 }
