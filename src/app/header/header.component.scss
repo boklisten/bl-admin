@@ -3,7 +3,14 @@
 .bl-header {
 	width: 100vm;
 	background-color: $primary-color;
+	//background-color: $secondary-color;
 	height: 50px;
+}
+
+.bl-header-logo {
+	min-width: 50px;
+	padding: 5px;
+	//background-color: $primary-color;
 }
 
 .bl-logo-text {

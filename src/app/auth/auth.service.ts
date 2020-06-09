@@ -34,6 +34,10 @@ export class AuthService {
 		return this._tokenService.getAccessTokenBody().username;
 	}
 
+	public getUserDetailId(): string {
+		return this._tokenService.getAccessTokenBody().details;
+	}
+
 	public getPermission(): UserPermission {
 		return this.getUserPermission();
 	}

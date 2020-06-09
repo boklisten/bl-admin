@@ -4,6 +4,7 @@ import { Router, RouterEvent, ActivatedRoute } from "@angular/router";
 import { CustomerService } from "../customer/customer.service";
 import { UserService } from "../user/user.service";
 import { CartService } from "../cart/cart.service";
+import { AuthService } from "../auth/auth.service";
 
 @Component({
 	selector: "app-side-bar",
@@ -27,14 +28,14 @@ export class SideBarComponent implements OnInit {
 		private _router: Router,
 		private _cartService: CartService,
 		private _userService: UserService,
-		private _route: ActivatedRoute
+		private _authService: AuthService
 	) {
 		this.sidebarLinks = [
 			{
 				name: "search",
 				link: "search",
 				icon: "search",
-				permission: "customer",
+				permission: "employee",
 				selected: false
 			},
 			{
@@ -42,14 +43,14 @@ export class SideBarComponent implements OnInit {
 				link: "",
 				icon: "address-card",
 				selected: false,
-				permission: "customer",
+				permission: "employee",
 				hide: true
 			},
 			{
 				name: "cart",
 				link: "cart",
 				icon: "shopping-cart",
-				permission: "customer",
+				permission: "employee",
 				selected: false
 			},
 			{
@@ -77,7 +78,7 @@ export class SideBarComponent implements OnInit {
 				name: "booking",
 				link: "booking",
 				icon: "calendar-alt",
-				permission: "customer",
+				permission: "employee",
 				selected: false
 			},
 			{
@@ -85,6 +86,13 @@ export class SideBarComponent implements OnInit {
 				link: "database",
 				icon: "database",
 				permission: "admin",
+				selected: false
+			},
+			{
+				name: "user",
+				link: "user",
+				icon: this.getUserIcon(),
+				permission: "employee",
 				selected: false
 			}
 		];
@@ -110,6 +118,20 @@ export class SideBarComponent implements OnInit {
 		});
 
 		this.handleCustomerChange();
+	}
+
+	private getUserIcon(): string {
+		let permission = this._authService.getPermission();
+		switch (permission) {
+			case "customer":
+				return "user";
+			case "manager":
+				return "user-tie";
+			case "admin":
+				return "user-astronaut";
+			case "super":
+				return "user-secret";
+		}
 	}
 
 	private getFirstSegment(url: string) {

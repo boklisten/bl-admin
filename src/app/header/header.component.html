@@ -1,131 +1,27 @@
-<div class="container-fluid">
-	<div class="row align-items-center bl-header">
-		<div class="col-1 text-center">
-			<div routerLink="home">
-				<img
-					src="../../assets/img/boklisten_logo_v2_icon_white_lg.png"
-					height="40"
-					width="40"
-				/>
-			</div>
-		</div>
-		<div class="col-sm-4 col-4">
-			<app-customer-current></app-customer-current>
-		</div>
-
-		<div class="col-sm-3 col-3 d-md-inline d-sm-none d-none">
-			<app-bl-search-bar
-				[design]="'dark'"
-				[searchFieldId]="headerCustomerSearchId"
-				[small]="true"
-				i18n-placeholder="@@headerCustomerSearch"
-				placeholder="Customer search"
-				[wait]="wait"
-				[term]="searchTerm"
-				(search)="onCustomerSearch($event)"
-			></app-bl-search-bar>
-		</div>
-		<div class="col-sm-2 col-2">
-			<app-branch-current></app-branch-current>
-		</div>
-		<div class="col-2">
-			<div ngbDropdown [placement]="'left-top'">
-				<fa-icon
-					[icon]="'user'"
-					size="lg"
-					class="bl-header-button"
-					ngbDropdownToggle
-					*ngIf="permission === 'employee'"
-				></fa-icon>
-				<fa-icon
-					[icon]="'user-tie'"
-					size="lg"
-					class="bl-header-button"
-					ngbDropdownToggle
-					*ngIf="permission === 'manager'"
-				></fa-icon>
-				<fa-icon
-					[icon]="'user-astronaut'"
-					size="lg"
-					class="bl-header-button"
-					ngbDropdownToggle
-					*ngIf="permission === 'admin'"
-				></fa-icon>
-				<fa-icon
-					[icon]="'user-secret'"
-					class="bl-header-button"
-					size="lg"
-					ngbDropdownToggle
-					*ngIf="permission === 'super'"
-				></fa-icon>
-				<div ngbDropdownMenu>
-					<div class="dropdown-item text-muted disabled">
-						<div>{{ username }}</div>
-						<small>
-							<span class="mr-2">
-								<fa-icon
-									[icon]="'user'"
-									*ngIf="permission === 'employee'"
-								></fa-icon>
-								<fa-icon
-									[icon]="'user-tie'"
-									*ngIf="permission === 'manager'"
-								></fa-icon>
-								<fa-icon
-									[icon]="'user-astronaut'"
-									*ngIf="permission === 'admin'"
-								></fa-icon>
-								<fa-icon
-									[icon]="'user-secret'"
-									*ngIf="permission === 'super'"
-								></fa-icon>
-							</span>
-							<span
-								*ngIf="permission === 'employee'"
-								i18n="@@blUserPermissionEmployee"
-								>employee</span
-							>
-							<span
-								*ngIf="permission === 'manager'"
-								i18n="@@blUserPermissionManager"
-								>manager</span
-							>
-							<span
-								*ngIf="permission === 'admin'"
-								i18n="@@blUserPermissionAdmin"
-								>administrator</span
-							>
-							<span
-								*ngIf="permission === 'super'"
-								i18n="@@blUserPermissionSuper"
-								>wizard</span
-							>
-						</small>
-					</div>
-
-					<div class="dropdown-divider"></div>
-
-					<button
-						class="dropdown-item"
-						routerLink="/auth/register/detail"
-					>
-						<fa-icon [icon]="'user-cog'" class="mr-2"></fa-icon>
-						<span i18n="@@headerEditUserDetailButton"
-							>Edit user details</span
-						>
-					</button>
-
-					<div class="dropdown-divider"></div>
-
-					<button
-						class="dropdown-item text-danger"
-						(click)="onUserLogout()"
-					>
-						<fa-icon [icon]="'sign-out-alt'" class="mr-2"></fa-icon>
-						<span i18n="@@headerLogoutButton">Log out</span>
-					</button>
-				</div>
-			</div>
-		</div>
+<div class="bl-header d-flex align-items-center">
+	<div routerLink="home" class="bl-header-logo">
+		<img
+			src="../../assets/img/boklisten_logo_v2_icon_white_lg.png"
+			height="40"
+			width="40"
+		/>
 	</div>
+
+	<div class="col-sm-4 col-4">
+		<app-customer-current></app-customer-current>
+	</div>
+
+	<div class="col-sm-3 col-3 d-md-inline d-sm-none d-none">
+		<app-bl-search-bar
+			[design]="'dark'"
+			[searchFieldId]="headerCustomerSearchId"
+			[small]="true"
+			i18n-placeholder="@@headerCustomerSearch"
+			placeholder="Customer search"
+			[wait]="wait"
+			[term]="searchTerm"
+			(search)="onCustomerSearch($event)"
+		></app-bl-search-bar>
+	</div>
+	<div class="col-sm-2 col-2"><app-branch-current></app-branch-current></div>
 </div>

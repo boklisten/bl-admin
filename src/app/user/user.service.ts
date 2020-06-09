@@ -1,45 +1,46 @@
-import {Injectable} from '@angular/core';
-import {UserDetail, UserPermission} from '@wizardcoder/bl-model';
-import {TokenService} from '@wizardcoder/bl-connect';
+import { Injectable } from "@angular/core";
+import { UserDetail, UserPermission } from "@wizardcoder/bl-model";
+import { AuthService } from "../auth/auth.service";
 
 @Injectable()
 export class UserService {
+	public permission: string;
+	public username: string;
 
-	constructor(private _tokenService: TokenService) {
+	constructor(private _authService: AuthService) {}
 
+	public getPermission(): UserPermission {
+		return this._authService.getPermission();
 	}
 
-	getPermission(): UserPermission {
-		return this._tokenService.getAccessTokenBody().permission;
+	public getUsername(): string {
+		return this._authService.getUsername();
 	}
 
-	getUserDetailId(): string {
-		return this._tokenService.getAccessTokenBody().details;
+	public getUserDetailId(): string {
+		return this._authService.getUserDetailId();
 	}
 
-	getUsername(): string {
-		return this._tokenService.getAccessTokenBody().username;
-	}
-
-	havePermission(permission: UserPermission): boolean {
-
-		if (permission === this.getPermission() || permission === 'customer') {
+	public havePermission(permission: UserPermission): boolean {
+		if (permission === this.getPermission() || permission === "employee") {
 			return true;
 		}
 
-		if (permission === 'manager') {
-			if (this.getPermission() === 'admin' || this.getPermission() === 'super') {
+		if (permission === "manager") {
+			if (
+				this.getPermission() === "admin" ||
+				this.getPermission() === "super"
+			) {
 				return true;
 			}
 		}
 
-		if (permission === 'admin') {
-			if (this.getPermission() === 'super') {
+		if (permission === "admin") {
+			if (this.getPermission() === "super") {
 				return true;
 			}
 		}
 
 		return false;
 	}
-
 }
