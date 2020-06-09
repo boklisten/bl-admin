@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { CustomerSearchService } from "../../customer/customer-search/customer-search.service";
 import { BlcKeyeventDoubleShiftService } from "../../bl-common/blc-keyevent/blc-keyevent-double-shift.service";
+import { BlcClickService } from "../../bl-common/blc-click/blc-click.service";
 
 @Component({
 	selector: "app-header-customer-search",
@@ -12,9 +13,16 @@ export class HeaderCustomerSearchComponent implements OnInit {
 	public showSearchResult: boolean;
 	public headerCustomerSearchId: string;
 
+	@ViewChild("customerSearchResult", { read: ElementRef })
+	customerSearchResultChild: ElementRef;
+
+	@ViewChild("customerSearchBar", { read: ElementRef })
+	customerSearchBarChild: ElementRef;
+
 	constructor(
 		private _customerSearchService: CustomerSearchService,
-		private _blcKeyeventDoubleShiftService: BlcKeyeventDoubleShiftService
+		private _blcKeyeventDoubleShiftService: BlcKeyeventDoubleShiftService,
+		private _blcClickService: BlcClickService
 	) {}
 
 	ngOnInit() {
@@ -23,6 +31,20 @@ export class HeaderCustomerSearchComponent implements OnInit {
 		this.showSearchResult = false;
 		this.headerCustomerSearchId = "headerCustomerSearch";
 		this.onDoubleShift();
+		this._blcClickService.onClick(target => {
+			if (this.customerSearchResultChild) {
+				if (this.clickedOutsideSearchBarAndResult(target)) {
+					this.showSearchResult = false;
+				}
+			}
+		});
+	}
+
+	private clickedOutsideSearchBarAndResult(target: HTMLElement) {
+		return (
+			!this.customerSearchResultChild.nativeElement.contains(target) &&
+			!this.customerSearchBarChild.nativeElement.contains(target)
+		);
 	}
 
 	private onDoubleShift() {
@@ -37,6 +59,11 @@ export class HeaderCustomerSearchComponent implements OnInit {
 	}
 
 	public onSearchResultClick() {
+		console.log(
+			this.customerSearchBarChild.nativeElement.childNodes
+				.item("#headerCustomerSearch")
+				.childNodes[0].blur()
+		);
 		this.showSearchResult = false;
 	}
 

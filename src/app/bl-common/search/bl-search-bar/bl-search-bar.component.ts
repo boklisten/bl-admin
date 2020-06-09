@@ -17,10 +17,12 @@ export class BlSearchBarComponent implements OnInit {
 	@Output() focus: EventEmitter<boolean>;
 
 	public searchTerm: string;
+	private currentSearchTerm: string;
 
 	constructor() {
 		this.search = new EventEmitter<string>();
 		this.focus = new EventEmitter<boolean>();
+		this.currentSearchTerm = "";
 	}
 
 	ngOnInit() {
@@ -32,7 +34,10 @@ export class BlSearchBarComponent implements OnInit {
 	}
 
 	onSearch() {
-		this.search.emit(this.searchTerm);
+		if (this.searchTerm !== this.currentSearchTerm) {
+			this.search.emit(this.searchTerm);
+			this.currentSearchTerm = this.searchTerm;
+		}
 	}
 
 	public onFocus() {

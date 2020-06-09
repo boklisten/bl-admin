@@ -8,8 +8,9 @@
 <ul class="list-group">
 	<li
 		class="list-group-item list-group-item-action bl-customer-search-result-item"
-		*ngFor="let userDetail of userDetails"
+		*ngFor="let userDetail of userDetails; let i = index"
 		(click)="onCustomerClick(userDetail)"
+		[ngClass]="{'list-group-item-primary': listIndex == i}"
 	>
 		<div class="row justify-content-between">
 			<div class="col-auto">

@@ -36,6 +36,10 @@ import { BlcDeadlineSelectComponent } from "./blc-deadline-select/blc-deadline-s
 import { BlcTextblockEditComponent } from "./blc-textblock-edit/blc-textblock-edit.component";
 import { BlcBranchSelectComponent } from "./blc-branch/blc-branch-select/blc-branch-select.component";
 import { BlcTypeSelectComponent } from "./blc-type-select/blc-type-select.component";
+import { BlcArrowDownEventDirective } from "./blc-key/blc-arrow-down-event.directive";
+import { BlcArrowUpEventDirective } from "./blc-key/blc-arrow-up/blc-arrow-up.directive";
+import { BlcEnterEventDirective } from "./blc-key/blc-enter/blc-enter.directive";
+import { BlcClickDirective } from "./blc-click/blc-click.directive";
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -72,7 +76,11 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcDeadlineSelectComponent,
 		BlcTextblockEditComponent,
 		BlcBranchSelectComponent,
-		BlcTypeSelectComponent
+		BlcTypeSelectComponent,
+		BlcArrowDownEventDirective,
+		BlcArrowUpEventDirective,
+		BlcEnterEventDirective,
+		BlcClickDirective
 	],
 	exports: [
 		BlCommonUpdateButtonComponent,
@@ -95,7 +103,11 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcDeadlineSelectComponent,
 		BlcTextblockEditComponent,
 		BlcBranchSelectComponent,
-		BlcTypeSelectComponent
+		BlcTypeSelectComponent,
+		BlcArrowDownEventDirective,
+		BlcArrowUpEventDirective,
+		BlcEnterEventDirective,
+		BlcClickDirective
 	]
 })
 export class BlCommonModule {}
