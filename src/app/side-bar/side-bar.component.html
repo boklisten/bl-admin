@@ -1,4 +1,3 @@
-
 <div class="bl-sidebar">
 	<span *ngFor="let sidebarLink of sidebarLinks">
 		<app-side-bar-button
@@ -6,6 +5,7 @@
 			[icon]="sidebarLink.icon"
 			[link]="sidebarLink.link"
 			[notification]="sidebarLink.notification"
-			[selected]="sidebarLink.selected"></app-side-bar-button>
+			[selected]="sidebarLink.selected"
+		></app-side-bar-button>
 	</span>
 </div>

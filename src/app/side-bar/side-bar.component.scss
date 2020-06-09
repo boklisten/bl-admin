@@ -1,7 +1,8 @@
-
 @import "../../styles";
 
 .bl-sidebar {
+	padding-top: 50px;
 	height: calc(100vh - 50px);
 	background-color: $secondary-color;
+	min-width: 50px;
 }
