@@ -62,11 +62,9 @@ export class HeaderCustomerSearchComponent implements OnInit {
 	}
 
 	public onSearchResultClick() {
-		console.log(
-			this.customerSearchBarChild.nativeElement.childNodes
-				.item("#headerCustomerSearch")
-				.childNodes[0].blur()
-		);
+		this.customerSearchBarChild.nativeElement.childNodes
+			.item("#headerCustomerSearch")
+			.childNodes[0].blur();
 		this.showSearchResult = false;
 	}
 

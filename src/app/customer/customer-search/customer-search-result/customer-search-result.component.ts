@@ -94,6 +94,5 @@ export class CustomerSearchResultComponent implements OnInit, OnDestroy {
 	onCustomerClick(customerDetail: UserDetail) {
 		this.clicked.emit(true);
 		this._customerService.set(customerDetail.id);
-		this._router.navigate(["/cart"]);
 	}
 }
