@@ -9,7 +9,8 @@
 		placeholder="{{placeholder}}"
 		[(ngModel)]="searchTerm"
 		(keyup)="onSearch()"
-		(focus)="$event.target.select()"
+		(focus)="$event.target.select();onFocus();"
+		autocomplete="off"
 	/>
 	<app-bl-common-update-button
 		class="input-group-append"
@@ -18,3 +19,4 @@
 		(click)="onSearch()"
 	></app-bl-common-update-button>
 </div>
+<!--(focus)="onFocus() && $event.target.select()"-->

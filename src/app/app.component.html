@@ -3,13 +3,12 @@
 <div
 	class="container-fluid no-gutters"
 	[ngClass]="{'bl-login-container': !showContent}"
+	blcKeyeventDoubleShift
 >
 	<div class="row no-gutters d-flex">
 		<div class="d-flex text-center" *ngIf="showContent">
 			<app-side-bar></app-side-bar>
 		</div>
-		<div class="bl-content" blcKeyeventDoubleShift>
-			<router-outlet></router-outlet>
-		</div>
+		<div class="bl-content"><router-outlet></router-outlet></div>
 	</div>
 </div>

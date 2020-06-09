@@ -1,17 +1,13 @@
 import { Injectable } from "@angular/core";
 import { UserDetailService } from "@wizardcoder/bl-connect";
-import { Subject, Observable } from "rxjs";
-import {
-	BlApiError,
-	BlApiNotFoundError,
-	UserDetail
-} from "@wizardcoder/bl-model";
+import { Subject, Observable, ReplaySubject } from "rxjs";
+import { BlApiError, UserDetail } from "@wizardcoder/bl-model";
 import { StorageService } from "../../storage/storage.service";
 
 @Injectable()
 export class CustomerSearchService {
 	private _searchResultError$: Subject<any>;
-	private _searchResult$: Subject<UserDetail[]>;
+	private _searchResult$: ReplaySubject<UserDetail[]>;
 	private _currentSearchTerm: string;
 	private _searchTermStorageName: string;
 
@@ -20,7 +16,7 @@ export class CustomerSearchService {
 		private _storageService: StorageService
 	) {
 		this._searchTermStorageName = "bl-customer-search-term";
-		this._searchResult$ = new Subject<UserDetail[]>();
+		this._searchResult$ = new ReplaySubject<UserDetail[]>(1);
 		this._searchResultError$ = new Subject<any>();
 
 		if (this._storageService.get(this._searchTermStorageName)) {
