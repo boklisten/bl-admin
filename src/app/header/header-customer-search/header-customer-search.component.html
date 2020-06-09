@@ -8,7 +8,7 @@
 	[wait]="wait"
 	[term]="searchTerm"
 	(search)="onCustomerSearch($event)"
-	(focus)="onSearchBarFocus($event)"
+	(focus)="onSearchBarFocus()"
 ></app-bl-search-bar>
 <div class="bl-header-customer-search-result" *ngIf="showSearchResult">
 	<app-customer-search-result

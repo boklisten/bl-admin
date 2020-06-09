@@ -12,6 +12,7 @@ export class HeaderCustomerSearchComponent implements OnInit {
 	public wait: boolean;
 	public showSearchResult: boolean;
 	public headerCustomerSearchId: string;
+	public searchTerm: string;
 
 	@ViewChild("customerSearchResult", { read: ElementRef })
 	customerSearchResultChild: ElementRef;
@@ -23,7 +24,9 @@ export class HeaderCustomerSearchComponent implements OnInit {
 		private _customerSearchService: CustomerSearchService,
 		private _blcKeyeventDoubleShiftService: BlcKeyeventDoubleShiftService,
 		private _blcClickService: BlcClickService
-	) {}
+	) {
+		this.searchTerm = "";
+	}
 
 	ngOnInit() {
 		this.onSearchResult();
