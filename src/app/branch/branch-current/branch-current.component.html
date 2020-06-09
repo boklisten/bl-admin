@@ -1,13 +1,13 @@
 <div
 	class="btn btn-outline-dark btn-sm btn-block bl-branch-current"
 	[ngbPopover]="branchSelectPopover"
-	placement="bottom"
+	placement="bottom-right"
 	#branchSelectPopoverRef="ngbPopover"
 	(click)="setCurrentPopoverOpen(branchSelectPopoverRef)"
 >
-	<fa-icon [icon]="'location-arrow'" class="mr-2"></fa-icon>
+	<fa-icon [icon]="'location-arrow'"></fa-icon>
 	<span
-		class="d-lg-inline d-md-none d-sm-none d-none"
+		class="d-lg-inline d-md-none d-sm-none d-none ml-2"
 		*ngIf="currentBranch"
 		>{{ currentBranch.name }}</span
 	>

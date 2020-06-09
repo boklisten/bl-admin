@@ -1,33 +1,32 @@
-<div *ngIf="customerDetail" class="d-lg-inline d-md-none d-sm-none d-none">
+<div *ngIf="customerDetail">
 	<button
-		class="btn btn-outline-dark btn-sm mr-2"
-		(click)="onClearCustomer()"
-	>
-		<fa-icon icon="times" class="mr-2 ml-2"></fa-icon>
-		<!--<fa-icon [icon]="'user'"></fa-icon>-->
-	</button>
-
-	<button
-		class="btn btn-outline-dark btn-sm mr-2"
-		(click)="onReloadCustomer()"
-	>
-		<fa-icon icon="sync-alt" class="mr-2 ml-2"></fa-icon>
-		<!--<fa-icon [icon]="'user'"></fa-icon>-->
-	</button>
-
-	<button
-		class="btn btn-outline-dark btn-sm bl-customer-name text-lg-left text-center"
+		class="btn btn-warning btn-sm bl-customer-name text-lg-left text-center"
 	>
 		<div
 			[ngbPopover]="customerDetailPopover"
-			placement="bottom"
+			placement="bottom-left"
 			#customerDetailPopoverRef="ngbPopover"
 			(click)="setCurrentPopoverOpen(customerDetailPopoverRef)"
 		>
 			<span class="d-lg-inline d-md-none d-sm-none d-none"
 				>{{ customerDetail.name }}</span
 			>
+			<fa-icon
+				icon="user"
+				class="d-lg-none d-md-inline d-sm-inline d-inline"
+			></fa-icon>
 		</div>
+	</button>
+
+	<button class="btn btn-warning btn-sm ml-1" (click)="onClearCustomer()">
+		<fa-icon icon="times" class=""></fa-icon>
+	</button>
+
+	<button
+		class="btn btn-warning btn-sm ml-1 mr-2"
+		(click)="onReloadCustomer()"
+	>
+		<fa-icon icon="sync-alt" class=""></fa-icon>
 	</button>
 
 	<div>

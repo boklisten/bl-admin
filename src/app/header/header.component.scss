@@ -4,13 +4,33 @@
 	width: 100vm;
 	background-color: $primary-color;
 	//background-color: $secondary-color;
-	height: 50px;
+	height: 38px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-right: 20px;
 }
 
 .bl-header-logo {
 	min-width: 50px;
-	padding: 5px;
+	padding-left: 10px;
 	//background-color: $primary-color;
+	flex: 0 0;
+}
+
+.bl-header-customer-current {
+	flex: 0 0 auto;
+	padding-left: 0px;
+}
+
+.bl-header-search-bar {
+	flex: 1 0 auto;
+	padding-right: 5px;
+}
+
+.bl-header-branch-current {
+	flex: 0 0 auto;
+	padding-right: 20px;
 }
 
 .bl-logo-text {

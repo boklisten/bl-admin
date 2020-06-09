@@ -1,17 +1,17 @@
-<div class="bl-header d-flex align-items-center">
+<div class="bl-header">
 	<div routerLink="home" class="bl-header-logo">
 		<img
 			src="../../assets/img/boklisten_logo_v2_icon_white_lg.png"
-			height="40"
-			width="40"
+			height="30"
+			width="30"
 		/>
 	</div>
 
-	<div class="col-sm-4 col-4">
+	<div class="bl-header-customer-current">
 		<app-customer-current></app-customer-current>
 	</div>
 
-	<div class="col-sm-3 col-3 d-md-inline d-sm-none d-none">
+	<div class="bl-header-search-bar">
 		<app-bl-search-bar
 			[design]="'dark'"
 			[searchFieldId]="headerCustomerSearchId"
@@ -23,5 +23,7 @@
 			(search)="onCustomerSearch($event)"
 		></app-bl-search-bar>
 	</div>
-	<div class="col-sm-2 col-2"><app-branch-current></app-branch-current></div>
+	<div class="bl-header-branch-current">
+		<app-branch-current></app-branch-current>
+	</div>
 </div>
