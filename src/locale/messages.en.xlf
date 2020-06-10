@@ -1369,7 +1369,13 @@
         <source>cancel</source><target state="final">cancel</target>
         
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.html</context><context context-type="linenumber">74</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.html</context><context context-type="linenumber">82</context></context-group></trans-unit><trans-unit id="orderItemDetailListRent" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.html</context><context context-type="linenumber">74</context></context-group></trans-unit><trans-unit id="orderItemDetailListSell" datatype="html">
+        <source>sell</source><target state="final">sell</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit><trans-unit id="orderItemDetailListRent" datatype="html">
         <source>rent</source><target state="final">rent</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.html</context><context context-type="linenumber">107</context></context-group></trans-unit><trans-unit id="orderItemDetailListExtend" datatype="html">

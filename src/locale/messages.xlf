@@ -2190,6 +2190,9 @@
           <context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.html</context>
           <context context-type="linenumber">74</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="orderItemDetailListSell" datatype="html">
+        <source>sell</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/order/order-detail/order-item-detail-list/order-item-detail-list.component.html</context>
           <context context-type="linenumber">82</context>
