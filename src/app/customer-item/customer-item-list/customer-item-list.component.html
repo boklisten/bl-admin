@@ -4,17 +4,7 @@
 			Customer items
 		</h4>
 	</div>
-	<ul class="list-group list-group-flush">
-		<li
-			class="list-group-item list-group-item-secondary text-center"
-			*ngIf="customerItemList.length <= 0 && !wait"
-		>
-			<fa-icon [icon]="'exclamation-circle'" class="mr-2"></fa-icon>
-			<span i18n="@@customerItemListNoCustomerItemsFound"
-				>No customer-items found</span
-			>
-		</li>
-
+	<ul class="list-group list-group-flush" *ngIf="wait || error">
 		<li class="list-group-item list-group-item-danger" *ngIf="error">
 			<span>Something went wrong with retrieving the customerItems</span>
 		</li>
@@ -26,7 +16,16 @@
 			<fa-icon [icon]="'circle-notch'" [spin]="true"></fa-icon>
 		</li>
 	</ul>
-	<ul *ngIf="!wait">
+	<ul *ngIf="!wait" class="list-group list-group-flush">
+		<li
+			class="list-group-item list-group-item-secondary text-center"
+			*ngIf="customerItemList.length <= 0"
+		>
+			<fa-icon [icon]="'exclamation-circle'" class="mr-2"></fa-icon>
+			<span i18n="@@customerItemListNoCustomerItemsFound"
+				>No customer-items found</span
+			>
+		</li>
 		<li
 			class="list-group-item list-group-item-action"
 			*ngFor="let customerItemListItem of customerItemList"
