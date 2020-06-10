@@ -2,10 +2,8 @@ import { Injectable } from "@angular/core";
 import { CustomerItem, Item } from "@wizardcoder/bl-model";
 import { CustomerService } from "../../customer/customer.service";
 import { CustomerItemService, ItemService } from "@wizardcoder/bl-connect";
-import { CartService } from "../../cart/cart.service";
-import { Observable, ReplaySubject, Subscription } from "rxjs";
+import { ReplaySubject, Subscription } from "rxjs";
 import { Subject } from "rxjs/internal/Subject";
-import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 
 type CustomerItemWithItem = {
 	customerItem: CustomerItem;
@@ -23,9 +21,7 @@ export class CustomerItemListService {
 	constructor(
 		private _customerService: CustomerService,
 		private _itemService: ItemService,
-		private _cartService: CartService,
-		private _customerItemService: CustomerItemService,
-		private _customerDetailService: CustomerDetailService
+		private _customerItemService: CustomerItemService
 	) {
 		this._customerItemList = [];
 		this._customerItemList$ = new ReplaySubject(1);
@@ -33,6 +29,7 @@ export class CustomerItemListService {
 		this.handleCustomerClear();
 		this._customerItemList$.next([]);
 		this._wait$ = new Subject();
+		this.handleCustomerWaitChange();
 	}
 
 	public subscribe(
@@ -62,6 +59,12 @@ export class CustomerItemListService {
 
 	public async addItemWithIsbn(isbn: string): Promise<boolean> {
 		throw new Error("addItemWithIsbn is not implemented");
+	}
+
+	private handleCustomerWaitChange() {
+		this._customerService.onWait(wait => {
+			this._wait$.next(wait);
+		});
 	}
 
 	private handleCustomerChange() {

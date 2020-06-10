@@ -8,6 +8,7 @@ export class CustomerService {
 	private _customerDetail$: ReplaySubject<UserDetail>;
 	private _userDetailIdStorageName: string;
 	private _clear$: Subject<boolean>;
+	private _wait$: Subject<boolean>;
 	private _customerDetail: UserDetail;
 
 	constructor(
@@ -16,6 +17,7 @@ export class CustomerService {
 	) {
 		this._customerDetail$ = new ReplaySubject(1);
 		this._clear$ = new Subject<boolean>();
+		this._wait$ = new Subject<boolean>();
 		this._userDetailIdStorageName = "bl-customer-id";
 
 		this.getCustomerDetailIfInStorage();
@@ -26,11 +28,13 @@ export class CustomerService {
 	}
 
 	public set(id: string): void {
+		this._wait$.next(true);
 		this.getCustomerDetail(id)
 			.then((userDetail: UserDetail) => {
 				this.setCustomerDetail(userDetail);
 			})
 			.catch(e => {
+				this._wait$.next(false);
 				console.log(e);
 			});
 	}
@@ -49,6 +53,10 @@ export class CustomerService {
 
 	public onClear(func: (cleared: boolean) => void): Subscription {
 		return this._clear$.asObservable().subscribe(func);
+	}
+
+	public onWait(func: (wait: boolean) => void): Subscription {
+		return this._wait$.asObservable().subscribe(func);
 	}
 
 	public update(
@@ -92,6 +100,8 @@ export class CustomerService {
 		} catch (e) {
 			throw e;
 		}
+
+		this._wait$.next(false);
 	}
 
 	private getCustomerDetailIfInStorage() {
