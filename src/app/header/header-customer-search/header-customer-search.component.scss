@@ -7,6 +7,14 @@
 	border-left: 1px solid $secondary_color;
 	border-bottom: 1px solid $secondary_color;
 	border-right: 1px solid $secondary_color;
-	border-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-left-radius: 5px;
 	width: inherit;
+	min-width: 35%;
+	max-height: calc(100vh - #{$header_height});
+	overflow-y: auto;
+}
+.bl-header-customer-search-result-content {
+	width: 100%;
 }

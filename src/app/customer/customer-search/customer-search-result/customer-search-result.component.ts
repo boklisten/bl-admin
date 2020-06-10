@@ -20,6 +20,7 @@ import { Subscription } from "rxjs";
 	styleUrls: ["./customer-search-result.component.scss"]
 })
 export class CustomerSearchResultComponent implements OnInit, OnDestroy {
+	public wait: boolean;
 	public userDetails: UserDetail[];
 	public warningText: string;
 	public listIndex: number;
@@ -28,22 +29,50 @@ export class CustomerSearchResultComponent implements OnInit, OnDestroy {
 	private arrowDown$: Subscription;
 	private enter$: Subscription;
 	private searchResult$: Subscription;
+	private searchResultWait$: Subscription;
+	private searchTerm$: Subscription;
+	private canShowNotFoundAlert: boolean;
 
 	@Output() clicked: EventEmitter<boolean>;
 
 	constructor(
 		private _customerSearchService: CustomerSearchService,
-		private _router: Router,
 		private _customerService: CustomerService,
 		private _blcArrowDownService: BlcArrowDownService,
 		private _blcArrowUpService: BlcArrowUpService,
 		private _blcEnterService: BlcEnterService
 	) {
+		this.userDetails = [];
 		this.clicked = new EventEmitter<boolean>();
 		this.listIndex = -1;
 	}
 
 	ngOnInit() {
+		this.handleSearchResultChange();
+		this.handleSearchResultErrorChange();
+		this.handleSearchWaitChange();
+		this.handleSearchTermChange();
+		this.handleArrowUpEvent();
+		this.handleArrowDownEvent();
+		this.handleEnterEvent();
+	}
+
+	ngOnDestroy() {
+		this.searchResult$.unsubscribe();
+		this.searchResultError$.unsubscribe();
+		this.searchResultWait$.unsubscribe();
+		this.searchTerm$.unsubscribe();
+		this.enter$.unsubscribe();
+		this.arrowUp$.unsubscribe();
+		this.arrowDown$.unsubscribe();
+	}
+
+	public onCustomerClick(customerDetail: UserDetail) {
+		this.clicked.emit(true);
+		this._customerService.set(customerDetail.id);
+	}
+
+	private handleSearchResultChange() {
 		this.searchResult$ = this._customerSearchService
 			.onSearchResult()
 			.subscribe((userDetails: UserDetail[]) => {
@@ -51,27 +80,49 @@ export class CustomerSearchResultComponent implements OnInit, OnDestroy {
 				this.warningText = null;
 				this.userDetails = userDetails;
 			});
+	}
 
+	private handleSearchResultErrorChange() {
 		this.searchResultError$ = this._customerSearchService
 			.onSearchResultError()
 			.subscribe(() => {
 				this.userDetails = [];
-				this.warningText =
-					"Could not find any customer with the current search term";
 			});
+	}
 
+	private handleSearchWaitChange() {
+		this.searchResultWait$ = this._customerSearchService.onWait(wait => {
+			this.wait = wait;
+		});
+	}
+
+	private handleSearchTermChange() {
+		this.searchTerm$ = this._customerSearchService.onSearchTerm(term => {
+			if (!term || term.length < 3) {
+				this.canShowNotFoundAlert = false;
+			} else {
+				this.canShowNotFoundAlert = true;
+			}
+		});
+	}
+
+	private handleArrowUpEvent() {
 		this.arrowUp$ = this._blcArrowUpService.subscribe(() => {
 			if (this.listIndex > -1) {
 				this.listIndex--;
 			}
 		});
+	}
 
+	private handleArrowDownEvent() {
 		this.arrowDown$ = this._blcArrowDownService.subscribe(() => {
 			if (this.listIndex < this.userDetails.length - 1) {
 				this.listIndex++;
 			}
 		});
+	}
 
+	private handleEnterEvent() {
 		this.enter$ = this._blcEnterService.subscribe(() => {
 			if (
 				this.listIndex > -1 &&
@@ -81,18 +132,5 @@ export class CustomerSearchResultComponent implements OnInit, OnDestroy {
 				this.listIndex = -1;
 			}
 		});
-	}
-
-	ngOnDestroy() {
-		this.enter$.unsubscribe();
-		this.searchResultError$.unsubscribe();
-		this.arrowUp$.unsubscribe();
-		this.arrowDown$.unsubscribe();
-		this.searchResult$.unsubscribe();
-	}
-
-	onCustomerClick(customerDetail: UserDetail) {
-		this.clicked.emit(true);
-		this._customerService.set(customerDetail.id);
 	}
 }

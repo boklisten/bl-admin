@@ -10,9 +10,9 @@
 	(search)="onCustomerSearch($event)"
 	(focus)="onSearchBarFocus()"
 ></app-bl-search-bar>
-<div class="bl-header-customer-search-result" *ngIf="showSearchResult">
-	<app-customer-search-result
-		#customerSearchResult
-		(clicked)="onSearchResultClick($event)"
-	></app-customer-search-result>
-</div>
+<app-customer-search-result
+	#customerSearchResult
+	class="bl-header-customer-search-result"
+	*ngIf="showSearchResult"
+	(clicked)="onSearchResultClick($event)"
+></app-customer-search-result>
