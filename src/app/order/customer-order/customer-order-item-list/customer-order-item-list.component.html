@@ -5,17 +5,17 @@
 	>
 		<fa-icon [icon]="'circle-notch'" [spin]="true"></fa-icon>
 	</li>
+</ul>
+<ul class="list-group" *ngIf="!wait">
 	<li
 		class="list-group-item list-group-item-secondary text-center"
-		*ngIf="!wait && showNoOrdersFoundError"
+		*ngIf="customerOrderItems.length <= 0"
 	>
 		<fa-icon [icon]="'exclamation-circle'" class="mr-2"></fa-icon>
 		<span i18n="@@customerOrderItemListNoOrderItemsFound"
 			>No ordered items found</span
 		>
 	</li>
-</ul>
-<ul class="list-group" *ngIf="!wait">
 	<li
 		class="list-group-item"
 		*ngFor="let customerOrderItem of customerOrderItems"

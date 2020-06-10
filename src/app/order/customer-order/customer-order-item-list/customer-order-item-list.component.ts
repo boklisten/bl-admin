@@ -16,7 +16,8 @@ export class CustomerOrderItemListComponent implements OnInit, OnDestroy {
 	}[];
 	public showNoOrdersFoundError: boolean;
 	public wait: boolean;
-	private customerOrderItemListSubscription: Subscription;
+	private customerOrderItemList$: Subscription;
+	private customerOrderItemListWait$: Subscription;
 
 	constructor(
 		private _customerOrderItemListService: CustomerOrderItemListService
@@ -25,26 +26,27 @@ export class CustomerOrderItemListComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
-		this.wait = true;
-		this.handleCustomerOrderItemListChange();
+		this.onCustomerOrderItemListChange();
+		this.onCustomerOrderItemListWaitChange();
 	}
 
 	ngOnDestroy() {
-		this.customerOrderItemListSubscription.unsubscribe();
+		this.customerOrderItemList$.unsubscribe();
+		this.customerOrderItemListWait$.unsubscribe();
 	}
 
-	private handleCustomerOrderItemListChange() {
-		this.customerOrderItemListSubscription = this._customerOrderItemListService.subscribe(
+	private onCustomerOrderItemListWaitChange() {
+		this.customerOrderItemListWait$ = this._customerOrderItemListService.onWait(
+			wait => {
+				this.wait = wait;
+			}
+		);
+	}
+
+	private onCustomerOrderItemListChange() {
+		this.customerOrderItemList$ = this._customerOrderItemListService.subscribe(
 			customerOrderItems => {
 				this.customerOrderItems = customerOrderItems;
-				this.wait = false;
-				/*
-				if (this.customerOrderItems.length <= 0) {
-					this.showNoOrdersFoundError = true;
-				} else {
-					this.showNoOrdersFoundError = false;
-				}
-        */
 			}
 		);
 	}

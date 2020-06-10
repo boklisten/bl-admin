@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Order, OrderItem } from "@wizardcoder/bl-model";
 import { CartService } from "../../../cart/cart.service";
-import { ReplaySubject, Subscription } from "rxjs";
+import { ReplaySubject, Subscription, Subject } from "rxjs";
 import { CustomerOrderService } from "../customer-order.service";
 
 type CustomerOrderItem = {
@@ -14,14 +14,18 @@ type CustomerOrderItem = {
 })
 export class CustomerOrderItemListService {
 	private _customerOrderItems$: ReplaySubject<CustomerOrderItem[]>;
+	private _wait$: Subject<boolean>;
 
 	constructor(
 		private _cartService: CartService,
 		private _customerOrderService: CustomerOrderService
 	) {
 		this._customerOrderItems$ = new ReplaySubject(1);
+		this._wait$ = new Subject();
+
 		this.onCartConfirmed();
 		this.onCustomerOrderServiceChange();
+		this.onCustomerOrderWaitChange();
 	}
 
 	public subscribe(
@@ -30,10 +34,20 @@ export class CustomerOrderItemListService {
 		return this._customerOrderItems$.asObservable().subscribe(func);
 	}
 
+	public onWait(func: (wait: boolean) => void): Subscription {
+		return this._wait$.asObservable().subscribe(func);
+	}
+
 	private onCustomerOrderServiceChange(): void {
 		this._customerOrderService.subscribe((orders: Order[]) => {
 			let customerOrderItems = this.filterOrderdItems(orders);
 			this.setOrderedItems(customerOrderItems);
+		});
+	}
+
+	private onCustomerOrderWaitChange(): void {
+		this._customerOrderService.onWait(wait => {
+			this._wait$.next(wait);
 		});
 	}
 
@@ -45,6 +59,7 @@ export class CustomerOrderItemListService {
 
 	private setOrderedItems(customerOrderItems) {
 		this._customerOrderItems$.next(customerOrderItems);
+		this._wait$.next(false);
 	}
 
 	private filterOrderdItems(

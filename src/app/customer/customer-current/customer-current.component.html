@@ -4,7 +4,7 @@
 
 <button
 	class="btn btn-warning btn-sm bl-customer-name text-lg-left text-center"
-	*ngIf="!wait"
+	*ngIf="!wait && customerDetail"
 	[ngClass]="{'btn-block': wait}"
 	[ngbPopover]="customerDetailPopover"
 	placement="bottom-left"
@@ -23,7 +23,7 @@
 <button
 	class="btn btn-warning btn-sm ml-1"
 	(click)="onClearCustomer()"
-	*ngIf="!wait"
+	*ngIf="!wait && customerDetail"
 >
 	<fa-icon icon="times" class=""></fa-icon>
 </button>
@@ -31,7 +31,7 @@
 <button
 	class="btn btn-warning btn-sm ml-1 mr-2"
 	(click)="onReloadCustomer()"
-	*ngIf="!wait"
+	*ngIf="!wait && customerDetail"
 >
 	<fa-icon icon="sync-alt" class=""></fa-icon>
 </button>
