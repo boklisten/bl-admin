@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { UserDetail, UserPermission } from "@wizardcoder/bl-model";
 import { Router, RouterEvent, ActivatedRoute } from "@angular/router";
 import { CustomerService } from "../customer/customer.service";
 import { UserService } from "../user/user.service";
 import { CartService } from "../cart/cart.service";
 import { AuthService } from "../auth/auth.service";
+import { Subscription } from "rxjs";
 
 @Component({
 	selector: "app-side-bar",
@@ -21,23 +22,20 @@ export class SideBarComponent implements OnInit {
 		selected: boolean;
 		permission: UserPermission;
 		hide?: boolean;
+		color?: string;
 	}[];
+
+	private customer$: Subscription;
+	private customerClear$: Subscription;
+	private router$: Subscription;
 
 	constructor(
 		private _customerService: CustomerService,
 		private _router: Router,
-		private _cartService: CartService,
 		private _userService: UserService,
 		private _authService: AuthService
 	) {
 		this.sidebarLinks = [
-			{
-				name: "search",
-				link: "search",
-				icon: "search",
-				permission: "employee",
-				selected: false
-			},
 			{
 				name: "customer",
 				link: "",
@@ -50,6 +48,13 @@ export class SideBarComponent implements OnInit {
 				name: "cart",
 				link: "cart",
 				icon: "shopping-cart",
+				permission: "employee",
+				selected: false
+			},
+			{
+				name: "booking",
+				link: "booking",
+				icon: "calendar-alt",
 				permission: "employee",
 				selected: false
 			},
@@ -75,13 +80,6 @@ export class SideBarComponent implements OnInit {
 				selected: false
 			},
 			{
-				name: "booking",
-				link: "booking",
-				icon: "calendar-alt",
-				permission: "employee",
-				selected: false
-			},
-			{
 				name: "database",
 				link: "database",
 				icon: "database",
@@ -93,37 +91,39 @@ export class SideBarComponent implements OnInit {
 				link: "user",
 				icon: this.getUserIcon(),
 				permission: "employee",
-				selected: false
+				selected: false,
+				color: "info"
 			}
 		];
 	}
 
 	ngOnInit() {
-		this._router.events.subscribe((event: RouterEvent) => {
+		this.hideNoPermissionLinks();
+		this.handleCustomerChange();
+		this.handleCustomerClearChange();
+		this.handleRouterChange();
+	}
+
+	ngOnDestroy() {
+		this.customer$.unsubscribe();
+		this.customerClear$.unsubscribe();
+		this.router$.unsubscribe();
+	}
+
+	private handleRouterChange() {
+		this.router$ = this._router.events.subscribe((event: RouterEvent) => {
 			if (event.url) {
 				this.selectSidebarLinkBasedOnRoute(
 					this.getFirstSegment(event.url)
 				);
 			}
 		});
-
-		this.hideNoPermissionLinks();
-
-		this._cartService.onCartChange().subscribe(() => {
-			if (this._cartService.getCart().length > 0) {
-				this.setNotificationOnSidebarLink("cart", true);
-			} else {
-				this.setNotificationOnSidebarLink("cart", false);
-			}
-		});
-
-		this.handleCustomerChange();
 	}
 
 	private getUserIcon(): string {
 		let permission = this._authService.getPermission();
 		switch (permission) {
-			case "customer":
+			case "employee":
 				return "user";
 			case "manager":
 				return "user-tie";
@@ -146,8 +146,8 @@ export class SideBarComponent implements OnInit {
 	}
 
 	private handleCustomerChange() {
-		this._customerService.subscribe((customerDetail: UserDetail) => {
-			if (customerDetail) {
+		this.customer$ = this._customerService.subscribe(
+			(customerDetail: UserDetail) => {
 				for (const sidebarLink of this.sidebarLinks) {
 					if (sidebarLink.name === "customer") {
 						sidebarLink.link =
@@ -157,18 +157,22 @@ export class SideBarComponent implements OnInit {
 						return;
 					}
 				}
-			} else {
-				for (const sidebarLink of this.sidebarLinks) {
-					if (sidebarLink.name === "customer") {
-						sidebarLink.hide = true;
-						this.hideNoPermissionLinks();
-					}
+			}
+		);
+	}
+
+	private handleCustomerClearChange() {
+		this.customerClear$ = this._customerService.onClear(() => {
+			for (const sidebarLink of this.sidebarLinks) {
+				if (sidebarLink.name === "customer") {
+					sidebarLink.hide = true;
+					this.hideNoPermissionLinks();
 				}
 			}
 		});
 	}
 
-	selectSidebarLinkBasedOnRoute(url: string) {
+	private selectSidebarLinkBasedOnRoute(url: string) {
 		for (const sidebarLink of this.sidebarLinks) {
 			if (url.indexOf(sidebarLink.name) >= 0) {
 				this.deselectAllSideBarLinks();
@@ -179,7 +183,7 @@ export class SideBarComponent implements OnInit {
 		}
 	}
 
-	setNotificationOnSidebarLink(name: string, notification: boolean) {
+	private setNotificationOnSidebarLink(name: string, notification: boolean) {
 		for (const sidebarLink of this.sidebarLinks) {
 			if (sidebarLink.name === name) {
 				sidebarLink.notification = notification;

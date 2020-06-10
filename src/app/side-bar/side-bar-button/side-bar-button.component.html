@@ -1,7 +1,7 @@
 <div
 	class="bl-sidebar-button text-center"
 	routerLink="{{link}}"
-	[ngClass]="{'bl-sidebar-button-selected': selected}"
+	[ngClass]="{'bl-sidebar-button-selected': selected, 'text-info': color == 'info' && !selected}"
 >
 	<fa-icon [icon]="icon" size="2x"></fa-icon>
 </div>

@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
-	selector: 'app-side-bar-button',
-	templateUrl: './side-bar-button.component.html',
-	styleUrls: ['./side-bar-button.component.scss']
+	selector: "app-side-bar-button",
+	templateUrl: "./side-bar-button.component.html",
+	styleUrls: ["./side-bar-button.component.scss"]
 })
 export class SideBarButtonComponent implements OnInit {
 	@Input() icon: string[];
@@ -12,11 +12,9 @@ export class SideBarButtonComponent implements OnInit {
 	@Input() link: string;
 	@Input() notification: boolean;
 	@Input() selected: boolean;
+	@Input() color: string;
 
-	constructor() {
-	}
+	constructor() {}
 
-	ngOnInit() {
-	}
-
+	ngOnInit() {}
 }
