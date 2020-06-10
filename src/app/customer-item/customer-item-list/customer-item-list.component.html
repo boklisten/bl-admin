@@ -7,7 +7,7 @@
 	<ul class="list-group list-group-flush">
 		<li
 			class="list-group-item list-group-item-secondary text-center"
-			*ngIf="customerItemsWithItem.length <= 0 && !wait && !error"
+			*ngIf="customerItemList.length <= 0 && !wait && !error"
 		>
 			<fa-icon [icon]="'exclamation-circle'" class="mr-2"></fa-icon>
 			<span i18n="@@customerItemListNoCustomerItemsFound"
@@ -26,10 +26,10 @@
 		</li>
 		<li
 			class="list-group-item list-group-item-action"
-			*ngFor="let customerItemWithItem of customerItemsWithItem"
+			*ngFor="let customerItemListItem of customerItemList"
 		>
 			<app-customer-item-list-item
-				[customerItem]="customerItemWithItem.customerItem"
+				[customerItem]="customerItemListItem.customerItem"
 			></app-customer-item-list-item>
 		</li>
 	</ul>

@@ -17,7 +17,7 @@ type CustomerItemWithItem = {
 })
 export class CustomerItemListService {
 	private _customerItemList: { customerItem: CustomerItem; item: Item }[];
-	private _customerItems$: ReplaySubject<CustomerItemWithItem[]>;
+	private _customerItemList$: ReplaySubject<CustomerItemWithItem[]>;
 
 	constructor(
 		private _customerService: CustomerService,
@@ -27,15 +27,16 @@ export class CustomerItemListService {
 		private _customerDetailService: CustomerDetailService
 	) {
 		this._customerItemList = [];
-		this._customerItems$ = new ReplaySubject(1);
+		this._customerItemList$ = new ReplaySubject(1);
 		this.handleCustomerChange();
 		this.handleCustomerClear();
+		this._customerItemList$.next([]);
 	}
 
 	public subscribe(
 		func: (customerItems: CustomerItemWithItem[]) => void
 	): Subscription {
-		return this._customerItems$.asObservable().subscribe(func);
+		return this._customerItemList$.asObservable().subscribe(func);
 	}
 
 	public getByCustomerItemId(customerItemId: string): CustomerItemWithItem {
@@ -50,50 +51,22 @@ export class CustomerItemListService {
 	}
 
 	public getItemWithIsbn(isbn: string) {
-		for (const customerItemWithItem of this._customerItemList) {
-			if (
-				customerItemWithItem.item.info &&
-				customerItemWithItem.item.info["isbn"]
-			) {
-				if (
-					customerItemWithItem.item.info["isbn"].toString() === isbn
-				) {
-					return customerItemWithItem;
-				}
-			}
-		}
-		throw new ReferenceError(
-			"item isbn does not exist in customerItemList"
-		);
+		throw new Error("getItemWithIsbn is not implemented");
 	}
 
 	public async addItemWithIsbn(isbn: string): Promise<boolean> {
-		if (this._customerItemList.length <= 0) {
-			this._customerItemList = await this.getCustomerItemList();
-		}
-
-		const cartItemWithItem = this.getItemWithIsbn(isbn);
-
-		if (cartItemWithItem) {
-			if (!this._cartService.contains(cartItemWithItem.item.id)) {
-				this._cartService.addCustomerItem(
-					cartItemWithItem.customerItem,
-					cartItemWithItem.item
-				);
-			}
-			return true;
-		}
-
-		return false;
+		throw new Error("addItemWithIsbn is not implemented");
 	}
 
 	private handleCustomerChange() {
-		this._customerService.subscribe(() => {
-			this.getCustomerItemList()
+		this._customerService.subscribe(customerDetail => {
+			this.fetchCustomerItemList(customerDetail.id)
 				.then(customerItemList => {
 					this.setCustomerItemList(customerItemList);
 				})
-				.catch(() => {});
+				.catch(() => {
+					this.setCustomerItemList([]);
+				});
 		});
 	}
 
@@ -107,28 +80,52 @@ export class CustomerItemListService {
 
 	private setCustomerItemList(customerItemList: CustomerItemWithItem[]) {
 		this._customerItemList = customerItemList;
-		this._customerItems$.next(customerItemList);
+		this._customerItemList$.next(customerItemList);
 	}
 
-	private async getCustomerItemList(): Promise<
-		{ customerItem: CustomerItem; item: Item }[]
-	> {
-		const customerItemList = [];
-		const customerDetail = this._customerDetailService.get();
+	private async fetchCustomerItemList(
+		customerDetailId: string
+	): Promise<CustomerItemWithItem[]> {
+		let customerItemList: CustomerItemWithItem[] = [];
+		try {
+			const customerItems = await this.fetchCustomerItems(
+				customerDetailId
+			);
+			customerItemList = await this.fetchAndAttachItemsToCustomerItems(
+				customerItems
+			);
+		} catch (e) {
+			return [];
+		}
 
-		const customerItems = await this._customerItemService.get({
-			query: `?customer=${customerDetail.id}`
-		});
+		return customerItemList;
+	}
+
+	private async fetchCustomerItems(
+		customerDetailId: string
+	): Promise<CustomerItem[]> {
+		let customerItems;
+
+		try {
+			customerItems = await this._customerItemService.get({
+				query: `?customer=${customerDetailId}`
+			});
+		} catch (e) {
+			return [];
+		}
+
+		return customerItems;
+	}
+
+	private async fetchAndAttachItemsToCustomerItems(
+		customerItems: CustomerItem[]
+	): Promise<CustomerItemWithItem[]> {
+		const customerItemList = [];
 
 		for (const customerItem of customerItems) {
-			if (
-				!customerItem.returned &&
-				!customerItem.buyout &&
-				customerItem.handout
-			) {
-				const item = await this._itemService.getById(
-					customerItem.item as string
-				);
+			if (this.isActive(customerItem)) {
+				const item = await this.fetchItem(customerItem.item as string);
+
 				customerItemList.push({
 					customerItem: customerItem,
 					item: item
@@ -137,5 +134,17 @@ export class CustomerItemListService {
 		}
 
 		return customerItemList;
+	}
+
+	private async fetchItem(itemId: string): Promise<Item> {
+		return this._itemService.getById(itemId);
+	}
+
+	private isActive(customerItem: CustomerItem): boolean {
+		return (
+			!customerItem.returned &&
+			!customerItem.buyout &&
+			customerItem.handout
+		);
 	}
 }
