@@ -18,6 +18,7 @@ type CustomerItemWithItem = {
 export class CustomerItemListService {
 	private _customerItemList: { customerItem: CustomerItem; item: Item }[];
 	private _customerItemList$: ReplaySubject<CustomerItemWithItem[]>;
+	private _wait$: Subject<boolean>;
 
 	constructor(
 		private _customerService: CustomerService,
@@ -31,12 +32,17 @@ export class CustomerItemListService {
 		this.handleCustomerChange();
 		this.handleCustomerClear();
 		this._customerItemList$.next([]);
+		this._wait$ = new Subject();
 	}
 
 	public subscribe(
 		func: (customerItems: CustomerItemWithItem[]) => void
 	): Subscription {
 		return this._customerItemList$.asObservable().subscribe(func);
+	}
+
+	public onWait(func: (wait: boolean) => void): Subscription {
+		return this._wait$.asObservable().subscribe(func);
 	}
 
 	public getByCustomerItemId(customerItemId: string): CustomerItemWithItem {
@@ -60,6 +66,7 @@ export class CustomerItemListService {
 
 	private handleCustomerChange() {
 		this._customerService.subscribe(customerDetail => {
+			this._wait$.next(true);
 			this.fetchCustomerItemList(customerDetail.id)
 				.then(customerItemList => {
 					this.setCustomerItemList(customerItemList);
@@ -81,6 +88,7 @@ export class CustomerItemListService {
 	private setCustomerItemList(customerItemList: CustomerItemWithItem[]) {
 		this._customerItemList = customerItemList;
 		this._customerItemList$.next(customerItemList);
+		this._wait$.next(false);
 	}
 
 	private async fetchCustomerItemList(
