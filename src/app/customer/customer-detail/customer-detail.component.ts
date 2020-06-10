@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, ParamMap, Params } from "@angular/router";
 import { UserDetailService } from "@wizardcoder/bl-connect";
 import { BlApiError, UserDetail } from "@wizardcoder/bl-model";
@@ -7,19 +7,23 @@ import { CustomerDetailModalComponent } from "./customer-detail-modal/customer-d
 import { CustomerDetailService } from "./customer-detail.service";
 import { AuthService } from "../../auth/auth.service";
 import { CustomerService } from "../customer.service";
+import { Subscription } from "rxjs";
 
 @Component({
 	selector: "app-customer-detail",
 	templateUrl: "./customer-detail.component.html",
 	styleUrls: ["./customer-detail.component.scss"]
 })
-export class CustomerDetailComponent implements OnInit {
+export class CustomerDetailComponent implements OnInit, OnDestroy {
 	public customerDetail: UserDetail;
 	public showUserDetail: boolean;
 	public _currentId: string;
 	public customerDetailUpdated: boolean;
 	public wait: boolean;
 	public warningText: string;
+	private customer$: Subscription;
+	private idParam$: Subscription;
+	private customerWait$: Subscription;
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -28,17 +32,19 @@ export class CustomerDetailComponent implements OnInit {
 		private _customerDetailService: CustomerDetailService
 	) {
 		this.customerDetailUpdated = false;
-		this.wait = false;
 		this.warningText = null;
 	}
 
 	ngOnInit() {
-		this._customerService.subscribe((customerDetail: UserDetail) => {
-			this.customerDetail = customerDetail;
-			this.wait = false;
-		});
-
 		this.onIdParamChange();
+		this.onCustomerChange();
+		this.onCustomerWaitChange();
+	}
+
+	ngOnDestroy() {
+		this.customer$.unsubscribe();
+		this.idParam$.unsubscribe();
+		this.customerWait$.unsubscribe();
 	}
 
 	public onUserDetailUpdated() {
@@ -49,8 +55,22 @@ export class CustomerDetailComponent implements OnInit {
 		return this._authService.isAdmin();
 	}
 
+	private onCustomerChange() {
+		this.customer$ = this._customerService.subscribe(
+			(customerDetail: UserDetail) => {
+				this.customerDetail = customerDetail;
+			}
+		);
+	}
+
+	private onCustomerWaitChange() {
+		this.customerWait$ = this._customerService.onWait(wait => {
+			this.wait = wait;
+		});
+	}
+
 	private onIdParamChange() {
-		this._route.params.subscribe((params: Params) => {
+		this.idParam$ = this._route.params.subscribe((params: Params) => {
 			this._currentId = params["id"];
 			this.setCustomerDetailIfNotSet();
 		});

@@ -8,6 +8,7 @@ import { UserDetail } from "@wizardcoder/bl-model";
 })
 export class CustomerDetailCardComponent implements OnInit {
 	@Input() customerDetail: UserDetail;
+	@Input() wait: boolean;
 	public customerDetailUpdated: boolean;
 	public showGuardian: boolean;
 
