@@ -6,23 +6,19 @@
 					Orders
 				</h5>
 			</div>
-			<div class="card-body" *ngIf="wait || customerOrders.length < 0">
-				<div class="row">
-					<div class="col-12">
-						<app-bl-common-alert
-							[type]="'secondary'"
-							i18n-text="@@customerOrderListNoOrdersFound"
-							text="No orders found on customer"
-							*ngIf="!wait && customerOrders.length <= 0"
-						></app-bl-common-alert>
-						<app-bl-common-update-button
-							[wait]="wait"
-							*ngIf="wait"
-						></app-bl-common-update-button>
-					</div>
-				</div>
-			</div>
+			<ul class="list-group list-group-flush" *ngIf="wait">
+				<li class="list-group-item list-group-item-warning text-center">
+					<fa-icon icon="circle-notch" spin="true"></fa-icon>
+				</li>
+			</ul>
 			<ul class="list-group list-group-flush" *ngIf="!wait">
+				<li
+					class="list-group-item list-group-item-secondary"
+					i18n="@@customerOrderListNoOrdersFound"
+					*ngIf="customerOrders.length <= 0"
+				>
+					No orders found on customer
+				</li>
 				<li
 					class="list-group-item list-group-item-action"
 					*ngFor="let customerOrder of customerOrders"

@@ -8,21 +8,29 @@ import { CustomerService } from "../../customer/customer.service";
 export class CustomerOrderService {
 	private _orders: Order[];
 	private _orders$: ReplaySubject<Order[]>;
+	private _wait$: Subject<boolean>;
 
 	constructor(
 		private _customerService: CustomerService,
 		private _orderService: OrderService
 	) {
 		this._orders$ = new ReplaySubject(1);
+		this._wait$ = new Subject();
 		this.onCustomerChange();
 		this.onCustomerClear();
+		this.onCustomerWaitChange();
 	}
 
 	public subscribe(func: (orders: Order[]) => void): Subscription {
 		return this._orders$.asObservable().subscribe(func);
 	}
 
+	public onWait(func: (wait: boolean) => void): Subscription {
+		return this._wait$.asObservable().subscribe(func);
+	}
+
 	private get(userDetailId: string) {
+		this._wait$.next(true);
 		this._orderService
 			.get({
 				query: `?placed=true&customer=${userDetailId}`
@@ -41,6 +49,14 @@ export class CustomerOrderService {
 			this.get(customerDetail.id);
 		});
 	}
+
+	private onCustomerWaitChange() {
+		this._customerService.onWait(wait => {
+			if (wait) {
+				this._wait$.next(true);
+			}
+		});
+	}
 	private onCustomerClear() {
 		this._customerService.onClear(cleared => {
 			if (cleared) {
@@ -51,11 +67,13 @@ export class CustomerOrderService {
 
 	private clear() {
 		this.setOrders([]);
+		this._wait$.next(false);
 	}
 
 	private setOrders(orders: Order[]) {
 		this._orders = orders;
 		this._orders$.next(orders);
+		this._wait$.next(false);
 	}
 
 	public isItemOrdered(itemId: string): boolean {

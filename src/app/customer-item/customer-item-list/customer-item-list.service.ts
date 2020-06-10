@@ -23,12 +23,13 @@ export class CustomerItemListService {
 		private _itemService: ItemService,
 		private _customerItemService: CustomerItemService
 	) {
+		this._wait$ = new Subject();
 		this._customerItemList = [];
 		this._customerItemList$ = new ReplaySubject(1);
+
 		this.handleCustomerChange();
 		this.handleCustomerClear();
 		this._customerItemList$.next([]);
-		this._wait$ = new Subject();
 		this.handleCustomerWaitChange();
 	}
 
@@ -63,7 +64,9 @@ export class CustomerItemListService {
 
 	private handleCustomerWaitChange() {
 		this._customerService.onWait(wait => {
-			this._wait$.next(wait);
+			if (wait) {
+				this._wait$.next(wait);
+			}
 		});
 	}
 
