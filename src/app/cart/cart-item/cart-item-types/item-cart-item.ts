@@ -4,13 +4,15 @@ import { CartItemAction } from "../cart-item-action";
 import { PriceInformation } from "../../../price/price-information";
 import { Subscribable } from "../../../bl-common/subscribable/subscribable";
 import { ItemPriceService } from "../../../price/item-price/item-price.service";
+import { BranchItemHelperService } from "../../../branch/branch-item-helper/branch-item-helper.service";
 
 export class ItemCartItem extends Subscribable implements CartItem {
 	private _action: CartItemAction;
 
 	constructor(
 		private _item: Item,
-		private _itemPriceService: ItemPriceService
+		private _itemPriceService: ItemPriceService,
+		private _branchItemHelperService: BranchItemHelperService
 	) {
 		super();
 		this.setAction(this.getValidActions()[0]);
@@ -38,26 +40,58 @@ export class ItemCartItem extends Subscribable implements CartItem {
 	}
 
 	public getValidActions(): CartItemAction[] {
-		return [
-			{
+		let actions = [];
+		if (this._branchItemHelperService.isRentValid(this._item, "semester")) {
+			actions.push({
 				action: "rent",
 				period: "semester",
 				deadline: new Date(2020, 6, 1)
-			},
-			{ action: "rent", period: "year", deadline: new Date(2021, 6, 1) },
-			{
+			});
+		}
+
+		if (this._branchItemHelperService.isRentValid(this._item, "year")) {
+			actions.push({
+				action: "rent",
+				period: "year",
+				deadline: new Date(2021, 6, 1)
+			});
+		}
+
+		if (
+			this._branchItemHelperService.isPartlyPaymentValid(
+				this._item,
+				"semester"
+			)
+		) {
+			actions.push({
 				action: "partly-payment",
 				period: "semester",
 				deadline: new Date(2020, 6, 1)
-			},
-			{
+			});
+		}
+
+		if (
+			this._branchItemHelperService.isPartlyPaymentValid(
+				this._item,
+				"year"
+			)
+		) {
+			actions.push({
 				action: "partly-payment",
 				period: "year",
 				deadline: new Date(2021, 6, 1)
-			},
-			{ action: "buy" },
-			{ action: "sell" }
-		];
+			});
+		}
+
+		if (this._branchItemHelperService.isBuyValid(this._item)) {
+			actions.push({ action: "buy" });
+		}
+
+		if (this._branchItemHelperService.isSellValid(this._item)) {
+			actions.push({ action: "sell" });
+		}
+
+		return actions;
 	}
 
 	private calculatePriceInformation(

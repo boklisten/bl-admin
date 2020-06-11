@@ -54,11 +54,13 @@
 			<fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
 			<fa-icon [icon]="'calendar'"></fa-icon>
 		</span>
+
 		<fa-icon
 			[icon]="'money-bill-alt'"
 			class="mr-3 ml-3"
 			*ngIf="actionChoice.action === 'buy' || actionChoice.action === 'buyout'"
 		></fa-icon>
+
 		<fa-icon
 			[icon]="'exchange-alt'"
 			class="mr-3 ml-3"
