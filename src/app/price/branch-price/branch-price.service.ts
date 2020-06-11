@@ -3,6 +3,8 @@ import { BranchStoreService } from "../../branch/branch-store.service";
 import { BranchItemStoreService } from "../../branch/branch-item-store/branch-item-store.service";
 import { Branch, BranchItem, Item, OrderItemType } from "@wizardcoder/bl-model";
 import { Period } from "@wizardcoder/bl-model/dist/period/period";
+import { PriceInformation } from "../price-information";
+import { PriceService } from "../price.service";
 
 @Injectable()
 export class BranchPriceService {
@@ -11,50 +13,47 @@ export class BranchPriceService {
 
 	constructor(
 		private _branchStoreService: BranchStoreService,
-		private _branchItemStoreService: BranchItemStoreService
+		private _branchItemStoreService: BranchItemStoreService,
+		private _priceService: PriceService
 	) {
 		this._branchItems = [];
-		this.onBranchUpdate();
-		this.onBranchItemsUpdate();
+		this.handleBranchChange();
+		this.handleBranchItemsChange();
 	}
 
-	private onBranchUpdate() {
-		this._branch = this._branchStoreService.getCurrentBranch();
-
-		this._branchStoreService.onBranchChange().subscribe(() => {
-			this._branch = this._branchStoreService.getCurrentBranch();
+	private handleBranchChange() {
+		this._branchStoreService.subscribe(branch => {
+			this._branch = branch;
 		});
 	}
 
-	private onBranchItemsUpdate() {
-		this._branchItems = this._branchItemStoreService.getBranchItems();
-
-		this._branchItemStoreService.onBranchItemsChange().subscribe(() => {
-			this._branchItems = this._branchItemStoreService.getBranchItems();
+	private handleBranchItemsChange() {
+		this._branchItemStoreService.subscribe(branchItems => {
+			this._branchItems = branchItems;
 		});
 	}
 
-	public rentPrice(
+	public unitPriceRent(
 		item: Item,
 		period: Period,
 		numberOfPeriods: number
 	): number {
-		this._branchItems = this._branchItemStoreService.getBranchItems();
-
-		if (!this._branch || !this._branch.paymentInfo) {
-			return -1;
-		}
-
-		if (this._branch.paymentInfo.responsible) {
+		if (this.isBranchResponsibleForPayment()) {
 			return 0;
 		}
 
 		if (this.isRentValid(item)) {
-			return this.getRentPeriodPrice(item, period, numberOfPeriods);
+			return this.getRentPeriodUnitPrice(item, period, numberOfPeriods);
 		}
 
-		return -1;
+		throw new Error("rent is not allowed on this item");
 	}
+
+	private isBranchResponsibleForPayment(): boolean {
+		return this._branch.paymentInfo.responsible;
+	}
+
+	private;
 
 	public partlyPaymentPrice(
 		item: Item,
@@ -117,7 +116,7 @@ export class BranchPriceService {
 		return -1;
 	}
 
-	private getRentPeriodPrice(
+	private getRentPeriodUnitPrice(
 		item: Item,
 		periodType: Period,
 		numberOfPeriods: number

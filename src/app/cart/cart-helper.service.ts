@@ -512,12 +512,14 @@ export class CartHelperService {
 		const alreadyPayedAmount = alreadyPayed ? alreadyPayed : 0;
 
 		if (action === "rent" || action === "partly-payment") {
+			/*
 			return this._itemPriceService.rentPrice(
 				item,
 				period,
 				1,
 				alreadyPayedAmount
 			);
+      */
 		} else if (action === "buy") {
 			return this._itemPriceService.buyPrice(item, alreadyPayedAmount);
 		} else if (action === "sell") {

@@ -30,6 +30,7 @@ import { CustomerItemListService } from "../customer-item/customer-item-list/cus
 import { CustomerOrderItemListService } from "../order/customer-order/customer-order-item-list/customer-order-item-list.service";
 import { CartListItemAgeComponent } from "./cart-list/cart-list-item/cart-list-item-age/cart-list-item-age.component";
 import { CartListItemAmountComponent } from "./cart-list/cart-list-item/cart-list-item-amount/cart-list-item-amount.component";
+import { CartItemService } from "./cart-item/cart-item.service";
 
 @NgModule({
 	imports: [
@@ -65,7 +66,8 @@ import { CartListItemAmountComponent } from "./cart-list/cart-list-item/cart-lis
 		CartConfirmService,
 		CartItemSearchService,
 		CustomerItemListService,
-		CustomerOrderItemListService
+		CustomerOrderItemListService,
+		CartItemService
 	]
 })
 export class CartModule {}

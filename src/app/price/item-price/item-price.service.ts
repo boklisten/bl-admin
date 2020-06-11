@@ -8,6 +8,7 @@ import { BranchItemStoreService } from "../../branch/branch-item-store/branch-it
 import { BranchPriceService } from "../branch-price/branch-price.service";
 import { BranchItemHelperService } from "../../branch/branch-item-helper/branch-item-helper.service";
 import { PriceService } from "../price.service";
+import { PriceInformation } from "../price-information";
 
 @Injectable()
 export class ItemPriceService {
@@ -22,40 +23,54 @@ export class ItemPriceService {
 		this._branchItems = [];
 	}
 
-	public rentPrice(
+	public getRentPriceInformation(
 		item: Item,
 		period: Period,
 		numberOfPeriods: number,
 		alreadyPayed?: number,
 		originalOrderItem?: OrderItem
-	): number {
+	): PriceInformation {
 		const branch = this._branchStoreService.getCurrentBranch();
 
 		if (!branch.paymentInfo) {
-			return -1;
+			throw new Error("no branch set");
 		}
 
 		if (branch.paymentInfo.responsible) {
-			return 0;
+			return this.getEmptyPriceInformation();
 		}
 
-		const branchPrice = this._branchPriceService.rentPrice(
-			item,
-			period,
-			numberOfPeriods
-		);
+		let unitPrice;
 
-		if (branchPrice === -1) {
-			return -1;
+		try {
+			unitPrice = this._branchPriceService.unitPriceRent(
+				item,
+				period,
+				numberOfPeriods
+			);
+		} catch (e) {
+			throw e;
 		}
 
-		return this.calculateAmount(
-			"rent",
-			branchPrice,
-			alreadyPayed,
-			originalOrderItem,
-			period
-		);
+		let priceInformation = this.getEmptyPriceInformation();
+		priceInformation.unitPrice = unitPrice;
+		priceInformation.taxRate = item.taxRate;
+		priceInformation.taxAmount = unitPrice * item.taxRate;
+		priceInformation.amount =
+			priceInformation.unitPrice + priceInformation.taxAmount;
+		priceInformation.amountLeftToPay = 0;
+		return priceInformation;
+	}
+
+	private getEmptyPriceInformation(): PriceInformation {
+		return {
+			amount: 0,
+			unitPrice: 0,
+			taxRate: 0,
+			taxAmount: 0,
+			amountLeftToPay: 0,
+			alreadyPayed: 0
+		};
 	}
 
 	public partlyPaymentPrice(

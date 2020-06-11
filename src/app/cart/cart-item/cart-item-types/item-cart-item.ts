@@ -3,13 +3,17 @@ import { Item, OrderItem } from "@wizardcoder/bl-model";
 import { CartItemAction } from "../cart-item-action";
 import { PriceInformation } from "../../../price/price-information";
 import { Subscribable } from "../../../bl-common/subscribable/subscribable";
+import { ItemPriceService } from "../../../price/item-price/item-price.service";
 
 export class ItemCartItem extends Subscribable implements CartItem {
 	private _action: CartItemAction;
 
-	constructor(private _item: Item) {
+	constructor(
+		private _item: Item,
+		private _itemPriceService: ItemPriceService
+	) {
 		super();
-		this._action = this.getValidActions()[0];
+		this.setAction(this.getValidActions()[0]);
 	}
 
 	public getPriceInformation() {
@@ -60,6 +64,7 @@ export class ItemCartItem extends Subscribable implements CartItem {
 	private calculatePriceInformation(
 		cartItemAction: CartItemAction
 	): PriceInformation {
+		console.log("we have service??", this._itemPriceService.buyPrice);
 		let priceInformation: PriceInformation = {
 			amount: 0,
 			unitPrice: 0,
@@ -70,12 +75,11 @@ export class ItemCartItem extends Subscribable implements CartItem {
 		};
 
 		if (cartItemAction.action === "rent") {
-			priceInformation.amount = 120;
-			priceInformation.unitPrice = 100;
-			priceInformation.taxRate = 0.2;
-			priceInformation.taxAmount = 20;
-			priceInformation.amountLeftToPay = 0;
-			priceInformation.alreadyPayed = 0;
+			return this._itemPriceService.getRentPriceInformation(
+				this._item,
+				cartItemAction.period,
+				1
+			);
 		} else if (cartItemAction.action === "partly-payment") {
 			priceInformation.amount = 350;
 			priceInformation.unitPrice = 350;

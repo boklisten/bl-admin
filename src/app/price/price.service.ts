@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { PriceInformation } from "./price-information";
 
 @Injectable({
 	providedIn: "root"
@@ -20,6 +21,19 @@ export class PriceService {
 
 	public toFixed(num: number): number {
 		return this.sanitizeNum(num);
+	}
+
+	public getEmptyPriceInformation(): PriceInformation {
+		return {
+			amount: 0,
+			unitPrice: 0,
+			taxRate: 0,
+			taxAmount: 0,
+			amountLeftToPay: 0,
+			alreadyPayed: 0,
+			discount: 0,
+			discountRate: 0
+		};
 	}
 
 	private sanitizeNum(sanitizeNumber: number): number {

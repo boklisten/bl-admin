@@ -1,17 +1,23 @@
 import { Injectable } from "@angular/core";
 import { Branch } from "@wizardcoder/bl-model";
 import { BranchService } from "@wizardcoder/bl-connect";
-import { Subject, Observable } from "rxjs";
+import { Subject, Observable, Subscription, ReplaySubject } from "rxjs";
 import { Router } from "@angular/router";
 import { StorageService } from "../storage/storage.service";
 import { AuthService } from "../auth/auth.service";
 
-@Injectable()
+@Injectable({
+	providedIn: "root"
+})
 export class BranchStoreService {
 	public redirectUrl: string;
 	private _branches: Branch[];
 	private _currentBranch: Branch;
 	private _branchChange$: Subject<Branch>;
+
+	private _branch$: ReplaySubject<Branch>;
+	private _branches$: ReplaySubject<Branch>;
+	private _wait$: Subject<boolean>;
 
 	constructor(
 		private _branchService: BranchService,
@@ -19,14 +25,17 @@ export class BranchStoreService {
 		private _storageService: StorageService,
 		private _authService: AuthService
 	) {
+		this._branch$ = new ReplaySubject(1);
+		this._branches$ = new ReplaySubject(1);
+		this._wait$ = new Subject();
+
 		this._branchChange$ = new Subject<Branch>();
 		this.redirectUrl = null;
-
 		if (this._storageService.get("bl-branch")) {
 			this._currentBranch = this._storageService.get("bl-branch");
 			this._branchChange$.next(this._currentBranch);
+			this.setBranch(this._currentBranch);
 		}
-
 		this.getAllBranches()
 			.then((branches: Branch[]) => {})
 			.catch(() => {
@@ -34,6 +43,23 @@ export class BranchStoreService {
 			});
 
 		this.onLogout();
+	}
+
+	public subscribe(func: (branch: Branch) => void): Subscription {
+		return this._branch$.asObservable().subscribe(func);
+	}
+
+	public onWait(func: (wait: boolean) => void): Subscription {
+		return this._wait$.asObservable().subscribe(func);
+	}
+
+	public set(branch: Branch) {
+		this.setBranch(branch);
+	}
+
+	private setBranch(branch: Branch) {
+		this._currentBranch = branch;
+		this._branch$.next(branch);
 	}
 
 	getAllBranches(): Promise<Branch[]> {
@@ -63,6 +89,7 @@ export class BranchStoreService {
 	}
 
 	public setCurrentBranch(branch: Branch) {
+		this.setBranch(branch);
 		this._currentBranch = branch;
 		this._storageService.store("bl-branch", branch);
 		this._branchChange$.next(this._currentBranch);

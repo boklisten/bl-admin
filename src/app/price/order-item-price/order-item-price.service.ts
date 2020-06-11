@@ -86,6 +86,7 @@ export class OrderItemPriceService {
 		originalOrderItem?: OrderItem,
 		originalOrder?: Order
 	): number {
+		/*
 		return this._itemPriceService.rentPrice(
 			item,
 			orderItem.info.periodType,
@@ -93,6 +94,8 @@ export class OrderItemPriceService {
       this.alreadyPayed(originalOrderItem, originalOrder),
       originalOrderItem
 		);
+    */
+		return -1;
 	}
 
 	public priceBuy(
@@ -102,8 +105,8 @@ export class OrderItemPriceService {
 	): number {
 		return this._itemPriceService.buyPrice(
 			item,
-      this.alreadyPayed(originalOrderItem, originalOrder),
-      originalOrderItem
+			this.alreadyPayed(originalOrderItem, originalOrder),
+			originalOrderItem
 		);
 	}
 
@@ -128,8 +131,8 @@ export class OrderItemPriceService {
 			item,
 			orderItem.info.periodType,
 			orderItem.age ? orderItem.age : "new",
-      this.alreadyPayed(originalOrderItem, originalOrder),
-      originalOrderItem
+			this.alreadyPayed(originalOrderItem, originalOrder),
+			originalOrderItem
 		);
 	}
 

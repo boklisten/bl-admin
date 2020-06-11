@@ -29,6 +29,7 @@ import { BranchItemHelperService } from "./branch-item-helper/branch-item-helper
 import { BranchEditPeriodSettingsComponent } from "./branch-edit/branch-edit-period-settings/branch-edit-period-settings.component";
 import { BranchHelperService } from "./branch-helper/branch-helper.service";
 import { BranchCurrentComponent } from "./branch-current/branch-current.component";
+import { BranchItemStoreService } from "./branch-item-store/branch-item-store.service";
 
 @NgModule({
 	imports: [
@@ -62,7 +63,8 @@ import { BranchCurrentComponent } from "./branch-current/branch-current.componen
 		BranchItemCategorySelectService,
 		OpeningHoursHandlerService,
 		BranchItemHelperService,
-		BranchHelperService
+		BranchHelperService,
+		BranchItemStoreService
 	],
 	exports: [
 		BranchEditListComponent,
