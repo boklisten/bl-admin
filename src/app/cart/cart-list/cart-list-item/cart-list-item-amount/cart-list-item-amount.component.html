@@ -1,63 +1,25 @@
-<div
-	class="text-success bl-text-sm bl-link-black"
-	*ngIf="originalOrderItem"
-	routerLink="{{ '/order/' + originalOrder.id + '/detail' }}"
-	[ngbTooltip]="alreadyPayedContent"
->
-	<!--if orderItem is apart of delivery -->
-	<span *ngIf="showDelivery">
-		<fa-icon [icon]="'truck'" class="mr-2"></fa-icon>
-	</span>
-
-	<!--amount already payed-->
-	<span class="text-right" *ngIf="alreadyPayedAmount !== 0"
+<div class="text-success bl-text-sm">
+	<span class="text-right" *ngIf="priceInformation.alreadyPayed > 0"
 		><fa-icon [icon]="'dollar-sign'" class="mr-1"> </fa-icon>
 		<span class="text-success mr-1"
 			><fa-icon [icon]="'check-circle'"></fa-icon
 		></span>
-		<span>{{ alreadyPayedAmount | blcPrice }}</span>
+		<span>{{ priceInformation.alreadyPayed | blcPrice }}</span>
 	</span>
 </div>
 
-<span
-	*ngIf="orderItem.amount !== 0"
-	class="text-right font-weight-bold bl-text-lg"
-	[ngClass]="{ 'text-danger': orderItem.amount < 0 }"
-	>{{ orderItem.amount | blcPrice }}</span
->
-
-<!--if it is a partly payment, show how much is left-->
 <div
-	class="bl-text-sm bl-link-black"
-	*ngIf="
-		this.orderItem.info &&
-		this.orderItem.info['amountLeftToPay'] &&
-		orderItem.type === 'partly-payment'
-	"
-	[ngbTooltip]="leftToPayContent"
+	*ngIf="priceInformation.amount !== 0"
+	class="text-right font-weight-bold bl-text-lg"
+	[ngClass]="{ 'text-danger': priceInformation.amount < 0 }"
 >
-	<span i18n="@@cartListItemPayLater">pay later</span>:
-	<span> {{ orderItem.info["amountLeftToPay"] | blcPrice }} </span>
+	{{ priceInformation.amount | blcPrice }}
 </div>
 
-<ng-template #alreadyPayedContent>
-	<div>
-		<div i18n="@@cartItemAmountCustomerHaveAlreadyPayed" class="bl-text-sm">
-			Customer have already payed
-		</div>
-		<div class="font-weight-bold">{{ alreadyPayedAmount | blcPrice }}</div>
-	</div>
-</ng-template>
-
-<ng-template #leftToPayContent>
-	<div>
-		<div
-			i18n="@@cartItemAmountCustomerMustPayBeforeDeadline"
-			class="bl-text-sm"
-		>
-			Customer must pay
-			{{ orderItem.info["amountLeftToPay"] | blcPrice }} before deadline
-		</div>
-		<div class="font-weight-bold">{{ orderItem.info.to | blDate }}</div>
-	</div>
-</ng-template>
+<div
+	class="bl-text-sm font-italic text-secondary"
+	*ngIf="priceInformation.amountLeftToPay"
+>
+	<span i18n="@@cartListItemPayLater">pay later</span>:
+	<span> {{ priceInformation.amountLeftToPay | blcPrice }} </span>
+</div>

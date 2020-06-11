@@ -1,9 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
-import { Delivery } from "@wizardcoder/bl-model";
 import { CartService } from "../../cart.service";
 import { CartItem } from "../../cart-item/cart-item";
 import { CartItemAction } from "../../cartItemAction";
-import { DeliveryService } from "@wizardcoder/bl-connect";
 
 @Component({
 	selector: "app-cart-list-item",
@@ -14,13 +12,9 @@ export class CartListItemComponent implements OnInit {
 	@Input() cartItem: CartItem;
 	@Output() cartItemChange: EventEmitter<boolean>;
 	public cartItemAction: CartItemAction;
-	public delivery: Delivery;
 	public title: string;
 
-	constructor(
-		private _cartService: CartService,
-		private _deliveryService: DeliveryService
-	) {
+	constructor(private _cartService: CartService) {
 		this.cartItemChange = new EventEmitter<boolean>();
 	}
 

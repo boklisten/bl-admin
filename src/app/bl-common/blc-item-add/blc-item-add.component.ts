@@ -48,11 +48,10 @@ export class BlcItemAddComponent implements OnInit {
 	}
 
 	public add() {
-		console.log("blc-item-add.add(): trying to add", this.cartItem);
 		try {
 			this._cartService.add(this.cartItem);
 		} catch (e) {
-			console.log("blc-item-add.add(): could not add item");
+			console.log("blc-item-add.add(): could not add item", e);
 		}
 	}
 

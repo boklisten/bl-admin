@@ -75,7 +75,7 @@ export class CartService {
 
 	public contains(cartItem: CartItem): boolean {
 		for (const ci of this._cart) {
-			if (ci.item.id === cartItem.item.id) {
+			if (ci === cartItem) {
 				return true;
 			}
 		}

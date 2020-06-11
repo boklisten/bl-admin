@@ -11,7 +11,8 @@ export class ItemCartItem implements CartItem {
 			unitPrice: this._item.price,
 			taxRate: this._item.taxRate,
 			taxAmount: 0,
-			payLater: 0
+			amountLeftToPay: 230,
+			alreadyPayed: 100
 		};
 	}
 

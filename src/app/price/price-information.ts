@@ -3,7 +3,8 @@ export interface PriceInformation {
 	unitPrice: number;
 	taxRate: number;
 	taxAmount: number;
-	payLater: number;
+	amountLeftToPay?: number;
+	alreadyPayed?: number;
 	discount?: number;
 	discountRate?: number;
 }

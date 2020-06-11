@@ -36,9 +36,6 @@ export class CartListComponent implements OnInit, OnDestroy {
 	constructor(
 		private _cartService: CartService,
 		private _modalService: NgbModal,
-		private _cartItemSearchService: CartItemSearchService,
-		private _itemService: ItemService,
-		private _dateService: DateService,
 		private _authService: AuthService
 	) {
 		this.cart = [];
@@ -58,6 +55,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 
 	private handleCartChange() {
 		this.cart$ = this._cartService.subscribe(cart => {
+			console.log("cart changed", cart.length);
 			this.cart = cart;
 		});
 	}

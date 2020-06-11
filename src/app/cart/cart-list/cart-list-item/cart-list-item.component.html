@@ -1,13 +1,10 @@
 <div class="row justify-content-between align-items-center bl-cart-list-item">
 	<div class="col-auto"><h5>{{ title }}</h5></div>
-	<!--<div class="col-auto text-right">-->
-	<!--<app-cart-list-item-amount-->
-	<!--[orderItem]="cartItem.orderItem"-->
-	<!--[originalOrderItem]="cartItem.originalOrderItem"-->
-	<!--[originalOrder]="cartItem.originalOrder"-->
-	<!--[delivery]="delivery"-->
-	<!--></app-cart-list-item-amount>-->
-	<!--</div>-->
+	<div class="col-auto text-right">
+		<app-cart-list-item-amount
+			[cartItem]="cartItem"
+		></app-cart-list-item-amount>
+	</div>
 </div>
 <div
 	class="row justify-content-between align-items-center mt-2 bl-cart-list-item"
