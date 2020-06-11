@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { BranchItemStoreService } from "../../branch/branch-item-store/branch-item-store.service";
 import { CustomerService } from "../../customer/customer.service";
 import { CustomerOrderService } from "../../order/customer-order/customer-order.service";
+import { Item } from "@wizardcoder/bl-model";
 
 @Injectable({
 	providedIn: "root"
@@ -35,23 +36,29 @@ export class BlcSortService {
 		});
 	}
 
-	public sortItemsByRelevance(itemList: any[]): any[] {
+	public sortItemsByRelevance(itemList: Item[]): Item[] {
 		let orderedItems = [];
 		let customerItems = [];
 		let itemsAtBranch = [];
 		let itemsNotAtBranch = [];
 
 		for (let item of itemList) {
-			if (this.customerOrderService.isItemOrdered(item.id)) {
-				orderedItems.push(item);
-			} else if (this.customerService.isActiveCustomerItem(item.id)) {
-				customerItems.push(item);
-			} else {
-				if (this.branchItemStoreService.isItemInBranchItems(item.id)) {
-					itemsAtBranch.push(item);
+			try {
+				if (this.customerOrderService.isItemOrdered(item.id)) {
+					orderedItems.push(item);
+				} else if (this.customerService.isActiveCustomerItem(item.id)) {
+					customerItems.push(item);
 				} else {
-					itemsNotAtBranch.push(item);
+					if (
+						this.branchItemStoreService.isItemInBranchItems(item.id)
+					) {
+						itemsAtBranch.push(item);
+					} else {
+						itemsNotAtBranch.push(item);
+					}
 				}
+			} catch (e) {
+				itemsNotAtBranch.push(item);
 			}
 		}
 

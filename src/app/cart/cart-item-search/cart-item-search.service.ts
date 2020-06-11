@@ -74,8 +74,11 @@ export class CartItemSearchService {
 	}
 
 	private async scanForItem(isbn: string): Promise<boolean> {
+		throw "cartItemSearchService.scanForItem(): not implemented";
+		/*
 		const items = await this._itemSearchService.search(isbn, true);
 
 		return items && items.length === 1;
+    */
 	}
 }

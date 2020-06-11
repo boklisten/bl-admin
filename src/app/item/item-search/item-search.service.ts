@@ -1,116 +1,101 @@
 import { Injectable } from "@angular/core";
 import { ItemService } from "@wizardcoder/bl-connect";
-import { BlApiError, Item } from "@wizardcoder/bl-model";
-import { Subject, Observable } from "rxjs";
-import { StorageService } from "../../storage/storage.service";
-import { CartService } from "../../cart/cart.service";
-import { CustomerService } from "../../customer/customer.service";
-import { CustomerOrderService } from "../../order/customer-order/customer-order.service";
+import { Item } from "@wizardcoder/bl-model";
+import { Subject, Subscription, ReplaySubject } from "rxjs";
+import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 
 @Injectable()
 export class ItemSearchService {
-	private _searchResultError$: Subject<any>;
-	private _searchResult$: Subject<boolean>;
-	private _searchTerm: string;
-	private _searchResult: Item[];
-	private _storageSearchTermName: string;
+	private _result$: ReplaySubject<Item[]>;
+	private _wait$: Subject<boolean>;
 
 	constructor(
 		private _itemService: ItemService,
-		private _cartService: CartService,
-		private _storageService: StorageService,
-		private _customerService: CustomerService,
-		private _customerOrderService: CustomerOrderService
+		private _blcSortService: BlcSortService
 	) {
-		this._searchResultError$ = new Subject<any>();
-		this._searchResult$ = new Subject<boolean>();
-		this._storageSearchTermName = "bl-item-search-term";
+		this._result$ = new ReplaySubject(1);
+		this._wait$ = new Subject();
 	}
 
-	public async search(
-		searchTerm: string,
-		addToCart?: boolean
-	): Promise<Item[]> {
-		throw new Error("itemService.search() is not implemented");
-		/*
-		if (!searchTerm || searchTerm.length < 3) {
-			this._searchResultError$.next(true);
+	public subscribe(func: (items: Item[]) => void): Subscription {
+		return this._result$.asObservable().subscribe(func);
+	}
+
+	public onWait(func: (wait: boolean) => void): Subscription {
+		return this._wait$.asObservable().subscribe(func);
+	}
+
+	public async search(searchTerm: string): Promise<Item[]> {
+		if (!this.isSearchTermValid(searchTerm)) {
 			return;
 		}
 
-		this.setSearchTerm(searchTerm);
+		this._wait$.next(true);
 
-		let items: Item[] = [];
+		let items = [];
 
 		try {
-			items = await this._itemService.get({
-				query: "?s=" + this._searchTerm
-			});
+			items = await this.searchForItems(searchTerm);
+		} catch (e) {
+			items = [];
+		}
+
+		items = this._blcSortService.sortItemsByRelevance(items);
+		this.setSearchResult(items);
+		return items;
+	}
+
+	private isSearchTermValid(searchTerm: string) {
+		return searchTerm && searchTerm.length >= 3;
+	}
+
+	private async searchForItems(term: string): Promise<Item[]> {
+		let items = [];
+
+		try {
+			items = await this.searchByTerm(term);
 		} catch (e) {
 			try {
-				items = await this._itemService.get({
-					query: "?info.isbn=" + this._searchTerm
-				});
+				items = await this.searchByIsbn(term);
 			} catch (e) {
 				items = [];
 			}
 		}
+		return items;
+	}
 
-		if (items.length == 1 && addToCart) {
-			if (!this._cartService.contains(items[0].id)) {
-				this.addItem(items[0]);
+	private async searchByIsbn(isbn: string): Promise<Item[]> {
+		let items: Item[];
 
-				this.setSearchTerm("");
-				return items;
-			}
+		try {
+			items = await this._itemService.get({
+				query: "?info.isbn=" + isbn
+			});
+		} catch (e) {
+			items = [];
 		}
 
-		this.setSearchResult(items);
+		return items;
+	}
+
+	private async searchByTerm(term: string): Promise<Item[]> {
+		let items: Item[];
+
+		try {
+			items = await this._itemService.get({
+				query: "?s=" + term
+			});
+		} catch (e) {
+			items = [];
+		}
 
 		return items;
-    */
-	}
-
-	public addItem(item: Item) {
-		throw new Error("itemService().addItem() is deprecated");
-		/*
-		try {
-			const {
-				order,
-				orderItem
-			} = this._customerOrderService.getOrderedItem(item.id);
-			this._cartService.addOrderItem(orderItem, order, item);
-			return;
-		} catch (e) {}
-		try {
-			const customerItem = this._customerService.getActiveCustomerItem(
-				item.id
-			);
-			this._cartService.addCustomerItem(customerItem);
-			return;
-		} catch (e) {}
-
-		this._cartService.add(item);
-    */
-	}
-
-	public getSearchTerm(): string {
-		return this._searchTerm;
-	}
-
-	public getSearchResult(): Item[] {
-		return this._searchResult;
-	}
-
-	public onSearchResult(): Observable<boolean> {
-		return this._searchResult$;
-	}
-
-	public onSearchResultError(): Observable<Item[]> {
-		return this._searchResultError$;
 	}
 
 	private setSearchResult(searchResult: Item[]) {
+		this._result$.next(searchResult);
+		this._wait$.next(false);
+		/*
 		this._searchResult = searchResult;
 
 		if (searchResult.length > 0) {
@@ -118,9 +103,6 @@ export class ItemSearchService {
 		} else {
 			this._searchResultError$.next(true);
 		}
-	}
-
-	private setSearchTerm(searchTerm: string) {
-		this._searchTerm = searchTerm;
+    */
 	}
 }

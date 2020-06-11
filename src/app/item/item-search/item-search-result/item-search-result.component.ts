@@ -1,49 +1,42 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Item } from "@wizardcoder/bl-model";
 import { ItemSearchService } from "../item-search.service";
-import { Period } from "@wizardcoder/bl-model/dist/period/period";
-import { BranchItemHelperService } from "../../../branch/branch-item-helper/branch-item-helper.service";
-import { BlcSortService } from "../../../bl-common/blc-sort/blc-sort.service";
-import { CustomerService } from "../../../customer/customer.service";
-import { BranchStoreService } from "../../../branch/branch-store.service";
-import { BranchItemStoreService } from "../../../branch/branch-item-store/branch-item-store.service";
+import { Subscription } from "rxjs";
 
 @Component({
 	selector: "app-item-search-result",
 	templateUrl: "./item-search-result.component.html",
 	styleUrls: ["./item-search-result.component.scss"]
 })
-export class ItemSearchResultComponent implements OnInit {
+export class ItemSearchResultComponent implements OnInit, OnDestroy {
 	public items: Item[];
 	public notFoundError: string;
+	public wait: boolean;
 
-	constructor(
-		private _itemSearchService: ItemSearchService,
-		private blcSortService: BlcSortService
-	) {}
+	private itemSearchResult$: Subscription;
+	private itemSearchResultWait$: Subscription;
+
+	constructor(private _itemSearchService: ItemSearchService) {}
 
 	ngOnInit() {
-		if (this._itemSearchService.getSearchTerm()) {
-			this.items = this.getSearchResult();
-		}
+		this.handleItemSearchResultChange();
+		this.handleItemSearchResultWaitChange();
+	}
 
-		this._itemSearchService.onSearchResult().subscribe(() => {
-			this.items = this.getSearchResult();
-			this.notFoundError = null;
-		});
+	ngOnDestroy() {
+		this.itemSearchResult$.unsubscribe();
+		this.itemSearchResultWait$.unsubscribe();
+	}
 
-		this._itemSearchService.onSearchResultError().subscribe(() => {
-			this.notFoundError = "Could not find any item";
-			this.items = [];
+	private handleItemSearchResultChange() {
+		this.itemSearchResult$ = this._itemSearchService.subscribe(items => {
+			this.items = items;
 		});
 	}
 
-	private getSearchResult(): Item[] {
-		return this.blcSortService.sortItemsByRelevance(
-			this.blcSortService.sortByField(
-				this._itemSearchService.getSearchResult(),
-				"title"
-			)
-		);
+	private handleItemSearchResultWaitChange() {
+		this.itemSearchResultWait$ = this._itemSearchService.onWait(wait => {
+			this.wait = wait;
+		});
 	}
 }

@@ -1,14 +1,9 @@
 import { CartItem } from "../cart-item";
-import { Item } from "@wizardcoder/bl-model";
+import { Item, OrderItem } from "@wizardcoder/bl-model";
+import { CartItemAction } from "../cart-item-action";
 
-export class ItemCartItem extends CartItem {
-	constructor(private _item: Item) {
-		super(_item.title);
-	}
-
-	public getTitle() {
-		return this._item.title;
-	}
+export class ItemCartItem implements CartItem {
+	constructor(private _item: Item) {}
 
 	public getPriceInformation() {
 		return {
@@ -18,5 +13,25 @@ export class ItemCartItem extends CartItem {
 			taxAmount: 0,
 			payLater: 0
 		};
+	}
+
+	public getTitle() {
+		return this._item.title;
+	}
+
+	public createOrderItem(): OrderItem {
+		throw "itemCartItem.createOrderItem(): is not implemented";
+	}
+
+	public setAction(action: CartItemAction) {
+		throw "itemCartItem.setAction(): is not implemented";
+	}
+
+	public getAction(): CartItemAction {
+		throw "itemCartItem.getAction(): is not implemented";
+	}
+
+	public getValidActions(): CartItemAction[] {
+		throw "itemCartItem.getAction(): is not implemented";
 	}
 }
