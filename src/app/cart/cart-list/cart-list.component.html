@@ -86,20 +86,21 @@
 							<span i18n="@@blConfirmButton">Confirm</span>
 						</button>
 					</div>
-					<div class="col-auto text-right">
-						<div class="font-weight-bold bl-text-xl text-black">
-							{{ getTotalAmount() | blcPrice }}
-						</div>
-						<div
-							class="bl-text-sm"
-							*ngIf="cartIncludesPartlyPayments()"
-						>
-							<span i18n="@@cartListTotalWithPartlyPayments"
-								>Total to pay including partly payments</span
-							>: {{ getTotalAmountWithPartlyPayments() | blcPrice
-							}}
-						</div>
-					</div>
+					<!--<div class="col-auto text-right">-->
+
+					<!--<div class="font-weight-bold bl-text-xl text-black">-->
+					<!--{{ getTotalAmount() | blcPrice }}-->
+					<!--</div>-->
+					<!--<div-->
+					<!--class="bl-text-sm"-->
+					<!--*ngIf="cartIncludesPartlyPayments()"-->
+					<!-->-->
+					<!--<span i18n="@@cartListTotalWithPartlyPayments"-->
+					<!-->Total to pay including partly payments</span-->
+					<!-->: {{ getTotalAmountWithPartlyPayments() | blcPrice-->
+					<!--}}-->
+					<!--</div>-->
+					<!--</div>-->
 				</div>
 			</div>
 		</div>

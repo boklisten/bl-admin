@@ -9,7 +9,7 @@ import {
 import { CartService } from "../cart.service";
 import { CustomerItemHandlerService } from "../../customer-item/customer-item-handler/customer-item-handler.service";
 import { forEach } from "@angular/router/src/utils/collection";
-import { CartItem } from "../cartItem";
+import { CartItem } from "../cart-item/cart-item";
 import { CustomerService } from "../../customer/customer.service";
 import { PaymentHandlerService } from "../../payment/payment-handler/payment-handler.service";
 import { DeliveryService } from "@wizardcoder/bl-connect";
@@ -28,11 +28,14 @@ export class CartConfirmService {
 	) {}
 
 	public async addOrder(): Promise<Order> {
+		throw "cartConfirmService.addOrder(): not implemented";
+		/*
 		return this._orderHandlerService.addOrder(
 			this._cartService.getCart(),
 			await this.orderShouldHaveDelivery(),
 			this._cartService.getNotificationSettings()
 		);
+    */
 	}
 
 	public placeOrder(order: Order): Promise<boolean> {

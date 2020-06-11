@@ -1,20 +1,27 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import {
+	Component,
+	EventEmitter,
+	OnInit,
+	Output,
+	OnDestroy
+} from "@angular/core";
 import { CartService } from "../cart.service";
 import { Item, OrderItem } from "@wizardcoder/bl-model";
 import { ItemService } from "@wizardcoder/bl-connect";
-import { CartItem } from "../cartItem";
+import { CartItem } from "../cart-item/cart-item";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { NgbModalWindow } from "@ng-bootstrap/ng-bootstrap/modal/modal-window";
 import { CartItemSearchService } from "../cart-item-search/cart-item-search.service";
 import { DateService } from "../../date/date.service";
 import { AuthService } from "../../auth/auth.service";
+import { Subscription } from "rxjs";
 
 @Component({
 	selector: "app-cart-list",
 	templateUrl: "./cart-list.component.html",
 	styleUrls: ["./cart-list.component.scss"]
 })
-export class CartListComponent implements OnInit {
+export class CartListComponent implements OnInit, OnDestroy {
 	@Output() cartConfirmed: EventEmitter<boolean>;
 	@Output() cartConfirmationFailed: EventEmitter<boolean>;
 
@@ -24,6 +31,7 @@ export class CartListComponent implements OnInit {
 	public searching: boolean;
 	public notfifyByEmail: boolean;
 	public showNotifyByEmailEdit: boolean;
+	private cart$: Subscription;
 
 	constructor(
 		private _cartService: CartService,
@@ -41,18 +49,17 @@ export class CartListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.cart = this._cartService.getCart();
+		this.handleCartChange();
+	}
 
-		this._cartService.onCartChange().subscribe(() => {
-			this.cart = this._cartService.getCart();
-			//this.partlyPaymentTotals = this._cartService.getPartlyPaymentTotals();
+	ngOnDestroy() {
+		this.cart$.unsubscribe();
+	}
+
+	private handleCartChange() {
+		this.cart$ = this._cartService.subscribe(cart => {
+			this.cart = cart;
 		});
-
-		this._cartItemSearchService
-			.onSearching()
-			.subscribe((searching: boolean) => {
-				this.searching = searching;
-			});
 	}
 
 	public onCartItemChange() {
@@ -68,7 +75,7 @@ export class CartListComponent implements OnInit {
 	}
 
 	remove(orderItem: OrderItem) {
-		this._cartService.remove(orderItem.item as string);
+		//this._cartService.remove(orderItem.item as string);
 	}
 
 	public cartIncludesPartlyPayments(): boolean {

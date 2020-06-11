@@ -31,6 +31,8 @@ export class ItemSearchService {
 		searchTerm: string,
 		addToCart?: boolean
 	): Promise<Item[]> {
+		throw new Error("itemService.search() is not implemented");
+		/*
 		if (!searchTerm || searchTerm.length < 3) {
 			this._searchResultError$.next(true);
 			return;
@@ -66,9 +68,12 @@ export class ItemSearchService {
 		this.setSearchResult(items);
 
 		return items;
+    */
 	}
 
 	public addItem(item: Item) {
+		throw new Error("itemService().addItem() is deprecated");
+		/*
 		try {
 			const {
 				order,
@@ -86,6 +91,7 @@ export class ItemSearchService {
 		} catch (e) {}
 
 		this._cartService.add(item);
+    */
 	}
 
 	public getSearchTerm(): string {

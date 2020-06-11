@@ -1,16 +1,9 @@
-import {Injectable} from '@angular/core';
-import {CartService} from '../cart.service';
+import { Injectable } from "@angular/core";
+import { CartService } from "../cart.service";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class CartItemHelperService {
-
-	constructor(private _cartService: CartService) {
-	}
-
-
-
-
-
+	constructor(private _cartService: CartService) {}
 }

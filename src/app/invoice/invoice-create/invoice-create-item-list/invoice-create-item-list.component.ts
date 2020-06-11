@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { CartService } from "../../../cart/cart.service";
-import { CartItem } from "../../../cart/cartItem";
+import { CartItem } from "../../../cart/cart-item/cart-item";
 import { InvoiceItem } from "./invoice-item";
 
 @Component({

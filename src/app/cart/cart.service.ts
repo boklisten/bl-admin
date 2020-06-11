@@ -12,8 +12,7 @@ import { ItemPriceService } from "../price/item-price/item-price.service";
 import { OrderItemInfo } from "@wizardcoder/bl-model/dist/order/order-item/order-item-info";
 import { OrderItemType } from "@wizardcoder/bl-model/dist/order/order-item/order-item-type";
 import { DateService } from "../date/date.service";
-import { Subject, Observable } from "rxjs";
-import { CartItem } from "./cartItem";
+import { Subject, Observable, ReplaySubject, Subscription } from "rxjs";
 import { ItemService } from "@wizardcoder/bl-connect";
 import { CartItemAction } from "./cartItemAction";
 import { CustomerOrderService } from "../order/customer-order/customer-order.service";
@@ -23,11 +22,13 @@ import { BranchStoreService } from "../branch/branch-store.service";
 import { CartHelperService } from "./cart-helper.service";
 import { CartItemSearchService } from "./cart-item-search/cart-item-search.service";
 import { BranchItemHelperService } from "../branch/branch-item-helper/branch-item-helper.service";
+import { CartItem } from "./cart-item/cart-item";
 
 @Injectable()
 export class CartService {
 	private _cart: CartItem[];
 	private _notificationSettings: { email: boolean };
+	private _cart$: ReplaySubject<CartItem[]>;
 
 	private _cartChange$: Subject<boolean>;
 	private _cartConfirm$: Subject<boolean>;
@@ -47,11 +48,75 @@ export class CartService {
 		this._cart = [];
 		this._cartChange$ = new Subject<boolean>();
 		this._cartConfirm$ = new Subject<boolean>();
+		this._cart$ = new ReplaySubject(1);
 		this._notificationSettings = { email: true };
-		this.onCustomerChange();
+		this.handleCustomerChange();
+		this.handleCustomerClearChange();
 
 		this._branchStoreService.onBranchChange().subscribe(() => {
 			this.clear();
+		});
+	}
+
+	public subscribe(func: (cart: CartItem[]) => void): Subscription {
+		return this._cart$.asObservable().subscribe(func);
+	}
+
+	public add(cartItem: CartItem): boolean {
+		if (!this.contains(cartItem)) {
+			this._cart.push(cartItem);
+		} else {
+			throw new Error("cart already contains cart item");
+		}
+
+		this.notifyCartChange(this._cart);
+		return true;
+	}
+
+	public contains(cartItem: CartItem): boolean {
+		for (const ci of this._cart) {
+			if (ci.item.id === cartItem.item.id) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public remove(cartItem: CartItem) {
+		for (let i = 0; i < this._cart.length; i++) {
+			if (this._cart[i] === cartItem) {
+				this._cart.splice(i, 1);
+				this._cartChange$.next(true);
+				this.notifyCartChange(this._cart);
+				return;
+			}
+		}
+	}
+
+	public clear() {
+		this._cart = [];
+		this._cartChange$.next(true);
+		this.notifyCartChange(this._cart);
+	}
+
+	private notifyCartChange(cart: CartItem[]) {
+		this._cart$.next(cart);
+	}
+
+	private handleCustomerChange() {
+		this._customerService.subscribe((customerDetail: UserDetail) => {
+			if (customerDetail.id !== this._customerDetailId) {
+				this._customerDetailId = customerDetail.id;
+				this.clear();
+			}
+		});
+	}
+
+	private handleCustomerClearChange() {
+		this._customerService.onClear(clear => {
+			if (clear) {
+				this.clear();
+			}
 		});
 	}
 
@@ -63,84 +128,7 @@ export class CartService {
 		return this._notificationSettings;
 	}
 
-	public add(item: Item) {
-		try {
-			const orderAndOrderItem: {
-				orderItem: OrderItem;
-				order: Order;
-			} = this._customerOrderService.getOrderedItem(item.id);
-			this.addOrderItem(
-				orderAndOrderItem.orderItem,
-				orderAndOrderItem.order
-			);
-		} catch (e) {
-			this.addNewItem(item);
-		}
-	}
-
-	public addOrderItem(orderItem: OrderItem, order: Order, item?: Item) {
-		if (this.contains(orderItem.item as string)) {
-			return;
-		}
-		//416
-		if (!item) {
-			this._itemService
-				.getById(orderItem.item as string)
-				.then((foundItem: Item) => {
-					this.addNewOrderItem(orderItem, order, foundItem);
-				});
-		} else {
-			this.addNewOrderItem(orderItem, order, item);
-		}
-	}
-
-	public addCustomerItem(customerItem: CustomerItem, item?: Item) {
-		if (this.contains(customerItem.item as string)) {
-			return;
-		}
-
-		if (!item) {
-			this._itemService
-				.getById(customerItem.item as string)
-				.then((foundItem: Item) => {
-					this.addNewCustomerItem(customerItem, foundItem);
-				})
-				.catch((getItemError: BlApiError) => {
-					console.log(
-						"cartService: Could not find item when trying to add customerItem",
-						getItemError
-					);
-					return;
-				});
-		} else {
-			this.addNewCustomerItem(customerItem, item)
-				.then(() => {})
-				.catch(err => {
-					console.log("could not add new customerItem: " + err);
-				});
-		}
-	}
-
-	public remove(itemId: string) {
-		for (let i = 0; i < this._cart.length; i++) {
-			if (this._cart[i].item.id === itemId) {
-				this._cart.splice(i, 1);
-				this._cartChange$.next(true);
-				return;
-			}
-		}
-	}
-
-	public contains(itemId: string) {
-		for (const orderItem of this._cart) {
-			if (orderItem.item.id === itemId) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
+	/*
 	public getCartItemsApartOfNewOrder(): CartItem[] {
 		const cartItems: CartItem[] = [];
 
@@ -159,6 +147,7 @@ export class CartService {
 
 		return cartItems;
 	}
+  */
 
 	public cartIncludesPartlyPayments(): boolean {
 		for (let cartItem of this._cart) {
@@ -168,7 +157,7 @@ export class CartService {
 		}
 		return false;
 	}
-
+	/*
 	public getCartItemsNotApartOfNewOrder(): CartItem[] {
 		const cartItems: CartItem[] = [];
 
@@ -181,10 +170,7 @@ export class CartService {
 		return cartItems;
 	}
 
-	public clear() {
-		this._cart = [];
-		this._cartChange$.next(true);
-	}
+*/
 
 	public confirmCart() {
 		this.clear();
@@ -257,28 +243,12 @@ export class CartService {
 		return partlyPaymentTotals;
 	}
 
-	private onCustomerChange() {
-		this._customerService.subscribe((customerDetail: UserDetail) => {
-			if (this._customerService.haveCustomer()) {
-				if (
-					this._customerDetailId &&
-					customerDetail.id === this._customerDetailId
-				) {
-					return;
-				} else {
-					this._customerDetailId = customerDetail.id;
-					this.clear();
-				}
-			} else {
-				this.clear();
-			}
-		});
-	}
-
 	private async addNewCustomerItem(
 		customerItem: CustomerItem,
 		item: Item
 	): Promise<boolean> {
+		throw "cartService.addNewCustomerItem() is deprecated";
+		/*
 		let orderItem: OrderItem;
 
 		try {
@@ -298,9 +268,12 @@ export class CartService {
 		});
 
 		return true;
+    */
 	}
 
 	private addNewItem(item: Item) {
+		throw "cartService.addNewItem() is deprecated";
+		/*
 		let orderItem: OrderItem;
 
 		try {
@@ -317,9 +290,12 @@ export class CartService {
 			action: this._cartHelperService.getFirstValidActionOnItem(item)
 				.action
 		});
+    */
 	}
 
 	private addNewOrderItem(orderItem: OrderItem, order: Order, item: Item) {
+		throw "cartService.addNewOrderItem() is deprecated";
+		/*
 		const newOrderItem: OrderItem = {
 			type: orderItem.type,
 			age: "new",
@@ -342,6 +318,7 @@ export class CartService {
 			originalOrder: order,
 			originalOrderItem: orderItem
 		});
+    */
 	}
 
 	private addCartItem(cartItem: CartItem) {

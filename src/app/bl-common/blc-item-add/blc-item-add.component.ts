@@ -3,6 +3,8 @@ import { CustomerItem, Item, Order, OrderItem } from "@wizardcoder/bl-model";
 import { CartService } from "../../cart/cart.service";
 import { BranchItemStoreService } from "../../branch/branch-item-store/branch-item-store.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { CartItemService } from "../../cart/cart-item/cart-item.service";
+import { CartItem } from "../../cart/cart-item/cart-item";
 
 @Component({
 	selector: "app-blc-item-add",
@@ -19,31 +21,45 @@ export class BlcItemAddComponent implements OnInit {
 	@ViewChild("addWithWarningContent") private addWithWarningContent;
 
 	public added: boolean;
+	public cartItem: CartItem;
 
 	constructor(
 		private _cartService: CartService,
 		private _branchItemStoreService: BranchItemStoreService,
-		private _modalService: NgbModal
+		private _modalService: NgbModal,
+		private _cartItemService: CartItemService
 	) {
 		this.added = false;
 	}
 
 	ngOnInit() {
+		this.createCartItem();
+		/*
 		this.checkIfAdded();
 
-		this._cartService.onCartChange().subscribe(() => {
+		this._cartService.subscribe(() => {
 			this.checkIfAdded();
 		});
+    */
 	}
 
-	public add() {}
+	private createCartItem() {
+		this.cartItem = this._cartItemService.createCartItemByItem(this.item);
+	}
+
+	public add() {
+		console.log("blc-item-add.add(): trying to add", this.cartItem);
+		try {
+			this._cartService.add(this.cartItem);
+		} catch (e) {
+			console.log("blc-item-add.add(): could not add item");
+		}
+	}
 
 	private checkIfAdded() {
-		this.added = this._cartService.contains(
-			this.orderItem ? (this.orderItem.item as string) : this.item.id
-		);
+		this.added = this._cartService.contains(this.cartItem);
 	}
-
+	/*
 	public addItem() {
 		if (!this.customerItem) {
 			this.handleItem();
@@ -52,8 +68,16 @@ export class BlcItemAddComponent implements OnInit {
 		}
 		this._modalService.dismissAll();
 	}
+  */
 
 	public onClick() {
+		console.log("blc-item-add.onClick(): clicked add");
+		console.log("blc-item-add.item", this.item);
+		console.log("blc-item-add.customerItem", this.customerItem);
+		console.log("blc-item-add.orderItem", this.orderItem);
+		console.log("blc-item-add.order", this.order);
+		this.add();
+		/*
 		if (this.order && this.orderItem) {
 			this.handleOrderItem();
 		} else if (this.customerItem) {
@@ -78,6 +102,7 @@ export class BlcItemAddComponent implements OnInit {
 				this.handleItem();
 			}
 		}
+    */
 	}
 
 	private openModal() {
@@ -88,6 +113,7 @@ export class BlcItemAddComponent implements OnInit {
 	}
 
 	private handleCustomerItem() {
+		/*
 		if (this._cartService.contains(this.customerItem.item as string)) {
 			this._cartService.remove(this.customerItem.item as string);
 			this.added = false;
@@ -98,9 +124,11 @@ export class BlcItemAddComponent implements OnInit {
 			);
 			this.added = true;
 		}
+    */
 	}
 
 	private handleOrderItem() {
+		/*
 		if (this._cartService.contains(this.orderItem.item as string)) {
 			this._cartService.remove(this.orderItem.item as string);
 			this.added = false;
@@ -108,9 +136,11 @@ export class BlcItemAddComponent implements OnInit {
 			this._cartService.addOrderItem(this.orderItem, this.order);
 			this.added = true;
 		}
+    */
 	}
 
 	private handleItem() {
+		/*
 		if (this._cartService.contains(this.item.id)) {
 			this._cartService.remove(this.item.id);
 			this.added = false;
@@ -118,5 +148,6 @@ export class BlcItemAddComponent implements OnInit {
 			this._cartService.add(this.item);
 			this.added = true;
 		}
+   */
 	}
 }
