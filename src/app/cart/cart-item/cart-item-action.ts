@@ -1,1 +1,7 @@
-export class CartItemAction {}
+import { Period } from "@wizardcoder/bl-model";
+
+export interface CartItemAction {
+	action: string;
+	period?: Period;
+	deadline?: Date;
+}

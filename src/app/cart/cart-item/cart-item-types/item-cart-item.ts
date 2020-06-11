@@ -33,6 +33,22 @@ export class ItemCartItem implements CartItem {
 	}
 
 	public getValidActions(): CartItemAction[] {
-		throw "itemCartItem.getAction(): is not implemented";
+		return [
+			{ action: "sell" },
+			{ action: "buy" },
+			{
+				action: "rent",
+				period: "semester",
+				deadline: new Date(2020, 6, 1)
+			},
+			{ action: "rent", period: "year", deadline: new Date(2021, 6, 1) },
+			{
+				action: "partly-payment",
+				period: "semester",
+				deadline: new Date(2020, 6, 1)
+			},
+			{ action: "cancel" }
+		];
+		//throw "itemCartItem.getAction(): is not implemented";
 	}
 }

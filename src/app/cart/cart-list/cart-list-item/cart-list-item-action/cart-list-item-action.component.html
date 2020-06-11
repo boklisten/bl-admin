@@ -6,29 +6,25 @@
 >
 	<label
 		ngbButtonLabel
-		[ngClass]="{
-			'btn-outline-secondary': !showAction(action),
-			'btn-outline-info': showAction(action) && !originalAction(action),
-			'btn-outline-success': showAction(action) && originalAction(action)
-		}"
-		*ngFor="let action of actionList"
+		class="btn-outline-secondary"
+		*ngFor="let actionChoice of actionList"
 	>
 		<input
 			ngbButton
 			type="radio"
-			[value]="calculateActionValue(action.action, action.period)"
-			[disabled]="!showAction(action.action, action.period)"
-			(click)="onActionChange(action.action, action.period)"
+			[value]="actionChoice"
+			[disabled]="!showAction(actionChoice)"
+			(click)="onActionChange(actionChoice)"
 		/>
 		<span
-			*ngIf="action.action === 'rent' && action.period === 'semester'"
+			*ngIf="actionChoice.action === 'rent' && actionChoice.period === 'semester'"
 			class="mr-3 ml-3"
 		>
 			<fa-icon [icon]="'calendar-alt'"></fa-icon>
 		</span>
 
 		<span
-			*ngIf="action.action === 'rent' && action.period === 'year'"
+			*ngIf="actionChoice.action === 'rent' && actionChoice.period === 'year'"
 			class="mr-3 ml-3"
 		>
 			<fa-icon [icon]="'calendar'"></fa-icon>
@@ -36,23 +32,23 @@
 
 		<span
 			*ngIf="
-				action.action === 'partly-payment' &&
-				action.period === 'semester'
-			"
+    actionChoice.action === 'partly-payment' &&
+    actionChoice.period === 'semester'
+    "
 			class="mr-3 ml-3"
 		>
 			<fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
 			<fa-icon [icon]="'calendar-alt'"></fa-icon>
 		</span>
 
-		<span *ngIf="action.action === 'buyback'" class="mr-3 ml-3">
+		<span *ngIf="actionChoice === 'buyback'" class="mr-3 ml-3">
 			<fa-icon [icon]="'exchange-alt'"></fa-icon>
 		</span>
 
 		<span
 			*ngIf="
-				action.action === 'partly-payment' && action.period === 'year'
-			"
+    actionChoice.action === 'partly-payment' && actionChoice.period === 'year'
+    "
 			class="mr-3 ml-3"
 		>
 			<fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
@@ -61,56 +57,57 @@
 		<fa-icon
 			[icon]="'money-bill-alt'"
 			class="mr-3 ml-3"
-			*ngIf="action.action === 'buy' || action.action === 'buyout'"
+			*ngIf="actionChoice.action === 'buy' || actionChoice.action === 'buyout'"
 		></fa-icon>
 		<fa-icon
 			[icon]="'exchange-alt'"
 			class="mr-3 ml-3"
-			*ngIf="action.action === 'sell'"
+			*ngIf="actionChoice.action === 'sell'"
 		></fa-icon>
 
 		<fa-icon
 			[icon]="'ban'"
 			class="mr-3 ml-3"
-			*ngIf="action.action === 'cancel'"
+			*ngIf="actionChoice.action === 'cancel'"
 		></fa-icon>
-
 		<fa-icon
 			[icon]="'calendar-plus'"
 			class="mr-3 ml-3"
-			*ngIf="action.action === 'extend'"
+			*ngIf="actionChoice.action === 'extend'"
 		></fa-icon>
 		<fa-icon
 			[icon]="'arrow-alt-circle-down'"
 			class="mr-3 ml-3"
-			*ngIf="action.action === 'return'"
+			*ngIf="actionChoice.action === 'return'"
 		></fa-icon>
 	</label>
 </div>
 
-<span
-	*ngIf="
-		cartItem.orderItem.type === 'rent' ||
-		cartItem.orderItem.type === 'extend'
-	"
-	class="ml-2 text-secondary"
->
-	{{ cartItem.orderItem.type }}
+<span *ngIf="selectedAction.action === 'rent'" class="ml-2 text-secondary">
+	<span>rent</span>
 	<fa-icon [icon]="'arrow-right'" class="mr-2 ml-2"></fa-icon>
-	{{ cartItem.orderItem.info.to | blDate }}
+	{{ selectedAction.deadline | blDate }}
+</span>
+
+<span *ngIf="selectedAction.action === 'extend'" class="ml-2 text-secondary">
+	<span>extend</span>
+	<fa-icon [icon]="'arrow-right'" class="mr-2 ml-2"></fa-icon>
+	{{ selectedAction.deadline | blDate }}
 </span>
 
 <span
-	*ngIf="cartItem.orderItem.type === 'partly-payment'"
+	*ngIf="selectedAction.action === 'partly-payment'"
 	class="ml-2 text-secondary"
 >
 	<fa-icon [icon]="'money-bill-alt'"></fa-icon>
 	<fa-icon [icon]="'arrow-right'" class="ml-2 mr-2"></fa-icon>
 	<fa-icon [icon]="'clock'"></fa-icon>
-	{{ cartItem.orderItem.info.to | blDate }}
+	{{ selectedAction.deadline | blDate }}
 </span>
 
-<span *ngIf="cartItem.action === 'cancel'" class="ml-2 text-danger">
+{{selectedAction | json}}
+
+<span *ngIf="selectedAction.action === 'cancel'" class="ml-2 text-danger">
 	<span i18n="@@cartListItemActionCancelThisItem">cancel this item</span>
 	<fa-icon
 		[icon]="'circle-notch'"
@@ -121,7 +118,7 @@
 </span>
 
 <span
-	*ngIf="cartItem.orderItem.type === 'sell'"
+	*ngIf="selectedAction.action == 'sell'"
 	i18n="@@cartListItemActionBuyThisItemFromCustomer"
 	class="ml-2 text-secondary"
 >
@@ -129,7 +126,7 @@
 </span>
 
 <span
-	*ngIf="cartItem.orderItem.type === 'buyback'"
+	*ngIf="selectedAction.action === 'buyback'"
 	i18n="@@cartListItemActionBuybackThisItemFromCustomer"
 	class="ml-2 text-secondary"
 >
@@ -137,7 +134,7 @@
 </span>
 
 <span
-	*ngIf="cartItem.orderItem.type === 'buy'"
+	*ngIf="selectedAction.action === 'buy'"
 	i18n="@@cartListItemActionSellItemToCustomer"
 	class="ml-2 text-secondary"
 >
@@ -145,7 +142,7 @@
 </span>
 
 <span
-	*ngIf="cartItem.orderItem.type === 'return'"
+	*ngIf="selectedAction.action === 'return'"
 	i18n="@@cartListItemActionReturnItem"
 	class="ml-2 text-secondary"
 >
@@ -153,7 +150,7 @@
 </span>
 
 <span
-	*ngIf="cartItem.orderItem.type === 'buyout'"
+	*ngIf="selectedAction.action === 'buyout'"
 	i18n="@@cartListItemActionCustomerToBuyoutItem"
 	class="ml-2 text-secondary"
 >

@@ -10,10 +10,10 @@
 	class="row justify-content-between align-items-center mt-2 bl-cart-list-item"
 >
 	<div class="col-auto">
-		<!--<app-cart-list-item-action-->
-		<!--[cartItem]="cartItem"-->
-		<!--(actionChange)="onActionChange($event)"-->
-		<!--></app-cart-list-item-action>-->
+		<app-cart-list-item-action
+			[cartItem]="cartItem"
+			(actionChange)="onActionChange($event)"
+		></app-cart-list-item-action>
 	</div>
 	<div class="col-auto">
 		<button class="btn btn-sm btn-outline-secondary" (click)="remove()">

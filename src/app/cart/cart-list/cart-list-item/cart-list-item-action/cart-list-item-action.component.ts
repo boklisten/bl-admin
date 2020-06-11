@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { CartItem } from "../../../cartItem";
-import { CartItemAction } from "../../../cartItemAction";
+import { CartItem } from "../../../cart-item/cart-item";
+import { CartItemAction } from "../../../cart-item/cart-item-action";
 import { OrderItemPriceService } from "../../../../price/order-item-price/order-item-price.service";
 import { OrderItemType } from "@wizardcoder/bl-model/dist/order/order-item/order-item-type";
 import { DateService } from "../../../../date/date.service";
@@ -21,8 +21,9 @@ export class CartListItemActionComponent implements OnInit {
 	@Output() actionChange: EventEmitter<CartItemAction>;
 	public updating: boolean;
 
-	public actionList: { action: CartItemAction; period?: Period }[];
-	public selectedAction: string;
+	public actionList: CartItemAction[];
+	public selectedAction: CartItemAction;
+	//public action: CartItemAction;
 
 	constructor(
 		private _orderItemPriceService: OrderItemPriceService,
@@ -38,11 +39,15 @@ export class CartListItemActionComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.createActionList();
-		this.updating = false;
+		//this.createActionList();
+		//this.updating = false;
+		this.actionList = this.cartItem.getValidActions();
+		//this.action = this.actionList[0];
+		this.selectedAction = this.actionList[0];
 	}
 
 	createActionList() {
+		/*
 		if (this.cartItem.originalOrder) {
 			this.actionList = [
 				{ action: "rent", period: "semester" },
@@ -86,61 +91,67 @@ export class CartListItemActionComponent implements OnInit {
 		}
 
 		this.actionList = this.actionList.filter(action => {
-			return this.showAction(action.action, action.period);
+			//return this.showAction(action.action, action.period);
 		});
 
 		this.selectDefaultAction();
+    */
 	}
 
-	public showAction(action: CartItemAction, period?: Period): boolean {
+	public showAction(action: CartItemAction): boolean {
+		/*
 		return this._cartHelperService.isActionValidOnCartItem(
 			action,
 			this.cartItem,
 			period
 		);
+    */
+		return true;
 	}
 
-	public calculateActionValue(action: CartItemAction, period: Period) {
-		let selectedActionString = action;
-		selectedActionString += !period ? "" : period;
+	public calculateActionValue(action: CartItemAction) {
+		let selectedActionString = action.action;
+		selectedActionString += !action.period ? "" : action.period;
 		return selectedActionString;
 	}
 
-	public onActionChange(action: CartItemAction, period?: Period) {
-		this.selectedAction = this.calculateActionValue(action, period);
-		this.cartItem.action = action;
-		this.cartItem.period = period;
-		this.updateOrderItemBasedOnAction(this.cartItem.action, period);
-		this.actionChange.emit(this.cartItem.action);
+	public onActionChange(action: CartItemAction) {
+		//this.action = this.calculateActionValue(action);
+		this.selectedAction = action;
+		console.log("selectedAction", this.selectedAction);
+		//this.updateOrderItemBasedOnAction(this.cartItem.action, period);
+		//this.actionChange.emit(this.cartItem.action);
 	}
 
 	public originalAction(action: CartItemAction, period?: Period): boolean {
-		if (!this.cartItem.originalOrderItem) {
-			return false;
-		} else {
-			if (this.cartItem.originalOrderItem.type === "rent") {
-				return (
-					period === this.cartItem.originalOrderItem.info.periodType
-				);
-			} else {
-				return action === this.cartItem.originalOrderItem.type;
-			}
-		}
+		return false;
+		//if (!this.cartItem.originalOrderItem) {
+		//return false;
+		//} else {
+		//if (this.cartItem.originalOrderItem.type === "rent") {
+		//return (
+		//period === this.cartItem.originalOrderItem.info.periodType
+		//);
+		//} else {
+		//return action === this.cartItem.originalOrderItem.type;
+		//}
+		//}
 	}
 
 	private selectDefaultAction() {
-		this.onActionChange(
-			this.cartItem.orderItem.type,
-			this.cartItem.orderItem.info
-				? this.cartItem.orderItem.info.periodType
-				: null
-		);
+		//this.onActionChange(
+		//this.cartItem.orderItem.type,
+		//this.cartItem.orderItem.info
+		//? this.cartItem.orderItem.info.periodType
+		//: null
+		//);
 	}
 
 	private updateOrderItemBasedOnAction(
 		action: CartItemAction,
 		period?: Period
 	) {
+		/*
 		this.updating = true;
 		this._orderItemHelperService
 			.updateOrderItem(
@@ -159,5 +170,6 @@ export class CartListItemActionComponent implements OnInit {
 					e
 				);
 			});
+      */
 	}
 }
