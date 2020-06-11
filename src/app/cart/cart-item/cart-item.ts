@@ -7,8 +7,9 @@ import {
 } from "@wizardcoder/bl-model";
 import { CartItemAction } from "./cart-item-action";
 import { PriceInformation } from "../../price/price-information";
+import { Subscribable } from "../../bl-common/subscribable/subscribable";
 
-export interface CartItem {
+export interface CartItem extends Subscribable {
 	item?: Item;
 	orderItem?: OrderItem;
 	action?: CartItemAction;
@@ -17,7 +18,6 @@ export interface CartItem {
 	originalOrder?: Order;
 	originalOrderItem?: OrderItem;
 
-	//constructor(private title: string) {}
 	getPriceInformation(): PriceInformation;
 	getTitle(): string;
 	createOrderItem(): OrderItem;

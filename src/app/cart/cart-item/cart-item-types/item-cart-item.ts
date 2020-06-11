@@ -1,19 +1,19 @@
 import { CartItem } from "../cart-item";
 import { Item, OrderItem } from "@wizardcoder/bl-model";
 import { CartItemAction } from "../cart-item-action";
+import { PriceInformation } from "../../../price/price-information";
+import { Subscribable } from "../../../bl-common/subscribable/subscribable";
 
-export class ItemCartItem implements CartItem {
-	constructor(private _item: Item) {}
+export class ItemCartItem extends Subscribable implements CartItem {
+	private _action: CartItemAction;
+
+	constructor(private _item: Item) {
+		super();
+		this._action = this.getValidActions()[0];
+	}
 
 	public getPriceInformation() {
-		return {
-			amount: this._item.price,
-			unitPrice: this._item.price,
-			taxRate: this._item.taxRate,
-			taxAmount: 0,
-			amountLeftToPay: 230,
-			alreadyPayed: 100
-		};
+		return this.calculatePriceInformation(this._action);
 	}
 
 	public getTitle() {
@@ -25,17 +25,16 @@ export class ItemCartItem implements CartItem {
 	}
 
 	public setAction(action: CartItemAction) {
-		throw "itemCartItem.setAction(): is not implemented";
+		this._action = action;
+		this.notify();
 	}
 
 	public getAction(): CartItemAction {
-		throw "itemCartItem.getAction(): is not implemented";
+		return this._action;
 	}
 
 	public getValidActions(): CartItemAction[] {
 		return [
-			{ action: "sell" },
-			{ action: "buy" },
 			{
 				action: "rent",
 				period: "semester",
@@ -47,8 +46,59 @@ export class ItemCartItem implements CartItem {
 				period: "semester",
 				deadline: new Date(2020, 6, 1)
 			},
-			{ action: "cancel" }
+			{
+				action: "partly-payment",
+				period: "year",
+				deadline: new Date(2021, 6, 1)
+			},
+			{ action: "buy" },
+			{ action: "sell" }
 		];
 		//throw "itemCartItem.getAction(): is not implemented";
+	}
+
+	private calculatePriceInformation(
+		cartItemAction: CartItemAction
+	): PriceInformation {
+		let priceInformation: PriceInformation = {
+			amount: 0,
+			unitPrice: 0,
+			taxRate: 0,
+			taxAmount: 0,
+			amountLeftToPay: 0,
+			alreadyPayed: 0
+		};
+
+		if (cartItemAction.action === "rent") {
+			priceInformation.amount = 120;
+			priceInformation.unitPrice = 100;
+			priceInformation.taxRate = 0.2;
+			priceInformation.taxAmount = 20;
+			priceInformation.amountLeftToPay = 0;
+			priceInformation.alreadyPayed = 0;
+		} else if (cartItemAction.action === "partly-payment") {
+			priceInformation.amount = 350;
+			priceInformation.unitPrice = 350;
+			priceInformation.taxRate = 0;
+			priceInformation.taxAmount = 0;
+			priceInformation.amountLeftToPay = 100;
+			priceInformation.alreadyPayed = 0;
+		} else if (cartItemAction.action === "buy") {
+			priceInformation.amount = 1200;
+			priceInformation.unitPrice = 800;
+			priceInformation.taxRate = 0.5;
+			priceInformation.taxAmount = 400;
+			priceInformation.amountLeftToPay = 0;
+			priceInformation.alreadyPayed = 0;
+		} else if (cartItemAction.action === "sell") {
+			priceInformation.amount = -150;
+			priceInformation.unitPrice = -150;
+			priceInformation.taxRate = 0;
+			priceInformation.taxAmount = 0;
+			priceInformation.amountLeftToPay = 0;
+			priceInformation.alreadyPayed = 0;
+		}
+
+		return priceInformation;
 	}
 }

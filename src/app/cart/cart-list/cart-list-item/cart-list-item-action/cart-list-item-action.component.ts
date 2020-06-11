@@ -44,6 +44,7 @@ export class CartListItemActionComponent implements OnInit {
 		this.actionList = this.cartItem.getValidActions();
 		//this.action = this.actionList[0];
 		this.selectedAction = this.actionList[0];
+		this.cartItem.setAction(this.selectedAction);
 	}
 
 	createActionList() {
@@ -118,7 +119,7 @@ export class CartListItemActionComponent implements OnInit {
 	public onActionChange(action: CartItemAction) {
 		//this.action = this.calculateActionValue(action);
 		this.selectedAction = action;
-		console.log("selectedAction", this.selectedAction);
+		this.cartItem.setAction(this.selectedAction);
 		//this.updateOrderItemBasedOnAction(this.cartItem.action, period);
 		//this.actionChange.emit(this.cartItem.action);
 	}

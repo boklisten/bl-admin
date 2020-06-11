@@ -105,8 +105,6 @@
 	{{ selectedAction.deadline | blDate }}
 </span>
 
-{{selectedAction | json}}
-
 <span *ngIf="selectedAction.action === 'cancel'" class="ml-2 text-danger">
 	<span i18n="@@cartListItemActionCancelThisItem">cancel this item</span>
 	<fa-icon
