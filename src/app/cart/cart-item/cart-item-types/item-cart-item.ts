@@ -58,13 +58,11 @@ export class ItemCartItem extends Subscribable implements CartItem {
 			{ action: "buy" },
 			{ action: "sell" }
 		];
-		//throw "itemCartItem.getAction(): is not implemented";
 	}
 
 	private calculatePriceInformation(
 		cartItemAction: CartItemAction
 	): PriceInformation {
-		console.log("we have service??", this._itemPriceService.buyPrice);
 		let priceInformation: PriceInformation = {
 			amount: 0,
 			unitPrice: 0,
@@ -77,30 +75,18 @@ export class ItemCartItem extends Subscribable implements CartItem {
 		if (cartItemAction.action === "rent") {
 			return this._itemPriceService.getRentPriceInformation(
 				this._item,
-				cartItemAction.period,
-				1
+				cartItemAction.period
 			);
 		} else if (cartItemAction.action === "partly-payment") {
-			priceInformation.amount = 350;
-			priceInformation.unitPrice = 350;
-			priceInformation.taxRate = 0;
-			priceInformation.taxAmount = 0;
-			priceInformation.amountLeftToPay = 100;
-			priceInformation.alreadyPayed = 0;
+			return this._itemPriceService.getPartlyPaymentPriceInformation(
+				this._item,
+				this._action.period,
+				"new"
+			);
 		} else if (cartItemAction.action === "buy") {
-			priceInformation.amount = 1200;
-			priceInformation.unitPrice = 800;
-			priceInformation.taxRate = 0.5;
-			priceInformation.taxAmount = 400;
-			priceInformation.amountLeftToPay = 0;
-			priceInformation.alreadyPayed = 0;
+			return this._itemPriceService.getBuyPriceInformation(this._item);
 		} else if (cartItemAction.action === "sell") {
-			priceInformation.amount = -150;
-			priceInformation.unitPrice = -150;
-			priceInformation.taxRate = 0;
-			priceInformation.taxAmount = 0;
-			priceInformation.amountLeftToPay = 0;
-			priceInformation.alreadyPayed = 0;
+			return this._itemPriceService.getSellPriceInformation(this._item);
 		}
 
 		return priceInformation;

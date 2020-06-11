@@ -36,6 +36,26 @@ export class PriceService {
 		};
 	}
 
+	public calculatePriceInformation(
+		unitPrice: number,
+		taxRate: number,
+		amountLeftToPay?: number,
+		alreadyPayed?: number
+	): PriceInformation {
+		let taxAmount = unitPrice * taxRate;
+		return {
+			amount: this.toFixed(unitPrice + taxAmount),
+			unitPrice: this.toFixed(unitPrice),
+			taxRate: this.toFixed(taxRate),
+			taxAmount: this.toFixed(taxAmount),
+			amountLeftToPay: this.toFixed(
+				amountLeftToPay ? amountLeftToPay : 0
+			),
+			alreadyPayed: this.toFixed(alreadyPayed ? alreadyPayed : 0),
+			discountRate: this.toFixed(0),
+			discount: this.toFixed(0)
+		};
+	}
 	private sanitizeNum(sanitizeNumber: number): number {
 		return +sanitizeNumber.toFixed(0);
 	}

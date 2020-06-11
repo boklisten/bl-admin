@@ -25,173 +25,88 @@ export class ItemPriceService {
 
 	public getRentPriceInformation(
 		item: Item,
-		period: Period,
-		numberOfPeriods: number,
-		alreadyPayed?: number,
-		originalOrderItem?: OrderItem
+		period: Period
 	): PriceInformation {
 		const branch = this._branchStoreService.getCurrentBranch();
 
-		if (!branch.paymentInfo) {
-			throw new Error("no branch set");
-		}
-
 		if (branch.paymentInfo.responsible) {
-			return this.getEmptyPriceInformation();
+			return this._priceService.getEmptyPriceInformation();
 		}
 
 		let unitPrice;
 
 		try {
-			unitPrice = this._branchPriceService.unitPriceRent(
-				item,
-				period,
-				numberOfPeriods
-			);
+			unitPrice = this._branchPriceService.unitPriceRent(item, period);
 		} catch (e) {
 			throw e;
 		}
 
-		let priceInformation = this.getEmptyPriceInformation();
-		priceInformation.unitPrice = unitPrice;
-		priceInformation.taxRate = item.taxRate;
-		priceInformation.taxAmount = unitPrice * item.taxRate;
-		priceInformation.amount =
-			priceInformation.unitPrice + priceInformation.taxAmount;
-		priceInformation.amountLeftToPay = 0;
-		return priceInformation;
+		return this._priceService.calculatePriceInformation(
+			unitPrice,
+			item.taxRate,
+			0
+		);
 	}
 
-	private getEmptyPriceInformation(): PriceInformation {
-		return {
-			amount: 0,
-			unitPrice: 0,
-			taxRate: 0,
-			taxAmount: 0,
-			amountLeftToPay: 0,
-			alreadyPayed: 0
-		};
-	}
-
-	public partlyPaymentPrice(
+	public getPartlyPaymentPriceInformation(
 		item: Item,
 		period: Period,
-		itemAge: "new" | "used",
-		alreadyPayed?: number,
-		originalOrderItem?: OrderItem
-	): { upFront: number; amountLeftToPay: number } {
-		const branch = this._branchStoreService.getCurrentBranch();
+		itemAge: "new" | "used"
+	): PriceInformation {
+		let upFrontPrice;
+		let amountLeftToPay;
 
-		if (!branch.paymentInfo) {
-			return { upFront: -1, amountLeftToPay: -1 };
-		}
-
-		if (branch.paymentInfo.responsible) {
-			return { upFront: 0, amountLeftToPay: 0 };
-		}
-
-		const branchPartlyPaymentUpFrontPrice = this._branchPriceService.partlyPaymentPrice(
-			item,
-			period,
-			itemAge
-		);
-
-		let branchPartlyPaymentBuyoutPrice = -1;
-
-		if (originalOrderItem) {
-			branchPartlyPaymentBuyoutPrice =
-				originalOrderItem.info["amountLeftToPay"];
-		} else {
-			branchPartlyPaymentBuyoutPrice = this._branchPriceService.getPartlyPaymentBuyoutPrice(
+		try {
+			upFrontPrice = this._branchPriceService.upFrontPricePartlyPayment(
 				item,
 				period,
 				itemAge
 			);
+
+			amountLeftToPay = this._branchPriceService.amountLeftToPayPartyPayment(
+				item,
+				period,
+				itemAge
+			);
+			console.log("amount left to pay", amountLeftToPay);
+		} catch (e) {
+			throw e;
 		}
 
-		if (
-			branchPartlyPaymentUpFrontPrice === -1 ||
-			branchPartlyPaymentBuyoutPrice === -1
-		) {
-			return { upFront: -1, amountLeftToPay: -1 };
-		}
-
-		const alreadyPayedAmount =
-			alreadyPayed && alreadyPayed > 0 ? alreadyPayed : 0;
-
-		return {
-			upFront: this.calculateAmount(
-				"partly-payment",
-				branchPartlyPaymentUpFrontPrice,
-				alreadyPayed,
-				originalOrderItem,
-				period
-			),
-			amountLeftToPay: this._priceService.sanitize(
-				branchPartlyPaymentBuyoutPrice
-			)
-		};
-	}
-
-	public buyPrice(
-		item: Item,
-		alreadyPayed?: number,
-		originalOrderItem?: OrderItem
-	): number {
-		if (!this._branchItemHelperService.isBuyValid(item)) {
-			return -1;
-		}
-
-		return this.calculateAmount(
-			"buy",
-			item.price,
-			alreadyPayed,
-			originalOrderItem
+		return this._priceService.calculatePriceInformation(
+			upFrontPrice,
+			item.taxRate,
+			amountLeftToPay
 		);
 	}
 
-	public sellPrice(item: Item): number {
+	public getBuyPriceInformation(item: Item): PriceInformation {
+		const unitPrice = item.price;
+		return this._priceService.calculatePriceInformation(
+			unitPrice,
+			item.taxRate,
+			0
+		);
+	}
+
+	public getSellPriceInformation(item: Item): PriceInformation {
 		const branch = this._branchStoreService.getCurrentBranch();
+
 		if (
 			branch.paymentInfo &&
 			branch.paymentInfo.sell &&
 			branch.paymentInfo.sell.percentage
 		) {
-			return -Math.abs(
-				this._priceService.sanitize(
-					Math.floor(item.price * branch.paymentInfo.sell.percentage)
-				)
+			let unitPrice = -Math.abs(
+				Math.floor(item.price * branch.paymentInfo.sell.percentage)
+			);
+
+			return this._priceService.calculatePriceInformation(
+				unitPrice,
+				item.taxRate,
+				0
 			);
 		}
-		return -1;
-	}
-
-	private calculateAmount(
-		orderItemType: OrderItemType,
-		price: number,
-		alreadyPayed?: number,
-		originalOrderItem?: OrderItem,
-		period?: Period
-	): number {
-		if (alreadyPayed) {
-			if (originalOrderItem && originalOrderItem.type == orderItemType) {
-				// if the order item is already payed for
-				// it should return 0 as default;
-
-				if (
-					originalOrderItem.type == "rent" ||
-					originalOrderItem.type == "partly-payment"
-				) {
-					if (originalOrderItem.info.periodType == period) {
-						return 0;
-					}
-				} else {
-					return 0;
-				}
-			}
-			return this._priceService.sanitize(price - alreadyPayed);
-		}
-
-		return this._priceService.sanitize(price);
+		throw new Error("sell is not valid on this item");
 	}
 }

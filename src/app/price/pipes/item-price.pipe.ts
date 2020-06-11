@@ -47,10 +47,10 @@ export class ItemPricePipe implements PipeTransform {
 	}
 
 	private calculatePriceBuy(item: Item) {
-		return this._itemPriceService.buyPrice(item);
+		return this._itemPriceService.getBuyPriceInformation(item).amount;
 	}
 
 	private calculatePriceSell(item: Item) {
-		return this._itemPriceService.sellPrice(item);
+		return this._itemPriceService.getSellPriceInformation(item).amount;
 	}
 }

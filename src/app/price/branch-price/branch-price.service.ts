@@ -33,17 +33,13 @@ export class BranchPriceService {
 		});
 	}
 
-	public unitPriceRent(
-		item: Item,
-		period: Period,
-		numberOfPeriods: number
-	): number {
+	public unitPriceRent(item: Item, period: Period): number {
 		if (this.isBranchResponsibleForPayment()) {
 			return 0;
 		}
 
 		if (this.isRentValid(item)) {
-			return this.getRentPeriodUnitPrice(item, period, numberOfPeriods);
+			return this.getRentPeriodUnitPrice(item, period);
 		}
 
 		throw new Error("rent is not allowed on this item");
@@ -53,27 +49,23 @@ export class BranchPriceService {
 		return this._branch.paymentInfo.responsible;
 	}
 
-	private;
-
-	public partlyPaymentPrice(
+	public upFrontPricePartlyPayment(
 		item: Item,
 		period: Period,
 		itemAge: "new" | "used"
 	): number {
-		if (!this._branch || !this._branch.paymentInfo) {
-			return -1;
-		}
-
-		if (this._branch.paymentInfo.responsible) {
+		if (this.isBranchResponsibleForPayment()) {
 			return 0;
 		}
 
 		if (this.isPartlyPaymentValid(item)) {
 			return this.getPartlyPaymentUpFrontPrice(item, period, itemAge);
 		}
+
+		throw new Error("partly-payment is not allowed on this item");
 	}
 
-	public getPartlyPaymentBuyoutPrice(
+	public amountLeftToPayPartyPayment(
 		item: Item,
 		periodType: Period,
 		itemAge: "new" | "used"
@@ -116,16 +108,9 @@ export class BranchPriceService {
 		return -1;
 	}
 
-	private getRentPeriodUnitPrice(
-		item: Item,
-		periodType: Period,
-		numberOfPeriods: number
-	): number {
+	private getRentPeriodUnitPrice(item: Item, periodType: Period): number {
 		for (const rentPeriod of this._branch.paymentInfo.rentPeriods) {
-			if (
-				rentPeriod.type === periodType &&
-				rentPeriod.maxNumberOfPeriods >= numberOfPeriods
-			) {
+			if (rentPeriod.type === periodType) {
 				return item.price * rentPeriod.percentage;
 			}
 		}

@@ -521,10 +521,11 @@ export class CartHelperService {
 			);
       */
 		} else if (action === "buy") {
-			return this._itemPriceService.buyPrice(item, alreadyPayedAmount);
+			//return this._itemPriceService.buyPrice(item, alreadyPayedAmount);
 		} else if (action === "sell") {
-			return this._itemPriceService.sellPrice(item);
+			//return this._itemPriceService.sellPrice(item);
 		}
+		return -1;
 	}
 
 	private createDefaultOrderItemInfo(

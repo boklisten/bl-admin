@@ -103,15 +103,20 @@ export class OrderItemPriceService {
 		originalOrderItem?: OrderItem,
 		originalOrder?: Order
 	): number {
+		return -1;
+		/*
 		return this._itemPriceService.buyPrice(
 			item,
 			this.alreadyPayed(originalOrderItem, originalOrder),
 			originalOrderItem
-		);
+		);*/
 	}
 
 	public priceSell(item: Item): number {
+		return -1;
+		/*
 		return this._itemPriceService.sellPrice(item);
+    */
 	}
 
 	public priceCancel(
@@ -127,6 +132,7 @@ export class OrderItemPriceService {
 		originalOrderItem?: OrderItem,
 		originalOrder?: Order
 	): { upFront: number; amountLeftToPay: number } {
+		/*
 		return this._itemPriceService.partlyPaymentPrice(
 			item,
 			orderItem.info.periodType,
@@ -134,6 +140,8 @@ export class OrderItemPriceService {
 			this.alreadyPayed(originalOrderItem, originalOrder),
 			originalOrderItem
 		);
+    */
+		return { upFront: 0, amountLeftToPay: 0 };
 	}
 
 	public orderItemTypePayedFor(
