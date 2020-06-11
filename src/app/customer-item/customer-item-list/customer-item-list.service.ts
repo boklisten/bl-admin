@@ -16,14 +16,14 @@ type CustomerItemWithItem = {
 export class CustomerItemListService {
 	private _customerItemList: { customerItem: CustomerItem; item: Item }[];
 	private _customerItemList$: ReplaySubject<CustomerItemWithItem[]>;
-	private _wait$: Subject<boolean>;
+	private _wait$: ReplaySubject<boolean>;
 
 	constructor(
 		private _customerService: CustomerService,
 		private _itemService: ItemService,
 		private _customerItemService: CustomerItemService
 	) {
-		this._wait$ = new Subject();
+		this._wait$ = new ReplaySubject(1);
 		this._customerItemList = [];
 		this._customerItemList$ = new ReplaySubject(1);
 
