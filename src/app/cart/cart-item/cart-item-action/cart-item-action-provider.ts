@@ -10,8 +10,14 @@ export class CartItemActionProvider {
 		orderItem: OrderItem,
 		item: Item
 	): CartItemAction[] {
-		const actions = this.getValidActionsForItem(item);
-		actions.push({ action: "cancel" });
+		this._item = item;
+		let actions: CartItemAction[] = [];
+
+		actions = actions.concat(this.getValidActionsForRent());
+		actions = actions.concat(this.getValidActionsForPartlyPayment());
+		actions = actions.concat(this.getValidActionsForBuy());
+		actions = actions.concat(this.getValidActionsForCancel());
+
 		return actions;
 	}
 
@@ -25,6 +31,10 @@ export class CartItemActionProvider {
 		actions = actions.concat(this.getValidActionsForSell());
 
 		return actions;
+	}
+
+	private getValidActionsForCancel(): CartItemAction[] {
+		return [{ action: "cancel" }];
 	}
 
 	private getValidActionsForBuy(): CartItemAction[] {

@@ -68,7 +68,7 @@ export class OrderItemPriceService {
 			const originalPriceInformation = this._priceService.calculatePriceInformation(
 				orderItem.amount,
 				orderItem.taxRate,
-				0
+				partlyPaymentPriceInformation.amountLeftToPay
 			);
 			return this.subtractPriceInformation(
 				partlyPaymentPriceInformation,
@@ -93,8 +93,8 @@ export class OrderItemPriceService {
 				0
 			);
 			return this.subtractPriceInformation(
-				originalPriceInformation,
-				buyPriceInformation
+				buyPriceInformation,
+				originalPriceInformation
 			);
 		}
 		return buyPriceInformation;
@@ -115,14 +115,14 @@ export class OrderItemPriceService {
 	}
 
 	private subtractPriceInformation(
-		originalPriceInformation: PriceInformation,
-		priceInformation: PriceInformation
+		priceInformation: PriceInformation,
+		originalPriceInformation: PriceInformation
 	): PriceInformation {
 		let amount = originalPriceInformation.amount - priceInformation.amount;
 		return this._priceService.calculatePriceInformation(
 			amount,
 			priceInformation.taxRate,
-			priceInformation.amountLeftToPay
+			originalPriceInformation.amountLeftToPay
 		);
 	}
 

@@ -27,20 +27,27 @@ export class BranchItemHelperService {
 		return false;
 	}
 
-	private rentPeriodValidOnCurrentBranch(period) {
-		const branch = this._branchStoreService.getCurrentBranch();
-		const rentPeriods = branch.paymentInfo
-			? branch.paymentInfo.rentPeriods
-			: [];
-		for (const rentPeriod of rentPeriods) {
-			if (rentPeriod.type === period) {
-				return true;
-			}
-		}
-		return false;
+	public isBuyValid(item: Item) {
+		/*for (const branchItem of this._branchItemStoreService.getBranchItems()) {*/
+		//if (branchItem.item === item.id) {
+		//return branchItem.buyAtBranch;
+		//}
+		/*}*/
+		return true; // if the item is not found, the action is allowed
+	}
+
+	public isSellValid(item: Item) {
+		return item.buyback;
 	}
 
 	public isPartlyPaymentValid(item: Item, period: Period): boolean {
+		for (const partlyPaymentPeriod of this._branchStoreService.getCurrentBranch()
+			.paymentInfo.partlyPaymentPeriods) {
+			if (partlyPaymentPeriod.type === period) {
+				return true;
+			}
+		}
+		/*
 		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
 			if (branchItem.item === item.id) {
 				if (branchItem.partlyPaymentAtBranch) {
@@ -53,23 +60,8 @@ export class BranchItemHelperService {
 				}
 			}
 		}
+    */
 		return false;
-	}
-
-	public getDefaultRentPeriod(item: Item): Period {
-		const branchItem = this.getBranchItem(item);
-		if (!branchItem.rentAtBranch) {
-			throw new Error("rent not valid on branchItem");
-		}
-
-		let rentPeriods = this._branchStoreService.getCurrentBranch()
-			.paymentInfo.rentPeriods;
-
-		if (rentPeriods && rentPeriods.length > 0) {
-			return rentPeriods[0].type;
-		}
-
-		return this.defaultPeriod;
 	}
 
 	public getDeadlineForRentPeriod(period: Period): Date {
@@ -121,6 +113,35 @@ export class BranchItemHelperService {
 		return this.defaultPeriod;
 	}
 
+	private rentPeriodValidOnCurrentBranch(period) {
+		const branch = this._branchStoreService.getCurrentBranch();
+		const rentPeriods = branch.paymentInfo
+			? branch.paymentInfo.rentPeriods
+			: [];
+		for (const rentPeriod of rentPeriods) {
+			if (rentPeriod.type === period) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public getDefaultRentPeriod(item: Item): Period {
+		const branchItem = this.getBranchItem(item);
+		if (!branchItem.rentAtBranch) {
+			throw new Error("rent not valid on branchItem");
+		}
+
+		let rentPeriods = this._branchStoreService.getCurrentBranch()
+			.paymentInfo.rentPeriods;
+
+		if (rentPeriods && rentPeriods.length > 0) {
+			return rentPeriods[0].type;
+		}
+
+		return this.defaultPeriod;
+	}
+
 	private getBranchItem(item: Item): BranchItem {
 		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
 			if (branchItem.item === item.id) {
@@ -128,18 +149,5 @@ export class BranchItemHelperService {
 			}
 		}
 		return null;
-	}
-
-	public isBuyValid(item: Item) {
-		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
-			if (branchItem.item === item.id) {
-				return branchItem.buyAtBranch;
-			}
-		}
-		return true; // if the item is not found, the action is allowed
-	}
-
-	public isSellValid(item: Item) {
-		return item.buyback;
 	}
 }
