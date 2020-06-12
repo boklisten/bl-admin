@@ -5,9 +5,13 @@ import { PriceInformation } from "../../../price/price-information";
 import { Subscribable } from "../../../bl-common/subscribable/subscribable";
 import { ItemPriceService } from "../../../price/item-price/item-price.service";
 import { BranchItemHelperService } from "../../../branch/branch-item-helper/branch-item-helper.service";
+import { CartItemActionProvider } from "../cart-item-action/cart-item-action-provider";
+import { CartItemPriceProvider } from "../cart-item-price/cart-item-price-provider";
 
 export class ItemCartItem extends Subscribable implements CartItem {
 	private _action: CartItemAction;
+	private _cartItemActionProvider: CartItemActionProvider;
+	private _cartItemPriceProvider: CartItemPriceProvider;
 
 	constructor(
 		private _item: Item,
@@ -15,6 +19,12 @@ export class ItemCartItem extends Subscribable implements CartItem {
 		private _branchItemHelperService: BranchItemHelperService
 	) {
 		super();
+		this._cartItemActionProvider = new CartItemActionProvider(
+			this._branchItemHelperService
+		);
+		this._cartItemPriceProvider = new CartItemPriceProvider(
+			this._itemPriceService
+		);
 		this.setAction(this.getValidActions()[0]);
 	}
 
@@ -40,89 +50,15 @@ export class ItemCartItem extends Subscribable implements CartItem {
 	}
 
 	public getValidActions(): CartItemAction[] {
-		let actions = [];
-		if (this._branchItemHelperService.isRentValid(this._item, "semester")) {
-			actions.push({
-				action: "rent",
-				period: "semester",
-				deadline: new Date(2020, 6, 1)
-			});
-		}
-
-		if (this._branchItemHelperService.isRentValid(this._item, "year")) {
-			actions.push({
-				action: "rent",
-				period: "year",
-				deadline: new Date(2021, 6, 1)
-			});
-		}
-
-		if (
-			this._branchItemHelperService.isPartlyPaymentValid(
-				this._item,
-				"semester"
-			)
-		) {
-			actions.push({
-				action: "partly-payment",
-				period: "semester",
-				deadline: new Date(2020, 6, 1)
-			});
-		}
-
-		if (
-			this._branchItemHelperService.isPartlyPaymentValid(
-				this._item,
-				"year"
-			)
-		) {
-			actions.push({
-				action: "partly-payment",
-				period: "year",
-				deadline: new Date(2021, 6, 1)
-			});
-		}
-
-		if (this._branchItemHelperService.isBuyValid(this._item)) {
-			actions.push({ action: "buy" });
-		}
-
-		if (this._branchItemHelperService.isSellValid(this._item)) {
-			actions.push({ action: "sell" });
-		}
-
-		return actions;
+		return this._cartItemActionProvider.getValidActionsForItem(this._item);
 	}
 
 	private calculatePriceInformation(
 		cartItemAction: CartItemAction
 	): PriceInformation {
-		let priceInformation: PriceInformation = {
-			amount: 0,
-			unitPrice: 0,
-			taxRate: 0,
-			taxAmount: 0,
-			amountLeftToPay: 0,
-			alreadyPayed: 0
-		};
-
-		if (cartItemAction.action === "rent") {
-			return this._itemPriceService.getRentPriceInformation(
-				this._item,
-				cartItemAction.period
-			);
-		} else if (cartItemAction.action === "partly-payment") {
-			return this._itemPriceService.getPartlyPaymentPriceInformation(
-				this._item,
-				this._action.period,
-				"new"
-			);
-		} else if (cartItemAction.action === "buy") {
-			return this._itemPriceService.getBuyPriceInformation(this._item);
-		} else if (cartItemAction.action === "sell") {
-			return this._itemPriceService.getSellPriceInformation(this._item);
-		}
-
-		return priceInformation;
+		return this._cartItemPriceProvider.calculatePriceInformationForItem(
+			this._item,
+			cartItemAction
+		);
 	}
 }

@@ -28,8 +28,11 @@ export class BranchItemHelperService {
 	}
 
 	private rentPeriodValidOnCurrentBranch(period) {
-		for (const rentPeriod of this._branchStoreService.getCurrentBranch()
-			.paymentInfo.rentPeriods) {
+		const branch = this._branchStoreService.getCurrentBranch();
+		const rentPeriods = branch.paymentInfo
+			? branch.paymentInfo.rentPeriods
+			: [];
+		for (const rentPeriod of rentPeriods) {
 			if (rentPeriod.type === period) {
 				return true;
 			}
@@ -67,6 +70,34 @@ export class BranchItemHelperService {
 		}
 
 		return this.defaultPeriod;
+	}
+
+	public getDeadlineForRentPeriod(period: Period): Date {
+		const branch = this._branchStoreService.getCurrentBranch();
+		const rentPeriods = branch.paymentInfo
+			? branch.paymentInfo.rentPeriods
+			: [];
+
+		for (let rentPeriod of rentPeriods) {
+			if (rentPeriod.type === period) {
+				return rentPeriod.date;
+			}
+		}
+		throw new Error("rent period is not valid");
+	}
+
+	public getDeadlineForPartlyPaymentPeriod(period: Period): Date {
+		const branch = this._branchStoreService.getCurrentBranch();
+		const partlyPaymentPeriods = branch.paymentInfo
+			? branch.paymentInfo.partlyPaymentPeriods
+			: [];
+
+		for (let partlyPaymentPeriod of partlyPaymentPeriods) {
+			if (partlyPaymentPeriod.type === period) {
+				return partlyPaymentPeriod.date;
+			}
+		}
+		throw new Error("partly-payment period is not valid");
 	}
 
 	public getDefaultPartlyPaymentPeriod(item: Item): Period {
