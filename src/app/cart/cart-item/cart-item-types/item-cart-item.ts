@@ -11,23 +11,14 @@ import { CartItemOrderItemProvider } from "../cart-item-order-item/cart-item-ord
 
 export class ItemCartItem extends Subscribable implements CartItem {
 	private _action: CartItemAction;
-	private _cartItemActionProvider: CartItemActionProvider;
-	private _cartItemPriceProvider: CartItemPriceProvider;
-	private _cartItemOrderItemProvider: CartItemOrderItemProvider;
 
 	constructor(
 		private _item: Item,
-		private _itemPriceService: ItemPriceService,
-		private _branchItemHelperService: BranchItemHelperService
+		private _cartItemPriceProvider: CartItemPriceProvider,
+		private _cartItemActionProvider: CartItemActionProvider,
+		private _cartItemOrderItemProvider: CartItemOrderItemProvider
 	) {
 		super();
-		this._cartItemActionProvider = new CartItemActionProvider(
-			this._branchItemHelperService
-		);
-		this._cartItemPriceProvider = new CartItemPriceProvider(
-			this._itemPriceService
-		);
-		this._cartItemOrderItemProvider = new CartItemOrderItemProvider();
 		this.setAction(this.getValidActions()[0]);
 	}
 

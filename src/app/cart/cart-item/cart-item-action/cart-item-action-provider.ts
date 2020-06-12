@@ -1,10 +1,19 @@
-import { Item } from "@wizardcoder/bl-model";
+import { Item, OrderItem } from "@wizardcoder/bl-model";
 import { CartItemAction } from "../cart-item-action";
 import { BranchItemHelperService } from "../../../branch/branch-item-helper/branch-item-helper.service";
 
 export class CartItemActionProvider {
 	private _item: Item;
 	constructor(private _branchItemHelperService: BranchItemHelperService) {}
+
+	public getValidActionsForOrderItem(
+		orderItem: OrderItem,
+		item: Item
+	): CartItemAction[] {
+		const actions = this.getValidActionsForItem(item);
+		actions.push({ action: "cancel" });
+		return actions;
+	}
 
 	public getValidActionsForItem(item: Item): CartItemAction[] {
 		this._item = item;
