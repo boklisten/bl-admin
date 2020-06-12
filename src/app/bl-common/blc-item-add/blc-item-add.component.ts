@@ -44,14 +44,24 @@ export class BlcItemAddComponent implements OnInit {
 	}
 
 	private createCartItem() {
-		if (!this.orderItem && this.item) {
+		if (!this.customerItem && !this.orderItem && this.item) {
 			this.cartItem = this._cartItemService.createCartItemByItem(
 				this.item
 			);
 			return;
 		}
 
-		if (this.orderItem) {
+		if (!this.orderItem && this.customerItem) {
+			this._cartItemService
+				.createCartItemByCustomerItem(this.customerItem)
+				.then(cartItem => {
+					console.log("got cartItem", cartItem);
+					this.cartItem = cartItem;
+				})
+				.catch(() => {});
+		}
+
+		if (!this.customerItem && this.orderItem) {
 			this._cartItemService
 				.createCartItemByOrderItem(this.orderItem, this.order)
 				.then(cartItem => {

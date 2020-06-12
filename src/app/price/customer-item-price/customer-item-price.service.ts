@@ -7,6 +7,7 @@ import { OrderItemType } from "@wizardcoder/bl-model/dist/order/order-item/order
 import { PriceService } from "../price.service";
 import { OrderService } from "@wizardcoder/bl-connect";
 import { OrderHelperService } from "../../order/order-helper/order-helper.service";
+import { PriceInformation } from "../price-information";
 
 export interface OrderItemAmounts {
 	unitPrice: number;
@@ -23,6 +24,27 @@ export class CustomerItemPriceService {
 		private _orderHelperService: OrderHelperService,
 		private _priceService: PriceService
 	) {}
+
+	public getBuyoutPriceInformation(
+		customerItem: CustomerItem
+	): PriceInformation {
+		return this._priceService.getEmptyPriceInformation();
+	}
+	public getBuybackPriceInformation(
+		customerItem: CustomerItem
+	): PriceInformation {
+		return this._priceService.getEmptyPriceInformation();
+	}
+	public getCancelPriceInformation(
+		customerItem: CustomerItem
+	): PriceInformation {
+		return this._priceService.getEmptyPriceInformation();
+	}
+	public getExtendPriceInformation(
+		customerItem: CustomerItem
+	): PriceInformation {
+		return this._priceService.getEmptyPriceInformation();
+	}
 
 	public calculateAmountsBuyout(item: Item): OrderItemAmounts {
 		const branch = this._branchStoreService.getCurrentBranch();

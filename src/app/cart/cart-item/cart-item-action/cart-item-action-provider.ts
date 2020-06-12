@@ -1,4 +1,4 @@
-import { Item, OrderItem } from "@wizardcoder/bl-model";
+import { Item, OrderItem, CustomerItem } from "@wizardcoder/bl-model";
 import { CartItemAction } from "../cart-item-action";
 import { BranchItemHelperService } from "../../../branch/branch-item-helper/branch-item-helper.service";
 
@@ -16,6 +16,21 @@ export class CartItemActionProvider {
 		actions = actions.concat(this.getValidActionsForRent());
 		actions = actions.concat(this.getValidActionsForPartlyPayment());
 		actions = actions.concat(this.getValidActionsForBuy());
+		actions = actions.concat(this.getValidActionsForCancel());
+
+		return actions;
+	}
+
+	public getValidActionsForCustomerItem(
+		customerItem: CustomerItem,
+		item: Item
+	): CartItemAction[] {
+		this._item = item;
+		let actions = [];
+
+		actions.push({ action: "extend", deadline: new Date() });
+		actions.push({ action: "buyout" });
+		actions.push({ action: "buyback" });
 		actions = actions.concat(this.getValidActionsForCancel());
 
 		return actions;

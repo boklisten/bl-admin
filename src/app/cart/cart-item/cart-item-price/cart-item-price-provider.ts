@@ -1,13 +1,15 @@
 import { PriceInformation } from "../../../price/price-information";
 import { CartItemAction } from "../cart-item-action";
 import { ItemPriceService } from "../../../price/item-price/item-price.service";
-import { Item, OrderItem, Order } from "@wizardcoder/bl-model";
+import { Item, OrderItem, Order, CustomerItem } from "@wizardcoder/bl-model";
 import { OrderItemPriceService } from "../../../price/order-item-price/order-item-price.service";
+import { CustomerItemPriceService } from "../../../price/customer-item-price/customer-item-price.service";
 
 export class CartItemPriceProvider {
 	constructor(
 		private _itemPriceService: ItemPriceService,
-		private _orderItemPriceService: OrderItemPriceService
+		private _orderItemPriceService: OrderItemPriceService,
+		private _customerItemPriceService: CustomerItemPriceService
 	) {}
 
 	public calculatePriceInformationForItem(
@@ -33,6 +35,34 @@ export class CartItemPriceProvider {
 
 		throw new Error(
 			"could not calculate price information for itemCartItem"
+		);
+	}
+
+	public calculatePriceInformationForCustomerItem(
+		customerItem: CustomerItem,
+		item: Item,
+		cartItemAction: CartItemAction
+	): PriceInformation {
+		if (cartItemAction.action === "extend") {
+			return this._customerItemPriceService.getExtendPriceInformation(
+				customerItem
+			);
+		} else if (cartItemAction.action === "buyback") {
+			return this._customerItemPriceService.getBuybackPriceInformation(
+				customerItem
+			);
+		} else if (cartItemAction.action === "buyout") {
+			return this._customerItemPriceService.getBuyoutPriceInformation(
+				customerItem
+			);
+		} else if (cartItemAction.action === "cancel") {
+			return this._customerItemPriceService.getCancelPriceInformation(
+				customerItem
+			);
+		}
+
+		throw new Error(
+			"could not calculate price information for customerItemCartItem"
 		);
 	}
 
