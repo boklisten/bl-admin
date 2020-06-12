@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { BranchStoreService } from "../../branch/branch-store.service";
-import { BranchItemStoreService } from "../../branch/branch-item-store/branch-item-store.service";
 import { Branch, Item } from "@wizardcoder/bl-model";
 import { Period } from "@wizardcoder/bl-model/dist/period/period";
 
@@ -8,10 +7,7 @@ import { Period } from "@wizardcoder/bl-model/dist/period/period";
 export class BranchPriceService {
 	private _branch: Branch;
 
-	constructor(
-		private _branchStoreService: BranchStoreService,
-		private _branchItemStoreService: BranchItemStoreService
-	) {
+	constructor(private _branchStoreService: BranchStoreService) {
 		this.handleBranchChange();
 	}
 
@@ -43,6 +39,18 @@ export class BranchPriceService {
 			itemAge,
 			"amountLeftToPay"
 		);
+	}
+
+	public amountForSell(item: Item): number {
+		if (
+			this._branch.paymentInfo &&
+			this._branch.paymentInfo.sell &&
+			this._branch.paymentInfo.sell.percentage
+		) {
+			return 0 - item.price * this._branch.paymentInfo.sell.percentage;
+		}
+
+		throw new Error("sell is not valid on branch");
 	}
 
 	private getAmountForPartlyPayment(

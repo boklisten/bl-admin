@@ -64,15 +64,20 @@ export class ItemPriceService {
 	}
 
 	public getBuyPriceInformation(item: Item): PriceInformation {
-		const unitPrice = item.price;
+		const amount = item.price;
 		return this._priceService.calculatePriceInformation(
-			unitPrice,
+			amount,
 			item.taxRate,
 			0
 		);
 	}
 
 	public getSellPriceInformation(item: Item): PriceInformation {
-		throw new Error("getSellPriceInformation(): not implemented");
+		const amount = this._branchPriceService.amountForSell(item);
+		return this._priceService.calculatePriceInformation(
+			amount,
+			item.taxRate,
+			0
+		);
 	}
 }
