@@ -81,6 +81,10 @@ export class CustomerService {
 		return this._customerDetail ? true : false;
 	}
 
+	public getCustomerDetailId(): string {
+		return this._customerDetail.id;
+	}
+
 	private getCustomerDetail(id: string): Promise<UserDetail> {
 		return this._userDetailService.getById(id);
 	}

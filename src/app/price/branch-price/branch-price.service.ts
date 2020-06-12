@@ -1,24 +1,93 @@
 import { Injectable } from "@angular/core";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { BranchItemStoreService } from "../../branch/branch-item-store/branch-item-store.service";
-import { Branch, BranchItem, Item, OrderItemType } from "@wizardcoder/bl-model";
+import { Branch, Item } from "@wizardcoder/bl-model";
 import { Period } from "@wizardcoder/bl-model/dist/period/period";
-import { PriceInformation } from "../price-information";
-import { PriceService } from "../price.service";
 
 @Injectable()
 export class BranchPriceService {
-	private _branchItems: BranchItem[];
 	private _branch: Branch;
 
 	constructor(
 		private _branchStoreService: BranchStoreService,
-		private _branchItemStoreService: BranchItemStoreService,
-		private _priceService: PriceService
+		private _branchItemStoreService: BranchItemStoreService
 	) {
-		this._branchItems = [];
 		this.handleBranchChange();
-		this.handleBranchItemsChange();
+	}
+
+	public amountForRent(item: Item, period: Period): number {
+		return this.getAmountForRentPeriod(item, period);
+	}
+
+	public amountUpFrontForPartlyPayment(
+		item: Item,
+		period: Period,
+		itemAge: "new" | "used"
+	): number {
+		return this.getAmountForPartlyPayment(
+			item.price,
+			period,
+			itemAge,
+			"upFront"
+		);
+	}
+
+	public amountLeftToPayForPartyPayment(
+		item: Item,
+		period: Period,
+		itemAge: "new" | "used"
+	): number {
+		return this.getAmountForPartlyPayment(
+			item.price,
+			period,
+			itemAge,
+			"amountLeftToPay"
+		);
+	}
+
+	private getAmountForPartlyPayment(
+		price: number,
+		period: Period,
+		itemAge: "new" | "used",
+		upFrontOrLeftToPay: "upFront" | "amountLeftToPay"
+	) {
+		const partlyPaymentPeriod = this.getPartlyPaymentPeriod(period);
+		if (itemAge === "new") {
+			if (upFrontOrLeftToPay === "upFront") {
+				return price * partlyPaymentPeriod.percentageUpFront;
+			} else {
+				return price * partlyPaymentPeriod.percentageBuyout;
+			}
+		}
+
+		if (itemAge === "used") {
+			if (upFrontOrLeftToPay === "upFront") {
+				return price * partlyPaymentPeriod.percentageUpFrontUsed;
+			} else {
+				return price * partlyPaymentPeriod.percentageBuyoutUsed;
+			}
+		}
+
+		throw new Error(`itemAge "${itemAge}" is not valid`);
+	}
+
+	private getPartlyPaymentPeriod(
+		period: Period
+	): {
+		percentageUpFront: number;
+		percentageUpFrontUsed: number;
+		percentageBuyout: number;
+		percentageBuyoutUsed: number;
+		type: Period;
+		date: Date;
+	} {
+		for (const partlyPaymentPeriod of this._branch.paymentInfo
+			.partlyPaymentPeriods) {
+			if (partlyPaymentPeriod.type === period) {
+				return partlyPaymentPeriod;
+			}
+		}
+		throw new Error("period is not valid for partly-payment on branch");
 	}
 
 	private handleBranchChange() {
@@ -27,125 +96,12 @@ export class BranchPriceService {
 		});
 	}
 
-	private handleBranchItemsChange() {
-		this._branchItemStoreService.subscribe(branchItems => {
-			this._branchItems = branchItems;
-		});
-	}
-
-	public unitPriceRent(item: Item, period: Period): number {
-		if (this.isBranchResponsibleForPayment()) {
-			return 0;
-		}
-
-		if (this.isRentValid(item)) {
-			return this.getRentPeriodUnitPrice(item, period);
-		}
-
-		throw new Error("rent is not allowed on this item");
-	}
-
-	private isBranchResponsibleForPayment(): boolean {
-		return this._branch.paymentInfo.responsible;
-	}
-
-	public upFrontPricePartlyPayment(
-		item: Item,
-		period: Period,
-		itemAge: "new" | "used"
-	): number {
-		if (this.isBranchResponsibleForPayment()) {
-			return 0;
-		}
-
-		if (this.isPartlyPaymentValid(item)) {
-			return this.getPartlyPaymentUpFrontPrice(item, period, itemAge);
-		}
-
-		throw new Error("partly-payment is not allowed on this item");
-	}
-
-	public amountLeftToPayPartyPayment(
-		item: Item,
-		periodType: Period,
-		itemAge: "new" | "used"
-	): number {
-		for (const partlyPaymentPeriod of this._branch.paymentInfo
-			.partlyPaymentPeriods) {
-			if (partlyPaymentPeriod.type === periodType) {
-				if (itemAge === "new") {
-					return item.price * partlyPaymentPeriod.percentageBuyout;
-				}
-				if (itemAge === "used") {
-					return (
-						item.price * partlyPaymentPeriod.percentageBuyoutUsed
-					);
-				}
-			}
-		}
-		return -1;
-	}
-
-	public getPartlyPaymentUpFrontPrice(
-		item: Item,
-		periodType: Period,
-		itemAge: "new" | "used"
-	): number {
-		for (const partlyPaymentPeriod of this._branch.paymentInfo
-			.partlyPaymentPeriods) {
-			if (partlyPaymentPeriod.type === periodType) {
-				if (itemAge === "new") {
-					return item.price * partlyPaymentPeriod.percentageUpFront;
-				}
-
-				if (itemAge === "used") {
-					return (
-						item.price * partlyPaymentPeriod.percentageUpFrontUsed
-					);
-				}
-			}
-		}
-		return -1;
-	}
-
-	private getRentPeriodUnitPrice(item: Item, periodType: Period): number {
+	private getAmountForRentPeriod(item: Item, periodType: Period): number {
 		for (const rentPeriod of this._branch.paymentInfo.rentPeriods) {
 			if (rentPeriod.type === periodType) {
 				return item.price * rentPeriod.percentage;
 			}
 		}
 		return -1;
-	}
-
-	private isPartlyPaymentValid(item: Item) {
-		return this.isActionValid(item, "partly-payment");
-	}
-
-	private isRentValid(item: Item): boolean {
-		return this.isActionValid(item, "rent");
-	}
-
-	private isBuyValid(item: Item): boolean {
-		return this.isActionValid(item, "buy");
-	}
-
-	private isSellValid(item: Item): boolean {
-		return this.isActionValid(item, "sell");
-	}
-
-	private isActionValid(item: Item, action: OrderItemType): boolean {
-		for (const branchItem of this._branchItems) {
-			if (branchItem.item === item.id) {
-				if (action === "rent") {
-					return branchItem.rent;
-				} else if (action === "buy") {
-					return branchItem.buy;
-				} else if (action === "sell") {
-					return branchItem.sell;
-				}
-			}
-		}
-
-		return true;
 	}
 }

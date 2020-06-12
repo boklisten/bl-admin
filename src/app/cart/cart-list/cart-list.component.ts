@@ -15,6 +15,7 @@ import { CartItemSearchService } from "../cart-item-search/cart-item-search.serv
 import { DateService } from "../../date/date.service";
 import { AuthService } from "../../auth/auth.service";
 import { Subscription } from "rxjs";
+import { CartOrderService } from "../cart-order/cart-order.service";
 
 @Component({
 	selector: "app-cart-list",
@@ -36,7 +37,8 @@ export class CartListComponent implements OnInit, OnDestroy {
 	constructor(
 		private _cartService: CartService,
 		private _modalService: NgbModal,
-		private _authService: AuthService
+		private _authService: AuthService,
+		private _cartOrderService: CartOrderService
 	) {
 		this.cart = [];
 		this.cartConfirmed = new EventEmitter<boolean>();
@@ -99,10 +101,14 @@ export class CartListComponent implements OnInit, OnDestroy {
 	}
 
 	onShowConfirm(content) {
+		this._cartOrderService.createOrder();
+
+		/*
 		this._cartConfirmModal = this._modalService.open(content, {
 			size: "lg",
 			centered: true
 		});
+    */
 	}
 
 	onCartConfirm() {

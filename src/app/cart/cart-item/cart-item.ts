@@ -20,6 +20,7 @@ export interface CartItem extends Subscribable {
 
 	getPriceInformation(): PriceInformation;
 	getTitle(): string;
+	getItemId(): string;
 	createOrderItem(): OrderItem;
 	setAction(action: CartItemAction);
 	getAction(): CartItemAction;

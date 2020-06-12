@@ -37,17 +37,21 @@ export class PriceService {
 	}
 
 	public calculatePriceInformation(
-		unitPrice: number,
+		amount: number,
 		taxRate: number,
 		amountLeftToPay?: number,
 		alreadyPayed?: number
 	): PriceInformation {
-		let taxAmount = unitPrice * taxRate;
+		let taxAmount =
+			amount > 0 && taxRate > 0
+				? this.toFixed(amount - amount / taxRate)
+				: 0;
+
 		return {
-			amount: this.toFixed(unitPrice + taxAmount),
-			unitPrice: this.toFixed(unitPrice),
-			taxRate: this.toFixed(taxRate),
-			taxAmount: this.toFixed(taxAmount),
+			amount: this.toFixed(amount),
+			unitPrice: this.toFixed(amount - taxAmount),
+			taxRate: taxAmount > 0 ? taxRate : 0,
+			taxAmount: taxAmount,
 			amountLeftToPay: this.toFixed(
 				amountLeftToPay ? amountLeftToPay : 0
 			),
