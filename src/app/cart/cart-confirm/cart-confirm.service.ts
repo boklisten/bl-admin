@@ -94,7 +94,7 @@ export class CartConfirmService {
 		}
     */
 
-		return true;
+		return false;
 	}
 	public async getOriginalDelivery(): Promise<Delivery> {
 		for (const cartItem of this._cartService.getCart()) {
