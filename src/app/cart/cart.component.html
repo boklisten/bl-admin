@@ -1,87 +1,55 @@
-<div class="container-fluid mt-1" blcScanner>
-	<div class="row">
-		<div class="col-12">
-			<app-bl-common-alert
-				[type]="'success'"
-				i18n-text="@@cartOrderWasConfirmed"
-				text="Order was confirmed!"
-				*ngIf="cartConfirmText"
-				(exit)="cartConfirmText = null"
-			></app-bl-common-alert>
-			<app-bl-common-alert
-				[type]="'danger'"
-				i18n-text="@@cartFailureText"
-				text="could not confirm order"
-				*ngIf="cartFailureText"
-				(exit)="cartFailureText = null"
-			></app-bl-common-alert>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-4">
-			<div class="row">
-				<div class="col-12">
-					<ngb-tabset
-						#tabset="ngbTabset"
-						id="ngbTabset"
-						[activeId]="activeTab"
-						(tabChange)="onTabChange($event)"
-					>
-						<ngb-tab id="order-items">
-							<ng-template ngbTabTitle>
-								<span
-									class="text-secondary"
-									i18n="@@cartOrderedItems"
-									>Ordered items
-								</span>
-							</ng-template>
+<div class="container-fluid">
+	<div class="row mt-2">
+		<div class="col-lg-6 col-md-12">
+			<ngb-tabset
+				#tabset="ngbTabset"
+				id="ngbTabset"
+				[activeId]="activeTab"
+				(tabChange)="onTabChange($event)"
+			>
+				<ngb-tab id="order-items">
+					<ng-template ngbTabTitle>
+						<span class="text-secondary" i18n="@@cartCustomer"
+							>Customer
+						</span>
+					</ng-template>
 
-							<ng-template ngbTabContent>
-								<div class="row mt-2">
-									<div class="col-12">
-										<app-customer-order-item-list></app-customer-order-item-list>
-									</div>
-								</div>
-							</ng-template>
-						</ngb-tab>
-						<ngb-tab id="customer-items">
-							<ng-template ngbTabTitle>
-								<span
-									class="text-secondary"
-									i18n="@@cartCustomerItems"
-									>Customer items</span
-								>
-							</ng-template>
+					<ng-template ngbTabContent>
+						<div class="row mt-2">
+							<div class="col-lg-6 col-md-12 col-12">
+								<h5 class="text-center text-white bg-warning">
+									Ordered items
+								</h5>
+								<app-customer-order-item-list></app-customer-order-item-list>
+							</div>
+							<div class="col-lg-6 col-md-12 col-12">
+								<h5 class="text-center text-white bg-info">
+									Customer items
+								</h5>
+								<app-customer-item-list></app-customer-item-list>
+							</div>
+						</div>
+					</ng-template>
+				</ngb-tab>
 
-							<ng-template ngbTabContent>
-								<div class="row mt-2" *ngIf="customerDetail">
-									<div class="col-12">
-										<app-customer-item-list></app-customer-item-list>
-									</div>
-								</div>
-							</ng-template>
-						</ngb-tab>
-
-						<ngb-tab id="item-search">
-							<ng-template ngbTabTitle>
-								<span class="text-secondary" i18n="@@cartSearch"
-									>Search</span
-								>
-							</ng-template>
-							<ng-template ngbTabContent>
-								<div class="row mt-2">
-									<div class="col-12">
-										<app-item-search-bar></app-item-search-bar>
-									</div>
-								</div>
-							</ng-template>
-						</ngb-tab>
-					</ngb-tabset>
-				</div>
-			</div>
+				<ngb-tab id="item-search">
+					<ng-template ngbTabTitle>
+						<span class="text-secondary" i18n="@@cartSearch"
+							>Search</span
+						>
+					</ng-template>
+					<ng-template ngbTabContent>
+						<div class="row mt-2">
+							<div class="col-12">
+								<app-item-search-bar></app-item-search-bar>
+							</div>
+						</div>
+					</ng-template>
+				</ngb-tab>
+			</ngb-tabset>
 		</div>
 
-		<div class="col-8">
+		<div class="col-lg-6 col-md-12">
 			<app-cart-list
 				(cartConfirmed)="onCartConfirmed()"
 				(cartConfirmationFailed)="onCartFailed()"

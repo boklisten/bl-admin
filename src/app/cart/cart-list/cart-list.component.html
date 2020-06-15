@@ -1,108 +1,99 @@
-<div class="row">
-	<div class="col-12">
-		<div class="card">
-			<div class="card-header">
-				<div class="row justify-content-between align-items-center">
-					<div class="col-auto" *ngIf="!showNotifyByEmailEdit"></div>
-					<div class="col-auto" *ngIf="showNotifyByEmailEdit">
-						<div
-							class="row align-items-center justify-content-start no-gutters"
-						>
-							<div class="col">
-								<app-bl-common-toggle-button
-									[(value)]="notfifyByEmail"
-									(update)="onNotifyByEmailUpdate($event)"
-								></app-bl-common-toggle-button>
-							</div>
-							<div class="col ml-2">
-								<fa-icon icon="envelope"></fa-icon>
-							</div>
-						</div>
-					</div>
-					<div class="col-auto">
-						<h3 class="card-title text-center text-secondary">
-							<fa-icon [icon]="'shopping-cart'"></fa-icon>
-						</h3>
-					</div>
-					<div class="col-auto">
-						<button
-							class="btn btn-outline-secondary btn-sm"
-							(click)="onClearCart()"
-						>
-							<fa-icon [icon]="'trash-alt'"></fa-icon>
-						</button>
-					</div>
-				</div>
-				<div class="row justify-content-end"></div>
-			</div>
-
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item bg-warning" *ngIf="searching">
-					<div
-						class="row justify-content-center align-items-center no-gutters"
-					>
-						<div class="col-auto">
-							<fa-icon
-								[icon]="'circle-notch'"
-								[spin]="true"
-								[size]="'2x'"
-							></fa-icon>
-						</div>
-						<div class="col-auto ml-2">
-							<span i18n="@@cartListSearchingForBook"
-								>Searching</span
-							>
-						</div>
-					</div>
-				</li>
-				<li class="list-group-item" *ngFor="let cartItem of cart">
-					<app-cart-list-item
-						[cartItem]="cartItem"
-						(cartItemChange)="onCartItemChange()"
-					></app-cart-list-item>
-				</li>
-			</ul>
-
-			<app-bl-common-alert
-				[type]="'secondary'"
-				class="mr-3 ml-3 mt-3"
-				*ngIf="cart.length <= 0"
-				i18n-text="@@cartListCartIsEmpty"
-				text="Cart is empty"
-			></app-bl-common-alert>
-
-			<div
-				class="card-footer bl-cart-list-footer"
-				*ngIf="cart.length > 0"
-			>
+<div class="card">
+	<div class="card-header">
+		<div class="row justify-content-between align-items-center">
+			<div class="col-auto" *ngIf="!showNotifyByEmailEdit"></div>
+			<div class="col-auto" *ngIf="showNotifyByEmailEdit">
 				<div
-					class="row justify-content-between align-items-center text-secondary"
+					class="row align-items-center justify-content-start no-gutters"
 				>
-					<div class="col-3">
-						<button
-							class="btn btn-outline-success btn-block"
-							(click)="onShowConfirm(confirmCartContent)"
-						>
-							<span i18n="@@blConfirmButton">Confirm</span>
-						</button>
+					<div class="col">
+						<app-bl-common-toggle-button
+							[(value)]="notfifyByEmail"
+							(update)="onNotifyByEmailUpdate($event)"
+						></app-bl-common-toggle-button>
 					</div>
-					<!--<div class="col-auto text-right">-->
-
-					<!--<div class="font-weight-bold bl-text-xl text-black">-->
-					<!--{{ getTotalAmount() | blcPrice }}-->
-					<!--</div>-->
-					<!--<div-->
-					<!--class="bl-text-sm"-->
-					<!--*ngIf="cartIncludesPartlyPayments()"-->
-					<!-->-->
-					<!--<span i18n="@@cartListTotalWithPartlyPayments"-->
-					<!-->Total to pay including partly payments</span-->
-					<!-->: {{ getTotalAmountWithPartlyPayments() | blcPrice-->
-					<!--}}-->
-					<!--</div>-->
-					<!--</div>-->
+					<div class="col ml-2">
+						<fa-icon icon="envelope"></fa-icon>
+					</div>
 				</div>
 			</div>
+			<div class="col-auto">
+				<h3 class="card-title text-center text-secondary">
+					<fa-icon [icon]="'shopping-cart'"></fa-icon>
+				</h3>
+			</div>
+			<div class="col-auto">
+				<button
+					class="btn btn-outline-secondary btn-sm"
+					(click)="onClearCart()"
+				>
+					<fa-icon [icon]="'trash-alt'"></fa-icon>
+				</button>
+			</div>
+		</div>
+		<div class="row justify-content-end"></div>
+	</div>
+
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item bg-warning" *ngIf="searching">
+			<div
+				class="row justify-content-center align-items-center no-gutters"
+			>
+				<div class="col-auto">
+					<fa-icon
+						[icon]="'circle-notch'"
+						[spin]="true"
+						[size]="'2x'"
+					></fa-icon>
+				</div>
+				<div class="col-auto ml-2">
+					<span i18n="@@cartListSearchingForBook">Searching</span>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item" *ngFor="let cartItem of cart">
+			<app-cart-list-item
+				[cartItem]="cartItem"
+				(cartItemChange)="onCartItemChange()"
+			></app-cart-list-item>
+		</li>
+	</ul>
+
+	<app-bl-common-alert
+		[type]="'secondary'"
+		class="mr-3 ml-3 mt-3"
+		*ngIf="cart.length <= 0"
+		i18n-text="@@cartListCartIsEmpty"
+		text="Cart is empty"
+	></app-bl-common-alert>
+
+	<div class="card-footer bl-cart-list-footer" *ngIf="cart.length > 0">
+		<div
+			class="row justify-content-between align-items-center text-secondary"
+		>
+			<div class="col-3">
+				<button
+					class="btn btn-outline-success btn-block"
+					(click)="onShowConfirm(confirmCartContent)"
+				>
+					<span i18n="@@blConfirmButton">Confirm</span>
+				</button>
+			</div>
+			<!--<div class="col-auto text-right">-->
+
+			<!--<div class="font-weight-bold bl-text-xl text-black">-->
+			<!--{{ getTotalAmount() | blcPrice }}-->
+			<!--</div>-->
+			<!--<div-->
+			<!--class="bl-text-sm"-->
+			<!--*ngIf="cartIncludesPartlyPayments()"-->
+			<!-->-->
+			<!--<span i18n="@@cartListTotalWithPartlyPayments"-->
+			<!-->Total to pay including partly payments</span-->
+			<!-->: {{ getTotalAmountWithPartlyPayments() | blcPrice-->
+			<!--}}-->
+			<!--</div>-->
+			<!--</div>-->
 		</div>
 	</div>
 </div>
