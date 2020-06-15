@@ -1,20 +1,22 @@
-import {Component} from '@angular/core';
-import {AuthService} from './auth/auth.service';
-import {BranchStoreService} from './branch/branch-store.service';
-import {Router} from '@angular/router';
+import { Component } from "@angular/core";
+import { AuthService } from "./auth/auth.service";
+import { BranchStoreService } from "./branch/branch-store.service";
+import { Router } from "@angular/router";
 
 @Component({
-	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss']
+	selector: "app-root",
+	templateUrl: "./app.component.html",
+	styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-	title = 'app';
+	title = "app";
 	public showContent: boolean;
 
-	constructor(private _authService: AuthService,
-	            private _branchStoreService: BranchStoreService,
-	            private _router: Router) {
+	constructor(
+		private _authService: AuthService,
+		private _branchStoreService: BranchStoreService,
+		private _router: Router
+	) {
 		this.showContent = false;
 
 		this._router.events.subscribe(() => {
