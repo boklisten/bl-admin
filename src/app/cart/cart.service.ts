@@ -75,7 +75,7 @@ export class CartService {
 
 	public contains(cartItem: CartItem): boolean {
 		for (const ci of this._cart) {
-			if (ci === cartItem) {
+			if (ci === cartItem || ci.getItemId() === cartItem.getItemId()) {
 				return true;
 			}
 		}
@@ -84,7 +84,10 @@ export class CartService {
 
 	public remove(cartItem: CartItem) {
 		for (let i = 0; i < this._cart.length; i++) {
-			if (this._cart[i] === cartItem) {
+			if (
+				this._cart[i] === cartItem ||
+				this._cart[i].getItemId() === cartItem.getItemId()
+			) {
 				this._cart.splice(i, 1);
 				this._cartChange$.next(true);
 				this.notifyCartChange(this._cart);

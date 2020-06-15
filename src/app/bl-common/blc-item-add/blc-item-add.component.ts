@@ -34,13 +34,11 @@ export class BlcItemAddComponent implements OnInit {
 
 	ngOnInit() {
 		this.createCartItem();
-		/*
 		this.checkIfAdded();
 
 		this._cartService.subscribe(() => {
 			this.checkIfAdded();
 		});
-    */
 	}
 
 	private createCartItem() {
@@ -94,13 +92,16 @@ export class BlcItemAddComponent implements OnInit {
 	}
   */
 
+	public remove() {
+		this._cartService.remove(this.cartItem);
+	}
+
 	public onClick() {
-		console.log("blc-item-add.onClick(): clicked add");
-		console.log("blc-item-add.item", this.item);
-		console.log("blc-item-add.customerItem", this.customerItem);
-		console.log("blc-item-add.orderItem", this.orderItem);
-		console.log("blc-item-add.order", this.order);
-		this.add();
+		if (this.added) {
+			this.remove();
+		} else {
+			this.add();
+		}
 		/*
 		if (this.order && this.orderItem) {
 			this.handleOrderItem();
