@@ -1436,6 +1436,26 @@ Egendefinert
           <context context-type="sourcefile">app/cart/cart.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
+      </trans-unit><trans-unit id="cartOrderedItems" datatype="html">
+        <source>
+									Ordered items
+								</source><target state="final">
+									Bestilte bøker
+								</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit><trans-unit id="cartCustomerItems" datatype="html">
+        <source>
+									Customer items
+								</source><target state="final">
+									Kundens bøker
+								</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
       </trans-unit>
       
       
@@ -1444,7 +1464,7 @@ Egendefinert
       <trans-unit id="cartSearch" datatype="html">
         <source>Search</source><target state="final">Søk</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">38</context></context-group></trans-unit><trans-unit id="cartListSearchingForBook" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">44</context></context-group></trans-unit><trans-unit id="cartListSearchingForBook" datatype="html">
         <source>Searching</source><target state="final">Søker</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">50</context></context-group></trans-unit><trans-unit id="cartListCartIsEmpty" datatype="html">

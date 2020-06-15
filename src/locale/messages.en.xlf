@@ -1451,6 +1451,26 @@
           <context context-type="sourcefile">app/cart/cart.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
+      </trans-unit><trans-unit id="cartOrderedItems" datatype="html">
+        <source>
+									Ordered items
+								</source><target state="final">
+									Ordered items
+								</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit><trans-unit id="cartCustomerItems" datatype="html">
+        <source>
+									Customer items
+								</source><target state="final">
+									Customer items
+								</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
       </trans-unit>
       
       
@@ -1459,7 +1479,7 @@
       <trans-unit id="cartSearch" datatype="html">
         <source>Search</source><target state="final">Search</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">38</context></context-group></trans-unit><trans-unit id="cartListSearchingForBook" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">44</context></context-group></trans-unit><trans-unit id="cartListSearchingForBook" datatype="html">
         <source>Searching</source><target state="final">Searching</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">50</context></context-group></trans-unit><trans-unit id="cartListCartIsEmpty" datatype="html">
