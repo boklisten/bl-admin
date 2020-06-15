@@ -37,8 +37,16 @@ export class CustomerItemCartItem extends Subscribable implements CartItem {
 		return this._customerItem.item as string;
 	}
 
+	public getCustomerItemId(): string {
+		return this._customerItem.id;
+	}
+
+	public getMovedFromOrderId(): string {
+		return null;
+	}
+
 	public async createOrderItem(): Promise<OrderItem> {
-		throw "not implemented";
+		return this._cartItemOrderItemProvider.createOrderItem(this);
 	}
 
 	public setAction(action: CartItemAction) {
