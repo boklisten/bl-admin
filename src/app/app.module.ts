@@ -23,6 +23,7 @@ import { MessengerModule } from "./messenger/messenger.module";
 import { BookingModule } from "./booking/booking.module";
 
 import {
+	faArrowCircleDown,
 	faBars,
 	faUserFriends,
 	faExclamationCircle,
@@ -117,8 +118,9 @@ import { BlcScannerService } from "./bl-common/blc-scanner/blc-scanner.service";
 import { MessagesComponent } from "./messages/messages.component";
 import { MessengerComponent } from "./messenger/messenger.component";
 import { MessengerReminderComponent } from "./messenger/messenger-reminder/messenger-reminder.component";
-import { HeaderCustomerSearchComponent } from './header/header-customer-search/header-customer-search.component';
+import { HeaderCustomerSearchComponent } from "./header/header-customer-search/header-customer-search.component";
 library.add(
+	faArrowCircleDown,
 	faBuilding,
 	faStream,
 	faUser,
