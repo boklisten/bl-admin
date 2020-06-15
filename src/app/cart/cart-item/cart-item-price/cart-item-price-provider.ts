@@ -38,26 +38,30 @@ export class CartItemPriceProvider {
 		);
 	}
 
-	public calculatePriceInformationForCustomerItem(
+	public async calculatePriceInformationForCustomerItem(
 		customerItem: CustomerItem,
 		item: Item,
 		cartItemAction: CartItemAction
-	): PriceInformation {
+	): Promise<PriceInformation> {
 		if (cartItemAction.action === "extend") {
 			return this._customerItemPriceService.getExtendPriceInformation(
-				customerItem
+				customerItem,
+				item,
+				cartItemAction.period
 			);
 		} else if (cartItemAction.action === "buyback") {
 			return this._customerItemPriceService.getBuybackPriceInformation(
 				customerItem
 			);
 		} else if (cartItemAction.action === "buyout") {
-			return this._customerItemPriceService.getBuyoutPriceInformation(
-				customerItem
+			return this._customerItemPriceService.getPartlyPaymentBuyoutPriceInformation(
+				customerItem,
+				item
 			);
 		} else if (cartItemAction.action === "cancel") {
 			return this._customerItemPriceService.getCancelPriceInformation(
-				customerItem
+				customerItem,
+				item
 			);
 		}
 

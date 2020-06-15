@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core";
-import { Branch, CustomerItem, Item, Order } from "@wizardcoder/bl-model";
+import { CustomerItem, Item } from "@wizardcoder/bl-model";
 import { Period } from "@wizardcoder/bl-model/dist/period/period";
-import { DateService } from "../../date/date.service";
 import { BranchStoreService } from "../../branch/branch-store.service";
-import { OrderItemType } from "@wizardcoder/bl-model/dist/order/order-item/order-item-type";
 import { PriceService } from "../price.service";
 import { OrderService } from "@wizardcoder/bl-connect";
 import { OrderHelperService } from "../../order/order-helper/order-helper.service";
@@ -18,117 +16,89 @@ export interface OrderItemAmounts {
 @Injectable()
 export class CustomerItemPriceService {
 	constructor(
-		private _dateService: DateService,
 		private _branchStoreService: BranchStoreService,
 		private _orderService: OrderService,
 		private _orderHelperService: OrderHelperService,
 		private _priceService: PriceService
 	) {}
 
-	public getBuyoutPriceInformation(
-		customerItem: CustomerItem
+	public getPartlyPaymentBuyoutPriceInformation(
+		customerItem: CustomerItem,
+		item: Item
 	): PriceInformation {
-		return this._priceService.getEmptyPriceInformation();
+		const amount = customerItem.amountLeftToPay;
+
+		return this._priceService.calculatePriceInformation(
+			amount,
+			item.taxRate
+		);
 	}
+
+	public getRentBuyoutPriceInformation(
+		customerItem: CustomerItem,
+		item: Item
+	): PriceInformation {
+		const branch = this._branchStoreService.getCurrentBranch();
+		const amount = item.price * branch.paymentInfo.buyout.percentage;
+		return this._priceService.calculatePriceInformation(
+			amount,
+			item.taxRate
+		);
+	}
+
+	public getRentReturnPriceInformation(
+		customerItem: CustomerItem,
+		item: Item
+	): PriceInformation {
+		let amount = 0;
+
+		if (customerItem.totalAmount && customerItem.handout) {
+			amount = 0 - customerItem.totalAmount;
+		}
+
+		return this._priceService.calculatePriceInformation(
+			amount,
+			item.taxRate
+		);
+	}
+
+	public getExtendPriceInformation(
+		customerItem: CustomerItem,
+		item: Item,
+		period: Period
+	): PriceInformation {
+		const amount = this.amountExtend(period);
+		return this._priceService.calculatePriceInformation(
+			amount,
+			item.taxRate
+		);
+	}
+
 	public getBuybackPriceInformation(
 		customerItem: CustomerItem
 	): PriceInformation {
 		return this._priceService.getEmptyPriceInformation();
 	}
-	public getCancelPriceInformation(
-		customerItem: CustomerItem
-	): PriceInformation {
-		return this._priceService.getEmptyPriceInformation();
-	}
-	public getExtendPriceInformation(
-		customerItem: CustomerItem
-	): PriceInformation {
-		return this._priceService.getEmptyPriceInformation();
-	}
 
-	public calculateAmountsBuyout(item: Item): OrderItemAmounts {
-		const branch = this._branchStoreService.getCurrentBranch();
-		const unitPrice = this._priceService.sanitize(
-			item.price * branch.paymentInfo.buyout.percentage
-		);
-		return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
-	}
-
-	public calculateAmountPartlyPaymentBuyout(
+	public async getCancelPriceInformation(
 		customerItem: CustomerItem,
 		item: Item
-	): OrderItemAmounts {
-		if (!customerItem.type || customerItem.type !== "partly-payment") {
-			throw new Error(
-				`customerItem is not of type 'partly-payment' when asking for partly-payment amounts`
-			);
-		}
+	): Promise<PriceInformation> {
+		let amount = 0;
 
-		const unitPrice = this._priceService.sanitize(
-			customerItem.amountLeftToPay
-		);
-		return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
-	}
-
-	public calculateAmountsPartlyPaymentBuyback(
-		item: Item,
-		buybackAmount: number
-	): OrderItemAmounts {
-		const unitPrice = this._priceService.sanitize(buybackAmount);
-		return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
-	}
-
-	public calculateAmountsExtend(
-		customerItem: CustomerItem,
-		period: Period,
-		item: Item
-	) {
-		const unitPrice = this.priceExtend(period);
-		return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
-	}
-
-	public calculateAmountsReturn(customerItem: CustomerItem, item: Item) {
-		const unitPrice = this.priceReturn(customerItem);
-
-		return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
-	}
-
-	public async calculateAmountsCancel(
-		customerItem: CustomerItem,
-		item: Item
-	): Promise<OrderItemAmounts> {
 		try {
-			const unitPrice = await this.priceCancel(customerItem);
-			return this.calculateOrderItemAmounts(unitPrice, item.taxRate);
+			amount = await this.amountCancel(customerItem);
 		} catch (e) {
-			throw new Error(
-				"could not calculate orderItemAmounts for operation cancel: " +
-					e
-			);
+			throw new Error("could not calculate amount for cancel");
 		}
+
+		return this._priceService.calculatePriceInformation(
+			amount,
+			item.taxRate
+		);
 	}
 
-	private calculateOrderItemAmounts(
-		price: number,
-		itemTaxRate: number
-	): { amount: number; taxAmount: number; unitPrice: number } {
-		const unitPrice = this._priceService.sanitize(price);
-		const taxAmount = this._priceService.sanitize(unitPrice * itemTaxRate);
-		const amount = this._priceService.sanitize(unitPrice + taxAmount);
-
-		return {
-			unitPrice: unitPrice,
-			taxAmount: taxAmount,
-			amount: amount
-		};
-	}
-
-	public priceBuyout(item: Item): number {
-		const branch = this._branchStoreService.getCurrentBranch();
-		return item.price * branch.paymentInfo.buyout.percentage;
-	}
-
-	public priceExtend(period: Period, item?: Item): number {
+	private amountExtend(period: Period, item?: Item): number {
 		const branch = this._branchStoreService.getCurrentBranch();
 		for (const extendPeriod of branch.paymentInfo.extendPeriods) {
 			if (extendPeriod.type === period) {
@@ -141,15 +111,7 @@ export class CustomerItemPriceService {
 		}
 	}
 
-	public priceReturn(customerItem: CustomerItem) {
-		// if the customerItem was handed out less than two weeks ago, the customer should get the money back
-		if (customerItem.totalAmount && customerItem.handout) {
-			return 0 - customerItem.totalAmount;
-		}
-		return 0;
-	}
-
-	public async priceCancel(customerItem: CustomerItem): Promise<number> {
+	private async amountCancel(customerItem: CustomerItem): Promise<number> {
 		if (customerItem.handout && customerItem.handoutInfo) {
 			let totalCancelAmount = 0;
 

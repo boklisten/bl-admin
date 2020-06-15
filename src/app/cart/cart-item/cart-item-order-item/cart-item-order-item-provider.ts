@@ -2,8 +2,8 @@ import { OrderItem } from "@wizardcoder/bl-model";
 import { CartItem } from "../cart-item";
 
 export class CartItemOrderItemProvider {
-	public createOrderItem(cartItem: CartItem): OrderItem {
-		const priceInformation = cartItem.getPriceInformation();
+	public async createOrderItem(cartItem: CartItem): Promise<OrderItem> {
+		const priceInformation = await cartItem.getPriceInformation();
 
 		return {
 			type: cartItem.getAction().action as any,

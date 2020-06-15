@@ -18,10 +18,10 @@ export interface CartItem extends Subscribable {
 	originalOrder?: Order;
 	originalOrderItem?: OrderItem;
 
-	getPriceInformation(): PriceInformation;
+	getPriceInformation(): Promise<PriceInformation>;
 	getTitle(): string;
 	getItemId(): string;
-	createOrderItem(): OrderItem;
+	createOrderItem(): Promise<OrderItem>;
 	setAction(action: CartItemAction);
 	getAction(): CartItemAction;
 	getValidActions(): CartItemAction[];

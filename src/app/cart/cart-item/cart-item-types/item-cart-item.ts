@@ -22,7 +22,7 @@ export class ItemCartItem extends Subscribable implements CartItem {
 		this.setAction(this.getValidActions()[0]);
 	}
 
-	public getPriceInformation() {
+	public async getPriceInformation(): Promise<PriceInformation> {
 		return this._cartItemPriceProvider.calculatePriceInformationForItem(
 			this._item,
 			this._action
@@ -37,8 +37,8 @@ export class ItemCartItem extends Subscribable implements CartItem {
 		return this._item.id;
 	}
 
-	public createOrderItem(): OrderItem {
-		return this._cartItemOrderItemProvider.createOrderItem(this);
+	public async createOrderItem(): Promise<OrderItem> {
+		return await this._cartItemOrderItemProvider.createOrderItem(this);
 	}
 
 	public setAction(action: CartItemAction) {

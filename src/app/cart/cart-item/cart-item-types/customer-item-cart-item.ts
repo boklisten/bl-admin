@@ -21,7 +21,7 @@ export class CustomerItemCartItem extends Subscribable implements CartItem {
 		this.setAction(this.getValidActions()[0]);
 	}
 
-	public getPriceInformation(): PriceInformation {
+	public async getPriceInformation(): Promise<PriceInformation> {
 		return this._cartItemPriceProvider.calculatePriceInformationForCustomerItem(
 			this._customerItem,
 			this._item,
@@ -37,7 +37,7 @@ export class CustomerItemCartItem extends Subscribable implements CartItem {
 		return this._customerItem.item as string;
 	}
 
-	public createOrderItem(): OrderItem {
+	public async createOrderItem(): Promise<OrderItem> {
 		throw "not implemented";
 	}
 

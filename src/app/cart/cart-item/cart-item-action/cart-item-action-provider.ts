@@ -28,7 +28,11 @@ export class CartItemActionProvider {
 		this._item = item;
 		let actions = [];
 
-		actions.push({ action: "extend", deadline: new Date() });
+		actions.push({
+			action: "extend",
+			deadline: new Date(),
+			period: "semester"
+		});
 		actions.push({ action: "buyout" });
 		actions.push({ action: "buyback" });
 		actions = actions.concat(this.getValidActionsForCancel());

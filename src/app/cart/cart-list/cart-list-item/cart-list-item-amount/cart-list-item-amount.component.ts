@@ -11,12 +11,13 @@ import { Subscription } from "rxjs";
 export class CartListItemAmountComponent implements OnInit, OnDestroy {
 	@Input() cartItem: CartItem;
 	public priceInformation: PriceInformation;
+	public wait: boolean;
 	private _cartItemChange$: Subscription;
 
 	constructor() {}
 
 	ngOnInit() {
-		this.priceInformation = this.cartItem.getPriceInformation();
+		this.getPriceInformation();
 		this.handleCartItemChange();
 	}
 
@@ -27,8 +28,21 @@ export class CartListItemAmountComponent implements OnInit, OnDestroy {
 	private handleCartItemChange() {
 		this._cartItemChange$ = this.cartItem.subscribe(change => {
 			if (change) {
-				this.priceInformation = this.cartItem.getPriceInformation();
+				this.wait = true;
+				this.getPriceInformation();
 			}
 		});
+	}
+
+	private getPriceInformation() {
+		this.cartItem
+			.getPriceInformation()
+			.then(priceInformation => {
+				this.priceInformation = priceInformation;
+				this.wait = false;
+			})
+			.catch(() => {
+				this.wait = false;
+			});
 	}
 }

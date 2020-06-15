@@ -58,11 +58,11 @@ export class OrderItemHelperService {
 					customerItem
 				);
 			case "return":
-				return await this.updateOrderItemReturn(
+				return (await this.updateOrderItemReturn(
 					orderItem,
 					customerItem,
 					item
-				);
+				)) as any;
 			case "cancel":
 				return await this.updateOrderItemCancel(
 					orderItem,
@@ -153,6 +153,7 @@ export class OrderItemHelperService {
 		item: Item,
 		customerItem: CustomerItem
 	): Promise<OrderItem> {
+		/*
 		orderItem.type = "buyback";
 		orderItem.delivered = true;
 		let orderItemAmounts: OrderItemAmounts;
@@ -175,6 +176,8 @@ export class OrderItemHelperService {
 		orderItem.info = null;
 
 		return orderItem;
+    */
+		throw new Error("updateOrderItemBuyback() is deprecated");
 	}
 
 	private async updateOrderItemBuyout(
@@ -182,6 +185,8 @@ export class OrderItemHelperService {
 		item: Item,
 		customerItem: CustomerItem
 	): Promise<OrderItem> {
+		throw new Error("updateOrderItemBuyout() is deprecated");
+		/*
 		orderItem.type = "buyout";
 		orderItem.delivered = true;
 		let orderItemAmounts: OrderItemAmounts;
@@ -209,6 +214,7 @@ export class OrderItemHelperService {
 		orderItem.info = null;
 
 		return orderItem;
+    */
 	}
 
 	private async updateOrderItemReturn(
@@ -216,6 +222,8 @@ export class OrderItemHelperService {
 		customerItem: CustomerItem,
 		item: Item
 	) {
+		throw new Error("updateOrderItemReturn() is deprecated");
+		/*
 		orderItem.type = "return";
 
 		const orderItemAmounts: OrderItemAmounts = await this._customerItemPriceService.calculateAmountsReturn(
@@ -231,6 +239,7 @@ export class OrderItemHelperService {
 		orderItem.info = null;
 
 		return orderItem;
+    */
 	}
 
 	private async updateOrderItemCancel(
@@ -238,6 +247,8 @@ export class OrderItemHelperService {
 		item: Item,
 		customerItem?: CustomerItem
 	): Promise<OrderItem> {
+		throw new Error("updateOrderItemCancel() is deprecated");
+		/*
 		orderItem.type = "cancel";
 
 		if (!customerItem) {
@@ -255,6 +266,7 @@ export class OrderItemHelperService {
 		}
 
 		return orderItem;
+    */
 	}
 
 	private async updateOrderItemExtend(
@@ -262,6 +274,7 @@ export class OrderItemHelperService {
 		item: Item,
 		customerItem: CustomerItem
 	): Promise<OrderItem> {
+		/*
 		orderItem.type = "extend";
 		const periodType = "semester";
 		const extendToFromDate = this._dateService.extendPeriod(periodType);
@@ -286,6 +299,8 @@ export class OrderItemHelperService {
 		orderItem.unitPrice = orderItemAmounts.unitPrice;
 
 		return orderItem;
+    */
+		throw new Error("updateOrderItemExtend() is deprecated");
 	}
 
 	private async updateOrderItemAmounts(orderItem: OrderItem, item: Item) {

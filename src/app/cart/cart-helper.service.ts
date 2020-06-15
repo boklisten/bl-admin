@@ -280,6 +280,7 @@ export class CartHelperService {
 		item: Item,
 		period: Period
 	): OrderItem {
+		/*
 		const orderItem: OrderItem = {
 			type: "extend",
 			item: item.id,
@@ -302,12 +303,17 @@ export class CartHelperService {
 		orderItem.taxRate = item.taxRate;
 
 		return orderItem;
+    */
+
+		throw new Error("createOrderItemTypeExtend() is deprecated");
 	}
 
 	public async createOrderItemTypeCancel(
 		customerItem: CustomerItem,
 		item: Item
 	): Promise<OrderItem> {
+		throw new Error("createOrderItemTypeCancel() is deprecated");
+		/*
 		return {
 			type: "cancel",
 			item: item.id,
@@ -320,12 +326,15 @@ export class CartHelperService {
 			taxAmount: 0,
 			customerItem: customerItem.id
 		};
+    */
 	}
 
 	public createOrderItemTypeReturn(
 		customerItem: CustomerItem,
 		item: Item
 	): OrderItem {
+		throw new Error("createOrderItemTypeReturn() is deprecated");
+		/*
 		return {
 			type: "return",
 			item: item.id,
@@ -336,6 +345,7 @@ export class CartHelperService {
 			taxAmount: 0,
 			customerItem: customerItem.id
 		};
+    */
 	}
 
 	public createOrderItemTypeBuyout(
@@ -343,6 +353,7 @@ export class CartHelperService {
 		item: Item
 	): OrderItem {
 		let orderItemAmounts: OrderItemAmounts;
+		/*
 
 		if (!customerItem.type || customerItem.type === "rent") {
 			orderItemAmounts = this._customerItemPriceService.calculateAmountsBuyout(
@@ -369,12 +380,16 @@ export class CartHelperService {
 			taxRate: item.taxRate,
 			customerItem: customerItem.id
 		};
+    */
+		throw new Error("createOrderItemTypeBuyout() is deprecated");
 	}
 
 	public createOrderItemTypeBuyback(
 		customerItem: CustomerItem,
 		item: Item
 	): OrderItem {
+		throw new Error("createOrderItemTypeBuyback() is deprecated");
+		/*
 		let orderItemAmounts: OrderItemAmounts;
 
 		if (!customerItem.type || customerItem.type === "rent") {
@@ -402,6 +417,7 @@ export class CartHelperService {
 			taxRate: item.taxRate,
 			customerItem: customerItem.id
 		};
+    */
 	}
 
 	public createOrderItemBasedOnItem(item: Item): OrderItem {
