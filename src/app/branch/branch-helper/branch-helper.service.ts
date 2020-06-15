@@ -7,7 +7,11 @@ import { BranchStoreService } from "../branch-store.service";
 	providedIn: "root"
 })
 export class BranchHelperService {
-	constructor(private branchStoreService: BranchStoreService) {}
+	private _branch: Branch;
+
+	constructor(private branchStoreService: BranchStoreService) {
+		this.handleBranchChange();
+	}
 
 	public actionValidOnBranch(
 		branch: Branch,
@@ -78,12 +82,13 @@ export class BranchHelperService {
 		return null;
 	}
 
-	public getExtendPeriod(branch: Branch, period: Period) {
-		for (const rentPeriod of branch.paymentInfo.extendPeriods) {
+	public getExtendPeriod(period: Period) {
+		for (const rentPeriod of this._branch.paymentInfo.extendPeriods) {
 			if (rentPeriod.type === period) {
 				return rentPeriod;
 			}
 		}
+		throw new Error("extend period is not valid on branch");
 	}
 
 	public async getBranchesWithType(
@@ -152,5 +157,11 @@ export class BranchHelperService {
 		}
 
 		return noneLoanBranches;
+	}
+
+	private handleBranchChange() {
+		this.branchStoreService.subscribe(branch => {
+			this._branch = branch;
+		});
 	}
 }

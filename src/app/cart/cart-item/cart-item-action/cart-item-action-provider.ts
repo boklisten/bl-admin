@@ -1,10 +1,14 @@
 import { Item, OrderItem, CustomerItem } from "@wizardcoder/bl-model";
 import { CartItemAction } from "../cart-item-action";
 import { BranchItemHelperService } from "../../../branch/branch-item-helper/branch-item-helper.service";
+import { BranchHelperService } from "../../../branch/branch-helper/branch-helper.service";
 
 export class CartItemActionProvider {
 	private _item: Item;
-	constructor(private _branchItemHelperService: BranchItemHelperService) {}
+	constructor(
+		private _branchItemHelperService: BranchItemHelperService,
+		private _branchHelperService: BranchHelperService
+	) {}
 
 	public getValidActionsForOrderItem(
 		orderItem: OrderItem,
@@ -28,11 +32,7 @@ export class CartItemActionProvider {
 		this._item = item;
 		let actions = [];
 
-		actions.push({
-			action: "extend",
-			deadline: new Date(),
-			period: "semester"
-		});
+		actions = actions.concat(this.getValidActionsForExtend());
 		actions.push({ action: "buyout" });
 		actions.push({ action: "buyback" });
 		actions = actions.concat(this.getValidActionsForCancel());
@@ -48,6 +48,36 @@ export class CartItemActionProvider {
 		actions = actions.concat(this.getValidActionsForPartlyPayment());
 		actions = actions.concat(this.getValidActionsForBuy());
 		actions = actions.concat(this.getValidActionsForSell());
+
+		return actions;
+	}
+
+	private getValidActionsForExtend(): CartItemAction[] {
+		let actions = [];
+
+		try {
+			const semesterExtendPeriod = this._branchHelperService.getExtendPeriod(
+				"semester"
+			);
+
+			actions.push({
+				action: "extend",
+				period: "semester",
+				deadline: semesterExtendPeriod.date
+			});
+		} catch (e) {}
+
+		try {
+			const yearExtendPeriod = this._branchHelperService.getExtendPeriod(
+				"year"
+			);
+
+			actions.push({
+				action: "extend",
+				period: "semester",
+				deadline: yearExtendPeriod.date
+			});
+		} catch (e) {}
 
 		return actions;
 	}

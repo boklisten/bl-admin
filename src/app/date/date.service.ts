@@ -171,6 +171,7 @@ export class DateService {
 	}
 
 	public extendPeriod(period: Period): FromToDate {
+		/*
 		const branch = this._branchStoreService.getCurrentBranch();
 
 		const extendPeriod = this._branchHelperService.getExtendPeriod(
@@ -183,6 +184,8 @@ export class DateService {
 		}
 
 		return { from: new Date(), to: extendPeriod.date };
+    */
+		throw new Error("extendPeriod() is deprecated");
 	}
 
 	public rentPeriod(period: Period): FromToDate {
