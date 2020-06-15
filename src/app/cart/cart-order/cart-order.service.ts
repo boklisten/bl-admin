@@ -25,11 +25,10 @@ export class CartOrderService {
 
 	public async createOrder(): Promise<Order> {
 		const orderItems = [];
+
 		for (let cartItem of this._cart) {
 			orderItems.push(await cartItem.createOrderItem());
 		}
-		const order = this._orderGeneratorService.generateOrder(orderItems);
-		console.log("order!", order);
-		return null;
+		return this._orderGeneratorService.generateOrder(orderItems);
 	}
 }

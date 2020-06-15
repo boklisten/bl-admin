@@ -174,6 +174,7 @@ export class CartService {
 
 	public confirmCart() {
 		this.clear();
+		this._customerService.reload();
 		this._cartConfirm$.next(true);
 	}
 

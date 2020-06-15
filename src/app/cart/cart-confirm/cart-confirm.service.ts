@@ -27,15 +27,12 @@ export class CartConfirmService {
 		private _paymentHandlerService: PaymentHandlerService
 	) {}
 
-	public async addOrder(): Promise<Order> {
-		throw "cartConfirmService.addOrder(): not implemented";
-		/*
+	public async addOrder(order: Order): Promise<Order> {
 		return this._orderHandlerService.addOrder(
-			this._cartService.getCart(),
+			order,
 			await this.orderShouldHaveDelivery(),
 			this._cartService.getNotificationSettings()
 		);
-    */
 	}
 
 	public placeOrder(order: Order): Promise<boolean> {
@@ -83,6 +80,7 @@ export class CartConfirmService {
 	}
 
 	public async orderShouldHaveDelivery() {
+		/*
 		for (const cartItem of this._cartService.getCart()) {
 			if (cartItem.originalOrder && cartItem.originalOrder.delivery) {
 				const delivery = await this._deliveryService.getById(cartItem
@@ -94,6 +92,7 @@ export class CartConfirmService {
 				return false;
 			}
 		}
+    */
 
 		return true;
 	}

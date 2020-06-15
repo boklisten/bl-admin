@@ -20,25 +20,13 @@ export class OrderHandlerService {
 	) {}
 
 	public addOrder(
-		cartItems: CartItem[],
+		order: Order,
 		handoutByDelivery: boolean,
 		notificationSettings: { email: boolean }
 	): Promise<Order> {
 		return new Promise((resolve, reject) => {
-			let order: Order;
-
-			try {
-				order = this.convertCartItemsToOrder(cartItems);
-				order.handoutByDelivery = handoutByDelivery;
-				order.notification = notificationSettings;
-			} catch (e) {
-				return reject(
-					new Error(
-						"orderHandlerService: could not convert cart to order: " +
-							e
-					)
-				);
-			}
+			order.handoutByDelivery = handoutByDelivery;
+			order.notification = notificationSettings;
 
 			this._orderService
 				.add(order)

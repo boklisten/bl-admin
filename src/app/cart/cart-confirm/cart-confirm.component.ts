@@ -3,6 +3,7 @@ import { CartService } from "../cart.service";
 import { CustomerService } from "../../customer/customer.service";
 import { CartConfirmService } from "./cart-confirm.service";
 import { Delivery, Order } from "@wizardcoder/bl-model";
+import { CartOrderService } from "../cart-order/cart-order.service";
 
 @Component({
 	selector: "app-cart-confirm",
@@ -34,37 +35,46 @@ export class CartConfirmComponent implements OnInit {
 	constructor(
 		private _cartService: CartService,
 		private _customerService: CustomerService,
-		private _cartConfirmService: CartConfirmService
+		private _cartConfirmService: CartConfirmService,
+		private _cartOrderService: CartOrderService
 	) {
 		this.confirmed = new EventEmitter<boolean>();
 		this.failure = new EventEmitter<boolean>();
 	}
 
 	ngOnInit() {
-		this.wait = false;
-		this.showGoToPaymentButton = false;
-		this.buttonDisabled = false;
-		this.showSummary = true;
-		this.showConfirmation = false;
-		this.showDelivery = false;
+		this.wait = true;
+		this._cartOrderService
+			.createOrder()
+			.then(order => {
+				this.order = order;
+				this.showSummary = true;
+				this.wait = false;
+				this.showGoToPaymentButton = false;
+				this.buttonDisabled = false;
+				this.showSummary = true;
+				this.showConfirmation = false;
+				this.showDelivery = false;
 
-		this.totalAmount = this._cartService.getTotalAmount();
-		this.showCustomer = this._customerService.haveCustomer();
-		this.checkIfOrderShouldHaveDelivery();
+				this.totalAmount = order.amount;
+				this.showCustomer = this._customerService.haveCustomer();
+				this.checkIfOrderShouldHaveDelivery();
 
-		if (this.totalAmount !== 0) {
-			this.showGoToPaymentButton = true;
-		} else {
-			this._cartConfirmService
-				.orderShouldHaveDelivery()
-				.then(shouldHaveDelivery => {
-					if (shouldHaveDelivery) {
-						this.showDeliveryButton = true;
-					} else {
-						this.showConfirmOrderButton = true;
-					}
-				});
-		}
+				if (this.totalAmount !== 0) {
+					this.showGoToPaymentButton = true;
+				} else {
+					this._cartConfirmService
+						.orderShouldHaveDelivery()
+						.then(shouldHaveDelivery => {
+							if (shouldHaveDelivery) {
+								this.showDeliveryButton = true;
+							} else {
+								this.showConfirmOrderButton = true;
+							}
+						});
+				}
+			})
+			.catch(() => {});
 	}
 
 	onGoToPayment() {
@@ -201,7 +211,7 @@ export class CartConfirmComponent implements OnInit {
 
 	private async addOrder(): Promise<Order> {
 		return await this._cartConfirmService
-			.addOrder()
+			.addOrder(this.order)
 			.then((addedOrder: Order) => {
 				return addedOrder;
 			})

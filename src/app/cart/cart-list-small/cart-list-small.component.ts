@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { CartItem } from "../cart-item/cart-item";
 import { CartService } from "../cart.service";
 
@@ -8,21 +8,21 @@ import { CartService } from "../cart.service";
 	styleUrls: ["./cart-list-small.component.scss"]
 })
 export class CartListSmallComponent implements OnInit {
-	public cart: CartItem[];
+	public cartItems: CartItem[];
 	public cartTotalAmount: number;
 
 	constructor(private _cartService: CartService) {}
 
 	ngOnInit() {
-		this.cart = this._cartService.getCart();
-		this.cartTotalAmount = this._cartService.getTotalAmount();
+		this.cartItems = this._cartService.getCart();
+		//this.cartTotalAmount = this._cartService.getTotalAmount();
 	}
 
 	getTotalAmountWithPartlyPayments() {
-		return this._cartService.getTotalAmountWithPartlyPayments();
+		//return this._cartService.getTotalAmountWithPartlyPayments();
 	}
 
 	cartIncludesPartlyPayments() {
-		return this._cartService.cartIncludesPartlyPayments();
+		//return this._cartService.cartIncludesPartlyPayments();
 	}
 }

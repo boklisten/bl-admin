@@ -11,12 +11,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let cartItem of cart">
-					<td>{{ cartItem.orderItem.title }}</td>
+				<tr *ngFor="let cartItem of cartItems">
+					<td>{{ cartItem.title }}</td>
 
 					<td
 						*ngIf="
-							cartItem.orderItem.type === 'rent' ||
+							cartItem.getAction() === 'rent' ||
 							cartItem.orderItem.type === 'extend'
 						"
 					>
@@ -98,9 +98,7 @@
 				<tr class="table-success bl-text-lg">
 					<td><span i18n="@@cartListSmallTotal">Total</span></td>
 					<td></td>
-					<td>
-						<b>{{ cartTotalAmount | blcPrice }}</b>
-					</td>
+					<td><b>{{ cartTotalAmount | blcPrice }}</b></td>
 				</tr>
 				<tr
 					class="table-light bl-text-sm"
