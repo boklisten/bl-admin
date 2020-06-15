@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 
 import { UserDetail } from "@wizardcoder/bl-model";
 import { Router } from "@angular/router";
@@ -12,10 +12,10 @@ import { Subscription } from "rxjs";
 })
 export class CustomerCurrentComponent implements OnInit, OnDestroy {
 	public customerDetail: UserDetail;
-	public lastPopoverRef: any;
 	public wait: boolean;
 	private customer$: Subscription;
 	private customerWait$: Subscription;
+	private navigateToCart: boolean;
 
 	constructor(
 		private _router: Router,
@@ -23,8 +23,8 @@ export class CustomerCurrentComponent implements OnInit, OnDestroy {
 	) {}
 
 	ngOnInit() {
-		this.onCustomerChange();
-		this.onCustomerWaitChange();
+		this.handleCustomerChange();
+		this.handleCustomerWaitChange();
 	}
 
 	ngOnDestroy() {
@@ -41,19 +41,19 @@ export class CustomerCurrentComponent implements OnInit, OnDestroy {
 		this._customerService.reload();
 	}
 
-	public onViewCustomerDetail() {
-		this._router.navigate([
-			"/customer/" + this.customerDetail.id + "/detail"
-		]);
-		this.lastPopoverRef.close();
+	public onCustomerNameClick() {
+		if (this.navigateToCart) {
+			this.navigateToCart = false;
+			this._router.navigate(["/cart"]);
+		} else {
+			this.navigateToCart = true;
+			this._router.navigate([
+				"/customer/" + this.customerDetail.id + "/detail"
+			]);
+		}
 	}
 
-	public onChangeCustomerDetail() {
-		this._router.navigate(["/search"]);
-		this.lastPopoverRef.close();
-	}
-
-	private onCustomerChange() {
+	private handleCustomerChange() {
 		this.customer$ = this._customerService.subscribe(
 			(customerDetail: UserDetail) => {
 				this.customerDetail = customerDetail;
@@ -61,33 +61,9 @@ export class CustomerCurrentComponent implements OnInit, OnDestroy {
 		);
 	}
 
-	private onCustomerWaitChange() {
+	private handleCustomerWaitChange() {
 		this.customerWait$ = this._customerService.onWait(wait => {
 			this.wait = wait;
 		});
-	}
-
-	@HostListener("document:click", ["$event"])
-	clickOutside(event) {
-		// If there's a last element-reference AND the click-event target is outside this element
-		if (this.lastPopoverRef && this.lastPopoverRef._elementRef) {
-			if (
-				!this.lastPopoverRef._elementRef.nativeElement.contains(
-					event.target
-				)
-			) {
-				this.lastPopoverRef.close();
-				this.lastPopoverRef = null;
-			}
-		}
-	}
-
-	setCurrentPopoverOpen(popReference) {
-		// If there's a last element-reference AND the new reference is different
-		if (this.lastPopoverRef && this.lastPopoverRef !== popReference) {
-			this.lastPopoverRef.close();
-		}
-		// Registering new popover ref
-		this.lastPopoverRef = popReference;
 	}
 }

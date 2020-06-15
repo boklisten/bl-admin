@@ -5,11 +5,7 @@
 <button
 	class="btn btn-warning btn-sm bl-customer-name text-lg-left text-center"
 	*ngIf="!wait && customerDetail"
-	[ngClass]="{'btn-block': wait}"
-	[ngbPopover]="customerDetailPopover"
-	placement="bottom-left"
-	#customerDetailPopoverRef="ngbPopover"
-	(click)="setCurrentPopoverOpen(customerDetailPopoverRef)"
+	(click)="onCustomerNameClick()"
 >
 	<span class="d-lg-inline d-md-none d-sm-none d-none"
 		>{{ customerDetail.name }}</span
@@ -35,36 +31,3 @@
 >
 	<fa-icon icon="sync-alt" class=""></fa-icon>
 </button>
-
-<ng-template #customerDetailPopover>
-	<div class="row mb-4 mt-2">
-		<div class="col-6">
-			<button
-				class="btn btn-outline-secondary btn-block btn-sm"
-				(click)="onChangeCustomerDetail()"
-			>
-				<fa-icon [icon]="'user'"></fa-icon
-				><fa-icon [icon]="'search'"></fa-icon>
-			</button>
-		</div>
-		<div class="col-6">
-			<button
-				class="btn btn-outline-secondary btn-block btn-sm"
-				(click)="onViewCustomerDetail()"
-			>
-				<fa-icon [icon]="'address-card'"></fa-icon>
-			</button>
-		</div>
-	</div>
-	<app-customer-detail-popover></app-customer-detail-popover>
-	<div class="row mt-2">
-		<div class="col-12">
-			<button
-				class="btn btn-outline-secondary btn-block btn-sm"
-				(click)="onClearCustomer()"
-			>
-				<fa-icon [icon]="'times'"></fa-icon>
-			</button>
-		</div>
-	</div>
-</ng-template>
