@@ -1,8 +1,9 @@
 <div
+	*ngIf="cartItemAction"
 	class="btn-group btn-group-toggle btn-group-sm"
 	ngbRadioGroup
 	name="orderItemAge"
-	[(ngModel)]="cartItem.orderItem.age"
+	[(ngModel)]="cartItemAction.age"
 	(click)="onAgeChange()"
 >
 	<label ngbButtonLabel class="btn-outline-secondary">
