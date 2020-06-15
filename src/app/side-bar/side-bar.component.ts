@@ -40,14 +40,6 @@ export class SideBarComponent implements OnInit, OnDestroy {
 	) {
 		this.sidebarLinks = [
 			{
-				name: "customer",
-				link: "",
-				icon: "address-card",
-				selected: false,
-				permission: "employee",
-				hide: true
-			},
-			{
 				name: "cart",
 				link: "cart",
 				icon: "shopping-cart",
@@ -105,8 +97,8 @@ export class SideBarComponent implements OnInit, OnDestroy {
 		this.handleCustomerChange();
 		this.handleCustomerClearChange();
 		this.handleRouterChange();
-		this.handleControlUpShortcut();
-		this.handleControlDownShortcut();
+		this.handleUpShortcut();
+		this.handleDownShortcut();
 	}
 
 	ngOnDestroy() {
@@ -115,21 +107,27 @@ export class SideBarComponent implements OnInit, OnDestroy {
 		this.router$.unsubscribe();
 	}
 
-	private handleControlUpShortcut() {
+	private handleUpShortcut() {
 		this._blcHotkeyService
-			.addShortcut({ keys: "control.arrowup" })
+			.addShortcut({ keys: "alt.arrowup" })
 			.subscribe(() => {
-				if (this.currentSidebarLinkIndex > 0) {
+				if (this.currentSidebarLinkIndex > -1) {
 					this.currentSidebarLinkIndex--;
+					if (this.currentSidebarLinkIndex == -1) {
+						this.deselectAllSideBarLinks();
+						this._router.navigate(["/home"]);
+					}
+
 					this.selectSidebarLinkBasedOnIndex(
 						this.currentSidebarLinkIndex
 					);
 				}
 			});
 	}
-	private handleControlDownShortcut() {
+
+	private handleDownShortcut() {
 		this._blcHotkeyService
-			.addShortcut({ keys: "control.arrowdown" })
+			.addShortcut({ keys: "alt.arrowdown" })
 			.subscribe(() => {
 				if (
 					this.currentSidebarLinkIndex <
@@ -190,6 +188,8 @@ export class SideBarComponent implements OnInit, OnDestroy {
 	private handleCustomerChange() {
 		this.customer$ = this._customerService.subscribe(
 			(customerDetail: UserDetail) => {
+				this.addCustomerSidebarLinks(customerDetail.id);
+				/*
 				for (const sidebarLink of this.sidebarLinks) {
 					if (sidebarLink.name === "customer") {
 						sidebarLink.link =
@@ -199,17 +199,19 @@ export class SideBarComponent implements OnInit, OnDestroy {
 						return;
 					}
 				}
+        */
 			}
 		);
 	}
 
 	private handleCustomerClearChange() {
 		this.customerClear$ = this._customerService.onClear(() => {
-			for (const sidebarLink of this.sidebarLinks) {
-				if (sidebarLink.name === "customer") {
-					sidebarLink.hide = true;
-					this.hideNoPermissionLinks();
-				}
+			this.removeCustomerSidebarLinks();
+			if (this.currentSidebarLinkIndex > 0) {
+				this.currentSidebarLinkIndex--;
+				this.selectSidebarLinkBasedOnIndex(
+					this.currentSidebarLinkIndex
+				);
 			}
 		});
 	}
@@ -225,13 +227,40 @@ export class SideBarComponent implements OnInit, OnDestroy {
 		}
 	}
 
-	private setNotificationOnSidebarLink(name: string, notification: boolean) {
-		for (const sidebarLink of this.sidebarLinks) {
-			if (sidebarLink.name === name) {
-				sidebarLink.notification = notification;
-				return;
+	private removeCustomerSidebarLinks() {
+		this.sidebarLinks = this.sidebarLinks.filter(sl => {
+			if (sl.name === "customer") {
+				return false;
+			}
+			return true;
+		});
+	}
+
+	private addCustomerSidebarLinks(customerDetailId: string) {
+		if (
+			this.currentSidebarLinkIndex < this.sidebarLinks.length - 1 &&
+			!this.haveCustomerSidebarLink()
+		) {
+			this.currentSidebarLinkIndex++;
+		}
+		this.removeCustomerSidebarLinks();
+		this.sidebarLinks.unshift({
+			name: "customer",
+			link: "customer/" + customerDetailId + "/detail",
+			icon: "address-card",
+			selected: false,
+			permission: "employee",
+			hide: false
+		});
+	}
+
+	private haveCustomerSidebarLink(): boolean {
+		for (let sidebarLink of this.sidebarLinks) {
+			if (sidebarLink.name === "customer") {
+				return true;
 			}
 		}
+		return false;
 	}
 
 	private hideNoPermissionLinks() {

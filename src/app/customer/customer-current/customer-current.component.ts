@@ -16,6 +16,7 @@ export class CustomerCurrentComponent implements OnInit, OnDestroy {
 	private customer$: Subscription;
 	private customerWait$: Subscription;
 	private navigateToCart: boolean;
+	private customerClear$: Subscription;
 
 	constructor(
 		private _router: Router,
@@ -25,11 +26,13 @@ export class CustomerCurrentComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		this.handleCustomerChange();
 		this.handleCustomerWaitChange();
+		this.handleCustomerClearChange();
 	}
 
 	ngOnDestroy() {
 		this.customer$.unsubscribe();
 		this.customerWait$.unsubscribe();
+		this.customerClear$.unsubscribe();
 	}
 
 	public onClearCustomer() {
@@ -59,6 +62,12 @@ export class CustomerCurrentComponent implements OnInit, OnDestroy {
 				this.customerDetail = customerDetail;
 			}
 		);
+	}
+
+	private handleCustomerClearChange() {
+		this.customerClear$ = this._customerService.onClear(() => {
+			this.customerDetail = null;
+		});
 	}
 
 	private handleCustomerWaitChange() {

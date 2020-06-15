@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Subject, ReplaySubject, Subscription } from "rxjs";
 import { UserDetail, CustomerItem } from "@wizardcoder/bl-model";
 import { UserDetailService, StorageService } from "@wizardcoder/bl-connect";
+import { BlcHotkeyService } from "../bl-common/blc-hotkey/blc-hotkey.service";
 
 @Injectable({ providedIn: "root" })
 export class CustomerService {
@@ -13,7 +14,8 @@ export class CustomerService {
 
 	constructor(
 		private _userDetailService: UserDetailService,
-		private _storageService: StorageService
+		private _storageService: StorageService,
+		private _blcHotkeyService: BlcHotkeyService
 	) {
 		this._customerDetail$ = new ReplaySubject(1);
 		this._clear$ = new Subject<boolean>();
@@ -21,10 +23,24 @@ export class CustomerService {
 		this._userDetailIdStorageName = "bl-customer-id";
 
 		this.getCustomerDetailIfInStorage();
+		this.handleAltRShortcut();
+		this.handleAltDShortcut();
 	}
 
 	public subscribe(func: (userDetail: UserDetail) => void): Subscription {
 		return this._customerDetail$.asObservable().subscribe(func);
+	}
+
+	private handleAltRShortcut() {
+		this._blcHotkeyService.addShortcut({ keys: "alt.r" }).subscribe(() => {
+			this.reload();
+		});
+	}
+
+	private handleAltDShortcut() {
+		this._blcHotkeyService.addShortcut({ keys: "alt.d" }).subscribe(() => {
+			this.clear();
+		});
 	}
 
 	public set(id: string): void {
