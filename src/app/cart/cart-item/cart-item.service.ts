@@ -13,6 +13,7 @@ import { CartItemOrderItemProvider } from "./cart-item-order-item/cart-item-orde
 import { ItemService } from "@wizardcoder/bl-connect";
 import { CustomerItemPriceService } from "../../price/customer-item-price/customer-item-price.service";
 import { BranchHelperService } from "../../branch/branch-helper/branch-helper.service";
+import { PriceService } from "../../price/price.service";
 
 @Injectable({
 	providedIn: "root"
@@ -28,12 +29,14 @@ export class CartItemService {
 		private _orderItemPriceService: OrderItemPriceService,
 		private _itemService: ItemService,
 		private _customerItemPriceService: CustomerItemPriceService,
-		private _branchHelperService: BranchHelperService
+		private _branchHelperService: BranchHelperService,
+		private _priceService: PriceService
 	) {
 		this._cartItemPriceProvider = new CartItemPriceProvider(
 			this._itemPriceService,
 			this._orderItemPriceService,
-			this._customerItemPriceService
+			this._customerItemPriceService,
+			this._priceService
 		);
 		this._cartItemActionProvider = new CartItemActionProvider(
 			this._branchItemHelperService,

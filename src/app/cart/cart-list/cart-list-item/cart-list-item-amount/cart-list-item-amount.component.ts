@@ -41,7 +41,8 @@ export class CartListItemAmountComponent implements OnInit, OnDestroy {
 				this.priceInformation = priceInformation;
 				this.wait = false;
 			})
-			.catch(() => {
+			.catch(e => {
+				console.log("could not get priceInformation", e);
 				this.wait = false;
 			});
 	}

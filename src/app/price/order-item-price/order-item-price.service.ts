@@ -68,7 +68,8 @@ export class OrderItemPriceService {
 			const originalPriceInformation = this._priceService.calculatePriceInformation(
 				orderItem.amount,
 				orderItem.taxRate,
-				partlyPaymentPriceInformation.amountLeftToPay
+				partlyPaymentPriceInformation.amountLeftToPay,
+				orderItem.amount
 			);
 			return this.subtractPriceInformation(
 				partlyPaymentPriceInformation,
@@ -122,7 +123,8 @@ export class OrderItemPriceService {
 		return this._priceService.calculatePriceInformation(
 			amount,
 			priceInformation.taxRate,
-			originalPriceInformation.amountLeftToPay
+			originalPriceInformation.amountLeftToPay,
+			originalPriceInformation.alreadyPayed
 		);
 	}
 

@@ -1,4 +1,4 @@
-<div class="text-success bl-text-sm" *ngIf="!wait">
+<div class="text-success bl-text-sm" *ngIf="!wait && priceInformation">
 	<span class="text-right" *ngIf="priceInformation.alreadyPayed > 0"
 		><fa-icon [icon]="'dollar-sign'" class="mr-1"> </fa-icon>
 		<span class="text-success mr-1"
@@ -9,7 +9,7 @@
 </div>
 
 <div
-	*ngIf="priceInformation.amount !== 0 && !wait"
+	*ngIf="priceInformation && priceInformation.amount !== 0 && !wait"
 	class="text-right font-weight-bold bl-text-lg"
 	[ngClass]="{ 'text-danger': priceInformation.amount < 0 }"
 >
@@ -18,7 +18,7 @@
 
 <div
 	class="bl-text-sm font-italic text-secondary"
-	*ngIf="priceInformation.amountLeftToPay && !wait"
+	*ngIf="priceInformation && priceInformation.amountLeftToPay && !wait"
 >
 	<span i18n="@@cartListItemPayLater">pay later</span>:
 	<span> {{ priceInformation.amountLeftToPay | blcPrice }} </span>

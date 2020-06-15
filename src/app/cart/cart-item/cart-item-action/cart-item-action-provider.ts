@@ -111,6 +111,7 @@ export class CartItemActionProvider {
 			actions.push({
 				action: "partly-payment",
 				period: "semester",
+				age: "new",
 				deadline: this._branchItemHelperService.getDeadlineForPartlyPaymentPeriod(
 					"semester"
 				)
@@ -126,6 +127,7 @@ export class CartItemActionProvider {
 			actions.push({
 				action: "partly-payment",
 				period: "year",
+				age: "new",
 				deadline: this._branchItemHelperService.getDeadlineForPartlyPaymentPeriod(
 					"year"
 				)
@@ -137,7 +139,6 @@ export class CartItemActionProvider {
 	private getValidActionsForRent(): CartItemAction[] {
 		const actions = [];
 		if (this._branchItemHelperService.isRentValid(this._item, "semester")) {
-			console.log("rent is valid, semester");
 			actions.push({
 				action: "rent",
 				period: "semester",

@@ -4,12 +4,14 @@ import { ItemPriceService } from "../../../price/item-price/item-price.service";
 import { Item, OrderItem, Order, CustomerItem } from "@wizardcoder/bl-model";
 import { OrderItemPriceService } from "../../../price/order-item-price/order-item-price.service";
 import { CustomerItemPriceService } from "../../../price/customer-item-price/customer-item-price.service";
+import { PriceService } from "../../../price/price.service";
 
 export class CartItemPriceProvider {
 	constructor(
 		private _itemPriceService: ItemPriceService,
 		private _orderItemPriceService: OrderItemPriceService,
-		private _customerItemPriceService: CustomerItemPriceService
+		private _customerItemPriceService: CustomerItemPriceService,
+		private _priceService: PriceService
 	) {}
 
 	public calculatePriceInformationForItem(
@@ -82,6 +84,16 @@ export class CartItemPriceProvider {
 		)
 			? true
 			: false;
+
+		if (
+			alreadyPayed &&
+			this.isActionEqualToOrder(orderItem, cartItemAction)
+		) {
+			let priceInformation = this._priceService.getEmptyPriceInformation();
+			priceInformation.alreadyPayed = orderItem.amount;
+			return priceInformation;
+		}
+
 		if (cartItemAction.action === "rent") {
 			return this._orderItemPriceService.getRentPriceInformation(
 				orderItem,
@@ -94,7 +106,7 @@ export class CartItemPriceProvider {
 				orderItem,
 				item,
 				cartItemAction.period,
-				"new",
+				cartItemAction.age,
 				alreadyPayed
 			);
 		} else if (cartItemAction.action === "buy") {
@@ -108,6 +120,26 @@ export class CartItemPriceProvider {
 				orderItem,
 				alreadyPayed
 			);
+		}
+	}
+
+	private isActionEqualToOrder(
+		orderItem: OrderItem,
+		cartItemAction: CartItemAction
+	): boolean {
+		if (cartItemAction.action === orderItem.type) {
+			console.log("orderItem.info", orderItem.info);
+			console.log("action.periodType", cartItemAction.period);
+			if (
+				orderItem.info &&
+				cartItemAction.period &&
+				orderItem.info["periodType"] !== cartItemAction.period
+			) {
+				console.log("not equal");
+				return false;
+			}
+			console.log("equal");
+			return true;
 		}
 	}
 }
