@@ -6,13 +6,14 @@ import { UserService } from "../user/user.service";
 import { CartService } from "../cart/cart.service";
 import { AuthService } from "../auth/auth.service";
 import { Subscription } from "rxjs";
+import { BlcHotkeyService } from "../bl-common/blc-hotkey/blc-hotkey.service";
 
 @Component({
 	selector: "app-side-bar",
 	templateUrl: "./side-bar.component.html",
 	styleUrls: ["./side-bar.component.scss"]
 })
-export class SideBarComponent implements OnInit {
+export class SideBarComponent implements OnInit, OnDestroy {
 	public customerDetail: UserDetail;
 	public sidebarLinks: {
 		name: string;
@@ -28,12 +29,14 @@ export class SideBarComponent implements OnInit {
 	private customer$: Subscription;
 	private customerClear$: Subscription;
 	private router$: Subscription;
+	private currentSidebarLinkIndex = 0;
 
 	constructor(
 		private _customerService: CustomerService,
 		private _router: Router,
 		private _userService: UserService,
-		private _authService: AuthService
+		private _authService: AuthService,
+		private _blcHotkeyService: BlcHotkeyService
 	) {
 		this.sidebarLinks = [
 			{
@@ -102,12 +105,51 @@ export class SideBarComponent implements OnInit {
 		this.handleCustomerChange();
 		this.handleCustomerClearChange();
 		this.handleRouterChange();
+		this.handleControlUpShortcut();
+		this.handleControlDownShortcut();
 	}
 
 	ngOnDestroy() {
 		this.customer$.unsubscribe();
 		this.customerClear$.unsubscribe();
 		this.router$.unsubscribe();
+	}
+
+	private handleControlUpShortcut() {
+		this._blcHotkeyService
+			.addShortcut({ keys: "control.arrowup" })
+			.subscribe(() => {
+				if (this.currentSidebarLinkIndex > 0) {
+					this.currentSidebarLinkIndex--;
+					this.selectSidebarLinkBasedOnIndex(
+						this.currentSidebarLinkIndex
+					);
+				}
+			});
+	}
+	private handleControlDownShortcut() {
+		this._blcHotkeyService
+			.addShortcut({ keys: "control.arrowdown" })
+			.subscribe(() => {
+				if (
+					this.currentSidebarLinkIndex <
+					this.sidebarLinks.length - 1
+				) {
+					this.currentSidebarLinkIndex++;
+					this.selectSidebarLinkBasedOnIndex(
+						this.currentSidebarLinkIndex
+					);
+				}
+			});
+	}
+
+	private selectSidebarLinkBasedOnIndex(index: number) {
+		if (this.sidebarLinks[index]) {
+			this.deselectAllSideBarLinks();
+			this.sidebarLinks[index].selected = true;
+			this.currentSidebarLinkIndex = index;
+			this._router.navigate([this.sidebarLinks[index].link]);
+		}
 	}
 
 	private handleRouterChange() {
@@ -173,11 +215,11 @@ export class SideBarComponent implements OnInit {
 	}
 
 	private selectSidebarLinkBasedOnRoute(url: string) {
-		for (const sidebarLink of this.sidebarLinks) {
-			if (url.indexOf(sidebarLink.name) >= 0) {
+		for (let i = 0; i < this.sidebarLinks.length; i++) {
+			if (url.indexOf(this.sidebarLinks[i].name) >= 0) {
 				this.deselectAllSideBarLinks();
-
-				sidebarLink.selected = true;
+				this.sidebarLinks[i].selected = true;
+				this.currentSidebarLinkIndex = i;
 				return;
 			}
 		}
