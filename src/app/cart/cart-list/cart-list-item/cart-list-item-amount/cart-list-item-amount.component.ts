@@ -28,13 +28,13 @@ export class CartListItemAmountComponent implements OnInit, OnDestroy {
 	private handleCartItemChange() {
 		this._cartItemChange$ = this.cartItem.subscribe(change => {
 			if (change) {
-				this.wait = true;
 				this.getPriceInformation();
 			}
 		});
 	}
 
 	private getPriceInformation() {
+		this.wait = true;
 		this.cartItem
 			.getPriceInformation()
 			.then(priceInformation => {

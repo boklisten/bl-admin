@@ -2,12 +2,14 @@ import { Item, OrderItem, CustomerItem } from "@wizardcoder/bl-model";
 import { CartItemAction } from "../cart-item-action";
 import { BranchItemHelperService } from "../../../branch/branch-item-helper/branch-item-helper.service";
 import { BranchHelperService } from "../../../branch/branch-helper/branch-helper.service";
+import { DateService } from "../../../date/date.service";
 
 export class CartItemActionProvider {
 	private _item: Item;
 	constructor(
 		private _branchItemHelperService: BranchItemHelperService,
-		private _branchHelperService: BranchHelperService
+		private _branchHelperService: BranchHelperService,
+		private _dateService: DateService
 	) {}
 
 	public getValidActionsForOrderItem(
@@ -20,7 +22,7 @@ export class CartItemActionProvider {
 		actions = actions.concat(this.getValidActionsForRent());
 		actions = actions.concat(this.getValidActionsForPartlyPayment());
 		actions = actions.concat(this.getValidActionsForBuy());
-		actions = actions.concat(this.getValidActionsForCancel());
+		//actions = actions.concat(this.getValidActionsForCancel());
 
 		return actions;
 	}
@@ -35,7 +37,9 @@ export class CartItemActionProvider {
 		actions = actions.concat(this.getValidActionsForExtend());
 		actions.push({ action: "buyout" });
 		actions.push({ action: "buyback" });
-		actions = actions.concat(this.getValidActionsForCancel());
+		actions = actions.concat(
+			this.getValidActionsForCustomerItemCancel(customerItem)
+		);
 
 		return actions;
 	}
@@ -82,8 +86,18 @@ export class CartItemActionProvider {
 		return actions;
 	}
 
-	private getValidActionsForCancel(): CartItemAction[] {
-		return [{ action: "cancel" }];
+	private getValidActionsForCustomerItemCancel(
+		customerItem: CustomerItem
+	): CartItemAction[] {
+		if (
+			customerItem.handout &&
+			this._dateService.isCustomerItemCancelValid(
+				customerItem.handoutInfo.time
+			)
+		) {
+			return [{ action: "cancel" }];
+		}
+		return [];
 	}
 
 	private getValidActionsForBuy(): CartItemAction[] {

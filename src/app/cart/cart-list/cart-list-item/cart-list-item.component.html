@@ -12,11 +12,10 @@
 	<div class="col-auto">
 		<app-cart-list-item-action
 			[cartItem]="cartItem"
-			(actionChange)="onActionChange($event)"
 		></app-cart-list-item-action>
 	</div>
 	<div class="col-auto">
-		<button class="btn btn-sm btn-outline-secondary" (click)="remove()">
+		<button class="btn btn-sm btn-outline-secondary" (click)="onRemove()">
 			<fa-icon [icon]="'times'"></fa-icon>
 		</button>
 	</div>

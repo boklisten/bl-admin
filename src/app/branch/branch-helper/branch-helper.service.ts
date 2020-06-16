@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Branch, CustomerItemType, Period } from "@wizardcoder/bl-model";
-import { CartItemAction } from "../../cart/cartItemAction";
+import { CartItemAction } from "../../cart/cart-item/cart-item-action";
 import { BranchStoreService } from "../branch-store.service";
 
 @Injectable({
@@ -18,7 +18,7 @@ export class BranchHelperService {
 		action: CartItemAction,
 		period?: Period
 	): boolean {
-		switch (action) {
+		switch (action.action) {
 			case "rent":
 				return this.isRentValid(branch, period);
 			case "partly-payment":

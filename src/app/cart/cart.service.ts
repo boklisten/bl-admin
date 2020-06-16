@@ -1,27 +1,9 @@
 import { Injectable } from "@angular/core";
-import {
-	BlApiError,
-	CustomerItem,
-	Item,
-	Order,
-	OrderItem,
-	Period,
-	UserDetail
-} from "@wizardcoder/bl-model";
-import { ItemPriceService } from "../price/item-price/item-price.service";
-import { OrderItemInfo } from "@wizardcoder/bl-model/dist/order/order-item/order-item-info";
-import { OrderItemType } from "@wizardcoder/bl-model/dist/order/order-item/order-item-type";
+import { UserDetail } from "@wizardcoder/bl-model";
 import { DateService } from "../date/date.service";
 import { Subject, Observable, ReplaySubject, Subscription } from "rxjs";
-import { ItemService } from "@wizardcoder/bl-connect";
-import { CartItemAction } from "./cartItemAction";
-import { CustomerOrderService } from "../order/customer-order/customer-order.service";
-import { CustomerDetailService } from "../customer/customer-detail/customer-detail.service";
 import { CustomerService } from "../customer/customer.service";
 import { BranchStoreService } from "../branch/branch-store.service";
-import { CartHelperService } from "./cart-helper.service";
-import { CartItemSearchService } from "./cart-item-search/cart-item-search.service";
-import { BranchItemHelperService } from "../branch/branch-item-helper/branch-item-helper.service";
 import { CartItem } from "./cart-item/cart-item";
 
 @Injectable()
@@ -35,15 +17,9 @@ export class CartService {
 	private _customerDetailId: string;
 
 	constructor(
-		private _itemPriceService: ItemPriceService,
 		private _dateService: DateService,
-		private _itemService: ItemService,
 		private _customerService: CustomerService,
-		private _branchStoreService: BranchStoreService,
-		private _cartHelperService: CartHelperService,
-		private _branchItemHelperService: BranchItemHelperService,
-		private _customerDetailService: CustomerDetailService,
-		private _customerOrderService: CustomerOrderService
+		private _branchStoreService: BranchStoreService
 	) {
 		this._cart = [];
 		this._cartChange$ = new Subject<boolean>();
@@ -150,17 +126,7 @@ export class CartService {
 
 		return cartItems;
 	}
-  */
 
-	public cartIncludesPartlyPayments(): boolean {
-		for (let cartItem of this._cart) {
-			if (cartItem.orderItem.type === "partly-payment") {
-				return true;
-			}
-		}
-		return false;
-	}
-	/*
 	public getCartItemsNotApartOfNewOrder(): CartItem[] {
 		const cartItems: CartItem[] = [];
 
@@ -175,6 +141,14 @@ export class CartService {
 
 */
 
+	public cartIncludesPartlyPayments(): boolean {
+		for (let cartItem of this._cart) {
+			if (cartItem.orderItem.type === "partly-payment") {
+				return true;
+			}
+		}
+		return false;
+	}
 	public confirmCart() {
 		this.clear();
 		this._customerService.reload();
@@ -245,106 +219,5 @@ export class CartService {
 		});
 
 		return partlyPaymentTotals;
-	}
-
-	private async addNewCustomerItem(
-		customerItem: CustomerItem,
-		item: Item
-	): Promise<boolean> {
-		throw "cartService.addNewCustomerItem() is deprecated";
-		/*
-		let orderItem: OrderItem;
-
-		try {
-			orderItem = await this._cartHelperService.createOrderItemBasedOnCustomerItem(
-				customerItem,
-				item
-			);
-		} catch (e) {
-			throw new Error("cartService: could not create orderItem");
-		}
-
-		this.addCartItem({
-			item: item,
-			orderItem: orderItem,
-			customerItem: customerItem,
-			action: orderItem.type
-		});
-
-		return true;
-    */
-	}
-
-	private addNewItem(item: Item) {
-		throw "cartService.addNewItem() is deprecated";
-		/*
-		let orderItem: OrderItem;
-
-		try {
-			orderItem = this._cartHelperService.createOrderItemBasedOnItem(
-				item
-			);
-		} catch (e) {
-			console.log("the item can not be added", e);
-		}
-
-		this.addCartItem({
-			item: item,
-			orderItem: orderItem,
-			action: this._cartHelperService.getFirstValidActionOnItem(item)
-				.action
-		});
-    */
-	}
-
-	private addNewOrderItem(orderItem: OrderItem, order: Order, item: Item) {
-		throw "cartService.addNewOrderItem() is deprecated";
-		/*
-		const newOrderItem: OrderItem = {
-			type: orderItem.type,
-			age: "new",
-			item: orderItem.item,
-			title: orderItem.title,
-			amount: 0,
-			unitPrice: 0,
-			taxRate: orderItem.taxRate,
-			taxAmount: 0,
-			info: orderItem.info,
-			discount: orderItem.discount,
-			movedFromOrder: order.id
-		};
-
-		this.addCartItem({
-			item: item,
-			orderItem: newOrderItem,
-			action: orderItem.type,
-			period: this.getPeriodBasedOnAction(item, orderItem.type),
-			originalOrder: order,
-			originalOrderItem: orderItem
-		});
-    */
-	}
-
-	private addCartItem(cartItem: CartItem) {
-		this._cart.push(cartItem);
-		this._cartChange$.next(true);
-	}
-
-	private getPeriodBasedOnAction(item: Item, action: CartItemAction): Period {
-		try {
-			if (action === "rent") {
-				return this._branchItemHelperService.getDefaultRentPeriod(item);
-			}
-
-			if (action === "partly-payment") {
-				return this._branchItemHelperService.getDefaultPartlyPaymentPeriod(
-					item
-				);
-			}
-		} catch (e) {
-			return null;
-		}
-
-		return null;
 	}
 }

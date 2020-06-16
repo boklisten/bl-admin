@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { CartItem } from "../../../cart-item/cart-item";
 import { CartItemAction } from "../../../cart-item/cart-item-action";
-import { OrderItemHelperService } from "../../../order-item-helper/order-item-helper.service";
 import { Subscription } from "rxjs";
 
 @Component({
