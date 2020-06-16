@@ -19,7 +19,7 @@ export class InvoiceCreateItemListComponent implements OnInit {
 
 	ngOnInit() {
 		this.invoiceItems = [];
-		this._cartService.onCartChange().subscribe(() => {
+		this._cartService.subscribe(() => {
 			this.cart = this._cartService.getCart();
 			this.setInvoiceItems();
 		});

@@ -67,7 +67,7 @@
 		text="Cart is empty"
 	></app-bl-common-alert>
 
-	<div class="card-footer bl-cart-list-footer" *ngIf="cart.length > 0">
+	<div class="card-footer bl-cart-list-footer" *ngIf="totalPriceInformation">
 		<div
 			class="row justify-content-between align-items-center text-secondary"
 		>
@@ -79,21 +79,16 @@
 					<span i18n="@@blConfirmButton">Confirm</span>
 				</button>
 			</div>
-			<!--<div class="col-auto text-right">-->
-
-			<!--<div class="font-weight-bold bl-text-xl text-black">-->
-			<!--{{ getTotalAmount() | blcPrice }}-->
-			<!--</div>-->
-			<!--<div-->
-			<!--class="bl-text-sm"-->
-			<!--*ngIf="cartIncludesPartlyPayments()"-->
-			<!-->-->
-			<!--<span i18n="@@cartListTotalWithPartlyPayments"-->
-			<!-->Total to pay including partly payments</span-->
-			<!-->: {{ getTotalAmountWithPartlyPayments() | blcPrice-->
-			<!--}}-->
-			<!--</div>-->
-			<!--</div>-->
+			<div class="col-auto text-right">
+				<div class="font-weight-bold bl-text-xl text-black">
+					{{ totalPriceInformation.amount | blcPrice }}
+				</div>
+				<div class="bl-text-sm">
+					<span i18n="@@cartListTotalWithPartlyPayments"
+						>Total to pay including partly payments</span
+					>: {{ totalPriceInformation.amountLeftToPay | blcPrice }}
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

@@ -60,7 +60,42 @@ export class PriceService {
 			discount: this.toFixed(0)
 		};
 	}
+
+	public addPriceInformation(
+		originalPriceInformation: PriceInformation,
+		priceInformationToAdd: PriceInformation
+	): PriceInformation {
+		const original = this.sanitizePriceInformation(
+			originalPriceInformation
+		);
+		const toAdd = this.sanitizePriceInformation(priceInformationToAdd);
+
+		return {
+			amount: original.amount + toAdd.amount,
+			unitPrice: original.unitPrice + toAdd.unitPrice,
+			taxRate: original.taxRate,
+			taxAmount: original.taxAmount + toAdd.taxAmount,
+			amountLeftToPay: original.amountLeftToPay + toAdd.amountLeftToPay,
+			alreadyPayed: original.alreadyPayed + toAdd.alreadyPayed,
+			discountRate: original.discountRate,
+			discount: original.discount
+		};
+	}
+
 	private sanitizeNum(sanitizeNumber: number): number {
 		return +sanitizeNumber.toFixed(0);
+	}
+
+	private sanitizePriceInformation(pi: PriceInformation): PriceInformation {
+		return {
+			amount: pi.amount ? pi.amount : 0,
+			unitPrice: pi.unitPrice ? pi.unitPrice : 0,
+			taxRate: pi.taxRate ? pi.taxRate : 0,
+			taxAmount: pi.taxAmount ? pi.taxAmount : 0,
+			amountLeftToPay: pi.amountLeftToPay ? pi.amountLeftToPay : 0,
+			alreadyPayed: pi.alreadyPayed ? pi.alreadyPayed : 0,
+			discountRate: pi.discountRate ? pi.discountRate : 0,
+			discount: pi.discount ? pi.discount : 0
+		};
 	}
 }

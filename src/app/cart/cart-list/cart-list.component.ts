@@ -16,6 +16,7 @@ import { DateService } from "../../date/date.service";
 import { AuthService } from "../../auth/auth.service";
 import { Subscription } from "rxjs";
 import { CartOrderService } from "../cart-order/cart-order.service";
+import { PriceInformation } from "../../price/price-information";
 
 @Component({
 	selector: "app-cart-list",
@@ -33,6 +34,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 	public notfifyByEmail: boolean;
 	public showNotifyByEmailEdit: boolean;
 	private cart$: Subscription;
+	public totalPriceInformation: PriceInformation;
 
 	constructor(
 		private _cartService: CartService,
@@ -45,6 +47,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 		this.cartConfirmationFailed = new EventEmitter<boolean>();
 		this.notfifyByEmail = true;
 		this.showNotifyByEmailEdit = this._authService.isAdmin();
+		this.getTotalPriceInformation();
 	}
 
 	ngOnInit() {
@@ -57,8 +60,8 @@ export class CartListComponent implements OnInit, OnDestroy {
 
 	private handleCartChange() {
 		this.cart$ = this._cartService.subscribe(cart => {
-			console.log("cart changed", cart.length);
 			this.cart = cart;
+			this.getTotalPriceInformation();
 		});
 	}
 
@@ -74,30 +77,8 @@ export class CartListComponent implements OnInit, OnDestroy {
 		this._cartService.clear();
 	}
 
-	remove(orderItem: OrderItem) {
-		//this._cartService.remove(orderItem.item as string);
-	}
-
-	public cartIncludesPartlyPayments(): boolean {
-		return this._cartService.cartIncludesPartlyPayments();
-	}
-
-	getTotalAmount(): number {
-		let totalAmount = 0;
-
-		for (const cartItem of this.cart) {
-			totalAmount += cartItem.orderItem.amount;
-		}
-
-		return totalAmount;
-	}
-
-	getTotalAmountWithPartlyPayments() {
-		return this._cartService.getTotalAmountWithPartlyPayments();
-	}
-
-	private getPartlyPaymentTotals(): { date: Date; total: number }[] {
-		return this._cartService.getPartlyPaymentTotals();
+	public async getTotalPriceInformation(): Promise<void> {
+		this.totalPriceInformation = await this._cartService.getPriceInformation();
 	}
 
 	onShowConfirm(content) {
