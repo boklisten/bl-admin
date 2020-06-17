@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Order } from "@wizardcoder/bl-model";
-import { CartItem } from "../cart-item/cart-item";
 import { CartService } from "../cart.service";
 import { OrderGeneratorService } from "../../order/order-generator/order-generator.service";
 
@@ -8,25 +7,15 @@ import { OrderGeneratorService } from "../../order/order-generator/order-generat
 	providedIn: "root"
 })
 export class CartOrderService {
-	private _cart: CartItem[];
-
 	constructor(
 		private _cartService: CartService,
 		private _orderGeneratorService: OrderGeneratorService
-	) {
-		this.handleCartChange();
-	}
-
-	private handleCartChange() {
-		this._cartService.subscribe(cart => {
-			this._cart = cart;
-		});
-	}
+	) {}
 
 	public async createOrder(): Promise<Order> {
 		const orderItems = [];
 
-		for (let cartItem of this._cart) {
+		for (let cartItem of this._cartService.getCart()) {
 			orderItems.push(await cartItem.createOrderItem());
 		}
 		return this._orderGeneratorService.generateOrder(orderItems);

@@ -80,5 +80,5 @@
 </div>
 
 <ng-template #confirmCartContent let-c="close" let-d="dismiss">
-	<app-cart-confirm (confirmed)="onCartConfirm()"></app-cart-confirm>
+	<app-checkout (done)="onCartConfirm()"></app-checkout>
 </ng-template>

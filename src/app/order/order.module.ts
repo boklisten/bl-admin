@@ -11,8 +11,6 @@ import { OrderDetailCardComponent } from "./order-detail/order-detail-card/order
 import { OrderDeliveryDetailComponent } from "./order-detail/order-delivery-detail/order-delivery-detail.component";
 import { OrderItemListComponent } from "./order-detail/order-item-list/order-item-list.component";
 import { OrderItemDetailListComponent } from "./order-detail/order-item-detail-list/order-item-detail-list.component";
-import { BranchModule } from "../branch/branch.module";
-import { CustomerModule } from "../customer/customer.module";
 import { CustomerOrderItemListComponent } from "./customer-order/customer-order-item-list/customer-order-item-list.component";
 import { OrderHandlerService } from "./order-handler/order-handler.service";
 import { OrderManagerComponent } from "./order-manager/order-manager.component";

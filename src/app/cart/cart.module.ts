@@ -29,6 +29,7 @@ import { CustomerOrderItemListService } from "../order/customer-order/customer-o
 import { CartListItemAgeComponent } from "./cart-list/cart-list-item/cart-list-item-age/cart-list-item-age.component";
 import { CartListItemAmountComponent } from "./cart-list/cart-list-item/cart-list-item-amount/cart-list-item-amount.component";
 import { CartItemService } from "./cart-item/cart-item.service";
+import { CheckoutModule } from "../checkout/checkout.module";
 
 @NgModule({
 	imports: [
@@ -46,7 +47,8 @@ import { CartItemService } from "./cart-item/cart-item.service";
 		CustomerModule,
 		OrderModule,
 		PaymentModule,
-		CustomerItemModule
+		CustomerItemModule,
+		CheckoutModule
 	],
 	declarations: [
 		CartComponent,

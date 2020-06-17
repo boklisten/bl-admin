@@ -1,0 +1,24 @@
+<div class="modal-header"><p *ngIf="wait">wait...</p></div>
+<div class="modal-body" *ngIf="order && step.name === 'summary'">
+	<app-customer-detail-small></app-customer-detail-small>
+	<app-order-item-detail-list
+		[orderItems]="order.orderItems"
+	></app-order-item-detail-list>
+</div>
+<div class="modal-body" *ngIf="step.name === 'payment'">
+	<app-payment
+		[order]="order"
+		(paymentComplete)="onPaymentConfirmed()"
+		(paymentFailure)="onPaymentFailure()"
+	></app-payment>
+</div>
+<div class="modal-footer">
+	<button
+		class="btn btn-success btn-block"
+		[disabled]="!step.valid"
+		(click)="onNext()"
+		i18n="@@checkoutNextButton"
+	>
+		Next
+	</button>
+</div>

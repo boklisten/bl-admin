@@ -44,6 +44,7 @@ export class CartConfirmComponent implements OnInit {
 
 	ngOnInit() {
 		this.wait = true;
+
 		this._cartOrderService
 			.createOrder()
 			.then(order => {
