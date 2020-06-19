@@ -19,6 +19,7 @@ import { OrderManagerListService } from "./order-manager/order-manager-list/orde
 import { OrderManagerListItemComponent } from "./order-manager/order-manager-list/order-manager-list-item/order-manager-list-item.component";
 import { AddOrderToCartComponent } from "./add-order-to-cart/add-order-to-cart.component";
 import { CustomerOrderItemListItemComponent } from "./customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component";
+import { OrderPaymentInformationComponent } from "./order-payment-information/order-payment-information.component";
 
 @NgModule({
 	imports: [
@@ -40,13 +41,15 @@ import { CustomerOrderItemListItemComponent } from "./customer-order/customer-or
 		OrderManagerListComponent,
 		OrderManagerListItemComponent,
 		AddOrderToCartComponent,
-		CustomerOrderItemListItemComponent
+		CustomerOrderItemListItemComponent,
+		OrderPaymentInformationComponent
 	],
 	exports: [
 		CustomerOrderListComponent,
 		CustomerOrderItemListComponent,
 		OrderItemListComponent,
-		OrderItemDetailListComponent
+		OrderItemDetailListComponent,
+		OrderPaymentInformationComponent
 	],
 	providers: [OrderHandlerService, OrderManagerListService]
 })

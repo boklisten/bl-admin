@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Order } from "@wizardcoder/bl-model";
 import { CartOrderService } from "../cart/cart-order/cart-order.service";
 
-type Step = { name: string; valid: boolean };
+type Step = { name: string; valid: boolean; showButton: boolean };
 
 @Component({
 	selector: "app-checkout",
@@ -10,31 +10,36 @@ type Step = { name: string; valid: boolean };
 	styleUrls: ["./checkout.component.scss"]
 })
 export class CheckoutComponent implements OnInit {
+	@Output() dismiss: EventEmitter<boolean>;
 	public wait: boolean;
 	public order: Order;
 	public step: Step;
 	private steps: Step[];
 	private stepIndex: number;
 
-	constructor(private _cartOrderService: CartOrderService) {}
+	constructor(private _cartOrderService: CartOrderService) {
+		this.dismiss = new EventEmitter();
+	}
 
 	ngOnInit() {
 		this.wait = true;
-
-		this.steps = [];
-
-		this.stepIndex = 0;
-		this.step = this.steps[this.stepIndex];
 
 		this._cartOrderService
 			.createOrder()
 			.then(order => {
 				this.order = order;
+				this.steps = this.calculateSteps(this.order);
+				this.stepIndex = 0;
+				this.step = this.steps[this.stepIndex];
 				this.wait = false;
 			})
 			.catch(e => {
 				this.wait = false;
 			});
+	}
+
+	public onDismiss() {
+		this.dismiss.emit(true);
 	}
 
 	public onNext() {
@@ -43,7 +48,6 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	public onPaymentConfirmed() {
-		console.log("payment confirmed");
 		this.step.valid = true;
 	}
 
@@ -53,10 +57,15 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	private calculateSteps(order: Order): Step[] {
-		return [
-			{ name: "summary", valid: true },
-			{ name: "payment", valid: false },
-			{ name: "done", valid: false }
-		];
+		let steps = [{ name: "summary", valid: true, showButton: true }];
+
+		if (order.amount !== 0) {
+			steps.push({ name: "payment", valid: false, showButton: true });
+		}
+
+		steps.push({ name: "processing", valid: true, showButton: false });
+		steps.push({ name: "done", valid: false, showButton: false });
+
+		return steps;
 	}
 }

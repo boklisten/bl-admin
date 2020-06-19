@@ -1,10 +1,19 @@
-<div class="modal-header"><p *ngIf="wait">wait...</p></div>
+<div class="modal-header justify-content-end" *ngIf="step.showButton">
+	<button class="btn btn-outline-danger" (click)="onDismiss()">
+		<fa-icon icon="times"></fa-icon>
+	</button>
+</div>
+
 <div class="modal-body" *ngIf="order && step.name === 'summary'">
 	<app-customer-detail-small></app-customer-detail-small>
 	<app-order-item-detail-list
 		[orderItems]="order.orderItems"
 	></app-order-item-detail-list>
+	<app-order-payment-information
+		[order]="order"
+	></app-order-payment-information>
 </div>
+
 <div class="modal-body" *ngIf="step.name === 'payment'">
 	<app-payment
 		[order]="order"
@@ -12,9 +21,34 @@
 		(paymentFailure)="onPaymentFailure()"
 	></app-payment>
 </div>
-<div class="modal-footer">
+
+<div
+	class="modal-body text-center bg-warning"
+	*ngIf="step.name === 'processing'"
+>
+	<div class="d-flex align-items-center justify-content-center p-5">
+		<fa-icon icon="receipt" class="mr-2"></fa-icon>
+		<strong>---</strong>
+		<fa-icon
+			[icon]="'circle-notch'"
+			[spin]="true"
+			size="3x"
+			class="mr-2 ml-2"
+		></fa-icon>
+		<strong>---</strong>
+		<fa-icon icon="database" class="ml-2"></fa-icon>
+	</div>
+	<div class="mt-3"><strong>Processing order...</strong></div>
+</div>
+
+<div class="modal-body" *ngIf="step.name === 'done'">
+	<fa-icon [icon]="'check-circle'" [size]="'9x'"></fa-icon>
+</div>
+
+<div class="modal-footer" *ngIf="step.showButton">
 	<button
 		class="btn btn-success btn-block"
+		*ngIf="step.showButton"
 		[disabled]="!step.valid"
 		(click)="onNext()"
 		i18n="@@checkoutNextButton"
