@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Order } from "@wizardcoder/bl-model";
 import { CartOrderService } from "../cart/cart-order/cart-order.service";
+import { CheckoutService } from "./checkout.service";
 
 type Step = { name: string; valid: boolean; showButton: boolean };
 
@@ -17,7 +18,10 @@ export class CheckoutComponent implements OnInit {
 	private steps: Step[];
 	private stepIndex: number;
 
-	constructor(private _cartOrderService: CartOrderService) {
+	constructor(
+		private _cartOrderService: CartOrderService,
+		private _checkoutService: CheckoutService
+	) {
 		this.dismiss = new EventEmitter();
 	}
 
@@ -43,12 +47,35 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	public onNext() {
+		if (
+			this.step.name == "payment" ||
+			(this.order.amount == 0 && this.step.name == "summary")
+		) {
+			this.onConfirmCheckout();
+		}
 		this.stepIndex++;
 		this.step = this.steps[this.stepIndex];
 	}
 
+	public onConfirmCheckout() {
+		this._checkoutService
+			.checkout(this.order)
+			.then(order => {
+				console.log("checkout finished!", order);
+				this.onDismiss();
+			})
+			.catch(e => {
+				this.onCheckoutError(e);
+				console.log("checkout failed", e);
+			});
+	}
+
 	public onPaymentConfirmed() {
 		this.step.valid = true;
+	}
+
+	public onCheckoutError(e: any) {
+		console.log("error!", e);
 	}
 
 	public onPaymentFailure() {
