@@ -91,6 +91,10 @@ export class CartItemPriceProvider {
 		) {
 			let priceInformation = this._priceService.getEmptyPriceInformation();
 			priceInformation.alreadyPayed = orderItem.amount;
+			if (orderItem.info && orderItem.info["amountLeftToPay"]) {
+				priceInformation.amountLeftToPay =
+					orderItem.info["amountLeftToPay"];
+			}
 			return priceInformation;
 		}
 

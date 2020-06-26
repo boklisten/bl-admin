@@ -22,7 +22,7 @@ export class CartItemActionProvider {
 		actions = actions.concat(this.getValidActionsForRent());
 		actions = actions.concat(this.getValidActionsForPartlyPayment());
 		actions = actions.concat(this.getValidActionsForBuy());
-		//actions = actions.concat(this.getValidActionsForCancel());
+		actions = actions.concat(this.getValidActionsForCancel());
 
 		return actions;
 	}
@@ -34,9 +34,9 @@ export class CartItemActionProvider {
 		this._item = item;
 		let actions = [];
 
-		actions = actions.concat(this.getValidActionsForExtend());
-		actions.push({ action: "buyout" });
 		actions.push({ action: "buyback" });
+		actions.push({ action: "buyout" });
+		actions = actions.concat(this.getValidActionsForExtend());
 		actions = actions.concat(
 			this.getValidActionsForCustomerItemCancel(customerItem)
 		);
@@ -54,6 +54,10 @@ export class CartItemActionProvider {
 		actions = actions.concat(this.getValidActionsForSell());
 
 		return actions;
+	}
+
+	private getValidActionsForCancel(): CartItemAction[] {
+		return [{ action: "cancel" }];
 	}
 
 	private getValidActionsForExtend(): CartItemAction[] {

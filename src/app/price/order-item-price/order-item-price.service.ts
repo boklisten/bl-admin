@@ -87,6 +87,7 @@ export class OrderItemPriceService {
 		const buyPriceInformation = this._itemPriceService.getBuyPriceInformation(
 			item
 		);
+
 		if (alreadyPayed) {
 			const originalPriceInformation = this._priceService.calculatePriceInformation(
 				orderItem.amount,
@@ -94,8 +95,8 @@ export class OrderItemPriceService {
 				0
 			);
 			return this.subtractPriceInformation(
-				buyPriceInformation,
-				originalPriceInformation
+				originalPriceInformation,
+				buyPriceInformation
 			);
 		}
 		return buyPriceInformation;
