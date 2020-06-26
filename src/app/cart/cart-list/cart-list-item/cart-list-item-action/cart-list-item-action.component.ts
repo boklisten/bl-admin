@@ -13,6 +13,7 @@ export class CartListItemActionComponent implements OnInit {
 
 	public actionList: CartItemAction[];
 	public selectedAction: CartItemAction;
+	public selectedActionName: string;
 
 	constructor() {
 		this.actionList = [];
@@ -20,12 +21,18 @@ export class CartListItemActionComponent implements OnInit {
 
 	ngOnInit() {
 		this.actionList = this.cartItem.getValidActions();
-		this.selectedAction = this.actionList[0];
+		this.selectedAction = this.cartItem.getAction();
+		this.selectedActionName = this.getActionName(this.selectedAction);
 		this.cartItem.setAction(this.selectedAction);
 	}
 
 	public onActionChange(action: CartItemAction) {
+		this.selectedActionName = this.getActionName(action);
 		this.selectedAction = action;
 		this.cartItem.setAction(this.selectedAction);
+	}
+
+	public getActionName(action: CartItemAction): string {
+		return action.action + action.period;
 	}
 }

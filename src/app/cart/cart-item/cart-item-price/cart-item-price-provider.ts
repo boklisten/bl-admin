@@ -128,17 +128,13 @@ export class CartItemPriceProvider {
 		cartItemAction: CartItemAction
 	): boolean {
 		if (cartItemAction.action === orderItem.type) {
-			console.log("orderItem.info", orderItem.info);
-			console.log("action.periodType", cartItemAction.period);
 			if (
 				orderItem.info &&
 				cartItemAction.period &&
 				orderItem.info["periodType"] !== cartItemAction.period
 			) {
-				console.log("not equal");
 				return false;
 			}
-			console.log("equal");
 			return true;
 		}
 	}

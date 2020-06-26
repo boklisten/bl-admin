@@ -2,7 +2,7 @@
 	class="btn-group btn-group-toggle btn-group-sm"
 	ngbRadioGroup
 	name="radioBasic"
-	[(ngModel)]="selectedAction"
+	[(ngModel)]="selectedActionName"
 >
 	<label
 		ngbButtonLabel
@@ -12,7 +12,7 @@
 		<input
 			ngbButton
 			type="radio"
-			[value]="actionChoice"
+			[value]="getActionName(actionChoice)"
 			(click)="onActionChange(actionChoice)"
 		/>
 		<span

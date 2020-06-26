@@ -19,7 +19,7 @@ export class OrderItemCartItem extends Subscribable implements CartItem {
 		private _cartItemOrderItemProvider: CartItemOrderItemProvider
 	) {
 		super();
-		this.setAction(this.getValidActions()[0]);
+		this.setDefaultAction();
 	}
 
 	public async getPriceInformation(): Promise<PriceInformation> {
@@ -65,6 +65,32 @@ export class OrderItemCartItem extends Subscribable implements CartItem {
 			this._orderItem,
 			this._item
 		);
-		//throw "not implemented";
+	}
+
+	private setDefaultAction() {
+		console.log("here we are");
+		const defaultAction = this.getDefaultAction(this.getValidActions());
+		console.log("defaultAction", defaultAction);
+		this.setAction(defaultAction);
+	}
+
+	private getDefaultAction(
+		allValidActions: CartItemAction[]
+	): CartItemAction {
+		for (let action of allValidActions) {
+			console.log("action", action.action, "type", this._orderItem.type);
+			if (action.action === this._orderItem.type) {
+				if (
+					this._orderItem.info &&
+					action.period &&
+					this._orderItem.info["periodType"] !== action.period
+				) {
+					continue;
+				}
+				return action;
+			}
+		}
+
+		return allValidActions[0];
 	}
 }
