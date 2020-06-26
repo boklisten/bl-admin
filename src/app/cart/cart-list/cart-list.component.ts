@@ -64,8 +64,8 @@ export class CartListComponent implements OnInit, OnDestroy {
 	public onShowConfirm(content) {
 		this._cartConfirmModal = this._modalService.open(content, {
 			size: "lg",
-			centered: true
-			//backdrop: "static"
+			centered: true,
+			backdrop: "static"
 		});
 	}
 
