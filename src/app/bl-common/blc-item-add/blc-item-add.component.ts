@@ -1,17 +1,18 @@
-import { Component, Input, OnInit, ViewChild } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy, ViewChild } from "@angular/core";
 import { CustomerItem, Item, Order, OrderItem } from "@wizardcoder/bl-model";
 import { CartService } from "../../cart/cart.service";
 import { BranchItemStoreService } from "../../branch/branch-item-store/branch-item-store.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { CartItemService } from "../../cart/cart-item/cart-item.service";
 import { CartItem } from "../../cart/cart-item/cart-item";
+import { Subscription } from "rxjs";
 
 @Component({
 	selector: "app-blc-item-add",
 	templateUrl: "./blc-item-add.component.html",
 	styleUrls: ["./blc-item-add.component.scss"]
 })
-export class BlcItemAddComponent implements OnInit {
+export class BlcItemAddComponent implements OnInit, OnDestroy {
 	@Input() item: Item;
 	@Input() orderItem: OrderItem;
 	@Input() order: Order;
@@ -22,6 +23,7 @@ export class BlcItemAddComponent implements OnInit {
 
 	public added: boolean;
 	public cartItem: CartItem;
+	private cartChange$: Subscription;
 
 	constructor(
 		private _cartService: CartService,
@@ -33,41 +35,59 @@ export class BlcItemAddComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.createCartItem();
-		this.checkIfAdded();
+		this.createCartItem()
+			.then(() => {
+				this.checkIfAdded();
+				this.handleCartChange();
+			})
+			.catch(err => {
+				console.log("chould not create cart item", err);
+			});
+	}
 
-		this._cartService.subscribe(() => {
+	ngOnDestroy() {
+		this.cartChange$.unsubscribe();
+	}
+
+	private handleCartChange() {
+		this.cartChange$ = this._cartService.subscribe(() => {
 			this.checkIfAdded();
 		});
 	}
 
-	private createCartItem() {
-		if (!this.customerItem && !this.orderItem && this.item) {
-			this.cartItem = this._cartItemService.createCartItemByItem(
-				this.item
-			);
-			return;
-		}
+	private createCartItem(): Promise<boolean> {
+		return new Promise((resolve, reject) => {
+			if (!this.customerItem && !this.orderItem && this.item) {
+				this.cartItem = this._cartItemService.createCartItemByItem(
+					this.item
+				);
+				resolve(true);
+			}
 
-		if (!this.orderItem && this.customerItem) {
-			this._cartItemService
-				.createCartItemByCustomerItem(this.customerItem)
-				.then(cartItem => {
-					console.log("got cartItem", cartItem);
-					this.cartItem = cartItem;
-				})
-				.catch(() => {});
-		}
+			if (!this.orderItem && this.customerItem) {
+				return this._cartItemService
+					.createCartItemByCustomerItem(this.customerItem)
+					.then(cartItem => {
+						this.cartItem = cartItem;
+						resolve(true);
+					})
+					.catch(err => {
+						reject(err);
+					});
+			}
 
-		if (!this.customerItem && this.orderItem) {
-			this._cartItemService
-				.createCartItemByOrderItem(this.orderItem, this.order)
-				.then(cartItem => {
-					console.log("got cartItem", cartItem);
-					this.cartItem = cartItem;
-				})
-				.catch(() => {});
-		}
+			if (!this.customerItem && this.orderItem) {
+				this._cartItemService
+					.createCartItemByOrderItem(this.orderItem, this.order)
+					.then(cartItem => {
+						this.cartItem = cartItem;
+						resolve(true);
+					})
+					.catch(err => {
+						reject(err);
+					});
+			}
+		});
 	}
 
 	public add() {
@@ -81,16 +101,6 @@ export class BlcItemAddComponent implements OnInit {
 	private checkIfAdded() {
 		this.added = this._cartService.contains(this.cartItem);
 	}
-	/*
-	public addItem() {
-		if (!this.customerItem) {
-			this.handleItem();
-		} else {
-			this.handleCustomerItem();
-		}
-		this._modalService.dismissAll();
-	}
-  */
 
 	public remove() {
 		this._cartService.remove(this.cartItem);
@@ -102,32 +112,6 @@ export class BlcItemAddComponent implements OnInit {
 		} else {
 			this.add();
 		}
-		/*
-		if (this.order && this.orderItem) {
-			this.handleOrderItem();
-		} else if (this.customerItem) {
-			if (!this.added && this.customerItem["match"]) {
-				this.addWarningCustomerItem = true;
-				this.addWarningItem = false;
-				this.openModal();
-			} else {
-				this.handleCustomerItem();
-			}
-		} else {
-			if (
-				!this._branchItemStoreService.isItemInBranchItems(
-					this.item.id
-				) &&
-				!this.added
-			) {
-				this.addWarningItem = true;
-				this.addWarningCustomerItem = false;
-				this.openModal();
-			} else {
-				this.handleItem();
-			}
-		}
-    */
 	}
 
 	private openModal() {
@@ -135,44 +119,5 @@ export class BlcItemAddComponent implements OnInit {
 			size: "lg",
 			centered: true
 		});
-	}
-
-	private handleCustomerItem() {
-		/*
-		if (this._cartService.contains(this.customerItem.item as string)) {
-			this._cartService.remove(this.customerItem.item as string);
-			this.added = false;
-		} else {
-			this._cartService.addCustomerItem(
-				this.customerItem,
-				this.item ? this.item : null
-			);
-			this.added = true;
-		}
-    */
-	}
-
-	private handleOrderItem() {
-		/*
-		if (this._cartService.contains(this.orderItem.item as string)) {
-			this._cartService.remove(this.orderItem.item as string);
-			this.added = false;
-		} else {
-			this._cartService.addOrderItem(this.orderItem, this.order);
-			this.added = true;
-		}
-    */
-	}
-
-	private handleItem() {
-		/*
-		if (this._cartService.contains(this.item.id)) {
-			this._cartService.remove(this.item.id);
-			this.added = false;
-		} else {
-			this._cartService.add(this.item);
-			this.added = true;
-		}
-   */
 	}
 }

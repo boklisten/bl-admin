@@ -36,7 +36,7 @@ export class OrderItemCartItem extends Subscribable implements CartItem {
 	}
 
 	public getItemId(): string {
-		return this._orderItem.item as string;
+		return this._orderItem ? (this._orderItem.item as string) : null;
 	}
 
 	public getCustomerItemId(): string {
@@ -68,9 +68,7 @@ export class OrderItemCartItem extends Subscribable implements CartItem {
 	}
 
 	private setDefaultAction() {
-		console.log("here we are");
 		const defaultAction = this.getDefaultAction(this.getValidActions());
-		console.log("defaultAction", defaultAction);
 		this.setAction(defaultAction);
 	}
 
@@ -78,7 +76,6 @@ export class OrderItemCartItem extends Subscribable implements CartItem {
 		allValidActions: CartItemAction[]
 	): CartItemAction {
 		for (let action of allValidActions) {
-			console.log("action", action.action, "type", this._orderItem.type);
 			if (action.action === this._orderItem.type) {
 				if (
 					this._orderItem.info &&

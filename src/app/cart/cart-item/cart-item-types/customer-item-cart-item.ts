@@ -34,7 +34,7 @@ export class CustomerItemCartItem extends Subscribable implements CartItem {
 	}
 
 	public getItemId(): string {
-		return this._customerItem.item as string;
+		return this._customerItem ? (this._customerItem.item as string) : null;
 	}
 
 	public getCustomerItemId(): string {
