@@ -33,10 +33,10 @@ export class CartComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
+		this.updateTab();
 		this.handleCustomerChange();
 		this.handleCustomerClear();
 		this.handleCheckoutChange();
-		this.updateTab();
 	}
 
 	ngOnDestroy() {
@@ -59,10 +59,10 @@ export class CartComponent implements OnInit, OnDestroy {
 	}
 
 	private changeTab(tabName: string) {
+		this.activeTab = tabName;
 		this._router.navigate([], {
 			queryParams: { tab: tabName }
 		});
-		this.activeTab = tabName;
 	}
 
 	private handleCheckoutChange() {

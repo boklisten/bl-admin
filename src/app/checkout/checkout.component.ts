@@ -33,6 +33,7 @@ export class CheckoutComponent implements OnInit {
 
 	ngOnInit() {
 		this.wait = true;
+		this.step = this.loadingOrderStep();
 
 		this._cartOrderService
 			.createOrder()
@@ -45,6 +46,8 @@ export class CheckoutComponent implements OnInit {
 			})
 			.catch(e => {
 				this.wait = false;
+				this.checkoutError = e;
+				this.step = this.errorStep();
 			});
 	}
 
@@ -86,15 +89,11 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	public onCheckoutError(e: any) {
-		this.step.name = "error";
-		this.step.valid = false;
-		this.step.showConfirmButton = false;
-		this.step.showHeader = true;
 		this.checkoutError = e;
+		this.step = this.errorStep();
 	}
 
 	public onPaymentFailure() {
-		console.log("payment failure");
 		this.step.valid = false;
 	}
 
@@ -127,12 +126,30 @@ export class CheckoutComponent implements OnInit {
 		return steps;
 	}
 
+	private errorStep(): Step {
+		return {
+			name: "error",
+			valid: false,
+			showConfirmButton: false,
+			showHeader: true
+		};
+	}
+
 	private doneStep(): Step {
 		return {
 			name: "done",
 			valid: false,
 			showConfirmButton: false,
 			showHeader: true
+		};
+	}
+
+	private loadingOrderStep(): Step {
+		return {
+			name: "loading",
+			valid: false,
+			showConfirmButton: false,
+			showHeader: false
 		};
 	}
 }
