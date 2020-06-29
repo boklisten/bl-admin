@@ -61,8 +61,18 @@
 	<div class="mt-1 mb-5"><small>{{checkoutError | json}}</small></div>
 </div>
 
-<div class="modal-body" *ngIf="step.name === 'done'">
-	<fa-icon [icon]="'check-circle'" [size]="'9x'"></fa-icon>
+<div
+	class="modal-body text-center bg-success text-white"
+	*ngIf="step.name === 'done'"
+>
+	<div>
+		<fa-icon
+			[icon]="'check-circle'"
+			class="mt-5 mb-5"
+			[size]="'9x'"
+		></fa-icon>
+	</div>
+	<div i18n="@@checkoutOrderConfirmed">Order was confirmed!</div>
 </div>
 
 <div class="modal-footer" *ngIf="step.showConfirmButton">

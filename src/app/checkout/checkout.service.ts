@@ -2,19 +2,24 @@ import { Injectable } from "@angular/core";
 import { Order } from "@wizardcoder/bl-model";
 import { OrderService } from "@wizardcoder/bl-connect";
 import { PaymentHandlerService } from "../payment/payment-handler/payment-handler.service";
-import { CustomerService } from "../customer/customer.service";
-import { CartService } from "../cart/cart.service";
+import { Subject, Subscription } from "rxjs";
 
 @Injectable({
 	providedIn: "root"
 })
 export class CheckoutService {
+	private checkout$: Subject<Order>;
+
 	constructor(
 		private _orderService: OrderService,
-		private _paymentHandlerService: PaymentHandlerService,
-		private _customerService: CustomerService,
-		private _cartService: CartService
-	) {}
+		private _paymentHandlerService: PaymentHandlerService
+	) {
+		this.checkout$ = new Subject();
+	}
+
+	public subscribe(func: (addedOrder: Order) => void): Subscription {
+		return this.checkout$.subscribe(func);
+	}
 
 	public async checkout(order: Order): Promise<Order> {
 		try {
@@ -32,22 +37,10 @@ export class CheckoutService {
 
 			addedOrder = await this._orderService.getById(addedOrder.id);
 
-			this._customerService.reload();
-			this._cartService.clear();
-			console.log("we added a order in db", addedOrder);
+			this.checkout$.next(addedOrder);
 			return addedOrder;
 		} catch (e) {
-			console.log("could not add order", e);
 			throw e;
 		}
-		//throw "not implemented";
-		// add order to db
-		// if payment options, add payments to db and add payment to order
-		// if delivery options, add delivery to db and add delivery to order
-		// place order
-		// update customerItems if they should be updated
-		// return the updated order
-		//
-		// if errors occur, reject
 	}
 }

@@ -67,7 +67,10 @@ export class CheckoutComponent implements OnInit {
 		this._checkoutService
 			.checkout(this.order)
 			.then(order => {
-				this.onDismiss();
+				this.step = this.doneStep();
+				setTimeout(() => {
+					this.onDismiss();
+				}, 1500);
 			})
 			.catch(e => {
 				this.onCheckoutError(e);
@@ -121,13 +124,15 @@ export class CheckoutComponent implements OnInit {
 			showHeader: false
 		});
 
-		steps.push({
+		return steps;
+	}
+
+	private doneStep(): Step {
+		return {
 			name: "done",
 			valid: false,
 			showConfirmButton: false,
 			showHeader: true
-		});
-
-		return steps;
+		};
 	}
 }

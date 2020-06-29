@@ -7,7 +7,7 @@
 				[activeId]="activeTab"
 				(tabChange)="onTabChange($event)"
 			>
-				<ngb-tab id="order-items">
+				<ngb-tab id="customer" *ngIf="haveCustomer">
 					<ng-template ngbTabTitle>
 						<span class="text-secondary" i18n="@@cartCustomer"
 							>Customer
