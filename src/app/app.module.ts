@@ -21,6 +21,7 @@ import { StorageService } from "./storage/storage.service";
 import { CustomerModule } from "./customer/customer.module";
 import { MessengerModule } from "./messenger/messenger.module";
 import { BookingModule } from "./booking/booking.module";
+import { ScannerModule } from "./scanner/scanner.module";
 
 import {
 	faFlagCheckered,
@@ -225,7 +226,8 @@ library.add(
 		NgbDropdownModule,
 		InvoiceModule,
 		MessengerModule,
-		BookingModule
+		BookingModule,
+		ScannerModule
 	],
 	providers: [
 		AuthLoginService,

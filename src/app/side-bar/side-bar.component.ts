@@ -61,6 +61,13 @@ export class SideBarComponent implements OnInit, OnDestroy {
 				selected: false
 			},
 			{
+				name: "scanner",
+				link: "scanner",
+				icon: "barcode",
+				permission: "employee",
+				selected: false
+			},
+			{
 				name: "invoices",
 				link: "invoices",
 				icon: "file-invoice-dollar",
