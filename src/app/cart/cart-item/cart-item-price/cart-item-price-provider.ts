@@ -56,6 +56,12 @@ export class CartItemPriceProvider {
 				customerItem
 			);
 		} else if (cartItemAction.action === "buyout") {
+			if (customerItem.type == "rent") {
+				return this._customerItemPriceService.getRentBuyoutPriceInformation(
+					customerItem,
+					item
+				);
+			}
 			return this._customerItemPriceService.getPartlyPaymentBuyoutPriceInformation(
 				customerItem,
 				item
