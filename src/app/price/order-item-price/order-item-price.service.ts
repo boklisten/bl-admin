@@ -42,7 +42,7 @@ export class OrderItemPriceService {
 				orderItem.amount,
 				orderItem.taxRate
 			);
-			this.subtractPriceInformation(
+			return this.subtractPriceInformation(
 				rentPriceInformation,
 				originalPriceInformation
 			);
@@ -92,11 +92,12 @@ export class OrderItemPriceService {
 			const originalPriceInformation = this._priceService.calculatePriceInformation(
 				orderItem.amount,
 				orderItem.taxRate,
-				0
+				0,
+				orderItem.amount
 			);
 			return this.subtractPriceInformation(
-				originalPriceInformation,
-				buyPriceInformation
+				buyPriceInformation,
+				originalPriceInformation
 			);
 		}
 		return buyPriceInformation;
@@ -120,7 +121,8 @@ export class OrderItemPriceService {
 		priceInformation: PriceInformation,
 		originalPriceInformation: PriceInformation
 	): PriceInformation {
-		let amount = originalPriceInformation.amount - priceInformation.amount;
+		let amount = priceInformation.amount - originalPriceInformation.amount;
+
 		return this._priceService.calculatePriceInformation(
 			amount,
 			priceInformation.taxRate,
