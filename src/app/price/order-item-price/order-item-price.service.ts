@@ -42,7 +42,8 @@ export class OrderItemPriceService {
 				orderItem.amount,
 				orderItem.taxRate
 			);
-			return this.subtractPriceInformation(
+
+			return this._priceService.subtractPriceInformation(
 				rentPriceInformation,
 				originalPriceInformation
 			);
@@ -71,12 +72,20 @@ export class OrderItemPriceService {
 				partlyPaymentPriceInformation.amountLeftToPay,
 				orderItem.amount
 			);
-			return this.subtractPriceInformation(
+
+			const subtractedPriceInformation = this._priceService.subtractPriceInformation(
 				partlyPaymentPriceInformation,
 				originalPriceInformation
 			);
+
+			return this._priceService.sanitizePriceInformation(
+				subtractedPriceInformation
+			);
 		}
-		return partlyPaymentPriceInformation;
+
+		return this._priceService.sanitizePriceInformation(
+			partlyPaymentPriceInformation
+		);
 	}
 
 	public getBuyPriceInformation(
@@ -95,12 +104,18 @@ export class OrderItemPriceService {
 				0,
 				orderItem.amount
 			);
-			return this.subtractPriceInformation(
+
+			const subtractedPriceInformation = this._priceService.subtractPriceInformation(
 				buyPriceInformation,
 				originalPriceInformation
 			);
+
+			return this._priceService.sanitizePriceInformation(
+				subtractedPriceInformation
+			);
 		}
-		return buyPriceInformation;
+
+		return this._priceService.sanitizePriceInformation(buyPriceInformation);
 	}
 
 	public getCancelPriceInformation(
@@ -115,20 +130,6 @@ export class OrderItemPriceService {
 			);
 		}
 		return this._priceService.getEmptyPriceInformation();
-	}
-
-	private subtractPriceInformation(
-		priceInformation: PriceInformation,
-		originalPriceInformation: PriceInformation
-	): PriceInformation {
-		let amount = priceInformation.amount - originalPriceInformation.amount;
-
-		return this._priceService.calculatePriceInformation(
-			amount,
-			priceInformation.taxRate,
-			originalPriceInformation.amountLeftToPay,
-			originalPriceInformation.alreadyPayed
-		);
 	}
 
 	public calculateAmounts(

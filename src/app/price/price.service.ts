@@ -47,7 +47,7 @@ export class PriceService {
 				? this.toFixed(amount - amount / taxRate)
 				: 0;
 
-		return {
+		return this.sanitizePriceInformation({
 			amount: this.toFixed(amount),
 			unitPrice: this.toFixed(amount - taxAmount),
 			taxRate: taxAmount > 0 ? taxRate : 0,
@@ -58,7 +58,7 @@ export class PriceService {
 			alreadyPayed: this.toFixed(alreadyPayed ? alreadyPayed : 0),
 			discountRate: this.toFixed(0),
 			discount: this.toFixed(0)
-		};
+		});
 	}
 
 	public addPriceInformation(
@@ -82,20 +82,36 @@ export class PriceService {
 		};
 	}
 
-	private sanitizeNum(sanitizeNumber: number): number {
-		return +sanitizeNumber.toFixed(0);
-	}
-
-	private sanitizePriceInformation(pi: PriceInformation): PriceInformation {
+	public sanitizePriceInformation(pi: PriceInformation): PriceInformation {
 		return {
-			amount: pi.amount ? pi.amount : 0,
-			unitPrice: pi.unitPrice ? pi.unitPrice : 0,
+			amount: pi.amount ? this.sanitize(pi.amount) : 0,
+			unitPrice: pi.unitPrice ? this.sanitize(pi.unitPrice) : 0,
 			taxRate: pi.taxRate ? pi.taxRate : 0,
 			taxAmount: pi.taxAmount ? pi.taxAmount : 0,
-			amountLeftToPay: pi.amountLeftToPay ? pi.amountLeftToPay : 0,
+			amountLeftToPay: pi.amountLeftToPay
+				? this.sanitize(pi.amountLeftToPay)
+				: 0,
 			alreadyPayed: pi.alreadyPayed ? pi.alreadyPayed : 0,
 			discountRate: pi.discountRate ? pi.discountRate : 0,
 			discount: pi.discount ? pi.discount : 0
 		};
+	}
+
+	public subtractPriceInformation(
+		priceInformation: PriceInformation,
+		originalPriceInformation: PriceInformation
+	): PriceInformation {
+		let amount = priceInformation.amount - originalPriceInformation.amount;
+
+		return this.calculatePriceInformation(
+			amount,
+			priceInformation.taxRate,
+			originalPriceInformation.amountLeftToPay,
+			originalPriceInformation.alreadyPayed
+		);
+	}
+
+	private sanitizeNum(sanitizeNumber: number): number {
+		return +sanitizeNumber.toFixed(0);
 	}
 }
