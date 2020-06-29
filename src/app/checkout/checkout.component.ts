@@ -3,7 +3,12 @@ import { Order } from "@wizardcoder/bl-model";
 import { CartOrderService } from "../cart/cart-order/cart-order.service";
 import { CheckoutService } from "./checkout.service";
 
-type Step = { name: string; valid: boolean; showButton: boolean };
+type Step = {
+	name: string;
+	valid: boolean;
+	showConfirmButton: boolean;
+	showHeader: boolean;
+};
 
 @Component({
 	selector: "app-checkout",
@@ -17,6 +22,7 @@ export class CheckoutComponent implements OnInit {
 	public step: Step;
 	private steps: Step[];
 	private stepIndex: number;
+	public checkoutError: any;
 
 	constructor(
 		private _cartOrderService: CartOrderService,
@@ -61,13 +67,15 @@ export class CheckoutComponent implements OnInit {
 		this._checkoutService
 			.checkout(this.order)
 			.then(order => {
-				console.log("checkout finished!", order);
 				this.onDismiss();
 			})
 			.catch(e => {
 				this.onCheckoutError(e);
-				console.log("checkout failed", e);
 			});
+	}
+
+	public onCustomerDetailValid(valid: boolean) {
+		this.step.valid = valid;
 	}
 
 	public onPaymentConfirmed() {
@@ -75,7 +83,11 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	public onCheckoutError(e: any) {
-		console.log("error!", e);
+		this.step.name = "error";
+		this.step.valid = false;
+		this.step.showConfirmButton = false;
+		this.step.showHeader = true;
+		this.checkoutError = e;
 	}
 
 	public onPaymentFailure() {
@@ -84,14 +96,37 @@ export class CheckoutComponent implements OnInit {
 	}
 
 	private calculateSteps(order: Order): Step[] {
-		let steps = [{ name: "summary", valid: true, showButton: true }];
+		let steps = [
+			{
+				name: "summary",
+				valid: true,
+				showConfirmButton: true,
+				showHeader: true
+			}
+		];
 
 		if (order.amount !== 0) {
-			steps.push({ name: "payment", valid: false, showButton: true });
+			steps.push({
+				name: "payment",
+				valid: false,
+				showConfirmButton: true,
+				showHeader: true
+			});
 		}
 
-		steps.push({ name: "processing", valid: true, showButton: false });
-		steps.push({ name: "done", valid: false, showButton: false });
+		steps.push({
+			name: "processing",
+			valid: true,
+			showConfirmButton: false,
+			showHeader: false
+		});
+
+		steps.push({
+			name: "done",
+			valid: false,
+			showConfirmButton: false,
+			showHeader: true
+		});
 
 		return steps;
 	}
