@@ -37,7 +37,13 @@ export class PaymentHandlerService {
 	private createPayments(orderId: string): Payment[] {
 		const branch = this._branchStoreService.getCurrentBranch();
 		const payments: Payment[] = [];
-		let customerDetail = this._customerDetailService.get();
+		let customerDetail;
+
+		try {
+			customerDetail = this._customerDetailService.get();
+		} catch (e) {
+			customerDetail = null;
+		}
 
 		for (const paymentChoice of this._paymentChoices) {
 			payments.push(
@@ -66,8 +72,8 @@ export class PaymentHandlerService {
 			order: orderId,
 			amount: amount,
 			branch: branchId,
-			customer: customerDetail.id,
-			viewableFor: [customerDetail.blid],
+			customer: customerDetail ? customerDetail.id : null,
+			viewableFor: [customerDetail ? customerDetail.blid : null],
 			taxAmount: 0
 		} as Payment;
 	}

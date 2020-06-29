@@ -3,13 +3,15 @@ import { CartItemAction } from "../cart-item-action";
 import { BranchItemHelperService } from "../../../branch/branch-item-helper/branch-item-helper.service";
 import { BranchHelperService } from "../../../branch/branch-helper/branch-helper.service";
 import { DateService } from "../../../date/date.service";
+import { CustomerService } from "../../../customer/customer.service";
 
 export class CartItemActionProvider {
 	private _item: Item;
 	constructor(
 		private _branchItemHelperService: BranchItemHelperService,
 		private _branchHelperService: BranchHelperService,
-		private _dateService: DateService
+		private _dateService: DateService,
+		private _customerService: CustomerService
 	) {}
 
 	public getValidActionsForOrderItem(
@@ -48,10 +50,14 @@ export class CartItemActionProvider {
 		this._item = item;
 		let actions = [];
 
-		actions = actions.concat(this.getValidActionsForRent());
-		actions = actions.concat(this.getValidActionsForPartlyPayment());
-		actions = actions.concat(this.getValidActionsForBuy());
-		actions = actions.concat(this.getValidActionsForSell());
+		if (this._customerService.haveCustomer()) {
+			actions = actions.concat(this.getValidActionsForRent());
+			actions = actions.concat(this.getValidActionsForPartlyPayment());
+			actions = actions.concat(this.getValidActionsForBuy());
+			actions = actions.concat(this.getValidActionsForSell());
+		} else {
+			actions = actions.concat(this.getValidActionsForBuy());
+		}
 
 		return actions;
 	}
