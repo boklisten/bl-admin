@@ -1,19 +1,33 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
-import { Subject } from "rxjs/internal/Subject";
+import { Subject, Subscription } from "rxjs";
 
 @Injectable({
 	providedIn: "root"
 })
 export class BlcScannerService {
 	private _isbn$: Subject<string>;
+	private _blid$: Subject<string>;
 
 	constructor() {
 		this._isbn$ = new Subject<string>();
+		this._blid$ = new Subject<string>();
 	}
 
 	public onIsbn(): Observable<string> {
 		return this._isbn$.asObservable();
+	}
+
+	public onBlid(func: (blid: string) => void): Subscription {
+		return this._blid$.subscribe(func);
+	}
+
+	public scanBlid(scannedString: string) {
+		const blid = scannedString;
+
+		if (blid.length === 12) {
+			this._blid$.next(blid);
+		}
 	}
 
 	public scanIsbn(scannedString: string) {

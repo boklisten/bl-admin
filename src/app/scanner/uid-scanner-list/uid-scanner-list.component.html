@@ -1,0 +1,25 @@
+<ul class="list-group" blcScanner>
+	<li class="list-group-item list-group-item-secondary">
+		Scanned {{blids.length}} BLIDs
+	</li>
+
+	<li class="list-group-item list-group-item-warning" *ngIf="alreadyScanned">
+		BLID "{{alreadyScanned}}" is already scanned.
+	</li>
+
+	<li
+		class="list-group-item d-flex justify-content-between align-items-center"
+		*ngFor="let blid of blids; let i = index;"
+	>
+		<strong>
+			<fa-icon icon="barcode" class="mr-2"></fa-icon>
+			<span>{{blid}}</span>
+		</strong>
+		<button
+			class="btn btn-outline-secondary btn-sm"
+			(click)="onRemoveBlid(i)"
+		>
+			<fa-icon icon="times"></fa-icon>
+		</button>
+	</li>
+</ul>
