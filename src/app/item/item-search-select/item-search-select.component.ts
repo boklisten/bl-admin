@@ -3,7 +3,10 @@ import {
 	OnInit,
 	OnDestroy,
 	Output,
-	EventEmitter
+	EventEmitter,
+	Input,
+	SimpleChanges,
+	OnChanges
 } from "@angular/core";
 import { Item } from "@wizardcoder/bl-model";
 import { ItemSearchService } from "../item-search/item-search.service";
@@ -14,8 +17,9 @@ import { Subscription } from "rxjs";
 	templateUrl: "./item-search-select.component.html",
 	styleUrls: ["./item-search-select.component.scss"]
 })
-export class ItemSearchSelectComponent implements OnInit, OnDestroy {
+export class ItemSearchSelectComponent implements OnInit, OnDestroy, OnChanges {
 	@Output() itemSelect: EventEmitter<Item>;
+	@Input() item: Item;
 
 	public items: Item[];
 	public wait: boolean;
@@ -35,6 +39,12 @@ export class ItemSearchSelectComponent implements OnInit, OnDestroy {
 	ngOnDestroy() {
 		this.itemSearchResult$.unsubscribe();
 		this.itemSearchResultWait$.unsubscribe();
+	}
+
+	ngOnChanges(changes: SimpleChanges) {
+		if (changes["item"]) {
+			this.setSelectedItem(changes["item"].currentValue);
+		}
 	}
 
 	public selectItem(index: number) {

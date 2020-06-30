@@ -1,10 +1,46 @@
 <div class="container-fluid mt-2">
 	<div class="row">
-		<div class="col-4">
+		<div class="col-12">
+			<div class="alert alert-warning text-center" *ngIf="wait">
+				<fa-icon icon="circle-notch" [spin]="true"></fa-icon>
+			</div>
+
+			<div class="alert alert-success text-center" *ngIf="successStatus">
+				<fa-icon icon="check-circle" class="mr-2"></fa-icon>
+				<span
+					>Added {{successStatus.numberOfBlids}} BLIDs for item
+					"{{successStatus.title}}" to DB
+				</span>
+			</div>
+
+			<div class="alert alert-danger text-center" *ngIf="error">
+				<fa-icon icon="excalmation-triangle" class="mr-2"></fa-icon>
+				<span>Failed to add BLIDs for item to DB. </span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-3">
 			<app-item-search-select
 				(itemSelect)="onItemSelect($event)"
+				[item]="selectedItem"
 			></app-item-search-select>
 		</div>
-		<div class="col-4"><app-uid-scanner-list></app-uid-scanner-list></div>
+		<div class="col-3">
+			<app-uid-scanner-list
+				(listChange)="onBlidListChange($event)"
+				[list]="blids"
+			></app-uid-scanner-list>
+		</div>
+		<div class="col-6">
+			<button
+				class="btn btn-success btn-block"
+				[disabled]="!selectedItem || blids.length <= 0"
+				(click)="onInsertToDB()"
+			>
+				<span>Insert BLIDs to DB</span>
+			</button>
+		</div>
 	</div>
 </div>
