@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Item } from "@wizardcoder/bl-model";
+import { UniqueItemService } from "@wizardcoder/bl-connect";
 
 @Component({
 	selector: "app-scanner",
@@ -13,7 +14,7 @@ export class ScannerComponent implements OnInit {
 	public successStatus: { numberOfBlids: number; title: string };
 	public error: boolean;
 
-	constructor() {
+	constructor(private uniqeItemService: UniqueItemService) {
 		this.blids = [];
 	}
 
@@ -36,23 +37,44 @@ export class ScannerComponent implements OnInit {
 			}"`
 		);
 
-		setTimeout(() => {
-			/*
-			this.successStatus = {
-				title: this.selectedItem.title,
-				numberOfBlids: this.blids.length
-			};
-      */
-			this.error = true;
+		this.pushUniqueItemsToDB()
+			.then(() => {
+				this.wait = false;
+				this.successStatus = {
+					title: this.selectedItem.title,
+					numberOfBlids: this.blids.length
+				};
+				this.selectedItem = null;
+				this.blids = [];
 
-			this.wait = false;
-			this.selectedItem = null;
-			this.blids = [];
+				setTimeout(() => {
+					this.successStatus = null;
+					this.error = false;
+				}, 3500);
+			})
+			.catch(() => {
+				this.error = true;
+				this.wait = false;
+				setTimeout(() => {
+					this.error = false;
+				}, 3500);
+			});
+	}
 
-			setTimeout(() => {
-				this.successStatus = null;
-				this.error = false;
-			}, 3500);
-		}, 1500);
+	private async pushUniqueItemsToDB(): Promise<boolean> {
+		for (let blid of this.blids) {
+			try {
+				await this.uniqeItemService.add({
+					id: "",
+					item: this.selectedItem.id,
+					blid: blid,
+					title: this.selectedItem.title
+				});
+			} catch (e) {
+				throw e;
+			}
+		}
+
+		return true;
 	}
 }
