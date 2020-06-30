@@ -1,0 +1,35 @@
+<div class="card-header">
+	<h3><fa-icon icon="barcode" class="mr-2"></fa-icon>{{blid}}</h3>
+</div>
+<div class="card-body">
+	<div class="row">
+		<div class="col-12">
+			<div class="alert alert-info">
+				<fa-icon icon="exclamation-circle" class="mr-2"></fa-icon>
+				The BLID "{{blid}}" does not have corresponding ISBN. Please
+				scan and register a ISBN.
+			</div>
+		</div>
+	</div>
+	<div class="row mt-3 mb-3">
+		<div class="col-12">
+			<app-item-search-select
+				(itemSelect)="onItemSelect($event)"
+				[item]="item"
+			></app-item-search-select>
+		</div>
+	</div>
+</div>
+<div class="card-footer">
+	<div class="alert alert-warning text-center" *ngIf="wait">
+		<fa-icon icon="circle-notch" [spin]="true"></fa-icon>
+	</div>
+	<button
+		class="btn btn-outline-success btn-block"
+		*ngIf="!wait"
+		[disabled]="!item || !blid"
+		(click)="onInsertToDB()"
+	>
+		Register
+	</button>
+</div>

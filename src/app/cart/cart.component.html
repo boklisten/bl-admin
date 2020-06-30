@@ -1,4 +1,5 @@
-<div class="container-fluid">
+{{uniqueItem ? uniqueItem.title : ''}} {{uniqueItem ? uniqueItem.blid : ''}}
+<div class="container-fluid" blcScanner>
 	<div class="row mt-2">
 		<div class="col-lg-6 col-md-12">
 			<ngb-tabset
@@ -76,3 +77,10 @@
 		</div>
 	</div>
 </div>
+
+<ng-template #addUniqeItemModal let-c="close" let-d="dismiss">
+	<app-unique-item-register
+		[blid]="notAddedUniqeItemBlid"
+		(registered)="onUniqueItemRegistered($event)"
+	></app-unique-item-register>
+</ng-template>

@@ -30,6 +30,7 @@ import { CartListItemAgeComponent } from "./cart-list/cart-list-item/cart-list-i
 import { CartListItemAmountComponent } from "./cart-list/cart-list-item/cart-list-item-amount/cart-list-item-amount.component";
 import { CartItemService } from "./cart-item/cart-item.service";
 import { CheckoutModule } from "../checkout/checkout.module";
+import { UniqueItemModule } from "../unique-item/unique-item.module";
 
 @NgModule({
 	imports: [
@@ -48,7 +49,8 @@ import { CheckoutModule } from "../checkout/checkout.module";
 		OrderModule,
 		PaymentModule,
 		CustomerItemModule,
-		CheckoutModule
+		CheckoutModule,
+		UniqueItemModule
 	],
 	declarations: [
 		CartComponent,

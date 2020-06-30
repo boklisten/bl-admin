@@ -1,11 +1,13 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { UserDetail } from "@wizardcoder/bl-model";
+import { Component, OnInit, OnDestroy, ViewChild } from "@angular/core";
+import { UserDetail, UniqueItem } from "@wizardcoder/bl-model";
 import { CartService } from "./cart.service";
 import { CustomerService } from "../customer/customer.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { NgbTabChangeEvent } from "@ng-bootstrap/ng-bootstrap";
 import { CheckoutService } from "../checkout/checkout.service";
 import { Subscription } from "rxjs";
+import { BlidScannerService } from "../scanner/blid-scanner/blid-scanner.service";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
 	selector: "app-cart",
@@ -21,15 +23,30 @@ export class CartComponent implements OnInit, OnDestroy {
 	private checkoutChange$: Subscription;
 	private customerChange$: Subscription;
 	private custmoerClear$: Subscription;
+	public uniqueItem: any;
+	public notAddedUniqeItemBlid: string;
+	@ViewChild("addUniqeItemModal") private addUniqeItemModal;
 
 	constructor(
 		private _cartService: CartService,
 		private _customerService: CustomerService,
 		private _router: Router,
 		private _activatedRoute: ActivatedRoute,
-		private _checkoutService: CheckoutService
+		private _checkoutService: CheckoutService,
+		private _blidScannerService: BlidScannerService,
+		private _modalService: NgbModal
 	) {
 		this.haveCustomer = false;
+
+		this._blidScannerService.onUniqueItem(uniqueItem => {
+			this.uniqueItem = uniqueItem;
+		});
+
+		this._blidScannerService.onUniqueItemDoesNotExist(blid => {
+			this.notAddedUniqeItemBlid = blid;
+			this._modalService.dismissAll();
+			this._modalService.open(this.addUniqeItemModal);
+		});
 	}
 
 	ngOnInit() {
@@ -43,6 +60,11 @@ export class CartComponent implements OnInit, OnDestroy {
 		this.checkoutChange$.unsubscribe();
 		this.customerChange$.unsubscribe();
 		this.custmoerClear$.unsubscribe();
+	}
+
+	public onUniqueItemRegistered(uniqueItem: UniqueItem) {
+		console.log("uniqueItem registered", uniqueItem);
+		this._modalService.dismissAll();
 	}
 
 	public onCartConfirmed() {
