@@ -12,6 +12,6 @@ export class ScannerComponent implements OnInit {
 	ngOnInit() {}
 
 	onItemSelect(item: Item) {
-		console.log("selected Item", item.title);
+		console.log("selected Item", item ? item.title : "<no item>");
 	}
 }

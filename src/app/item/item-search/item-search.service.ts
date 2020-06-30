@@ -3,6 +3,7 @@ import { ItemService } from "@wizardcoder/bl-connect";
 import { Item } from "@wizardcoder/bl-model";
 import { Subject, Subscription, ReplaySubject } from "rxjs";
 import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
+import { BlcScannerService } from "../../bl-common/blc-scanner/blc-scanner.service";
 
 @Injectable()
 export class ItemSearchService {
@@ -11,10 +12,12 @@ export class ItemSearchService {
 
 	constructor(
 		private _itemService: ItemService,
-		private _blcSortService: BlcSortService
+		private _blcSortService: BlcSortService,
+		private _blcScannerService: BlcScannerService
 	) {
 		this._result$ = new ReplaySubject(1);
 		this._wait$ = new Subject();
+		this.handleIsbnScanChange();
 	}
 
 	public subscribe(func: (items: Item[]) => void): Subscription {
@@ -25,8 +28,22 @@ export class ItemSearchService {
 		return this._wait$.asObservable().subscribe(func);
 	}
 
-	public async search(searchTerm: string): Promise<Item[]> {
-		if (!this.isSearchTermValid(searchTerm)) {
+	public searchISBN(isbn: number) {
+		if (!this.isSearchTermValid(isbn.toString())) {
+			return;
+		}
+
+		this.searchByIsbn(isbn)
+			.then(items => {
+				this.setSearchResult(items);
+			})
+			.catch(() => {
+				this.setSearchResult([]);
+			});
+	}
+
+	public async search(searchTerm: string | number): Promise<Item[]> {
+		if (!this.isSearchTermValid(searchTerm.toString())) {
 			return;
 		}
 
@@ -35,7 +52,7 @@ export class ItemSearchService {
 		let items = [];
 
 		try {
-			items = await this.searchForItems(searchTerm);
+			items = await this.searchForItems(searchTerm.toString());
 		} catch (e) {
 			items = [];
 		}
@@ -49,6 +66,12 @@ export class ItemSearchService {
 		return searchTerm && searchTerm.length >= 3;
 	}
 
+	private handleIsbnScanChange() {
+		this._blcScannerService.onIsbn(isbn => {
+			this.searchISBN(isbn);
+		});
+	}
+
 	private async searchForItems(term: string): Promise<Item[]> {
 		let items = [];
 
@@ -56,7 +79,8 @@ export class ItemSearchService {
 			items = await this.searchByTerm(term);
 		} catch (e) {
 			try {
-				items = await this.searchByIsbn(term);
+				console.log("trying isbn");
+				items = await this.searchByIsbn(parseInt(term, 10));
 			} catch (e) {
 				items = [];
 			}
@@ -64,7 +88,7 @@ export class ItemSearchService {
 		return items;
 	}
 
-	private async searchByIsbn(isbn: string): Promise<Item[]> {
+	private async searchByIsbn(isbn: number): Promise<Item[]> {
 		let items: Item[];
 
 		try {

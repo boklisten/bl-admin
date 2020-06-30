@@ -29,7 +29,7 @@ export class CartItemSearchService {
 	}
 
 	private onIsbn() {
-		this._blcScannerService.onIsbn().subscribe((isbn: string) => {
+		this._blcScannerService.onIsbn((isbn: number) => {
 			this._searching$.next(true);
 
 			this.handleIsbnScan(isbn)
@@ -42,7 +42,7 @@ export class CartItemSearchService {
 		});
 	}
 
-	private async handleIsbnScan(isbn: string): Promise<boolean> {
+	private async handleIsbnScan(isbn: number): Promise<boolean> {
 		let foundItem = await this.scanForOrderItem(isbn);
 
 		if (!foundItem) {
@@ -56,24 +56,15 @@ export class CartItemSearchService {
 		return foundItem;
 	}
 
-	private async scanForOrderItem(isbn: string): Promise<boolean> {
-		if (!this._customerService.haveCustomer()) {
-			return false;
-		}
-
-		throw "not implemented";
-
-		//return await this._customerOrderItemListService.addItemWithIsbn(isbn);
+	private async scanForOrderItem(isbn: number): Promise<boolean> {
+		throw "cartItemSearchService.scanForOrderItem(): not implemented";
 	}
 
-	private async scanForCustomerItem(isbn: string): Promise<boolean> {
-		if (!this._customerService.haveCustomer()) {
-			return false;
-		}
-		return await this._customerItemListService.addItemWithIsbn(isbn);
+	private async scanForCustomerItem(isbn: number): Promise<boolean> {
+		throw "cartItemSearchService.scanForCustomerItem(): not implemented";
 	}
 
-	private async scanForItem(isbn: string): Promise<boolean> {
+	private async scanForItem(isbn: number): Promise<boolean> {
 		throw "cartItemSearchService.scanForItem(): not implemented";
 		/*
 		const items = await this._itemSearchService.search(isbn, true);

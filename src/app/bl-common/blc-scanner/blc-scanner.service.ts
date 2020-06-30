@@ -6,16 +6,16 @@ import { Subject, Subscription } from "rxjs";
 	providedIn: "root"
 })
 export class BlcScannerService {
-	private _isbn$: Subject<string>;
+	private _isbn$: Subject<number>;
 	private _blid$: Subject<string>;
 
 	constructor() {
-		this._isbn$ = new Subject<string>();
+		this._isbn$ = new Subject<number>();
 		this._blid$ = new Subject<string>();
 	}
 
-	public onIsbn(): Observable<string> {
-		return this._isbn$.asObservable();
+	public onIsbn(func: (isbn: number) => void): Subscription {
+		return this._isbn$.subscribe(func);
 	}
 
 	public onBlid(func: (blid: string) => void): Subscription {
@@ -31,26 +31,11 @@ export class BlcScannerService {
 	}
 
 	public scanIsbn(scannedString: string) {
-		const reversedSearchString = scannedString.split("").reverse();
-		let isbn = "";
-		const isbnMaxLength = 12;
-		let isbnLength = 0;
-		for (const num of reversedSearchString) {
-			if (parseInt(num, 10) || num === "0") {
-				if (isbnLength <= isbnMaxLength) {
-					isbn += num;
-
-					if (isbnLength === isbnMaxLength) {
-						const isbnSearchString = isbn
-							.split("")
-							.reverse()
-							.join("");
-						this._isbn$.next(isbnSearchString);
-					}
-
-					isbnLength++;
-				}
-			}
+		const isbn = parseInt(scannedString, 10);
+		if (Number.isNaN(isbn)) {
+			return;
 		}
+
+		this._isbn$.next(isbn);
 	}
 }

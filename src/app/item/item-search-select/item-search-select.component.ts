@@ -53,6 +53,9 @@ export class ItemSearchSelectComponent implements OnInit, OnDestroy {
 	private handleItemSearchResultChange() {
 		this.itemSearchResult$ = this._itemSearchService.subscribe(items => {
 			this.items = items;
+			if (this.items.length == 1) {
+				this.selectItem(0);
+			}
 		});
 	}
 

@@ -14,21 +14,23 @@ export class BlcScannerDirective {
 	@HostListener("window:keydown", ["$event"])
 	handleKeyDown(event: KeyboardEvent) {
 		if (event.keyCode === 13) {
-			// the key is enter
-			this._blcScannerService.scanBlid(this.scannerString);
-
-			this._blcScannerService.scanIsbn(this.scannerString);
+			// enter
+			if (this.scannerString.length === 12) {
+				this._blcScannerService.scanBlid(this.scannerString);
+			}
+			if (this.scannerString.length === 13) {
+				this._blcScannerService.scanIsbn(this.scannerString);
+			}
 			this.scannerString = "";
 		} else {
 			if (this.isAlphaNumeric(event.key)) {
 				this.scannerString += event.key;
 			}
 		}
-		/*
-		if (this.scannerString.length > 20) {
+
+		if (this.scannerString.length > 13) {
 			this.scannerString = "";
 		}
-    */
 	}
 
 	private isAlphaNumeric(key: string) {

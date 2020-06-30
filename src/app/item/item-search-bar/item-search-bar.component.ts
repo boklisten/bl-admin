@@ -22,13 +22,13 @@ export class ItemSearchBarComponent implements OnInit, OnDestroy {
 		this.itemSearchResultWait$.unsubscribe();
 	}
 
+	public onSearch(term: string | number) {
+		this._itemSearchService.search(term);
+	}
+
 	private handleItemSearchResultWaitChange() {
 		this.itemSearchResultWait$ = this._itemSearchService.onWait(wait => {
 			this.wait = wait;
 		});
-	}
-
-	onSearch(term: string) {
-		this._itemSearchService.search(term);
 	}
 }
