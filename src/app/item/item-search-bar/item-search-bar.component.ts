@@ -15,11 +15,6 @@ export class ItemSearchBarComponent implements OnInit, OnDestroy {
 	constructor(private _itemSearchService: ItemSearchService) {}
 
 	ngOnInit() {
-		/*
-		if (this._itemSearchService.getSearchTerm()) {
-			this.searchTerm = this._itemSearchService.getSearchTerm();
-		}
-    */
 		this.handleItemSearchResultWaitChange();
 	}
 

@@ -20,7 +20,8 @@ import {
 	NgbTooltipModule
 } from "@ng-bootstrap/ng-bootstrap";
 import { ItemSelectListComponent } from "./item-select-list/item-select-list.component";
-import { ItemSearchResultItemComponent } from './item-search/item-search-result/item-search-result-item/item-search-result-item.component';
+import { ItemSearchResultItemComponent } from "./item-search/item-search-result/item-search-result-item/item-search-result-item.component";
+import { ItemSearchSelectComponent } from "./item-search-select/item-search-select.component";
 
 @NgModule({
 	imports: [
@@ -42,7 +43,8 @@ import { ItemSearchResultItemComponent } from './item-search/item-search-result/
 		ItemUploadComponent,
 		ItemEditListComponent,
 		ItemSelectListComponent,
-		ItemSearchResultItemComponent
+		ItemSearchResultItemComponent,
+		ItemSearchSelectComponent
 	],
 	providers: [ItemSearchService],
 	exports: [
@@ -50,7 +52,8 @@ import { ItemSearchResultItemComponent } from './item-search/item-search-result/
 		ItemUploadComponent,
 		ItemEditListComponent,
 		ItemSelectListComponent,
-		ItemSearchComponent
+		ItemSearchComponent,
+		ItemSearchSelectComponent
 	]
 })
 export class ItemModule {}

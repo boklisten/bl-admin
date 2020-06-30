@@ -1,12 +1,7 @@
-<div class="row">
-	<div class="col-12">
-		<app-bl-search-bar [wait]="wait"
-						   i18n-placeholder="@@itemSearchBarPlaceholder"
-						   placeholder="Item Search" [term]="searchTerm" (search)="onSearch($event)"></app-bl-search-bar>
-	</div>
-</div>
-<div class="row no-gutters mt-2">
-	<div class="col-12">
-		<app-item-search-result></app-item-search-result>
-	</div>
-</div>
+<app-bl-search-bar
+	[wait]="wait"
+	i18n-placeholder="@@itemSearchBarPlaceholder"
+	placeholder="Item Search"
+	[term]="searchTerm"
+	(search)="onSearch($event)"
+></app-bl-search-bar>

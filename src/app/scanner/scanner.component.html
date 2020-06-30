@@ -1,6 +1,10 @@
 <div class="container-fluid mt-2">
 	<div class="row">
-		<div class="col-4"><app-item-search-bar></app-item-search-bar></div>
+		<div class="col-4">
+			<app-item-search-select
+				(itemSelect)="onItemSelect($event)"
+			></app-item-search-select>
+		</div>
 		<div class="col-4"><app-uid-scanner-list></app-uid-scanner-list></div>
 	</div>
 </div>
