@@ -16,6 +16,9 @@ export class ToasterComponent implements OnInit {
 	ngOnInit() {
 		this._toasterService.subscribe(toast => {
 			this.toasts.push(toast);
+			if (this.toasts.length > 10) {
+				this.toasts.shift();
+			}
 			setTimeout(() => {
 				this.toasts.shift();
 			}, toast.ms);

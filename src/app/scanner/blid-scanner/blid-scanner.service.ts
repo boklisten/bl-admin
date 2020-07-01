@@ -3,7 +3,6 @@ import { BlcScannerService } from "../../bl-common/blc-scanner/blc-scanner.servi
 import { UniqueItem } from "@wizardcoder/bl-model";
 import { UniqueItemService } from "@wizardcoder/bl-connect";
 import { Subscription, Subject } from "rxjs";
-import { ToasterService } from "../../toaster/toaster.service";
 
 @Injectable({
 	providedIn: "root"
@@ -14,8 +13,7 @@ export class BlidScannerService {
 
 	constructor(
 		private _blcScannerService: BlcScannerService,
-		private _uniqueItemService: UniqueItemService,
-		private _toasterService: ToasterService
+		private _uniqueItemService: UniqueItemService
 	) {
 		this.uniqueItem$ = new Subject();
 		this.uniqueItemDoesNotExist$ = new Subject();
@@ -35,7 +33,6 @@ export class BlidScannerService {
 
 	private handleBlidScanChange() {
 		this._blcScannerService.onBlid(blid => {
-			this._toasterService.add("BLID-SCAN", { blid: blid }, 2500);
 			this._uniqueItemService
 				.get({ query: `?blid=${blid}` })
 				.then(uniqueItems => {
