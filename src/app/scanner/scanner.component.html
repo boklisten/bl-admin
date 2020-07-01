@@ -21,23 +21,23 @@
 	</div>
 
 	<div class="row">
-		<div class="col-3">
+		<div class="col-4">
 			<app-item-search-select
 				(itemSelect)="onItemSelect($event)"
 				[item]="selectedItem"
 			></app-item-search-select>
 		</div>
-		<div class="col-3">
+		<div class="col-4">
 			<app-blid-scanner-list
 				(listChange)="onBlidListChange($event)"
 				[clear]="clearBlids"
 			></app-blid-scanner-list>
 		</div>
-		<div class="col-6">
+		<div class="col-4">
 			<div class="card">
 				<div class="card-body" *ngIf="blids.length > 0 && selectedItem">
-					You will put {{blids.length}} BLIDs to the DB. These BLIDs
-					will be mapped as
+					You will put <strong>{{blids.length}}</strong> BLIDs to the
+					DB. These BLIDs will be mapped as
 					<strong>{{selectedItem.title}}</strong> with ISBN
 					<strong>{{selectedItem.info.isbn}}</strong>
 				</div>

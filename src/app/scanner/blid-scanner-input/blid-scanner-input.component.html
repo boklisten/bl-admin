@@ -1,0 +1,15 @@
+<div class="input-group input-group-sm">
+	<input
+		type="text"
+		class="form-control"
+		placeholder="blid"
+		[(ngModel)]="blidInput"
+		(keyup.enter)="onBlidInput()"
+		autocomplete="off"
+	/>
+	<div class="input-group-append">
+		<button class="btn btn-outline-success" (click)="onBlidInput()">
+			<fa-icon icon="plus"></fa-icon>
+		</button>
+	</div>
+</div>

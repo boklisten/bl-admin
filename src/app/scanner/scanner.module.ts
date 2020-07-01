@@ -6,16 +6,24 @@ import { ScannerRoutingModule } from "./scanner-routing.module";
 import { ScannerComponent } from "./scanner.component";
 import { ItemModule } from "../item/item.module";
 import { BlidScannerListComponent } from "./blid-scanner-list/blid-scanner-list.component";
-import { BlidScannerListItemComponent } from './blid-scanner-list/blid-scanner-list-item/blid-scanner-list-item.component';
+import { BlidScannerListItemComponent } from "./blid-scanner-list/blid-scanner-list-item/blid-scanner-list-item.component";
+import { BlidScannerInputComponent } from "./blid-scanner-input/blid-scanner-input.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
-	declarations: [ScannerComponent, BlidScannerListComponent, BlidScannerListItemComponent],
+	declarations: [
+		ScannerComponent,
+		BlidScannerListComponent,
+		BlidScannerListItemComponent,
+		BlidScannerInputComponent
+	],
 	imports: [
 		CommonModule,
 		ScannerRoutingModule,
 		ItemModule,
 		BlCommonModule,
-		FontAwesomeModule
+		FontAwesomeModule,
+		FormsModule
 	]
 })
 export class ScannerModule {}

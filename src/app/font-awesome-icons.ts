@@ -73,11 +73,13 @@ import {
 	faFileInvoiceDollar,
 	faEnvelope,
 	faBell,
-	faPaperPlane
+	faPaperPlane,
+	faKeyboard
 } from "@fortawesome/free-solid-svg-icons";
 
 export function addIconsToLibrary() {
 	library.add(
+		faKeyboard,
 		faFlagCheckered,
 		faArrowCircleDown,
 		faBuilding,
