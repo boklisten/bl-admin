@@ -30,6 +30,11 @@
 					"configurations": {
 						"local": {
 							"sourceMap": true,
+
+							"scripts": [
+								"node_modules/jquery/dist/jquery.slim.min.js",
+								"node_modules/bootstrap/js/dist/util.js"
+							],
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",

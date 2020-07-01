@@ -43,6 +43,7 @@ import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 import { BlcScannerService } from "./bl-common/blc-scanner/blc-scanner.service";
 import { MessagesComponent } from "./messages/messages.component";
 import { HeaderCustomerSearchComponent } from "./header/header-customer-search/header-customer-search.component";
+import { ToasterModule } from "./toaster/toaster.module";
 
 @NgModule({
 	declarations: [
@@ -74,7 +75,8 @@ import { HeaderCustomerSearchComponent } from "./header/header-customer-search/h
 		InvoiceModule,
 		MessengerModule,
 		BookingModule,
-		ScannerModule
+		ScannerModule,
+		ToasterModule
 	],
 	providers: [
 		AuthLoginService,

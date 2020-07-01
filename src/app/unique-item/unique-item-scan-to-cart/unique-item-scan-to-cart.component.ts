@@ -5,6 +5,7 @@ import { CartItemService } from "../../cart/cart-item/cart-item.service";
 import { CartService } from "../../cart/cart.service";
 import { UniqueItem } from "@wizardcoder/bl-model";
 import { Subscription } from "rxjs";
+import { ToasterService } from "../../toaster/toaster.service";
 
 @Component({
 	selector: "app-unique-item-scan-to-cart",
@@ -25,7 +26,8 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 		private _modalService: NgbModal,
 		private _blidScannerService: BlidScannerService,
 		private _cartItemService: CartItemService,
-		private _cartService: CartService
+		private _cartService: CartService,
+		private _toasterService: ToasterService
 	) {
 		this.handleUniqueItemChange();
 		this.handleUniqueItemNotExistChange();

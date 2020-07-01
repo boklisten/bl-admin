@@ -1,0 +1,9 @@
+<div aria-live="polite" aria-atomic="true" style="position: relative">
+	<!-- Position it -->
+	<div
+		style="position: fixed; bottom: 0; right: 0; z-index: 99999; padding-right: 30px; padding-bottom: 10px"
+	>
+		<!-- Then put toasts within -->
+		<app-toast *ngFor="let toast of toasts" [toast]="toast"></app-toast>
+	</div>
+</div>
