@@ -5,10 +5,11 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ScannerRoutingModule } from "./scanner-routing.module";
 import { ScannerComponent } from "./scanner.component";
 import { ItemModule } from "../item/item.module";
-import { UidScannerListComponent } from "./uid-scanner-list/uid-scanner-list.component";
+import { BlidScannerListComponent } from "./blid-scanner-list/blid-scanner-list.component";
+import { BlidScannerListItemComponent } from './blid-scanner-list/blid-scanner-list-item/blid-scanner-list-item.component';
 
 @NgModule({
-	declarations: [ScannerComponent, UidScannerListComponent],
+	declarations: [ScannerComponent, BlidScannerListComponent, BlidScannerListItemComponent],
 	imports: [
 		CommonModule,
 		ScannerRoutingModule,

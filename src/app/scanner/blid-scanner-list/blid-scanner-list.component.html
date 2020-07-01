@@ -8,18 +8,14 @@
 	</li>
 
 	<li
-		class="list-group-item d-flex justify-content-between align-items-center"
+		class="list-group-item"
 		*ngFor="let blid of blids; let i = index;"
+		[ngClass]="{'list-group-item-danger': alreadyAddedUniqueItems[blid]}"
 	>
-		<strong>
-			<fa-icon icon="barcode" class="mr-2"></fa-icon>
-			<span>{{blid}}</span>
-		</strong>
-		<button
-			class="btn btn-outline-secondary btn-sm"
-			(click)="onRemoveBlid(i)"
-		>
-			<fa-icon icon="times"></fa-icon>
-		</button>
+		<app-blid-scanner-list-item
+			[blid]="blid"
+			(remove)="onRemoveBlid(i)"
+			(alreadyAdded)="onAlreadyAddedBlid(i)"
+		></app-blid-scanner-list-item>
 	</li>
 </ul>

@@ -13,6 +13,7 @@ export class ScannerComponent implements OnInit {
 	public wait: boolean;
 	public successStatus: { numberOfBlids: number; title: string };
 	public error: boolean;
+	public clearBlids: boolean;
 
 	constructor(private uniqeItemService: UniqueItemService) {
 		this.blids = [];
@@ -29,13 +30,8 @@ export class ScannerComponent implements OnInit {
 	}
 
 	public onInsertToDB() {
+		this.clearBlids = false;
 		this.wait = true;
-
-		console.log(
-			`should add ${this.blids.length} BLIDs as "${
-				this.selectedItem.title
-			}"`
-		);
 
 		this.pushUniqueItemsToDB()
 			.then(() => {
@@ -46,6 +42,7 @@ export class ScannerComponent implements OnInit {
 				};
 				this.selectedItem = null;
 				this.blids = [];
+				this.clearBlids = true;
 
 				setTimeout(() => {
 					this.successStatus = null;

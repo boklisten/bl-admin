@@ -21,6 +21,34 @@ export class UniqueItemStoreService {
 		}
 	}
 
+	public async get(blid: string): Promise<UniqueItem> {
+		try {
+			const uniqueItems = await this._uniqueItemService.get({
+				query: `?blid=${blid}`
+			});
+			return uniqueItems[0];
+		} catch (e) {
+			throw e;
+		}
+	}
+
+	public async checkIfAlreadyAdded(
+		blids: string[]
+	): Promise<{ [blid: string]: UniqueItem }> {
+		let alreadyAddedUniqueItems = {};
+
+		for (let blid of blids) {
+			try {
+				const uniqueItem = await this.get(blid);
+				alreadyAddedUniqueItems[blid] = uniqueItem;
+			} catch (e) {
+				alreadyAddedUniqueItems[blid] = null;
+			}
+		}
+
+		return alreadyAddedUniqueItems;
+	}
+
 	public createUniqueItem(blid: string, item: Item): UniqueItem {
 		return {
 			id: "",

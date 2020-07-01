@@ -23,6 +23,8 @@ export class CartComponent implements OnInit, OnDestroy {
 	private checkoutChange$: Subscription;
 	private customerChange$: Subscription;
 	private custmoerClear$: Subscription;
+	private uniqueItemDoesNotExist$: Subscription;
+	private uniqueItem$: Subscription;
 	public uniqueItem: any;
 	public notAddedUniqeItemBlid: string;
 	@ViewChild("addUniqeItemModal") private addUniqeItemModal;
@@ -37,16 +39,6 @@ export class CartComponent implements OnInit, OnDestroy {
 		private _modalService: NgbModal
 	) {
 		this.haveCustomer = false;
-
-		this._blidScannerService.onUniqueItem(uniqueItem => {
-			this.uniqueItem = uniqueItem;
-		});
-
-		this._blidScannerService.onUniqueItemDoesNotExist(blid => {
-			this.notAddedUniqeItemBlid = blid;
-			this._modalService.dismissAll();
-			this._modalService.open(this.addUniqeItemModal);
-		});
 	}
 
 	ngOnInit() {
@@ -54,12 +46,16 @@ export class CartComponent implements OnInit, OnDestroy {
 		this.handleCustomerChange();
 		this.handleCustomerClear();
 		this.handleCheckoutChange();
+		this.handleUniqueItemChange();
+		this.handleUniqueItemNotExistChange();
 	}
 
 	ngOnDestroy() {
 		this.checkoutChange$.unsubscribe();
 		this.customerChange$.unsubscribe();
 		this.custmoerClear$.unsubscribe();
+		this.uniqueItem$.unsubscribe();
+		this.uniqueItemDoesNotExist$.unsubscribe();
 	}
 
 	public onUniqueItemRegistered(uniqueItem: UniqueItem) {
@@ -85,6 +81,22 @@ export class CartComponent implements OnInit, OnDestroy {
 		this._router.navigate([], {
 			queryParams: { tab: tabName }
 		});
+	}
+
+	private handleUniqueItemChange() {
+		this.uniqueItem$ = this._blidScannerService.onUniqueItem(uniqueItem => {
+			this.uniqueItem = uniqueItem;
+		});
+	}
+
+	private handleUniqueItemNotExistChange() {
+		this.uniqueItemDoesNotExist$ = this._blidScannerService.onUniqueItemDoesNotExist(
+			blid => {
+				this.notAddedUniqeItemBlid = blid;
+				this._modalService.dismissAll();
+				this._modalService.open(this.addUniqeItemModal);
+			}
+		);
 	}
 
 	private handleCheckoutChange() {

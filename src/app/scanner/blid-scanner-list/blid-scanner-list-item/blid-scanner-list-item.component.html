@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-between align-items-center">
+	<strong>
+		<fa-icon icon="barcode" class="mr-2"></fa-icon>
+		<span>{{blid}}</span>
+	</strong>
+	<fa-icon icon="circle-notch" [spin]="true" *ngIf="wait"></fa-icon>
+	<button class="btn btn-outline-secondary btn-sm" (click)="onRemove()">
+		<fa-icon icon="times"></fa-icon>
+	</button>
+</div>
+<div *ngIf="uniqueItem">
+	<small>Already added as <strong>{{uniqueItem.title}}</strong></small>
+</div>
