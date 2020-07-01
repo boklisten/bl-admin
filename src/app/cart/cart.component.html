@@ -1,4 +1,4 @@
-{{uniqueItem ? uniqueItem.title : ''}} {{uniqueItem ? uniqueItem.blid : ''}}
+<app-unique-item-scan-to-cart></app-unique-item-scan-to-cart>
 <div class="container-fluid" blcScanner>
 	<div class="row mt-2">
 		<div class="col-lg-6 col-md-12">
@@ -77,10 +77,3 @@
 		</div>
 	</div>
 </div>
-
-<ng-template #addUniqeItemModal let-c="close" let-d="dismiss">
-	<app-unique-item-register
-		[blid]="notAddedUniqeItemBlid"
-		(registered)="onUniqueItemRegistered($event)"
-	></app-unique-item-register>
-</ng-template>

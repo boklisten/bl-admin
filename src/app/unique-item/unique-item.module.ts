@@ -5,9 +5,10 @@ import { BlCommonModule } from "../bl-common/bl-common.module";
 import { ScannerModule } from "../scanner/scanner.module";
 import { ItemModule } from "../item/item.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { UniqueItemScanToCartComponent } from "./unique-item-scan-to-cart/unique-item-scan-to-cart.component";
 
 @NgModule({
-	declarations: [UniqueItemRegisterComponent],
+	declarations: [UniqueItemRegisterComponent, UniqueItemScanToCartComponent],
 	imports: [
 		CommonModule,
 		BlCommonModule,
@@ -15,6 +16,6 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 		ItemModule,
 		FontAwesomeModule
 	],
-	exports: [UniqueItemRegisterComponent]
+	exports: [UniqueItemRegisterComponent, UniqueItemScanToCartComponent]
 })
 export class UniqueItemModule {}

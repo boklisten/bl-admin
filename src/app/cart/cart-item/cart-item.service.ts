@@ -1,6 +1,12 @@
 import { Injectable } from "@angular/core";
 import { CartItem } from "./cart-item";
-import { Item, OrderItem, Order, CustomerItem } from "@wizardcoder/bl-model";
+import {
+	Item,
+	OrderItem,
+	Order,
+	CustomerItem,
+	UniqueItem
+} from "@wizardcoder/bl-model";
 import { ItemCartItem } from "./cart-item-types/item-cart-item";
 import { ItemPriceService } from "../../price/item-price/item-price.service";
 import { BranchItemHelperService } from "../../branch/branch-item-helper/branch-item-helper.service";
@@ -100,5 +106,19 @@ export class CartItemService {
 			this._cartItemActionProvider,
 			this._cartItemOrderItemProvider
 		);
+	}
+
+	public async createCartItemByUniqueItem(
+		uniqueItem: UniqueItem
+	): Promise<CartItem> {
+		let item: Item;
+
+		try {
+			item = await this._itemService.getById(uniqueItem.item);
+		} catch (e) {
+			throw Error("could not get item");
+		}
+
+		return this.createCartItemByItem(item);
 	}
 }
