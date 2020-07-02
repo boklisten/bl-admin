@@ -9,13 +9,15 @@ import { BlidScannerListComponent } from "./blid-scanner-list/blid-scanner-list.
 import { BlidScannerListItemComponent } from "./blid-scanner-list/blid-scanner-list-item/blid-scanner-list-item.component";
 import { BlidScannerInputComponent } from "./blid-scanner-input/blid-scanner-input.component";
 import { FormsModule } from "@angular/forms";
+import { IsbnScannerAddToCartComponent } from "./isbn-scanner/isbn-scanner-add-to-cart/isbn-scanner-add-to-cart.component";
 
 @NgModule({
 	declarations: [
 		ScannerComponent,
 		BlidScannerListComponent,
 		BlidScannerListItemComponent,
-		BlidScannerInputComponent
+		BlidScannerInputComponent,
+		IsbnScannerAddToCartComponent
 	],
 	imports: [
 		CommonModule,
@@ -24,6 +26,7 @@ import { FormsModule } from "@angular/forms";
 		BlCommonModule,
 		FontAwesomeModule,
 		FormsModule
-	]
+	],
+	exports: [IsbnScannerAddToCartComponent]
 })
 export class ScannerModule {}

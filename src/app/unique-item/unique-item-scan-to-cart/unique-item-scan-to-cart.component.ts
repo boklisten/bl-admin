@@ -64,10 +64,7 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 	private addUniqueItemToCart(uniqueItem: UniqueItem) {
 		this._uniqueItemScanToCartService
 			.addUniqueItemToCart(uniqueItem)
-			.then(added => {
-				console.log("added", added);
-				//this._cartService.add(cartItem);
-			})
+			.then(added => {})
 			.catch(e => {
 				console.log("could not add cart item", e);
 			});

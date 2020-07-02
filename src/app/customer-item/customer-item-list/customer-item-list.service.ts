@@ -74,7 +74,7 @@ export class CustomerItemListService {
 		throw new ReferenceError(`blid ${blid} not found`);
 	}
 
-	public getByISBN(isbn: string): CustomerItemWithItem {
+	public getByISBN(isbn: number): CustomerItemWithItem {
 		for (let customerItemWithItem of this._customerItemList) {
 			if (customerItemWithItem.item.info.isbn === isbn) {
 				return customerItemWithItem;

@@ -31,6 +31,7 @@ import { CartListItemAmountComponent } from "./cart-list/cart-list-item/cart-lis
 import { CartItemService } from "./cart-item/cart-item.service";
 import { CheckoutModule } from "../checkout/checkout.module";
 import { UniqueItemModule } from "../unique-item/unique-item.module";
+import { ScannerModule } from "../scanner/scanner.module";
 
 @NgModule({
 	imports: [
@@ -50,7 +51,8 @@ import { UniqueItemModule } from "../unique-item/unique-item.module";
 		PaymentModule,
 		CustomerItemModule,
 		CheckoutModule,
-		UniqueItemModule
+		UniqueItemModule,
+		ScannerModule
 	],
 	declarations: [
 		CartComponent,
