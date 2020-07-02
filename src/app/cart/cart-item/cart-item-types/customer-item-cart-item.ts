@@ -20,6 +20,7 @@ export class CustomerItemCartItem extends Subscribable implements CartItem {
 	) {
 		super();
 		this.setAction(this.getValidActions()[0]);
+		this.setBLID(this._customerItem.blid);
 	}
 
 	public async getPriceInformation(): Promise<PriceInformation> {

@@ -11,6 +11,7 @@ export class CartItemOrderItemProvider {
 			type: cartItemAction.action as any,
 			item: cartItem.getItemId(),
 			title: cartItem.getTitle(),
+			blid: cartItem.getBLID(),
 			age: cartItemAction.age ? cartItemAction.age : null,
 			amount: priceInformation.amount,
 			unitPrice: priceInformation.unitPrice,

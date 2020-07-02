@@ -1,33 +1,30 @@
 <div class="row justify-content-between align-items-center bl-cart-list-item">
 	<div class="col-auto">
-		<div><strong>{{ title }}</strong></div>
+		<div class="d-flex align-items-center">
+			<span
+				class="badge badge-info bl-text-xs mr-2"
+				*ngIf="cartItem.getCustomerItemId()"
+				><fa-icon icon="user"></fa-icon
+			></span>
+
+			<span
+				class="badge badge-warning bl-text-xs mr-2"
+				*ngIf="cartItem.getMovedFromOrderId()"
+				><fa-icon icon="receipt"></fa-icon>
+			</span>
+			<strong> {{ title }}</strong>
+		</div>
 
 		<div>
-			<a
-				href="#"
-				class="badge badge-pill badge-primary bl-text-xs mr-2"
-				*ngIf="cartItem.getBLID()"
-				>BLID: {{cartItem.getBLID()}}</a
-			>
-
 			<a href="#" class="badge badge-pill badge-secondary bl-text-xs"
 				>ISBN: {{cartItem.getISBN()}}</a
 			>
 
 			<a
 				href="#"
-				class="ml-2 badge badge-pill badge-info bl-text-xs"
-				*ngIf="cartItem.getCustomerItemId()"
-				><fa-icon icon="user" class="mr-2"></fa-icon
-				>{{cartItem.getCustomerItemId()}}</a
-			>
-
-			<a
-				href="#"
-				class="ml-2 badge badge-pill badge-warning bl-text-xs"
-				*ngIf="cartItem.getMovedFromOrderId()"
-				><fa-icon icon="receipt" class="mr-2"></fa-icon>
-				{{cartItem.getMovedFromOrderId()}}</a
+				class="badge badge-pill badge-primary bl-text-xs ml-2"
+				*ngIf="cartItem.getBLID()"
+				>BLID: {{cartItem.getBLID()}}</a
 			>
 		</div>
 	</div>

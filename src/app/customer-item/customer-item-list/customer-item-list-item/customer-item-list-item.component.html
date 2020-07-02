@@ -1,6 +1,19 @@
 <div class="row justify-content-between align-items-center" *ngIf="item">
 	<div class="col-auto">
-		<fa-icon [icon]="'user'" class="mr-2"></fa-icon>{{ item.title }}
+		<div class="d-flex align-items-center">
+			<span class="badge badge-info mr-2"
+				><fa-icon [icon]="'user'"></fa-icon
+			></span>
+			<span>{{ item.title }}</span>
+		</div>
+		<small>
+			<a
+				href="#"
+				class="badge badge-pill badge-primary bl-text-xs mr-2"
+				*ngIf="customerItem.blid"
+				>BLID: {{customerItem.blid}}</a
+			>
+		</small>
 	</div>
 </div>
 
