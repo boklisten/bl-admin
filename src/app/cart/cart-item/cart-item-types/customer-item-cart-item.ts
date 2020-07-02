@@ -9,6 +9,7 @@ import { CartItemOrderItemProvider } from "../cart-item-order-item/cart-item-ord
 
 export class CustomerItemCartItem extends Subscribable implements CartItem {
 	private _action: CartItemAction;
+	private _blid: string;
 
 	constructor(
 		private _customerItem: CustomerItem,
@@ -53,6 +54,7 @@ export class CustomerItemCartItem extends Subscribable implements CartItem {
 		this._action = action;
 		this.notify();
 	}
+
 	public getAction(): CartItemAction {
 		return this._action;
 	}
@@ -62,5 +64,21 @@ export class CustomerItemCartItem extends Subscribable implements CartItem {
 			this._customerItem,
 			this._item
 		);
+	}
+
+	public setBLID(blid: string) {
+		this._blid = blid;
+	}
+
+	public getBLID(): string {
+		return this._blid;
+	}
+
+	public getISBN(): string {
+		if (this._item && this._item.info) {
+			return this._item.info.isbn;
+		}
+
+		return "";
 	}
 }

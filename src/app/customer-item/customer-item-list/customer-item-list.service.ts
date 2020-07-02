@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
-import { CustomerItem, Item } from "@wizardcoder/bl-model";
+import { CustomerItem, Item, UniqueItem } from "@wizardcoder/bl-model";
 import { CustomerService } from "../../customer/customer.service";
 import { CustomerItemService, ItemService } from "@wizardcoder/bl-connect";
 import { ReplaySubject, Subscription } from "rxjs";
-import { Subject } from "rxjs/internal/Subject";
 
 type CustomerItemWithItem = {
 	customerItem: CustomerItem;
@@ -54,12 +53,44 @@ export class CustomerItemListService {
 		);
 	}
 
-	public getItemWithIsbn(isbn: string) {
-		throw new Error("getItemWithIsbn is not implemented");
+	public getByUniqueItem(uniqueItem: UniqueItem): CustomerItemWithItem {
+		let customerItemWithItem;
+
+		try {
+			customerItemWithItem = this.getByBLID(uniqueItem.blid);
+		} catch (e) {
+			throw e;
+		}
+
+		return customerItemWithItem;
 	}
 
-	public async addItemWithIsbn(isbn: string): Promise<boolean> {
-		throw new Error("addItemWithIsbn is not implemented");
+	public getByBLID(blid: string): CustomerItemWithItem {
+		for (let customerItemWithItem of this._customerItemList) {
+			if (customerItemWithItem.customerItem.blid === blid) {
+				return customerItemWithItem;
+			}
+		}
+		throw new ReferenceError(`blid ${blid} not found`);
+	}
+
+	public getByISBN(isbn: string): CustomerItemWithItem {
+		for (let customerItemWithItem of this._customerItemList) {
+			if (customerItemWithItem.item.info.isbn === isbn) {
+				return customerItemWithItem;
+			}
+		}
+
+		throw new ReferenceError(`isbn ${isbn} not found`);
+	}
+
+	public getByItemId(itemId: string): CustomerItemWithItem {
+		for (let customerItemWithItem of this._customerItemList) {
+			if (customerItemWithItem.item.id === itemId) {
+				return customerItemWithItem;
+			}
+		}
+		throw new ReferenceError(`item id ${itemId} not found`);
 	}
 
 	private handleCustomerWaitChange() {

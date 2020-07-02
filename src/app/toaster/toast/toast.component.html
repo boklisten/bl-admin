@@ -1,17 +1,16 @@
 <div
 	class="toast pr-5 pl-5"
-	[ngClass]="{'bg-info': toast.type === 'ISBN-SCAN'}"
+	[ngClass]="{'bg-primary': toast.type === 'BLID-SCAN', 'bg-secondary': toast.type === 'ISBN-SCAN'}"
 	role="alert"
 	aria-live="assertive"
 	aria-atomic="true"
 	style="opacity: 100%"
 >
-	<div class="toast-body" *ngIf="toast.type === 'BLID-SCAN'">
-		<strong>BL-</strong><span>{{toast.content.blid}}</span>
+	<div class="toast-body text-white" *ngIf="toast.type === 'BLID-SCAN'">
+		<strong>BLID: </strong><span>{{toast.content.blid}}</span>
 	</div>
 
 	<div class="toast-body" *ngIf="toast.type === 'ISBN-SCAN'">
-		<fa-icon icon="book" class="mr-2"></fa-icon>
-		{{toast.content.isbn}}
+		<strong>ISBN: </strong> {{toast.content.isbn}}
 	</div>
 </div>

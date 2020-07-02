@@ -5,7 +5,7 @@ import { CartItemService } from "../../cart/cart-item/cart-item.service";
 import { CartService } from "../../cart/cart.service";
 import { UniqueItem } from "@wizardcoder/bl-model";
 import { Subscription } from "rxjs";
-import { ToasterService } from "../../toaster/toaster.service";
+import { UniqueItemScanToCartService } from "./unique-item-scan-to-cart.service";
 
 @Component({
 	selector: "app-unique-item-scan-to-cart",
@@ -27,7 +27,7 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 		private _blidScannerService: BlidScannerService,
 		private _cartItemService: CartItemService,
 		private _cartService: CartService,
-		private _toasterService: ToasterService
+		private _uniqueItemScanToCartService: UniqueItemScanToCartService
 	) {
 		this.handleUniqueItemChange();
 		this.handleUniqueItemNotExistChange();
@@ -62,11 +62,14 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 	}
 
 	private addUniqueItemToCart(uniqueItem: UniqueItem) {
-		this._cartItemService
-			.createCartItemByUniqueItem(uniqueItem)
-			.then(cartItem => {
-				this._cartService.add(cartItem);
+		this._uniqueItemScanToCartService
+			.addUniqueItemToCart(uniqueItem)
+			.then(added => {
+				console.log("added", added);
+				//this._cartService.add(cartItem);
 			})
-			.catch(e => {});
+			.catch(e => {
+				console.log("could not add cart item", e);
+			});
 	}
 }

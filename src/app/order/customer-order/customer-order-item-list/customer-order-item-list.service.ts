@@ -15,6 +15,7 @@ type CustomerOrderItem = {
 export class CustomerOrderItemListService {
 	private _customerOrderItems$: ReplaySubject<CustomerOrderItem[]>;
 	private _wait$: Subject<boolean>;
+	private _customerOrderItems: CustomerOrderItem[];
 
 	constructor(
 		private _cartService: CartService,
@@ -22,6 +23,7 @@ export class CustomerOrderItemListService {
 	) {
 		this._customerOrderItems$ = new ReplaySubject(1);
 		this._wait$ = new Subject();
+		this._customerOrderItems = [];
 
 		this.onCartConfirmed();
 		this.onCustomerOrderServiceChange();
@@ -36,6 +38,15 @@ export class CustomerOrderItemListService {
 
 	public onWait(func: (wait: boolean) => void): Subscription {
 		return this._wait$.asObservable().subscribe(func);
+	}
+
+	public getByItemId(itemId: string): CustomerOrderItem {
+		for (let customerOrderItem of this._customerOrderItems) {
+			if (customerOrderItem.orderItem.item === itemId) {
+				return customerOrderItem;
+			}
+		}
+		throw new ReferenceError(`item id ${itemId} not found`);
 	}
 
 	private onCustomerOrderServiceChange(): void {
@@ -58,6 +69,7 @@ export class CustomerOrderItemListService {
 	}
 
 	private setOrderedItems(customerOrderItems) {
+		this._customerOrderItems = customerOrderItems;
 		this._customerOrderItems$.next(customerOrderItems);
 		this._wait$.next(false);
 	}

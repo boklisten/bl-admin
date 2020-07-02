@@ -11,6 +11,7 @@ import { CartItemOrderItemProvider } from "../cart-item-order-item/cart-item-ord
 
 export class ItemCartItem extends Subscribable implements CartItem {
 	private _action: CartItemAction;
+	private _blid: string;
 
 	constructor(
 		private _item: Item,
@@ -60,5 +61,21 @@ export class ItemCartItem extends Subscribable implements CartItem {
 
 	public getValidActions(): CartItemAction[] {
 		return this._cartItemActionProvider.getValidActionsForItem(this._item);
+	}
+
+	public setBLID(blid: string) {
+		this._blid = blid;
+	}
+
+	public getBLID(): string {
+		return this._blid;
+	}
+
+	public getISBN(): string {
+		if (this._item && this._item.info) {
+			return this._item.info.isbn;
+		}
+
+		return "";
 	}
 }

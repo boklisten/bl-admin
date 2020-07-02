@@ -112,13 +112,16 @@ export class CartItemService {
 		uniqueItem: UniqueItem
 	): Promise<CartItem> {
 		let item: Item;
+		let cartItem: CartItem;
 
 		try {
 			item = await this._itemService.getById(uniqueItem.item);
+			cartItem = await this.createCartItemByItem(item);
 		} catch (e) {
 			throw Error("could not get item");
 		}
 
-		return this.createCartItemByItem(item);
+		cartItem.setBLID(uniqueItem.blid);
+		return cartItem;
 	}
 }

@@ -9,6 +9,7 @@ import { CartItemActionProvider } from "../cart-item-action/cart-item-action-pro
 
 export class OrderItemCartItem extends Subscribable implements CartItem {
 	private _action: CartItemAction;
+	private _blid: string;
 
 	constructor(
 		private _orderItem: OrderItem,
@@ -65,6 +66,22 @@ export class OrderItemCartItem extends Subscribable implements CartItem {
 			this._orderItem,
 			this._item
 		);
+	}
+
+	public setBLID(blid: string) {
+		this._blid = blid;
+	}
+
+	public getBLID(): string {
+		return this._blid;
+	}
+
+	public getISBN(): string {
+		if (this._item && this._item.info) {
+			return this._item.info.isbn;
+		}
+
+		return "";
 	}
 
 	private setDefaultAction() {

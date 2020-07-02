@@ -27,4 +27,7 @@ export interface CartItem extends Subscribable {
 	setAction(action: CartItemAction);
 	getAction(): CartItemAction;
 	getValidActions(): CartItemAction[];
+	setBLID(blid: string): void;
+	getBLID(): string;
+	getISBN(): string;
 }
