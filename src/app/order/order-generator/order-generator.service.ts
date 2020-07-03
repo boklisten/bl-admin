@@ -25,6 +25,7 @@ export class OrderGeneratorService {
 				: null,
 			byCustomer: false,
 			employee: this._userService.getUserDetailId(),
+			viewableFor: [this._customerService.getUserId()],
 			placed: false,
 			payments: [],
 			delivery: null,

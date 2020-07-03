@@ -101,6 +101,10 @@ export class CustomerService {
 		return this._customerDetail.id;
 	}
 
+	public getUserId(): string {
+		return this._customerDetail.blid;
+	}
+
 	private getCustomerDetail(id: string): Promise<UserDetail> {
 		return this._userDetailService.getById(id);
 	}
