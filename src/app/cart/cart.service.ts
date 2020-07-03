@@ -123,7 +123,10 @@ export class CartService {
 	}
 
 	private isCartItemEqual(a: CartItem, b: CartItem): boolean {
-		if (a.getBLID() && b.getBLID()) {
+		if (
+			(a.getBLID() || b.getBLID()) &&
+			!(a.getMovedFromOrderId() || b.getMovedFromOrderId())
+		) {
 			return a.getBLID() === b.getBLID();
 		}
 		return a === b || a.getItemId() === b.getItemId();

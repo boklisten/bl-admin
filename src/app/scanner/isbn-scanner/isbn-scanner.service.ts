@@ -7,6 +7,7 @@ import { CartItem } from "../../cart/cart-item/cart-item";
 import { CustomerOrderItemListService } from "../../order/customer-order/customer-order-item-list/customer-order-item-list.service";
 import { CustomerItemListService } from "../../customer-item/customer-item-list/customer-item-list.service";
 import { Item } from "@wizardcoder/bl-model";
+import { ToasterService } from "../../toaster/toaster.service";
 
 @Injectable({
 	providedIn: "root"
@@ -18,7 +19,8 @@ export class IsbnScannerService {
 		private _cartItemService: CartItemService,
 		private _itemStoreService: ItemStoreService,
 		private _customerOrderItemList: CustomerOrderItemListService,
-		private _customerItemListService: CustomerItemListService
+		private _customerItemListService: CustomerItemListService,
+		private _toasterService: ToasterService
 	) {}
 
 	public async addCartItemByIsbn(isbn: number): Promise<boolean> {
@@ -43,7 +45,14 @@ export class IsbnScannerService {
 			}
 		}
 
-		this._cartService.add(cartItem);
+		if (this._cartService.contains(cartItem)) {
+			this._toasterService.add("CART-CONTAINS", {
+				id: cartItem.getISBN(),
+				title: cartItem.getTitle()
+			});
+		} else {
+			this._cartService.add(cartItem);
+		}
 
 		return true;
 	}

@@ -26,26 +26,30 @@ export class UniqueItemRegisterFromCartComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.cartItems = [];
-
-		for (let cartItem of this._cartService.getCart()) {
-			if (!cartItem.getBLID()) {
-				if (
-					["partly-payment", "rent", "loan"].indexOf(
-						cartItem.getAction().action.toString()
-					) >= 0
-				) {
-					this.cartItems.push(cartItem);
-				}
-			}
-		}
+		this.cartItems = this.getCartItemsThatShouldHaveBlid();
 
 		if (this.cartItems.length === 0) {
-			this.onSkip();
+			this.done();
 			return;
 		}
 		this.currentCartItemIndex = 0;
 		this.setCurrentCartItem(0);
+	}
+
+	private getCartItemsThatShouldHaveBlid(): CartItem[] {
+		let cartItems = [];
+		for (let cartItem of this._cartService.getCart()) {
+			if (!cartItem.getBLID()) {
+				if (
+					["partly-payment", "rent", "loan", "sell"].indexOf(
+						cartItem.getAction().action.toString()
+					) >= 0
+				) {
+					cartItems.push(cartItem);
+				}
+			}
+		}
+		return cartItems;
 	}
 
 	private setCurrentCartItem(index: number) {

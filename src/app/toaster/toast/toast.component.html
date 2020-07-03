@@ -1,16 +1,24 @@
 <div
-	class="toast pr-5 pl-5"
-	[ngClass]="{'bg-primary': toast.type === 'BLID-SCAN', 'bg-secondary': toast.type === 'ISBN-SCAN'}"
+	class="toast"
 	role="alert"
 	aria-live="assertive"
 	aria-atomic="true"
 	style="opacity: 100%"
 >
-	<div class="toast-body text-white" *ngIf="toast.type === 'BLID-SCAN'">
+	<div
+		class="toast-body bg-primary text-white"
+		*ngIf="toast.type === 'BLID-SCAN'"
+	>
 		<strong>BLID: </strong><span>{{toast.content.blid}}</span>
 	</div>
 
 	<div class="toast-body" *ngIf="toast.type === 'ISBN-SCAN'">
 		<strong>ISBN: </strong> {{toast.content.isbn}}
+	</div>
+
+	<div class="toast-body bg-warning" *ngIf="toast.type === 'CART-CONTAINS'">
+		<fa-icon class="mr-2" icon="exclamation-circle"></fa-icon>
+		<span i18n="@@toastCartAlreadyContains">Cart already contains</span>
+		"{{toast.content.title}}"
 	</div>
 </div>

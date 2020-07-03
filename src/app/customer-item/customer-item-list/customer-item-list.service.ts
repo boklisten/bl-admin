@@ -76,7 +76,10 @@ export class CustomerItemListService {
 
 	public getByISBN(isbn: number): CustomerItemWithItem {
 		for (let customerItemWithItem of this._customerItemList) {
-			if (customerItemWithItem.item.info.isbn === isbn) {
+			if (
+				customerItemWithItem.item.info.isbn === isbn &&
+				!customerItemWithItem.customerItem.blid
+			) {
 				return customerItemWithItem;
 			}
 		}

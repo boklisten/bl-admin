@@ -69,21 +69,15 @@ export class CartListComponent implements OnInit, OnDestroy {
 	public onConfirm() {
 		this._cartService.setLock();
 
-		const cart = this._cartService.getCart();
-
-		if (!cart[0].getBLID()) {
-			this.registerUniqueItemModal = this._modalService.open(
-				this.registerUniqueItemModalContent,
-				{
-					beforeDismiss: () => {
-						this._cartService.clearLock();
-						return true;
-					}
+		this.registerUniqueItemModal = this._modalService.open(
+			this.registerUniqueItemModalContent,
+			{
+				beforeDismiss: () => {
+					this._cartService.clearLock();
+					return true;
 				}
-			);
-		} else {
-			this.openCheckoutModal();
-		}
+			}
+		);
 	}
 
 	public onUniqueItemsRegistered() {

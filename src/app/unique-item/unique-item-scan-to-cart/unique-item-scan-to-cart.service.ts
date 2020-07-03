@@ -5,6 +5,7 @@ import { CartItemService } from "../../cart/cart-item/cart-item.service";
 import { UniqueItem } from "@wizardcoder/bl-model";
 import { CartService } from "../../cart/cart.service";
 import { CustomerOrderItemListService } from "../../order/customer-order/customer-order-item-list/customer-order-item-list.service";
+import { ToasterService } from "../../toaster/toaster.service";
 
 @Injectable({
 	providedIn: "root"
@@ -14,7 +15,8 @@ export class UniqueItemScanToCartService {
 		private _customerItemListService: CustomerItemListService,
 		private _cartItemService: CartItemService,
 		private _cartService: CartService,
-		private _customerOrderItemList: CustomerOrderItemListService
+		private _customerOrderItemList: CustomerOrderItemListService,
+		private _toasterService: ToasterService
 	) {}
 
 	public async addUniqueItemToCart(uniqueItem: UniqueItem): Promise<boolean> {
@@ -42,7 +44,14 @@ export class UniqueItemScanToCartService {
 		}
 
 		cartItem.setBLID(uniqueItem.blid);
-		this._cartService.add(cartItem);
+		if (this._cartService.contains(cartItem)) {
+			this._toasterService.add("CART-CONTAINS", {
+				title: cartItem.getTitle(),
+				id: cartItem.getBLID()
+			});
+		} else {
+			this._cartService.add(cartItem);
+		}
 
 		return true;
 	}

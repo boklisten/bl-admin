@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { Subject, Subscription } from "rxjs";
 import { BlcScannerService } from "../bl-common/blc-scanner/blc-scanner.service";
 
+type ToastType = "BLID-SCAN" | "ISBN-SCAN" | "CART-CONTAINS";
+
 @Injectable({
 	providedIn: "root"
 })
@@ -18,19 +20,20 @@ export class ToasterService {
 		return this.toasts$.subscribe(func);
 	}
 
-	public add(type: "BLID-SCAN" | "ISBN-SCAN", content: any, ms: number) {
+	public add(type: ToastType, content: any, ms?: number) {
+		ms = ms ? ms : 5000;
 		this.toasts$.next({ type: type, content: content, ms: ms });
 	}
 
 	private handleBlidScan() {
 		this._blcScannerService.onBlid(blid => {
-			this.add("BLID-SCAN", { blid: blid }, 5000);
+			this.add("BLID-SCAN", { blid: blid });
 		});
 	}
 
 	private handleIsbnScan() {
 		this._blcScannerService.onIsbn(isbn => {
-			this.add("ISBN-SCAN", { isbn: isbn }, 5000);
+			this.add("ISBN-SCAN", { isbn: isbn });
 		});
 	}
 }
