@@ -16,15 +16,16 @@
 		</div>
 
 		<div>
-			<a href="#" class="badge badge-pill badge-secondary bl-text-xs"
-				>ISBN: {{cartItem.getISBN()}}</a
+			<span
+				class="badge badge-pill badge-secondary bl-text-xs"
+				*ngIf="!cartItem.getBLID()"
+				>ISBN: {{cartItem.getISBN()}}</span
 			>
 
-			<a
-				href="#"
-				class="badge badge-pill badge-primary bl-text-xs ml-2"
+			<span
+				class="badge badge-pill badge-info bl-text-xs"
 				*ngIf="cartItem.getBLID()"
-				>BLID: {{cartItem.getBLID()}}</a
+				>BLID: {{cartItem.getBLID()}}</span
 			>
 		</div>
 	</div>

@@ -8,17 +8,17 @@
 		</div>
 	</div>
 	<div
-		class="col-auto text-secondary small bl-link-black"
+		class="col-auto small bl-link-black"
 		routerLink="{{ '/order/' + customerOrderItem.order.id + '/detail' }}"
 	>
-		<span *ngIf="haveDelivery">
+		<span *ngIf="haveDelivery" class="text-secondary">
 			<fa-icon [icon]="'truck'" class="mr-2"></fa-icon>
 		</span>
-		<span *ngIf="havePayed()">
+		<span *ngIf="havePayed()" class="text-success">
 			<fa-icon [icon]="'dollar-sign'" class="mr-1"></fa-icon
 			><fa-icon [icon]="'check-circle'"></fa-icon>
 		</span>
-		<span *ngIf="!havePayed()"
+		<span *ngIf="!havePayed()" class="text-secondary "
 			>{{ customerOrderItem.orderItem.amount | blcPrice }}</span
 		>
 	</div>
