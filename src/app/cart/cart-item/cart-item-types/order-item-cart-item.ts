@@ -76,12 +76,12 @@ export class OrderItemCartItem extends Subscribable implements CartItem {
 		return this._blid;
 	}
 
-	public getISBN(): string {
+	public getISBN(): number {
 		if (this._item && this._item.info) {
 			return this._item.info.isbn;
 		}
 
-		return "";
+		return null;
 	}
 
 	private setDefaultAction() {

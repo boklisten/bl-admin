@@ -14,6 +14,7 @@ export class CartService {
 	private _cartItems$: { cartItem: CartItem; subscription: Subscription }[];
 	private _cartConfirm$: Subject<boolean>;
 	private _customerDetailId: string;
+	private _checkoutProcess: boolean;
 
 	constructor(
 		private _customerService: CustomerService,
@@ -54,6 +55,18 @@ export class CartService {
 				return;
 			}
 		}
+	}
+
+	public startCheckoutProcess() {
+		this._checkoutProcess = true;
+	}
+
+	public endCheckoutProcess() {
+		this._checkoutProcess = false;
+	}
+
+	public isInCheckoutProcess() {
+		return this._checkoutProcess;
 	}
 
 	public contains(cartItem: CartItem): boolean {

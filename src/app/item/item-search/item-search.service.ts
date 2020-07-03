@@ -7,7 +7,7 @@ import { BlcScannerService } from "../../bl-common/blc-scanner/blc-scanner.servi
 
 @Injectable()
 export class ItemSearchService {
-	private _result$: ReplaySubject<Item[]>;
+	private _result$: Subject<Item[]>;
 	private _wait$: Subject<boolean>;
 
 	constructor(
@@ -15,7 +15,7 @@ export class ItemSearchService {
 		private _blcSortService: BlcSortService,
 		private _blcScannerService: BlcScannerService
 	) {
-		this._result$ = new ReplaySubject(1);
+		this._result$ = new Subject();
 		this._wait$ = new Subject();
 		this.handleIsbnScanChange();
 	}

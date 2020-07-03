@@ -1,23 +1,33 @@
-<div class="row" *ngIf="selectedItem">
-	<div class="col-12">
-		<ul class="list-group">
-			<li
-				class="list-group-item list-group-item-info d-flex justify-content-between align-items-center"
-				(click)="onChangeItem()"
-			>
-				<div>
-					<h5>{{selectedItem.title}}</h5>
-					<small>{{selectedItem.info.isbn}}</small>
-				</div>
-				<fa-icon icon="bars"></fa-icon>
-			</li>
-		</ul>
-	</div>
-</div>
+<ul class="list-group" *ngIf="selectedItem">
+	<li
+		class="list-group-item list-group-item-info d-flex justify-content-between align-items-center"
+	>
+		<div>
+			<h5>{{selectedItem.title}}</h5>
+			<small>{{selectedItem.info.isbn}}</small>
+		</div>
+		<fa-icon icon="bars" (click)="onChangeItem()"></fa-icon>
+	</li>
+</ul>
 
-<div class="row" *ngIf="!selectedItem">
-	<div class="col-12"><app-item-search-bar></app-item-search-bar></div>
-	<div class="col-12 mt-2">
+<ul class="list-group" *ngIf="!selectedItem">
+	<li
+		class="list-group-item list-group-item-info d-flex justify-content-between align-items-center"
+	>
+		<span i18n="@@blidScannerPleaseScanBlid">Please scan a ISBN</span>
+		<span (click)="onShowInput()">
+			<fa-icon icon="keyboard"></fa-icon>
+		</span>
+	</li>
+
+	<li class="list-group-item list-group-item-info" *ngIf="showInput">
+		<app-item-search-bar></app-item-search-bar>
+	</li>
+
+	<li
+		class="list-group-item list-group-item-info"
+		*ngIf="items && items.length > 0"
+	>
 		<ul class="list-group">
 			<li
 				class="list-group-item d-flex justify-content-between align-items-center"
@@ -37,5 +47,5 @@
 				</div>
 			</li>
 		</ul>
-	</div>
-</div>
+	</li>
+</ul>

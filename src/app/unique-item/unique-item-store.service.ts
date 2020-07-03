@@ -8,8 +8,12 @@ import { UniqueItemService } from "@wizardcoder/bl-connect";
 export class UniqueItemStoreService {
 	constructor(private _uniqueItemService: UniqueItemService) {}
 
-	public async createAndAdd(blid: string, item: Item): Promise<UniqueItem> {
-		const uniqueItem = this.createUniqueItem(blid, item);
+	public async createAndAdd(
+		blid: string,
+		itemId: string,
+		title: string
+	): Promise<UniqueItem> {
+		const uniqueItem = this.createUniqueItem(blid, itemId, title);
 
 		try {
 			const addedUniqueItem = await this._uniqueItemService.add(
@@ -49,12 +53,16 @@ export class UniqueItemStoreService {
 		return alreadyAddedUniqueItems;
 	}
 
-	public createUniqueItem(blid: string, item: Item): UniqueItem {
+	public createUniqueItem(
+		blid: string,
+		itemId: string,
+		title: string
+	): UniqueItem {
 		return {
 			id: "",
 			blid: blid,
-			item: item.id,
-			title: item.title
+			item: itemId,
+			title: title
 		};
 	}
 }

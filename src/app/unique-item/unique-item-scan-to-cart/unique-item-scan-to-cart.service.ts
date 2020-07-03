@@ -29,8 +29,6 @@ export class UniqueItemScanToCartService {
 			cartItem = await this.createCartItemFromCustomerItemList(
 				uniqueItem
 			);
-
-			console.log("creating cart item by customerItem");
 		} catch (e) {
 			try {
 				cartItem = await this.createCartItemFromCustomerOrderItemList(

@@ -3,6 +3,7 @@ import { BlcScannerService } from "../../bl-common/blc-scanner/blc-scanner.servi
 import { UniqueItem } from "@wizardcoder/bl-model";
 import { UniqueItemService } from "@wizardcoder/bl-connect";
 import { Subscription, Subject } from "rxjs";
+import { CartService } from "../../cart/cart.service";
 
 @Injectable({
 	providedIn: "root"
@@ -13,11 +14,11 @@ export class BlidScannerService {
 
 	constructor(
 		private _blcScannerService: BlcScannerService,
-		private _uniqueItemService: UniqueItemService
+		private _uniqueItemService: UniqueItemService,
+		private _cartService: CartService
 	) {
 		this.uniqueItem$ = new Subject();
 		this.uniqueItemDoesNotExist$ = new Subject();
-
 		this.handleBlidScanChange();
 	}
 
@@ -33,14 +34,16 @@ export class BlidScannerService {
 
 	private handleBlidScanChange() {
 		this._blcScannerService.onBlid(blid => {
-			this._uniqueItemService
-				.get({ query: `?blid=${blid}` })
-				.then(uniqueItems => {
-					this.uniqueItem$.next(uniqueItems[0]);
-				})
-				.catch(e => {
-					this.uniqueItemDoesNotExist$.next(blid);
-				});
+			if (!this._cartService.isInCheckoutProcess()) {
+				this._uniqueItemService
+					.get({ query: `?blid=${blid}` })
+					.then(uniqueItems => {
+						this.uniqueItem$.next(uniqueItems[0]);
+					})
+					.catch(e => {
+						this.uniqueItemDoesNotExist$.next(blid);
+					});
+			}
 		});
 	}
 }

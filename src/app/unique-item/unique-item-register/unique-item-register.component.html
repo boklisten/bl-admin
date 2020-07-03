@@ -1,22 +1,89 @@
 <div class="card-header">
-	<h3><fa-icon icon="barcode" class="mr-2"></fa-icon>{{blid}}</h3>
+	<!--<h3 *ngIf="!blid">{{title}}</h3>-->
+	<!--<h3 *ngIf="blid && itemId">{{title}}</h3>-->
+	<!--<h3 *ngIf="!itemId && blid"><strong>BLID: </strong>{{blid}}</h3>-->
 </div>
+
 <div class="card-body">
 	<div class="row">
 		<div class="col-12">
-			<div class="alert alert-info">
+			<div class="alert alert-danger" *ngIf="!itemId && blid">
 				<fa-icon icon="exclamation-circle" class="mr-2"></fa-icon>
 				The BLID "{{blid}}" does not have corresponding ISBN. Please
 				scan and register a ISBN.
 			</div>
+
+			<div class="alert alert-danger" *ngIf="itemId && !blid">
+				<fa-icon icon="exclamation-circle" class="mr-2"></fa-icon>
+				This item does not have corresponding BLID. Please scan and
+				register a BLID.
+			</div>
+
+			<div class="alert alert-danger" *ngIf="uniqueItemRegisterError">
+				<fa-icon icon="exclamation-triangle" class="mr-2"></fa-icon>
+				Could not register BLID, are you sure the BLID has not been
+				registered before?
+			</div>
 		</div>
 	</div>
-	<div class="row mt-3 mb-3">
+	<div class="row mb-2">
+		<div class="col-12">
+			<ul class="list-group">
+				<li
+					class="list-group-item list-group-item-secondary"
+					[ngClass]="{'list-group-item-success': blid && itemId && !blidAlreadyAddedError}"
+					*ngIf="itemId"
+				>
+					<div
+						class="d-flex justify-content-between align-items-center"
+					>
+						<strong>{{title}}</strong>
+
+						<fa-icon
+							icon="bars"
+							*ngIf="editItem"
+							(click)="onClearItem()"
+						></fa-icon>
+					</div>
+					<div><strong>ISBN: </strong> {{isbn}}</div>
+				</li>
+				<li
+					class="list-group-item list-group-item-secondary"
+					[ngClass]="{'list-group-item-success': blid && itemId && !blidAlreadyAddedError, 'list-group-item-danger': blidAlreadyAddedError}"
+					*ngIf="blid"
+				>
+					<div
+						class="d-flex justify-content-between align-items-center"
+					>
+						<span><strong>BLID: </strong>{{blid}}</span>
+
+						<fa-icon
+							icon="bars"
+							*ngIf="editBlid"
+							(click)="onClearBlid()"
+						></fa-icon>
+					</div>
+					<div *ngIf="uniqueItem">
+						Already added as <strong>{{uniqueItem.title}}</strong>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div
+		class="row mt-2 mb-2"
+		*ngIf="!itemId || !blid || blidAlreadyAddedError"
+	>
 		<div class="col-12">
 			<app-item-search-select
+				*ngIf="!itemId"
 				(itemSelect)="onItemSelect($event)"
-				[item]="item"
 			></app-item-search-select>
+
+			<app-blid-scanner
+				*ngIf="!blid || blidAlreadyAddedError"
+				(blid)="onBlid($event)"
+			></app-blid-scanner>
 		</div>
 	</div>
 </div>
@@ -24,12 +91,27 @@
 	<div class="alert alert-warning text-center" *ngIf="wait">
 		<fa-icon icon="circle-notch" [spin]="true"></fa-icon>
 	</div>
-	<button
-		class="btn btn-outline-success btn-block"
-		*ngIf="!wait"
-		[disabled]="!item || !blid"
-		(click)="onInsertToDB()"
-	>
-		Register
-	</button>
+	<div class="row">
+		<div class="col-10" [ngClass]="{'col-12': blid}">
+			<button
+				class="btn btn-outline-success btn-block"
+				*ngIf="!wait"
+				[disabled]="!itemId || !blid"
+				[ngClass]="{'btn-success text-white': itemId && blid && !blidAlreadyAddedError}"
+				(click)="onInsertToDB()"
+				(keydown.enter)="$event.preventDefault()"
+			>
+				Register
+			</button>
+		</div>
+		<div class="col-2" *ngIf="!blid">
+			<button
+				class="btn btn-link"
+				(click)="onSkip()"
+				(keydown.enter)="$event.preventDefault()"
+			>
+				Skip
+			</button>
+		</div>
+	</div>
 </div>

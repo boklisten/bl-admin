@@ -17,7 +17,6 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 
 	private uniqueItem$: Subscription;
 	private uniqueItemDoesNotExist$: Subscription;
-
 	public blid: string;
 	public uniqueItem: UniqueItem;
 	public notAddedUniqeItemBlid: string;
@@ -28,12 +27,12 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 		private _cartItemService: CartItemService,
 		private _cartService: CartService,
 		private _uniqueItemScanToCartService: UniqueItemScanToCartService
-	) {
+	) {}
+
+	ngOnInit() {
 		this.handleUniqueItemChange();
 		this.handleUniqueItemNotExistChange();
 	}
-
-	ngOnInit() {}
 
 	ngOnDestroy() {
 		this.uniqueItem$.unsubscribe();
@@ -50,6 +49,8 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 			this.addUniqueItemToCart(uniqueItem);
 		});
 	}
+
+	private handleIsbnScanChange() {}
 
 	private handleUniqueItemNotExistChange() {
 		this.uniqueItemDoesNotExist$ = this._blidScannerService.onUniqueItemDoesNotExist(

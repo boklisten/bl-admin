@@ -1,0 +1,28 @@
+<ul class="list-group" *ngIf="!currentBlid">
+	<li
+		class="list-group-item list-group-item-info d-flex justify-content-between align-items-center"
+	>
+		<span i18n="@@blidScannerPleaseScanBlid">Please scan a BLID</span>
+		<span (click)="onShowInput()">
+			<fa-icon icon="keyboard"></fa-icon>
+		</span>
+	</li>
+	<li class="list-group-item list-group-item-info" *ngIf="showInput">
+		<app-blid-scanner-input
+			(blid)="onBlidInput($event)"
+		></app-blid-scanner-input>
+	</li>
+</ul>
+
+<ul class="list-group" *ngIf="currentBlid || staticBlid">
+	<li
+		class="list-group-item list-group-item-primary d-flex justify-content-between align-items-center"
+	>
+		<span><strong>BLID: </strong>{{currentBlid}}</span>
+		<fa-icon
+			icon="bars"
+			(click)="onCancelBlid()"
+			*ngIf="changeable"
+		></fa-icon>
+	</li>
+</ul>

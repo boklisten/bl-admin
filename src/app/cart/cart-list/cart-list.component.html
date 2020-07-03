@@ -55,7 +55,7 @@
 					class="btn btn-block"
 					[disabled]="cart.length <= 0"
 					[ngClass]="{'btn-success': cart.length > 0, 'btn-outline-secondary': cart.length <= 0}"
-					(click)="onShowConfirm(confirmCartContent)"
+					(click)="onConfirm()"
 				>
 					<fa-icon
 						icon="flag-checkered"
@@ -79,9 +79,15 @@
 	</div>
 </div>
 
-<ng-template #confirmCartContent let-c="close" let-d="dismiss">
+<ng-template #checkoutModal let-c="close" let-d="dismiss">
 	<app-checkout
 		(done)="onCartConfirm()"
 		(dismiss)="onDismiss()"
 	></app-checkout>
+</ng-template>
+
+<ng-template #registerUniqueItemModal let-c="close" let-d="dismiss">
+	<app-unique-item-register-from-cart
+		(registered)="onUniqueItemsRegistered()"
+	></app-unique-item-register-from-cart>
 </ng-template>

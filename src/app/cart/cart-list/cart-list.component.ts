@@ -3,7 +3,8 @@ import {
 	EventEmitter,
 	OnInit,
 	Output,
-	OnDestroy
+	OnDestroy,
+	ViewChild
 } from "@angular/core";
 import { CartService } from "../cart.service";
 import { CartItem } from "../cart-item/cart-item";
@@ -19,6 +20,9 @@ import { PriceInformation } from "../../price/price-information";
 })
 export class CartListComponent implements OnInit, OnDestroy {
 	@Output() cartConfirmed: EventEmitter<boolean>;
+	@ViewChild("registerUniqueItemModal") registerUniqueItemModalContent;
+	@ViewChild("checkoutModal") checkoutModalContent;
+
 	public cart: CartItem[];
 	public partlyPaymentTotals: { date: Date; total: number }[];
 	public searching: boolean;
@@ -27,7 +31,8 @@ export class CartListComponent implements OnInit, OnDestroy {
 	public totalPriceInformation: PriceInformation;
 
 	private cart$: Subscription;
-	private _cartConfirmModal: NgbModalRef;
+	private cartCheckoutModal: NgbModalRef;
+	private registerUniqueItemModal: NgbModalRef;
 
 	constructor(
 		private _cartService: CartService,
@@ -61,20 +66,53 @@ export class CartListComponent implements OnInit, OnDestroy {
 		this.totalPriceInformation = await this._cartService.getPriceInformation();
 	}
 
-	public onShowConfirm(content) {
-		this._cartConfirmModal = this._modalService.open(content, {
-			size: "lg",
-			centered: true,
-			backdrop: "static"
-		});
+	public onConfirm() {
+		this._cartService.startCheckoutProcess();
+
+		const cart = this._cartService.getCart();
+
+		if (!cart[0].getBLID()) {
+			this.registerUniqueItemModal = this._modalService.open(
+				this.registerUniqueItemModalContent,
+				{
+					beforeDismiss: () => {
+						this._cartService.endCheckoutProcess();
+						return true;
+					}
+				}
+			);
+		} else {
+			this.openCheckoutModal();
+		}
+	}
+
+	public onUniqueItemsRegistered() {
+		this.registerUniqueItemModal.close();
+		this.openCheckoutModal();
+	}
+
+	private openCheckoutModal() {
+		this.cartCheckoutModal = this._modalService.open(
+			this.checkoutModalContent,
+			{
+				size: "lg",
+				backdrop: "static",
+				beforeDismiss: () => {
+					this._cartService.endCheckoutProcess();
+					return true;
+				}
+			}
+		);
 	}
 
 	public onDismiss() {
-		this._cartConfirmModal.close();
+		this.cartCheckoutModal.close();
+		this._cartService.endCheckoutProcess();
 	}
 
 	public onCartConfirm() {
-		this._cartConfirmModal.close();
+		this._cartService.endCheckoutProcess();
+		this.cartCheckoutModal.close();
 		this.cartConfirmed.emit(true);
 	}
 

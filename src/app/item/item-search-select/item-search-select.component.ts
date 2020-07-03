@@ -26,12 +26,14 @@ export class ItemSearchSelectComponent implements OnInit, OnDestroy, OnChanges {
 	private itemSearchResult$: Subscription;
 	private itemSearchResultWait$: Subscription;
 	public selectedItem: Item;
+	public showInput: boolean;
 
 	constructor(private _itemSearchService: ItemSearchService) {
 		this.itemSelect = new EventEmitter();
 	}
 
 	ngOnInit() {
+		this.selectedItem = null;
 		this.handleItemSearchResultChange();
 		this.handleItemSearchResultWaitChange();
 	}
@@ -45,6 +47,10 @@ export class ItemSearchSelectComponent implements OnInit, OnDestroy, OnChanges {
 		if (changes["item"]) {
 			this.setSelectedItem(changes["item"].currentValue);
 		}
+	}
+
+	public onShowInput() {
+		this.showInput = !this.showInput;
 	}
 
 	public selectItem(index: number) {
