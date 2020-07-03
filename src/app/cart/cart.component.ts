@@ -56,6 +56,8 @@ export class CartComponent implements OnInit, OnDestroy {
 		}, 2000);
 	}
 
+	public onCartFailed() {}
+
 	public onTabChange(tabChangeEvent: NgbTabChangeEvent) {
 		this.changeTab(tabChangeEvent.nextId);
 	}
