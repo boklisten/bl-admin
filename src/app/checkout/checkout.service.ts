@@ -3,6 +3,7 @@ import { Order } from "@wizardcoder/bl-model";
 import { OrderService } from "@wizardcoder/bl-connect";
 import { PaymentHandlerService } from "../payment/payment-handler/payment-handler.service";
 import { Subject, Subscription } from "rxjs";
+import { ToasterService } from "../toaster/toaster.service";
 
 @Injectable({
 	providedIn: "root"
@@ -12,7 +13,8 @@ export class CheckoutService {
 
 	constructor(
 		private _orderService: OrderService,
-		private _paymentHandlerService: PaymentHandlerService
+		private _paymentHandlerService: PaymentHandlerService,
+		private _toasterService: ToasterService
 	) {
 		this.checkout$ = new Subject();
 	}
@@ -38,6 +40,14 @@ export class CheckoutService {
 			addedOrder = await this._orderService.getById(addedOrder.id);
 
 			this.checkout$.next(addedOrder);
+			this._toasterService.add(
+				"CHECKOUT-CONFIRMED",
+				{
+					numberOfItems: addedOrder.orderItems.length,
+					orderId: addedOrder.id
+				},
+				15000
+			);
 			return addedOrder;
 		} catch (e) {
 			throw e;

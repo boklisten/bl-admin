@@ -21,4 +21,21 @@
 		<span i18n="@@toastCartAlreadyContains">Cart already contains</span>
 		"{{toast.content.title}}"
 	</div>
+
+	<div
+		class="toast-body bg-success text-white"
+		*ngIf="toast.type === 'CHECKOUT-CONFIRMED'"
+		[routerLink]="'order/' + toast.content.orderId + '/detail'"
+	>
+		<div>
+			<fa-icon icon="check-circle" class="mr-2"></fa-icon>
+			<strong i18n="@@toastCheckoutCompleted"
+				>The checkout was completed!
+			</strong>
+		</div>
+		<small>
+			<span i18n="@@toastNumberOfItems">Number of items processed: </span>
+			{{toast.content.numberOfItems}}
+		</small>
+	</div>
 </div>

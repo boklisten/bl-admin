@@ -2,7 +2,11 @@ import { Injectable } from "@angular/core";
 import { Subject, Subscription } from "rxjs";
 import { BlcScannerService } from "../bl-common/blc-scanner/blc-scanner.service";
 
-type ToastType = "BLID-SCAN" | "ISBN-SCAN" | "CART-CONTAINS";
+type ToastType =
+	| "BLID-SCAN"
+	| "ISBN-SCAN"
+	| "CART-CONTAINS"
+	| "CHECKOUT-CONFIRMED";
 
 @Injectable({
 	providedIn: "root"
