@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { BlidScannerService } from "../../scanner/blid-scanner/blid-scanner.service";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { CartItemService } from "../../cart/cart-item/cart-item.service";
 import { CartService } from "../../cart/cart.service";
 import { UniqueItem } from "@wizardcoder/bl-model";
@@ -13,7 +13,8 @@ import { UniqueItemScanToCartService } from "./unique-item-scan-to-cart.service"
 	styleUrls: ["./unique-item-scan-to-cart.component.scss"]
 })
 export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
-	@ViewChild("addUniqeItemModal") private addUniqeItemModal;
+	@ViewChild("addUniqeItemModal") private addUniqeItemModalContent;
+	private addUniqeItemModal: NgbModalRef;
 
 	private uniqueItem$: Subscription;
 	private uniqueItemDoesNotExist$: Subscription;
@@ -40,6 +41,7 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 	}
 
 	public onUniqueItemRegistered(uniqueItem: UniqueItem) {
+		this._cartService.clearLock();
 		this._modalService.dismissAll();
 		this.addUniqueItemToCart(uniqueItem);
 	}
@@ -50,14 +52,21 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	private handleIsbnScanChange() {}
-
 	private handleUniqueItemNotExistChange() {
 		this.uniqueItemDoesNotExist$ = this._blidScannerService.onUniqueItemDoesNotExist(
 			blid => {
 				this.notAddedUniqeItemBlid = blid;
 				this._modalService.dismissAll();
-				this._modalService.open(this.addUniqeItemModal);
+				this._cartService.setLock();
+				this.addUniqeItemModal = this._modalService.open(
+					this.addUniqeItemModalContent,
+					{
+						beforeDismiss: () => {
+							this._cartService.clearLock();
+							return true;
+						}
+					}
+				);
 			}
 		);
 	}

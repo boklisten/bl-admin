@@ -67,7 +67,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 	}
 
 	public onConfirm() {
-		this._cartService.startCheckoutProcess();
+		this._cartService.setLock();
 
 		const cart = this._cartService.getCart();
 
@@ -76,7 +76,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 				this.registerUniqueItemModalContent,
 				{
 					beforeDismiss: () => {
-						this._cartService.endCheckoutProcess();
+						this._cartService.clearLock();
 						return true;
 					}
 				}
@@ -98,7 +98,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 				size: "lg",
 				backdrop: "static",
 				beforeDismiss: () => {
-					this._cartService.endCheckoutProcess();
+					this._cartService.clearLock();
 					return true;
 				}
 			}
@@ -107,11 +107,11 @@ export class CartListComponent implements OnInit, OnDestroy {
 
 	public onDismiss() {
 		this.cartCheckoutModal.close();
-		this._cartService.endCheckoutProcess();
+		this._cartService.clearLock();
 	}
 
 	public onCartConfirm() {
-		this._cartService.endCheckoutProcess();
+		this._cartService.clearLock();
 		this.cartCheckoutModal.close();
 		this.cartConfirmed.emit(true);
 	}

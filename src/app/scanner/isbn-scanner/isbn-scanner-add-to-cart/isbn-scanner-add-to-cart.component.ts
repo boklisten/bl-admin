@@ -28,7 +28,7 @@ export class IsbnScannerAddToCartComponent implements OnInit, OnDestroy {
 
 	private handleIsbnScanChange() {
 		this.isbnScan$ = this._blcScannerService.onIsbn(isbn => {
-			if (!this._cartService.isInCheckoutProcess()) {
+			if (!this._cartService.isLocked()) {
 				this._isbnScannerService
 					.addCartItemByIsbn(isbn)
 					.then(() => {})

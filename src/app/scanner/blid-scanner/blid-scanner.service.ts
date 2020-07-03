@@ -34,7 +34,7 @@ export class BlidScannerService {
 
 	private handleBlidScanChange() {
 		this._blcScannerService.onBlid(blid => {
-			if (!this._cartService.isInCheckoutProcess()) {
+			if (!this._cartService.isLocked()) {
 				this._uniqueItemService
 					.get({ query: `?blid=${blid}` })
 					.then(uniqueItems => {
