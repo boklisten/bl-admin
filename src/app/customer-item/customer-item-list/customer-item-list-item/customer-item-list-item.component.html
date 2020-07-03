@@ -39,7 +39,7 @@
 				class="ml-2"
 				*ngIf="customerItem && customerItem.type === 'partly-payment'"
 			>
-				<span i18n="@@customerItemListItemAmountLeftToPay">
+				<span>
 					<fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
 					<fa-icon [icon]="'calendar'" class="mr-1"></fa-icon>
 				</span>
@@ -47,13 +47,16 @@
 				{{ customerItem.amountLeftToPay | blcPrice }}
 			</span>
 
-			<span *ngIf="customerItem.type === 'rent'" class="ml-2"
-				><fa-icon [icon]="'calendar'" class="mr-2"></fa-icon>
+			<span *ngIf="customerItem.type === 'rent'"
+				><fa-icon [icon]="'calendar'" class="mr-1"></fa-icon>
 				<span i18n="@@customerItemListItemRent">rent</span>
+				<fa-icon [icon]="'arrow-right'" class="mr-1 ml-1"></fa-icon>
+				<fa-icon [icon]="'clock'" class="mr-1"></fa-icon>
+				{{ customerItem.deadline | blDate }}
 			</span>
 		</small>
 	</div>
-	<div class="col-auto text-success ml-2" *ngIf="customerItem.match">
+	<div class="col-auto text-success ml-1" *ngIf="customerItem.match">
 		<fa-icon [icon]="'user-friends'"></fa-icon>
 	</div>
 </div>
