@@ -3,7 +3,8 @@ import { Order, UserDetail } from "@wizardcoder/bl-model";
 import { CartService } from "../../cart/cart.service";
 import { Router } from "@angular/router";
 import { UserDetailService } from "@wizardcoder/bl-connect";
-import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
+import { CustomerService } from "../../customer/customer.service";
+import { CartItemService } from "../../cart/cart-item/cart-item.service";
 
 @Component({
 	selector: "app-add-order-to-cart",
@@ -16,31 +17,24 @@ export class AddOrderToCartComponent implements OnInit {
 	constructor(
 		private _cartService: CartService,
 		private _router: Router,
-		private userDetailService: UserDetailService,
-		private _customerDetailService: CustomerDetailService
+		private _customerService: CustomerService,
+		private _cartItemService: CartItemService
 	) {}
 
 	ngOnInit() {}
 
-	public onAddToCart() {
-		throw new Error("addToOrderToCartComponent: not implemented");
-		/*
-		this._customerDetailService
-			.getAndSetCustomerDetailById(this.order.customer as string)
-			.then((customerDetail: UserDetail) => {
-				for (const orderItem of this.order.orderItems) {
-					if (!orderItem.movedToOrder) {
-						this._cartService.addOrderItem(orderItem, this.order);
-					}
-				}
+	public async onAddToCart() {
+		await this._customerService.setById(this.order.customer as string);
 
-				this._router.navigate(["/cart"]);
-			})
-			.catch(() => {
-				console.log(
-					"addOrderToCartComponent: could not get customer detail"
+		for (const orderItem of this.order.orderItems) {
+			if (!orderItem.movedToOrder) {
+				const cartItem = await this._cartItemService.createCartItemByOrderItem(
+					orderItem,
+					this.order
 				);
-			});
-      */
+				this._cartService.add(cartItem);
+			}
+		}
+		this._router.navigate(["/cart"]);
 	}
 }

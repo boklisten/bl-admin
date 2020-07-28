@@ -55,6 +55,14 @@ export class CustomerService {
 			});
 	}
 
+	public async setById(id: string): Promise<boolean> {
+		this._wait$.next(true);
+		const userDetail = await this.getCustomerDetail(id);
+		this.setCustomerDetail(userDetail);
+		this._wait$.next(false);
+		return true;
+	}
+
 	public reload() {
 		if (this._customerDetail) {
 			this.set(this._customerDetail.id);
