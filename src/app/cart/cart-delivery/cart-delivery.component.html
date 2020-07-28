@@ -2,44 +2,48 @@
 	<div class="col-auto">
 		<div class="row justify-content-center">
 			<div class="col-auto text-secondary">
-				<span *ngIf="delivery.method === 'bring'"><fa-icon [icon]="'truck'" class="mr-2"></fa-icon>
-					<span i18n="@@cartDeliverySendWithBring">send with Bring</span>
+				<span *ngIf="delivery.method === 'bring'"
+					><fa-icon [icon]="'truck'" class="mr-2"></fa-icon>
+					<span i18n="@@cartDeliverySendWithBring"
+						>send with Bring</span
+					>
 				</span>
 			</div>
 		</div>
 		<div class="row mt-2 justify-content-center">
 			<div class="col-auto">
-                <span *ngIf="delivery.info['shipmentAddress']">
-                    {{delivery.info['shipmentAddress']['name']}}
-                </span>
+				<span *ngIf="delivery.info['shipmentAddress']">
+					{{ delivery.info["shipmentAddress"]["name"] }}
+				</span>
 			</div>
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-auto">
-                <span *ngIf="customerDetail.phone">
-                    {{customerDetail.phone}}
-                </span>
+				<span *ngIf="customerDetail.phone">
+					{{ customerDetail.phone }}
+				</span>
 			</div>
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-auto">
-                <span *ngIf="customerDetail.email">
-                    {{customerDetail.email}}
-                </span>
+				<span *ngIf="customerDetail.email">
+					{{ customerDetail.email }}
+				</span>
 			</div>
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-auto">
-                <span *ngIf="delivery.info['shipmentAddress']">
-                    {{delivery.info['shipmentAddress']['address']}}
-                </span>
+				<span *ngIf="delivery.info['shipmentAddress']">
+					{{ delivery.info["shipmentAddress"]["address"] }}
+				</span>
 			</div>
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-auto">
-                <span *ngIf="delivery.info['shipmentAddress']">
-                    {{delivery.info['shipmentAddress']['postalCode']}} {{delivery.info['shipmentAddress']['postalCity']}}
-                </span>
+				<span *ngIf="delivery.info['shipmentAddress']">
+					{{ delivery.info["shipmentAddress"]["postalCode"] }}
+					{{ delivery.info["shipmentAddress"]["postalCity"] }}
+				</span>
 			</div>
 		</div>
 	</div>
@@ -48,15 +52,17 @@
 <div class="row justify-content-center mt-5">
 	<div class="col-auto">
 		<div class="input-group input-group-lg">
-			<input type="text"
-				   class="form-control"
-				   title="trackingNumber"
-				   (change)="onTrackingNumberChange()"
-				   (keyup)="onTrackingNumberChange()"
-				   (click)="$event.target.select()"
-				   i18n-placeholder="@@cartDeliveryTrackingNumberPlaceholder"
-				   placeholder="tracking number"
-				   [(ngModel)]="trackingNumber"/>
+			<input
+				type="text"
+				class="form-control"
+				title="trackingNumber"
+				(change)="onTrackingNumberChange()"
+				(keyup)="onTrackingNumberChange()"
+				(click)="$event.target.select()"
+				i18n-placeholder="@@cartDeliveryTrackingNumberPlaceholder"
+				placeholder="tracking number"
+				[(ngModel)]="trackingNumber"
+			/>
 			<div class="input-group-append">
 				<span class="input-group-text">
 					<fa-icon [icon]="'qrcode'"></fa-icon>
@@ -65,10 +71,14 @@
 		</div>
 	</div>
 	<div class="col-auto">
-		<button class="btn btn-outline-success btn-lg"
-				(click)="onTrackingNumberConfirm()"
-				[disabled]="!canConfirmDelivery">
-			<span i18n="@@cartDeliveryConfirmDeliveryButton">Confirm delivery</span>
+		<button
+			class="btn btn-outline-success btn-lg"
+			(click)="onTrackingNumberConfirm()"
+			[disabled]="!canConfirmDelivery"
+		>
+			<span i18n="@@cartDeliveryConfirmDeliveryButton"
+				>Confirm delivery</span
+			>
 		</button>
 	</div>
 </div>

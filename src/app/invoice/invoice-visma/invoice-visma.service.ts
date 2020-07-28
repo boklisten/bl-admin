@@ -236,7 +236,7 @@ export class InvoiceVismaService {
 		invoice: Invoice,
 		ehf: boolean
 	) {
-		let distributionChannel = "";
+		let distributionChannel = "P";
 		let eInvoiceCode = "";
 		let eInvoiceRef = "";
 
