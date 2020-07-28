@@ -8,12 +8,22 @@
 	background-color: $primary-color;
 	height: 100vh;
 	width: 100vw;
-
 	padding: 40px;
 }
 
+.bl-view {
+	width: 100vw;
+	display: flex;
+	justify-content: space-between;
+	align-items: stretch;
+}
+
+.bl-sidebar {
+	width: 50px;
+	max-width: 50px;
+	flex: 1;
+}
+
 .bl-content {
-	width: calc(100vw - 50px);
-	max-height: calc(100vh - 50px);
-	overflow-y: scroll;
+	flex: 1;
 }
