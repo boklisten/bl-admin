@@ -35,6 +35,5 @@ export class AddOrderToCartComponent implements OnInit {
 				this._cartService.add(cartItem);
 			}
 		}
-		this._router.navigate(["/cart"]);
 	}
 }

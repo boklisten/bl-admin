@@ -13,10 +13,6 @@ import { OrderItemListComponent } from "./order-detail/order-item-list/order-ite
 import { OrderItemDetailListComponent } from "./order-detail/order-item-detail-list/order-item-detail-list.component";
 import { CustomerOrderItemListComponent } from "./customer-order/customer-order-item-list/customer-order-item-list.component";
 import { OrderHandlerService } from "./order-handler/order-handler.service";
-import { OrderManagerComponent } from "./order-manager/order-manager.component";
-import { OrderManagerListComponent } from "./order-manager/order-manager-list/order-manager-list.component";
-import { OrderManagerListService } from "./order-manager/order-manager-list/order-manager-list.service";
-import { OrderManagerListItemComponent } from "./order-manager/order-manager-list/order-manager-list-item/order-manager-list-item.component";
 import { AddOrderToCartComponent } from "./add-order-to-cart/add-order-to-cart.component";
 import { CustomerOrderItemListItemComponent } from "./customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component";
 import { OrderPaymentInformationComponent } from "./order-payment-information/order-payment-information.component";
@@ -37,9 +33,6 @@ import { OrderPaymentInformationComponent } from "./order-payment-information/or
 		OrderItemListComponent,
 		OrderItemDetailListComponent,
 		CustomerOrderItemListComponent,
-		OrderManagerComponent,
-		OrderManagerListComponent,
-		OrderManagerListItemComponent,
 		AddOrderToCartComponent,
 		CustomerOrderItemListItemComponent,
 		OrderPaymentInformationComponent
@@ -49,8 +42,12 @@ import { OrderPaymentInformationComponent } from "./order-payment-information/or
 		CustomerOrderItemListComponent,
 		OrderItemListComponent,
 		OrderItemDetailListComponent,
-		OrderPaymentInformationComponent
+		OrderPaymentInformationComponent,
+		OrderDetailCardComponent,
+		OrderDeliveryDetailComponent,
+		OrderPaymentDetailComponent,
+		AddOrderToCartComponent
 	],
-	providers: [OrderHandlerService, OrderManagerListService]
+	providers: [OrderHandlerService]
 })
 export class OrderModule {}

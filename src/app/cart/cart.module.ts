@@ -70,6 +70,7 @@ import { ScannerModule } from "../scanner/scanner.module";
 		CustomerItemListService,
 		CustomerOrderItemListService,
 		CartItemService
-	]
+	],
+	exports: [CartListComponent]
 })
 export class CartModule {}

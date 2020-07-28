@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { DeliveryService, OrderService } from "@wizardcoder/bl-connect";
 import { Order } from "@wizardcoder/bl-model";
 import * as moment from "moment";
-import { BranchStoreService } from "../../../branch/branch-store.service";
+import { BranchStoreService } from "../../branch/branch-store.service";
 
 export interface OrderFilter {
 	placed: boolean; // if the order should be placed or not

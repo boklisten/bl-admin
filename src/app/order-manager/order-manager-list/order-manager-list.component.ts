@@ -1,15 +1,18 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {OrderFilter, OrderManagerListService} from './order-manager-list.service';
-import {Order} from '@wizardcoder/bl-model';
-import {BranchStoreService} from '../../../branch/branch-store.service';
-import {CustomerService} from '../../../customer/customer.service';
-import {timer} from 'rxjs/internal/observable/timer';
-import {Observable} from 'rxjs/internal/Observable';
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import {
+	OrderFilter,
+	OrderManagerListService
+} from "./order-manager-list.service";
+import { Order } from "@wizardcoder/bl-model";
+import { BranchStoreService } from "../../branch/branch-store.service";
+import { CustomerService } from "../../customer/customer.service";
+import { timer } from "rxjs/internal/observable/timer";
+import { Observable } from "rxjs/internal/Observable";
 
 @Component({
-	selector: 'app-order-manager-list',
-	templateUrl: './order-manager-list.component.html',
-	styleUrls: ['./order-manager-list.component.scss']
+	selector: "app-order-manager-list",
+	templateUrl: "./order-manager-list.component.html",
+	styleUrls: ["./order-manager-list.component.scss"]
 })
 export class OrderManagerListComponent implements OnInit {
 	placedOrders: Order[];
@@ -22,9 +25,11 @@ export class OrderManagerListComponent implements OnInit {
 	fetching: boolean;
 	@Output() selectedOrder: EventEmitter<Order>;
 
-	constructor(private _orderManagerListService: OrderManagerListService,
-	            private _branchStoreService: BranchStoreService,
-	            private _customerService: CustomerService) {
+	constructor(
+		private _orderManagerListService: OrderManagerListService,
+		private _branchStoreService: BranchStoreService,
+		private _customerService: CustomerService
+	) {
 		this.selectedOrder = new EventEmitter<Order>();
 		this.allBranchesFilter = false;
 		this.interval = 10000;
@@ -40,7 +45,7 @@ export class OrderManagerListComponent implements OnInit {
 
 		this.autoFetchTimer.subscribe(() => {
 			if (this.orderFilter.autoFetch) {
-				console.log('fetching');
+				console.log("fetching");
 				this.getOrders();
 				this.fetching = true;
 			}
@@ -67,20 +72,22 @@ export class OrderManagerListComponent implements OnInit {
 	}
 
 	private getOrders() {
-		this._orderManagerListService.getPlacedOrders().then((orders: Order[]) => {
-			this.placedOrders = orders;
-			this.tempPlacedOrders = orders;
-			this.filterOnlyCurrentBranch();
-			this.filterNewestFirst();
+		this._orderManagerListService
+			.getPlacedOrders()
+			.then((orders: Order[]) => {
+				this.placedOrders = orders;
+				this.tempPlacedOrders = orders;
+				this.filterOnlyCurrentBranch();
+				this.filterNewestFirst();
 
-			setTimeout(() => {
+				setTimeout(() => {
+					this.fetching = false;
+				}, 1000);
+			})
+			.catch(err => {
+				this.placedOrders = [];
 				this.fetching = false;
-			}, 1000);
-
-		}).catch((err) => {
-			this.placedOrders = [];
-			this.fetching = false;
-		});
+			});
 	}
 
 	onBranchChange() {
@@ -95,7 +102,10 @@ export class OrderManagerListComponent implements OnInit {
 
 	filterNewestFirst() {
 		this.placedOrders = this.tempPlacedOrders.sort((orderA, orderB) => {
-			return new Date(orderB.creationTime).getTime() - new Date(orderA.creationTime).getTime();
+			return (
+				new Date(orderB.creationTime).getTime() -
+				new Date(orderA.creationTime).getTime()
+			);
 		});
 	}
 
@@ -103,15 +113,12 @@ export class OrderManagerListComponent implements OnInit {
 		const branch = this._branchStoreService.getCurrentBranch();
 
 		this.placedOrders = this.tempPlacedOrders.filter((order: Order) => {
-			return (order.branch === branch.id);
+			return order.branch === branch.id;
 		});
 	}
-
 
 	onOrderClick(order: Order) {
 		this.activeOrder = order;
 		this.selectedOrder.emit(order);
 	}
-
-
 }

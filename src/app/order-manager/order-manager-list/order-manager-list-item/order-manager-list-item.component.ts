@@ -5,7 +5,7 @@ import {
 	DeliveryService,
 	UserDetailService
 } from "@wizardcoder/bl-connect";
-import { CustomerService } from "../../../../customer/customer.service";
+import { CustomerService } from "../../../customer/customer.service";
 
 @Component({
 	selector: "app-order-manager-list-item",

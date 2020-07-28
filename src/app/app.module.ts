@@ -44,6 +44,7 @@ import { BlcScannerService } from "./bl-common/blc-scanner/blc-scanner.service";
 import { MessagesComponent } from "./messages/messages.component";
 import { HeaderCustomerSearchComponent } from "./header/header-customer-search/header-customer-search.component";
 import { ToasterModule } from "./toaster/toaster.module";
+import { OrderManagerModule } from "./order-manager/order-manager.module";
 
 @NgModule({
 	declarations: [
@@ -76,7 +77,8 @@ import { ToasterModule } from "./toaster/toaster.module";
 		MessengerModule,
 		BookingModule,
 		ScannerModule,
-		ToasterModule
+		ToasterModule,
+		OrderManagerModule
 	],
 	providers: [
 		AuthLoginService,
