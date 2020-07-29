@@ -40,6 +40,10 @@ export class OrderItemCartItem extends Subscribable implements CartItem {
 		return this._orderItem ? (this._orderItem.item as string) : null;
 	}
 
+	public getDeliveryId(): string {
+		return this._order.delivery as string;
+	}
+
 	public getCustomerItemId(): string {
 		return null;
 	}

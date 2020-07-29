@@ -5,6 +5,7 @@ import { CustomerModule } from "../customer/customer.module";
 import { OrderModule } from "../order/order.module";
 import { PaymentModule } from "../payment/payment.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { DeliveryModule } from "../delivery/delivery.module";
 
 @NgModule({
 	declarations: [CheckoutComponent],
@@ -13,7 +14,8 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 		CustomerModule,
 		OrderModule,
 		PaymentModule,
-		FontAwesomeModule
+		FontAwesomeModule,
+		DeliveryModule
 	],
 	exports: [CheckoutComponent]
 })

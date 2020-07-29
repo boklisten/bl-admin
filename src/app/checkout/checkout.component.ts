@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { Order } from "@wizardcoder/bl-model";
+import { Order, Delivery } from "@wizardcoder/bl-model";
 import { CartOrderService } from "../cart/cart-order/cart-order.service";
 import { CheckoutService } from "./checkout.service";
+import { CartDeliveryService } from "../cart/cart-delivery/cart-delivery.service";
 
 type Step = {
 	name: string;
@@ -23,10 +24,12 @@ export class CheckoutComponent implements OnInit {
 	private steps: Step[];
 	private stepIndex: number;
 	public checkoutError: any;
+	public delivery: Delivery;
 
 	constructor(
 		private _cartOrderService: CartOrderService,
-		private _checkoutService: CheckoutService
+		private _checkoutService: CheckoutService,
+		private _cartDeliveryService: CartDeliveryService
 	) {
 		this.dismiss = new EventEmitter();
 	}
@@ -34,21 +37,22 @@ export class CheckoutComponent implements OnInit {
 	ngOnInit() {
 		this.wait = true;
 		this.step = this.loadingOrderStep();
+		this.init();
+	}
 
-		this._cartOrderService
-			.createOrder()
-			.then(order => {
-				this.order = order;
-				this.steps = this.calculateSteps(this.order);
-				this.stepIndex = 0;
-				this.step = this.steps[this.stepIndex];
-				this.wait = false;
-			})
-			.catch(e => {
-				this.wait = false;
-				this.checkoutError = e;
-				this.step = this.errorStep();
-			});
+	private async init() {
+		try {
+			const order = await this._cartOrderService.createOrder();
+			this.order = order;
+			this.steps = await this.calculateSteps(this.order);
+			this.stepIndex = 0;
+			this.step = this.steps[this.stepIndex];
+			this.wait = false;
+		} catch (e) {
+			this.wait = false;
+			this.checkoutError = e;
+			this.step = this.errorStep();
+		}
 	}
 
 	public onDismiss() {
@@ -80,6 +84,8 @@ export class CheckoutComponent implements OnInit {
 			});
 	}
 
+	public onGoToDelivery() {}
+
 	public onCustomerDetailValid(valid: boolean) {
 		this.step.valid = valid;
 	}
@@ -97,7 +103,7 @@ export class CheckoutComponent implements OnInit {
 		this.step.valid = false;
 	}
 
-	private calculateSteps(order: Order): Step[] {
+	private async calculateSteps(order: Order): Promise<Step[]> {
 		let steps = [
 			{
 				name: "summary",
@@ -106,6 +112,12 @@ export class CheckoutComponent implements OnInit {
 				showHeader: true
 			}
 		];
+
+		try {
+			const deliveryStep = await this.getDeliveryStepIfPresentInCart();
+			console.log("should add delivery step");
+			steps.push(deliveryStep);
+		} catch (e) {}
 
 		if (order.amount !== 0) {
 			steps.push({
@@ -124,6 +136,22 @@ export class CheckoutComponent implements OnInit {
 		});
 
 		return steps;
+	}
+
+	private async getDeliveryStepIfPresentInCart(): Promise<Step> {
+		try {
+			const delivery = await this._cartDeliveryService.getDeliveryIfPresent();
+			return this.deliveryStep();
+		} catch (e) {}
+	}
+
+	private deliveryStep(): Step {
+		return {
+			name: "delivery",
+			valid: false,
+			showConfirmButton: true,
+			showHeader: true
+		};
 	}
 
 	private errorStep(): Step {

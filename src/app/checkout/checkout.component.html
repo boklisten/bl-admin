@@ -24,6 +24,10 @@
 	></app-payment>
 </div>
 
+<div class="modal-body" *ngIf="step.name === 'delivery'">
+	<app-delivery-detail [deliveryId]="order.delivery"></app-delivery-detail>
+</div>
+
 <div
 	class="modal-body text-center bg-warning"
 	*ngIf="step.name === 'processing'"
@@ -72,7 +76,9 @@
 			>There was an error creating the order. Please Try again.</strong
 		>
 	</div>
-	<div class="mt-1 mb-5"><small>{{checkoutError | json}}</small></div>
+	<div class="mt-1 mb-5">
+		<small>{{ checkoutError | json }}</small>
+	</div>
 </div>
 
 <div

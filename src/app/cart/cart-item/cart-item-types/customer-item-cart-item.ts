@@ -51,6 +51,10 @@ export class CustomerItemCartItem extends Subscribable implements CartItem {
 		return this._cartItemOrderItemProvider.createOrderItem(this);
 	}
 
+	public getDeliveryId(): string {
+		return null;
+	}
+
 	public setAction(action: CartItemAction) {
 		this._action = action;
 		this.notify();
