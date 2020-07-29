@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from "@angular/core";
+import {
+	Component,
+	EventEmitter,
+	OnInit,
+	Output,
+	OnDestroy
+} from "@angular/core";
 import {
 	OrderFilter,
 	OrderManagerListService
@@ -8,13 +14,15 @@ import { BranchStoreService } from "../../branch/branch-store.service";
 import { CustomerService } from "../../customer/customer.service";
 import { timer } from "rxjs/internal/observable/timer";
 import { Observable } from "rxjs/internal/Observable";
+import { Subscription } from "rxjs";
+import { CheckoutService } from "../../checkout/checkout.service";
 
 @Component({
 	selector: "app-order-manager-list",
 	templateUrl: "./order-manager-list.component.html",
 	styleUrls: ["./order-manager-list.component.scss"]
 })
-export class OrderManagerListComponent implements OnInit {
+export class OrderManagerListComponent implements OnInit, OnDestroy {
 	placedOrders: Order[];
 	tempPlacedOrders: Order[];
 	activeOrder: Order;
@@ -24,11 +32,13 @@ export class OrderManagerListComponent implements OnInit {
 	autoFetchTimer: Observable<number>;
 	fetching: boolean;
 	@Output() selectedOrder: EventEmitter<Order>;
+	private checkoutChange$: Subscription;
 
 	constructor(
 		private _orderManagerListService: OrderManagerListService,
 		private _branchStoreService: BranchStoreService,
-		private _customerService: CustomerService
+		private _customerService: CustomerService,
+		private _checkoutService: CheckoutService
 	) {
 		this.selectedOrder = new EventEmitter<Order>();
 		this.allBranchesFilter = false;
@@ -45,10 +55,21 @@ export class OrderManagerListComponent implements OnInit {
 
 		this.autoFetchTimer.subscribe(() => {
 			if (this.orderFilter.autoFetch) {
-				console.log("fetching");
 				this.getOrders();
 				this.fetching = true;
 			}
+		});
+
+		this.handleCheckoutChange();
+	}
+
+	ngOnDestroy() {
+		this.checkoutChange$.unsubscribe();
+	}
+
+	private handleCheckoutChange() {
+		this.checkoutChange$ = this._checkoutService.subscribe(() => {
+			this.getOrders();
 		});
 	}
 

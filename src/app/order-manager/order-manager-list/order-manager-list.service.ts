@@ -3,6 +3,8 @@ import { DeliveryService, OrderService } from "@wizardcoder/bl-connect";
 import { Order } from "@wizardcoder/bl-model";
 import * as moment from "moment";
 import { BranchStoreService } from "../../branch/branch-store.service";
+import { CheckoutService } from "../../checkout/checkout.service";
+import { Subscription } from "rxjs";
 
 export interface OrderFilter {
 	placed: boolean; // if the order should be placed or not
@@ -24,14 +26,17 @@ export interface OrderFilter {
 export class OrderManagerListService {
 	private fetching: boolean;
 	private orderFilter: OrderFilter;
+	private checkoutChange$: Subscription;
 
 	constructor(
 		private _orderService: OrderService,
 		private _deliveryService: DeliveryService,
-		private _branchStoreService: BranchStoreService
+		private _branchStoreService: BranchStoreService,
+		private _checkoutService: CheckoutService
 	) {
 		this.orderFilter = this.getDefaultOrderFilter();
 		this.fetching = true;
+		this.handleCheckoutChange();
 	}
 
 	public async getPlacedOrders(): Promise<Order[]> {
@@ -51,6 +56,13 @@ export class OrderManagerListService {
 
 	public getOrderFilter(): OrderFilter {
 		return this.orderFilter;
+	}
+
+	private handleCheckoutChange() {
+		this.checkoutChange$ = this._checkoutService.subscribe(status => {
+			console.log("checkout!", status);
+			this.getPlacedOrders();
+		});
 	}
 
 	private async filterOrders(orders: Order[]): Promise<Order[]> {

@@ -11,6 +11,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { BlCommonModule } from "../bl-common/bl-common.module";
 import { OrderModule } from "../order/order.module";
 import { CartModule } from "../cart/cart.module";
+import { CheckoutModule } from "../checkout/checkout.module";
 
 @NgModule({
 	declarations: [
@@ -24,7 +25,8 @@ import { CartModule } from "../cart/cart.module";
 		FontAwesomeModule,
 		BlCommonModule,
 		OrderModule,
-		CartModule
+		CartModule,
+		CheckoutModule
 	],
 	providers: [OrderManagerListService]
 })
