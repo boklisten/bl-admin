@@ -1,4 +1,8 @@
-<div class="row">
+<app-unique-item-scan-order-to-cart
+	[order]="activeOrder"
+></app-unique-item-scan-order-to-cart>
+
+<div class="row" blcScanner>
 	<div class="col-3">
 		<app-order-manager-list
 			(selectedOrder)="onSelectOrder($event)"

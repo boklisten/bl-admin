@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { CustomerItemListService } from "../../customer-item/customer-item-list/customer-item-list.service";
 import { CartItem } from "../../cart/cart-item/cart-item";
 import { CartItemService } from "../../cart/cart-item/cart-item.service";
-import { UniqueItem } from "@wizardcoder/bl-model";
+import { UniqueItem, Order } from "@wizardcoder/bl-model";
 import { CartService } from "../../cart/cart.service";
 import { CustomerOrderItemListService } from "../../order/customer-order/customer-order-item-list/customer-order-item-list.service";
 import { ToasterService } from "../../toaster/toaster.service";
@@ -18,6 +18,16 @@ export class UniqueItemScanToCartService {
 		private _customerOrderItemList: CustomerOrderItemListService,
 		private _toasterService: ToasterService
 	) {}
+
+	public async addOrderItemAsUniqueItemToCart(
+		order: Order,
+		uniqueItem: UniqueItem
+	): Promise<boolean> {
+		const cartItem = await this.createCartItemByOrder(order, uniqueItem);
+		cartItem.setBLID(uniqueItem.blid);
+		this.addCartItemToCart(cartItem);
+		return true;
+	}
 
 	public async addUniqueItemToCart(uniqueItem: UniqueItem): Promise<boolean> {
 		// check if custmerItemList has BLID
@@ -44,6 +54,12 @@ export class UniqueItemScanToCartService {
 		}
 
 		cartItem.setBLID(uniqueItem.blid);
+		this.addCartItemToCart(cartItem);
+
+		return true;
+	}
+
+	private addCartItemToCart(cartItem: CartItem) {
 		if (this._cartService.contains(cartItem)) {
 			this._toasterService.add("CART-CONTAINS", {
 				title: cartItem.getTitle(),
@@ -52,10 +68,21 @@ export class UniqueItemScanToCartService {
 		} else {
 			this._cartService.add(cartItem);
 		}
-
-		return true;
 	}
 
+	private async createCartItemByOrder(
+		order: Order,
+		uniqueItem: UniqueItem
+	): Promise<CartItem> {
+		for (let orderItem of order.orderItems) {
+			if (orderItem.item.toString() === uniqueItem.item.toString()) {
+				return this._cartItemService.createCartItemByOrderItem(
+					orderItem,
+					order
+				);
+			}
+		}
+	}
 	private async createCartItemFromCustomerOrderItemList(
 		uniqueItem: UniqueItem
 	): Promise<CartItem> {

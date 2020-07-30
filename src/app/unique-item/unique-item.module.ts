@@ -7,12 +7,14 @@ import { ItemModule } from "../item/item.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { UniqueItemScanToCartComponent } from "./unique-item-scan-to-cart/unique-item-scan-to-cart.component";
 import { UniqueItemRegisterFromCartComponent } from "./unique-item-register-from-cart/unique-item-register-from-cart.component";
+import { UniqueItemScanOrderToCartComponent } from "./unique-item-scan-order-to-cart/unique-item-scan-order-to-cart.component";
 
 @NgModule({
 	declarations: [
 		UniqueItemRegisterComponent,
 		UniqueItemScanToCartComponent,
-		UniqueItemRegisterFromCartComponent
+		UniqueItemRegisterFromCartComponent,
+		UniqueItemScanOrderToCartComponent
 	],
 	imports: [
 		CommonModule,
@@ -24,7 +26,8 @@ import { UniqueItemRegisterFromCartComponent } from "./unique-item-register-from
 	exports: [
 		UniqueItemRegisterComponent,
 		UniqueItemScanToCartComponent,
-		UniqueItemRegisterFromCartComponent
+		UniqueItemRegisterFromCartComponent,
+		UniqueItemScanOrderToCartComponent
 	]
 })
 export class UniqueItemModule {}

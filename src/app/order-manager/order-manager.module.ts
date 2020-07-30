@@ -12,6 +12,7 @@ import { BlCommonModule } from "../bl-common/bl-common.module";
 import { OrderModule } from "../order/order.module";
 import { CartModule } from "../cart/cart.module";
 import { CheckoutModule } from "../checkout/checkout.module";
+import { UniqueItemModule } from "../unique-item/unique-item.module";
 
 @NgModule({
 	declarations: [
@@ -26,7 +27,8 @@ import { CheckoutModule } from "../checkout/checkout.module";
 		BlCommonModule,
 		OrderModule,
 		CartModule,
-		CheckoutModule
+		CheckoutModule,
+		UniqueItemModule
 	],
 	providers: [OrderManagerListService]
 })
