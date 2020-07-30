@@ -33,7 +33,9 @@ export class CartDeliveryService {
 					distinctDelivery
 				);
 
-				deliveries.push(delivery);
+				if (delivery.method === "bring") {
+					deliveries.push(delivery);
+				}
 			} catch (e) {}
 		}
 

@@ -3,6 +3,7 @@ import { Order, Delivery } from "@wizardcoder/bl-model";
 import { CartOrderService } from "../cart/cart-order/cart-order.service";
 import { CheckoutService } from "./checkout.service";
 import { CartDeliveryService } from "../cart/cart-delivery/cart-delivery.service";
+import { UserService } from "../user/user.service";
 
 type Step = {
 	name: string;
@@ -25,19 +26,24 @@ export class CheckoutComponent implements OnInit {
 	private stepIndex: number;
 	public checkoutError: any;
 	public delivery: Delivery;
+	public sendEmailNotification: boolean;
+	public isAdmin: boolean;
 
 	constructor(
 		private _cartOrderService: CartOrderService,
 		private _checkoutService: CheckoutService,
-		private _cartDeliveryService: CartDeliveryService
+		private _cartDeliveryService: CartDeliveryService,
+		private _userService: UserService
 	) {
 		this.dismiss = new EventEmitter();
+		this.sendEmailNotification = true;
 	}
 
 	ngOnInit() {
 		this.wait = true;
 		this.step = this.loadingOrderStep();
 		this.init();
+		this.isAdmin = this._userService.havePermission("admin");
 	}
 
 	private async init() {
@@ -59,20 +65,25 @@ export class CheckoutComponent implements OnInit {
 		this.dismiss.emit(true);
 	}
 
+	public onDeliveryConfirmed(delivery: Delivery) {
+		this.delivery = delivery;
+		this.onNext();
+	}
+
 	public onNext() {
-		if (
-			this.step.name == "payment" ||
-			(this.order.amount == 0 && this.step.name == "summary")
-		) {
-			this.onConfirmCheckout();
-		}
 		this.stepIndex++;
 		this.step = this.steps[this.stepIndex];
+
+		if (this.step.name === "processing") {
+			this.onConfirmCheckout();
+		}
 	}
 
 	public onConfirmCheckout() {
+		this.order.notification = { email: this.sendEmailNotification };
+
 		this._checkoutService
-			.checkout(this.order)
+			.checkout(this.order, this.delivery)
 			.then(order => {
 				this.step = this.doneStep();
 				setTimeout(() => {
@@ -84,7 +95,9 @@ export class CheckoutComponent implements OnInit {
 			});
 	}
 
-	public onGoToDelivery() {}
+	public onCheckoutByDelivery() {
+		this.step = this.deliveryStep();
+	}
 
 	public onCustomerDetailValid(valid: boolean) {
 		this.step.valid = valid;
@@ -113,13 +126,7 @@ export class CheckoutComponent implements OnInit {
 			}
 		];
 
-		try {
-			const deliveryStep = await this.getDeliveryStepIfPresentInCart();
-			console.log("should add delivery step");
-			steps.push(deliveryStep);
-		} catch (e) {}
-
-		if (order.amount !== 0) {
+		if (this.order.amount !== 0) {
 			steps.push({
 				name: "payment",
 				valid: false,
@@ -128,29 +135,40 @@ export class CheckoutComponent implements OnInit {
 			});
 		}
 
-		steps.push({
-			name: "processing",
-			valid: true,
-			showConfirmButton: false,
-			showHeader: false
-		});
+		steps.push(this.processingStep());
+
+		try {
+			const delivery = await this.getDeliveryIfPresentInCart();
+			this.delivery = delivery;
+		} catch (e) {}
 
 		return steps;
 	}
 
-	private async getDeliveryStepIfPresentInCart(): Promise<Step> {
+	private async getDeliveryIfPresentInCart(): Promise<Delivery> {
 		try {
 			const delivery = await this._cartDeliveryService.getDeliveryIfPresent();
-			return this.deliveryStep();
-		} catch (e) {}
+			return delivery;
+		} catch (e) {
+			return null;
+		}
 	}
 
 	private deliveryStep(): Step {
 		return {
 			name: "delivery",
 			valid: false,
-			showConfirmButton: true,
+			showConfirmButton: false,
 			showHeader: true
+		};
+	}
+
+	private processingStep(): Step {
+		return {
+			name: "processing",
+			valid: true,
+			showConfirmButton: false,
+			showHeader: false
 		};
 	}
 

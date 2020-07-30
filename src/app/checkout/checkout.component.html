@@ -1,4 +1,15 @@
-<div class="modal-header justify-content-end" *ngIf="step.showHeader">
+<div
+	class="modal-header justify-content-end align-items-center"
+	*ngIf="step.showHeader"
+>
+	<app-bl-common-toggle-button
+		[value]="sendEmailNotification"
+		[(ngModel)]="sendEmailNotification"
+		class="mr-5"
+		*ngIf="isAdmin"
+		name="Email"
+	></app-bl-common-toggle-button>
+
 	<button class="btn btn-outline-danger" (click)="onDismiss()">
 		<fa-icon icon="times"></fa-icon>
 	</button>
@@ -25,7 +36,11 @@
 </div>
 
 <div class="modal-body" *ngIf="step.name === 'delivery'">
-	<app-delivery-detail [deliveryId]="order.delivery"></app-delivery-detail>
+	<app-delivery-tracking-number-edit
+		[delivery]="delivery"
+		[orderId]="order.id"
+		(deliveryConfirmed)="onDeliveryConfirmed($event)"
+	></app-delivery-tracking-number-edit>
 </div>
 
 <div
@@ -96,12 +111,35 @@
 </div>
 
 <div class="modal-footer" *ngIf="step.showConfirmButton">
-	<button
-		class="btn btn-success btn-block"
-		[disabled]="!step.valid"
-		(click)="onNext()"
-		i18n="@@checkoutConfirmButton"
-	>
-		Confirm
-	</button>
+	<div class="row" style="width: 100%">
+		<div class="col-9">
+			<button
+				class="btn btn-success btn-block"
+				[disabled]="!step.valid"
+				[ngClass]="{
+					'btn-success': !delivery,
+					'btn-outline-secondary': delivery
+				}"
+				(click)="onNext()"
+				i18n="@@checkoutConfirmButton"
+			>
+				Confirm
+			</button>
+		</div>
+		<div class="col-3">
+			<button
+				class="btn btn-outline-secondary btn-block"
+				[ngClass]="{
+					'btn-success': delivery,
+					'btn-outline-secondary': !delivery
+				}"
+				[disabled]="!step.valid"
+				(click)="onCheckoutByDelivery()"
+				*ngIf="step.name === 'summary'"
+				i18n="@@checkoutConfirmButton"
+			>
+				Send by mail
+			</button>
+		</div>
+	</div>
 </div>

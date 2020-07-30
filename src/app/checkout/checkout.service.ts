@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Order } from "@wizardcoder/bl-model";
-import { OrderService } from "@wizardcoder/bl-connect";
+import { Order, Delivery } from "@wizardcoder/bl-model";
+import { OrderService, DeliveryService } from "@wizardcoder/bl-connect";
 import { PaymentHandlerService } from "../payment/payment-handler/payment-handler.service";
 import { Subject, Subscription } from "rxjs";
 import { ToasterService } from "../toaster/toaster.service";
@@ -14,7 +14,8 @@ export class CheckoutService {
 	constructor(
 		private _orderService: OrderService,
 		private _paymentHandlerService: PaymentHandlerService,
-		private _toasterService: ToasterService
+		private _toasterService: ToasterService,
+		private _deliveryService: DeliveryService
 	) {
 		this.checkout$ = new Subject();
 	}
@@ -23,12 +24,17 @@ export class CheckoutService {
 		return this.checkout$.subscribe(func);
 	}
 
-	public async checkout(order: Order): Promise<Order> {
+	public async checkout(order: Order, delivery?: Delivery): Promise<Order> {
 		try {
 			let addedOrder = await this._orderService.add(order);
 
 			if (addedOrder.amount !== 0) {
 				await this._paymentHandlerService.addPayments(addedOrder);
+			}
+
+			if (delivery) {
+				delivery.order = addedOrder.id;
+				await this._deliveryService.add(delivery);
 			}
 
 			await this._orderService.updateWithOperation(

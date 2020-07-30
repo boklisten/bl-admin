@@ -6,6 +6,8 @@ import { OrderModule } from "../order/order.module";
 import { PaymentModule } from "../payment/payment.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { DeliveryModule } from "../delivery/delivery.module";
+import { FormsModule } from "@angular/forms";
+import { BlCommonModule } from "../bl-common/bl-common.module";
 
 @NgModule({
 	declarations: [CheckoutComponent],
@@ -15,7 +17,9 @@ import { DeliveryModule } from "../delivery/delivery.module";
 		OrderModule,
 		PaymentModule,
 		FontAwesomeModule,
-		DeliveryModule
+		DeliveryModule,
+		FormsModule,
+		BlCommonModule
 	],
 	exports: [CheckoutComponent]
 })
