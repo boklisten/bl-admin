@@ -56,7 +56,7 @@ export class DeliveryTrackingNumberEditComponent implements OnInit {
 	}
 
 	onTrackingNumberConfirm() {
-		this.delivery.info["trackingNumber"] = this.trackingNumber;
-		this.deliveryConfirmed.emit(this.delivery);
+		this.newDelivery.info["trackingNumber"] = this.trackingNumber;
+		this.deliveryConfirmed.emit(this.newDelivery);
 	}
 }
