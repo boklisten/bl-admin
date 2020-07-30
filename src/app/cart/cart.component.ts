@@ -64,9 +64,12 @@ export class CartComponent implements OnInit, OnDestroy {
 
 	private changeTab(tabName: string) {
 		this.activeTab = tabName;
+
+		/*
 		this._router.navigate([], {
 			queryParams: { tab: tabName }
 		});
+     */
 	}
 
 	private handleCheckoutChange() {
