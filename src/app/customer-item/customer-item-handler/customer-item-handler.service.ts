@@ -81,6 +81,19 @@ export class CustomerItemHandlerService {
 		}
 	}
 
+	public async checkIfAlreadyUsed(blid: string): Promise<CustomerItem> {
+		try {
+			const customerItems = await this._customerItemService.get({
+				query: `?blid=${blid}`
+			});
+			for (let customerItem of customerItems) {
+				console.log("already used", customerItem);
+			}
+		} catch (e) {
+			return null;
+		}
+	}
+
 	public getNotReturned(
 		customerItemType: CustomerItemType,
 		period: {
