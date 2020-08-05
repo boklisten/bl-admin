@@ -51,8 +51,12 @@
 				><fa-icon [icon]="'calendar'" class="mr-1"></fa-icon>
 				<span i18n="@@customerItemListItemRent">rent</span>
 				<fa-icon [icon]="'arrow-right'" class="mr-1 ml-1"></fa-icon>
-				<fa-icon [icon]="'clock'" class="mr-1"></fa-icon>
-				{{ customerItem.deadline | blDate }}
+				<span
+					[ngClass]="{ 'bg-danger text-white p-1': deadlineExpired }"
+				>
+					<fa-icon [icon]="'clock'" class="mr-1"></fa-icon>
+					{{ customerItem.deadline | blDate }}
+				</span>
 			</span>
 		</small>
 	</div>

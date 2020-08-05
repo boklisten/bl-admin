@@ -25,6 +25,7 @@ export class CustomerItemListItemComponent implements OnInit {
 		this.deadlineExpired = this._dateService.isDeadlineExpired(
 			this.customerItem.deadline
 		);
+
 		this.showAddButton = this.shouldShowAddButton();
 
 		const customerItemWithItem = this._customerItemListService.getByCustomerItemId(
