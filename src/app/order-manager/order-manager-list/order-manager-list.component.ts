@@ -33,6 +33,7 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 	fetching: boolean;
 	@Output() selectedOrder: EventEmitter<Order>;
 	private checkoutChange$: Subscription;
+	private orderManagerListChange$: Subscription;
 
 	constructor(
 		private _orderManagerListService: OrderManagerListService,
@@ -61,10 +62,20 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 		});
 
 		this.handleCheckoutChange();
+		this.handleOrderManagerListChange();
 	}
 
 	ngOnDestroy() {
+		this.orderManagerListChange$.unsubscribe();
 		this.checkoutChange$.unsubscribe();
+	}
+
+	private handleOrderManagerListChange() {
+		this.orderManagerListChange$ = this._orderManagerListService.onReload(
+			() => {
+				this.getOrders();
+			}
+		);
 	}
 
 	private handleCheckoutChange() {

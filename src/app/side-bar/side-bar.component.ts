@@ -213,6 +213,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 
 	private handleCustomerClearChange() {
 		this.customerClear$ = this._customerService.onClear(() => {
+			/*
 			this.removeCustomerSidebarLinks();
 			if (this.currentSidebarLinkIndex > 0) {
 				this.currentSidebarLinkIndex--;
@@ -220,6 +221,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 					this.currentSidebarLinkIndex
 				);
 			}
+      */
 		});
 	}
 

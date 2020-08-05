@@ -5,6 +5,7 @@ import { CartService } from "../cart/cart.service";
 import { Subscription } from "rxjs";
 import { CheckoutService } from "../checkout/checkout.service";
 import { CartItemService } from "../cart/cart-item/cart-item.service";
+import { OrderManagerListService } from "./order-manager-list/order-manager-list.service";
 
 @Component({
 	selector: "app-order-manager",
@@ -19,7 +20,8 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
 		private _customerService: CustomerService,
 		private _cartService: CartService,
 		private _checkoutService: CheckoutService,
-		private _cartItemService: CartItemService
+		private _cartItemService: CartItemService,
+		private _orderManagerListService: OrderManagerListService
 	) {}
 
 	ngOnInit() {
@@ -31,7 +33,7 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
 	}
 
 	public onOrderDeleted() {
-		this._customerService.clear();
+		this._orderManagerListService.reload();
 		this.activeOrder = null;
 	}
 

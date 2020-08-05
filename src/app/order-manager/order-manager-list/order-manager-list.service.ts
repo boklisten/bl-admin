@@ -4,7 +4,7 @@ import { Order } from "@wizardcoder/bl-model";
 import * as moment from "moment";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { CheckoutService } from "../../checkout/checkout.service";
-import { Subscription } from "rxjs";
+import { Subscription, Subject } from "rxjs";
 
 export interface OrderFilter {
 	placed: boolean; // if the order should be placed or not
@@ -27,6 +27,7 @@ export class OrderManagerListService {
 	private fetching: boolean;
 	private orderFilter: OrderFilter;
 	private checkoutChange$: Subscription;
+	private _reload$: Subject<boolean>;
 
 	constructor(
 		private _orderService: OrderService,
@@ -34,9 +35,18 @@ export class OrderManagerListService {
 		private _branchStoreService: BranchStoreService,
 		private _checkoutService: CheckoutService
 	) {
+		this._reload$ = new Subject();
 		this.orderFilter = this.getDefaultOrderFilter();
 		this.fetching = true;
 		this.handleCheckoutChange();
+	}
+
+	public reload() {
+		this._reload$.next(true);
+	}
+
+	public onReload(func: (value: boolean) => void): Subscription {
+		return this._reload$.subscribe(func);
 	}
 
 	public async getPlacedOrders(): Promise<Order[]> {
