@@ -8,11 +8,20 @@
 			(selectedOrder)="onSelectOrder($event)"
 		></app-order-manager-list>
 	</div>
-	<div class="col-9 ">
+	<div class="col-9" *ngIf="activeOrder">
 		<div class="row mt-2">
 			<div class="col-4 bl-col-scroll">
-				<div class="row">
-					<div class="col">
+				<div class="row justify-content-between">
+					<div class="col-auto">
+						<button
+							class="btn btn-outline-secondary"
+							[routerLink]="['/order/' + activeOrder.id + '/detail']"
+							i18n="@@orderManagerShowOrder"
+						>
+							Show order
+						</button>
+					</div>
+					<div class="col-auto">
 						<app-add-order-to-cart
 							[order]="activeOrder"
 							*ngIf="activeOrder"
