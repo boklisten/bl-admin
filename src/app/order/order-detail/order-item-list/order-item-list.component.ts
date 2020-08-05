@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 import { Order } from "@wizardcoder/bl-model";
-import { ItemService } from "@wizardcoder/bl-connect";
+import { OrderService } from "@wizardcoder/bl-connect";
 
 @Component({
 	selector: "app-order-item-list",
@@ -9,10 +9,13 @@ import { ItemService } from "@wizardcoder/bl-connect";
 })
 export class OrderItemListComponent implements OnInit {
 	@Input() order: Order;
+	@Output() reload: EventEmitter<boolean>;
 	public warningText: string;
 	public wait;
 
-	constructor() {}
+	constructor(private _orderService: OrderService) {
+		this.reload = new EventEmitter();
+	}
 
 	ngOnInit() {
 		/*
@@ -30,5 +33,21 @@ export class OrderItemListComponent implements OnInit {
 		}
 
 		return totalAmount;
+	}
+
+	public onDeleteOrderItem(index: number) {
+		if (this.order.orderItems.length == 1) {
+			return;
+		}
+
+		this.order.orderItems.splice(index, 1);
+		this._orderService
+			.update(this.order.id, { orderItems: this.order.orderItems })
+			.then(() => {
+				this.reload.emit(true);
+			})
+			.catch(() => {
+				this.reload.emit(true);
+			});
 	}
 }

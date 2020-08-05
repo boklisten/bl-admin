@@ -38,6 +38,8 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
 		this.activeOrder = null;
 	}
 
+	public onReload() {}
+
 	public onSelectOrder(order: Order) {
 		this._customerService
 			.setById(order.customer as string)

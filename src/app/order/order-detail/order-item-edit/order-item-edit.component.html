@@ -1,0 +1,102 @@
+<div class="modal-content">
+	<div class="modal-header">
+		<div class="modal-title"><h5>{{orderItem.title}}</h5></div>
+	</div>
+	<div class="modal-body">
+		<ul class="list-group list-group-small list-group-flush">
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Type</strong> {{orderItem.type}}
+			</li>
+
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Deadline</strong>
+				<span>{{orderItem.info.to ? orderItem.info.to : 'none'}}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Amount</strong>
+				<span>{{orderItem.amount | blcPrice}}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Unit price</strong>
+				<span>{{orderItem.unitPrice | blcPrice}}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Tax rate</strong> <span>{{orderItem.taxRate}}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Tax Amount</strong>
+				<span>{{orderItem.taxAmount | blcPrice}}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Amount left to pay</strong>
+				<span>{{orderItem.info.amountLeftToPay | blcPrice}}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Delivered</strong> <span>{{orderItem.delivered}}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Age</strong>
+				<span>{{orderItem.age ? orderItem.age : 'none'}}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Match</strong>
+				<span>{{orderItem.match ? orderItem.match : 'false'}}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Moved to order</strong>
+				<span
+					>{{orderItem.movedToOrder ? orderItem.movedToOrder :
+					'false'}}</span
+				>
+			</li>
+
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Moved from order</strong>
+				<span
+					>{{orderItem.movedFromOrder ? orderItem.movedFromOrder :
+					'false'}}</span
+				>
+			</li>
+			<li class="list-group-item d-flex justify-content-between">
+				<strong>Customer item</strong>
+				<span
+					>{{orderItem.customerItem ? orderItem.customerItem :
+					orderItem.info.customerItem ? orderItem.info.customerItem :
+					'none'}}</span
+				>
+			</li>
+
+			<li class="list-group-item" *ngIf="orderItem.blid">
+				{{orderItem.blid}}
+			</li>
+		</ul>
+	</div>
+	<div class="modal-footer" *ngIf="isAdmin">
+		<div class="alert alert-danger" *ngIf="showConfirmDelete">
+			<fa-icon icon="exclamation-triangle" class="mr-2"></fa-icon>
+			This will remove the item from the order permanently
+		</div>
+
+		<button
+			class="btn btn-danger"
+			*ngIf="showConfirmDelete"
+			(click)="onConfirmDelete()"
+		>
+			Confirm delete
+		</button>
+		<button
+			class="btn btn-outline-secondary"
+			*ngIf="showConfirmDelete"
+			(click)="onCancelDelete()"
+		>
+			Cancel
+		</button>
+		<button
+			class="btn btn-outline-danger"
+			*ngIf="!showConfirmDelete"
+			(click)="onDelete()"
+		>
+			Delete
+		</button>
+	</div>
+</div>

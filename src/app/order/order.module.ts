@@ -17,6 +17,8 @@ import { AddOrderToCartComponent } from "./add-order-to-cart/add-order-to-cart.c
 import { CustomerOrderItemListItemComponent } from "./customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component";
 import { OrderPaymentInformationComponent } from "./order-payment-information/order-payment-information.component";
 import { OrderDeleteComponent } from "./order-delete/order-delete.component";
+import { OrderItemEditComponent } from './order-detail/order-item-edit/order-item-edit.component';
+import { OrderItemDetailListItemComponent } from './order-detail/order-item-detail-list-item/order-item-detail-list-item.component';
 
 @NgModule({
 	imports: [
@@ -38,7 +40,9 @@ import { OrderDeleteComponent } from "./order-delete/order-delete.component";
 		AddOrderToCartComponent,
 		CustomerOrderItemListItemComponent,
 		OrderPaymentInformationComponent,
-		OrderDeleteComponent
+		OrderDeleteComponent,
+		OrderItemEditComponent,
+		OrderItemDetailListItemComponent
 	],
 	exports: [
 		CustomerOrderListComponent,

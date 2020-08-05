@@ -1,0 +1,185 @@
+<div (click)="onClick()">
+	<div class="row justify-content-between">
+		<div class="col-auto">
+			<span
+				routerLink="{{ '/item/' + orderItem.item + '/detail' }}"
+				class="bl-link-black"
+			>
+				<fa-icon [icon]="'book'" class="mr-2"></fa-icon>
+				{{ orderItem.title }}
+			</span>
+		</div>
+		<div class="col-auto">{{ orderItem.amount | blcPrice }}</div>
+	</div>
+	<div
+		class="row"
+		*ngIf="orderItem.type === 'buy' || orderItem.type === 'buyout'"
+	>
+		<div class="col text-secondary">
+			<small
+				><fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon>
+				<span
+					i18n="@@orderItemDetailListBuyout"
+					*ngIf="orderItem.type === 'buyout'"
+					>buyout</span
+				>
+				<span
+					i18n="@@orderItemDetailListBuy"
+					*ngIf="orderItem.type === 'buy'"
+					>buy</span
+				>
+			</small>
+		</div>
+	</div>
+	<div class="row" *ngIf="orderItem.type === 'return'">
+		<div class="col text-secondary">
+			<small
+				><fa-icon
+					[icon]="'arrow-alt-down-circle'"
+					class="mr-2"
+				></fa-icon>
+				<span i18n="@@orderItemDetailListReturn">return</span>
+			</small>
+		</div>
+	</div>
+
+	<div class="row" *ngIf="orderItem.type === 'buyback'">
+		<div class="col text-secondary">
+			<small
+				><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon>
+
+				<span i18n="@@orderItemDetailListBuyback">buyback</span>
+			</small>
+		</div>
+	</div>
+	<div class="row" *ngIf="orderItem.type === 'cancel'">
+		<div class="col text-secondary">
+			<small
+				><fa-icon [icon]="'ban'" class="mr-2"></fa-icon>
+				<span i18n="@@orderItemDetailListCancel">cancel</span>
+			</small>
+		</div>
+	</div>
+	<div class="row" *ngIf="orderItem.type === 'sell'">
+		<div class="col text-secondary">
+			<small
+				><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon>
+				<span i18n="@@orderItemDetailListSell">sell</span>
+			</small>
+		</div>
+	</div>
+	<div
+		class="row justify-content-between text-secondary"
+		*ngIf="
+				orderItem.type === 'rent' ||
+				orderItem.type === 'extend' ||
+				orderItem.type === 'partly-payment'
+			"
+	>
+		<div
+			class="col-auto"
+			*ngIf="orderItem.type === 'rent' || orderItem.type === 'extend'"
+		>
+			<small>
+				<span
+					><fa-icon [icon]="'calendar-alt'" class="mr-2"></fa-icon>
+					<span
+						i18n="@@orderItemDetailListRent"
+						*ngIf="orderItem.type === 'rent'"
+						>rent</span
+					>
+					<span
+						i18n="@@orderItemDetailListExtend"
+						*ngIf="orderItem.type === 'extend'"
+						>extend</span
+					>
+				</span>
+				<span class="ml-2"
+					><fa-icon [icon]="'arrow-right'" class="mr-1"></fa-icon> {{
+					orderItem.info["to"] | blDate }}</span
+				>
+			</small>
+		</div>
+		<div class="col-auto" *ngIf="orderItem.type === 'partly-payment'">
+			<small>
+				<span>
+					<fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
+					<fa-icon [icon]="'calendar-alt'" class="mr-1"></fa-icon>
+					<span i18n="@@orderItemDetailListPartlyPayment"
+						>partly-payment</span
+					>
+				</span>
+				<span class="ml-1"
+					><fa-icon [icon]="'arrow-right'" class="mr-1"></fa-icon>
+					<fa-icon [icon]="'clock'" class="mr-1"></fa-icon>
+					{{ orderItem.info["to"] | blDate }}</span
+				>
+
+				<span class="ml-2" *ngIf="orderItem.type === 'partly-payment'">
+					<span>
+						<fa-icon
+							[icon]="'money-bill-alt'"
+							class="mr-1"
+						></fa-icon>
+						<fa-icon [icon]="'calendar'" class="mr-1"></fa-icon>
+					</span>
+
+					{{ orderItem.info.amountLeftToPay | blcPrice }}
+				</span>
+			</small>
+		</div>
+
+		<div class="col-auto text-success" *ngIf="orderItem.blid">
+			<small
+				class="bl-link-black mr-2"
+				*ngIf="orderItem.info && orderItem.info.customerItem"
+				routerLink="{{
+						'/customerItem/' +
+							orderItem.info.customerItem +
+							'/detail'
+					}}"
+			>
+				<span>
+					<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>
+					<span i18n="@@orderItemDetailListDelivered">delivered</span>
+				</span>
+			</small>
+			<small
+				class="bl-link-black mr-2"
+				*ngIf="orderItem.customerItem"
+				routerLink="{{
+						'/customerItem/' +
+							orderItem.customerItem +
+							'/detail'
+					}}"
+			>
+				<span>
+					<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>
+					<span i18n="@@orderItemDetailListDelivered">delivered</span>
+				</span>
+			</small>
+			<small class="badge badge-info badge-pill bl-text-xs">
+				<span>BLID: </span><span>{{orderItem.blid}}</span>
+			</small>
+		</div>
+	</div>
+	<div class="row justify-content-md-end" *ngIf="orderItem.movedToOrder">
+		<div
+			class="col-auto bl-link-black font-italic"
+			routerLink="{{
+					'/order/' + orderItem.movedToOrder + '/detail'
+				}}"
+		>
+			<small i18n="@@orderItemDetailListMovedToAnotherOrder">
+				moved to another order
+			</small>
+		</div>
+	</div>
+</div>
+
+<ng-template #orderItemEditModal let-c="close" let-d="dismiss">
+	<app-order-item-edit
+		[orderItem]="orderItem"
+		(shouldDelete)="onShouldDelete($event)"
+	></app-order-item-edit>
+</ng-template>

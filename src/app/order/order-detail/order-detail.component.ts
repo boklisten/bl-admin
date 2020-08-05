@@ -45,6 +45,10 @@ export class OrderDetailComponent implements OnInit {
 		this.getOrder(this.currentId);
 	}
 
+	public onReload() {
+		this.getOrder(this.currentId);
+	}
+
 	private getOrder(id: string) {
 		this.warningText = null;
 		this.wait = true;

@@ -15,6 +15,7 @@
 			</div>
 			<app-order-item-detail-list
 				[orderItems]="order.orderItems"
+				(shouldDelete)="onDeleteOrderItem($event)"
 			></app-order-item-detail-list>
 			<div class="card-footer">
 				<div class="row justify-content-end">

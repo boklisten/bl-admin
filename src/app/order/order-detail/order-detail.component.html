@@ -78,7 +78,10 @@
 		</div>
 
 		<div class="col-6">
-			<app-order-item-list [order]="order"></app-order-item-list>
+			<app-order-item-list
+				[order]="order"
+				(reload)="onReload()"
+			></app-order-item-list>
 		</div>
 		<div class="col-3">
 			<app-order-payment-detail
