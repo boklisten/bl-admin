@@ -15,16 +15,6 @@
 					{{ orderItem.title }}
 				</span>
 			</div>
-			<div
-				class="col-auto text-secondary"
-				*ngIf="orderItem.type === 'partly-payment'"
-			>
-				<small>
-					<span i18n="@@orderITemDetailListLeftToPay"
-						>left to pay</span
-					>: {{ orderItem.info.amountLeftToPay | blcPrice }}
-				</small>
-			</div>
 			<div class="col-auto">{{ orderItem.amount | blcPrice }}</div>
 		</div>
 		<div
@@ -114,7 +104,7 @@
 						>
 					</span>
 					<span class="ml-2"
-						><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon>
+						><fa-icon [icon]="'arrow-right'" class="mr-1"></fa-icon>
 						{{ orderItem.info["to"] | blDate }}</span
 					>
 				</small>
@@ -131,20 +121,33 @@
 							>partly-payment</span
 						>
 					</span>
-					<span class="ml-2"
-						><fa-icon [icon]="'arrow-right'" class="mr-2"></fa-icon>
-						<fa-icon [icon]="'clock'" class="mr-2"></fa-icon>
+					<span class="ml-1"
+						><fa-icon [icon]="'arrow-right'" class="mr-1"></fa-icon>
+						<fa-icon [icon]="'clock'" class="mr-1"></fa-icon>
 						{{ orderItem.info["to"] | blDate }}</span
 					>
+
+					<span
+						class="ml-2"
+						*ngIf="orderItem.type === 'partly-payment'"
+					>
+						<span>
+							<fa-icon
+								[icon]="'money-bill-alt'"
+								class="mr-1"
+							></fa-icon>
+							<fa-icon [icon]="'calendar'" class="mr-1"></fa-icon>
+						</span>
+
+						{{ orderItem.info.amountLeftToPay | blcPrice }}
+					</span>
 				</small>
 			</div>
 
-			<div
-				class="col-auto text-success"
-				*ngIf="orderItem.info && orderItem.info.customerItem"
-			>
+			<div class="col-auto text-success" *ngIf="orderItem.blid">
 				<small
-					class="bl-link-black"
+					class="bl-link-black mr-2"
+					*ngIf="orderItem.info && orderItem.info.customerItem"
 					routerLink="{{
 						'/customerItem/' +
 							orderItem.info.customerItem +
@@ -157,6 +160,25 @@
 							>delivered</span
 						>
 					</span>
+				</small>
+				<small
+					class="bl-link-black mr-2"
+					*ngIf="orderItem.customerItem"
+					routerLink="{{
+						'/customerItem/' +
+							orderItem.customerItem +
+							'/detail'
+					}}"
+				>
+					<span>
+						<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>
+						<span i18n="@@orderItemDetailListDelivered"
+							>delivered</span
+						>
+					</span>
+				</small>
+				<small class="badge badge-info badge-pill bl-text-xs">
+					<span>BLID: </span><span>{{orderItem.blid}}</span>
 				</small>
 			</div>
 		</div>
