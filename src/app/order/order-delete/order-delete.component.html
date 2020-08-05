@@ -1,0 +1,63 @@
+<button
+	class="btn btn-block btn-sm btn-outline-danger"
+	i18n="@@orderDetailDeleteOrder"
+	(click)="onShowDeleteModal()"
+>
+	Delete order
+</button>
+
+<ng-template #deleteOrderModal let-c="close" let-d="dismiss">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">
+				<span i18n="@@deleteOrderTitle">Delete order:</span>
+				<strong class="ml-2">{{order.id}}</strong>
+			</h5>
+		</div>
+		<div class="modal-body">
+			<div class="alert alert-danger">
+				Are you sure you want to delete this order?
+			</div>
+
+			<span
+				>Please confirm by writing the Order-ID into the input
+				field</span
+			>
+
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<fa-icon icon="qrcode"></fa-icon>
+					</span>
+				</div>
+				<input
+					type="text"
+					class="form-control"
+					i18n-placeholder="@@deleteOrderOrderId"
+					placeholder="Order-ID"
+					[(ngModel)]="userIdOrderInput"
+					(ngModelChange)="onOrderIdInputChange($event)"
+				/>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<div
+				class="alert alert-danger"
+				*ngIf="showDeleteError"
+				i18n="@@deleteOrderError"
+			>
+				An error occured when deleting order. Could not delete order.
+			</div>
+			<button
+				class="btn btn-danger"
+				(click)="onDelete()"
+				[disabled]="!orderIdConfirmed"
+			>
+				<span i18n="@@deleteOrderConfirmButton" *ngIf="!wait"
+					>Confirm deletion</span
+				>
+				<fa-icon *ngIf="wait" icon="circle-notch" spin="true"></fa-icon>
+			</button>
+		</div>
+	</div>
+</ng-template>

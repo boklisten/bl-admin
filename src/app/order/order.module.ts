@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-
+import { FormsModule } from "@angular/forms";
 import { OrderRoutingModule } from "./order-routing.module";
 import { CustomerOrderListComponent } from "./customer-order/customer-order-list/customer-order-list.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -16,13 +16,15 @@ import { OrderHandlerService } from "./order-handler/order-handler.service";
 import { AddOrderToCartComponent } from "./add-order-to-cart/add-order-to-cart.component";
 import { CustomerOrderItemListItemComponent } from "./customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component";
 import { OrderPaymentInformationComponent } from "./order-payment-information/order-payment-information.component";
+import { OrderDeleteComponent } from "./order-delete/order-delete.component";
 
 @NgModule({
 	imports: [
 		CommonModule,
 		OrderRoutingModule,
 		FontAwesomeModule,
-		BlCommonModule
+		BlCommonModule,
+		FormsModule
 	],
 	declarations: [
 		CustomerOrderListComponent,
@@ -35,7 +37,8 @@ import { OrderPaymentInformationComponent } from "./order-payment-information/or
 		CustomerOrderItemListComponent,
 		AddOrderToCartComponent,
 		CustomerOrderItemListItemComponent,
-		OrderPaymentInformationComponent
+		OrderPaymentInformationComponent,
+		OrderDeleteComponent
 	],
 	exports: [
 		CustomerOrderListComponent,

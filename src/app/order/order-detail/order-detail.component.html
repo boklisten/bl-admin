@@ -1,18 +1,22 @@
 <div class="container-fluid mt-2">
-	<div class="row"><div class="col-12"></div></div>
+	<div class="row" *ngIf="warningText">
+		<div class="col-12">
+			<div class="alert alert-secondary">
+				<fa-icon icon="exclamation-triangle" class="mr-2"></fa-icon>
+				<span i18n="@@orderDetailCouldNotGet">Could not get order</span>
+				<strong class="ml-2 mr-2">{{currentId}}</strong>
+				<span i18n="@@orderDetailMaybeDeleted"
+					>maybe it is deleted?</span
+				>
+			</div>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-12">
 			<app-bl-common-update-button
 				[wait]="wait"
 				*ngIf="wait"
 			></app-bl-common-update-button>
-			<app-bl-common-alert
-				[type]="'warning'"
-				*ngIf="warningText"
-				i18n-text="@@orderDetailCouldNotGetOrderError"
-				text="could not get order"
-				(exit)="warningText = null"
-			></app-bl-common-alert>
 		</div>
 	</div>
 	<div class="row" *ngIf="order">
@@ -50,6 +54,14 @@
 											>Print agreement</span
 										>
 									</button>
+								</div>
+							</div>
+							<div class="row mt-2">
+								<div class="col-6">
+									<app-order-delete
+										[order]="order"
+										(deleted)="onOrderDeleted()"
+									></app-order-delete>
 								</div>
 							</div>
 						</div>
