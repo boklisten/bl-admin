@@ -48,7 +48,10 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
 				this.activeOrder = order;
 			})
 			.catch(err => {
-				this.activeOrder = null;
+				//this.activeOrder = null;
+
+				this._cartService.clear();
+				this.activeOrder = order;
 				console.log("Error in orderManagerComponent", err);
 			});
 	}

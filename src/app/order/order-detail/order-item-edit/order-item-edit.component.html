@@ -8,7 +8,10 @@
 				<strong>Type</strong> {{orderItem.type}}
 			</li>
 
-			<li class="list-group-item d-flex justify-content-between">
+			<li
+				class="list-group-item d-flex justify-content-between"
+				*ngIf="orderItem.info"
+			>
 				<strong>Deadline</strong>
 				<span>{{orderItem.info.to ? orderItem.info.to : 'none'}}</span>
 			</li>
@@ -27,7 +30,10 @@
 				<strong>Tax Amount</strong>
 				<span>{{orderItem.taxAmount | blcPrice}}</span>
 			</li>
-			<li class="list-group-item d-flex justify-content-between">
+			<li
+				class="list-group-item d-flex justify-content-between"
+				*ngIf="orderItem.info"
+			>
 				<strong>Amount left to pay</strong>
 				<span>{{orderItem.info.amountLeftToPay | blcPrice}}</span>
 			</li>
@@ -61,8 +67,8 @@
 				<strong>Customer item</strong>
 				<span
 					>{{orderItem.customerItem ? orderItem.customerItem :
-					orderItem.info.customerItem ? orderItem.info.customerItem :
-					'none'}}</span
+					orderItem.info && orderItem.info.customerItem ?
+					orderItem.info.customerItem : 'none'}}</span
 				>
 			</li>
 
