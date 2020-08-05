@@ -2,6 +2,7 @@
 	class="btn btn-block btn-sm btn-outline-danger"
 	i18n="@@orderDetailDeleteOrder"
 	(click)="onShowDeleteModal()"
+	*ngIf="isAdmin"
 >
 	Delete order
 </button>

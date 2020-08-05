@@ -9,6 +9,7 @@ import {
 import { Order } from "@wizardcoder/bl-model";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { OrderService } from "@wizardcoder/bl-connect";
+import { UserService } from "../../user/user.service";
 
 @Component({
 	selector: "app-order-delete",
@@ -24,16 +25,19 @@ export class OrderDeleteComponent implements OnInit {
 	public orderIdConfirmed: boolean;
 	public wait: boolean;
 	public showDeleteError: boolean;
+	public isAdmin: boolean;
 
 	constructor(
 		private _modalService: NgbModal,
-		private _orderService: OrderService
+		private _orderService: OrderService,
+		private _userService: UserService
 	) {
 		this.deleted = new EventEmitter();
 	}
 
 	ngOnInit() {
 		this.userIdOrderInput = "";
+		this.isAdmin = this._userService.havePermission("admin");
 	}
 
 	public onShowDeleteModal() {

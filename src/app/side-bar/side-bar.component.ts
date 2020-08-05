@@ -57,7 +57,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 				name: "orders",
 				link: "orders",
 				icon: "receipt",
-				permission: "manager",
+				permission: "employee",
 				selected: false
 			},
 			{
