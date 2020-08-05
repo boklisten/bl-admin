@@ -13,8 +13,14 @@
 			<div class="col-4 bl-col-scroll">
 				<div class="row justify-content-between">
 					<div class="col-auto">
+						<app-add-order-to-cart
+							[order]="activeOrder"
+							*ngIf="activeOrder"
+						></app-add-order-to-cart>
+					</div>
+					<div class="col-auto">
 						<button
-							class="btn btn-outline-secondary"
+							class="btn btn-sm btn-outline-secondary"
 							[routerLink]="['/order/' + activeOrder.id + '/detail']"
 							i18n="@@orderManagerShowOrder"
 						>
@@ -22,10 +28,10 @@
 						</button>
 					</div>
 					<div class="col-auto">
-						<app-add-order-to-cart
+						<app-order-delete
 							[order]="activeOrder"
-							*ngIf="activeOrder"
-						></app-add-order-to-cart>
+							(deleted)="onOrderDeleted()"
+						></app-order-delete>
 					</div>
 				</div>
 				<div class="row mt-2">

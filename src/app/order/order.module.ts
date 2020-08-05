@@ -49,7 +49,8 @@ import { OrderDeleteComponent } from "./order-delete/order-delete.component";
 		OrderDetailCardComponent,
 		OrderDeliveryDetailComponent,
 		OrderPaymentDetailComponent,
-		AddOrderToCartComponent
+		AddOrderToCartComponent,
+		OrderDeleteComponent
 	],
 	providers: [OrderHandlerService]
 })

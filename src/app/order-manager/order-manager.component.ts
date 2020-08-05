@@ -30,6 +30,11 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
 		this.checkoutChange$.unsubscribe();
 	}
 
+	public onOrderDeleted() {
+		this._customerService.clear();
+		this.activeOrder = null;
+	}
+
 	public onSelectOrder(order: Order) {
 		this._customerService
 			.setById(order.customer as string)
