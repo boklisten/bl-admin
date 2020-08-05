@@ -34,6 +34,7 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
 
 	public onOrderDeleted() {
 		this._orderManagerListService.reload();
+		this._customerService.clear();
 		this.activeOrder = null;
 	}
 
