@@ -3,6 +3,7 @@ import { Subject, Subscription } from "rxjs";
 import { BlcScannerService } from "../bl-common/blc-scanner/blc-scanner.service";
 
 type ToastType =
+	| "SUCCESS"
 	| "BLID-SCAN"
 	| "ISBN-SCAN"
 	| "CART-CONTAINS"

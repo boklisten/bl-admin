@@ -38,4 +38,14 @@
 			{{toast.content.numberOfItems}}
 		</small>
 	</div>
+
+	<div
+		class="toast-body bg-success text-white"
+		*ngIf="toast.type === 'SUCCESS'"
+	>
+		<div>
+			<fa-icon icon="check-circle" class="mr-2"></fa-icon>
+			<strong>{{toast.content}} </strong>
+		</div>
+	</div>
 </div>

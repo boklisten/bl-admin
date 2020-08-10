@@ -10,6 +10,7 @@ import { UserDetail } from "@wizardcoder/bl-model";
 import { UserService } from "../../user/user.service";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { UserDetailService } from "@wizardcoder/bl-connect";
+import { ToasterService } from "../../toaster/toaster.service";
 
 @Component({
 	selector: "app-customer-delete",
@@ -30,7 +31,8 @@ export class CustomerDeleteComponent implements OnInit {
 	constructor(
 		private _userService: UserService,
 		private _modalService: NgbModal,
-		private _userDetailService: UserDetailService
+		private _userDetailService: UserDetailService,
+		private _toasterService: ToasterService
 	) {
 		this.deleted = new EventEmitter();
 	}
@@ -63,11 +65,11 @@ export class CustomerDeleteComponent implements OnInit {
 				this.wait = false;
 				this._modalService.dismissAll();
 				this.deleted.emit(true);
+				this._toasterService.add("SUCCESS", "user was deleted");
 			})
 			.catch(error => {
 				this.showDeletionError = true;
 				this.wait = false;
-				this.deleted.emit(true);
 			});
 	}
 }
