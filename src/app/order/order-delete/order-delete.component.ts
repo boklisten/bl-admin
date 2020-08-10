@@ -41,7 +41,12 @@ export class OrderDeleteComponent implements OnInit {
 	}
 
 	public onShowDeleteModal() {
-		this._modalService.open(this.deleteOrderModalContent);
+		this._modalService.open(this.deleteOrderModalContent, {
+			beforeDismiss: () => {
+				this.userIdOrderInput = "";
+				return true;
+			}
+		});
 	}
 
 	public onDelete() {

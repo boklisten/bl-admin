@@ -26,6 +26,7 @@ import { CustomerDetailSmallComponent } from "./customer-detail/customer-detail-
 import { CustomerItemModule } from "../customer-item/customer-item.module";
 import { MessengerModule } from "../messenger/messenger.module";
 import { BookingModule } from "../booking/booking.module";
+import { CustomerDeleteComponent } from './customer-delete/customer-delete.component';
 
 @NgModule({
 	imports: [
@@ -54,7 +55,8 @@ import { BookingModule } from "../booking/booking.module";
 		CustomerDetailCardComponent,
 		CustomerCurrentComponent,
 		CustomerDetailPopoverComponent,
-		CustomerDetailSmallComponent
+		CustomerDetailSmallComponent,
+		CustomerDeleteComponent
 	],
 	exports: [
 		CustomerCurrentComponent,

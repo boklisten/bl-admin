@@ -47,12 +47,21 @@ export class CustomerDetailComponent implements OnInit, OnDestroy {
 		this.customerWait$.unsubscribe();
 	}
 
+	public onUserDetailDeleted() {
+		this.customerDetail = null;
+		this.reload();
+	}
+
 	public onUserDetailUpdated() {
 		this.customerDetailUpdated = true;
 	}
 
 	public isAdmin() {
 		return this._authService.isAdmin();
+	}
+
+	private reload() {
+		this.setCustomerDetailIfNotSet();
 	}
 
 	private onCustomerChange() {

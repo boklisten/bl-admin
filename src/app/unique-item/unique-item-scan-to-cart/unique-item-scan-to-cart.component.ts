@@ -6,6 +6,7 @@ import { CartService } from "../../cart/cart.service";
 import { UniqueItem } from "@wizardcoder/bl-model";
 import { Subscription } from "rxjs";
 import { UniqueItemScanToCartService } from "./unique-item-scan-to-cart.service";
+import { UniqueItemService } from "@wizardcoder/bl-connect";
 
 @Component({
 	selector: "app-unique-item-scan-to-cart",
@@ -27,7 +28,8 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 		private _blidScannerService: BlidScannerService,
 		private _cartItemService: CartItemService,
 		private _cartService: CartService,
-		private _uniqueItemScanToCartService: UniqueItemScanToCartService
+		private _uniqueItemScanToCartService: UniqueItemScanToCartService,
+		private _uniqueItemService: UniqueItemService
 	) {}
 
 	ngOnInit() {
@@ -74,7 +76,16 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 	private addUniqueItemToCart(uniqueItem: UniqueItem) {
 		this._uniqueItemScanToCartService
 			.addUniqueItemToCart(uniqueItem)
-			.then(added => {})
+			.then(added => {
+				this._uniqueItemService
+					.getWithOperation(uniqueItem.id, "active")
+					.then(result => {
+						console.log("RESULT", result);
+					})
+					.catch(e => {
+						console.log("could not check if uniqueItem is active");
+					});
+			})
 			.catch(e => {
 				console.log("could not add cart item", e);
 			});
