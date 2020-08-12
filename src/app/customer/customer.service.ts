@@ -106,11 +106,11 @@ export class CustomerService {
 	}
 
 	public getCustomerDetailId(): string {
-		return this._customerDetail.id;
+		return this._customerDetail ? this._customerDetail.id : null;
 	}
 
 	public getUserId(): string {
-		return this._customerDetail.blid;
+		return this._customerDetail ? this._customerDetail.blid : null;
 	}
 
 	private getCustomerDetail(id: string): Promise<UserDetail> {
