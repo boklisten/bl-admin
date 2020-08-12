@@ -44,7 +44,6 @@ export class CustomerService {
 			})
 			.catch(e => {
 				this._wait$.next(false);
-				console.log(e);
 			});
 	}
 

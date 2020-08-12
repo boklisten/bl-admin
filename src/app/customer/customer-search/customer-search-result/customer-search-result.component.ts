@@ -40,7 +40,8 @@ export class CustomerSearchResultComponent implements OnInit, OnDestroy {
 		private _customerService: CustomerService,
 		private _blcArrowDownService: BlcArrowDownService,
 		private _blcArrowUpService: BlcArrowUpService,
-		private _blcEnterService: BlcEnterService
+		private _blcEnterService: BlcEnterService,
+		private _router: Router
 	) {
 		this.userDetails = [];
 		this.clicked = new EventEmitter<boolean>();
@@ -70,6 +71,7 @@ export class CustomerSearchResultComponent implements OnInit, OnDestroy {
 	public onCustomerClick(customerDetail: UserDetail) {
 		this.clicked.emit(true);
 		this._customerService.set(customerDetail.id);
+		this._router.navigate(["/cart"]);
 	}
 
 	private handleSearchResultChange() {
