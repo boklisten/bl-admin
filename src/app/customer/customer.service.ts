@@ -24,7 +24,6 @@ export class CustomerService {
 
 		this.getCustomerDetailIfInStorage();
 		this.handleAltRShortcut();
-		this.handleAltDShortcut();
 	}
 
 	public subscribe(func: (userDetail: UserDetail) => void): Subscription {
@@ -34,12 +33,6 @@ export class CustomerService {
 	private handleAltRShortcut() {
 		this._blcHotkeyService.addShortcut({ keys: "alt.r" }).subscribe(() => {
 			this.reload();
-		});
-	}
-
-	private handleAltDShortcut() {
-		this._blcHotkeyService.addShortcut({ keys: "alt.d" }).subscribe(() => {
-			this.clear();
 		});
 	}
 
