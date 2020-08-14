@@ -874,7 +874,7 @@ Egendefinert
         <source>Filter by title or isbn</source><target state="final">Filtrer på tittel eller ISBN</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app/item/item-select-list/item-select-list.component.html</context><context context-type="linenumber">9</context></context-group></trans-unit><trans-unit id="blidScannerPleaseScanBlid" datatype="html">
-        <source>Please scan a ISBN</source><target state="final">Vennligst skann en ISBN</target>
+        <source>Please scan a BL-ID</source><target state="translated">Vennligst skann en Boklisten-ID</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/item/item-search-select/item-search-select.component.html</context>
           <context context-type="linenumber">17</context>
@@ -2175,17 +2175,11 @@ Egendefinert
         <source>The checkout was completed!
 			</source><target state="final">Ordren ble gjennomført!
 			</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/toaster/toast/toast.component.html</context>
-          <context context-type="linenumber">33</context>
-        </context-group>
-      </trans-unit><trans-unit id="toastNumberOfItems" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/toaster/toast/toast.component.html</context><context context-type="linenumber">39</context></context-group></trans-unit><trans-unit id="toastNumberOfItems" datatype="html">
         <source>Number of items processed: </source><target state="final">Antall bøker prossesert:</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/toaster/toast/toast.component.html</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit><trans-unit id="orderManagerShowOrder" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/toaster/toast/toast.component.html</context><context context-type="linenumber">43</context></context-group></trans-unit><trans-unit id="orderManagerShowOrder" datatype="html">
         <source>
 							Show order
 						</source><target state="final">Vis ordre</target>

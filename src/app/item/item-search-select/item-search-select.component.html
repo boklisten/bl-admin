@@ -3,8 +3,8 @@
 		class="list-group-item list-group-item-info d-flex justify-content-between align-items-center"
 	>
 		<div>
-			<h5>{{selectedItem.title}}</h5>
-			<small>{{selectedItem.info.isbn}}</small>
+			<h5>{{ selectedItem.title }}</h5>
+			<small>{{ selectedItem.info.isbn }}</small>
 		</div>
 		<fa-icon icon="bars" (click)="onChangeItem()"></fa-icon>
 	</li>
@@ -14,7 +14,7 @@
 	<li
 		class="list-group-item list-group-item-info d-flex justify-content-between align-items-center"
 	>
-		<span i18n="@@blidScannerPleaseScanBlid">Please scan a ISBN</span>
+		<span i18n="@@blidScannerPleaseScanBlid">Please scan a BL-ID</span>
 		<span (click)="onShowInput()">
 			<fa-icon icon="keyboard"></fa-icon>
 		</span>
@@ -34,8 +34,8 @@
 				*ngFor="let item of items; let i = index"
 			>
 				<div>
-					<div>{{item.title}}</div>
-					<small>{{item.info.isbn}}</small>
+					<div>{{ item.title }}</div>
+					<small>{{ item.info.isbn }}</small>
 				</div>
 				<div class="col-3">
 					<button
