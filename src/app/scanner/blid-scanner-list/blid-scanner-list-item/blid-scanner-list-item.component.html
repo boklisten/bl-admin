@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between align-items-center">
 	<strong>
 		<fa-icon icon="barcode" class="mr-2"></fa-icon>
-		<span>{{blid}}</span>
+		<span>{{ blid }}</span>
 	</strong>
 	<fa-icon icon="circle-notch" [spin]="true" *ngIf="wait"></fa-icon>
 	<button class="btn btn-outline-secondary btn-sm" (click)="onRemove()">
@@ -9,5 +9,8 @@
 	</button>
 </div>
 <div *ngIf="uniqueItem">
-	<small>Already added as <strong>{{uniqueItem.title}}</strong></small>
+	<small
+		><span i18n="@@blidScannerListItemAlreadyAdded">Already added as</span>
+		<strong> {{ uniqueItem.title }}</strong></small
+	>
 </div>

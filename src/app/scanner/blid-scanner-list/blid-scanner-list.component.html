@@ -2,7 +2,9 @@
 	<li
 		class="list-group-item list-group-item-info text-center d-flex justify-content-between align-items-center"
 	>
-		<span>Scanned {{blids.length}} BLIDs</span>
+		<span i18n="@@blidScannerListScannedBlids"
+			>Scanned {{ blids.length }} BLIDs</span
+		>
 		<span>
 			<button
 				class="btn btn-sm btn-primary"
@@ -23,13 +25,15 @@
 	</li>
 
 	<li class="list-group-item list-group-item-warning" *ngIf="alreadyScanned">
-		BLID "{{alreadyScanned}}" is already scanned.
+		<span i18n="@@blidScannerListAlreadyScanned"
+			>BLID "{{ alreadyScanned }}" is already scanned.</span
+		>
 	</li>
 
 	<li
 		class="list-group-item"
-		*ngFor="let blid of blids; let i = index;"
-		[ngClass]="{'list-group-item-danger': alreadyAddedUniqueItems[blid]}"
+		*ngFor="let blid of blids; let i = index"
+		[ngClass]="{ 'list-group-item-danger': alreadyAddedUniqueItems[blid] }"
 	>
 		<app-blid-scanner-list-item
 			[blid]="blid"

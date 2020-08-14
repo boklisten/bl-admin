@@ -2948,6 +2948,64 @@
           <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="scannerAddedBlids" datatype="html">
+        <source>Added <x id="INTERPOLATION" equiv-text="{{ successStatus.numberOfBlids }}"/> BLIDs for item &quot;<x id="INTERPOLATION_1" equiv-text="{{
+						successStatus.title
+					}}"/>&quot; to DB
+				</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/scanner.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="scannerFailedToAddBlids" datatype="html">
+        <source>Failed to add BLIDs for item to DB.
+				</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/scanner.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="scannerSummary" datatype="html">
+        <source>
+					You will put <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{ blids.length }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> BLIDs to
+					the DB. These BLIDs will be mapped as
+					<x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ selectedItem.title }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> with ISBN
+					<x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION_2" equiv-text="{{ selectedItem.info.isbn }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>
+				</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/scanner.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="scannerInsertBlids" datatype="html">
+        <source>Insert BLIDs to DB</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/scanner.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="blidScannerListScannedBlids" datatype="html">
+        <source>Scanned <x id="INTERPOLATION" equiv-text="{{ blids.length }}"/> BLIDs</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/blid-scanner-list/blid-scanner-list.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="blidScannerListAlreadyScanned" datatype="html">
+        <source>BLID &quot;<x id="INTERPOLATION" equiv-text="{{ alreadyScanned }}"/>&quot; is already scanned.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/blid-scanner-list/blid-scanner-list.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="blidScannerListItemAlreadyAdded" datatype="html">
+        <source>Already added as</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/blid-scanner-list/blid-scanner-list-item/blid-scanner-list-item.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="orderDownloadTitle" datatype="html">
         <source>
         Orders

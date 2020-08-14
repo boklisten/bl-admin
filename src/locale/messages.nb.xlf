@@ -1724,7 +1724,64 @@ Egendefinert
         <source>Vipps</source><target state="final">Vipps</target>
         
         
-      <context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">16</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">62</context></context-group></trans-unit><trans-unit id="orderDownloadTitle" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">16</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">62</context></context-group></trans-unit><trans-unit id="scannerAddedBlids" datatype="html">
+        <source>Added <x id="INTERPOLATION" equiv-text="{{ successStatus.numberOfBlids }}"/> BLIDs for item "<x id="INTERPOLATION_1" equiv-text="{{
+						successStatus.title
+					}}"/>" to DB
+				</source><target state="final">La til <x id="INTERPOLATION"/> Boklisten-ID som boken "<x id="INTERPOLATION_1"/>" i databasen
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/scanner.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit><trans-unit id="scannerFailedToAddBlids" datatype="html">
+        <source>Failed to add BLIDs for item to DB.
+				</source><target state="final">Kunne ikke legge til Boklisten-ID for boken i databasen.
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/scanner.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit><trans-unit id="scannerSummary" datatype="html">
+        <source>
+					You will put <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong>"/><x id="INTERPOLATION" equiv-text="{{ blids.length }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong>"/> BLIDs to
+					the DB. These BLIDs will be mapped as
+					<x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong>"/><x id="INTERPOLATION_1" equiv-text="{{ selectedItem.title }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong>"/> with ISBN
+					<x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong>"/><x id="INTERPOLATION_2" equiv-text="{{ selectedItem.info.isbn }}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong>"/>
+				</source><target state="final">
+					Du vil registrere <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong>"/><x id="INTERPOLATION"/><x id="CLOSE_TAG_STRONG" ctype="x-strong"/> Boklisten-ID til databasen. Disse vil bli registrert som
+					<x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong>"/><x id="INTERPOLATION_1"/><x id="CLOSE_TAG_STRONG" ctype="x-strong"/> med ISBN
+					<x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong>"/><x id="INTERPOLATION_2"/><x id="CLOSE_TAG_STRONG" ctype="x-strong"/>
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/scanner.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit><trans-unit id="scannerInsertBlids" datatype="html">
+        <source>Insert BLIDs to DB</source><target state="final">Legg inn Boklisten-IDer til databasen.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/scanner.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit><trans-unit id="blidScannerListScannedBlids" datatype="html">
+        <source>Scanned <x id="INTERPOLATION" equiv-text="{{ blids.length }}"/> BLIDs</source><target state="final">Skannet <x id="INTERPOLATION"/> Boklisten-ID.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/blid-scanner-list/blid-scanner-list.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit><trans-unit id="blidScannerListAlreadyScanned" datatype="html">
+        <source>BLID "<x id="INTERPOLATION" equiv-text="{{ alreadyScanned }}"/>" is already scanned.</source><target state="final">Boklisten-ID "<x id="INTERPOLATION"/>" er allerede skannet.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/blid-scanner-list/blid-scanner-list.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit><trans-unit id="blidScannerListItemAlreadyAdded" datatype="html">
+        <source>Already added as</source><target state="final">Allerede lagt til som</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/blid-scanner-list/blid-scanner-list-item/blid-scanner-list-item.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit><trans-unit id="orderDownloadTitle" datatype="html">
         <source>
         Orders
       </source><target state="final">

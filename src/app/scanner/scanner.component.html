@@ -7,15 +7,18 @@
 
 			<div class="alert alert-success text-center" *ngIf="successStatus">
 				<fa-icon icon="check-circle" class="mr-2"></fa-icon>
-				<span
-					>Added {{successStatus.numberOfBlids}} BLIDs for item
-					"{{successStatus.title}}" to DB
+				<span i18n="@@scannerAddedBlids"
+					>Added {{ successStatus.numberOfBlids }} BLIDs for item "{{
+						successStatus.title
+					}}" to DB
 				</span>
 			</div>
 
 			<div class="alert alert-danger text-center" *ngIf="error">
 				<fa-icon icon="excalmation-triangle" class="mr-2"></fa-icon>
-				<span>Failed to add BLIDs for item to DB. </span>
+				<span i18n="@@scannerFailedToAddBlids"
+					>Failed to add BLIDs for item to DB.
+				</span>
 			</div>
 		</div>
 	</div>
@@ -35,11 +38,15 @@
 		</div>
 		<div class="col-4">
 			<div class="card">
-				<div class="card-body" *ngIf="blids.length > 0 && selectedItem">
-					You will put <strong>{{blids.length}}</strong> BLIDs to the
-					DB. These BLIDs will be mapped as
-					<strong>{{selectedItem.title}}</strong> with ISBN
-					<strong>{{selectedItem.info.isbn}}</strong>
+				<div
+					class="card-body"
+					*ngIf="blids.length > 0 && selectedItem"
+					i18n="@@scannerSummary"
+				>
+					You will put <strong>{{ blids.length }}</strong> BLIDs to
+					the DB. These BLIDs will be mapped as
+					<strong>{{ selectedItem.title }}</strong> with ISBN
+					<strong>{{ selectedItem.info.isbn }}</strong>
 				</div>
 				<div class="card-footer">
 					<button
@@ -47,7 +54,9 @@
 						[disabled]="!selectedItem || blids.length <= 0"
 						(click)="onInsertToDB()"
 					>
-						<span>Insert BLIDs to DB</span>
+						<span i18n="@@scannerInsertBlids"
+							>Insert BLIDs to DB</span
+						>
 					</button>
 				</div>
 			</div>
