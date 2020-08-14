@@ -47,12 +47,6 @@ export class UniqueItemRegisterComponent implements OnInit {
 		}
 	}
 
-	ngOnChanges(changes: SimpleChanges) {
-		if (changes["itemId"] && changes["itemId"].currentValue) {
-			console.log("should create BLID for", this.title, this.itemId);
-		}
-	}
-
 	public onBlid(blid: string) {
 		this.blid = blid;
 		this.blidAlreadyAddedError = false;
@@ -60,8 +54,12 @@ export class UniqueItemRegisterComponent implements OnInit {
 		this._uniqueItemStoreService
 			.get(this.blid)
 			.then(uniqueItem => {
-				this.blidAlreadyAddedError = true;
-				this.uniqueItem = uniqueItem;
+				if (uniqueItem.item === this.itemId) {
+					this.registered.emit(uniqueItem);
+				} else {
+					this.blidAlreadyAddedError = true;
+					this.uniqueItem = uniqueItem;
+				}
 			})
 			.catch(e => {
 				this.blidAlreadyAddedError = false;

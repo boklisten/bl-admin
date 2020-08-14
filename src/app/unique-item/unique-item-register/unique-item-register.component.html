@@ -9,7 +9,7 @@
 		<div class="col-12">
 			<div class="alert alert-danger" *ngIf="!itemId && blid">
 				<fa-icon icon="exclamation-circle" class="mr-2"></fa-icon>
-				The BLID "{{blid}}" does not have corresponding ISBN. Please
+				The BLID "{{ blid }}" does not have corresponding ISBN. Please
 				scan and register a ISBN.
 			</div>
 
@@ -31,13 +31,16 @@
 			<ul class="list-group">
 				<li
 					class="list-group-item list-group-item-secondary"
-					[ngClass]="{'list-group-item-success': blid && itemId && !blidAlreadyAddedError}"
+					[ngClass]="{
+						'list-group-item-success':
+							blid && itemId && !blidAlreadyAddedError
+					}"
 					*ngIf="itemId"
 				>
 					<div
 						class="d-flex justify-content-between align-items-center"
 					>
-						<strong>{{title}}</strong>
+						<strong>{{ title }}</strong>
 
 						<fa-icon
 							icon="bars"
@@ -45,17 +48,21 @@
 							(click)="onClearItem()"
 						></fa-icon>
 					</div>
-					<div><strong>ISBN: </strong> {{isbn}}</div>
+					<div><strong>ISBN: </strong> {{ isbn }}</div>
 				</li>
 				<li
 					class="list-group-item list-group-item-secondary"
-					[ngClass]="{'list-group-item-success': blid && itemId && !blidAlreadyAddedError, 'list-group-item-danger': blidAlreadyAddedError}"
+					[ngClass]="{
+						'list-group-item-success':
+							blid && itemId && !blidAlreadyAddedError,
+						'list-group-item-danger': blidAlreadyAddedError
+					}"
 					*ngIf="blid"
 				>
 					<div
 						class="d-flex justify-content-between align-items-center"
 					>
-						<span><strong>BLID: </strong>{{blid}}</span>
+						<span><strong>BLID: </strong>{{ blid }}</span>
 
 						<fa-icon
 							icon="bars"
@@ -64,7 +71,7 @@
 						></fa-icon>
 					</div>
 					<div *ngIf="uniqueItem">
-						Already added as <strong>{{uniqueItem.title}}</strong>
+						Already added as <strong>{{ uniqueItem.title }}</strong>
 					</div>
 				</li>
 			</ul>
@@ -92,12 +99,15 @@
 		<fa-icon icon="circle-notch" [spin]="true"></fa-icon>
 	</div>
 	<div class="row">
-		<div class="col-10" [ngClass]="{'col-12': blid}">
+		<div class="col-10" [ngClass]="{ 'col-12': blid }">
 			<button
 				class="btn btn-outline-success btn-block"
 				*ngIf="!wait"
 				[disabled]="!itemId || !blid"
-				[ngClass]="{'btn-success text-white': itemId && blid && !blidAlreadyAddedError}"
+				[ngClass]="{
+					'btn-success text-white':
+						itemId && blid && !blidAlreadyAddedError
+				}"
 				(click)="onInsertToDB()"
 				(keydown.enter)="$event.preventDefault()"
 			>
