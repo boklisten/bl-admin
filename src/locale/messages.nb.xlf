@@ -873,17 +873,17 @@ Egendefinert
       <trans-unit id="itemSelectListFilterByTitleOrIsbnPlaceholder" datatype="html">
         <source>Filter by title or isbn</source><target state="final">Filtrer på tittel eller ISBN</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/item/item-select-list/item-select-list.component.html</context><context context-type="linenumber">9</context></context-group></trans-unit><trans-unit id="blidScannerPleaseScanBlid" datatype="html">
-        <source>Please scan a BL-ID</source><target state="translated">Vennligst skann en Boklisten-ID</target>
+      <context-group purpose="location"><context context-type="sourcefile">app/item/item-select-list/item-select-list.component.html</context><context context-type="linenumber">9</context></context-group></trans-unit><trans-unit id="itemSearchSelectPleaseScanISBN" datatype="html">
+        <source>Please scan a ISBN</source><target state="final">Vennligst skann en ISBN</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/item/item-search-select/item-search-select.component.html</context>
           <context context-type="linenumber">17</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/scanner/blid-scanner/blid-scanner.component.html</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit><trans-unit id="invoiceView" datatype="html">
+      </trans-unit><trans-unit id="blidScannerPleaseScanBlid" datatype="html">
+        <source>Please scan a BLID</source><target state="translated">Vennligst skann en Boklisten-ID</target>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/scanner/blid-scanner/blid-scanner.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="invoiceView" datatype="html">
         <source>View</source><target state="final">Se mer</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice.component.html</context><context context-type="linenumber">6</context></context-group></trans-unit><trans-unit id="invoiceGenerate" datatype="html">
@@ -1574,6 +1574,27 @@ Egendefinert
         <context-group purpose="location">
           <context context-type="sourcefile">app/checkout/checkout.component.html</context>
           <context context-type="linenumber">140</context>
+        </context-group>
+      </trans-unit><trans-unit id="uniqueItemRegisterDoesNotHaveISBN" datatype="html">
+        <source>The BLID "<x id="INTERPOLATION" equiv-text="{{ blid }}"/>" does not have corresponding ISBN.
+					Please scan and register a ISBN.</source><target state="final">Boklisten-ID "<x id="INTERPOLATION"/>" har ingen tilknyttet ISBN. Vennligst skann en ISBN.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-register/unique-item-register.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit><trans-unit id="uniqueItemRegisterNoBlid" datatype="html">
+        <source>This item does not have corresponding BLID. Please scan and
+					register a BLID.</source><target state="final">Denne boken har ingen tilknyttet Boklisten-ID. Vennligst skann en Boklisten-ID.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-register/unique-item-register.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit><trans-unit id="uniqueItemRegisterCouldNotRegisterBlid" datatype="html">
+        <source>Could not register BLID, are you sure the BLID has not been
+					registered before?</source><target state="final">Kunne ikke registrere boklisten-ID, er du sikker på at boklisten-ID ikke er registrert fra før?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-register/unique-item-register.component.html</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit><trans-unit id="cartCustomer" datatype="html">
         <source>Customer

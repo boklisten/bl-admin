@@ -1320,15 +1320,11 @@
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="blidScannerPleaseScanBlid" datatype="html">
-        <source>Please scan a BL-ID</source>
+      <trans-unit id="itemSearchSelectPleaseScanISBN" datatype="html">
+        <source>Please scan a ISBN</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/item/item-search-select/item-search-select.component.html</context>
           <context context-type="linenumber">17</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/scanner/blid-scanner/blid-scanner.component.html</context>
-          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cartListCartIsEmpty" datatype="html">
@@ -1485,6 +1481,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/booking/booking-list-edit/booking-list-edit.component.html</context>
           <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="blidScannerPleaseScanBlid" datatype="html">
+        <source>Please scan a BLID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/scanner/blid-scanner/blid-scanner.component.html</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="headerCustomerSearch" datatype="html">
@@ -2752,6 +2755,30 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/checkout/checkout.component.html</context>
           <context context-type="linenumber">140</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemRegisterDoesNotHaveISBN" datatype="html">
+        <source>The BLID &quot;<x id="INTERPOLATION" equiv-text="{{ blid }}"/>&quot; does not have corresponding ISBN.
+					Please scan and register a ISBN.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-register/unique-item-register.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemRegisterNoBlid" datatype="html">
+        <source>This item does not have corresponding BLID. Please scan and
+					register a BLID.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-register/unique-item-register.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemRegisterCouldNotRegisterBlid" datatype="html">
+        <source>Could not register BLID, are you sure the BLID has not been
+					registered before?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-register/unique-item-register.component.html</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cartCustomer" datatype="html">

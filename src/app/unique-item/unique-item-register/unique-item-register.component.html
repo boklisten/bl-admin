@@ -9,20 +9,26 @@
 		<div class="col-12">
 			<div class="alert alert-danger" *ngIf="!itemId && blid">
 				<fa-icon icon="exclamation-circle" class="mr-2"></fa-icon>
-				The BLID "{{ blid }}" does not have corresponding ISBN. Please
-				scan and register a ISBN.
+				<span i18n="@@uniqueItemRegisterDoesNotHaveISBN"
+					>The BLID "{{ blid }}" does not have corresponding ISBN.
+					Please scan and register a ISBN.</span
+				>
 			</div>
 
 			<div class="alert alert-danger" *ngIf="itemId && !blid">
 				<fa-icon icon="exclamation-circle" class="mr-2"></fa-icon>
-				This item does not have corresponding BLID. Please scan and
-				register a BLID.
+				<span i18n="@@uniqueItemRegisterNoBlid"
+					>This item does not have corresponding BLID. Please scan and
+					register a BLID.</span
+				>
 			</div>
 
 			<div class="alert alert-danger" *ngIf="uniqueItemRegisterError">
 				<fa-icon icon="exclamation-triangle" class="mr-2"></fa-icon>
-				Could not register BLID, are you sure the BLID has not been
-				registered before?
+				<span i18n="@@uniqueItemRegisterCouldNotRegisterBlid"
+					>Could not register BLID, are you sure the BLID has not been
+					registered before?</span
+				>
 			</div>
 		</div>
 	</div>
@@ -62,7 +68,7 @@
 					<div
 						class="d-flex justify-content-between align-items-center"
 					>
-						<span><strong>BLID: </strong>{{ blid }}</span>
+						<span><strong>BL-ID: </strong>{{ blid }}</span>
 
 						<fa-icon
 							icon="bars"
