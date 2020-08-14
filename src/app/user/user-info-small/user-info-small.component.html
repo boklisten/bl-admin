@@ -1,0 +1,16 @@
+<div class="card">
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item d-flex justify-content-between">
+			<span i18n="@@userComponentUsername">username</span>
+			<span>{{ username }}</span>
+		</li>
+		<li class="list-group-item d-flex justify-content-between">
+			<span i18n="@@userComponentPermission">permission</span>
+
+			<span>
+				<fa-icon [icon]="userIcon" class="mr-1"></fa-icon>
+				{{ permission }}
+			</span>
+		</li>
+	</ul>
+</div>
