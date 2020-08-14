@@ -7,6 +7,7 @@ type ToastType =
 	| "BLID-SCAN"
 	| "ISBN-SCAN"
 	| "CART-CONTAINS"
+	| "WAIT"
 	| "CHECKOUT-CONFIRMED";
 
 @Injectable({
@@ -28,6 +29,15 @@ export class ToasterService {
 	public add(type: ToastType, content: any, ms?: number) {
 		ms = ms ? ms : 5000;
 		this.toasts$.next({ type: type, content: content, ms: ms });
+	}
+
+	public addWithId(type: ToastType, id: string, content: any, ms?: number) {
+		ms = ms ? ms : 5000;
+		this.toasts$.next({ type: type, content: content, ms: ms, id: id });
+	}
+
+	public removeId(id: string) {
+		this.toasts$.next({ id: id });
 	}
 
 	private handleBlidScan() {

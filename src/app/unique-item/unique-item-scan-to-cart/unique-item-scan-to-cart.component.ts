@@ -22,6 +22,7 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 	public blid: string;
 	public uniqueItem: UniqueItem;
 	public notAddedUniqeItemBlid: string;
+	public wait: boolean;
 
 	constructor(
 		private _modalService: NgbModal,

@@ -48,7 +48,7 @@ export class UniqueItemRegisterComponent implements OnInit {
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		if (changes["itemId"].currentValue) {
+		if (changes["itemId"] && changes["itemId"].currentValue) {
 			console.log("should create BLID for", this.title, this.itemId);
 		}
 	}

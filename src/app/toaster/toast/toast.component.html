@@ -9,17 +9,23 @@
 		class="toast-body bg-primary text-white"
 		*ngIf="toast.type === 'BLID-SCAN'"
 	>
-		<strong>BLID: </strong><span>{{toast.content.blid}}</span>
+		<strong>BLID: </strong><span>{{ toast.content.blid }}</span>
 	</div>
 
 	<div class="toast-body" *ngIf="toast.type === 'ISBN-SCAN'">
-		<strong>ISBN: </strong> {{toast.content.isbn}}
+		<strong>ISBN: </strong> {{ toast.content.isbn }}
 	</div>
 
 	<div class="toast-body bg-warning" *ngIf="toast.type === 'CART-CONTAINS'">
 		<fa-icon class="mr-2" icon="exclamation-circle"></fa-icon>
-		<span i18n="@@toastCartAlreadyContains">Cart already contains</span>
-		"{{toast.content.title}}"
+		<span i18n="@@toastCartAlreadyContains">Cart already contains</span> "{{
+			toast.content.title
+		}}"
+	</div>
+
+	<div class="toast-body bg-warning" *ngIf="toast.type === 'WAIT'">
+		<fa-icon class="mr-2" icon="circle-notch" spin="true"></fa-icon>
+		<span>{{ toast.content.text }}</span>
 	</div>
 
 	<div
@@ -35,7 +41,7 @@
 		</div>
 		<small>
 			<span i18n="@@toastNumberOfItems">Number of items processed: </span>
-			{{toast.content.numberOfItems}}
+			{{ toast.content.numberOfItems }}
 		</small>
 	</div>
 
@@ -45,7 +51,7 @@
 	>
 		<div>
 			<fa-icon icon="check-circle" class="mr-2"></fa-icon>
-			<strong>{{toast.content}} </strong>
+			<strong>{{ toast.content }} </strong>
 		</div>
 	</div>
 </div>
