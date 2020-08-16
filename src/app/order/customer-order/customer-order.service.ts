@@ -3,6 +3,7 @@ import { Order, OrderItem, Payment, UserDetail } from "@wizardcoder/bl-model";
 import { OrderService, PaymentService } from "@wizardcoder/bl-connect";
 import { Subject, Subscription, ReplaySubject } from "rxjs";
 import { CustomerService } from "../../customer/customer.service";
+import { PaymentHelperService } from "../../payment/payment-helper/payment-helper.service";
 
 @Injectable()
 export class CustomerOrderService {
@@ -12,7 +13,8 @@ export class CustomerOrderService {
 
 	constructor(
 		private _customerService: CustomerService,
-		private _orderService: OrderService
+		private _orderService: OrderService,
+		private _paymentHelperService: PaymentHelperService
 	) {
 		this._orders$ = new ReplaySubject(1);
 		this._wait$ = new Subject();
@@ -29,19 +31,28 @@ export class CustomerOrderService {
 		return this._wait$.asObservable().subscribe(func);
 	}
 
-	private get(userDetailId: string) {
+	private async get(userDetailId: string): Promise<any> {
 		this._wait$.next(true);
-		this._orderService
-			.get({
+		let orders;
+		try {
+			orders = await this._orderService.get({
 				query: `?placed=true&customer=${userDetailId}`
-			})
-			.then(orders => {
-				orders = this.sortOrders(orders);
-				this.setOrders(orders);
-			})
-			.catch(() => {
-				this.setOrders([]);
 			});
+		} catch (e) {
+			this.setOrders([]);
+		}
+
+		let validOrders = [];
+
+		for (let order of orders) {
+			if (await this._paymentHelperService.isOrderPayedFor(order)) {
+				validOrders.push(order);
+			}
+		}
+
+		validOrders = this.sortOrders(validOrders);
+
+		this.setOrders(validOrders);
 	}
 
 	private onCustomerChange() {
