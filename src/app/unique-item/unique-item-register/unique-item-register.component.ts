@@ -76,8 +76,8 @@ export class UniqueItemRegisterComponent implements OnInit {
 			.createAndAdd(this.blid, this.itemId, this.title)
 			.then(addedUniqueItem => {
 				this.wait = false;
-				this.item = null;
-				this.blid = null;
+				this.onClearItem();
+				this.onClearBlid();
 				this.registered.emit(addedUniqueItem);
 			})
 			.catch(() => {

@@ -15,6 +15,7 @@ export class UniqueItemRegisterFromCartComponent implements OnInit {
 	public itemId: string;
 	public title: string;
 	public isbn: number;
+	public blid: string;
 	private currentCartItemIndex: number;
 	private cartItems: CartItem[];
 
@@ -56,6 +57,7 @@ export class UniqueItemRegisterFromCartComponent implements OnInit {
 		this.itemId = this.cartItems[index].getItemId();
 		this.title = this.cartItems[index].getTitle();
 		this.isbn = this.cartItems[index].getISBN();
+		this.blid = this.cartItems[index].getBLID();
 	}
 
 	public onUniqueItemRegistered(uniqueItem: UniqueItem) {

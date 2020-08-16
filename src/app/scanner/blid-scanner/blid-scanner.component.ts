@@ -24,6 +24,7 @@ export class BlidScannerComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit() {
+		this.currentBlid = "";
 		this.handleBlidScanChange();
 	}
 
