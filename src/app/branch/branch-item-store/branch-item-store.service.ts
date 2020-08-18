@@ -47,7 +47,7 @@ export class BranchItemStoreService {
 	private handleBranchChange() {
 		this._branchStoreService.subscribe(branch => {
 			this._wait$.next(true);
-			this.fetchBranchItems(branch.id)
+			this.fetchBranchItems(branch.branchItems as string[])
 				.then(branchItems => {
 					this.setBranchItems(branchItems);
 				})
@@ -63,12 +63,14 @@ export class BranchItemStoreService {
 		this._wait$.next(false);
 	}
 
-	private async fetchBranchItems(branchId: string): Promise<BranchItem[]> {
+	private async fetchBranchItems(
+		branchItemIds: string[]
+	): Promise<BranchItem[]> {
 		let branchItems = [];
 		try {
-			branchItems = await this._branchItemService.get({
-				query: `?branch=${branchId}`
-			});
+			branchItems = await this._branchItemService.getManyByIds(
+				branchItemIds
+			);
 		} catch (e) {
 			branchItems = [];
 		}
