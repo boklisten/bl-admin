@@ -69,7 +69,12 @@ export class HeaderCustomerSearchComponent implements OnInit, OnDestroy {
 		this.showSearchResult = false;
 	}
 
+	public onSearchBarClick() {
+		this.onCustomerSearch(this.searchTerm);
+	}
+
 	public onCustomerSearch(searchTerm: string) {
+		this.searchTerm = searchTerm;
 		this._customerSearchService.search(searchTerm);
 	}
 
