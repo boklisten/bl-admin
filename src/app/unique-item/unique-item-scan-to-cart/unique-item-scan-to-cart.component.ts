@@ -78,6 +78,7 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 		this._uniqueItemScanToCartService
 			.addUniqueItemToCart(uniqueItem)
 			.then(added => {
+				/*
 				this._uniqueItemService
 					.getWithOperation(uniqueItem.id, "active")
 					.then(result => {
@@ -86,6 +87,7 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 					.catch(e => {
 						console.log("could not check if uniqueItem is active");
 					});
+         */
 			})
 			.catch(e => {
 				console.log("could not add cart item", e);
