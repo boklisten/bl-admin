@@ -8,7 +8,7 @@ import {
 import { CustomerSearchService } from "../../customer/customer-search/customer-search.service";
 import { BlcKeyeventDoubleShiftService } from "../../bl-common/blc-keyevent/blc-keyevent-double-shift.service";
 import { BlcClickService } from "../../bl-common/blc-click/blc-click.service";
-import { Subscription } from "rxjs";
+import { Subscription, Subject } from "rxjs";
 
 @Component({
 	selector: "app-header-customer-search",
@@ -25,6 +25,7 @@ export class HeaderCustomerSearchComponent implements OnInit, OnDestroy {
 	private customerSearchResultWait$: Subscription;
 	private clickEvent$: Subscription;
 	private doubleShiftEvent$: Subscription;
+	private searchTerm$: Subject<string>;
 
 	@ViewChild("customerSearchResult", { read: ElementRef })
 	customerSearchResultChild: ElementRef;
@@ -40,6 +41,7 @@ export class HeaderCustomerSearchComponent implements OnInit, OnDestroy {
 		this.searchTerm = "";
 		this.showSearchResult = false;
 		this.headerCustomerSearchId = "headerCustomerSearch";
+		this.searchTerm$ = new Subject();
 	}
 
 	ngOnInit() {
