@@ -7,7 +7,7 @@ import { StorageService } from "../../storage/storage.service";
 @Injectable()
 export class CustomerSearchService {
 	private _searchResultError$: Subject<any>;
-	private _searchResult$: ReplaySubject<UserDetail[]>;
+	private _searchResult$: Subject<UserDetail[]>;
 	private _searchTerm$: Subject<string>;
 	private _currentSearchTerm: string;
 	private _searchTermStorageName: string;
@@ -17,17 +17,18 @@ export class CustomerSearchService {
 		private _userDetailService: UserDetailService,
 		private _storageService: StorageService
 	) {
-		this._searchTermStorageName = "bl-customer-search-term";
+		//this._searchTermStorageName = "bl-customer-search-term";
 		this._searchTerm$ = new Subject();
-		this._searchResult$ = new ReplaySubject(1);
+		this._searchResult$ = new Subject();
 		this._searchResultError$ = new Subject();
 		this._wait$ = new Subject();
-
+		/*
 		if (this._storageService.get(this._searchTermStorageName)) {
 			this._currentSearchTerm = this._storageService.get(
 				this._searchTermStorageName
 			);
-		}
+    }
+     */
 	}
 
 	public search(searchTerm: string) {
@@ -77,10 +78,12 @@ export class CustomerSearchService {
 
 	private setSearchTerm(searchTerm: string) {
 		this._currentSearchTerm = searchTerm;
+		/*
 		this._storageService.store(
 			this._searchTermStorageName,
 			this._currentSearchTerm
-		);
+    );
+     */
 	}
 
 	public getSearchTerm(): string {

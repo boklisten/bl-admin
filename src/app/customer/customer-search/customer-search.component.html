@@ -1,10 +1,16 @@
 <div class="row">
-    <div class="col-12">
-		<app-bl-search-bar [wait]="wait" [placeholder]="'Customer Search'" [term]="searchTerm" (search)="onSearch($event)"></app-bl-search-bar>
-    </div>
+	<div class="col-12">
+		<app-bl-search-bar
+			[wait]="wait"
+			[placeholder]="'Customer Search'"
+			[term]="searchTerm"
+			(search)="onSearch($event)"
+			(click)="onSearchBarClick()"
+		></app-bl-search-bar>
+	</div>
 </div>
 <div class="row mt-2">
-    <div class="col-12">
-        <app-customer-search-result></app-customer-search-result>
-    </div>
+	<div class="col-12">
+		<app-customer-search-result></app-customer-search-result>
+	</div>
 </div>

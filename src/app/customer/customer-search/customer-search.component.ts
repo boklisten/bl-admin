@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {CustomerSearchService} from './customer-search.service';
+import { Component, OnInit } from "@angular/core";
+import { CustomerSearchService } from "./customer-search.service";
 
 @Component({
-	selector: 'app-customer-search',
-	templateUrl: './customer-search.component.html',
-	styleUrls: ['./customer-search.component.scss']
+	selector: "app-customer-search",
+	templateUrl: "./customer-search.component.html",
+	styleUrls: ["./customer-search.component.scss"]
 })
 export class CustomerSearchComponent implements OnInit {
 	public searchTerm: string;
 	public wait: boolean;
 
 	constructor(private _customerSearchService: CustomerSearchService) {
-		this.searchTerm = '';
+		this.searchTerm = "";
 		this.wait = false;
 
 		this._customerSearchService.onSearchResult().subscribe(() => {
@@ -37,4 +37,7 @@ export class CustomerSearchComponent implements OnInit {
 		}
 	}
 
+	onSearchBarClick() {
+		this.onSearch(this.searchTerm);
+	}
 }
