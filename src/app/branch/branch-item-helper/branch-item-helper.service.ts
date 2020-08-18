@@ -41,26 +41,29 @@ export class BranchItemHelperService {
 	}
 
 	public isPartlyPaymentValid(item: Item, period: Period): boolean {
+		if (!this.isPartlyPaymentPeriodValid(period)) {
+			return false;
+		}
+
+		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
+			if (branchItem.item === item.id) {
+				if (branchItem.partlyPaymentAtBranch) {
+					return true;
+				}
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private isPartlyPaymentPeriodValid(period: Period) {
 		for (const partlyPaymentPeriod of this._branchStoreService.getCurrentBranch()
 			.paymentInfo.partlyPaymentPeriods) {
 			if (partlyPaymentPeriod.type === period) {
 				return true;
 			}
 		}
-		/*
-		for (const branchItem of this._branchItemStoreService.getBranchItems()) {
-			if (branchItem.item === item.id) {
-				if (branchItem.partlyPaymentAtBranch) {
-					for (const partlyPaymentPeriod of this._branchStoreService.getCurrentBranch()
-						.paymentInfo.partlyPaymentPeriods) {
-						if (partlyPaymentPeriod.type === period) {
-							return true;
-						}
-					}
-				}
-			}
-		}
-    */
 		return false;
 	}
 
