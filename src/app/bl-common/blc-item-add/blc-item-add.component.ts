@@ -91,6 +91,21 @@ export class BlcItemAddComponent implements OnInit, OnDestroy {
 	}
 
 	public add() {
+		this.addWarningItem = false;
+		if (
+			!this._branchItemStoreService.isItemInBranchItems(
+				this.cartItem.getItemId()
+			)
+		) {
+			this.addWarningItem = true;
+			this.openModal();
+			return;
+		}
+		this.addCartItem();
+	}
+
+	public addCartItem() {
+		this._modalService.dismissAll();
 		try {
 			this._cartService.add(this.cartItem);
 		} catch (e) {
@@ -116,8 +131,7 @@ export class BlcItemAddComponent implements OnInit, OnDestroy {
 
 	private openModal() {
 		this._modalService.open(this.addWithWarningContent, {
-			size: "lg",
-			centered: true
+			size: "lg"
 		});
 	}
 }
