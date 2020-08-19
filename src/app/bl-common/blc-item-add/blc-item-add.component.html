@@ -23,11 +23,16 @@
 		</button>
 	</div>
 	<div class="modal-body">
-		<h2>{{ item.title }}</h2>
-		<h5 *ngIf="item.info">
-			<fa-icon class="mr-2" [icon]="'barcode'"></fa-icon
-			>{{ item.info["isbn"] }}
-		</h5>
+		<div class="card">
+			<div class="card-body">
+				<h4>{{ item.title }}</h4>
+				<h5 *ngIf="item.info">
+					<span class="badge badge-pill badge-secondary">
+						ISBN: {{ item.info["isbn"] }}</span
+					>
+				</h5>
+			</div>
+		</div>
 		<p
 			i18n="@@blcItemAddItemNotPartOfBranchItems"
 			class="mt-5"

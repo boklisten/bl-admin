@@ -93,6 +93,7 @@ export class BlcItemAddComponent implements OnInit, OnDestroy {
 	public add() {
 		this.addWarningItem = false;
 		if (
+			!this.customerItem &&
 			!this._branchItemStoreService.isItemInBranchItems(
 				this.cartItem.getItemId()
 			)
