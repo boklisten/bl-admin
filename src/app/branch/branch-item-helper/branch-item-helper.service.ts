@@ -58,8 +58,17 @@ export class BranchItemHelperService {
 	}
 
 	private isPartlyPaymentPeriodValid(period: Period) {
-		for (const partlyPaymentPeriod of this._branchStoreService.getCurrentBranch()
-			.paymentInfo.partlyPaymentPeriods) {
+		let partlyPaymentPeriods = [];
+		const currentBranch = this._branchStoreService.getCurrentBranch();
+
+		if (currentBranch.paymentInfo) {
+			partlyPaymentPeriods =
+				currentBranch.paymentInfo.partlyPaymentPeriods;
+			partlyPaymentPeriods = partlyPaymentPeriods
+				? partlyPaymentPeriods
+				: [];
+		}
+		for (const partlyPaymentPeriod of partlyPaymentPeriods) {
 			if (partlyPaymentPeriod.type === period) {
 				return true;
 			}
