@@ -44,12 +44,42 @@ export class CustomerSearchService {
 		this._searchTerms$.next(searchTerm);
 	}
 
+	public onWait(func: (wait: boolean) => void): Subscription {
+		return this._wait$.asObservable().subscribe(func);
+	}
+
+	public onSearchTerm(func: (searchTerm: string) => void): Subscription {
+		return this._searchTerm$.asObservable().subscribe(func);
+	}
+
+	public getSearchTerm(): string {
+		return this._currentSearchTerm;
+	}
+
+	public onSearchResult(): Observable<UserDetail[]> {
+		return this._searchResult$;
+	}
+
+	public onSearchResultError(): Observable<any> {
+		return this._searchResultError$;
+	}
+
+	private handleSearchTermChange() {
+		this._searchTerms$
+			.pipe(
+				debounceTime(500),
+				distinctUntilChanged()
+			)
+			.subscribe(term => this.searchEntries(term));
+	}
+
 	private searchEntries(term: string) {
+		this.setUserDetails([]);
+
 		if (!term || term.length < 3) {
-			this._wait$.next(true);
-			this.setUserDetails([]);
 			return;
 		}
+
 		this._wait$.next(true);
 
 		this.fetchUserDetails(term)
@@ -61,23 +91,6 @@ export class CustomerSearchService {
 				this.setUserDetails([]);
 				this._searchResultError$.next(new Error("not found"));
 			});
-	}
-
-	public onWait(func: (wait: boolean) => void): Subscription {
-		return this._wait$.asObservable().subscribe(func);
-	}
-
-	public onSearchTerm(func: (searchTerm: string) => void): Subscription {
-		return this._searchTerm$.asObservable().subscribe(func);
-	}
-
-	private handleSearchTermChange() {
-		this._searchTerms$
-			.pipe(
-				debounceTime(200),
-				distinctUntilChanged()
-			)
-			.subscribe(term => this.searchEntries(term));
 	}
 
 	private setUserDetails(userDetails: UserDetail[]) {
@@ -105,17 +118,5 @@ export class CustomerSearchService {
 			this._currentSearchTerm
     );
      */
-	}
-
-	public getSearchTerm(): string {
-		return this._currentSearchTerm;
-	}
-
-	public onSearchResult(): Observable<UserDetail[]> {
-		return this._searchResult$;
-	}
-
-	public onSearchResultError(): Observable<any> {
-		return this._searchResultError$;
 	}
 }
