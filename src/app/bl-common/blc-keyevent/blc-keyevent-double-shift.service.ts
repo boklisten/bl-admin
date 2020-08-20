@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
 import { Subject } from "rxjs/internal/Subject";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Injectable({
 	providedIn: "root"
@@ -8,7 +9,7 @@ import { Subject } from "rxjs/internal/Subject";
 export class BlcKeyeventDoubleShiftService {
 	private _doubleShift$: Subject<boolean>;
 
-	constructor() {
+	constructor(private _modalService: NgbModal) {
 		this._doubleShift$ = new Subject<boolean>();
 	}
 
@@ -17,6 +18,8 @@ export class BlcKeyeventDoubleShiftService {
 	}
 
 	public setDoubleShift() {
-		this._doubleShift$.next(true);
+		if (!this._modalService.hasOpenModals()) {
+			this._doubleShift$.next(true);
+		}
 	}
 }
