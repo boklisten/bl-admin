@@ -3,10 +3,11 @@ import { BlidScannerService } from "../../scanner/blid-scanner/blid-scanner.serv
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { CartItemService } from "../../cart/cart-item/cart-item.service";
 import { CartService } from "../../cart/cart.service";
-import { UniqueItem } from "@wizardcoder/bl-model";
+import { UniqueItem, CustomerItem, Item } from "@wizardcoder/bl-model";
 import { Subscription } from "rxjs";
 import { UniqueItemScanToCartService } from "./unique-item-scan-to-cart.service";
 import { UniqueItemService } from "@wizardcoder/bl-connect";
+import { CustomerItemListService } from "../../customer-item/customer-item-list/customer-item-list.service";
 
 @Component({
 	selector: "app-unique-item-scan-to-cart",
@@ -17,11 +18,19 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 	@ViewChild("addUniqeItemModal") private addUniqeItemModalContent;
 	private addUniqeItemModal: NgbModalRef;
 
+	@ViewChild("anotherBlidOnCustomerItemModal")
+	private anotherBlidOnCustomerItemModalContent;
+	private anotherBlidOnCustomerItemModal: NgbModalRef;
+
 	private uniqueItem$: Subscription;
 	private uniqueItemDoesNotExist$: Subscription;
 	public blid: string;
 	public uniqueItem: UniqueItem;
 	public notAddedUniqeItemBlid: string;
+	public mismatchedCustomerItemWithItem: {
+		customerItem: CustomerItem;
+		item: Item;
+	};
 	public wait: boolean;
 
 	constructor(
@@ -30,7 +39,8 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 		private _cartItemService: CartItemService,
 		private _cartService: CartService,
 		private _uniqueItemScanToCartService: UniqueItemScanToCartService,
-		private _uniqueItemService: UniqueItemService
+		private _uniqueItemService: UniqueItemService,
+		private _customerItemListService: CustomerItemListService
 	) {}
 
 	ngOnInit() {
@@ -51,8 +61,33 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 
 	private handleUniqueItemChange() {
 		this.uniqueItem$ = this._blidScannerService.onUniqueItem(uniqueItem => {
+			this.uniqueItem = uniqueItem;
+
+			const customerItemWithItem = this._customerItemListService.containsMismatchedBlid(
+				uniqueItem
+			);
+
+			if (customerItemWithItem) {
+				if (!this._modalService.hasOpenModals()) {
+					this.mismatchedCustomerItemWithItem = customerItemWithItem;
+					this.anotherBlidOnCustomerItemModal = this._modalService.open(
+						this.anotherBlidOnCustomerItemModalContent
+					);
+				}
+				return;
+			}
+
 			this.addUniqueItemToCart(uniqueItem);
 		});
+	}
+
+	public onAddUniqueItemAnywayClick(uniqueItem: UniqueItem) {
+		this.anotherBlidOnCustomerItemModal.close();
+		this.addUniqueItemToCart(uniqueItem);
+	}
+
+	public onCancelModal() {
+		this._modalService.dismissAll();
 	}
 
 	private handleUniqueItemNotExistChange() {

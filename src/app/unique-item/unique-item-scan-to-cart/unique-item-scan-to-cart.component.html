@@ -4,3 +4,76 @@
 		(registered)="onUniqueItemRegistered($event)"
 	></app-unique-item-register>
 </ng-template>
+
+<ng-template #anotherBlidOnCustomerItemModal let-c="close" let-d="dismiss">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h4 i18n="@@uniqueItemScanToCartBlidMismatch">BL-ID mismatch</h4>
+		</div>
+		<div class="modal-body">
+			<b i18n="@@uniqueItemScanToCartDidNotMatchBlid"
+				>The item you scanned did not have the same BL-ID as the item
+				the customer already have.</b
+			>
+
+			<h5
+				class="text-center mt-5"
+				i18n="@@uniqueItemScanToCartCustomersItem"
+			>
+				Customer's item
+			</h5>
+			<div class="card">
+				<div class="card-body">
+					<h5>{{ mismatchedCustomerItemWithItem.item.title }}</h5>
+					<span class="badge badge-pill badge-info badge-sm"
+						>BL-ID:
+						{{
+							mismatchedCustomerItemWithItem.customerItem.blid
+						}}</span
+					>
+				</div>
+			</div>
+			<h5
+				class="text-center mt-5"
+				i18n="@@uniqueItemScanToCartTheItemYouScanned"
+			>
+				The item you scanned
+			</h5>
+			<div class="card" style="border-color: red;">
+				<div class="card-body">
+					<h5>{{ uniqueItem.title }}</h5>
+					<span class="badge badge-pill badge-danger badge-sm"
+						>BL-ID: {{ uniqueItem.blid }}</span
+					>
+				</div>
+			</div>
+
+			<div class="text-center mt-5">
+				<b i18n="@@uniqueItemScanToCartAreYouSure"
+					>Are you sure this is correct?</b
+				>
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button
+				type="button"
+				class="btn btn-secondary"
+				(keydown.enter)="(false)"
+				(click)="onCancelModal()"
+				i18n="@@uniqueItemScanToCartCancel"
+			>
+				Cancel
+			</button>
+			<button
+				type="button"
+				class="btn btn-outline-danger"
+				(keydown.enter)="(false)"
+				(click)="onAddUniqueItemAnywayClick(uniqueItem)"
+				i18n="@@uniqueItemScanToCartAddAnyway"
+			>
+				Add anyway
+			</button>
+		</div>
+	</div>
+</ng-template>
