@@ -13,7 +13,7 @@ import {
 @Injectable()
 export class CustomerSearchService {
 	private _searchResultError$: Subject<any>;
-	private _searchResult$: Subject<UserDetail[]>;
+	private _searchResult$: ReplaySubject<UserDetail[]>;
 	private _searchTerm$: Subject<string>;
 	private _searchTerms$: Subject<string>;
 	private _currentSearchTerm: string;
@@ -27,7 +27,7 @@ export class CustomerSearchService {
 		//this._searchTermStorageName = "bl-customer-search-term";
 		this._searchTerm$ = new Subject();
 		this._searchTerms$ = new Subject();
-		this._searchResult$ = new Subject();
+		this._searchResult$ = new ReplaySubject(1);
 		this._searchResultError$ = new Subject();
 		this._wait$ = new Subject();
 		this.handleSearchTermChange();
@@ -65,9 +65,13 @@ export class CustomerSearchService {
 	}
 
 	private handleSearchTermChange() {
+		this._searchTerms$.subscribe(() => {
+			this._wait$.next(true);
+		});
+
 		this._searchTerms$
 			.pipe(
-				debounceTime(500),
+				debounceTime(400),
 				distinctUntilChanged()
 			)
 			.subscribe(term => this.searchEntries(term));

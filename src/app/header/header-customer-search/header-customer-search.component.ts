@@ -76,8 +76,12 @@ export class HeaderCustomerSearchComponent implements OnInit, OnDestroy {
 	}
 
 	public onCustomerSearch(searchTerm: string) {
-		this.searchTerm = searchTerm;
-		this._customerSearchService.search(searchTerm);
+		this.showSearchResult = true;
+
+		if (this.searchTerm !== searchTerm) {
+			this.searchTerm = searchTerm;
+			this._customerSearchService.search(searchTerm);
+		}
 	}
 
 	private handleCustomerSearchResultChange() {
@@ -126,7 +130,7 @@ export class HeaderCustomerSearchComponent implements OnInit, OnDestroy {
 			.onDoubleShift()
 			.subscribe(() => {
 				document.getElementById(this.headerCustomerSearchId).focus();
-				this.showSearchResult = true;
+				this.onCustomerSearch(this.searchTerm);
 			});
 	}
 }
