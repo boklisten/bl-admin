@@ -1047,6 +1047,20 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="userComponentUsername" datatype="html">
+        <source>username</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/user-info-small/user-info-small.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="userComponentPermission" datatype="html">
+        <source>permission</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/user-info-small/user-info-small.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="branchEditListUploadSelected" datatype="html">
         <source>Upload selected</source>
         <context-group purpose="location">
@@ -1107,7 +1121,7 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="blcItemAddCustomerItemWithMatch" datatype="html">
@@ -1117,7 +1131,7 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="blcItemAddCancel" datatype="html">
@@ -1126,7 +1140,7 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="blcItemAddAnyway" datatype="html">
@@ -1135,7 +1149,7 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
       <trans-unit id="editStringValueNoValue" datatype="html">
@@ -1490,25 +1504,48 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="welcomeShortcuts" datatype="html">
+        <source>
+					Shortcuts
+				</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcomeFocusOnSearchbar" datatype="html">
+        <source>focus on search bar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcomeReloadCurrent" datatype="html">
+        <source>reload current customer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcomeNavigateUpSidebar" datatype="html">
+        <source>navigate up sidebar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="welcomeNavigateDownSidebar" datatype="html">
+        <source>navigate down sidebar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="headerCustomerSearch" datatype="html">
         <source>Customer search</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/header/header-customer-search/header-customer-search.component.html</context>
           <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="userComponentUsername" datatype="html">
-        <source>username</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/user/user.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="userComponentPermission" datatype="html">
-        <source>permission</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/user/user.component.html</context>
-          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="branchSelectBranchTitle" datatype="html">
@@ -2779,6 +2816,64 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/unique-item/unique-item-register/unique-item-register.component.html</context>
           <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemScanToCartBlidMismatch" datatype="html">
+        <source>BL-ID mismatch</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemScanToCartDidNotMatchBlid" datatype="html">
+        <source>The item you scanned did not have the same BL-ID as the item
+				the customer already have.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemScanToCartCustomersItem" datatype="html">
+        <source>
+				Customer&apos;s item
+			</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemScanToCartTheItemYouScanned" datatype="html">
+        <source>
+				The item you scanned
+			</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemScanToCartAreYouSure" datatype="html">
+        <source>Are you sure this is correct?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemScanToCartCancel" datatype="html">
+        <source>
+				Cancel
+			</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemScanToCartAddAnyway" datatype="html">
+        <source>
+				Add anyway
+			</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cartCustomer" datatype="html">
