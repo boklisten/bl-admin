@@ -196,32 +196,13 @@ export class SideBarComponent implements OnInit, OnDestroy {
 		this.customer$ = this._customerService.subscribe(
 			(customerDetail: UserDetail) => {
 				this.addCustomerSidebarLinks(customerDetail.id);
-				/*
-				for (const sidebarLink of this.sidebarLinks) {
-					if (sidebarLink.name === "customer") {
-						sidebarLink.link =
-							"customer/" + customerDetail.id + "/detail";
-						sidebarLink.hide = false;
-						this.hideNoPermissionLinks();
-						return;
-					}
-				}
-        */
 			}
 		);
 	}
 
 	private handleCustomerClearChange() {
 		this.customerClear$ = this._customerService.onClear(() => {
-			/*
 			this.removeCustomerSidebarLinks();
-			if (this.currentSidebarLinkIndex > 0) {
-				this.currentSidebarLinkIndex--;
-				this.selectSidebarLinkBasedOnIndex(
-					this.currentSidebarLinkIndex
-				);
-			}
-      */
 		});
 	}
 

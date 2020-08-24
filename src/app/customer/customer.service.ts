@@ -64,7 +64,6 @@ export class CustomerService {
 	public clear() {
 		this._customerDetail = null;
 		this._storageService.remove(this._userDetailIdStorageName);
-		this._customerDetail$.next(null);
 		this._clear$.next(true);
 	}
 

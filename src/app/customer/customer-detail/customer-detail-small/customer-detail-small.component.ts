@@ -35,7 +35,7 @@ export class CustomerDetailSmallComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.handleCustomerDetailChange();
-		this.customerDetail = this._customerDetailService.get();
+		this.setCustomerDetail(this._customerDetailService.get());
 	}
 
 	ngOnDestroy() {
@@ -45,7 +45,7 @@ export class CustomerDetailSmallComponent implements OnInit, OnDestroy {
 	private handleCustomerDetailChange() {
 		this.customerDetail$ = this._customerService.subscribe(
 			(userDetail: UserDetail) => {
-				this.setCustomerDetail(userDetail);
+				this.setCustomerDetail(this._customerDetailService.get());
 			}
 		);
 	}
@@ -59,6 +59,10 @@ export class CustomerDetailSmallComponent implements OnInit, OnDestroy {
 	public onCustomerDetailUpdated() {}
 
 	private checkIfCustomerIsValid(customerDetail: UserDetail) {
+		if (!customerDetail) {
+			return true;
+		}
+
 		if (!customerDetail.name) {
 			return false;
 		}
