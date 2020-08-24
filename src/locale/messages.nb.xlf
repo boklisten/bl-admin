@@ -1627,54 +1627,48 @@ Egendefinert
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit><trans-unit id="uniqueItemScanToCartDidNotMatchBlid" datatype="html">
-        <source>The item you scanned did not have the same BL-ID as the item
-				the customer already have.</source><target state="final">Boken du skannet hadde ikke den samme Boklisten-ID som den kunden allerede har, selv om de har samme tittel.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-      </trans-unit><trans-unit id="uniqueItemScanToCartCustomersItem" datatype="html">
+        <source>The item you scanned did not have the same BL-ID as the
+					item the customer already have.
+				</source><target state="translated">Boken du skannet hadde ikke den samme Boklisten-ID som den kunden allerede har, selv om de har samme tittel.</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">17</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartCustomersItem" datatype="html">
         <source>
 				Customer's item
 			</source><target state="final">Kundens bok</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit><trans-unit id="uniqueItemScanToCartTheItemYouScanned" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">25</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartTheItemYouScanned" datatype="html">
         <source>
 				The item you scanned
 			</source><target state="final">Boken du skannet
 			</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">42</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartNotAbleToAdd" datatype="html">
+        <source>
+					This item can not be added to cart as it does not match the
+					BL-ID of the item the customer already has. If you mean this
+					is an error please contact admin.
+				</source><target state="final">Boken kan ikke bli lagt til i handlekurven da Boklisten-ID ikke matcher den boken som kunden allerede har. Er det noen andres bok? Hvis du mener at dette er en feil så må du kontakte admin.
+				</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit><trans-unit id="uniqueItemScanToCartAreYouSure" datatype="html">
         <source>Are you sure this is correct?</source><target state="final">Er du sikker på at dette er korrekt?</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
-          <context context-type="linenumber">53</context>
-        </context-group>
-      </trans-unit><trans-unit id="uniqueItemScanToCartCancel" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">66</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartCancel" datatype="html">
         <source>
 				Cancel
 			</source><target state="final">Avbryt
 			</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
-          <context context-type="linenumber">65</context>
-        </context-group>
-      </trans-unit><trans-unit id="uniqueItemScanToCartAddAnyway" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">74</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartAddAnyway" datatype="html">
         <source>
 				Add anyway
 			</source><target state="final">Legg til likevel
 			</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
-          <context context-type="linenumber">74</context>
-        </context-group>
-      </trans-unit><trans-unit id="cartCustomer" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">83</context></context-group></trans-unit><trans-unit id="cartCustomer" datatype="html">
         <source>Customer
 						</source><target state="final">Kunde
 						</target>
