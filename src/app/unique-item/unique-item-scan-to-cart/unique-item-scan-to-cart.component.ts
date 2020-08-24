@@ -8,6 +8,7 @@ import { Subscription } from "rxjs";
 import { UniqueItemScanToCartService } from "./unique-item-scan-to-cart.service";
 import { UniqueItemService } from "@wizardcoder/bl-connect";
 import { CustomerItemListService } from "../../customer-item/customer-item-list/customer-item-list.service";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
 	selector: "app-unique-item-scan-to-cart",
@@ -32,6 +33,7 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 		item: Item;
 	};
 	public wait: boolean;
+	public isAdmin: boolean;
 
 	constructor(
 		private _modalService: NgbModal,
@@ -40,12 +42,14 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 		private _cartService: CartService,
 		private _uniqueItemScanToCartService: UniqueItemScanToCartService,
 		private _uniqueItemService: UniqueItemService,
-		private _customerItemListService: CustomerItemListService
+		private _customerItemListService: CustomerItemListService,
+		private _authService: AuthService
 	) {}
 
 	ngOnInit() {
 		this.handleUniqueItemChange();
 		this.handleUniqueItemNotExistChange();
+		this.isAdmin = this._authService.isAdmin();
 	}
 
 	ngOnDestroy() {
