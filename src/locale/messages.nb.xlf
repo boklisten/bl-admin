@@ -1701,7 +1701,19 @@ Egendefinert
       <trans-unit id="cartSearch" datatype="html">
         <source>Search</source><target state="final">Søk</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit><trans-unit id="cartListCartIsEmpty" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit><trans-unit id="cartListItemActionRent" datatype="html">
+        <source>rent</source><target state="final">Lån</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit><trans-unit id="cartListItemActionExtend" datatype="html">
+        <source>extend</source><target state="final">Forleng</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit><trans-unit id="cartListCartIsEmpty" datatype="html">
         <source>Cart is empty</source><target state="final">Handlekurven er tom</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">28</context></context-group></trans-unit>
@@ -1722,7 +1734,7 @@ Egendefinert
         <source>cancel this item</source><target state="final">kanseller denne boken
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">110</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">119</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionBuyThisItemFromCustomer" datatype="html">
         <source>
 	buy this item from customer
@@ -1730,27 +1742,27 @@ Egendefinert
 	kjøp denne boken fra kunden
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">123</context></context-group></trans-unit><trans-unit id="cartListItemActionBuybackThisItemFromCustomer" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">132</context></context-group></trans-unit><trans-unit id="cartListItemActionBuybackThisItemFromCustomer" datatype="html">
         <source>
 	buyback this item from customer
 </source><target state="final">Kjøp denne boken tilbake fra kunde
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">131</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">140</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionSellItemToCustomer" datatype="html">
         <source>
 	sell this item
 </source><target state="final">
 	selg denne boken</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">139</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">148</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionReturnItem" datatype="html">
         <source>
 	return this item
 </source><target state="final">
 	lever inn denne boken</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">147</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">156</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionCustomerToBuyoutItem" datatype="html">
         <source>
 	customer to buyout this item
@@ -1758,7 +1770,7 @@ Egendefinert
 	utkjøp av denne boken
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">155</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">164</context></context-group></trans-unit>
       
       
       
