@@ -23,6 +23,10 @@ export class BlcScannerService {
 	}
 
 	public scanBlid(scannedString: string) {
+		if (this.isNumeric(scannedString)) {
+			return;
+		}
+
 		const blid = scannedString;
 
 		if (blid.length === 12) {
@@ -31,11 +35,19 @@ export class BlcScannerService {
 	}
 
 	public scanIsbn(scannedString: string) {
-		const isbn = parseInt(scannedString, 10);
-		if (Number.isNaN(isbn)) {
+		if (!this.isNumeric(scannedString)) {
 			return;
 		}
 
+		if (scannedString.length < 10 || scannedString.length > 13) {
+			return;
+		}
+
+		const isbn = parseInt(scannedString, 10);
 		this._isbn$.next(isbn);
+	}
+
+	private isNumeric(value) {
+		return /^-?\d+$/.test(value);
 	}
 }

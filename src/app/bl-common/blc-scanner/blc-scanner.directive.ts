@@ -18,7 +18,10 @@ export class BlcScannerDirective {
 			if (this.scannerString.length === 12) {
 				this._blcScannerService.scanBlid(this.scannerString);
 			}
-			if (this.scannerString.length === 13) {
+			if (
+				this.scannerString.length > 9 &&
+				this.scannerString.length < 14
+			) {
 				this._blcScannerService.scanIsbn(this.scannerString);
 			}
 			this.scannerString = "";
