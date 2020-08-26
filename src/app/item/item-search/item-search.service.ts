@@ -79,7 +79,6 @@ export class ItemSearchService {
 			items = await this.searchByTerm(term);
 		} catch (e) {
 			try {
-				console.log("trying isbn");
 				items = await this.searchByIsbn(parseInt(term, 10));
 			} catch (e) {
 				items = [];
@@ -110,7 +109,7 @@ export class ItemSearchService {
 				query: "?s=" + term
 			});
 		} catch (e) {
-			items = [];
+			throw e;
 		}
 
 		return items;
