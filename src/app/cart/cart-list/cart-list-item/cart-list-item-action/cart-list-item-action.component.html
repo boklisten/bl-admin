@@ -16,14 +16,19 @@
 			(click)="onActionChange(actionChoice)"
 		/>
 		<span
-			*ngIf="actionChoice.action === 'rent' && actionChoice.period === 'semester'"
+			*ngIf="
+				actionChoice.action === 'rent' &&
+				actionChoice.period === 'semester'
+			"
 			class="mr-3 ml-3"
 		>
 			<fa-icon [icon]="'calendar-alt'"></fa-icon>
 		</span>
 
 		<span
-			*ngIf="actionChoice.action === 'rent' && actionChoice.period === 'year'"
+			*ngIf="
+				actionChoice.action === 'rent' && actionChoice.period === 'year'
+			"
 			class="mr-3 ml-3"
 		>
 			<fa-icon [icon]="'calendar'"></fa-icon>
@@ -31,9 +36,9 @@
 
 		<span
 			*ngIf="
-    actionChoice.action === 'partly-payment' &&
-    actionChoice.period === 'semester'
-    "
+				actionChoice.action === 'partly-payment' &&
+				actionChoice.period === 'semester'
+			"
 			class="mr-3 ml-3"
 		>
 			<fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
@@ -46,8 +51,9 @@
 
 		<span
 			*ngIf="
-    actionChoice.action === 'partly-payment' && actionChoice.period === 'year'
-    "
+				actionChoice.action === 'partly-payment' &&
+				actionChoice.period === 'year'
+			"
 			class="mr-3 ml-3"
 		>
 			<fa-icon [icon]="'money-bill-alt'" class="mr-1"></fa-icon>
@@ -57,7 +63,10 @@
 		<fa-icon
 			[icon]="'money-bill-alt'"
 			class="mr-3 ml-3"
-			*ngIf="actionChoice.action === 'buy' || actionChoice.action === 'buyout'"
+			*ngIf="
+				actionChoice.action === 'buy' ||
+				actionChoice.action === 'buyout'
+			"
 		></fa-icon>
 
 		<fa-icon
@@ -85,13 +94,13 @@
 </div>
 
 <span *ngIf="selectedAction.action === 'rent'" class="ml-2 text-secondary">
-	<span>rent</span>
+	<span i18n="@@cartListItemActionRent">rent</span>
 	<fa-icon [icon]="'arrow-right'" class="mr-2 ml-2"></fa-icon>
 	{{ selectedAction.deadline | blDate }}
 </span>
 
 <span *ngIf="selectedAction.action === 'extend'" class="ml-2 text-secondary">
-	<span>extend</span>
+	<span i18n="@@cartListItemActionExtend">extend</span>
 	<fa-icon [icon]="'arrow-right'" class="mr-2 ml-2"></fa-icon>
 	{{ selectedAction.deadline | blDate }}
 </span>

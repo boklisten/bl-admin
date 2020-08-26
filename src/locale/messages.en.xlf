@@ -706,7 +706,7 @@
 			branch
 		</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">35</context></context-group></trans-unit><trans-unit id="blcItemAddCustomerItemWithMatch" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">40</context></context-group></trans-unit><trans-unit id="blcItemAddCustomerItemWithMatch" datatype="html">
         <source>
 			This item is apart of a match, are you sure you want to add this to
 			the cart?
@@ -714,25 +714,22 @@
 			This item is apart of a match, are you sure you want to add this to
 			the cart?
 		</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">44</context>
-        </context-group>
-      </trans-unit><trans-unit id="blcItemAddCancel" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">49</context></context-group></trans-unit><trans-unit id="blcItemAddCancel" datatype="html">
         <source>
 			Cancel
 		</source><target state="final">
 			Cancel
 		</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit><trans-unit id="blcItemAddAnyway" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit><trans-unit id="blcItemAddAnyway" datatype="html">
         <source>
 			Add anyway
 		</source><target state="final">
 			Add anyway
 		</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">63</context></context-group></trans-unit><trans-unit id="editStringValueNoValue" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">68</context></context-group></trans-unit><trans-unit id="editStringValueNoValue" datatype="html">
         <source>[NO VALUE]</source><target state="final">[NO VALUE]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-edit/blc-edit-string-value/blc-edit-string-value.component.html</context>
@@ -892,7 +889,41 @@
         <source>Please scan a BLID</source><target state="final">Please scan a BLID</target>
         
         
-      <context-group purpose="location"><context context-type="sourcefile">app/scanner/blid-scanner/blid-scanner.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="invoiceView" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/scanner/blid-scanner/blid-scanner.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="welcomeShortcuts" datatype="html">
+        <source>
+					Shortcuts
+				</source><target state="final">
+					Shortcuts
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit><trans-unit id="welcomeFocusOnSearchbar" datatype="html">
+        <source>focus on search bar</source><target state="final">focus on search bar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit><trans-unit id="welcomeReloadCurrent" datatype="html">
+        <source>reload current customer</source><target state="final">reload current customer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit><trans-unit id="welcomeNavigateUpSidebar" datatype="html">
+        <source>navigate up sidebar</source><target state="final">navigate up sidebar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit><trans-unit id="welcomeNavigateDownSidebar" datatype="html">
+        <source>navigate down sidebar</source><target state="final">navigate down sidebar</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/home/home.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit><trans-unit id="invoiceView" datatype="html">
         <source>View</source><target state="final">View</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice.component.html</context><context context-type="linenumber">6</context></context-group></trans-unit><trans-unit id="invoiceGenerate" datatype="html">
@@ -910,17 +941,11 @@
         
       <context-group purpose="location"><context context-type="sourcefile">app/header/header-customer-search/header-customer-search.component.html</context><context context-type="linenumber">7</context></context-group></trans-unit><trans-unit id="userComponentUsername" datatype="html">
         <source>username</source><target state="final">username</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/user/user.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit><trans-unit id="userComponentPermission" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/user/user-info-small/user-info-small.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit><trans-unit id="userComponentPermission" datatype="html">
         <source>permission</source><target state="final">permission</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/user/user.component.html</context>
-          <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/user/user-info-small/user-info-small.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit>
       
       
       
@@ -1620,7 +1645,65 @@
           <context context-type="sourcefile">app/unique-item/unique-item-register/unique-item-register.component.html</context>
           <context context-type="linenumber">29</context>
         </context-group>
-      </trans-unit><trans-unit id="cartCustomer" datatype="html">
+      </trans-unit><trans-unit id="uniqueItemScanToCartBlidMismatch" datatype="html">
+        <source>BL-ID mismatch</source><target state="final">BL-ID mismatch</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit><trans-unit id="uniqueItemScanToCartDidNotMatchBlid" datatype="html">
+        <source>The item you scanned did not have the same BL-ID as the
+					item the customer already have.
+				</source><target state="final">The item you scanned did not have the same BL-ID as the
+					item the customer already have.
+				</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">17</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartCustomersItem" datatype="html">
+        <source>
+				Customer's item
+			</source><target state="final">
+				Customer's item
+			</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">25</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartTheItemYouScanned" datatype="html">
+        <source>
+				The item you scanned
+			</source><target state="final">
+				The item you scanned
+			</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">42</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartNotAbleToAdd" datatype="html">
+        <source>
+					This item can not be added to cart as it does not match the
+					BL-ID of the item the customer already has. If you mean this
+					is an error please contact admin.
+				</source><target state="final">
+					This item can not be added to cart as it does not match the
+					BL-ID of the item the customer already has. If you mean this
+					is an error please contact admin.
+				</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit><trans-unit id="uniqueItemScanToCartAreYouSure" datatype="html">
+        <source>Are you sure this is correct?</source><target state="final">Are you sure this is correct?</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">66</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartCancel" datatype="html">
+        <source>
+				Cancel
+			</source><target state="final">
+				Cancel
+			</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">74</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartAddAnyway" datatype="html">
+        <source>
+				Add anyway
+			</source><target state="final">
+				Add anyway
+			</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">83</context></context-group></trans-unit><trans-unit id="cartCustomer" datatype="html">
         <source>Customer
 						</source><target state="final">Customer
 						</target>
@@ -1653,7 +1736,19 @@
       <trans-unit id="cartSearch" datatype="html">
         <source>Search</source><target state="final">Search</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit><trans-unit id="cartListCartIsEmpty" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit><trans-unit id="cartListItemActionRent" datatype="html">
+        <source>rent</source><target state="final">rent</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit><trans-unit id="cartListItemActionExtend" datatype="html">
+        <source>extend</source><target state="final">extend</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit><trans-unit id="cartListCartIsEmpty" datatype="html">
         <source>Cart is empty</source><target state="final">Cart is empty</target>
         
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">28</context></context-group></trans-unit>
@@ -1673,7 +1768,7 @@
       <trans-unit id="cartListItemActionCancelThisItem" datatype="html">
         <source>cancel this item</source><target state="final">cancel this item</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">110</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">119</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionBuyThisItemFromCustomer" datatype="html">
         <source>
 	buy this item from customer
@@ -1681,14 +1776,14 @@
 	buy this item from customer
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">123</context></context-group></trans-unit><trans-unit id="cartListItemActionBuybackThisItemFromCustomer" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">132</context></context-group></trans-unit><trans-unit id="cartListItemActionBuybackThisItemFromCustomer" datatype="html">
         <source>
 	buyback this item from customer
 </source><target state="final">
 	buyback this item from customer
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">131</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">140</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionSellItemToCustomer" datatype="html">
         <source>
 	sell this item
@@ -1696,7 +1791,7 @@
 	sell this item
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">139</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">148</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionReturnItem" datatype="html">
         <source>
 	return this item
@@ -1704,7 +1799,7 @@
 	return this item
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">147</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">156</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionCustomerToBuyoutItem" datatype="html">
         <source>
 	customer to buyout this item
@@ -1712,7 +1807,7 @@
 	customer to buyout this item
 </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">155</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">164</context></context-group></trans-unit>
       
       
       

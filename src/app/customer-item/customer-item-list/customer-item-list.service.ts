@@ -87,6 +87,19 @@ export class CustomerItemListService {
 		throw new ReferenceError(`isbn ${isbn} not found`);
 	}
 
+	public containsMismatchedBlid(
+		uniqueItem: UniqueItem
+	): CustomerItemWithItem {
+		try {
+			this.getByUniqueItem(uniqueItem);
+		} catch (e) {
+			try {
+				return this.getByItemId(uniqueItem.item);
+			} catch (e) {}
+		}
+		return null;
+	}
+
 	public getByItemId(itemId: string): CustomerItemWithItem {
 		for (let customerItemWithItem of this._customerItemList) {
 			if (customerItemWithItem.item.id === itemId) {
