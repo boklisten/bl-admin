@@ -9,5 +9,8 @@
 			[color]="sidebarLink.color"
 		></app-side-bar-button>
 	</span>
-	<div class="bl-version">{{ bladminVersion }}</div>
+	<div class="bl-version">
+		<div *ngIf="isDevEnvironment">DEV</div>
+		<div>{{ bladminVersion }}</div>
+	</div>
 </div>

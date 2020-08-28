@@ -4,6 +4,7 @@
 		"outDir": "../out-tsc/app",
 		"baseUrl": "./",
 		"module": "es2015",
+		"resolveJsonModule": true,
 		"types": ["node"]
 	},
 	"exclude": ["test.ts", "**/*.spec.ts"]
