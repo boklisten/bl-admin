@@ -8,7 +8,6 @@ import { AuthService } from "../auth/auth.service";
 import { Subscription } from "rxjs";
 import { BlcHotkeyService } from "../bl-common/blc-hotkey/blc-hotkey.service";
 import { environment } from "../../environments/environment";
-import { version } from "../../../package.json";
 
 @Component({
 	selector: "app-side-bar",
@@ -43,7 +42,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 		private _blcHotkeyService: BlcHotkeyService
 	) {
 		this.isDevEnvironment = !environment.production;
-		this.bladminVersion = version;
+		this.bladminVersion = environment.version;
 		this.sidebarLinks = [
 			{
 				name: "cart",
