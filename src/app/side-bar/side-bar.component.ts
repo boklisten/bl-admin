@@ -8,6 +8,8 @@ import { AuthService } from "../auth/auth.service";
 import { Subscription } from "rxjs";
 import { BlcHotkeyService } from "../bl-common/blc-hotkey/blc-hotkey.service";
 
+import { version } from "../../../package.json";
+
 @Component({
 	selector: "app-side-bar",
 	templateUrl: "./side-bar.component.html",
@@ -15,6 +17,7 @@ import { BlcHotkeyService } from "../bl-common/blc-hotkey/blc-hotkey.service";
 })
 export class SideBarComponent implements OnInit, OnDestroy {
 	public customerDetail: UserDetail;
+	public bladminVersion: string;
 	public sidebarLinks: {
 		name: string;
 		link: string;
@@ -38,6 +41,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 		private _authService: AuthService,
 		private _blcHotkeyService: BlcHotkeyService
 	) {
+		this.bladminVersion = version;
 		this.sidebarLinks = [
 			{
 				name: "cart",

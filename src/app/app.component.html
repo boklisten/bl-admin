@@ -1,19 +1,24 @@
-<app-toaster></app-toaster>
-<app-header *ngIf="showContent"></app-header>
+<div [ngClass]="{ 'bl-dev-environment': devEnvironment }">
+	<app-toaster></app-toaster>
+	<app-header *ngIf="showContent"></app-header>
 
-<div
-	class="container-fluid no-gutters"
-	[ngClass]="{ 'bl-login-container': !showContent }"
-	blcKeyeventDoubleShift
-	blcArrowDownEvent
-	blcEnterEvent
-	blcArrowUpEvent
-	blcClickEvent
->
-	<div class="bl-view">
-		<div class="bl-sidebar" *ngIf="showContent">
-			<app-side-bar></app-side-bar>
+	<div
+		class="container-fluid no-gutters"
+		[ngClass]="{
+			'bl-login-container': !showContent
+		}"
+		blcKeyeventDoubleShift
+		blcArrowDownEvent
+		blcEnterEvent
+		blcArrowUpEvent
+		blcClickEvent
+	>
+		<div class="bl-view">
+			<div class="bl-sidebar" *ngIf="showContent">
+				<app-side-bar></app-side-bar>
+			</div>
+			<div class="bl-content"><router-outlet></router-outlet></div>
 		</div>
-		<div class="bl-content"><router-outlet></router-outlet></div>
 	</div>
+	<div class="bl-dev-environment-footer" *ngIf="devEnvironment">DEV</div>
 </div>

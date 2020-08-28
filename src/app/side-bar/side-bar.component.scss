@@ -6,3 +6,14 @@
 	background-color: $secondary-color;
 	width: 50px;
 }
+
+.bl-version {
+	bottom: 0;
+	position: absolute;
+	font-size: 10px;
+	color: #307c75;
+	text-align: center;
+	align-self: flex-end;
+	padding-left: 10px;
+	padding-right: 10px;
+}

@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { AuthService } from "./auth/auth.service";
 import { BranchStoreService } from "./branch/branch-store.service";
 import { Router } from "@angular/router";
+import { environment } from "../environments/environment";
 
 @Component({
 	selector: "app-root",
@@ -11,6 +12,7 @@ import { Router } from "@angular/router";
 export class AppComponent {
 	title = "app";
 	public showContent: boolean;
+	public devEnvironment: boolean;
 
 	constructor(
 		private _authService: AuthService,
@@ -18,6 +20,7 @@ export class AppComponent {
 		private _router: Router
 	) {
 		this.showContent = false;
+		this.devEnvironment = !environment.production;
 
 		this._router.events.subscribe(() => {
 			window.scroll(0, 0);

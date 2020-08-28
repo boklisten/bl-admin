@@ -1,5 +1,5 @@
 export const environment = {
-	production: true,
-	apiPath: "http://api.boklisten.co/",
+	production: false,
+	apiPath: "http://api.test.boklisten.no/",
 	hmr: false
 };
