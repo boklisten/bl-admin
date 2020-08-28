@@ -3,5 +3,6 @@ export const environment = {
 	production: true,
 	apiPath: "https://api.boklisten.no/",
 	hmr: false,
-	version: version
+	version: version,
+	versionName: ""
 };

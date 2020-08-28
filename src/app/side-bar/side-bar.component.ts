@@ -17,6 +17,7 @@ import { environment } from "../../environments/environment";
 export class SideBarComponent implements OnInit, OnDestroy {
 	public customerDetail: UserDetail;
 	public bladminVersion: string;
+	public bladminVersionName: string;
 	public isDevEnvironment: boolean;
 	public sidebarLinks: {
 		name: string;
@@ -43,6 +44,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 	) {
 		this.isDevEnvironment = !environment.production;
 		this.bladminVersion = environment.version;
+		this.bladminVersionName = environment.versionName;
 		this.sidebarLinks = [
 			{
 				name: "cart",

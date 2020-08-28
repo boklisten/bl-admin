@@ -2,7 +2,8 @@
 
 .bl-sidebar {
 	padding-top: 5px;
-	height: calc(100vh - 38px);
+	height: 100%;
+	min-height: calc(100vh - 38px);
 	background-color: $secondary-color;
 	width: 50px;
 }
@@ -14,6 +15,15 @@
 	color: #307c75;
 	text-align: center;
 	align-self: flex-end;
-	padding-left: 10px;
-	padding-right: 10px;
+	width: inherit;
+	margin-botton: 0;
+}
+
+.bl-version-name {
+	font-weight: bold;
+}
+
+.bl-version-dev {
+	color: red;
+	background-color: $dev-color;
 }
