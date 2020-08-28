@@ -12,16 +12,17 @@
 }
 
 .bl-view {
-	width: 100vw;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
+	background-color: white;
 }
 
 .bl-sidebar {
 	width: 50px;
 	max-width: 50px;
-	flex: 1;
+	flex: 0;
 }
 
 .bl-content {
@@ -29,7 +30,8 @@
 }
 
 .bl-dev-environment {
-	border: 5px solid red;
+	padding: 5px;
+	background-color: red;
 }
 
 .bl-dev-environment-footer {
