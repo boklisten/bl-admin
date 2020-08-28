@@ -19,7 +19,12 @@ export class CustomerItemCartItem extends Subscribable implements CartItem {
 		private _cartItemOrderItemProvider: CartItemOrderItemProvider
 	) {
 		super();
-		this.setAction(this.getValidActions()[0]);
+		this.setAction(
+			this._cartItemActionProvider.selectDefaultActionForCustomerItem(
+				this.getValidActions(),
+				this._customerItem
+			)
+		);
 		this.setBLID(this._customerItem.blid);
 	}
 

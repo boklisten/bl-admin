@@ -4,6 +4,7 @@ import { BranchItemHelperService } from "../../../branch/branch-item-helper/bran
 import { BranchHelperService } from "../../../branch/branch-helper/branch-helper.service";
 import { DateService } from "../../../date/date.service";
 import { CustomerService } from "../../../customer/customer.service";
+import { AuthService } from "../../../auth/auth.service";
 
 export class CartItemActionProvider {
 	private _item: Item;
@@ -11,8 +12,28 @@ export class CartItemActionProvider {
 		private _branchItemHelperService: BranchItemHelperService,
 		private _branchHelperService: BranchHelperService,
 		private _dateService: DateService,
-		private _customerService: CustomerService
+		private _customerService: CustomerService,
+		private _authService: AuthService
 	) {}
+
+	public selectDefaultActionForCustomerItem(
+		validActions: CartItemAction[],
+		customerItem: CustomerItem
+	): CartItemAction {
+		if (
+			this._dateService.isCustomerItemCancelValid(
+				customerItem.handoutInfo.time
+			)
+		) {
+			for (let validAction of validActions) {
+				if (validAction.action === "cancel") {
+					return validAction;
+				}
+			}
+		}
+
+		return validActions[0];
+	}
 
 	public getValidActionsForOrderItem(
 		orderItem: OrderItem,
@@ -36,9 +57,10 @@ export class CartItemActionProvider {
 		this._item = item;
 		let actions = [];
 
-		actions.push({ action: "buyback" });
-		actions.push({ action: "buyout" });
+		actions = actions.concat(this.getValidActionsForReturn(customerItem));
+		actions = actions.concat(this.getValidActionsForBuyback(customerItem));
 		actions = actions.concat(this.getValidActionsForExtend());
+		actions = actions.concat(this.getValidActionsForBuyout(customerItem));
 		actions = actions.concat(
 			this.getValidActionsForCustomerItemCancel(customerItem)
 		);
@@ -60,6 +82,40 @@ export class CartItemActionProvider {
 		}
 
 		return actions;
+	}
+
+	private getValidActionsForBuyback(
+		customerItem: CustomerItem
+	): CartItemAction[] {
+		if (
+			!this._dateService.isCustomerItemCancelValid(
+				customerItem.handoutInfo.time
+			) &&
+			customerItem.type == "partly-payment"
+		) {
+			return [{ action: "buyback" }];
+		}
+
+		return [];
+	}
+
+	private getValidActionsForBuyout(
+		customerItem: CustomerItem
+	): CartItemAction[] {
+		return [{ action: "buyout" }];
+	}
+
+	private getValidActionsForReturn(
+		customerItem: CustomerItem
+	): CartItemAction[] {
+		if (
+			!customerItem.amountLeftToPay ||
+			customerItem.amountLeftToPay <= 0 ||
+			customerItem.type === "rent"
+		) {
+			return [{ action: "return" }];
+		}
+		return [];
 	}
 
 	private getValidActionsForCancel(): CartItemAction[] {
@@ -100,10 +156,11 @@ export class CartItemActionProvider {
 		customerItem: CustomerItem
 	): CartItemAction[] {
 		if (
-			customerItem.handout &&
-			this._dateService.isCustomerItemCancelValid(
-				customerItem.handoutInfo.time
-			)
+			(customerItem.handout &&
+				this._dateService.isCustomerItemCancelValid(
+					customerItem.handoutInfo.time
+				)) ||
+			this._authService.isAdmin()
 		) {
 			return [{ action: "cancel" }];
 		}
