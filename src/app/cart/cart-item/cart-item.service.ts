@@ -22,6 +22,7 @@ import { BranchHelperService } from "../../branch/branch-helper/branch-helper.se
 import { PriceService } from "../../price/price.service";
 import { DateService } from "../../date/date.service";
 import { CustomerService } from "../../customer/customer.service";
+import { AuthService } from "../../auth/auth.service";
 
 @Injectable({
 	providedIn: "root"
@@ -40,7 +41,8 @@ export class CartItemService {
 		private _branchHelperService: BranchHelperService,
 		private _priceService: PriceService,
 		private _dateService: DateService,
-		private _customerService: CustomerService
+		private _customerService: CustomerService,
+		private _authService: AuthService
 	) {
 		this._cartItemPriceProvider = new CartItemPriceProvider(
 			this._itemPriceService,
@@ -52,7 +54,8 @@ export class CartItemService {
 			this._branchItemHelperService,
 			this._branchHelperService,
 			this._dateService,
-			this._customerService
+			this._customerService,
+			this._authService
 		);
 		this._cartItemOrderItemProvider = new CartItemOrderItemProvider();
 	}
