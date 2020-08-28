@@ -71,6 +71,11 @@ export class CartItemPriceProvider {
 				customerItem,
 				item
 			);
+		} else if (cartItemAction.action === "return") {
+			return this._customerItemPriceService.getRentReturnPriceInformation(
+				customerItem,
+				item
+			);
 		}
 
 		throw new Error(
