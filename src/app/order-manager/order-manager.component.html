@@ -1,75 +1,78 @@
 <app-unique-item-scan-order-to-cart
 	[order]="activeOrder"
 ></app-unique-item-scan-order-to-cart>
+<div class="container-fluid">
+	<div class="row mt-2" blcScanner>
+		<div class="col-3">
+			<app-order-manager-list
+				(selectedOrder)="onSelectOrder($event)"
+			></app-order-manager-list>
+		</div>
+		<div class="col-9" *ngIf="activeOrder">
+			<div class="row">
+				<div class="col-4 bl-col-scroll">
+					<div class="row justify-content-between">
+						<div class="col-auto">
+							<app-add-order-to-cart
+								[order]="activeOrder"
+								*ngIf="activeOrder"
+							></app-add-order-to-cart>
+						</div>
+						<div class="col-auto">
+							<button
+								class="btn btn-sm btn-outline-secondary"
+								[routerLink]="[
+									'/order/' + activeOrder.id + '/detail'
+								]"
+								i18n="@@orderManagerShowOrder"
+							>
+								Show order
+							</button>
+						</div>
+						<div class="col-auto">
+							<app-order-delete
+								[order]="activeOrder"
+								(deleted)="onOrderDeleted()"
+							></app-order-delete>
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col">
+							<app-order-delivery-detail
+								[order]="activeOrder"
+								*ngIf="activeOrder"
+							></app-order-delivery-detail>
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col">
+							<app-order-payment-detail
+								[order]="activeOrder"
+								*ngIf="activeOrder"
+							></app-order-payment-detail>
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col">
+							<app-order-item-list
+								[order]="activeOrder"
+								*ngIf="activeOrder"
+							></app-order-item-list>
+						</div>
+					</div>
 
-<div class="row" blcScanner>
-	<div class="col-3">
-		<app-order-manager-list
-			(selectedOrder)="onSelectOrder($event)"
-		></app-order-manager-list>
-	</div>
-	<div class="col-9" *ngIf="activeOrder">
-		<div class="row mt-2">
-			<div class="col-4 bl-col-scroll">
-				<div class="row justify-content-between">
-					<div class="col-auto">
-						<app-add-order-to-cart
-							[order]="activeOrder"
-							*ngIf="activeOrder"
-						></app-add-order-to-cart>
-					</div>
-					<div class="col-auto">
-						<button
-							class="btn btn-sm btn-outline-secondary"
-							[routerLink]="['/order/' + activeOrder.id + '/detail']"
-							i18n="@@orderManagerShowOrder"
-						>
-							Show order
-						</button>
-					</div>
-					<div class="col-auto">
-						<app-order-delete
-							[order]="activeOrder"
-							(deleted)="onOrderDeleted()"
-						></app-order-delete>
-					</div>
-				</div>
-				<div class="row mt-2">
-					<div class="col">
-						<app-order-delivery-detail
-							[order]="activeOrder"
-							*ngIf="activeOrder"
-						></app-order-delivery-detail>
-					</div>
-				</div>
-				<div class="row mt-2">
-					<div class="col">
-						<app-order-payment-detail
-							[order]="activeOrder"
-							*ngIf="activeOrder"
-						></app-order-payment-detail>
-					</div>
-				</div>
-				<div class="row mt-2">
-					<div class="col">
-						<app-order-item-list
-							[order]="activeOrder"
-							*ngIf="activeOrder"
-						></app-order-item-list>
+					<div class="row mt-2">
+						<div class="col">
+							<app-order-detail-card
+								[order]="activeOrder"
+								*ngIf="activeOrder"
+							></app-order-detail-card>
+						</div>
 					</div>
 				</div>
 
-				<div class="row mt-2">
-					<div class="col">
-						<app-order-detail-card
-							[order]="activeOrder"
-							*ngIf="activeOrder"
-						></app-order-detail-card>
-					</div>
-				</div>
+				<div class="col-8"><app-cart-list></app-cart-list></div>
 			</div>
-
-			<div class="col-8"><app-cart-list></app-cart-list></div>
 		</div>
 	</div>
 </div>

@@ -9,4 +9,8 @@
 			[color]="sidebarLink.color"
 		></app-side-bar-button>
 	</span>
+	<div class="bl-version" [ngClass]="{ 'bl-version-dev': isDevEnvironment }">
+		<div class="bl-version-name">{{ bladminVersionName }}</div>
+		<div>{{ bladminVersion }}</div>
+	</div>
 </div>

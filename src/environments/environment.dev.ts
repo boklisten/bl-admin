@@ -1,5 +1,9 @@
+//import { version } from "../../package.json";
+const { version } = require("../../package.json");
 export const environment = {
-	production: true,
-	apiPath: "http://api.boklisten.co/",
-	hmr: false
+	production: false,
+	apiPath: "http://api.test.boklisten.no/",
+	hmr: false,
+	version: version,
+	versionName: "DEV"
 };

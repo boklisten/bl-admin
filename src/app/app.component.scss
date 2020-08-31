@@ -11,19 +11,29 @@
 	padding: 40px;
 }
 
+.bl-primary-background {
+	background-color: $primary-color !important;
+}
+
 .bl-view {
-	width: 100vw;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: stretch;
+	background-color: white;
 }
 
 .bl-sidebar {
 	width: 50px;
 	max-width: 50px;
-	flex: 1;
+	flex: 0;
 }
 
 .bl-content {
 	flex: 1;
+}
+
+.bl-dev-environment {
+	padding-left: 5px;
+	background-color: $dev-color;
 }
