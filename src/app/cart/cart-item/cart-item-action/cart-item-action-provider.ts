@@ -91,7 +91,8 @@ export class CartItemActionProvider {
 			!this._dateService.isCustomerItemCancelValid(
 				customerItem.handoutInfo.time
 			) &&
-			customerItem.type == "partly-payment"
+			customerItem.type == "partly-payment" &&
+			!this._dateService.isDeadlineExpired(customerItem.deadline)
 		) {
 			return [{ action: "buyback" }];
 		}
@@ -109,9 +110,9 @@ export class CartItemActionProvider {
 		customerItem: CustomerItem
 	): CartItemAction[] {
 		if (
-			!customerItem.amountLeftToPay ||
-			customerItem.amountLeftToPay <= 0 ||
-			customerItem.type === "rent"
+			(customerItem.type === "rent" &&
+				!this._dateService.isDeadlineExpired(customerItem.deadline)) ||
+			this._authService.isAdmin()
 		) {
 			return [{ action: "return" }];
 		}
