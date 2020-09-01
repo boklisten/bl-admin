@@ -59,7 +59,7 @@ export class CartItemActionProvider {
 
 		actions = actions.concat(this.getValidActionsForReturn(customerItem));
 		actions = actions.concat(this.getValidActionsForBuyback(customerItem));
-		actions = actions.concat(this.getValidActionsForExtend());
+		actions = actions.concat(this.getValidActionsForExtend(customerItem));
 		actions = actions.concat(this.getValidActionsForBuyout(customerItem));
 		actions = actions.concat(
 			this.getValidActionsForCustomerItemCancel(customerItem)
@@ -87,17 +87,21 @@ export class CartItemActionProvider {
 	private getValidActionsForBuyback(
 		customerItem: CustomerItem
 	): CartItemAction[] {
-		if (
-			!this._dateService.isCustomerItemCancelValid(
-				customerItem.handoutInfo.time
-			) &&
-			customerItem.type == "partly-payment" &&
-			!this._dateService.isDeadlineExpired(customerItem.deadline)
-		) {
+		if (this.isBuybackValid(customerItem)) {
 			return [{ action: "buyback" }];
 		}
 
 		return [];
+	}
+
+	private isBuybackValid(customerItem: CustomerItem): boolean {
+		return (
+			customerItem.type == "partly-payment" &&
+			!this._dateService.isCustomerItemCancelValid(
+				customerItem.handoutInfo.time
+			) &&
+			!this._dateService.isDeadlineExpired(customerItem.deadline)
+		);
 	}
 
 	private getValidActionsForBuyout(
@@ -109,12 +113,25 @@ export class CartItemActionProvider {
 	private getValidActionsForReturn(
 		customerItem: CustomerItem
 	): CartItemAction[] {
-		if (
-			(customerItem.type === "rent" &&
-				!this._dateService.isDeadlineExpired(customerItem.deadline)) ||
-			this._authService.isAdmin()
-		) {
+		if (this.isRentValid(customerItem)) {
 			return [{ action: "return" }];
+		}
+		return [];
+	}
+
+	private isRentValid(customerItem: CustomerItem): boolean {
+		return (
+			customerItem.type === "rent" &&
+			(!this._dateService.isDeadlineExpired(customerItem.deadline) ||
+				this._authService.isAdmin())
+		);
+	}
+
+	private getValidActionsForCustomerItemCancel(
+		customerItem: CustomerItem
+	): CartItemAction[] {
+		if (this.isCustomerItemCancelValid(customerItem)) {
+			return [{ action: "cancel" }];
 		}
 		return [];
 	}
@@ -123,7 +140,16 @@ export class CartItemActionProvider {
 		return [{ action: "cancel" }];
 	}
 
-	private getValidActionsForExtend(): CartItemAction[] {
+	private getValidActionsForExtend(
+		customerItem: CustomerItem
+	): CartItemAction[] {
+		if (
+			this._dateService.isDeadlineExpired(customerItem.deadline) &&
+			!this._authService.isAdmin()
+		) {
+			return [];
+		}
+
 		let actions = [];
 
 		try {
@@ -153,19 +179,14 @@ export class CartItemActionProvider {
 		return actions;
 	}
 
-	private getValidActionsForCustomerItemCancel(
-		customerItem: CustomerItem
-	): CartItemAction[] {
-		if (
+	private isCustomerItemCancelValid(customerItem: CustomerItem): boolean {
+		return (
 			(customerItem.handout &&
 				this._dateService.isCustomerItemCancelValid(
 					customerItem.handoutInfo.time
 				)) ||
 			this._authService.isAdmin()
-		) {
-			return [{ action: "cancel" }];
-		}
-		return [];
+		);
 	}
 
 	private getValidActionsForBuy(): CartItemAction[] {
