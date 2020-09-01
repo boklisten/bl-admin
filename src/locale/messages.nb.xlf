@@ -1591,10 +1591,13 @@ Egendefinert
 				Confirm
 			</source><target state="final">Bekreft
 			</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/checkout/checkout.component.html</context>
-          <context context-type="linenumber">125</context>
-        </context-group>
+        
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/checkout/checkout.component.html</context><context context-type="linenumber">125</context></context-group></trans-unit><trans-unit id="checkoutSendByMailButton" datatype="html">
+        <source>
+				Confirm and send by mail
+			</source><target state="final">Send i posten
+			</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/checkout/checkout.component.html</context>
           <context context-type="linenumber">140</context>
@@ -2343,13 +2346,10 @@ Egendefinert
         
       <context-group purpose="location"><context context-type="sourcefile">app/toaster/toast/toast.component.html</context><context context-type="linenumber">43</context></context-group></trans-unit><trans-unit id="orderManagerShowOrder" datatype="html">
         <source>
-							Show order
-						</source><target state="final">Vis ordre</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/order-manager/order-manager.component.html</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-      </trans-unit><trans-unit id="bookingView" datatype="html">
+								Show order
+							</source><target state="translated">Vis ordre</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/order-manager/order-manager.component.html</context><context context-type="linenumber">28</context></context-group></trans-unit><trans-unit id="bookingView" datatype="html">
         <source>View</source><target state="final">Vis</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/booking/booking.component.html</context>
