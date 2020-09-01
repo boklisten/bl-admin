@@ -8,6 +8,7 @@ type ToastType =
 	| "ISBN-SCAN"
 	| "CART-CONTAINS"
 	| "WAIT"
+	| "WARNING"
 	| "CHECKOUT-CONFIRMED";
 
 @Injectable({

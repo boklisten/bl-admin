@@ -54,4 +54,14 @@
 			<strong>{{ toast.content }} </strong>
 		</div>
 	</div>
+
+	<div
+		class="toast-body bg-warning text-white"
+		*ngIf="toast.type === 'WARNING'"
+	>
+		<div>
+			<fa-icon icon="exclamation-triangle" class="mr-2"></fa-icon>
+			<strong>{{ toast.content.text }} </strong>
+		</div>
+	</div>
 </div>

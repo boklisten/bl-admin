@@ -54,7 +54,15 @@ export class UniqueItemScanToCartService {
 		}
 
 		cartItem.setBLID(uniqueItem.blid);
-		this.addCartItemToCart(cartItem);
+		if (cartItem.getValidActions().length <= 0) {
+			this._toasterService.add("WARNING", {
+				text: `Boken med Boklisten-ID "${
+					uniqueItem.blid
+				}" har ingen gyldige handlinger. Kontakt Admin.`
+			});
+		} else {
+			this.addCartItemToCart(cartItem);
+		}
 
 		return true;
 	}
