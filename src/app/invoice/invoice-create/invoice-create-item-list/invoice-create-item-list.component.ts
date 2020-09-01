@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { CartService } from "../../../cart/cart.service";
-import { CartItem } from "../../../cart/cart-item/cart-item";
 import { InvoiceItem } from "./invoice-item";
+import { CartItem } from "../../../cart/cart-item/cart-item";
 
 @Component({
 	selector: "app-invoice-create-item-list",
@@ -42,23 +42,24 @@ export class InvoiceCreateItemListComponent implements OnInit {
 
 		for (const cartItem of this.cart) {
 			let alreadyAddedInvoiceItem = null;
+			console.log("cart item", cartItem);
 
 			for (const invoiceItem of this.invoiceItems) {
-				if (cartItem.item.id === invoiceItem.item.id) {
+				if (cartItem.getItemId() === invoiceItem.item.id) {
 					alreadyAddedInvoiceItem = invoiceItem;
 				}
 			}
 
 			if (!alreadyAddedInvoiceItem) {
 				newInvoiceItems.push({
-					title: cartItem.item.title,
+					title: cartItem.getTitle(),
 					comment: "",
-					item: cartItem.item,
-					price: cartItem.item.price,
+					item: cartItem.getItem(),
+					price: cartItem.getItem().price,
 					discount: 0,
 					numberOfUnits: 1,
 					productNumber: productNumber,
-					total: cartItem.item.price,
+					total: cartItem.getItem().price,
 					tax: 0,
 					taxPercentage: 0
 				});

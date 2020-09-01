@@ -87,6 +87,9 @@ export class OrderItemCartItem extends Subscribable implements CartItem {
 
 		return null;
 	}
+	public getItem(): Item {
+		return this._item;
+	}
 
 	private setDefaultAction() {
 		const defaultAction = this.getDefaultAction(this.getValidActions());

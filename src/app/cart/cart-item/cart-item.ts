@@ -31,4 +31,5 @@ export interface CartItem extends Subscribable {
 	setBLID(blid: string): void;
 	getBLID(): string;
 	getISBN(): number;
+	getItem(): Item;
 }

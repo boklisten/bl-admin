@@ -91,4 +91,8 @@ export class CustomerItemCartItem extends Subscribable implements CartItem {
 
 		return null;
 	}
+
+	public getItem(): Item {
+		return this._item;
+	}
 }
