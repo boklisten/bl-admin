@@ -1,10 +1,15 @@
 <button
 	class="btn btn-sm btn-block"
-	[ngClass]="{ 'btn-secondary': added, 'btn-outline-secondary': !added }"
+	[ngClass]="{
+		'btn-secondary': added,
+		'btn-outline-secondary': !added
+	}"
+	[disabled]="!canAdd"
 	(click)="onClick()"
 >
-	<fa-icon [icon]="'cart-plus'" *ngIf="!added"></fa-icon>
-	<fa-icon [icon]="'check'" *ngIf="added"></fa-icon>
+	<fa-icon [icon]="'ban'" *ngIf="!canAdd"></fa-icon>
+	<fa-icon [icon]="'cart-plus'" *ngIf="!added && canAdd"></fa-icon>
+	<fa-icon [icon]="'check'" *ngIf="added && canAdd"></fa-icon>
 </button>
 
 <ng-template #addWithWarningContent let-modal>

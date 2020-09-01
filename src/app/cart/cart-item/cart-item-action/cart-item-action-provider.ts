@@ -108,7 +108,13 @@ export class CartItemActionProvider {
 	private getValidActionsForBuyout(
 		customerItem: CustomerItem
 	): CartItemAction[] {
-		return [{ action: "buyout" }];
+		if (
+			!this._dateService.isDeadlineExpired(customerItem.deadline) ||
+			this._authService.isAdmin()
+		) {
+			return [{ action: "buyout" }];
+		}
+		return [];
 	}
 
 	private getValidActionsForReturn(
@@ -185,7 +191,8 @@ export class CartItemActionProvider {
 			(customerItem.handout &&
 				this._dateService.isCustomerItemCancelValid(
 					customerItem.handoutInfo.time
-				)) ||
+				) &&
+				!this._dateService.isDeadlineExpired(customerItem.deadline)) ||
 			this._authService.isAdmin()
 		);
 	}

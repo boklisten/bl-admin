@@ -23,6 +23,7 @@ export class BlcItemAddComponent implements OnInit, OnDestroy {
 
 	public added: boolean;
 	public cartItem: CartItem;
+	public canAdd: boolean;
 	private cartChange$: Subscription;
 
 	constructor(
@@ -32,11 +33,13 @@ export class BlcItemAddComponent implements OnInit, OnDestroy {
 		private _cartItemService: CartItemService
 	) {
 		this.added = false;
+		this.canAdd = true;
 	}
 
 	ngOnInit() {
 		this.createCartItem()
 			.then(() => {
+				this.canAdd = this.cartItem.getValidActions().length > 0;
 				this.checkIfAdded();
 				this.handleCartChange();
 			})

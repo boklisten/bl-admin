@@ -36,6 +36,10 @@ export class CartService {
 	}
 
 	public add(cartItem: CartItem): boolean {
+		if (cartItem.getValidActions().length <= 0) {
+			return;
+		}
+
 		if (!this.contains(cartItem)) {
 			this.addCartItem(cartItem);
 		} else {
