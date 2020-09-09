@@ -1111,7 +1111,7 @@
         <source>Warning</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="blcItemAddItemNotPartOfBranchItems" datatype="html">
@@ -1121,7 +1121,7 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="blcItemAddCustomerItemWithMatch" datatype="html">
@@ -1131,7 +1131,7 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="blcItemAddCancel" datatype="html">
@@ -1140,7 +1140,7 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="blcItemAddAnyway" datatype="html">
@@ -1149,7 +1149,7 @@
 		</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="editStringValueNoValue" datatype="html">
@@ -1993,56 +1993,74 @@
 			</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderPaymentDetailCouldNotGetError" datatype="html">
         <source>could not get payments</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderPaymentDetailNoPaymentsFound" datatype="html">
         <source>no payments found on order</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderPaymentDetailMethodCash" datatype="html">
         <source>Cash</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderPaymentDetailMethodDibs" datatype="html">
         <source>Dibs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderPaymentDetailMethodVipps" datatype="html">
         <source>Vipps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderPaymentDetailMethodCard" datatype="html">
         <source>Card</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderPaymentDetailNoPaymentYet" datatype="html">
         <source>Not payed yet</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderPaymentDetailConfirm" datatype="html">
+        <source>
+										Confirm
+									</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderPaymentDetailDelete" datatype="html">
+        <source>
+										Delete
+									</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
+          <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="addOrderToCartButton" datatype="html">
@@ -2435,6 +2453,15 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context>
           <context context-type="linenumber">173</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orderConfirmComponentButton" datatype="html">
+        <source>
+	Confirm
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/order-confirm/order-confirm.component.html</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="customerItemListItemPartlyPayment" datatype="html">

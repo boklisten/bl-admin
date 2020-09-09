@@ -693,35 +693,32 @@
         
       <context-group purpose="location"><context context-type="sourcefile">app/bl-common/bl-common-update-button/bl-common-update-button.component.html</context><context context-type="linenumber">4</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-reporter/src/app/bl-common/buttons/bl-common-update-button/bl-common-update-button.component.d.ts</context><context context-type="linenumber">3</context></context-group></trans-unit><trans-unit id="blcItemAddWarning" datatype="html">
         <source>Warning</source><target state="final">Advarsel</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit><trans-unit id="blcItemAddItemNotPartOfBranchItems" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">19</context></context-group></trans-unit><trans-unit id="blcItemAddItemNotPartOfBranchItems" datatype="html">
         <source>
 			This item is not present in the branchItem list of the current
 			branch
 		</source><target state="final">Denne boken står ikke på skolens bokliste. Er du sikker på at du har valgt riktig bok eller skole?</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">40</context></context-group></trans-unit><trans-unit id="blcItemAddCustomerItemWithMatch" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">45</context></context-group></trans-unit><trans-unit id="blcItemAddCustomerItemWithMatch" datatype="html">
         <source>
 			This item is apart of a match, are you sure you want to add this to
 			the cart?
 		</source><target state="final">Denne boken har kunden valgt "Gjenbruk" på. Er du sikker på at du skal gjøre noe med denne boken?</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">49</context></context-group></trans-unit><trans-unit id="blcItemAddCancel" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">54</context></context-group></trans-unit><trans-unit id="blcItemAddCancel" datatype="html">
         <source>
 			Cancel
 		</source><target state="final">Kanseller
 		</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit><trans-unit id="blcItemAddAnyway" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">65</context></context-group></trans-unit><trans-unit id="blcItemAddAnyway" datatype="html">
         <source>
 			Add anyway
 		</source><target state="final">Legg til likevel
 		</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">68</context></context-group></trans-unit><trans-unit id="editStringValueNoValue" datatype="html">
+      <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">73</context></context-group></trans-unit><trans-unit id="editStringValueNoValue" datatype="html">
         <source>[NO VALUE]</source><target state="final">[NO VALUE]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/bl-common/blc-edit/blc-edit-string-value/blc-edit-string-value.component.html</context>
@@ -1364,35 +1361,54 @@ Egendefinert
 				Betalinger
 			</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">7</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailCouldNotGetError" datatype="html">
         <source>could not get payments</source><target state="final">Kunne ikke hente betalinger</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">14</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">15</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailNoPaymentsFound" datatype="html">
         <source>no payments found on order</source><target state="final">Ingen betalinger funnet på denne ordren</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">20</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">26</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodCash" datatype="html">
         <source>Cash</source><target state="final">Kontant</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">34</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">61</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodDibs" datatype="html">
         <source>Dibs</source><target state="final">DIBS</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">70</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodVipps" datatype="html">
         <source>Vipps</source><target state="final">Vipps</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">40</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">78</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodCard" datatype="html">
         <source>Card</source><target state="final">Betalingskort</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">43</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">87</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailNoPaymentYet" datatype="html">
         <source>Not payed yet</source><target state="final">Ikke betalt enda!</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">46</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">98</context></context-group></trans-unit><trans-unit id="orderPaymentDetailConfirm" datatype="html">
+        <source>
+										Confirm
+									</source><target state="final">Bekreft
+									</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit><trans-unit id="orderPaymentDetailDelete" datatype="html">
+        <source>
+										Delete
+									</source><target state="final">
+Slett
+									</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context>
+          <context context-type="linenumber">126</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="orderDetailCardConfirmed" datatype="html">
         <source>Confirmed</source><target state="final">Bekreftet</target>
         
@@ -1468,7 +1484,16 @@ Egendefinert
 					Flyttet til en annen ordre
 				</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">173</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">173</context></context-group></trans-unit><trans-unit id="orderConfirmComponentButton" datatype="html">
+        <source>
+	Confirm
+</source><target state="final">Bekreft
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/order/order-confirm/order-confirm.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="orderManagerListNoOrdersFoundError" datatype="html">
         <source>
 					No orders found
