@@ -3,10 +3,13 @@ import {
 	Input,
 	OnChanges,
 	OnInit,
-	SimpleChanges
+	SimpleChanges,
+	Output,
+	EventEmitter
 } from "@angular/core";
 import { BlApiError, Order, Payment } from "@wizardcoder/bl-model";
-import { PaymentService } from "@wizardcoder/bl-connect";
+import { PaymentService, OrderService } from "@wizardcoder/bl-connect";
+import { AuthService } from "../../../auth/auth.service";
 
 @Component({
 	selector: "app-order-payment-detail",
@@ -15,17 +18,25 @@ import { PaymentService } from "@wizardcoder/bl-connect";
 })
 export class OrderPaymentDetailComponent implements OnInit, OnChanges {
 	@Input() order: Order;
+	@Output() paymentChange: EventEmitter<boolean>;
 	public wait: boolean;
 	public warningText: string;
 	public noPaymentsFoundText: string;
-
 	public payments: Payment[];
+	public isAdmin: boolean;
 
-	constructor(private _paymentService: PaymentService) {
+	constructor(
+		private _paymentService: PaymentService,
+		private _orderService: OrderService,
+		private _authService: AuthService
+	) {
 		this.payments = [];
+		this.paymentChange = new EventEmitter();
 	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.isAdmin = this._authService.isAdmin();
+	}
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes["order"].currentValue !== changes["order"].previousValue) {
@@ -52,6 +63,48 @@ export class OrderPaymentDetailComponent implements OnInit, OnChanges {
 				this.warningText = "could not find payments";
 				this.wait = false;
 			});
+	}
+
+	public confirmPayment(payment: Payment) {
+		this._paymentService
+			.update(payment.id, { confirmed: true })
+			.then(() => {
+				this.paymentChange.emit(true);
+			})
+			.catch(() => {});
+	}
+
+	public deletePayment(payment: Payment) {
+		this._paymentService
+			.remove(payment.id)
+			.then(removed => {
+				this.removePaymentFromOrder(payment.id)
+					.then(() => {
+						this.paymentChange.emit(true);
+					})
+					.catch(e => {
+						console.log("could not remove payment from order", e);
+					});
+			})
+			.catch(err => {
+				console.log("could not remove payment");
+			});
+	}
+
+	private async removePaymentFromOrder(paymentId: string): Promise<Order> {
+		let payments = this.order.payments as string[];
+
+		payments = payments.filter(pid => {
+			return pid != paymentId;
+		});
+
+		try {
+			return await this._orderService.update(this.order.id, {
+				payments: payments
+			});
+		} catch (e) {
+			throw e;
+		}
 	}
 
 	public calculateTotalAmount(): number {

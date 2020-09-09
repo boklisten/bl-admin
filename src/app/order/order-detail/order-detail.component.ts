@@ -8,6 +8,7 @@ import {
 import { BlApiError, Order } from "@wizardcoder/bl-model";
 import { CustomerService } from "../../customer/customer.service";
 import moment from "moment-es6";
+import { AuthService } from "../../auth/auth.service";
 
 @Component({
 	selector: "app-order-detail",
@@ -19,13 +20,15 @@ export class OrderDetailComponent implements OnInit {
 	public warningText: string;
 	public wait: boolean;
 	public order: Order;
+	public isAdmin: boolean;
 
 	constructor(
 		private _route: ActivatedRoute,
 		private _orderPdfService: OrderPdfService,
 		private _pdfPrintService: PrintPdfService,
 		private _customerService: CustomerService,
-		private _orderService: OrderService
+		private _orderService: OrderService,
+		private _authService: AuthService
 	) {
 		this.warningText = null;
 		this.wait = false;
@@ -39,6 +42,7 @@ export class OrderDetailComponent implements OnInit {
 				this.getOrder(this.currentId);
 			}
 		});
+		this.isAdmin = this._authService.isAdmin();
 	}
 
 	public onOrderConfirmed(confirmedOrder: Order) {
@@ -46,6 +50,10 @@ export class OrderDetailComponent implements OnInit {
 	}
 
 	public onOrderDeleted() {
+		this.getOrder(this.currentId);
+	}
+
+	public onPaymentChange() {
 		this.getOrder(this.currentId);
 	}
 
