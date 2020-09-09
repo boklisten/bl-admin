@@ -4,7 +4,7 @@
 			<div class="alert alert-secondary">
 				<fa-icon icon="exclamation-triangle" class="mr-2"></fa-icon>
 				<span i18n="@@orderDetailCouldNotGet">Could not get order</span>
-				<strong class="ml-2 mr-2">{{currentId}}</strong>
+				<strong class="ml-2 mr-2">{{ currentId }}</strong>
 				<span i18n="@@orderDetailMaybeDeleted"
 					>maybe it is deleted?</span
 				>
@@ -62,6 +62,12 @@
 										[order]="order"
 										(deleted)="onOrderDeleted()"
 									></app-order-delete>
+								</div>
+								<div class="col-6">
+									<app-order-confirm
+										[order]="order"
+										(orderChange)="onOrderConfirmed($event)"
+									></app-order-confirm>
 								</div>
 							</div>
 						</div>

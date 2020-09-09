@@ -19,6 +19,7 @@ import { OrderPaymentInformationComponent } from "./order-payment-information/or
 import { OrderDeleteComponent } from "./order-delete/order-delete.component";
 import { OrderItemEditComponent } from './order-detail/order-item-edit/order-item-edit.component';
 import { OrderItemDetailListItemComponent } from './order-detail/order-item-detail-list-item/order-item-detail-list-item.component';
+import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 
 @NgModule({
 	imports: [
@@ -42,7 +43,8 @@ import { OrderItemDetailListItemComponent } from './order-detail/order-item-deta
 		OrderPaymentInformationComponent,
 		OrderDeleteComponent,
 		OrderItemEditComponent,
-		OrderItemDetailListItemComponent
+		OrderItemDetailListItemComponent,
+		OrderConfirmComponent
 	],
 	exports: [
 		CustomerOrderListComponent,

@@ -41,6 +41,10 @@ export class OrderDetailComponent implements OnInit {
 		});
 	}
 
+	public onOrderConfirmed(confirmedOrder: Order) {
+		this.order = confirmedOrder;
+	}
+
 	public onOrderDeleted() {
 		this.getOrder(this.currentId);
 	}
