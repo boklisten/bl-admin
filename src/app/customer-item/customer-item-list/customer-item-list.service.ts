@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { CustomerItem, Item, UniqueItem } from "@wizardcoder/bl-model";
 import { CustomerService } from "../../customer/customer.service";
 import { CustomerItemService, ItemService } from "@wizardcoder/bl-connect";
-import { ReplaySubject, Subscription } from "rxjs";
+import { ReplaySubject, Subscription, Subject } from "rxjs";
 
 type CustomerItemWithItem = {
 	customerItem: CustomerItem;
@@ -15,21 +15,21 @@ type CustomerItemWithItem = {
 export class CustomerItemListService {
 	private _customerItemList: { customerItem: CustomerItem; item: Item }[];
 	private _customerItemList$: ReplaySubject<CustomerItemWithItem[]>;
-	private _wait$: ReplaySubject<boolean>;
+	private _wait$: Subject<boolean>;
 
 	constructor(
 		private _customerService: CustomerService,
 		private _itemService: ItemService,
 		private _customerItemService: CustomerItemService
 	) {
-		this._wait$ = new ReplaySubject(1);
 		this._customerItemList = [];
 		this._customerItemList$ = new ReplaySubject(1);
+		this._wait$ = new Subject();
 
 		this.handleCustomerChange();
 		this.handleCustomerClear();
-		this._customerItemList$.next([]);
 		this.handleCustomerWaitChange();
+		this._customerItemList$.next([]);
 	}
 
 	public subscribe(
@@ -112,6 +112,7 @@ export class CustomerItemListService {
 	private handleCustomerWaitChange() {
 		this._customerService.onWait(wait => {
 			if (wait) {
+				this.setCustomerItemList([]);
 				this._wait$.next(wait);
 			}
 		});

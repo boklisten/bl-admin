@@ -64,6 +64,7 @@ export class CustomerOrderService {
 	private onCustomerWaitChange() {
 		this._customerService.onWait(wait => {
 			if (wait) {
+				this.setOrders([]);
 				this._wait$.next(true);
 			}
 		});
