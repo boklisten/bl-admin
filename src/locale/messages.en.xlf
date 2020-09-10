@@ -185,123 +185,154 @@
         <source>Boklisten.no logo</source><target state="final">Boklisten.no logo</target>
         
         <note priority="1" from="description">the message shown if image is not found </note>
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login.component.d.ts</context><context context-type="linenumber">8</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login.component.d.ts</context><context context-type="linenumber">9</context></context-group></trans-unit>
       <trans-unit id="userDetailEditCouldNotRetrieveError" datatype="html">
         <source>Could not retrieve user details</source><target state="final">Could not retrieve user details</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">5</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="userDetailEditEmailTitle" datatype="html">
         <source>Email</source><target state="final">Email</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
-      <trans-unit id="userDetailEditNameTitle" datatype="html">
-        <source>Name</source><target state="final">Name</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">23</context></context-group></trans-unit>
-      <trans-unit id="userDetailEditNamePlaceholder" datatype="html">
-        <source>Name</source><target state="final">Name</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">33</context></context-group></trans-unit>
-      <trans-unit id="userDetailEditNameIsRequired" datatype="html">
-        <source>Name is required</source><target state="final">Name is required</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">41</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">19</context></context-group></trans-unit><trans-unit id="userDetailEditFirstNameTitle" datatype="html">
+        <source>First name</source><target state="final">First name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit><trans-unit id="userDetailEditFirstNamePlaceholder" datatype="html">
+        <source>First name</source><target state="final">First name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit><trans-unit id="userDetailEditFirstNameIsRequired" datatype="html">
+        <source>First name is required</source><target state="final">First name is required</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit><trans-unit id="userDetailEditLastNameTitle" datatype="html">
+        <source>Last name</source><target state="final">Last name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit><trans-unit id="userDetailEditLastNamePlaceholder" datatype="html">
+        <source>Last name</source><target state="final">Last name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit><trans-unit id="userDetailEditLastNameIsRequired" datatype="html">
+        <source>Last name is required</source><target state="final">Last name is required</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      
+      
+      
       <trans-unit id="userDetailEditPhoneTitle" datatype="html">
         <source>Phone</source><target state="final">Phone</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">45</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">126</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPhonePlaceholder" datatype="html">
         <source>Phone</source><target state="final">Phone</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">55</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">138</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPhoneNumberMustBeValid" datatype="html">
         <source>Phone number must be a valid number</source><target state="final">Phone number must be a valid number</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">62</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">160</context></context-group></trans-unit>
       <trans-unit id="userDetailEditAddressTitle" datatype="html">
         <source>Address</source><target state="final">Address</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">67</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">169</context></context-group></trans-unit>
       <trans-unit id="userDetailEditAddressPlaceholder" datatype="html">
         <source>Address</source><target state="final">Address</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">78</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">181</context></context-group></trans-unit>
       <trans-unit id="userDetailEditAddressMustBeValid" datatype="html">
         <source>Address must be valid</source><target state="final">Address must be valid</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">86</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">201</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostalTitle" datatype="html">
         <source>Postal code and city</source><target state="final">Postal code and city</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">91</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">210</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostCodePlaceholder" datatype="html">
         <source>Post code</source><target state="final">Post code</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">101</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">222</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostCityPlaceholder" datatype="html">
         <source>Post city</source><target state="final">Post city</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">108</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">235</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostCityRequired" datatype="html">
         <source>Post city is required</source><target state="final">Post city is required</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">116</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">256</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostalCodeError" datatype="html">
         <source>Postal code must be 4 numbers</source><target state="final">Postal code must be 4 numbers</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">122</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">271</context></context-group></trans-unit>
       <trans-unit id="userDetailEditBirthdayTitle" datatype="html">
         <source>Birthday</source><target state="final">Birthday</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">126</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">280</context></context-group></trans-unit>
       <trans-unit id="userDetailEditMustProvideDob" datatype="html">
         <source>You must provide a date of birth</source><target state="final">You must provide a date of birth</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">132</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">292</context></context-group></trans-unit>
       <trans-unit id="userDetailEditUnder18Info" datatype="html">
-        <source>Since you are under the age of 18 we need information about your guardian. </source><target state="final">Since you are under the age of 18 we need information about your guardian. </target>
+        <source>Since you are under the age of 18 we need information about
+					your guardian.
+				</source><target state="final">Since you are under the age of 18 we need information about
+					your guardian.
+				</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">138</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">302</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianName" datatype="html">
         <source>Guardian's full name</source><target state="final">Guardian's full name</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">142</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">311</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianNamePlaceholder" datatype="html">
         <source>Gardian's full name</source><target state="final">Gardian's full name</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">152</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">323</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianNameError" datatype="html">
         <source>Guardian's full name is required</source><target state="final">Guardian's full name is required</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">159</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">342</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianEmail" datatype="html">
         <source>Guardian's email</source><target state="final">Guardian's email</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">163</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">351</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianEmailPlaceholder" datatype="html">
         <source>Gardian's email</source><target state="final">Gardian's email</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">173</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">363</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianEmailError" datatype="html">
         <source>Must provide a valid email</source><target state="final">Must provide a valid email</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">179</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">381</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianPhoneTitle" datatype="html">
         <source>Guardian's phone</source><target state="final">Guardian's phone</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">184</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">390</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianPhonePlaceholder" datatype="html">
         <source>Guardian's phone </source><target state="final">Guardian's phone </target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">194</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">402</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianPhoneError" datatype="html">
         <source>A valid phone number must be provided</source><target state="final">A valid phone number must be provided</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">200</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">420</context></context-group></trans-unit>
       <trans-unit id="userDetailEditSaveButton" datatype="html">
         <source>Save</source><target state="final">Save</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">217</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">441</context></context-group></trans-unit>
       <trans-unit id="registerDetailTitle" datatype="html">
         <source>Register user details</source><target state="final">Register user details</target>
         
@@ -392,28 +423,39 @@
       <trans-unit id="registerTitle" datatype="html">
         <source>Register new user</source><target state="final">Register new user</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">5</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">3</context></context-group></trans-unit>
       <trans-unit id="registerMustAgree" datatype="html">
         <source>You must agree to our terms to register</source><target state="final">You must agree to our terms to register</target>
         
-        <note priority="1" from="description">the user must accept the user agreement before registering </note>
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">14</context></context-group></trans-unit>
-      <trans-unit id="registerOrUseEmail" datatype="html">
-        <source>Or use your email to register</source><target state="final">Or use your email to register</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">31</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">12</context></context-group></trans-unit><trans-unit id="registerPleaseRegisterWithThirdParty" datatype="html">
+        <source>
+			Please register with one of our login providers
+		</source><target state="final">
+			Please register with one of our login providers
+		</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="registerOrUseEmail" datatype="html">
+        <source>
+			Or use your email to register
+		</source><target state="final">
+			Or use your email to register
+		</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">44</context></context-group></trans-unit>
       <trans-unit id="registerGoToLoginPage" datatype="html">
         <source>Go to login page</source><target state="final">Go to login page</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">42</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">61</context></context-group></trans-unit>
       <trans-unit id="socialRegisterWithFacebook" datatype="html">
         <source>Register with Facebook</source><target state="final">Register with Facebook</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/social-register/social-register.component.d.ts</context><context context-type="linenumber">8</context></context-group></trans-unit>
-      <trans-unit id="socialRegisterWithGoogle" datatype="html">
-        <source>Register with Google</source><target state="final">Register with Google</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/social-register/social-register.component.d.ts</context><context context-type="linenumber">17</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/social-register/social-register.component.d.ts</context><context context-type="linenumber">30</context></context-group></trans-unit>
+      
       <trans-unit id="localRegisterErrorMsg" datatype="html">
         <source>Could not register</source><target state="final">Could not register</target>
         
@@ -454,20 +496,34 @@
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">72</context></context-group></trans-unit>
       <trans-unit id="registerAgreementIHaveUnderstood" datatype="html">
         <source>
-			I have read and understood the user-agreement
+				I have read and understood the user-agreement
+			</source><target state="final">
+				I have read and understood the user-agreement
+			</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">28</context></context-group></trans-unit><trans-unit id="registerAgreementYouMustAgree" datatype="html">
+        <source>
+				You must agree to our agreement to register.
+			</source><target state="final">
+				You must agree to our agreement to register.
+			</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="registerAgreementTitle" datatype="html">
+        <source>
+			User agreement
 		</source><target state="final">
-			I have read and understood the user-agreement
+			User agreement
 		</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">12</context></context-group></trans-unit>
-      <trans-unit id="registerAgreementTitle" datatype="html">
-        <source>User agreement</source><target state="final">User agreement</target>
-        
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">20</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">45</context></context-group></trans-unit>
       <trans-unit id="registerDetailIAgree" datatype="html">
         <source>I Agree</source><target state="final">I Agree</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">30</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">66</context></context-group></trans-unit>
       <trans-unit id="loginMenuRegisterButton" datatype="html">
         <source>Register new user</source><target state="final">Register new user</target>
         
@@ -479,11 +535,15 @@
       <trans-unit id="loginAuthTitle" datatype="html">
         <source>Login</source><target state="final">Login</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-auth/login-auth.component.d.ts</context><context context-type="linenumber">4</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-auth/login-auth.component.d.ts</context><context context-type="linenumber">3</context></context-group></trans-unit>
       <trans-unit id="loginAuthOrUseEmail" datatype="html">
-        <source>Or use your email to login</source><target state="final">Or use your email to login</target>
+        <source>
+			Or use your email to login
+		</source><target state="final">
+			Or use your email to login
+		</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-auth/login-auth.component.d.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/login-auth/login-auth.component.d.ts</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="loginAuthForgotPassword" datatype="html">
         <source>Forgot your password?</source><target state="final">Forgot your password?</target>
         
@@ -664,11 +724,11 @@
       <trans-unit id="socialLoginWithFacebook" datatype="html">
         <source>Login with Facebook</source><target state="final">Login with Facebook</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/social-login/social-login.component.d.ts</context><context context-type="linenumber">8</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/social-login/social-login.component.d.ts</context><context context-type="linenumber">29</context></context-group></trans-unit>
       <trans-unit id="socialLoginWithGoogle" datatype="html">
         <source>Login with Google</source><target state="final">Login with Google</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/social-login/social-login.component.d.ts</context><context context-type="linenumber">19</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/social-register/social-register.component.d.ts</context><context context-type="linenumber">54</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/social-login/social-login.component.d.ts</context><context context-type="linenumber">52</context></context-group></trans-unit>
       <trans-unit id="branchEditListUploadSelected" datatype="html">
         <source>Upload selected</source><target state="final">Upload selected</target>
         
