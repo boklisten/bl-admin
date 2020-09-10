@@ -454,17 +454,21 @@
       <trans-unit id="socialRegisterWithFacebook" datatype="html">
         <source>Register with Facebook</source><target state="final">Register with Facebook</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/social-register/social-register.component.d.ts</context><context context-type="linenumber">30</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/social-register/social-register.component.d.ts</context><context context-type="linenumber">30</context></context-group></trans-unit><trans-unit id="socialRegisterWithGoogle" datatype="html">
+        <source>Register with Google</source><target state="final">Register with Google</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/social-register/social-register.component.d.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
       
       <trans-unit id="localRegisterErrorMsg" datatype="html">
         <source>Could not register</source><target state="final">Could not register</target>
         
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="localRegisterUserAlreadyExistsError" datatype="html">
         <source>
-				The user already exists
-			</source><target state="final">
-				The user already exists
-			</target>
+				The user already exists </source><target state="final">
+				The user already exists </target>
         <context-group purpose="location">
           <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context>
           <context context-type="linenumber">14</context>
@@ -475,25 +479,22 @@
 			</source><target state="final">
 				Click here if you intended to login
 			</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-      </trans-unit>
+        
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">21</context></context-group></trans-unit>
       <trans-unit id="localRegisterEmail" datatype="html">
         <source>Email</source><target state="final">Email</target>
         
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">32</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">44</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">35</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">48</context></context-group></trans-unit>
       <trans-unit id="localRegisterPassword" datatype="html">
         <source>Password</source><target state="final">Password</target>
         
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">56</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">66</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">62</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">74</context></context-group></trans-unit>
       <trans-unit id="localRegisterButton" datatype="html">
         <source>Register</source><target state="final">Register</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">72</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">87</context></context-group></trans-unit>
       <trans-unit id="registerAgreementIHaveUnderstood" datatype="html">
         <source>
 				I have read and understood the user-agreement
@@ -702,25 +703,25 @@
       <trans-unit id="localLoginUserOrPasswordError" datatype="html">
         <source>Username or password is incorrect</source><target state="final">Username or password is incorrect</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">5</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="localLoginConnectionError" datatype="html">
         <source>Something went wrong with the connection</source><target state="final">Something went wrong with the connection</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">14</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">17</context></context-group></trans-unit>
       <trans-unit id="localLoginEmail" datatype="html">
         <source>Email</source><target state="final">Email</target>
         
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">26</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">37</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">30</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">43</context></context-group></trans-unit>
       <trans-unit id="localLoginPassword" datatype="html">
         <source>Password</source><target state="final">Password</target>
         
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">48</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">58</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">56</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">68</context></context-group></trans-unit>
       <trans-unit id="localLoginButton" datatype="html">
         <source>Login</source><target state="final">Login</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">64</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">81</context></context-group></trans-unit>
       <trans-unit id="socialLoginWithFacebook" datatype="html">
         <source>Login with Facebook</source><target state="final">Login with Facebook</target>
         
@@ -728,7 +729,7 @@
       <trans-unit id="socialLoginWithGoogle" datatype="html">
         <source>Login with Google</source><target state="final">Login with Google</target>
         
-      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/register/social-register/social-register.component.d.ts</context><context context-type="linenumber">54</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/social-login/social-login.component.d.ts</context><context context-type="linenumber">52</context></context-group></trans-unit>
+      <context-group purpose="location"><context context-type="sourcefile">../node_modules/@wizardcoder/bl-login/src/app/login/social-login/social-login.component.d.ts</context><context context-type="linenumber">52</context></context-group></trans-unit>
       <trans-unit id="branchEditListUploadSelected" datatype="html">
         <source>Upload selected</source><target state="final">Upload selected</target>
         
