@@ -22,7 +22,7 @@ export class CustomerService {
 		this._wait$ = new Subject<boolean>();
 		this._userDetailIdStorageName = "bl-customer-id";
 
-		this.getCustomerDetailIfInStorage();
+		//this.getCustomerDetailIfInStorage();
 		this.handleAltRShortcut();
 	}
 
@@ -116,6 +116,7 @@ export class CustomerService {
 
 		this._customerDetail = userDetail;
 		this._customerDetail$.next(userDetail);
+		/*
 		try {
 			this._storageService.add(
 				this._userDetailIdStorageName,
@@ -123,7 +124,8 @@ export class CustomerService {
 			);
 		} catch (e) {
 			throw e;
-		}
+    }
+     */
 
 		this._wait$.next(false);
 	}
