@@ -16,15 +16,27 @@
 										<div class="col">
 											<app-customer-detail-card
 												[wait]="wait"
-												[customerDetail]="customerDetail"
+												[customerDetail]="
+													customerDetail
+												"
 											></app-customer-detail-card>
 										</div>
 									</div>
-									<div class="row mt-2 justify-content-end">
+									<div
+										class="row mt-2 justify-content-end"
+										*ngIf="customerDetail"
+									>
+										<div class="col-auto">
+											<app-customer-permission
+												[customer]="customerDetail"
+											></app-customer-permission>
+										</div>
 										<div class="col-auto">
 											<app-customer-delete
 												[customer]="customerDetail"
-												(deleted)="onUserDetailDeleted()"
+												(deleted)="
+													onUserDetailDeleted()
+												"
 											></app-customer-delete>
 										</div>
 									</div>

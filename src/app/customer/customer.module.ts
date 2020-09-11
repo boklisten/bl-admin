@@ -26,7 +26,8 @@ import { CustomerDetailSmallComponent } from "./customer-detail/customer-detail-
 import { CustomerItemModule } from "../customer-item/customer-item.module";
 import { MessengerModule } from "../messenger/messenger.module";
 import { BookingModule } from "../booking/booking.module";
-import { CustomerDeleteComponent } from './customer-delete/customer-delete.component';
+import { CustomerDeleteComponent } from "./customer-delete/customer-delete.component";
+import { CustomerPermissionComponent } from "./customer-permission/customer-permission.component";
 
 @NgModule({
 	imports: [
@@ -56,7 +57,8 @@ import { CustomerDeleteComponent } from './customer-delete/customer-delete.compo
 		CustomerCurrentComponent,
 		CustomerDetailPopoverComponent,
 		CustomerDetailSmallComponent,
-		CustomerDeleteComponent
+		CustomerDeleteComponent,
+		CustomerPermissionComponent
 	],
 	exports: [
 		CustomerCurrentComponent,

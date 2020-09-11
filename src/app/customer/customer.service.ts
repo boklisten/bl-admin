@@ -1,6 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Subject, ReplaySubject, Subscription } from "rxjs";
-import { UserDetail, CustomerItem } from "@wizardcoder/bl-model";
+import {
+	UserDetail,
+	CustomerItem,
+	UserPermission
+} from "@wizardcoder/bl-model";
 import { UserDetailService, StorageService } from "@wizardcoder/bl-connect";
 import { BlcHotkeyService } from "../bl-common/blc-hotkey/blc-hotkey.service";
 
@@ -73,6 +77,26 @@ export class CustomerService {
 
 	public onWait(func: (wait: boolean) => void): Subscription {
 		return this._wait$.asObservable().subscribe(func);
+	}
+
+	public setPermission(
+		id: string,
+		permission: UserPermission
+	): Promise<UserDetail> {
+		return this._userDetailService.updateWithOperation(
+			id,
+			{ permission: permission },
+			"permission"
+		);
+	}
+
+	public async getPermission(id: string): Promise<UserPermission> {
+		const user: any = await this._userDetailService.getWithOperation(
+			id,
+			"permission"
+		);
+
+		return user.permission;
 	}
 
 	public update(
