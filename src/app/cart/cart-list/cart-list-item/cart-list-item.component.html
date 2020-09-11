@@ -19,13 +19,20 @@
 			<span
 				class="badge badge-pill badge-secondary bl-text-xs"
 				*ngIf="!cartItem.getBLID()"
-				>ISBN: {{cartItem.getISBN()}}</span
+				>ISBN: {{ cartItem.getISBN() }}</span
 			>
 
 			<span
 				class="badge badge-pill badge-info bl-text-xs"
 				*ngIf="cartItem.getBLID()"
-				>BLID: {{cartItem.getBLID()}}</span
+				>BLID: {{ cartItem.getBLID() }}</span
+			>
+
+			<span
+				class="badge bl-digital-bg text-white bl-text-xs ml-2"
+				*ngIf="cartItem.isDigital()"
+				i18n="@@cartListItemDigitalBadge"
+				>Digital</span
 			>
 		</div>
 	</div>

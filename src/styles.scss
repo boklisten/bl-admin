@@ -6,7 +6,7 @@ $alert-color: #e63946;
 $success-color: #53dd6c;
 $warning-color: #ee8434;
 $inactive-color: #d7dbdd;
-
+$digital-color: #a325dd;
 $link-border: 2px solid #ffffff;
 $link-border-black: 2px solid #000000;
 $border-color: rgba(0, 0, 0, 0.125);
@@ -25,6 +25,10 @@ $header_height: 38px;
 .bl-flex-row {
 	//flex: 1 1 0;
 	//display: flex;
+}
+
+.bl-digital-bg {
+	background-color: $digital-color;
 }
 
 .bl-col-scroll {

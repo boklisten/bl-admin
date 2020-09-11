@@ -90,6 +90,9 @@ export class OrderItemCartItem extends Subscribable implements CartItem {
 	public getItem(): Item {
 		return this._item;
 	}
+	public isDigital(): boolean {
+		return this._item && this._item.digital;
+	}
 
 	private setDefaultAction() {
 		const defaultAction = this.getDefaultAction(this.getValidActions());
