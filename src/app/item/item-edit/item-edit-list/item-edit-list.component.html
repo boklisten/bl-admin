@@ -75,7 +75,7 @@
 			class="bootstrap"
 			[headerHeight]="50"
 			[footerHeight]="25"
-			[limit]="10"
+			[limit]="50"
 			[rows]="items"
 			[rowHeight]="50"
 			[columnMode]="'force'"
@@ -202,6 +202,21 @@
 						[(value)]="items[rowIndex].buyback"
 						(update)="updateRowItem(rowIndex, 'buyback')"
 						[tooltip]="'change buyback state'"
+					></app-bl-common-toggle-button>
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="digital">
+				<ng-template
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+					let-value="value"
+					let-row="row"
+				>
+					<app-bl-common-toggle-button
+						[(value)]="items[rowIndex].digital"
+						(update)="updateRowItem(rowIndex, 'digital')"
+						[tooltip]="'change digital state'"
 					></app-bl-common-toggle-button>
 				</ng-template>
 			</ngx-datatable-column>
