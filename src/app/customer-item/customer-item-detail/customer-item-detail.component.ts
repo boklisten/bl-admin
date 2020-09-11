@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
 import { CustomerItemService, ItemService } from "@wizardcoder/bl-connect";
 import { CustomerItem, Item } from "@wizardcoder/bl-model";
@@ -9,7 +9,7 @@ import { CustomerItem, Item } from "@wizardcoder/bl-model";
 	styleUrls: ["./customer-item-detail.component.scss"]
 })
 export class CustomerItemDetailComponent implements OnInit {
-	public customerItem: CustomerItem;
+	@Input() customerItem: CustomerItem;
 	public item: Item;
 
 	constructor(
@@ -19,28 +19,22 @@ export class CustomerItemDetailComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+		if (this.customerItem) {
+			this.getItem();
+		}
+		/*
 		this._route.params.subscribe((params: Params) => {
 			if (params["id"]) {
 				this.getCustomerItem(params["id"]);
 			}
 		});
+       */
 	}
 
 	private getCustomerItem(id: string) {
 		this._customerItemService
 			.getById(id)
 			.then((customerItem: CustomerItem) => {
-				this._itemService
-					.getById(customerItem.item as string)
-					.then((item: Item) => {
-						this.item = item;
-					})
-					.catch(getItemError => {
-						console.log(
-							"customerItemDetailComponet: could not get item"
-						);
-					});
-
 				this.customerItem = customerItem;
 			})
 			.catch(getCustomerItemError => {
@@ -48,6 +42,17 @@ export class CustomerItemDetailComponent implements OnInit {
 					"customerItemDetailComponent: could not get customerItem",
 					getCustomerItemError
 				);
+			});
+	}
+
+	private getItem() {
+		this._itemService
+			.getById(this.customerItem.item as string)
+			.then((item: Item) => {
+				this.item = item;
+			})
+			.catch(getItemError => {
+				console.log("customerItemDetailComponet: could not get item");
 			});
 	}
 }

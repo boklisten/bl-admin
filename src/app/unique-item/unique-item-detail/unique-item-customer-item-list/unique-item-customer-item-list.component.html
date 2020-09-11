@@ -1,0 +1,17 @@
+<div class="card">
+	<div class="card-header">
+		<span i18n="@@uniqueItemDetailCustomerItems">Customer items</span>
+	</div>
+	<div class="card-body">
+		<ul class="list-group list-group-flush">
+			<li
+				*ngFor="let customerItem of customerItems"
+				class="list-group-item"
+			>
+				<app-customer-item-detail
+					[customerItem]="customerItem"
+				></app-customer-item-detail>
+			</li>
+		</ul>
+	</div>
+</div>

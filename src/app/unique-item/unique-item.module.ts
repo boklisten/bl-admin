@@ -8,20 +8,28 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { UniqueItemScanToCartComponent } from "./unique-item-scan-to-cart/unique-item-scan-to-cart.component";
 import { UniqueItemRegisterFromCartComponent } from "./unique-item-register-from-cart/unique-item-register-from-cart.component";
 import { UniqueItemScanOrderToCartComponent } from "./unique-item-scan-order-to-cart/unique-item-scan-order-to-cart.component";
+import { UniqueItemDetailComponent } from "./unique-item-detail/unique-item-detail.component";
+import { UniqueItemRoutingModule } from "./unique-item-routing.module";
+import { UniqueItemCustomerItemListComponent } from "./unique-item-detail/unique-item-customer-item-list/unique-item-customer-item-list.component";
+import { CustomerItemModule } from "../customer-item/customer-item.module";
 
 @NgModule({
 	declarations: [
 		UniqueItemRegisterComponent,
 		UniqueItemScanToCartComponent,
 		UniqueItemRegisterFromCartComponent,
-		UniqueItemScanOrderToCartComponent
+		UniqueItemScanOrderToCartComponent,
+		UniqueItemDetailComponent,
+		UniqueItemCustomerItemListComponent
 	],
 	imports: [
 		CommonModule,
 		BlCommonModule,
 		ScannerModule,
 		ItemModule,
-		FontAwesomeModule
+		FontAwesomeModule,
+		UniqueItemRoutingModule,
+		CustomerItemModule
 	],
 	exports: [
 		UniqueItemRegisterComponent,
