@@ -40,7 +40,7 @@ export class UniqueItemRegisterFromCartComponent implements OnInit {
 	private getCartItemsThatShouldHaveBlid(): CartItem[] {
 		let cartItems = [];
 		for (let cartItem of this._cartService.getCart()) {
-			if (!cartItem.getBLID()) {
+			if (!cartItem.getBLID() && !cartItem.isDigital()) {
 				if (
 					["partly-payment", "rent", "loan", "sell"].indexOf(
 						cartItem.getAction().action.toString()
