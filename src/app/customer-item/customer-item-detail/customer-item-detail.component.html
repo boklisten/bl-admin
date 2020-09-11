@@ -1,28 +1,44 @@
-<div class="container-fluid mt-4" *ngIf="customerItem && item">
-	<div class="row">
-		<div class="col-12">
-			<div class="card">
-				<div class="card-header">
-					<h3>{{item.title}}</h3>
-				</div>
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">
-						<fa-icon [icon]="'clock'" class="mr-2"></fa-icon> {{customerItem.deadline | blDate}}
-					</li>
-					<li class="list-group-item">
-						<fa-icon [icon]="'user'" class="mr-2"></fa-icon> {{customerItem.customer | customerName | async}}
-					</li>
-					<li class="list-group-item">
-						<fa-icon [icon]="'user'" class="mr-1"></fa-icon><fa-icon [icon]="'book'" class="mr-2"></fa-icon>
-						<span *ngIf="customerItem.handoutInfo.handoutBy === 'branch'"></span> {{customerItem.handoutInfo.time | blDate:'time'}} at {{customerItem.handoutInfo.handoutById | branchName | async}} by {{customerItem.handoutInfo.handoutEmployee | customerName | async}}
-					</li>
-					<li class="list-group-item" *ngIf="customerItem.returned">
-						<fa-icon [icon]="'arrow-down'" class="mr-1"></fa-icon><fa-icon [icon]="'book'" class="mr-2"></fa-icon>
-						<span *ngIf="customerItem.returnInfo.returnedTo === 'branch'"> {{customerItem.returnInfo.returnedToId}}</span>
-						<span *ngIf="customerItem.returnInfo.returnedTo === 'customer'"> {{customerItem.returnInfo.returnedToId}}</span>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
+<ul class="list-group" *ngIf="customerItem && item">
+	<li class="list-group-item list-group-item-secondary">{{ item.title }}</li>
+	<li class="list-group-item">
+		<fa-icon [icon]="'clock'" class="mr-2"></fa-icon>
+		{{ customerItem.deadline | blDate }}
+	</li>
+	<li class="list-group-item">
+		<fa-icon [icon]="'user'" class="mr-2"></fa-icon>
+		<span
+			routerLink="{{ '/customer/' + customerItem.customer + '/detail' }}"
+			class="bl-link-black"
+		>
+			{{ customerItem.customer | customerName | async }}
+		</span>
+	</li>
+	<li class="list-group-item">
+		<fa-icon [icon]="'user'" class="mr-1"></fa-icon
+		><fa-icon [icon]="'book'" class="mr-2"></fa-icon>
+		<span *ngIf="customerItem.handoutInfo.handoutBy === 'branch'"></span>
+		{{ customerItem.handoutInfo.time | blDate: "time" }} at
+		{{ customerItem.handoutInfo.handoutById | branchName | async }} by
+		<span
+			routerLink="{{
+				'/customer/' +
+					customerItem.handoutInfo.handoutEmployee +
+					'/detail'
+			}}"
+			class="bl-link-black"
+			>{{
+				customerItem.handoutInfo.handoutEmployee | customerName | async
+			}}</span
+		>
+	</li>
+	<li class="list-group-item" *ngIf="customerItem.returned">
+		<fa-icon [icon]="'arrow-down'" class="mr-1"></fa-icon
+		><fa-icon [icon]="'book'" class="mr-2"></fa-icon>
+		<span *ngIf="customerItem.returnInfo.returnedTo === 'branch'">
+			{{ customerItem.returnInfo.returnedToId }}</span
+		>
+		<span *ngIf="customerItem.returnInfo.returnedTo === 'customer'">
+			{{ customerItem.returnInfo.returnedToId }}</span
+		>
+	</li>
+</ul>
