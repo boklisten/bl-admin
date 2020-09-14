@@ -1,4 +1,10 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	Input,
+	SimpleChanges,
+	OnChanges
+} from "@angular/core";
 import { UniqueItem, CustomerItem } from "@wizardcoder/bl-model";
 import {
 	UniqueItemService,
@@ -10,28 +16,37 @@ import {
 	templateUrl: "./unique-item-active-information.component.html",
 	styleUrls: ["./unique-item-active-information.component.scss"]
 })
-export class UniqueItemActiveInformationComponent implements OnInit {
+export class UniqueItemActiveInformationComponent implements OnInit, OnChanges {
 	@Input() uniqueItem: UniqueItem;
 	public activeCustomerItem: CustomerItem;
+	public wait: boolean;
 
 	constructor(
 		private _uniqueItemService: UniqueItemService,
 		private _customerItemService: CustomerItemService
 	) {}
 
+	ngOnChanges(changes: SimpleChanges) {
+		this.getActiveCustomerItem();
+	}
+
 	ngOnInit() {
 		this.getActiveCustomerItem();
 	}
 
 	public getActiveCustomerItem() {
+		this.wait = true;
 		this._uniqueItemService
 			.getWithOperation(this.uniqueItem.id, "active")
 			.then(activeCustomerItem => {
 				if (typeof activeCustomerItem == "string") {
 					this.getCustomerItem(activeCustomerItem);
 				}
+				this.wait = false;
 			})
 			.catch(e => {
+				this.activeCustomerItem = null;
+				this.wait = false;
 				console.log("could not get active ");
 			});
 	}

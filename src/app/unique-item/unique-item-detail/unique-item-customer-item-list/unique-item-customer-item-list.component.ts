@@ -1,4 +1,10 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	Input,
+	SimpleChanges,
+	OnChanges
+} from "@angular/core";
 import { CustomerItem } from "@wizardcoder/bl-model";
 import { CustomerItemService } from "@wizardcoder/bl-connect";
 
@@ -13,6 +19,14 @@ export class UniqueItemCustomerItemListComponent implements OnInit {
 	public wait: boolean;
 
 	constructor(private _customerItemService: CustomerItemService) {}
+
+	ngOnChanges() {
+		if (this.blid) {
+			this.getCustomerItems(this.blid);
+		} else {
+			this.customerItems = [];
+		}
+	}
 
 	ngOnInit() {
 		this.getCustomerItems(this.blid);

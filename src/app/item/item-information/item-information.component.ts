@@ -1,4 +1,10 @@
-import { Component, OnInit, Input } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	Input,
+	SimpleChanges,
+	OnChanges
+} from "@angular/core";
 import { Item } from "@wizardcoder/bl-model";
 import { ItemService } from "@wizardcoder/bl-connect";
 
@@ -7,13 +13,21 @@ import { ItemService } from "@wizardcoder/bl-connect";
 	templateUrl: "./item-information.component.html",
 	styleUrls: ["./item-information.component.scss"]
 })
-export class ItemInformationComponent implements OnInit {
+export class ItemInformationComponent implements OnInit, OnChanges {
 	@Input() item: Item;
 	@Input() itemId: string;
 
 	constructor(private _itemService: ItemService) {}
 
+	ngOnChanges(changes: SimpleChanges) {
+		this.getItem();
+	}
+
 	ngOnInit() {
+		this.getItem();
+	}
+
+	private getItem() {
 		if (this.itemId) {
 			this._itemService
 				.getById(this.itemId)

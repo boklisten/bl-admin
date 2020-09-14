@@ -22,6 +22,7 @@ export class UniqueItemDetailComponent implements OnInit {
 	ngOnInit() {
 		this.uniqueItem = null;
 		this._route.params.subscribe((params: Params) => {
+			console.log("changed!", params["blid"]);
 			this.currentBlid = params["blid"];
 
 			if (this.currentBlid) {
@@ -32,7 +33,7 @@ export class UniqueItemDetailComponent implements OnInit {
 
 	public onBlidChange(blid: string) {
 		this.currentBlid = blid;
-		this._router.navigate(["/blid/" + blid]);
+		//this._router.navigate(["/blid/" + blid]);
 		//this.getUniqueItem(this.currentBlid);
 	}
 

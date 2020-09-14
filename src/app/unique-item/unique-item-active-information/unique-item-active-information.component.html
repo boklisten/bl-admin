@@ -1,4 +1,8 @@
-<div class="card" *ngIf="activeCustomerItem">
+<div class="alert alert-warning text-center" *ngIf="wait">
+	<fa-icon icon="circle-notch" spin="true"></fa-icon>
+</div>
+
+<div class="card" *ngIf="activeCustomerItem && !wait">
 	<div class="card-header text-center bg-success text-white">
 		Currently in possesion
 	</div>
@@ -16,7 +20,7 @@
 	</div>
 </div>
 
-<div class="card" *ngIf="!activeCustomerItem">
+<div class="card" *ngIf="!activeCustomerItem && !wait">
 	<div
 		class="card-header bg-danger text-white"
 		i18n="@@uniqueItemInformationCurrentlyNotActive"
