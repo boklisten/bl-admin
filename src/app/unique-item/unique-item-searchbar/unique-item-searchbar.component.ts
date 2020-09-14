@@ -32,11 +32,11 @@ export class UniqueItemSearchbarComponent implements OnInit, OnDestroy {
 	private handleBlcScannerChange() {
 		this.blidScanner = this._blcScannerService.onBlid(blid => {
 			this.blid = blid;
-			this.onBlidSearch();
+			this.onBlidSearch(this.blid);
 		});
 	}
 
-	public onBlidSearch() {
-		this._router.navigate(["/blid/" + this.blid]);
+	public onBlidSearch(blid: string) {
+		this._router.navigate(["/blid/" + blid]);
 	}
 }

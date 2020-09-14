@@ -7,7 +7,7 @@
 		class="form-control"
 		i18n="@@uniqueItemSearchPlaceholder"
 		[(ngModel)]="blid"
-		(keydown.enter)="onBlidSearch($event)"
+		(keydown.enter)="onBlidSearch(blid)"
 		placeholder="Search for BL-ID"
 		aria-describedby="button-addon2"
 	/>
@@ -15,7 +15,7 @@
 		<button
 			class="btn btn-outline-light"
 			type="button"
-			(click)="onBlidSearch()"
+			(click)="onBlidSearch(blid)"
 		>
 			<fa-icon icon="search"></fa-icon>
 		</button>

@@ -20,6 +20,7 @@ export class UniqueItemDetailComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+		this.uniqueItem = null;
 		this._route.params.subscribe((params: Params) => {
 			this.currentBlid = params["blid"];
 
