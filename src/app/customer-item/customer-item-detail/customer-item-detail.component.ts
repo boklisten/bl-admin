@@ -10,6 +10,7 @@ import { CustomerItem, Item } from "@wizardcoder/bl-model";
 })
 export class CustomerItemDetailComponent implements OnInit {
 	@Input() customerItem: CustomerItem;
+	@Input() customerItemId: string;
 	public item: Item;
 
 	constructor(
@@ -22,6 +23,12 @@ export class CustomerItemDetailComponent implements OnInit {
 		if (this.customerItem) {
 			this.getItem();
 		}
+
+		if (this.customerItemId) {
+			console.log("customerItemId", this.customerItemId);
+			this.getCustomerItem(this.customerItemId);
+		}
+
 		/*
 		this._route.params.subscribe((params: Params) => {
 			if (params["id"]) {
@@ -36,8 +43,10 @@ export class CustomerItemDetailComponent implements OnInit {
 			.getById(id)
 			.then((customerItem: CustomerItem) => {
 				this.customerItem = customerItem;
+				this.getItem();
 			})
 			.catch(getCustomerItemError => {
+				console.log("hello there", this.getCustomerItem);
 				console.log(
 					"customerItemDetailComponent: could not get customerItem",
 					getCustomerItemError

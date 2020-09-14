@@ -8,7 +8,7 @@
 			</h1>
 		</div>
 	</div>
-	<div class="row mt-5">
+	<div class="row mt-5" *ngIf="uniqueItem">
 		<div class="col-3">
 			<h3 i18n="@@uniqueItemDetailItemInfo" class="text-center">
 				Item info
@@ -17,11 +17,35 @@
 				[itemId]="uniqueItem.item"
 			></app-item-information>
 		</div>
-		<div class="col-6"><h3 class="text-center">Currently holding</h3></div>
+		<div class="col-6">
+			<app-unique-item-active-information
+				[uniqueItem]="uniqueItem"
+			></app-unique-item-active-information>
+		</div>
 		<div class="col-3 bl-col-scroll">
 			<app-unique-item-customer-item-list
 				[blid]="currentBlid"
 			></app-unique-item-customer-item-list>
+		</div>
+	</div>
+
+	<div class="row mt-5" *ngIf="wait">
+		<div class="col-12">
+			<div class="alert alert-warning mr-2 text-center">
+				<fa-icon icon="circle-notch" spin="true"></fa-icon>
+			</div>
+		</div>
+	</div>
+
+	<div class="row mt-5" *ngIf="!uniqueItem && !wait">
+		<div class="col-12">
+			<div
+				class="alert alert-secondary mr-2"
+				i18n="@@uniqueItemDetailNotFound"
+			>
+				<fa-icon icon="exclamation-triangle"></fa-icon>
+				No unique item found
+			</div>
 		</div>
 	</div>
 </div>

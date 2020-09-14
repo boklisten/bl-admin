@@ -11,6 +11,7 @@ import { UniqueItemStoreService } from "../unique-item-store.service";
 export class UniqueItemDetailComponent implements OnInit {
 	public currentBlid: string;
 	public uniqueItem: UniqueItem;
+	public wait: boolean;
 
 	constructor(
 		private _route: ActivatedRoute,
@@ -18,6 +19,8 @@ export class UniqueItemDetailComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+		this.wait = true;
+
 		this._route.params.subscribe((params: Params) => {
 			this.currentBlid = params["blid"];
 
@@ -32,9 +35,11 @@ export class UniqueItemDetailComponent implements OnInit {
 			.get(blid)
 			.then(uniqueItem => {
 				this.uniqueItem = uniqueItem;
+				this.wait = false;
 			})
 			.catch(err => {
 				console.log("could not find uniqueItem", err);
+				this.wait = false;
 			});
 	}
 }

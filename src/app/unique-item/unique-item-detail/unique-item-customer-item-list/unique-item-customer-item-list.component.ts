@@ -10,6 +10,7 @@ import { CustomerItemService } from "@wizardcoder/bl-connect";
 export class UniqueItemCustomerItemListComponent implements OnInit {
 	@Input() blid: string;
 	public customerItems: CustomerItem[];
+	public wait: boolean;
 
 	constructor(private _customerItemService: CustomerItemService) {}
 
@@ -18,13 +19,16 @@ export class UniqueItemCustomerItemListComponent implements OnInit {
 	}
 
 	private getCustomerItems(blid: string) {
+		this.wait = true;
 		this._customerItemService
 			.get({ query: "?blid=" + blid })
 			.then(customerItems => {
 				this.customerItems = customerItems;
+				this.wait = false;
 			})
 			.catch(e => {
 				this.customerItems = [];
+				this.wait = false;
 			});
 	}
 }

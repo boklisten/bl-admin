@@ -1,0 +1,23 @@
+<ul class="list-group" *ngIf="userDetail">
+	<li class="list-group-item list-group-item-secondary">
+		<h4
+			class="text-center bl-link-black"
+			routerLink="{{'/customer/' + userDetail.id + '/detail'}}"
+		>
+			{{userDetail.name}}
+		</h4>
+	</li>
+	<li class="list-group-item d-flex justify-content-between">
+		<span i18n="@@customerInformationEmail" class="text-secondary"
+			>Email</span
+		>
+		<span>{{userDetail.email}}</span>
+	</li>
+
+	<li class="list-group-item d-flex justify-content-between">
+		<span i18n="@@customerInformationPhone" class="text-secondary"
+			>Phone</span
+		>
+		<span>{{userDetail.phone}}</span>
+	</li>
+</ul>

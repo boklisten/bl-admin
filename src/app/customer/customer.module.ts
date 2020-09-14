@@ -28,6 +28,7 @@ import { MessengerModule } from "../messenger/messenger.module";
 import { BookingModule } from "../booking/booking.module";
 import { CustomerDeleteComponent } from "./customer-delete/customer-delete.component";
 import { CustomerPermissionComponent } from "./customer-permission/customer-permission.component";
+import { CustomerInformationComponent } from "./customer-information/customer-information.component";
 
 @NgModule({
 	imports: [
@@ -58,14 +59,16 @@ import { CustomerPermissionComponent } from "./customer-permission/customer-perm
 		CustomerDetailPopoverComponent,
 		CustomerDetailSmallComponent,
 		CustomerDeleteComponent,
-		CustomerPermissionComponent
+		CustomerPermissionComponent,
+		CustomerInformationComponent
 	],
 	exports: [
 		CustomerCurrentComponent,
 		CustomerDetailPopoverComponent,
 		CustomerSearchComponent,
 		CustomerDetailSmallComponent,
-		CustomerSearchResultComponent
+		CustomerSearchResultComponent,
+		CustomerInformationComponent
 	],
 	entryComponents: [CustomerDetailModalContentComponent]
 })
