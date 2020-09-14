@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { UniqueItem } from "@wizardcoder/bl-model";
 import { UniqueItemStoreService } from "../unique-item-store.service";
 
@@ -15,12 +15,11 @@ export class UniqueItemDetailComponent implements OnInit {
 
 	constructor(
 		private _route: ActivatedRoute,
+		private _router: Router,
 		private _uniqeItemStoreService: UniqueItemStoreService
 	) {}
 
 	ngOnInit() {
-		this.wait = true;
-
 		this._route.params.subscribe((params: Params) => {
 			this.currentBlid = params["blid"];
 
@@ -30,7 +29,14 @@ export class UniqueItemDetailComponent implements OnInit {
 		});
 	}
 
+	public onBlidChange(blid: string) {
+		this.currentBlid = blid;
+		this._router.navigate(["/blid/" + blid]);
+		//this.getUniqueItem(this.currentBlid);
+	}
+
 	private getUniqueItem(blid: string) {
+		this.wait = true;
 		this._uniqeItemStoreService
 			.get(blid)
 			.then(uniqueItem => {
@@ -39,6 +45,7 @@ export class UniqueItemDetailComponent implements OnInit {
 			})
 			.catch(err => {
 				console.log("could not find uniqueItem", err);
+				this.uniqueItem = null;
 				this.wait = false;
 			});
 	}
