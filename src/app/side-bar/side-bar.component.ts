@@ -47,6 +47,13 @@ export class SideBarComponent implements OnInit, OnDestroy {
 		this.bladminVersionName = environment.versionName;
 		this.sidebarLinks = [
 			{
+				name: "blid",
+				link: "blid",
+				icon: "search",
+				permission: "employee",
+				selected: false
+			},
+			{
 				name: "cart",
 				link: "cart",
 				icon: "shopping-cart",
