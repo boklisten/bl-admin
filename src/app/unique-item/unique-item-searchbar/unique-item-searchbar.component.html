@@ -1,0 +1,23 @@
+<div class="input-group mb-3">
+	<div class="input-group-prepend">
+		<span class="input-group-text">BL-ID </span>
+	</div>
+	<input
+		type="text"
+		class="form-control"
+		i18n="@@uniqueItemSearchPlaceholder"
+		[(ngModel)]="blid"
+		(keydown.enter)="onBlidSearch($event)"
+		placeholder="Search for BL-ID"
+		aria-describedby="button-addon2"
+	/>
+	<div class="input-group-append">
+		<button
+			class="btn btn-outline-light"
+			type="button"
+			(click)="onBlidSearch()"
+		>
+			<fa-icon icon="search"></fa-icon>
+		</button>
+	</div>
+</div>

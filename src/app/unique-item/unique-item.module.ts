@@ -14,6 +14,9 @@ import { UniqueItemCustomerItemListComponent } from "./unique-item-detail/unique
 import { CustomerItemModule } from "../customer-item/customer-item.module";
 import { UniqueItemActiveInformationComponent } from "./unique-item-active-information/unique-item-active-information.component";
 import { CustomerModule } from "../customer/customer.module";
+import { UniqueItemSearchComponent } from "./unique-item-search/unique-item-search.component";
+import { FormsModule } from "@angular/forms";
+import { UniqueItemSearchbarComponent } from './unique-item-searchbar/unique-item-searchbar.component';
 
 @NgModule({
 	declarations: [
@@ -23,7 +26,9 @@ import { CustomerModule } from "../customer/customer.module";
 		UniqueItemScanOrderToCartComponent,
 		UniqueItemDetailComponent,
 		UniqueItemCustomerItemListComponent,
-		UniqueItemActiveInformationComponent
+		UniqueItemActiveInformationComponent,
+		UniqueItemSearchComponent,
+		UniqueItemSearchbarComponent
 	],
 	imports: [
 		CommonModule,
@@ -33,7 +38,8 @@ import { CustomerModule } from "../customer/customer.module";
 		FontAwesomeModule,
 		UniqueItemRoutingModule,
 		CustomerItemModule,
-		CustomerModule
+		CustomerModule,
+		FormsModule
 	],
 	exports: [
 		UniqueItemRegisterComponent,

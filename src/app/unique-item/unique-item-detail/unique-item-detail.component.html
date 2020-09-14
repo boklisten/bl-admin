@@ -1,14 +1,9 @@
-<div class="container-fluid mt-2">
-	<div class="row">
-		<div class="col-12 text-center">
-			<h1>
-				<div class="badge badge-pill badge-info">
-					<app-blc-edit-string-value
-						[value]="currentBlid"
-						(valueChange)="onBlidChange($event)"
-					></app-blc-edit-string-value>
-				</div>
-			</h1>
+<div class="container-fluid">
+	<div class="row align-items-center justify-content-center bg-info">
+		<div class="col-4 p-3">
+			<app-unique-item-searchbar
+				[blid]="currentBlid"
+			></app-unique-item-searchbar>
 		</div>
 	</div>
 	<div class="row mt-5" *ngIf="uniqueItem">
@@ -25,7 +20,7 @@
 				[uniqueItem]="uniqueItem"
 			></app-unique-item-active-information>
 		</div>
-		<div class="col-3 bl-col-scroll">
+		<div class="col-3">
 			<app-unique-item-customer-item-list
 				[blid]="currentBlid"
 			></app-unique-item-customer-item-list>
