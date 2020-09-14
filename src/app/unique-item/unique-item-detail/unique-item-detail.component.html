@@ -8,8 +8,17 @@
 			</h1>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row mt-5">
 		<div class="col-3">
+			<h3 i18n="@@uniqueItemDetailItemInfo" class="text-center">
+				Item info
+			</h3>
+			<app-item-information
+				[itemId]="uniqueItem.item"
+			></app-item-information>
+		</div>
+		<div class="col-6"><h3 class="text-center">Currently holding</h3></div>
+		<div class="col-3 bl-col-scroll">
 			<app-unique-item-customer-item-list
 				[blid]="currentBlid"
 			></app-unique-item-customer-item-list>

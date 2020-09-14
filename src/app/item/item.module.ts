@@ -22,6 +22,7 @@ import {
 import { ItemSelectListComponent } from "./item-select-list/item-select-list.component";
 import { ItemSearchResultItemComponent } from "./item-search/item-search-result/item-search-result-item/item-search-result-item.component";
 import { ItemSearchSelectComponent } from "./item-search-select/item-search-select.component";
+import { ItemInformationComponent } from "./item-information/item-information.component";
 
 @NgModule({
 	imports: [
@@ -44,7 +45,8 @@ import { ItemSearchSelectComponent } from "./item-search-select/item-search-sele
 		ItemEditListComponent,
 		ItemSelectListComponent,
 		ItemSearchResultItemComponent,
-		ItemSearchSelectComponent
+		ItemSearchSelectComponent,
+		ItemInformationComponent
 	],
 	providers: [ItemSearchService],
 	exports: [
@@ -53,7 +55,8 @@ import { ItemSearchSelectComponent } from "./item-search-select/item-search-sele
 		ItemEditListComponent,
 		ItemSelectListComponent,
 		ItemSearchComponent,
-		ItemSearchSelectComponent
+		ItemSearchSelectComponent,
+		ItemInformationComponent
 	]
 })
 export class ItemModule {}

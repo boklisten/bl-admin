@@ -1,11 +1,8 @@
-<div class="card">
-	<div class="card-header">
-		<span i18n="@@uniqueItemDetailCustomerItems">Customer items</span>
-	</div>
-	<div class="card-body">
-		<app-customer-item-detail
-			*ngFor="let customerItem of customerItems"
-			[customerItem]="customerItem"
-		></app-customer-item-detail>
-	</div>
+<h3 class="text-center" i18n="@@uniqueItemDetailCustomerItemHistory">
+	Customer items history
+</h3>
+<div *ngFor="let customerItem of customerItems" class="mb-2">
+	<app-customer-item-detail
+		[customerItem]="customerItem"
+	></app-customer-item-detail>
 </div>

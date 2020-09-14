@@ -1,11 +1,19 @@
 <ul class="list-group" *ngIf="customerItem && item">
 	<li class="list-group-item list-group-item-secondary">{{ item.title }}</li>
-	<li class="list-group-item">
-		<fa-icon [icon]="'clock'" class="mr-2"></fa-icon>
-		{{ customerItem.deadline | blDate }}
+	<li class="list-group-item justify-content-between d-flex">
+		<span i18n="@@customerItemDetailType" class="text-secondary">Type</span>
+		<span>{{ customerItem.type}}</span>
 	</li>
-	<li class="list-group-item">
-		<fa-icon [icon]="'user'" class="mr-2"></fa-icon>
+	<li class="list-group-item justify-content-between d-flex">
+		<span i18n="@@customerItemDetailDeadline" class="text-secondary"
+			>Deadline</span
+		>
+		<span>{{ customerItem.deadline | blDate }}</span>
+	</li>
+	<li class="list-group-item justify-content-between d-flex">
+		<span i18n="@@customerItemDetailCustomer" class="text-secondary"
+			>Customer</span
+		>
 		<span
 			routerLink="{{ '/customer/' + customerItem.customer + '/detail' }}"
 			class="bl-link-black"
@@ -13,12 +21,26 @@
 			{{ customerItem.customer | customerName | async }}
 		</span>
 	</li>
-	<li class="list-group-item">
-		<fa-icon [icon]="'user'" class="mr-1"></fa-icon
-		><fa-icon [icon]="'book'" class="mr-2"></fa-icon>
-		<span *ngIf="customerItem.handoutInfo.handoutBy === 'branch'"></span>
-		{{ customerItem.handoutInfo.time | blDate: "time" }} at
-		{{ customerItem.handoutInfo.handoutById | branchName | async }} by
+	<li class="list-group-item justify-content-between d-flex">
+		<span i18n="@@customerItemDetailHandoutTime" class="text-secondary"
+			>Handout time</span
+		>
+		<span> {{ customerItem.handoutInfo.time | blDate: "timestamp" }} </span>
+	</li>
+
+	<li class="list-group-item justify-content-between d-flex">
+		<span i18n="@@customerItemDetailHandoutAt" class="text-secondary"
+			>Handout at</span
+		>
+		<span>
+			{{customerItem.handoutInfo.handoutById | branchName | async }}
+		</span>
+	</li>
+
+	<li class="list-group-item justify-content-between d-flex">
+		<span i18n="@@customerItemDetailHandoutBy" class="text-secondary"
+			>Handout by</span
+		>
 		<span
 			routerLink="{{
 				'/customer/' +
@@ -26,19 +48,25 @@
 					'/detail'
 			}}"
 			class="bl-link-black"
-			>{{
-				customerItem.handoutInfo.handoutEmployee | customerName | async
+			>{{ customerItem.handoutInfo.handoutEmployee | customerName | async
 			}}</span
 		>
 	</li>
-	<li class="list-group-item" *ngIf="customerItem.returned">
-		<fa-icon [icon]="'arrow-down'" class="mr-1"></fa-icon
-		><fa-icon [icon]="'book'" class="mr-2"></fa-icon>
-		<span *ngIf="customerItem.returnInfo.returnedTo === 'branch'">
-			{{ customerItem.returnInfo.returnedToId }}</span
+	<li class="list-group-item justify-content-between d-flex">
+		<span i18n="@@customerItemDetailDelivered" class="text-secondary"
+			>Delivered</span
 		>
-		<span *ngIf="customerItem.returnInfo.returnedTo === 'customer'">
-			{{ customerItem.returnInfo.returnedToId }}</span
+		<fa-icon
+			icon="check-circle"
+			class="text-success"
+			*ngIf="customerItem.returned"
 		>
+		</fa-icon>
+		<fa-icon
+			icon="times-circle"
+			class="text-danger"
+			*ngIf="!customerItem.returned"
+		>
+		</fa-icon>
 	</li>
 </ul>
