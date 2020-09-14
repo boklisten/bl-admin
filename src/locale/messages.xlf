@@ -1141,6 +1141,20 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="customerInformationEmail" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer/customer-information/customer-information.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerInformationPhone" datatype="html">
+        <source>Phone</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer/customer-information/customer-information.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="blCommonUpdateButtonDefaultText" datatype="html">
         <source>Update</source>
         <context-group purpose="location">
@@ -1384,6 +1398,27 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/item/item-search-select/item-search-select.component.html</context>
           <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="itemInformaitonPrice" datatype="html">
+        <source>Price</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/item/item-information/item-information.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="itemInformaitonISBN" datatype="html">
+        <source>ISBN</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/item/item-information/item-information.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="itemInformaitonTaxRate" datatype="html">
+        <source>Tax rate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/item/item-information/item-information.component.html</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cartListCartIsEmpty" datatype="html">
@@ -2172,6 +2207,55 @@
           <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="customerItemDetailType" datatype="html">
+        <source>Type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerItemDetailDeadline" datatype="html">
+        <source>Deadline</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerItemDetailCustomer" datatype="html">
+        <source>Customer</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerItemDetailHandoutTime" datatype="html">
+        <source>Handout time</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerItemDetailHandoutAt" datatype="html">
+        <source>Handout at</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerItemDetailHandoutBy" datatype="html">
+        <source>Handout by</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerItemDetailDelivered" datatype="html">
+        <source>Delivered</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="customerDetailModalContentEmailNotConfirmed" datatype="html">
         <source>
                         User has not confirmed his or her email
@@ -2350,6 +2434,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/customer/customer-delete/customer-delete.component.html</context>
           <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="customerPermissionTitle" datatype="html">
+        <source>Permission</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer/customer-permission/customer-permission.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="orderDetailCouldNotGet" datatype="html">
@@ -3005,6 +3096,13 @@
           <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="cartListItemDigitalBadge" datatype="html">
+        <source>Digital</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="cartListItemActionRent" datatype="html">
         <source>rent</source>
         <context-group purpose="location">
@@ -3144,6 +3242,48 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context>
           <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemDetailItemInfo" datatype="html">
+        <source>
+				Item info
+			</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-detail/unique-item-detail.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemDetailNotFound" datatype="html">
+        <source>
+				<x id="START_TAG_FA-ICON" ctype="x-fa-icon" equiv-text="&lt;fa-icon&gt;"/><x id="CLOSE_TAG_FA-ICON" ctype="x-fa-icon" equiv-text="&lt;/fa-icon&gt;"/>
+				No unique item found
+			</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-detail/unique-item-detail.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemDetailHistory" datatype="html">
+        <source>History</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-detail/unique-item-customer-item-list/unique-item-customer-item-list.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemInformationCurrentlyNotActive" datatype="html">
+        <source>
+		Not currently active
+	</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-active-information/unique-item-active-information.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="uniqueItemInformationCurrentlyNotActiveInfo" datatype="html">
+        <source>The bl-id is not used by any customers at the moment.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/unique-item/unique-item-active-information/unique-item-active-information.component.html</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="scannerAddedBlids" datatype="html">
