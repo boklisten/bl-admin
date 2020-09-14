@@ -22,11 +22,10 @@
 				>ISBN: {{ cartItem.getISBN() }}</span
 			>
 
-			<span
-				class="badge badge-pill badge-info bl-text-xs"
+			<app-blc-blid
+				[blid]="cartItem.getBLID()"
 				*ngIf="cartItem.getBLID()"
-				>BLID: {{ cartItem.getBLID() }}</span
-			>
+			></app-blc-blid>
 
 			<span
 				class="badge bl-digital-bg text-white bl-text-xs ml-2"

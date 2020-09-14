@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { BlCommonUpdateButtonComponent } from "./bl-common-update-button/bl-common-update-button.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -40,6 +41,7 @@ import { BlcArrowDownEventDirective } from "./blc-key/blc-arrow-down-event.direc
 import { BlcArrowUpEventDirective } from "./blc-key/blc-arrow-up/blc-arrow-up.directive";
 import { BlcEnterEventDirective } from "./blc-key/blc-enter/blc-enter.directive";
 import { BlcClickDirective } from "./blc-click/blc-click.directive";
+import { BlcBlidComponent } from "./blc-blid/blc-blid.component";
 
 library.add(faCircleNotch, faCheckCircle, faExclamation);
 
@@ -52,7 +54,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		NgbTooltipModule,
 		NgxDatatableModule,
 		ReactiveFormsModule,
-		NgbButtonsModule
+		NgbButtonsModule,
+		RouterModule
 	],
 	declarations: [
 		BlCommonUpdateButtonComponent,
@@ -80,7 +83,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcArrowDownEventDirective,
 		BlcArrowUpEventDirective,
 		BlcEnterEventDirective,
-		BlcClickDirective
+		BlcClickDirective,
+		BlcBlidComponent
 	],
 	exports: [
 		BlCommonUpdateButtonComponent,
@@ -107,7 +111,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcArrowDownEventDirective,
 		BlcArrowUpEventDirective,
 		BlcEnterEventDirective,
-		BlcClickDirective
+		BlcClickDirective,
+		BlcBlidComponent
 	]
 })
 export class BlCommonModule {}

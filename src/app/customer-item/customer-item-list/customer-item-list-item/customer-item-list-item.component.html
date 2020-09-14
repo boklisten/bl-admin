@@ -68,12 +68,10 @@
 <div class="row justify-content-between align-item-center mt-2">
 	<div class="col-auto">
 		<small>
-			<span
-				class="badge badge-pill badge-info bl-text-xs mr-2"
+			<app-blc-blid
+				[blid]="customerItem.blid"
 				*ngIf="customerItem.blid"
-				>BLID: {{customerItem.blid}}</span
-			>
-
+			></app-blc-blid>
 			<span
 				class="badge badge-pill badge-secondary bl-text-xs mr-2"
 				*ngIf="!customerItem.blid"

@@ -158,8 +158,8 @@
 					<span i18n="@@orderItemDetailListDelivered">delivered</span>
 				</span>
 			</small>
-			<small class="badge badge-info badge-pill bl-text-xs">
-				<span>BLID: </span><span>{{orderItem.blid}}</span>
+			<small>
+				<app-blc-blid [blid]="orderItem.blid"></app-blc-blid>
 			</small>
 		</div>
 	</div>
