@@ -29,6 +29,7 @@ import { BookingModule } from "../booking/booking.module";
 import { CustomerDeleteComponent } from "./customer-delete/customer-delete.component";
 import { CustomerPermissionComponent } from "./customer-permission/customer-permission.component";
 import { CustomerInformationComponent } from "./customer-information/customer-information.component";
+import { CustomerChangeEmailComponent } from './customer-change-email/customer-change-email.component';
 
 @NgModule({
 	imports: [
@@ -60,7 +61,8 @@ import { CustomerInformationComponent } from "./customer-information/customer-in
 		CustomerDetailSmallComponent,
 		CustomerDeleteComponent,
 		CustomerPermissionComponent,
-		CustomerInformationComponent
+		CustomerInformationComponent,
+		CustomerChangeEmailComponent
 	],
 	exports: [
 		CustomerCurrentComponent,

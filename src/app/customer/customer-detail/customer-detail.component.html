@@ -24,7 +24,7 @@
 									</div>
 									<div
 										class="row mt-2"
-										*ngIf="customerDetail && isAdmin()"
+										*ngIf="customerDetail"
 									>
 										<div class="col-12">
 											<div class="card">
@@ -32,14 +32,27 @@
 													<div
 														class="row justify-content-between"
 													>
-														<div class="col-8">
+														<div class="col-12">
+															<app-customer-change-email
+																[userDetail]="customerDetail"
+																(changed)="onUserDetailEmailChange()"
+																*ngIf="isManager()"
+															></app-customer-change-email>
+														</div>
+														<div
+															class="col-12 mt-2"
+															*ngIf="isAdmin()"
+														>
 															<app-customer-permission
 																[customer]="
 																	customerDetail
 																"
 															></app-customer-permission>
 														</div>
-														<div class="col-4">
+														<div
+															class="col-12 mt-2"
+															*ngIf="isAdmin()"
+														>
 															<app-customer-delete
 																[customer]="
 																	customerDetail
