@@ -52,12 +52,20 @@ export class CustomerDetailComponent implements OnInit, OnDestroy {
 		this.reload();
 	}
 
+	public onUserDetailEmailChange() {
+		this._customerService.reload();
+	}
+
 	public onUserDetailUpdated() {
 		this.customerDetailUpdated = true;
 	}
 
 	public isAdmin() {
 		return this._authService.isAdmin();
+	}
+
+	public isManager() {
+		return this._authService.isManager();
 	}
 
 	private reload() {
