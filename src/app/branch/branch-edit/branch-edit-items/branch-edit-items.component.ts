@@ -7,6 +7,7 @@ import {
 } from "@ng-bootstrap/ng-bootstrap";
 import { BranchItemHandlerService } from "../../branch-item/branch-item-handler.service";
 import { BranchItemService } from "@wizardcoder/bl-connect";
+import { BranchItemStoreService } from "../../branch-item-store/branch-item-store.service";
 
 @Component({
 	selector: "app-branch-edit-items",
@@ -23,7 +24,8 @@ export class BranchEditItemsComponent implements OnInit {
 	constructor(
 		private _modalService: NgbModal,
 		private _branchItemHandlerService: BranchItemHandlerService,
-		private _branchItemService: BranchItemService
+		private _branchItemService: BranchItemService,
+		private _branchItemStoreService: BranchItemStoreService
 	) {
 		this.branchChange = new EventEmitter<Branch>();
 		this.selectedItems = [];
@@ -38,16 +40,30 @@ export class BranchEditItemsComponent implements OnInit {
 			};
 			this.onBranchItemsLiveUpdate();
 		}
+
+		//this.branchItems = this._branchItemStoreService.getBranchItems();
+
+		//this._branchItemService
+		//.getManyByIds(this.branch.branchItems as string[])
+		//.then((branchItems: BranchItem[]) => {
+		//this.branchItems = branchItems;
+		//})
+		//.catch(getBranchItemsError => {
+		//console.log(
+		//"BranchEditItemsComponent: could not get branchItems"
+		//);
+		//});
+		//
+		this.getBranchItems();
+	}
+
+	private getBranchItems() {
 		this._branchItemService
-			.getManyByIds(this.branch.branchItems as string[])
-			.then((branchItems: BranchItem[]) => {
+			.get({ query: "?branch=" + this.branch.id })
+			.then(branchItems => {
 				this.branchItems = branchItems;
 			})
-			.catch(getBranchItemsError => {
-				console.log(
-					"BranchEditItemsComponent: could not get branchItems"
-				);
-			});
+			.catch(() => {});
 	}
 
 	onBranchItemsLiveUpdate() {
@@ -80,9 +96,9 @@ export class BranchEditItemsComponent implements OnInit {
 			});
 	}
 
-	onRemoveItem(index: number) {
-		this._branchItemHandlerService
-			.removeItemFromBranch(this.branchItems[index], this.branch)
+	public onRemoveItem(index: number) {
+		this._branchItemService
+			.remove(this.branchItems[index].id)
 			.then(() => {
 				this.branchItems.splice(index, 1);
 			})

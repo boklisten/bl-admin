@@ -96,17 +96,12 @@ export class BranchItemHandlerService {
 			this._branchService
 				.update(branch.id, { branchItems: branchItemIds })
 				.then((updatedBranch: Branch) => {
-					this._branchItemService
-						.getManyByIds(updatedBranch.branchItems as string[])
-						.then((updatedBranchItems: BranchItem[]) => {
-							resolve(updatedBranchItems);
+					this.getBranchItems(branch.id)
+						.then(branchItems => {
+							resolve(branchItems);
 						})
-						.catch(getBranchItemError => {
-							reject(
-								new Error(
-									"branchItemHandlerService: could not get the updated branchItems"
-								)
-							);
+						.catch(e => {
+							reject(e);
 						});
 				})
 				.catch(updateBranchError => {
@@ -114,6 +109,23 @@ export class BranchItemHandlerService {
 						new Error(
 							"branchItemHandlerService: could not update branch with branchItems" +
 								updateBranchError
+						)
+					);
+				});
+		});
+	}
+
+	private getBranchItems(branchId: string): Promise<BranchItem[]> {
+		return new Promise((resolve, reject) => {
+			this._branchItemService
+				.get({ query: "?branch=" + branchId })
+				.then((updatedBranchItems: BranchItem[]) => {
+					resolve(updatedBranchItems);
+				})
+				.catch(getBranchItemError => {
+					reject(
+						new Error(
+							"branchItemHandlerService: could not get the updated branchItems"
 						)
 					);
 				});
