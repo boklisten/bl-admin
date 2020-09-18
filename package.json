@@ -1,6 +1,6 @@
 {
 	"name": "bl-admin",
-	"version": "1.9.2",
+	"version": "1.9.3",
 	"license": "MIT",
 	"scripts": {
 		"ng": "ng",
