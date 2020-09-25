@@ -1,15 +1,4 @@
 <ul class="list-group" *ngIf="customerItem && item">
-	<li class="list-group-item list-group-item-secondary">{{ item.title }}</li>
-	<li class="list-group-item justify-content-between d-flex">
-		<span i18n="@@customerItemDetailType" class="text-secondary">Type</span>
-		<span>{{ customerItem.type}}</span>
-	</li>
-	<li class="list-group-item justify-content-between d-flex">
-		<span i18n="@@customerItemDetailDeadline" class="text-secondary"
-			>Deadline</span
-		>
-		<span>{{ customerItem.deadline | blDate }}</span>
-	</li>
 	<li class="list-group-item justify-content-between d-flex">
 		<span i18n="@@customerItemDetailCustomer" class="text-secondary"
 			>Customer</span
@@ -22,6 +11,10 @@
 		</span>
 	</li>
 	<li class="list-group-item justify-content-between d-flex">
+		<span i18n="@@customerItemDetailType" class="text-secondary">Type</span>
+		<span>{{ customerItem.type}}</span>
+	</li>
+	<li class="list-group-item justify-content-between d-flex">
 		<span i18n="@@customerItemDetailHandoutTime" class="text-secondary"
 			>Handout time</span
 		>
@@ -29,6 +22,58 @@
 	</li>
 
 	<li class="list-group-item justify-content-between d-flex">
+		<span
+			i18n="@@customerItemDetailFinalized"
+			class="text-secondary"
+			data-toggle="tooltip"
+			data-placement="top"
+			i18n-title="@@customerItemDetailFinalizedTooltip"
+			title="If the customerItem is either canceled, bought out, returned or bought back"
+			>Finalized</span
+		>
+		<fa-icon
+			icon="check-circle"
+			class="text-success mr-2"
+			*ngIf="customerItem.returned || customerItem.cancel || customerItem.buyout || customerItem.buyback"
+		>
+		</fa-icon>
+		<fa-icon
+			icon="times-circle"
+			class="text-danger"
+			*ngIf="!customerItem.returned && !customerItem.cancel && !customerItem.buyout && !customerItem.buyback"
+		>
+		</fa-icon>
+	</li>
+
+	<li
+		class="list-group-item list-group-item-info justify-content-center text-center bl-click"
+		(click)="onShowMore()"
+	>
+		<span *ngIf="!showMore">
+			<span i18n="@@customerItemDetailShowMore">Show more</span>
+			<fa-icon icon="chevron-down" class="ml-2"></fa-icon>
+		</span>
+		<span *ngIf="showMore">
+			<span i18n="@@customerItemDetailShowLess">Show less</span>
+			<fa-icon icon="chevron-up" class="ml-2"></fa-icon>
+		</span>
+	</li>
+
+	<li class="list-group-item justify-content-between d-flex" *ngIf="showMore">
+		<span i18n="@@customerItemDetailTitle" class="text-secondary"
+			>Title</span
+		>
+		<span>{{ item.title }}</span>
+	</li>
+
+	<li class="list-group-item justify-content-between d-flex" *ngIf="showMore">
+		<span i18n="@@customerItemDetailDeadline" class="text-secondary"
+			>Deadline</span
+		>
+		<span>{{ customerItem.deadline | blDate }}</span>
+	</li>
+
+	<li class="list-group-item justify-content-between d-flex" *ngIf="showMore">
 		<span i18n="@@customerItemDetailHandoutAt" class="text-secondary"
 			>Handout at</span
 		>
@@ -37,7 +82,7 @@
 		</span>
 	</li>
 
-	<li class="list-group-item justify-content-between d-flex">
+	<li class="list-group-item justify-content-between d-flex" *ngIf="showMore">
 		<span i18n="@@customerItemDetailHandoutBy" class="text-secondary"
 			>Handout by</span
 		>
@@ -52,21 +97,188 @@
 			}}</span
 		>
 	</li>
-	<li class="list-group-item justify-content-between d-flex">
-		<span i18n="@@customerItemDetailDelivered" class="text-secondary"
-			>Delivered</span
-		>
-		<fa-icon
-			icon="check-circle"
-			class="text-success"
-			*ngIf="customerItem.returned"
-		>
-		</fa-icon>
-		<fa-icon
-			icon="times-circle"
-			class="text-danger"
-			*ngIf="!customerItem.returned"
-		>
-		</fa-icon>
+
+	<li
+		class="list-group-item"
+		*ngIf="showMore && (customerItem.type === 'rent' || customerItem.type === 'loan')"
+	>
+		<ul class="list-group">
+			<li class="list-group-item justify-content-between d-flex">
+				<span i18n="@@customerItemDetailReturned" class="text-secondary"
+					>Returned</span
+				>
+				<span>
+					<fa-icon
+						icon="check-circle"
+						class="text-success mr-2"
+						*ngIf="customerItem.returned"
+					>
+					</fa-icon>
+					<fa-icon
+						icon="times-circle"
+						class="text-danger"
+						*ngIf="!customerItem.returned"
+					>
+					</fa-icon>
+					<span *ngIf="customerItem.returnInfo"
+						>{{customerItem.returnInfo.time | blDate: "timestamp"
+						}}</span
+					>
+				</span>
+			</li>
+			<li
+				class="list-group-item justify-content-between d-flex"
+				*ngIf="customerItem.returned && customerItem.returnInfo"
+			>
+				<span
+					i18n="@@customerItemDetailReturnedBy"
+					class="text-secondary"
+					>Returned by</span
+				>
+				<span
+					>{{customerItem.returnInfo.returnEmployee | customerName |
+					async}}</span
+				>
+			</li>
+			<li
+				class="list-group-item justify-content-between d-flex"
+				*ngIf="customerItem.returned && customerItem.returnInfo"
+			>
+				<span
+					i18n="@@customerItemDetailReturnedAt"
+					class="text-secondary"
+					>Returned at</span
+				>
+				<span
+					>{{customerItem.returnInfo.returnedToId | branchName | async
+					}}</span
+				>
+			</li>
+		</ul>
+	</li>
+
+	<li
+		class="list-group-item"
+		*ngIf="showMore && customerItem.type === 'partly-payment'"
+	>
+		<ul class="list-group">
+			<li class="list-group-item justify-content-between d-flex">
+				<span i18n="@@customerItemDetailBuyback" class="text-secondary"
+					>Buyback</span
+				>
+				<span>
+					<fa-icon
+						icon="check-circle"
+						class="text-success mr-2"
+						*ngIf="customerItem.buyback"
+					>
+					</fa-icon>
+					<fa-icon
+						icon="times-circle"
+						class="text-danger"
+						*ngIf="!customerItem.buyback"
+					>
+					</fa-icon>
+					<span *ngIf="customerItem.buybackInfo"
+						>{{customerItem.buybackInfo.time | blDate: "timestamp"
+						}}</span
+					>
+				</span>
+			</li>
+			<li
+				class="list-group-item justify-content-between d-flex"
+				*ngIf="customerItem.buyback && customerItem.buybackInfo"
+			>
+				<span
+					i18n="@@customerItemDetailReturnedAt"
+					class="text-secondary"
+					>Order</span
+				>
+				<span
+					[routerLink]="'/order/' + customerItem.buybackInfo.order + '/detail'"
+					class="bl-link-black"
+					>{{customerItem.buybackInfo.order}}</span
+				>
+			</li>
+		</ul>
+	</li>
+
+	<li class="list-group-item" *ngIf="showMore && customerItem.buyout">
+		<ul class="list-group">
+			<li class="list-group-item justify-content-between d-flex">
+				<span i18n="@@customerItemDetailBuyout" class="text-secondary"
+					>Buyout</span
+				>
+				<span>
+					<fa-icon icon="check-circle" class="text-success mr-2">
+					</fa-icon>
+					<span *ngIf="customerItem.buyout"
+						>{{customerItem.buyoutInfo.time | blDate: "timestamp"
+						}}</span
+					>
+				</span>
+			</li>
+			<li
+				class="list-group-item justify-content-between d-flex"
+				*ngIf="customerItem.buyout && customerItem.buyoutInfo"
+			>
+				<span
+					i18n="@@customerItemDetailBuyoutOrder"
+					class="text-secondary"
+					>Order</span
+				>
+				<span
+					[routerLink]="'/order/' + customerItem.buyoutInfo.order + '/detail'"
+					class="bl-link-black"
+					>{{customerItem.buyoutInfo.order}}</span
+				>
+			</li>
+		</ul>
+	</li>
+
+	<li class="list-group-item" *ngIf="showMore && customerItem.cancel">
+		<ul class="list-group">
+			<li class="list-group-item justify-content-between d-flex">
+				<span i18n="@@customerItemDetailCancel" class="text-secondary"
+					>Cancel</span
+				>
+				<span>
+					<fa-icon icon="check-circle" class="text-success mr-2">
+					</fa-icon>
+					<span
+						>{{customerItem.cancelInfo.time | blDate: "timestamp"
+						}}</span
+					>
+				</span>
+			</li>
+			<li class="list-group-item justify-content-between d-flex">
+				<span
+					i18n="@@customerItemDetailCancelOrder"
+					class="text-secondary"
+					>Order</span
+				>
+				<span
+					[routerLink]="'/order/' + customerItem.cancelInfo.order + '/detail'"
+					class="bl-link-black"
+					>{{customerItem.cancelInfo.order}}</span
+				>
+			</li>
+		</ul>
+	</li>
+
+	<li class="list-group-item" *ngIf=" showMore && customerItem.orders">
+		<ul class="list-group">
+			<li class="list-group-item text-center">Orders</li>
+			<li
+				class="list-group-item"
+				*ngFor="let orderId of customerItem.orders"
+			>
+				<span
+					[routerLink]="'/order/' + orderId + '/detail'"
+					class="bl-link-black"
+					>{{ orderId }}</span
+				>
+			</li>
+		</ul>
 	</li>
 </ul>

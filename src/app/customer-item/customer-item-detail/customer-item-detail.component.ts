@@ -12,12 +12,15 @@ export class CustomerItemDetailComponent implements OnInit {
 	@Input() customerItem: CustomerItem;
 	@Input() customerItemId: string;
 	public item: Item;
+	public showMore: boolean;
 
 	constructor(
 		private _route: ActivatedRoute,
 		private _customerItemService: CustomerItemService,
 		private _itemService: ItemService
-	) {}
+	) {
+		this.showMore = false;
+	}
 
 	ngOnInit() {
 		if (this.customerItem) {
@@ -36,6 +39,10 @@ export class CustomerItemDetailComponent implements OnInit {
 			}
 		});
        */
+	}
+
+	public onShowMore() {
+		this.showMore = !this.showMore;
 	}
 
 	private getCustomerItem(id: string) {
