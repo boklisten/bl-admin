@@ -1305,45 +1305,103 @@
         
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list.component.html</context><context context-type="linenumber">26</context></context-group></trans-unit><trans-unit id="customerItemDetailType" datatype="html">
         <source>Type</source><target state="final">Type</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
-          <context context-type="linenumber">4</context>
-        </context-group>
-      </trans-unit><trans-unit id="customerItemDetailDeadline" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">14</context></context-group></trans-unit><trans-unit id="customerItemDetailDeadline" datatype="html">
         <source>Deadline</source><target state="final">Deadline</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
-          <context context-type="linenumber">9</context>
-        </context-group>
-      </trans-unit><trans-unit id="customerItemDetailCustomer" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">71</context></context-group></trans-unit><trans-unit id="customerItemDetailCustomer" datatype="html">
         <source>Customer</source><target state="final">Customer</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-      </trans-unit><trans-unit id="customerItemDetailHandoutTime" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit><trans-unit id="customerItemDetailHandoutTime" datatype="html">
         <source>Handout time</source><target state="final">Handout time</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">19</context></context-group></trans-unit><trans-unit id="customerItemDetailFinalized" datatype="html">
+        <source>Finalized</source><target state="final">Finalized</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">32</context>
         </context-group>
-      </trans-unit><trans-unit id="customerItemDetailHandoutAt" datatype="html">
-        <source>Handout at</source><target state="final">Handout at</target>
+      </trans-unit><trans-unit id="customerItemDetailFinalizedTooltip" datatype="html">
+        <source>If the customerItem is either canceled, bought out, returned or bought back</source><target state="final">If the customerItem is either canceled, bought out, returned or bought back</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">31</context>
         </context-group>
-      </trans-unit><trans-unit id="customerItemDetailHandoutBy" datatype="html">
-        <source>Handout by</source><target state="final">Handout by</target>
+      </trans-unit><trans-unit id="customerItemDetailShowMore" datatype="html">
+        <source>Show more</source><target state="final">Show more</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">53</context>
         </context-group>
-      </trans-unit><trans-unit id="customerItemDetailDelivered" datatype="html">
-        <source>Delivered</source><target state="final">Delivered</target>
+      </trans-unit><trans-unit id="customerItemDetailShowLess" datatype="html">
+        <source>Show less</source><target state="final">Show less</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
           <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDetailTitle" datatype="html">
+        <source>Title</source><target state="final">Title</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDetailHandoutAt" datatype="html">
+        <source>Handout at</source><target state="final">Handout at</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">78</context></context-group></trans-unit><trans-unit id="customerItemDetailHandoutBy" datatype="html">
+        <source>Handout by</source><target state="final">Handout by</target>
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">87</context></context-group></trans-unit><trans-unit id="customerItemDetailReturned" datatype="html">
+        <source>Returned</source><target state="final">Returned</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDetailReturnedBy" datatype="html">
+        <source>Returned by</source><target state="final">Returned by</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDetailReturnedAt" datatype="html">
+        <source>Returned at</source><target state="final">Returned at</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">150</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">195</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDetailBuyback" datatype="html">
+        <source>Buyback</source><target state="final">Buyback</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDetailBuyout" datatype="html">
+        <source>Buyout</source><target state="final">Buyout</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">210</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDetailBuyoutOrder" datatype="html">
+        <source>Order</source><target state="final">Order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">228</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDetailCancel" datatype="html">
+        <source>Cancel</source><target state="final">Cancel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">243</context>
+        </context-group>
+      </trans-unit><trans-unit id="customerItemDetailCancelOrder" datatype="html">
+        <source>Order</source><target state="final">Order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context>
+          <context context-type="linenumber">258</context>
         </context-group>
       </trans-unit>
       <trans-unit id="customerDetailModalContentEmailNotConfirmed" datatype="html">
@@ -2077,17 +2135,11 @@
 	</source><target state="final">
 		Not currently active
 	</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/unique-item/unique-item-active-information/unique-item-active-information.component.html</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit><trans-unit id="uniqueItemInformationCurrentlyNotActiveInfo" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-active-information/unique-item-active-information.component.html</context><context context-type="linenumber">27</context></context-group></trans-unit><trans-unit id="uniqueItemInformationCurrentlyNotActiveInfo" datatype="html">
         <source>The bl-id is not used by any customers at the moment.</source><target state="final">The bl-id is not used by any customers at the moment.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/unique-item/unique-item-active-information/unique-item-active-information.component.html</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-      </trans-unit><trans-unit id="scannerAddedBlids" datatype="html">
+        
+      <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-active-information/unique-item-active-information.component.html</context><context context-type="linenumber">32</context></context-group></trans-unit><trans-unit id="scannerAddedBlids" datatype="html">
         <source>Added <x id="INTERPOLATION" equiv-text="{{ successStatus.numberOfBlids }}"/> BLIDs for item "<x id="INTERPOLATION_1" equiv-text="{{
 						successStatus.title
 					}}"/>" to DB
