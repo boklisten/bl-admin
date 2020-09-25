@@ -129,9 +129,9 @@
 			</small>
 		</div>
 
-		<div class="col-auto text-success" *ngIf="orderItem.blid">
+		<div class="col-auto">
 			<small
-				class="bl-link-black mr-2"
+				class="bl-link-black mr-2 text-success"
 				*ngIf="orderItem.info && orderItem.info.customerItem"
 				routerLink="{{
 						'/customerItem/' +
@@ -145,8 +145,8 @@
 				</span>
 			</small>
 			<small
-				class="bl-link-black mr-2"
-				*ngIf="orderItem.customerItem"
+				class="bl-link-black mr-2 text-success"
+				*ngIf="orderItem.customerItem && (!orderItem.info && !orderItem.info.customerItem)"
 				routerLink="{{
 						'/customerItem/' +
 							orderItem.customerItem +
@@ -158,7 +158,7 @@
 					<span i18n="@@orderItemDetailListDelivered">delivered</span>
 				</span>
 			</small>
-			<small>
+			<small *ngIf="orderItem.blid">
 				<app-blc-blid [blid]="orderItem.blid"></app-blc-blid>
 			</small>
 		</div>

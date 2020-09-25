@@ -1,6 +1,8 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 import {
+	faChevronDown,
+	faChevronUp,
 	faFlagCheckered,
 	faArrowCircleDown,
 	faBars,
@@ -79,6 +81,8 @@ import {
 
 export function addIconsToLibrary() {
 	library.add(
+		faChevronUp,
+		faChevronDown,
 		faKeyboard,
 		faFlagCheckered,
 		faArrowCircleDown,
