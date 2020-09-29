@@ -37,7 +37,7 @@
 		"@ng-bootstrap/ng-bootstrap": "^4.0.2",
 		"@swimlane/ngx-datatable": "^13.0.0",
 		"@wizardcoder/bl-connect": "^0.17.3",
-		"@wizardcoder/bl-login": "^1.0.1",
+		"@wizardcoder/bl-login": "^1.1.1",
 		"@wizardcoder/bl-model": "^0.24.1",
 		"@wizardcoder/bl-reporter": "^0.3.5",
 		"bootstrap": "^4.5.0",

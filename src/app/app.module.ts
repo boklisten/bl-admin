@@ -108,7 +108,13 @@ export class AppModule {
 			logoutPath: "/auth/login",
 			userDetailNotValidPath: "/",
 			permissionDeniedPath: "/auth/permission/denied",
-			permissions: ["employee", "manager", "admin", "super"]
+			permissions: ["employee", "manager", "admin", "super"],
+			providers: {
+				local: true,
+				facebook: true,
+				google: true,
+				feide: false
+			}
 		});
 
 		_blConnectConfig.setConfig({ basePath: environment.apiPath });
