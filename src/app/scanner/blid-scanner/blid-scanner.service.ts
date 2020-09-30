@@ -41,7 +41,9 @@ export class BlidScannerService {
 					text: "sjekker om BL-ID er i databasen"
 				});
 				this._uniqueItemService
-					.get({ query: `?blid=${blid}` })
+					.get({
+						query: `?blid=${blid}&blid=${this.invertBlid(blid)}`
+					})
 					.then(uniqueItems => {
 						this.uniqueItem$.next(uniqueItems[0]);
 						this._toasterService.removeId(blid);
@@ -52,5 +54,24 @@ export class BlidScannerService {
 					});
 			}
 		});
+	}
+
+	private invertBlid(blid: string) {
+		let sanitizedString = blid;
+
+		sanitizedString = blid
+			.split("")
+			.map(c => {
+				if (c == c.toUpperCase()) {
+					console.log(c, "is uppercase");
+					return c.toLowerCase();
+				} else {
+					console.log(c, "is lowercase");
+					return c.toUpperCase();
+				}
+			})
+			.join("");
+
+		return sanitizedString;
 	}
 }
