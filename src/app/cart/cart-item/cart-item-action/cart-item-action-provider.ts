@@ -100,7 +100,8 @@ export class CartItemActionProvider {
 			((!this._dateService.isCustomerItemCancelValid(
 				customerItem.handoutInfo.time
 			) &&
-				!this._dateService.isDeadlineExpired(customerItem.deadline)) ||
+				!this._dateService.isDeadlineExpired(customerItem.deadline) &&
+				this._item.buyback) ||
 				this._authService.isAdmin())
 		);
 	}
