@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Item } from "@wizardcoder/bl-model";
-import { UniqueItemService } from "@wizardcoder/bl-connect";
+import { Item } from "@boklisten/bl-model";
+import { UniqueItemService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-scanner",

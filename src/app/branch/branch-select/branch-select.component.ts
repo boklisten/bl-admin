@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Branch } from "@wizardcoder/bl-model";
+import { Branch } from "@boklisten/bl-model";
 import { BranchStoreService } from "../branch-store.service";
 import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 

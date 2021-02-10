@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Item } from "@wizardcoder/bl-model";
+import { Item } from "@boklisten/bl-model";
 import { ItemSearchService } from "../item-search.service";
 import { Subscription } from "rxjs";
 

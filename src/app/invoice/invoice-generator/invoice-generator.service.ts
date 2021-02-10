@@ -5,13 +5,13 @@ import {
 	UserDetail,
 	Invoice,
 	Item
-} from "@wizardcoder/bl-model";
+} from "@boklisten/bl-model";
 import { DateService } from "../../date/date.service";
 import {
 	InvoiceService,
 	UserDetailService,
 	ItemService
-} from "@wizardcoder/bl-connect";
+} from "@boklisten/bl-connect";
 import { CustomerItemHandlerService } from "../../customer-item/customer-item-handler/customer-item-handler.service";
 import { PriceService } from "../../price/price.service";
 

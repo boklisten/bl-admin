@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { InvoiceItem } from "./invoice-create-item-list/invoice-item";
-import { Company, Invoice, Item } from "@wizardcoder/bl-model";
+import { Company, Invoice, Item } from "@boklisten/bl-model";
 import { PriceService } from "../../price/price.service";
-import { InvoiceService } from "@wizardcoder/bl-connect";
+import { InvoiceService } from "@boklisten/bl-connect";
 import * as moment from "moment";
 
 @Injectable({

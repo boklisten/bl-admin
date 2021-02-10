@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { UserDetail } from "@wizardcoder/bl-model";
+import { UserDetail } from "@boklisten/bl-model";
 import { Subject, Observable, ReplaySubject, Subscription } from "rxjs";
 import { CustomerService } from "../customer/customer.service";
 import { BranchStoreService } from "../branch/branch-store.service";

@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Order, UserDetail } from "@wizardcoder/bl-model";
+import { Order, UserDetail } from "@boklisten/bl-model";
 import { CartService } from "../../cart/cart.service";
 import { Router } from "@angular/router";
-import { UserDetailService } from "@wizardcoder/bl-connect";
+import { UserDetailService } from "@boklisten/bl-connect";
 import { CustomerService } from "../../customer/customer.service";
 import { CartItemService } from "../../cart/cart-item/cart-item.service";
 

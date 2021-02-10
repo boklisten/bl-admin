@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { BlError, Order, OrderItem } from "@wizardcoder/bl-model";
-import { OrderService } from "@wizardcoder/bl-connect";
+import { BlError, Order, OrderItem } from "@boklisten/bl-model";
+import { OrderService } from "@boklisten/bl-connect";
 
 @Injectable({
 	providedIn: "root"

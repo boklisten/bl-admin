@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BlcScannerService } from "../../bl-common/blc-scanner/blc-scanner.service";
-import { UniqueItem } from "@wizardcoder/bl-model";
-import { UniqueItemService } from "@wizardcoder/bl-connect";
+import { UniqueItem } from "@boklisten/bl-model";
+import { UniqueItemService } from "@boklisten/bl-connect";
 import { Subscription, Subject } from "rxjs";
 import { CartService } from "../../cart/cart.service";
 import { ToasterService } from "../../toaster/toaster.service";

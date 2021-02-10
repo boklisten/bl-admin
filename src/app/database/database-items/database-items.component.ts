@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ItemService } from "@wizardcoder/bl-connect";
-import { Item } from "@wizardcoder/bl-model";
+import { ItemService } from "@boklisten/bl-connect";
+import { Item } from "@boklisten/bl-model";
 import { DatabaseExcelService } from "../database-excel/database-excel.service";
 import { DateService } from "../../date/date.service";
 import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";

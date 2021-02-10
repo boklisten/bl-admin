@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { UniqueItem, Item } from "@wizardcoder/bl-model";
-import { UniqueItemService } from "@wizardcoder/bl-connect";
+import { UniqueItem, Item } from "@boklisten/bl-model";
+import { UniqueItemService } from "@boklisten/bl-connect";
 
 @Injectable({
 	providedIn: "root"

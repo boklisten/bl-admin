@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {DatabaseReportOrderService} from './database-report-order.service';
 import {DatabaseReportOrderFilter} from './database-report-order-filter';
-import {Order} from '@wizardcoder/bl-model';
+import {Order} from '@boklisten/bl-model';
 import {DatabaseExcelService} from '../../database-excel/database-excel.service';
-import {BranchService} from '@wizardcoder/bl-connect';
+import {BranchService} from '@boklisten/bl-connect';
 import {BranchStoreService} from '../../../branch/branch-store.service';
 
 @Component({

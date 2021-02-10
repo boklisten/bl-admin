@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Branch, OpeningHour } from "@wizardcoder/bl-model";
-import { BranchService, OpeningHourService } from "@wizardcoder/bl-connect";
+import { Branch, OpeningHour } from "@boklisten/bl-model";
+import { BranchService, OpeningHourService } from "@boklisten/bl-connect";
 
 @Injectable()
 export class OpeningHoursHandlerService {

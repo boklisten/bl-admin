@@ -1,7 +1,7 @@
 import { CartItem } from "../cart-item";
 import { Subscribable } from "../../../bl-common/subscribable/subscribable";
 import { PriceInformation } from "../../../price/price-information";
-import { OrderItem, Item, Order } from "@wizardcoder/bl-model";
+import { OrderItem, Item, Order } from "@boklisten/bl-model";
 import { CartItemAction } from "../cart-item-action";
 import { CartItemPriceProvider } from "../cart-item-price/cart-item-price-provider";
 import { CartItemOrderItemProvider } from "../cart-item-order-item/cart-item-order-item-provider";

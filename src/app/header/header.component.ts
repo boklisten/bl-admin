@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Branch, UserPermission } from "@wizardcoder/bl-model";
+import { Branch, UserPermission } from "@boklisten/bl-model";
 import { AuthService } from "../auth/auth.service";
 import { BlcKeyeventDoubleShiftService } from "../bl-common/blc-keyevent/blc-keyevent-double-shift.service";
 

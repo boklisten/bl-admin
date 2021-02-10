@@ -9,7 +9,7 @@ import {
 	OrderFilter,
 	OrderManagerListService
 } from "./order-manager-list.service";
-import { Order } from "@wizardcoder/bl-model";
+import { Order } from "@boklisten/bl-model";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { CustomerService } from "../../customer/customer.service";
 import { timer } from "rxjs/internal/observable/timer";

@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { DatabaseReportOrderFilter } from "./database-report-order-filter";
-import { OrderService, UserDetailService } from "@wizardcoder/bl-connect";
+import { OrderService, UserDetailService } from "@boklisten/bl-connect";
 import moment from "moment-es6";
-import { Order } from "@wizardcoder/bl-model";
+import { Order } from "@boklisten/bl-model";
 import { DatabaseExcelService } from "../../database-excel/database-excel.service";
 
 @Injectable({

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import * as moment from "moment";
-import { Booking } from "@wizardcoder/bl-model";
+import { Booking } from "@boklisten/bl-model";
 import { BranchStoreService } from "../../branch/branch-store.service";
 
 type Time = {

@@ -5,10 +5,10 @@ import {
 	Order,
 	OrderItem,
 	CustomerItemType
-} from "@wizardcoder/bl-model";
+} from "@boklisten/bl-model";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { UserService } from "../../user/user.service";
-import { CustomerItemService } from "@wizardcoder/bl-connect";
+import { CustomerItemService } from "@boklisten/bl-connect";
 import { reject } from "q";
 import { CustomerService } from "../../customer/customer.service";
 import { DateService } from "../../date/date.service";

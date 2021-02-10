@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
-import { AuthLoginService, LoginModule } from "@wizardcoder/bl-login";
+import { AuthLoginService, LoginModule } from "@boklisten/bl-login";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "./home/home.component";
 import { environment } from "../environments/environment";
@@ -28,7 +28,7 @@ import {
 	BlConnectConfigService,
 	BlConnectModule,
 	TokenService
-} from "@wizardcoder/bl-connect";
+} from "@boklisten/bl-connect";
 import { CartModule } from "./cart/cart.module";
 import { CartService } from "./cart/cart.service";
 import { DateService } from "./date/date.service";

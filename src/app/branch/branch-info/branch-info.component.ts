@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {BranchService} from '@wizardcoder/bl-connect';
-import {Branch} from '@wizardcoder/bl-model';
+import {BranchService} from '@boklisten/bl-connect';
+import {Branch} from '@boklisten/bl-model';
 
 @Component({
 	selector: 'app-branch-info',

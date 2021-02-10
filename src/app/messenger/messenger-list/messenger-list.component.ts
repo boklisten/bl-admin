@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { MessageService } from "@wizardcoder/bl-connect";
-import { Message } from "@wizardcoder/bl-model";
+import { MessageService } from "@boklisten/bl-connect";
+import { Message } from "@boklisten/bl-model";
 import { Observable } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { map, startWith } from "rxjs/operators";

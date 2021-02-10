@@ -6,7 +6,7 @@ import {
 	OnDestroy
 } from "@angular/core";
 import { CustomerService } from "../../customer.service";
-import { UserDetail } from "@wizardcoder/bl-model";
+import { UserDetail } from "@boklisten/bl-model";
 import { Subscription } from "rxjs";
 import { CustomerDetailService } from "../customer-detail.service";
 

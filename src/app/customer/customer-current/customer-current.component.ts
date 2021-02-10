@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 
-import { UserDetail } from "@wizardcoder/bl-model";
+import { UserDetail } from "@boklisten/bl-model";
 import { Router } from "@angular/router";
 import { CustomerService } from "../customer.service";
 import { Subscription } from "rxjs";

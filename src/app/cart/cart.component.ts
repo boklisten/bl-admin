@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { UserDetail } from "@wizardcoder/bl-model";
+import { UserDetail } from "@boklisten/bl-model";
 import { CartService } from "./cart.service";
 import { CustomerService } from "../customer/customer.service";
 import { Router, ActivatedRoute } from "@angular/router";

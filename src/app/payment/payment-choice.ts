@@ -1,4 +1,4 @@
-import {PaymentMethod} from '@wizardcoder/bl-model';
+import {PaymentMethod} from '@boklisten/bl-model';
 
 export interface PaymentChoice {
 	type: PaymentMethod;

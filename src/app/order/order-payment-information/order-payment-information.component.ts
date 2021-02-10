@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Order } from "@wizardcoder/bl-model";
+import { Order } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-order-payment-information",

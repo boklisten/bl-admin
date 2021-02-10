@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
-import { UniqueItem } from "@wizardcoder/bl-model";
+import { UniqueItem } from "@boklisten/bl-model";
 import { UniqueItemStoreService } from "../unique-item-store.service";
 
 @Component({

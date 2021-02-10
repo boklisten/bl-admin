@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Delivery } from "@wizardcoder/bl-model";
-import { DeliveryService } from "@wizardcoder/bl-connect";
+import { Delivery } from "@boklisten/bl-model";
+import { DeliveryService } from "@boklisten/bl-connect";
 import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 
 @Component({

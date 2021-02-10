@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, EventEmitter, Output } from "@angular/core";
-import { Branch, BranchItem, Item } from "@wizardcoder/bl-model";
+import { Branch, BranchItem, Item } from "@boklisten/bl-model";
 import {
 	NgbActiveModal,
 	NgbModal,
 	NgbModalRef
 } from "@ng-bootstrap/ng-bootstrap";
 import { BranchItemHandlerService } from "../../branch-item/branch-item-handler.service";
-import { BranchItemService } from "@wizardcoder/bl-connect";
+import { BranchItemService } from "@boklisten/bl-connect";
 import { BranchItemStoreService } from "../../branch-item-store/branch-item-store.service";
 
 @Component({

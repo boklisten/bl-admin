@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { UserDetailService } from "@wizardcoder/bl-connect";
-import { UserDetail } from "@wizardcoder/bl-model";
+import { UserDetailService } from "@boklisten/bl-connect";
+import { UserDetail } from "@boklisten/bl-model";
 
 @Pipe({
 	name: "customerName"

@@ -1,4 +1,4 @@
-import { Order, UserDetail, CustomerItem } from "@wizardcoder/bl-model";
+import { Order, UserDetail, CustomerItem } from "@boklisten/bl-model";
 
 export class Customer {
 	detail: UserDetail;

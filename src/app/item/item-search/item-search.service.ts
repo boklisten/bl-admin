@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { ItemService } from "@wizardcoder/bl-connect";
-import { Item } from "@wizardcoder/bl-model";
+import { ItemService } from "@boklisten/bl-connect";
+import { Item } from "@boklisten/bl-model";
 import { Subject, Subscription, ReplaySubject } from "rxjs";
 import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 import { BlcScannerService } from "../../bl-common/blc-scanner/blc-scanner.service";

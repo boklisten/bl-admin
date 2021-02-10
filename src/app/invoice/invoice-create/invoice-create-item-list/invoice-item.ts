@@ -1,4 +1,4 @@
-import { Item } from "@wizardcoder/bl-model";
+import { Item } from "@boklisten/bl-model";
 
 export interface InvoiceItem {
 	title?: string;

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { CustomerItemListService } from "../../customer-item/customer-item-list/customer-item-list.service";
 import { CartItem } from "../../cart/cart-item/cart-item";
 import { CartItemService } from "../../cart/cart-item/cart-item.service";
-import { UniqueItem, Order } from "@wizardcoder/bl-model";
+import { UniqueItem, Order } from "@boklisten/bl-model";
 import { CartService } from "../../cart/cart.service";
 import { CustomerOrderItemListService } from "../../order/customer-order/customer-order-item-list/customer-order-item-list.service";
 import { ToasterService } from "../../toaster/toaster.service";

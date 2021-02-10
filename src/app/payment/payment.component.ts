@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Order} from '@wizardcoder/bl-model';
+import {Order} from '@boklisten/bl-model';
 import {PaymentChoice} from './payment-choice';
 import {PaymentHandlerService} from './payment-handler/payment-handler.service';
 

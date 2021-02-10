@@ -5,8 +5,8 @@ import {
 	Payment,
 	PaymentMethod,
 	UserDetail
-} from "@wizardcoder/bl-model";
-import { PaymentService } from "@wizardcoder/bl-connect";
+} from "@boklisten/bl-model";
+import { PaymentService } from "@boklisten/bl-connect";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 

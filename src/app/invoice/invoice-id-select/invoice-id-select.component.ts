@@ -7,7 +7,7 @@ import {
 	Output,
 	SimpleChanges
 } from "@angular/core";
-import { Invoice } from "@wizardcoder/bl-model";
+import { Invoice } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-invoice-id-select",

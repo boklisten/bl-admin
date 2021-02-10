@@ -4,8 +4,8 @@ import {
 	OrderPdfService,
 	OrderService,
 	PrintPdfService
-} from "@wizardcoder/bl-connect";
-import { BlApiError, Order } from "@wizardcoder/bl-model";
+} from "@boklisten/bl-connect";
+import { BlApiError, Order } from "@boklisten/bl-model";
 import { CustomerService } from "../../customer/customer.service";
 import moment from "moment-es6";
 import { AuthService } from "../../auth/auth.service";

@@ -5,7 +5,7 @@ import {
 	SimpleChanges,
 	OnChanges
 } from "@angular/core";
-import { CompanyService } from "@wizardcoder/bl-connect";
+import { CompanyService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-database-company-list",

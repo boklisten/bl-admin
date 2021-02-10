@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { UserDetail, UserPermission } from "@wizardcoder/bl-model";
+import { UserDetail, UserPermission } from "@boklisten/bl-model";
 import { AuthService } from "../auth/auth.service";
 
 @Injectable()

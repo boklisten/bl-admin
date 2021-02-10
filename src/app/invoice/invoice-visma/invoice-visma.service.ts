@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { Invoice } from "@wizardcoder/bl-model";
+import { Invoice } from "@boklisten/bl-model";
 import { DateService } from "../../date/date.service";
 import { BlPrintService } from "../../bl-common/bl-print/bl-print.service";
-import { BranchService } from "@wizardcoder/bl-connect";
+import { BranchService } from "@boklisten/bl-connect";
 
 @Injectable({
 	providedIn: "root"

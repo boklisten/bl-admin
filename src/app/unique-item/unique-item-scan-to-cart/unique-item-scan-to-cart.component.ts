@@ -3,10 +3,10 @@ import { BlidScannerService } from "../../scanner/blid-scanner/blid-scanner.serv
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { CartItemService } from "../../cart/cart-item/cart-item.service";
 import { CartService } from "../../cart/cart.service";
-import { UniqueItem, CustomerItem, Item } from "@wizardcoder/bl-model";
+import { UniqueItem, CustomerItem, Item } from "@boklisten/bl-model";
 import { Subscription } from "rxjs";
 import { UniqueItemScanToCartService } from "./unique-item-scan-to-cart.service";
-import { UniqueItemService } from "@wizardcoder/bl-connect";
+import { UniqueItemService } from "@boklisten/bl-connect";
 import { CustomerItemListService } from "../../customer-item/customer-item-list/customer-item-list.service";
 import { AuthService } from "../../auth/auth.service";
 

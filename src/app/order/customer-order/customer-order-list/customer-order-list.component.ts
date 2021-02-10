@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Order, UserDetail } from "@wizardcoder/bl-model";
+import { Order, UserDetail } from "@boklisten/bl-model";
 import { Router } from "@angular/router";
 import { CustomerOrderService } from "../customer-order.service";
 import { Subscription } from "rxjs";

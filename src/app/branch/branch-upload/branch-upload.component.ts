@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Branch} from '@wizardcoder/bl-model';
+import {Branch} from '@boklisten/bl-model';
 import {DatabaseExcelService} from '../../database/database-excel/database-excel.service';
 
 @Component({

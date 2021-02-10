@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { MessengerSendModalComponent } from "../messenger-send-modal/messenger-send-modal.component";
-import { UserDetailService } from "@wizardcoder/bl-connect";
+import { UserDetailService } from "@boklisten/bl-connect";
 import { MessengerGenericService } from "./messenger-generic.service";
 import { MessageSettings } from "../message-settings";
 

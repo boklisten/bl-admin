@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { UniqueItemStoreService } from "../../../unique-item/unique-item-store.service";
-import { UniqueItem } from "@wizardcoder/bl-model";
+import { UniqueItem } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-blid-scanner-list-item",

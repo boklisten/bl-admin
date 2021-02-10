@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Item} from '@wizardcoder/bl-model';
+import {Item} from '@boklisten/bl-model';
 
 @Component({
 	selector: 'app-item-detail-card',

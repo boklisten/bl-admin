@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { CartService } from "../../cart/cart.service";
 import { BlcScannerService } from "../../bl-common/blc-scanner/blc-scanner.service";
-import { Item, UniqueItem } from "@wizardcoder/bl-model";
+import { Item, UniqueItem } from "@boklisten/bl-model";
 import { CartItem } from "../../cart/cart-item/cart-item";
 
 @Component({

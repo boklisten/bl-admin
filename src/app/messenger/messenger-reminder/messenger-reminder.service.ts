@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { TextBlock, CustomerItemType, Message } from "@wizardcoder/bl-model";
-import { MessageService } from "@wizardcoder/bl-connect";
+import { TextBlock, CustomerItemType, Message } from "@boklisten/bl-model";
+import { MessageService } from "@boklisten/bl-connect";
 import { Observable, Subject } from "rxjs";
 import { DateService } from "../../date/date.service";
 

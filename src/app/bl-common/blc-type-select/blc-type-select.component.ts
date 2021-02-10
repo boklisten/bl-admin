@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { CustomerItemType } from "@wizardcoder/bl-model";
+import { CustomerItemType } from "@boklisten/bl-model";
 
 type SelectableType = CustomerItemType | "all";
 @Component({

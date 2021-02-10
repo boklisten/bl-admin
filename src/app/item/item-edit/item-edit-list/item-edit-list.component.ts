@@ -7,8 +7,8 @@ import {
 	SimpleChanges,
 	ViewChild
 } from "@angular/core";
-import { Item } from "@wizardcoder/bl-model";
-import { ItemService } from "@wizardcoder/bl-connect";
+import { Item } from "@boklisten/bl-model";
+import { ItemService } from "@boklisten/bl-connect";
 import { selectRows } from "@swimlane/ngx-datatable/release/utils";
 import { DatabaseExcelService } from "../../../database/database-excel/database-excel.service";
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { CustomerItemService, InvoiceService } from "@wizardcoder/bl-connect";
+import { CustomerItemService, InvoiceService } from "@boklisten/bl-connect";
 import { InvoiceGeneratorService } from "./invoice-generator.service";
-import { Invoice, CustomerItemType } from "@wizardcoder/bl-model";
+import { Invoice, CustomerItemType } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-invoice-generator",

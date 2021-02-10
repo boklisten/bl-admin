@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ActivatedRoute, ParamMap, Params } from "@angular/router";
-import { UserDetailService } from "@wizardcoder/bl-connect";
-import { BlApiError, UserDetail } from "@wizardcoder/bl-model";
+import { UserDetailService } from "@boklisten/bl-connect";
+import { BlApiError, UserDetail } from "@boklisten/bl-model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { CustomerDetailModalComponent } from "./customer-detail-modal/customer-detail-modal.component";
 import { CustomerDetailService } from "./customer-detail.service";

@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { CartService } from "../../cart/cart.service";
-import { BlApiError, Order, OrderItem } from "@wizardcoder/bl-model";
+import { BlApiError, Order, OrderItem } from "@boklisten/bl-model";
 import { CartItem } from "../../cart/cart-item/cart-item";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { CustomerService } from "../../customer/customer.service";
 import { UserService } from "../../user/user.service";
-import { OrderService } from "@wizardcoder/bl-connect";
+import { OrderService } from "@boklisten/bl-connect";
 import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 
 @Injectable()

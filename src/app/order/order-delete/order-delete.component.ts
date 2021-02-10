@@ -6,9 +6,9 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { Order } from "@wizardcoder/bl-model";
+import { Order } from "@boklisten/bl-model";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
-import { OrderService } from "@wizardcoder/bl-connect";
+import { OrderService } from "@boklisten/bl-connect";
 import { UserService } from "../../user/user.service";
 
 @Component({

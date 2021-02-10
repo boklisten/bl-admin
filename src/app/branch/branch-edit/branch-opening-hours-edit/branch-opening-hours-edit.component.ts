@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Branch, OpeningHour } from "@wizardcoder/bl-model";
-import { OpeningHourService } from "@wizardcoder/bl-connect";
+import { Branch, OpeningHour } from "@boklisten/bl-model";
+import { OpeningHourService } from "@boklisten/bl-connect";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { OpeningHoursHandlerService } from "./opening-hours-handler.service";
 import * as moment from "moment";

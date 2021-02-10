@@ -3,8 +3,8 @@ import { DateService } from "../../date/date.service";
 import {
 	CustomerItemService,
 	UserDetailService
-} from "@wizardcoder/bl-connect";
-import { CustomerItem } from "@wizardcoder/bl-model";
+} from "@boklisten/bl-connect";
+import { CustomerItem } from "@boklisten/bl-model";
 
 @Injectable({
 	providedIn: "root"

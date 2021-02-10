@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Booking, BlApiNotFoundError } from "@wizardcoder/bl-model";
-import { BookingService } from "@wizardcoder/bl-connect";
+import { Booking, BlApiNotFoundError } from "@boklisten/bl-model";
+import { BookingService } from "@boklisten/bl-connect";
 import { FormBuilder } from "@angular/forms";
 import { BookingCreateService } from "./booking-create.service";
 import { DateService } from "../../date/date.service";

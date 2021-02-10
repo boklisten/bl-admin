@@ -6,7 +6,7 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { OrderItem } from "@wizardcoder/bl-model";
+import { OrderItem } from "@boklisten/bl-model";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({

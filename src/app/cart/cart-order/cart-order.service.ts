@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Order } from "@wizardcoder/bl-model";
+import { Order } from "@boklisten/bl-model";
 import { CartService } from "../cart.service";
 import { OrderGeneratorService } from "../../order/order-generator/order-generator.service";
 

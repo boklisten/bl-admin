@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, EventEmitter, Output } from "@angular/core";
-import { OrderItem } from "@wizardcoder/bl-model";
+import { OrderItem } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-order-item-detail-list",

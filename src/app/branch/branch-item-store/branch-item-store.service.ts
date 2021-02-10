@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BranchStoreService } from "../branch-store.service";
-import { BranchItemService } from "@wizardcoder/bl-connect";
-import { BranchItem } from "@wizardcoder/bl-model";
+import { BranchItemService } from "@boklisten/bl-connect";
+import { BranchItem } from "@boklisten/bl-model";
 import { Subject, ReplaySubject, Subscription } from "rxjs";
 
 @Injectable({

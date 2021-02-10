@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CustomerDetailService } from "../customer-detail.service";
-import { UserDetail } from "@wizardcoder/bl-model";
+import { UserDetail } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-customer-detail-popover",

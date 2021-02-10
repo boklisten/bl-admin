@@ -18,7 +18,7 @@ import {
 	OrderDownloadComponent,
 	PaymentDownloadComponent,
 	CustomerItemDownloadComponent
-} from "@wizardcoder/bl-reporter";
+} from "@boklisten/bl-reporter";
 import { DatabaseCompaniesComponent } from "./database-companies/database-companies.component";
 import { DatabaseCompanyAddComponent } from "./database-companies/database-company-add/database-company-add.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";

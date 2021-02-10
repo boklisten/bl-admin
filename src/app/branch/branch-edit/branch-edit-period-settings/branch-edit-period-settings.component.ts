@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Branch } from "@wizardcoder/bl-model";
-import { BranchService } from "@wizardcoder/bl-connect";
+import { Branch } from "@boklisten/bl-model";
+import { BranchService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-branch-edit-price-info",

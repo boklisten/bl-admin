@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Branch} from '@wizardcoder/bl-model';
-import {BranchService} from '@wizardcoder/bl-connect';
+import {Branch} from '@boklisten/bl-model';
+import {BranchService} from '@boklisten/bl-connect';
 import {DatabaseExcelService} from '../../database/database-excel/database-excel.service';
 
 @Component({

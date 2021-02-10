@@ -1,4 +1,4 @@
-import { Period } from "@wizardcoder/bl-model";
+import { Period } from "@boklisten/bl-model";
 
 export interface CartItemAction {
 	action: string;

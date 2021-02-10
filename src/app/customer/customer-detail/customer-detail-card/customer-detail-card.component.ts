@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { UserDetail } from "@wizardcoder/bl-model";
+import { UserDetail } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-customer-detail-card",

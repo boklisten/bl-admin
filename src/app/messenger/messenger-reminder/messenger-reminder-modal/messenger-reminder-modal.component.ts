@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { MessengerReminderService } from "../messenger-reminder.service";
-import { TextBlock, CustomerItemType } from "@wizardcoder/bl-model";
+import { TextBlock, CustomerItemType } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-messenger-reminder-modal",

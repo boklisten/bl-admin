@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
-import { Delivery, UserDetail } from "@wizardcoder/bl-model";
-import { DeliveryService } from "@wizardcoder/bl-connect";
+import { Delivery, UserDetail } from "@boklisten/bl-model";
+import { DeliveryService } from "@boklisten/bl-connect";
 import { CustomerService } from "../../customer/customer.service";
 import { BranchStoreService } from "../../branch/branch-store.service";
 

@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { OrderHandlerService } from "../../order/order-handler/order-handler.service";
-import { Delivery, Order } from "@wizardcoder/bl-model";
+import { Delivery, Order } from "@boklisten/bl-model";
 import { CartService } from "../cart.service";
-import { DeliveryService } from "@wizardcoder/bl-connect";
+import { DeliveryService } from "@boklisten/bl-connect";
 
 @Injectable()
 export class CartConfirmService {

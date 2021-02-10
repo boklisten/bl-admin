@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
-import {ItemService} from '@wizardcoder/bl-connect';
-import {BlApiError, Item} from '@wizardcoder/bl-model';
+import {ItemService} from '@boklisten/bl-connect';
+import {BlApiError, Item} from '@boklisten/bl-model';
 
 @Component({
 	selector: 'app-item-detail',

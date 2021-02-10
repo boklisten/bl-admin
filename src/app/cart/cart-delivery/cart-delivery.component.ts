@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { Delivery, Order, UserDetail } from "@wizardcoder/bl-model";
-import { DeliveryService } from "@wizardcoder/bl-connect";
+import { Delivery, Order, UserDetail } from "@boklisten/bl-model";
+import { DeliveryService } from "@boklisten/bl-connect";
 import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
 @Component({
 	selector: "app-cart-delivery",

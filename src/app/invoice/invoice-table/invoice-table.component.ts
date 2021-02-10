@@ -7,7 +7,7 @@ import {
 	EventEmitter,
 	OnChanges
 } from "@angular/core";
-import { Invoice } from "@wizardcoder/bl-model";
+import { Invoice } from "@boklisten/bl-model";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";

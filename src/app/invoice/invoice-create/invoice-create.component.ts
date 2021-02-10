@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { InvoiceItem } from "./invoice-create-item-list/invoice-item";
-import { Company } from "@wizardcoder/bl-model";
+import { Company } from "@boklisten/bl-model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { InvoiceCreateService } from "./invoice-create.service";
 import { Router } from "@angular/router";

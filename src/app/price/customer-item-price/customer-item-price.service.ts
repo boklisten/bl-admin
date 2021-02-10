@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { CustomerItem, Item } from "@wizardcoder/bl-model";
-import { Period } from "@wizardcoder/bl-model/dist/period/period";
+import { CustomerItem, Item } from "@boklisten/bl-model";
+import { Period } from "@boklisten/bl-model/dist/period/period";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { PriceService } from "../price.service";
-import { OrderService } from "@wizardcoder/bl-connect";
+import { OrderService } from "@boklisten/bl-connect";
 import { OrderHelperService } from "../../order/order-helper/order-helper.service";
 import { PriceInformation } from "../price-information";
 

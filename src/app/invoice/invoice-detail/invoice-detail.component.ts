@@ -5,8 +5,8 @@ import {
 	OnChanges,
 	SimpleChanges
 } from "@angular/core";
-import { Invoice } from "@wizardcoder/bl-model";
-import { InvoiceService } from "@wizardcoder/bl-connect";
+import { Invoice } from "@boklisten/bl-model";
+import { InvoiceService } from "@boklisten/bl-connect";
 import { ActivatedRoute, Params } from "@angular/router";
 
 @Component({

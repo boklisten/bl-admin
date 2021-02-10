@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { CustomerItem, Item, UniqueItem } from "@wizardcoder/bl-model";
+import { CustomerItem, Item, UniqueItem } from "@boklisten/bl-model";
 import { CustomerService } from "../../customer/customer.service";
-import { CustomerItemService, ItemService } from "@wizardcoder/bl-connect";
+import { CustomerItemService, ItemService } from "@boklisten/bl-connect";
 import { ReplaySubject, Subscription, Subject } from "rxjs";
 
 type CustomerItemWithItem = {

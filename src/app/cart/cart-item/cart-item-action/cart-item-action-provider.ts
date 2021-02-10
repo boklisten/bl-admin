@@ -1,4 +1,4 @@
-import { Item, OrderItem, CustomerItem } from "@wizardcoder/bl-model";
+import { Item, OrderItem, CustomerItem } from "@boklisten/bl-model";
 import { CartItemAction } from "../cart-item-action";
 import { BranchItemHelperService } from "../../../branch/branch-item-helper/branch-item-helper.service";
 import { BranchHelperService } from "../../../branch/branch-helper/branch-helper.service";

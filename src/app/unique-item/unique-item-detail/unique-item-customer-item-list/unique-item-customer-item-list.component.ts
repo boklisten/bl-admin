@@ -5,8 +5,8 @@ import {
 	SimpleChanges,
 	OnChanges
 } from "@angular/core";
-import { CustomerItem } from "@wizardcoder/bl-model";
-import { CustomerItemService } from "@wizardcoder/bl-connect";
+import { CustomerItem } from "@boklisten/bl-model";
+import { CustomerItemService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-unique-item-customer-item-list",

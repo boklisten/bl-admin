@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { CartService } from "../cart.service";
 import { CustomerService } from "../../customer/customer.service";
 import { CartConfirmService } from "./cart-confirm.service";
-import { Delivery, Order } from "@wizardcoder/bl-model";
+import { Delivery, Order } from "@boklisten/bl-model";
 import { CartOrderService } from "../cart-order/cart-order.service";
 
 @Component({

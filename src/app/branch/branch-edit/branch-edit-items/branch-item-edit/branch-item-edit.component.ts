@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { BranchItem, Item } from "@wizardcoder/bl-model";
-import { BranchItemService, ItemService } from "@wizardcoder/bl-connect";
+import { BranchItem, Item } from "@boklisten/bl-model";
+import { BranchItemService, ItemService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-branch-item-edit",

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { BranchItemStoreService } from "../../branch/branch-item-store/branch-item-store.service";
 import { CustomerService } from "../../customer/customer.service";
 import { CustomerOrderService } from "../../order/customer-order/customer-order.service";
-import { Item } from "@wizardcoder/bl-model";
+import { Item } from "@boklisten/bl-model";
 
 @Injectable({
 	providedIn: "root"

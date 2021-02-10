@@ -1,7 +1,7 @@
 import { PriceInformation } from "../../../price/price-information";
 import { CartItemAction } from "../cart-item-action";
 import { ItemPriceService } from "../../../price/item-price/item-price.service";
-import { Item, OrderItem, Order, CustomerItem } from "@wizardcoder/bl-model";
+import { Item, OrderItem, Order, CustomerItem } from "@boklisten/bl-model";
 import { OrderItemPriceService } from "../../../price/order-item-price/order-item-price.service";
 import { CustomerItemPriceService } from "../../../price/customer-item-price/customer-item-price.service";
 import { PriceService } from "../../../price/price.service";

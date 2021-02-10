@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { BookingService } from "@wizardcoder/bl-connect";
-import { Booking } from "@wizardcoder/bl-model";
+import { BookingService } from "@boklisten/bl-connect";
+import { Booking } from "@boklisten/bl-model";
 import * as moment from "moment";
 import { DateService } from "../../date/date.service";
 import { BranchStoreService } from "../../branch/branch-store.service";

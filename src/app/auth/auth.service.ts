@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { UserPermission } from "@wizardcoder/bl-model";
-import { TokenService } from "@wizardcoder/bl-connect";
+import { UserPermission } from "@boklisten/bl-model";
+import { TokenService } from "@boklisten/bl-connect";
 import { Router } from "@angular/router";
 import { Observable, Subject } from "rxjs";
-import { AuthLoginService } from "@wizardcoder/bl-login";
+import { AuthLoginService } from "@boklisten/bl-login";
 
 @Injectable()
 export class AuthService {

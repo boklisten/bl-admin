@@ -3,9 +3,9 @@ import {TestBed, inject} from '@angular/core/testing';
 import {AuthService} from './auth.service';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/internal/Observable';
-import {TokenService} from '@wizardcoder/bl-connect';
+import {TokenService} from '@boklisten/bl-connect';
 import {Router} from '@angular/router';
-import {AuthLoginService} from '@wizardcoder/bl-login';
+import {AuthLoginService} from '@boklisten/bl-login';
 
 @Injectable()
 class TokenStubService {

@@ -5,8 +5,8 @@ import {
 	OnInit,
 	SimpleChanges
 } from "@angular/core";
-import { BlApiError, Delivery, Order, UserDetail } from "@wizardcoder/bl-model";
-import { DeliveryService, UserDetailService } from "@wizardcoder/bl-connect";
+import { BlApiError, Delivery, Order, UserDetail } from "@boklisten/bl-model";
+import { DeliveryService, UserDetailService } from "@boklisten/bl-connect";
 import { CustomerService } from "../../../customer/customer.service";
 
 @Component({

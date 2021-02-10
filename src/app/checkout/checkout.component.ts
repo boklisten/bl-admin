@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { Order, Delivery } from "@wizardcoder/bl-model";
+import { Order, Delivery } from "@boklisten/bl-model";
 import { CartOrderService } from "../cart/cart-order/cart-order.service";
 import { CheckoutService } from "./checkout.service";
 import { CartDeliveryService } from "../cart/cart-delivery/cart-delivery.service";

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Order } from "@wizardcoder/bl-model";
+import { Order } from "@boklisten/bl-model";
 import { CustomerService } from "../customer/customer.service";
 import { CartService } from "../cart/cart.service";
 import { Subscription } from "rxjs";

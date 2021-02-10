@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {UserDetail} from '@wizardcoder/bl-model';
+import {UserDetail} from '@boklisten/bl-model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserDetailService} from '@wizardcoder/bl-connect';
+import {UserDetailService} from '@boklisten/bl-connect';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CustomerDetailModalContentComponent} from './customer-detail-modal-content/customer-detail-modal-content.component';
 import {CustomerDetailService} from '../customer-detail.service';

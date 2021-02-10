@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { UserDetail } from "@wizardcoder/bl-model";
-import { UserDetailService } from "@wizardcoder/bl-connect";
+import { UserDetail } from "@boklisten/bl-model";
+import { UserDetailService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-customer-information",

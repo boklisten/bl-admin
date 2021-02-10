@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { OrderItem } from "@wizardcoder/bl-model";
+import { OrderItem } from "@boklisten/bl-model";
 import { UserService } from "../../../user/user.service";
 
 @Component({

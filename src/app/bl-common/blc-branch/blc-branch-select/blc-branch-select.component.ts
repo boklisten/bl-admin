@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { BranchService } from "@wizardcoder/bl-connect";
-import { Branch } from "@wizardcoder/bl-model";
+import { BranchService } from "@boklisten/bl-connect";
+import { Branch } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-blc-branch-select",

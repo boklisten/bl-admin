@@ -1,7 +1,7 @@
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 import {Injectable} from '@angular/core';
-import {TokenService} from '@wizardcoder/bl-connect';
+import {TokenService} from '@boklisten/bl-connect';
 
 @Injectable()
 export class UserGuardService {

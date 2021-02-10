@@ -1,4 +1,4 @@
-import { OrderItem } from "@wizardcoder/bl-model";
+import { OrderItem } from "@boklisten/bl-model";
 import { CartItem } from "../cart-item";
 import { PriceInformation } from "../../../price/price-information";
 

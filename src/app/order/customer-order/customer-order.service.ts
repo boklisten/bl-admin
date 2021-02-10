@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Order, OrderItem, Payment, UserDetail } from "@wizardcoder/bl-model";
-import { OrderService, PaymentService } from "@wizardcoder/bl-connect";
+import { Order, OrderItem, Payment, UserDetail } from "@boklisten/bl-model";
+import { OrderService, PaymentService } from "@boklisten/bl-connect";
 import { Subject, Subscription, ReplaySubject } from "rxjs";
 import { CustomerService } from "../../customer/customer.service";
 import { PaymentHelperService } from "../../payment/payment-helper/payment-helper.service";

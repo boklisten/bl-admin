@@ -6,7 +6,7 @@ import {
 	OnDestroy
 } from "@angular/core";
 import { CustomerSearchService } from "../customer-search.service";
-import { UserDetail } from "@wizardcoder/bl-model";
+import { UserDetail } from "@boklisten/bl-model";
 import { Router } from "@angular/router";
 import { CustomerService } from "../../customer.service";
 import { BlcArrowUpService } from "../../../bl-common/blc-key/blc-arrow-up/blc-arrow-up.service";

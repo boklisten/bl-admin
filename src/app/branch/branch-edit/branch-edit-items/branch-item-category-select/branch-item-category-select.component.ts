@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BranchItem} from '@wizardcoder/bl-model';
+import {BranchItem} from '@boklisten/bl-model';
 import {BranchItemCategorySelectService} from './branch-item-category-select.service';
-import {BranchItemService} from '@wizardcoder/bl-connect';
+import {BranchItemService} from '@boklisten/bl-connect';
 
 @Component({
 	selector: 'app-branch-item-category-select',

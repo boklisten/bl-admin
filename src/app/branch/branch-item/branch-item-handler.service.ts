@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Branch, BranchItem, Item } from "@wizardcoder/bl-model";
-import { BranchItemService, BranchService } from "@wizardcoder/bl-connect";
+import { Branch, BranchItem, Item } from "@boklisten/bl-model";
+import { BranchItemService, BranchService } from "@boklisten/bl-connect";
 
 @Injectable()
 export class BranchItemHandlerService {

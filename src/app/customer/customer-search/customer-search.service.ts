@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { UserDetailService } from "@wizardcoder/bl-connect";
+import { UserDetailService } from "@boklisten/bl-connect";
 import { Subject, Observable, ReplaySubject, Subscription } from "rxjs";
-import { BlApiError, UserDetail } from "@wizardcoder/bl-model";
+import { BlApiError, UserDetail } from "@boklisten/bl-model";
 import { StorageService } from "../../storage/storage.service";
 import {
 	debounceTime,

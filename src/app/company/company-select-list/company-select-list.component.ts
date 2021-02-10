@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
-import { Company } from "@wizardcoder/bl-model";
-import { CompanyService } from "@wizardcoder/bl-connect";
+import { Company } from "@boklisten/bl-model";
+import { CompanyService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-company-select-list",

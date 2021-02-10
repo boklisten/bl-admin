@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { InvoiceService } from "@wizardcoder/bl-connect";
-import { Invoice } from "@wizardcoder/bl-model";
+import { InvoiceService } from "@boklisten/bl-connect";
+import { Invoice } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-invoice-view",

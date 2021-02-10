@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DatabaseExcelService} from '../../database/database-excel/database-excel.service';
-import {BranchService, ItemService} from '@wizardcoder/bl-connect';
-import {Branch, Item} from '@wizardcoder/bl-model';
+import {BranchService, ItemService} from '@boklisten/bl-connect';
+import {Branch, Item} from '@boklisten/bl-model';
 
 @Component({
 	selector: 'app-item-upload',

@@ -6,10 +6,10 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { UserDetail } from "@wizardcoder/bl-model";
+import { UserDetail } from "@boklisten/bl-model";
 import { UserService } from "../../user/user.service";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
-import { UserDetailService } from "@wizardcoder/bl-connect";
+import { UserDetailService } from "@boklisten/bl-connect";
 import { ToasterService } from "../../toaster/toaster.service";
 
 @Component({

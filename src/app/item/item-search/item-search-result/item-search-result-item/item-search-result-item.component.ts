@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Item, CustomerItem, Period } from "@wizardcoder/bl-model";
+import { Item, CustomerItem, Period } from "@boklisten/bl-model";
 import { BranchItemStoreService } from "../../../../branch/branch-item-store/branch-item-store.service";
 import { CustomerService } from "../../../../customer/customer.service";
 import { BranchStoreService } from "../../../../branch/branch-store.service";

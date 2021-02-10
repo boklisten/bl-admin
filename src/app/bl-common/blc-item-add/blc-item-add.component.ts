@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy, ViewChild } from "@angular/core";
-import { CustomerItem, Item, Order, OrderItem } from "@wizardcoder/bl-model";
+import { CustomerItem, Item, Order, OrderItem } from "@boklisten/bl-model";
 import { CartService } from "../../cart/cart.service";
 import { BranchItemStoreService } from "../../branch/branch-item-store/branch-item-store.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { UserDetail, UserPermission } from "@wizardcoder/bl-model";
+import { UserDetail, UserPermission } from "@boklisten/bl-model";
 import { Router, RouterEvent, ActivatedRoute } from "@angular/router";
 import { CustomerService } from "../customer/customer.service";
 import { UserService } from "../user/user.service";

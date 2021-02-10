@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { MessageService } from "@wizardcoder/bl-connect";
-import { Message } from "@wizardcoder/bl-model";
+import { MessageService } from "@boklisten/bl-connect";
+import { Message } from "@boklisten/bl-model";
 import { Observable, Subject } from "rxjs";
 import { BranchCustomerService } from "../../branch/branch-customer/branch-customer.service";
 

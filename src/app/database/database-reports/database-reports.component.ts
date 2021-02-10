@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { BranchStoreService } from "../../branch/branch-store.service";
-import { Branch } from "@wizardcoder/bl-model";
+import { Branch } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-database-reports",

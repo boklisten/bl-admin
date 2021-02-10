@@ -5,8 +5,8 @@ import {
 	SimpleChanges,
 	OnChanges
 } from "@angular/core";
-import { Item } from "@wizardcoder/bl-model";
-import { ItemService } from "@wizardcoder/bl-connect";
+import { Item } from "@boklisten/bl-model";
+import { ItemService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-item-information",

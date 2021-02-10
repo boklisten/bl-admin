@@ -3,7 +3,7 @@ import { BlidScannerService } from "../../scanner/blid-scanner/blid-scanner.serv
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { CartItemService } from "../../cart/cart-item/cart-item.service";
 import { CartService } from "../../cart/cart.service";
-import { UniqueItem, Order } from "@wizardcoder/bl-model";
+import { UniqueItem, Order } from "@boklisten/bl-model";
 import { Subscription } from "rxjs";
 import { UniqueItemScanToCartService } from "../unique-item-scan-to-cart/unique-item-scan-to-cart.service";
 

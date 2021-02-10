@@ -5,11 +5,11 @@ import {
 	SimpleChanges,
 	OnChanges
 } from "@angular/core";
-import { UniqueItem, CustomerItem } from "@wizardcoder/bl-model";
+import { UniqueItem, CustomerItem } from "@boklisten/bl-model";
 import {
 	UniqueItemService,
 	CustomerItemService
-} from "@wizardcoder/bl-connect";
+} from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-unique-item-active-information",

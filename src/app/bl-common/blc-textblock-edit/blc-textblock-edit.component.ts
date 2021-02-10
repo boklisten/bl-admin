@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TextBlock } from "@wizardcoder/bl-model";
+import { TextBlock } from "@boklisten/bl-model";
 
 
 @Component({

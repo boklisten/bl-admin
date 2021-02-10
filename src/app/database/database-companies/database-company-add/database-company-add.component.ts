@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { CompanyService } from "@wizardcoder/bl-connect";
-import { Company } from "@wizardcoder/bl-model";
+import { CompanyService } from "@boklisten/bl-connect";
+import { Company } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-database-company-add",

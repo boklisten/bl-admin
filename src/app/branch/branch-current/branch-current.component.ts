@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from "@angular/core";
 import { BranchStoreService } from "../branch-store.service";
-import { Branch, UserPermission } from "@wizardcoder/bl-model";
+import { Branch, UserPermission } from "@boklisten/bl-model";
 
 import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 

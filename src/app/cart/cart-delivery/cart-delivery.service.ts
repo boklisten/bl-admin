@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Delivery } from "@wizardcoder/bl-model";
-import { DeliveryService } from "@wizardcoder/bl-connect";
+import { Delivery } from "@boklisten/bl-model";
+import { DeliveryService } from "@boklisten/bl-connect";
 import { CartService } from "../cart.service";
 
 @Injectable({

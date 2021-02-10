@@ -4,8 +4,8 @@ import {
 	UserDetail,
 	CustomerItem,
 	UserPermission
-} from "@wizardcoder/bl-model";
-import { UserDetailService, StorageService } from "@wizardcoder/bl-connect";
+} from "@boklisten/bl-model";
+import { UserDetailService, StorageService } from "@boklisten/bl-connect";
 import { BlcHotkeyService } from "../bl-common/blc-hotkey/blc-hotkey.service";
 
 @Injectable({ providedIn: "root" })

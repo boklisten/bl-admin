@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { Item } from "@wizardcoder/bl-model";
+import { Item } from "@boklisten/bl-model";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { ItemPriceService } from "../item-price/item-price.service";
 

@@ -4,7 +4,7 @@ import {
 	Order,
 	OrderItem,
 	Period
-} from "@wizardcoder/bl-model";
+} from "@boklisten/bl-model";
 import { CartItemAction } from "./cart-item-action";
 import { PriceInformation } from "../../price/price-information";
 import { Subscribable } from "../../bl-common/subscribable/subscribable";

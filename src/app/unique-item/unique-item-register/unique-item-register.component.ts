@@ -7,7 +7,7 @@ import {
 	OnChanges,
 	SimpleChanges
 } from "@angular/core";
-import { UniqueItem, Item } from "@wizardcoder/bl-model";
+import { UniqueItem, Item } from "@boklisten/bl-model";
 import { UniqueItemStoreService } from "../unique-item-store.service";
 
 @Component({

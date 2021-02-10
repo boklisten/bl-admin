@@ -1,5 +1,5 @@
 import { CartItem } from "../cart-item";
-import { Item, OrderItem } from "@wizardcoder/bl-model";
+import { Item, OrderItem } from "@boklisten/bl-model";
 import { CartItemAction } from "../cart-item-action";
 import { PriceInformation } from "../../../price/price-information";
 import { Subscribable } from "../../../bl-common/subscribable/subscribable";

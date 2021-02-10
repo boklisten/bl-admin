@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Item, Order, OrderItem, UserDetail } from "@wizardcoder/bl-model";
+import { Item, Order, OrderItem, UserDetail } from "@boklisten/bl-model";
 import { CustomerOrderItemListService } from "./customer-order-item-list.service";
 import { Subscription } from "rxjs";
 

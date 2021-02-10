@@ -5,8 +5,8 @@ import {
 	CustomerItem,
 	CustomerItemType,
 	BlApiNotFoundError
-} from "@wizardcoder/bl-model";
-import { MessageService, CustomerItemService } from "@wizardcoder/bl-connect";
+} from "@boklisten/bl-model";
+import { MessageService, CustomerItemService } from "@boklisten/bl-connect";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { BranchHelperService } from "../../branch/branch-helper/branch-helper.service";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";

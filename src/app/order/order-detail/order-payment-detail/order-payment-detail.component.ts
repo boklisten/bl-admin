@@ -7,8 +7,8 @@ import {
 	Output,
 	EventEmitter
 } from "@angular/core";
-import { BlApiError, Order, Payment } from "@wizardcoder/bl-model";
-import { PaymentService, OrderService } from "@wizardcoder/bl-connect";
+import { BlApiError, Order, Payment } from "@boklisten/bl-model";
+import { PaymentService, OrderService } from "@boklisten/bl-connect";
 import { AuthService } from "../../../auth/auth.service";
 
 @Component({

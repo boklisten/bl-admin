@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
-import { CustomerItemService, ItemService } from "@wizardcoder/bl-connect";
-import { CustomerItem, Item } from "@wizardcoder/bl-model";
+import { CustomerItemService, ItemService } from "@boklisten/bl-connect";
+import { CustomerItem, Item } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-customer-item-detail",

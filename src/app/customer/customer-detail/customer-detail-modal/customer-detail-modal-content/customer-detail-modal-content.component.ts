@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { BlApiError, UserDetail } from "@wizardcoder/bl-model";
+import { BlApiError, UserDetail } from "@boklisten/bl-model";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import moment from "moment-es6";
 import { CustomerService } from "../../../customer.service";

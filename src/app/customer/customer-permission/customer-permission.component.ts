@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { UserDetail, UserPermission } from "@wizardcoder/bl-model";
+import { UserDetail, UserPermission } from "@boklisten/bl-model";
 import { CustomerService } from "../customer.service";
 
 @Component({
