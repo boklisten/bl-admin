@@ -5,7 +5,7 @@ import {
 	Input,
 	SimpleChanges,
 	EventEmitter,
-	OnChanges
+	OnChanges,
 } from "@angular/core";
 import { Invoice } from "@boklisten/bl-model";
 import { FormControl } from "@angular/forms";
@@ -16,7 +16,7 @@ import { InvoiceVismaService } from "../invoice-visma/invoice-visma.service";
 @Component({
 	selector: "app-invoice-table",
 	templateUrl: "./invoice-table.component.html",
-	styleUrls: ["./invoice-table.component.scss"]
+	styleUrls: ["./invoice-table.component.scss"],
 })
 export class InvoiceTableComponent implements OnInit, OnChanges {
 	@Input() invoices: Invoice[];
@@ -45,7 +45,7 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 
 		this.invoices$ = this.filter.valueChanges.pipe(
 			startWith(""),
-			map(text => this.search(text))
+			map((text) => this.search(text))
 		);
 	}
 
@@ -74,7 +74,7 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 			this.sortByInvoiceIdDirection = "asc";
 			this.invoices$ = this.filter.valueChanges.pipe(
 				startWith(""),
-				map(text => {
+				map((text) => {
 					this.invoices.sort(
 						(a, b) => parseInt(b.invoiceId) - parseInt(a.invoiceId)
 					);
@@ -85,7 +85,7 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 			this.sortByInvoiceIdDirection = "desc";
 			this.invoices$ = this.filter.valueChanges.pipe(
 				startWith(""),
-				map(text => {
+				map((text) => {
 					this.invoices.sort(
 						(a, b) => parseInt(a.invoiceId) - parseInt(b.invoiceId)
 					);
@@ -96,7 +96,7 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 			this.sortByInvoiceIdDirection = "none";
 			this.invoices$ = this.filter.valueChanges.pipe(
 				startWith(""),
-				map(text => this.search(text))
+				map((text) => this.search(text))
 			);
 		}
 	}
@@ -116,7 +116,7 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 	}
 
 	public search(text: string): Invoice[] {
-		return this.invoices.filter(invoice => {
+		return this.invoices.filter((invoice) => {
 			const term = text.toLowerCase();
 			return (
 				invoice.customerInfo.name.toLowerCase().includes(term) ||

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { PriceInformation } from "./price-information";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class PriceService {
 	constructor() {}
@@ -32,7 +32,7 @@ export class PriceService {
 			amountLeftToPay: 0,
 			alreadyPayed: 0,
 			discount: 0,
-			discountRate: 0
+			discountRate: 0,
 		};
 	}
 
@@ -57,7 +57,7 @@ export class PriceService {
 			),
 			alreadyPayed: this.toFixed(alreadyPayed ? alreadyPayed : 0),
 			discountRate: this.toFixed(0),
-			discount: this.toFixed(0)
+			discount: this.toFixed(0),
 		});
 	}
 
@@ -78,7 +78,7 @@ export class PriceService {
 			amountLeftToPay: original.amountLeftToPay + toAdd.amountLeftToPay,
 			alreadyPayed: original.alreadyPayed + toAdd.alreadyPayed,
 			discountRate: original.discountRate,
-			discount: original.discount
+			discount: original.discount,
 		};
 	}
 
@@ -93,7 +93,7 @@ export class PriceService {
 				: 0,
 			alreadyPayed: pi.alreadyPayed ? pi.alreadyPayed : 0,
 			discountRate: pi.discountRate ? pi.discountRate : 0,
-			discount: pi.discount ? pi.discount : 0
+			discount: pi.discount ? pi.discount : 0,
 		};
 	}
 

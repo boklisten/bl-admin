@@ -1,15 +1,18 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject } from "@angular/core/testing";
 
-import { OrderManagerListService } from './order-manager-list.service';
+import { OrderManagerListService } from "./order-manager-list.service";
 
-describe('OrderManagerListService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [OrderManagerListService]
-    });
-  });
+describe("OrderManagerListService", () => {
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			providers: [OrderManagerListService],
+		});
+	});
 
-  it('should be created', inject([OrderManagerListService], (service: OrderManagerListService) => {
-    expect(service).toBeTruthy();
-  }));
+	it("should be created", inject(
+		[OrderManagerListService],
+		(service: OrderManagerListService) => {
+			expect(service).toBeTruthy();
+		}
+	));
 });

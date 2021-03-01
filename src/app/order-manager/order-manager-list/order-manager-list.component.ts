@@ -3,11 +3,11 @@ import {
 	EventEmitter,
 	OnInit,
 	Output,
-	OnDestroy
+	OnDestroy,
 } from "@angular/core";
 import {
 	OrderFilter,
-	OrderManagerListService
+	OrderManagerListService,
 } from "./order-manager-list.service";
 import { Order } from "@boklisten/bl-model";
 import { BranchStoreService } from "../../branch/branch-store.service";
@@ -20,7 +20,7 @@ import { CheckoutService } from "../../checkout/checkout.service";
 @Component({
 	selector: "app-order-manager-list",
 	templateUrl: "./order-manager-list.component.html",
-	styleUrls: ["./order-manager-list.component.scss"]
+	styleUrls: ["./order-manager-list.component.scss"],
 })
 export class OrderManagerListComponent implements OnInit, OnDestroy {
 	placedOrders: Order[];
@@ -116,7 +116,7 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 					this.fetching = false;
 				}, 1000);
 			})
-			.catch(err => {
+			.catch((err) => {
 				this.placedOrders = [];
 				this.fetching = false;
 			});

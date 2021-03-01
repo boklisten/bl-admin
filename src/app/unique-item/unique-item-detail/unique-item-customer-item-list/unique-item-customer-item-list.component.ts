@@ -3,7 +3,7 @@ import {
 	OnInit,
 	Input,
 	SimpleChanges,
-	OnChanges
+	OnChanges,
 } from "@angular/core";
 import { CustomerItem } from "@boklisten/bl-model";
 import { CustomerItemService } from "@boklisten/bl-connect";
@@ -11,7 +11,7 @@ import { CustomerItemService } from "@boklisten/bl-connect";
 @Component({
 	selector: "app-unique-item-customer-item-list",
 	templateUrl: "./unique-item-customer-item-list.component.html",
-	styleUrls: ["./unique-item-customer-item-list.component.scss"]
+	styleUrls: ["./unique-item-customer-item-list.component.scss"],
 })
 export class UniqueItemCustomerItemListComponent implements OnInit {
 	@Input() blid: string;
@@ -36,11 +36,11 @@ export class UniqueItemCustomerItemListComponent implements OnInit {
 		this.wait = true;
 		this._customerItemService
 			.get({ query: "?blid=" + blid })
-			.then(customerItems => {
+			.then((customerItems) => {
 				this.customerItems = customerItems;
 				this.wait = false;
 			})
-			.catch(e => {
+			.catch((e) => {
 				this.customerItems = [];
 				this.wait = false;
 			});

@@ -3,14 +3,13 @@ import { UserDetail } from "@boklisten/bl-model";
 import { CartService } from "./cart.service";
 import { CustomerService } from "../customer/customer.service";
 import { Router, ActivatedRoute } from "@angular/router";
-import { NgbTabChangeEvent } from "@ng-bootstrap/ng-bootstrap";
 import { CheckoutService } from "../checkout/checkout.service";
 import { Subscription } from "rxjs";
 
 @Component({
 	selector: "app-cart",
 	templateUrl: "./cart.component.html",
-	styleUrls: ["./cart.component.scss"]
+	styleUrls: ["./cart.component.scss"],
 })
 export class CartComponent implements OnInit, OnDestroy {
 	public haveCustomer: boolean;
@@ -27,15 +26,12 @@ export class CartComponent implements OnInit, OnDestroy {
 	constructor(
 		private _cartService: CartService,
 		private _customerService: CustomerService,
-		private _router: Router,
-		private _activatedRoute: ActivatedRoute,
 		private _checkoutService: CheckoutService
 	) {
 		this.haveCustomer = false;
 	}
 
 	ngOnInit() {
-		this.updateTab();
 		this.handleCustomerChange();
 		this.handleCustomerClear();
 		this.handleCheckoutChange();
@@ -58,30 +54,10 @@ export class CartComponent implements OnInit, OnDestroy {
 
 	public onCartFailed() {}
 
-	public onTabChange(tabChangeEvent: NgbTabChangeEvent) {
-		this.changeTab(tabChangeEvent.nextId);
-	}
-
-	private changeTab(tabName: string) {
-		this.activeTab = tabName;
-
-		/*
-		this._router.navigate([], {
-			queryParams: { tab: tabName }
-		});
-     */
-	}
-
 	private handleCheckoutChange() {
-		this.checkoutChange$ = this._checkoutService.subscribe(addedOrder => {
+		this.checkoutChange$ = this._checkoutService.subscribe((addedOrder) => {
 			this._cartService.clear();
 			this._customerService.reload();
-		});
-	}
-
-	private updateTab() {
-		this._activatedRoute.queryParams.subscribe(params => {
-			this.activeTab = params["tab"];
 		});
 	}
 
@@ -90,13 +66,12 @@ export class CartComponent implements OnInit, OnDestroy {
 			(userDetail: UserDetail) => {
 				this.customerDetail = userDetail;
 				this.haveCustomer = this.customerDetail ? true : false;
-				this.changeTab("customer");
 			}
 		);
 	}
 
 	private handleCustomerClear() {
-		this.custmoerClear$ = this._customerService.onClear(clear => {
+		this.custmoerClear$ = this._customerService.onClear((clear) => {
 			if (clear) {
 				this.clear();
 			}

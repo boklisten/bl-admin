@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 @Component({
 	selector: "app-bl-common-update-button",
 	templateUrl: "./bl-common-update-button.component.html",
-	styleUrls: ["./bl-common-update-button.component.scss"]
+	styleUrls: ["./bl-common-update-button.component.scss"],
 })
 export class BlCommonUpdateButtonComponent implements OnInit {
 	@Input() text: string;

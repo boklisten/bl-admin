@@ -1,15 +1,15 @@
 <div
 	class="input-group"
-	[ngClass]="{'input-group-sm': small, 'input-group-lg': !small}"
+	[ngClass]="{ 'input-group-sm': small, 'input-group-lg': !small }"
 >
 	<input
-		id="{{searchFieldId}}"
+		id="{{ searchFieldId }}"
 		type="text"
 		class="form-control bl-search-input"
-		placeholder="{{placeholder}}"
+		placeholder="{{ placeholder }}"
 		[(ngModel)]="searchTerm"
 		(keyup)="onSearch()"
-		(focus)="$event.target.select();onFocus();"
+		(focus)="$event.target.select(); onFocus()"
 		autocomplete="off"
 	/>
 	<app-bl-common-update-button

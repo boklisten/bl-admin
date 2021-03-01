@@ -16,27 +16,27 @@ const routes: Routes = [
 			{
 				path: "",
 				pathMatch: "full",
-				redirectTo: "view"
+				redirectTo: "view",
 			},
 			{
 				path: "create",
 				canActivate: [AdminGuardService],
-				component: BookingCreateComponent
+				component: BookingCreateComponent,
 			},
 			{
 				path: "view",
-				component: BookingViewComponent
+				component: BookingViewComponent,
 			},
 			{
 				path: "edit",
-				component: BookingListEditComponent
-			}
-		]
-	}
+				component: BookingListEditComponent,
+			},
+		],
+	},
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
 export class BookingRoutingModule {}

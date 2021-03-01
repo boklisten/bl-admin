@@ -10,7 +10,7 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-blc-item-add",
 	templateUrl: "./blc-item-add.component.html",
-	styleUrls: ["./blc-item-add.component.scss"]
+	styleUrls: ["./blc-item-add.component.scss"],
 })
 export class BlcItemAddComponent implements OnInit, OnDestroy {
 	@Input() item: Item;
@@ -43,7 +43,7 @@ export class BlcItemAddComponent implements OnInit, OnDestroy {
 				this.checkIfAdded();
 				this.handleCartChange();
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log("chould not create cart item", err);
 			});
 	}
@@ -70,11 +70,11 @@ export class BlcItemAddComponent implements OnInit, OnDestroy {
 			if (!this.orderItem && this.customerItem) {
 				return this._cartItemService
 					.createCartItemByCustomerItem(this.customerItem)
-					.then(cartItem => {
+					.then((cartItem) => {
 						this.cartItem = cartItem;
 						resolve(true);
 					})
-					.catch(err => {
+					.catch((err) => {
 						reject(err);
 					});
 			}
@@ -82,11 +82,11 @@ export class BlcItemAddComponent implements OnInit, OnDestroy {
 			if (!this.customerItem && this.orderItem) {
 				this._cartItemService
 					.createCartItemByOrderItem(this.orderItem, this.order)
-					.then(cartItem => {
+					.then((cartItem) => {
 						this.cartItem = cartItem;
 						resolve(true);
 					})
-					.catch(err => {
+					.catch((err) => {
 						reject(err);
 					});
 			}
@@ -135,7 +135,7 @@ export class BlcItemAddComponent implements OnInit, OnDestroy {
 
 	private openModal() {
 		this._modalService.open(this.addWithWarningContent, {
-			size: "lg"
+			size: "lg",
 		});
 	}
 }

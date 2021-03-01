@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CartListItemAgeComponent } from './cart-list-item-age.component';
+import { CartListItemAgeComponent } from "./cart-list-item-age.component";
 
-describe('CartListItemAgeComponent', () => {
-  let component: CartListItemAgeComponent;
-  let fixture: ComponentFixture<CartListItemAgeComponent>;
+describe("CartListItemAgeComponent", () => {
+	let component: CartListItemAgeComponent;
+	let fixture: ComponentFixture<CartListItemAgeComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CartListItemAgeComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [CartListItemAgeComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CartListItemAgeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(CartListItemAgeComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MessengerReminderModalComponent } from './messenger-reminder-modal.component';
+import { MessengerReminderModalComponent } from "./messenger-reminder-modal.component";
 
-describe('MessengerReminderModalComponent', () => {
-  let component: MessengerReminderModalComponent;
-  let fixture: ComponentFixture<MessengerReminderModalComponent>;
+describe("MessengerReminderModalComponent", () => {
+	let component: MessengerReminderModalComponent;
+	let fixture: ComponentFixture<MessengerReminderModalComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ MessengerReminderModalComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [MessengerReminderModalComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MessengerReminderModalComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(MessengerReminderModalComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

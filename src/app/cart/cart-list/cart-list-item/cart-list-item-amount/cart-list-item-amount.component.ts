@@ -6,7 +6,7 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-cart-list-item-amount",
 	templateUrl: "./cart-list-item-amount.component.html",
-	styleUrls: ["./cart-list-item-amount.component.scss"]
+	styleUrls: ["./cart-list-item-amount.component.scss"],
 })
 export class CartListItemAmountComponent implements OnInit, OnDestroy {
 	@Input() cartItem: CartItem;
@@ -26,7 +26,7 @@ export class CartListItemAmountComponent implements OnInit, OnDestroy {
 	}
 
 	private handleCartItemChange() {
-		this._cartItemChange$ = this.cartItem.subscribe(change => {
+		this._cartItemChange$ = this.cartItem.subscribe((change) => {
 			if (change) {
 				this.getPriceInformation();
 			}
@@ -37,11 +37,11 @@ export class CartListItemAmountComponent implements OnInit, OnDestroy {
 		this.wait = true;
 		this.cartItem
 			.getPriceInformation()
-			.then(priceInformation => {
+			.then((priceInformation) => {
 				this.priceInformation = priceInformation;
 				this.wait = false;
 			})
-			.catch(e => {
+			.catch((e) => {
 				console.log("could not get priceInformation", e);
 				this.wait = false;
 			});

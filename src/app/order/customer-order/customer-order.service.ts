@@ -36,7 +36,7 @@ export class CustomerOrderService {
 		let orders;
 		try {
 			orders = await this._orderService.get({
-				query: `?placed=true&customer=${userDetailId}`
+				query: `?placed=true&customer=${userDetailId}`,
 			});
 		} catch (e) {
 			this.setOrders([]);
@@ -62,7 +62,7 @@ export class CustomerOrderService {
 	}
 
 	private onCustomerWaitChange() {
-		this._customerService.onWait(wait => {
+		this._customerService.onWait((wait) => {
 			if (wait) {
 				this.setOrders([]);
 				this._wait$.next(true);
@@ -70,7 +70,7 @@ export class CustomerOrderService {
 		});
 	}
 	private onCustomerClear() {
-		this._customerService.onClear(cleared => {
+		this._customerService.onClear((cleared) => {
 			if (cleared) {
 				this.clear();
 			}

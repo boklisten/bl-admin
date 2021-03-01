@@ -7,7 +7,7 @@ import { CartService } from "../../../cart/cart.service";
 @Component({
 	selector: "app-isbn-scanner-add-to-cart",
 	templateUrl: "./isbn-scanner-add-to-cart.component.html",
-	styleUrls: ["./isbn-scanner-add-to-cart.component.scss"]
+	styleUrls: ["./isbn-scanner-add-to-cart.component.scss"],
 })
 export class IsbnScannerAddToCartComponent implements OnInit, OnDestroy {
 	private isbnScan$: Subscription;
@@ -27,12 +27,12 @@ export class IsbnScannerAddToCartComponent implements OnInit, OnDestroy {
 	}
 
 	private handleIsbnScanChange() {
-		this.isbnScan$ = this._blcScannerService.onIsbn(isbn => {
+		this.isbnScan$ = this._blcScannerService.onIsbn((isbn) => {
 			if (!this._cartService.isLocked()) {
 				this._isbnScannerService
 					.addCartItemByIsbn(isbn)
 					.then(() => {})
-					.catch(e => {
+					.catch((e) => {
 						console.log("could not add cart item by isbn", e);
 					});
 			}

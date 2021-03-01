@@ -7,7 +7,7 @@ import { CartItem } from "../../cart/cart-item/cart-item";
 @Component({
 	selector: "app-unique-item-register-from-cart",
 	templateUrl: "./unique-item-register-from-cart.component.html",
-	styleUrls: ["./unique-item-register-from-cart.component.scss"]
+	styleUrls: ["./unique-item-register-from-cart.component.scss"],
 })
 export class UniqueItemRegisterFromCartComponent implements OnInit {
 	@Output() registered: EventEmitter<boolean>;

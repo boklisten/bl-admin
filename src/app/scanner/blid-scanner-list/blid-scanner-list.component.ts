@@ -5,14 +5,14 @@ import {
 	Output,
 	EventEmitter,
 	Input,
-	SimpleChanges
+	SimpleChanges,
 } from "@angular/core";
 import { BlcScannerService } from "../../bl-common/blc-scanner/blc-scanner.service";
 
 @Component({
 	selector: "app-blid-scanner-list",
 	templateUrl: "./blid-scanner-list.component.html",
-	styleUrls: ["./blid-scanner-list.component.scss"]
+	styleUrls: ["./blid-scanner-list.component.scss"],
 })
 export class BlidScannerListComponent implements OnInit, OnChanges {
 	@Output() listChange: EventEmitter<string[]>;
@@ -39,7 +39,7 @@ export class BlidScannerListComponent implements OnInit, OnChanges {
 	}
 
 	ngOnInit() {
-		this._blcScannerService.onBlid(blid => {
+		this._blcScannerService.onBlid((blid) => {
 			this.addBlid(blid);
 		});
 	}
@@ -75,7 +75,7 @@ export class BlidScannerListComponent implements OnInit, OnChanges {
 	}
 
 	private setBlids(blids: string[]) {
-		const validBlids = blids.filter(blid => {
+		const validBlids = blids.filter((blid) => {
 			return !this.alreadyAddedUniqueItems[blid];
 		});
 

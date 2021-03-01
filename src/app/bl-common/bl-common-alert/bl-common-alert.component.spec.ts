@@ -1,32 +1,30 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import {BlCommonAlertComponent} from './bl-common-alert.component';
-import {Component, Input} from '@angular/core';
+import { BlCommonAlertComponent } from "./bl-common-alert.component";
+import { Component, Input } from "@angular/core";
 
-@Component({selector: 'ngb-alert', template: ''})
+@Component({ selector: "ngb-alert", template: "" })
 class NgbAlertStubComponent {
 	@Input() type;
-
 }
 
-@Component({selector: 'fa-icon', template: ''})
+@Component({ selector: "fa-icon", template: "" })
 class FaIconStubComponent {
 	@Input() icon;
 }
 
-describe('BlCommonAlertComponent', () => {
+describe("BlCommonAlertComponent", () => {
 	let component: BlCommonAlertComponent;
 	let fixture: ComponentFixture<BlCommonAlertComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-				declarations: [
-					BlCommonAlertComponent,
-					NgbAlertStubComponent,
-					FaIconStubComponent
-				]
-			})
-			.compileComponents();
+			declarations: [
+				BlCommonAlertComponent,
+				NgbAlertStubComponent,
+				FaIconStubComponent,
+			],
+		}).compileComponents();
 	}));
 
 	beforeEach(() => {
@@ -35,7 +33,7 @@ describe('BlCommonAlertComponent', () => {
 		fixture.detectChanges();
 	});
 
-	it('should create', () => {
+	it("should create", () => {
 		expect(component).toBeTruthy();
 	});
 });

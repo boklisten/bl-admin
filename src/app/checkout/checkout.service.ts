@@ -6,7 +6,7 @@ import { Subject, Subscription } from "rxjs";
 import { ToasterService } from "../toaster/toaster.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class CheckoutService {
 	private checkout$: Subject<Order>;
@@ -50,7 +50,7 @@ export class CheckoutService {
 				"CHECKOUT-CONFIRMED",
 				{
 					numberOfItems: addedOrder.orderItems.length,
-					orderId: addedOrder.id
+					orderId: addedOrder.id,
 				},
 				15000
 			);

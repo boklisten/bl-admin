@@ -6,7 +6,7 @@ import { CustomerItem, Item } from "@boklisten/bl-model";
 @Component({
 	selector: "app-customer-item-detail",
 	templateUrl: "./customer-item-detail.component.html",
-	styleUrls: ["./customer-item-detail.component.scss"]
+	styleUrls: ["./customer-item-detail.component.scss"],
 })
 export class CustomerItemDetailComponent implements OnInit {
 	@Input() customerItem: CustomerItem;
@@ -52,7 +52,7 @@ export class CustomerItemDetailComponent implements OnInit {
 				this.customerItem = customerItem;
 				this.getItem();
 			})
-			.catch(getCustomerItemError => {
+			.catch((getCustomerItemError) => {
 				console.log("hello there", this.getCustomerItem);
 				console.log(
 					"customerItemDetailComponent: could not get customerItem",
@@ -67,7 +67,7 @@ export class CustomerItemDetailComponent implements OnInit {
 			.then((item: Item) => {
 				this.item = item;
 			})
-			.catch(getItemError => {
+			.catch((getItemError) => {
 				console.log("customerItemDetailComponet: could not get item");
 			});
 	}

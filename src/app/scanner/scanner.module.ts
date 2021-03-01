@@ -19,7 +19,7 @@ import { BlidScannerComponent } from "./blid-scanner/blid-scanner.component";
 		BlidScannerListItemComponent,
 		BlidScannerInputComponent,
 		IsbnScannerAddToCartComponent,
-		BlidScannerComponent
+		BlidScannerComponent,
 	],
 	imports: [
 		CommonModule,
@@ -27,8 +27,8 @@ import { BlidScannerComponent } from "./blid-scanner/blid-scanner.component";
 		ItemModule,
 		BlCommonModule,
 		FontAwesomeModule,
-		FormsModule
+		FormsModule,
 	],
-	exports: [IsbnScannerAddToCartComponent, BlidScannerComponent]
+	exports: [IsbnScannerAddToCartComponent, BlidScannerComponent],
 })
 export class ScannerModule {}

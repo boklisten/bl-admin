@@ -1,12 +1,14 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { InvoiceVismaService } from './invoice-visma.service';
+import { InvoiceVismaService } from "./invoice-visma.service";
 
-describe('InvoiceVismaService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe("InvoiceVismaService", () => {
+	beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: InvoiceVismaService = TestBed.get(InvoiceVismaService);
-    expect(service).toBeTruthy();
-  });
+	it("should be created", () => {
+		const service: InvoiceVismaService = TestBed.inject(
+			InvoiceVismaService
+		);
+		expect(service).toBeTruthy();
+	});
 });

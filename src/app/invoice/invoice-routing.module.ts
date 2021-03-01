@@ -14,33 +14,38 @@ const routes: Routes = [
 		canActivate: [AdminGuardService],
 		children: [
 			{
+				path: "",
+				redirectTo: "view",
+				pathMatch: "full",
+			},
+			{
 				path: "view",
-				component: InvoiceViewComponent
+				component: InvoiceViewComponent,
 			},
 			{
 				path: "generate",
-				component: InvoiceGeneratorComponent
+				component: InvoiceGeneratorComponent,
 			},
 			{
 				path: "create",
-				component: InvoiceCreateComponent
+				component: InvoiceCreateComponent,
 			},
 			{
 				path: "",
 				pathMatch: "full",
-				redirectTo: "view"
-			}
-		]
+				redirectTo: "view",
+			},
+		],
 	},
 	{
 		path: "invoice/:id",
 		component: InvoiceDetailComponent,
-		canActivate: [AdminGuardService]
-	}
+		canActivate: [AdminGuardService],
+	},
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
 export class InvoiceRoutingModule {}

@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CustomerDeleteComponent } from './customer-delete.component';
+import { CustomerDeleteComponent } from "./customer-delete.component";
 
-describe('CustomerDeleteComponent', () => {
-  let component: CustomerDeleteComponent;
-  let fixture: ComponentFixture<CustomerDeleteComponent>;
+describe("CustomerDeleteComponent", () => {
+	let component: CustomerDeleteComponent;
+	let fixture: ComponentFixture<CustomerDeleteComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CustomerDeleteComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [CustomerDeleteComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CustomerDeleteComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(CustomerDeleteComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

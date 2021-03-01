@@ -8,7 +8,7 @@ import { BranchStoreService } from "../../branch/branch-store.service";
 @Component({
 	selector: "app-booking-view",
 	templateUrl: "./booking-view.component.html",
-	styleUrls: ["./booking-view.component.scss"]
+	styleUrls: ["./booking-view.component.scss"],
 })
 export class BookingViewComponent implements OnInit {
 	public bookingDate: Date;
@@ -62,7 +62,7 @@ export class BookingViewComponent implements OnInit {
 					"&from=<" +
 					this.dateService.dateOnApiFormat(ltDate) +
 					"&branch=" +
-					this.branchId
+					this.branchId,
 			});
 		} catch (e) {
 			this.bookings = [];

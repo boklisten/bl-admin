@@ -1,110 +1,50 @@
-<div class="container-fluid mt-1">
+<div class="container-fluid mt-2">
 	<div class="row">
-		<div class="col-12">
-			<ngb-tabset #tabset="ngbTabset" id="ngbTabset">
-				<ngb-tab id="userDetails">
-					<ng-template ngbTabTitle>
-						<span class="text-secondary ml-3 mr-3">
-							<fa-icon [icon]="'address-card'"></fa-icon>
-						</span>
-					</ng-template>
-					<ng-template ngbTabContent>
-						<div class="container-fluid mt-2">
-							<div class="row">
-								<div class="col-lg-3 col-md-6 col-sm-12">
-									<div class="row">
-										<div class="col">
-											<app-customer-detail-card
-												[wait]="wait"
-												[customerDetail]="
-													customerDetail
-												"
-											></app-customer-detail-card>
-										</div>
-									</div>
-									<div
-										class="row mt-2"
-										*ngIf="customerDetail"
-									>
-										<div class="col-12">
-											<div class="card">
-												<div class="card-body">
-													<div
-														class="row justify-content-between"
-													>
-														<div class="col-12">
-															<app-customer-change-email
-																[userDetail]="customerDetail"
-																(changed)="onUserDetailEmailChange()"
-																*ngIf="isManager()"
-															></app-customer-change-email>
-														</div>
-														<div
-															class="col-12 mt-2"
-															*ngIf="isAdmin()"
-														>
-															<app-customer-permission
-																[customer]="
-																	customerDetail
-																"
-															></app-customer-permission>
-														</div>
-														<div
-															class="col-12 mt-2"
-															*ngIf="isAdmin()"
-														>
-															<app-customer-delete
-																[customer]="
-																	customerDetail
-																"
-																(deleted)="
-																	onUserDetailDeleted()
-																"
-															></app-customer-delete>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
+		<div class="col-lg-3 col-md-6 col-sm-12">
+			<div class="row">
+				<div class="col">
+					<app-customer-detail-card
+						[wait]="wait"
+						[customerDetail]="customerDetail"
+					></app-customer-detail-card>
+				</div>
+			</div>
+			<div class="row mt-2" *ngIf="customerDetail">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row justify-content-between">
+								<div class="col-12">
+									<app-customer-change-email
+										[userDetail]="customerDetail"
+										(changed)="onUserDetailEmailChange()"
+										*ngIf="isManager()"
+									></app-customer-change-email>
 								</div>
-								<div class="col-lg-5 col-md-6 col-sm-12">
-									<app-customer-order-list></app-customer-order-list>
+								<div class="col-12 mt-2" *ngIf="isAdmin()">
+									<app-customer-permission
+										[customer]="customerDetail"
+									></app-customer-permission>
 								</div>
-								<div class="col-lg-4">
-									<app-customer-item-list
-										[title]="'Customer Items'"
-									></app-customer-item-list>
+								<div class="col-12 mt-2" *ngIf="isAdmin()">
+									<app-customer-delete
+										[customer]="customerDetail"
+										(deleted)="onUserDetailDeleted()"
+									></app-customer-delete>
 								</div>
 							</div>
 						</div>
-					</ng-template>
-				</ngb-tab>
-				<ngb-tab id="userBookings">
-					<ng-template ngbTabTitle>
-						<span class="text-secondary ml-3 mr-3">
-							<fa-icon [icon]="'calendar-alt'"></fa-icon>
-						</span>
-					</ng-template>
-					<ng-template ngbTabContent>
-						<app-booking-list-edit
-							[customerId]="customerDetail.id"
-						></app-booking-list-edit>
-					</ng-template>
-				</ngb-tab>
-				<ngb-tab id="userMessages" *ngIf="isAdmin()">
-					<ng-template ngbTabTitle>
-						<span class="text-secondary ml-3 mr-3">
-							<fa-icon [icon]="'stream'"></fa-icon>
-						</span>
-					</ng-template>
-					<ng-template ngbTabContent>
-						<app-messenger-list
-							[customerId]="customerDetail.id"
-						></app-messenger-list>
-					</ng-template>
-				</ngb-tab>
-			</ngb-tabset>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-5 col-md-6 col-sm-12">
+			<app-customer-order-list></app-customer-order-list>
+		</div>
+		<div class="col-lg-4">
+			<app-customer-item-list
+				[title]="'Customer Items'"
+			></app-customer-item-list>
 		</div>
 	</div>
 </div>

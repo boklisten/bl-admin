@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { InvoiceCreateItemListComponent } from './invoice-create-item-list.component';
+import { InvoiceCreateItemListComponent } from "./invoice-create-item-list.component";
 
-describe('InvoiceCreateItemListComponent', () => {
-  let component: InvoiceCreateItemListComponent;
-  let fixture: ComponentFixture<InvoiceCreateItemListComponent>;
+describe("InvoiceCreateItemListComponent", () => {
+	let component: InvoiceCreateItemListComponent;
+	let fixture: ComponentFixture<InvoiceCreateItemListComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ InvoiceCreateItemListComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [InvoiceCreateItemListComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(InvoiceCreateItemListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(InvoiceCreateItemListComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

@@ -1,28 +1,22 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import {BlCommonUpdateButtonComponent} from './bl-common-update-button.component';
-import {Component, Input} from '@angular/core';
+import { BlCommonUpdateButtonComponent } from "./bl-common-update-button.component";
+import { Component, Input } from "@angular/core";
 
-
-
-@Component({selector: 'fa-icon', template: ''})
+@Component({ selector: "fa-icon", template: "" })
 class FaIconStubComponent {
 	@Input() icon;
 	@Input() size;
 }
 
-describe('UpdateButtonComponent', () => {
+describe("UpdateButtonComponent", () => {
 	let component: BlCommonUpdateButtonComponent;
 	let fixture: ComponentFixture<BlCommonUpdateButtonComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-				declarations: [
-					BlCommonUpdateButtonComponent,
-					FaIconStubComponent
-				]
-			})
-			.compileComponents();
+			declarations: [BlCommonUpdateButtonComponent, FaIconStubComponent],
+		}).compileComponents();
 	}));
 
 	beforeEach(() => {
@@ -31,7 +25,7 @@ describe('UpdateButtonComponent', () => {
 		fixture.detectChanges();
 	});
 
-	it('should create', () => {
+	it("should create", () => {
 		expect(component).toBeTruthy();
 	});
 });

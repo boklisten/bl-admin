@@ -8,7 +8,7 @@ import { CustomerOrderItemListService } from "../../order/customer-order/custome
 import { ToasterService } from "../../toaster/toaster.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class UniqueItemScanToCartService {
 	constructor(
@@ -56,9 +56,7 @@ export class UniqueItemScanToCartService {
 		cartItem.setBLID(uniqueItem.blid);
 		if (cartItem.getValidActions().length <= 0) {
 			this._toasterService.add("WARNING", {
-				text: `Boken med Boklisten-ID "${
-					uniqueItem.blid
-				}" har ingen gyldige handlinger. Kontakt Admin.`
+				text: `Boken med Boklisten-ID "${uniqueItem.blid}" har ingen gyldige handlinger. Kontakt Admin.`,
 			});
 		} else {
 			this.addCartItemToCart(cartItem);
@@ -71,7 +69,7 @@ export class UniqueItemScanToCartService {
 		if (this._cartService.contains(cartItem)) {
 			this._toasterService.add("CART-CONTAINS", {
 				title: cartItem.getTitle(),
-				id: cartItem.getBLID()
+				id: cartItem.getBLID(),
 			});
 		} else {
 			this._cartService.add(cartItem);

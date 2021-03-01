@@ -4,14 +4,14 @@
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item d-flex justify-content-between">
 				<span>
-					{{booking.from | blDate:"time"}}
+					{{ booking.from | blDate: "time" }}
 					<fa-icon
 						icon="arrow-right"
 						class="text-secondary mr-2 ml-2"
 					></fa-icon>
-					{{booking.to | blDate:"time"}}
+					{{ booking.to | blDate: "time" }}
 				</span>
-				<span> {{booking.from | blDate:"daymonth"}} </span>
+				<span> {{ booking.from | blDate: "daymonth" }} </span>
 			</li>
 			<li class="list-group-item d-flex justify-content-between">
 				<span *ngIf="!booking.customer">
@@ -30,7 +30,7 @@
 						icon="check-circle"
 						class="text-success mr-2"
 					></fa-icon>
-					<span>{{booking.customer | customerName | async}}</span>
+					<span>{{ booking.customer | customerName | async }}</span>
 				</span>
 				<button
 					class="btn btn-outline-danger btn-sm"

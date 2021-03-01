@@ -9,8 +9,7 @@ import { OrderModule } from "../order/order.module";
 import {
 	NgbButtonsModule,
 	NgbModalModule,
-	NgbTabsetModule,
-	NgbTooltipModule
+	NgbTooltipModule,
 } from "@ng-bootstrap/ng-bootstrap";
 import { BlCommonModule } from "../bl-common/bl-common.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -32,6 +31,7 @@ import { CartItemService } from "./cart-item/cart-item.service";
 import { CheckoutModule } from "../checkout/checkout.module";
 import { UniqueItemModule } from "../unique-item/unique-item.module";
 import { ScannerModule } from "../scanner/scanner.module";
+import { CartCustomerComponent } from "./cart-customer/cart-customer.component";
 
 @NgModule({
 	imports: [
@@ -39,7 +39,6 @@ import { ScannerModule } from "../scanner/scanner.module";
 		ItemModule,
 		CartRoutingModule,
 		OrderModule,
-		NgbTabsetModule,
 		BlCommonModule,
 		FontAwesomeModule,
 		FormsModule,
@@ -52,7 +51,7 @@ import { ScannerModule } from "../scanner/scanner.module";
 		CustomerItemModule,
 		CheckoutModule,
 		UniqueItemModule,
-		ScannerModule
+		ScannerModule,
 	],
 	declarations: [
 		CartComponent,
@@ -62,15 +61,16 @@ import { ScannerModule } from "../scanner/scanner.module";
 		CartConfirmComponent,
 		CartDeliveryComponent,
 		CartListItemAgeComponent,
-		CartListItemAmountComponent
+		CartListItemAmountComponent,
+		CartCustomerComponent,
 	],
 	providers: [
 		CartConfirmService,
 		CartItemSearchService,
 		CustomerItemListService,
 		CustomerOrderItemListService,
-		CartItemService
+		CartItemService,
 	],
-	exports: [CartListComponent]
+	exports: [CartListComponent],
 })
 export class CartModule {}

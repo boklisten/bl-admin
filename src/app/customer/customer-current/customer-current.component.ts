@@ -8,7 +8,7 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-customer-current",
 	templateUrl: "./customer-current.component.html",
-	styleUrls: ["./customer-current.component.scss"]
+	styleUrls: ["./customer-current.component.scss"],
 })
 export class CustomerCurrentComponent implements OnInit, OnDestroy {
 	public customerDetail: UserDetail;
@@ -51,7 +51,7 @@ export class CustomerCurrentComponent implements OnInit, OnDestroy {
 		} else {
 			this.navigateToCart = true;
 			this._router.navigate([
-				"/customer/" + this.customerDetail.id + "/detail"
+				"/customer/detail",
 			]);
 		}
 	}
@@ -71,7 +71,7 @@ export class CustomerCurrentComponent implements OnInit, OnDestroy {
 	}
 
 	private handleCustomerWaitChange() {
-		this.customerWait$ = this._customerService.onWait(wait => {
+		this.customerWait$ = this._customerService.onWait((wait) => {
 			this.wait = wait;
 		});
 	}

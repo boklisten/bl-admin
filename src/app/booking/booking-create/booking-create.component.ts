@@ -10,7 +10,7 @@ import * as moment from "moment";
 @Component({
 	selector: "app-booking-create",
 	templateUrl: "./booking-create.component.html",
-	styleUrls: ["./booking-create.component.scss"]
+	styleUrls: ["./booking-create.component.scss"],
 })
 export class BookingCreateComponent implements OnInit {
 	createBookingsForm: any;
@@ -43,12 +43,12 @@ export class BookingCreateComponent implements OnInit {
 			interval: 5,
 			fromHour: {
 				hour: 0,
-				minute: 0
+				minute: 0,
 			},
 			toHour: {
 				hour: 0,
-				minute: 0
-			}
+				minute: 0,
+			},
 		});
 	}
 
@@ -75,7 +75,7 @@ export class BookingCreateComponent implements OnInit {
 					"&from=<" +
 					this.dateService.dateOnApiFormat(toDate) +
 					"&branch=" +
-					this.branchId
+					this.branchId,
 			});
 		} catch (e) {}
 

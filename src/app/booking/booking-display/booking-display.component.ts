@@ -6,7 +6,7 @@ import { AuthService } from "../../auth/auth.service";
 @Component({
 	selector: "app-booking-display",
 	templateUrl: "./booking-display.component.html",
-	styleUrls: ["./booking-display.component.scss"]
+	styleUrls: ["./booking-display.component.scss"],
 })
 export class BookingDisplayComponent implements OnInit {
 	@Input() booking: Booking;
@@ -33,7 +33,7 @@ export class BookingDisplayComponent implements OnInit {
 				this.wait = false;
 				this.canceled.emit(this.booking);
 			})
-			.catch(e => {
+			.catch((e) => {
 				this.wait = false;
 				console.log("could not cancel", e);
 			});

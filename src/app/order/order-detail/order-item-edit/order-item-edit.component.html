@@ -1,11 +1,13 @@
 <div class="modal-content">
 	<div class="modal-header">
-		<div class="modal-title"><h5>{{orderItem.title}}</h5></div>
+		<div class="modal-title">
+			<h5>{{ orderItem.title }}</h5>
+		</div>
 	</div>
 	<div class="modal-body">
 		<ul class="list-group list-group-small list-group-flush">
 			<li class="list-group-item d-flex justify-content-between">
-				<strong>Type</strong> {{orderItem.type}}
+				<strong>Type</strong> {{ orderItem.type }}
 			</li>
 
 			<li
@@ -13,67 +15,72 @@
 				*ngIf="orderItem.info"
 			>
 				<strong>Deadline</strong>
-				<span>{{orderItem.info.to ? orderItem.info.to : 'none'}}</span>
+				<span>{{
+					orderItem.info.to ? orderItem.info.to : "none"
+				}}</span>
 			</li>
 			<li class="list-group-item d-flex justify-content-between">
 				<strong>Amount</strong>
-				<span>{{orderItem.amount | blcPrice}}</span>
+				<span>{{ orderItem.amount | blcPrice }}</span>
 			</li>
 			<li class="list-group-item d-flex justify-content-between">
 				<strong>Unit price</strong>
-				<span>{{orderItem.unitPrice | blcPrice}}</span>
+				<span>{{ orderItem.unitPrice | blcPrice }}</span>
 			</li>
 			<li class="list-group-item d-flex justify-content-between">
-				<strong>Tax rate</strong> <span>{{orderItem.taxRate}}</span>
+				<strong>Tax rate</strong> <span>{{ orderItem.taxRate }}</span>
 			</li>
 			<li class="list-group-item d-flex justify-content-between">
 				<strong>Tax Amount</strong>
-				<span>{{orderItem.taxAmount | blcPrice}}</span>
+				<span>{{ orderItem.taxAmount | blcPrice }}</span>
 			</li>
 			<li
 				class="list-group-item d-flex justify-content-between"
 				*ngIf="orderItem.info"
 			>
 				<strong>Amount left to pay</strong>
-				<span>{{orderItem.info.amountLeftToPay | blcPrice}}</span>
+				<span>{{ orderItem.info.amountLeftToPay | blcPrice }}</span>
 			</li>
 			<li class="list-group-item d-flex justify-content-between">
-				<strong>Delivered</strong> <span>{{orderItem.delivered}}</span>
+				<strong>Delivered</strong>
+				<span>{{ orderItem.delivered }}</span>
 			</li>
 			<li class="list-group-item d-flex justify-content-between">
 				<strong>Age</strong>
-				<span>{{orderItem.age ? orderItem.age : 'none'}}</span>
+				<span>{{ orderItem.age ? orderItem.age : "none" }}</span>
 			</li>
 			<li class="list-group-item d-flex justify-content-between">
 				<strong>Match</strong>
-				<span>{{orderItem.match ? orderItem.match : 'false'}}</span>
+				<span>{{ orderItem.match ? orderItem.match : "false" }}</span>
 			</li>
 			<li class="list-group-item d-flex justify-content-between">
 				<strong>Moved to order</strong>
-				<span
-					>{{orderItem.movedToOrder ? orderItem.movedToOrder :
-					'false'}}</span
-				>
+				<span>{{
+					orderItem.movedToOrder ? orderItem.movedToOrder : "false"
+				}}</span>
 			</li>
 
 			<li class="list-group-item d-flex justify-content-between">
 				<strong>Moved from order</strong>
-				<span
-					>{{orderItem.movedFromOrder ? orderItem.movedFromOrder :
-					'false'}}</span
-				>
+				<span>{{
+					orderItem.movedFromOrder
+						? orderItem.movedFromOrder
+						: "false"
+				}}</span>
 			</li>
 			<li class="list-group-item d-flex justify-content-between">
 				<strong>Customer item</strong>
-				<span
-					>{{orderItem.customerItem ? orderItem.customerItem :
-					orderItem.info && orderItem.info.customerItem ?
-					orderItem.info.customerItem : 'none'}}</span
-				>
+				<span>{{
+					orderItem.customerItem
+						? orderItem.customerItem
+						: orderItem.info && orderItem.info.customerItem
+						? orderItem.info.customerItem
+						: "none"
+				}}</span>
 			</li>
 
 			<li class="list-group-item" *ngIf="orderItem.blid">
-				{{orderItem.blid}}
+				{{ orderItem.blid }}
 			</li>
 		</ul>
 	</div>

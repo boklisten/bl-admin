@@ -4,7 +4,7 @@ import { CustomerSearchService } from "./customer-search.service";
 @Component({
 	selector: "app-customer-search",
 	templateUrl: "./customer-search.component.html",
-	styleUrls: ["./customer-search.component.scss"]
+	styleUrls: ["./customer-search.component.scss"],
 })
 export class CustomerSearchComponent implements OnInit {
 	public searchTerm: string;

@@ -4,7 +4,7 @@ import {
 	Input,
 	ViewChild,
 	Output,
-	EventEmitter
+	EventEmitter,
 } from "@angular/core";
 import { Order } from "@boklisten/bl-model";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
@@ -14,7 +14,7 @@ import { UserService } from "../../user/user.service";
 @Component({
 	selector: "app-order-delete",
 	templateUrl: "./order-delete.component.html",
-	styleUrls: ["./order-delete.component.scss"]
+	styleUrls: ["./order-delete.component.scss"],
 })
 export class OrderDeleteComponent implements OnInit {
 	@Input() order: Order;
@@ -45,7 +45,7 @@ export class OrderDeleteComponent implements OnInit {
 			beforeDismiss: () => {
 				this.userIdOrderInput = "";
 				return true;
-			}
+			},
 		});
 	}
 
@@ -60,7 +60,7 @@ export class OrderDeleteComponent implements OnInit {
 				this.userIdOrderInput = "";
 				this._modalService.dismissAll();
 			})
-			.catch(err => {
+			.catch((err) => {
 				this.showDeleteError = true;
 				this.userIdOrderInput = "";
 				this.onOrderIdInputChange(this.userIdOrderInput);

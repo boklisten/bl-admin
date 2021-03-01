@@ -10,7 +10,7 @@ type CustomerOrderItem = {
 };
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class CustomerOrderItemListService {
 	private _customerOrderItems$: ReplaySubject<CustomerOrderItem[]>;
@@ -57,7 +57,7 @@ export class CustomerOrderItemListService {
 	}
 
 	private onCustomerOrderWaitChange(): void {
-		this._customerOrderService.onWait(wait => {
+		this._customerOrderService.onWait((wait) => {
 			this._wait$.next(wait);
 		});
 	}
@@ -101,7 +101,7 @@ export class CustomerOrderItemListService {
 					) {
 						customerOrderItems.push({
 							order: order,
-							orderItem: orderItem
+							orderItem: orderItem,
 						});
 					}
 				}

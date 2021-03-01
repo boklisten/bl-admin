@@ -5,10 +5,10 @@ import { Invoice } from "@boklisten/bl-model";
 @Component({
 	selector: "app-invoice-view",
 	templateUrl: "./invoice-view.component.html",
-	styleUrls: ["./invoice-view.component.scss"]
+	styleUrls: ["./invoice-view.component.scss"],
 })
 export class InvoiceViewComponent implements OnInit {
-	invoices: Invoice[];
+	invoices: Invoice[] = [];
 	selectedInvoice: Invoice;
 	public wait: boolean;
 
@@ -18,11 +18,11 @@ export class InvoiceViewComponent implements OnInit {
 		this.wait = true;
 		this.invoiceService
 			.get({ fresh: true })
-			.then(invoices => {
+			.then((invoices) => {
 				this.invoices = invoices;
 				this.wait = false;
 			})
-			.catch(err => {
+			.catch((err) => {
 				this.wait = false;
 			});
 	}

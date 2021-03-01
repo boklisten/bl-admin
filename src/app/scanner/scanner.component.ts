@@ -5,7 +5,7 @@ import { UniqueItemService } from "@boklisten/bl-connect";
 @Component({
 	selector: "app-scanner",
 	templateUrl: "./scanner.component.html",
-	styleUrls: ["./scanner.component.scss"]
+	styleUrls: ["./scanner.component.scss"],
 })
 export class ScannerComponent implements OnInit {
 	public blids: string[];
@@ -38,7 +38,7 @@ export class ScannerComponent implements OnInit {
 				this.wait = false;
 				this.successStatus = {
 					title: this.selectedItem.title,
-					numberOfBlids: this.blids.length
+					numberOfBlids: this.blids.length,
 				};
 				this.selectedItem = null;
 				this.blids = [];
@@ -65,7 +65,7 @@ export class ScannerComponent implements OnInit {
 					id: "",
 					item: this.selectedItem.id,
 					blid: blid,
-					title: this.selectedItem.title
+					title: this.selectedItem.title,
 				});
 			} catch (e) {
 				throw e;

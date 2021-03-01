@@ -5,7 +5,7 @@ import { BlPrintService } from "../../bl-common/bl-print/bl-print.service";
 import { BranchService } from "@boklisten/bl-connect";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class InvoiceVismaService {
 	textFields: string[];
@@ -28,15 +28,15 @@ export class InvoiceVismaService {
 			"Kundens fødselsdato: ",
 			"Kundens telefonnummer: ",
 			"Alle fakturahenvendelser sendes til info@boklisten.no",
-			""
+			"",
 		];
 		this.text = {
 			title: {
 				rent:
 					"Fakturaen gjelder manglende/for sent leverte bøker fra forrige semester hos: ",
 				"partly-payment":
-					"Faktura gjelder manglende betaling av andre avdrag fra forrige semester hos: "
-			}
+					"Faktura gjelder manglende betaling av andre avdrag fra forrige semester hos: ",
+			},
 		};
 		this.feeTitle = "Administrasjonsgebyr";
 	}
@@ -248,8 +248,9 @@ export class InvoiceVismaService {
 
 		let dobOrOrganizationNumber = "";
 		const customerNumber = invoice.customerInfo.userDetail
-			? this.getMongoIdMiniEpoch(invoice.customerInfo
-					.userDetail as string).toString()
+			? this.getMongoIdMiniEpoch(
+					invoice.customerInfo.userDetail as string
+			  ).toString()
 			: invoice.customerInfo.customerNumber;
 
 		if (invoice.customerInfo.organizationNumber) {
@@ -334,7 +335,7 @@ export class InvoiceVismaService {
 			"", // 68 'General ledger dimension B':
 			"", // 69 'For future use':
 			"", // 70 'Attachment':
-			"" // 71 'Customer code(s)':
+			"", // 71 'Customer code(s)':
 		];
 	}
 
@@ -384,7 +385,7 @@ export class InvoiceVismaService {
 			"", // 36 order date
 			"", // 37 general ledger, dimension A
 			"", // 38 general ledger, dimension B
-			"" // 39 for future use
+			"", // 39 for future use
 		];
 	}
 	private createVismaL1FeeField(lineNum: number, invoice: Invoice): any[] {
@@ -427,7 +428,7 @@ export class InvoiceVismaService {
 			"", // 36 order date
 			"", // 37 general ledger, dimension A
 			"", // 38 general ledger, dimension B
-			"" // 39 for future use
+			"", // 39 for future use
 		];
 	}
 
@@ -475,7 +476,7 @@ export class InvoiceVismaService {
 			"", // 36 order date
 			"", // 37 general ledger, dimension A
 			"", // 38 general ledger, dimension B
-			"" // 39 for future use
+			"", // 39 for future use
 		];
 	}
 }

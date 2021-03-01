@@ -9,6 +9,6 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 @NgModule({
 	declarations: [CompanySelectListComponent],
 	imports: [CommonModule, CompanyRoutingModule, FontAwesomeModule],
-	exports: [CompanySelectListComponent]
+	exports: [CompanySelectListComponent],
 })
 export class CompanyModule {}

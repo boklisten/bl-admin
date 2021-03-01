@@ -5,7 +5,7 @@ import { PriceService } from "../../../../price/price.service";
 @Component({
 	selector: "app-invoice-create-item-list-item",
 	templateUrl: "./invoice-create-item-list-item.component.html",
-	styleUrls: ["./invoice-create-item-list-item.component.scss"]
+	styleUrls: ["./invoice-create-item-list-item.component.scss"],
 })
 export class InvoiceCreateItemListItemComponent implements OnInit {
 	@Input() invoiceItem: InvoiceItem;

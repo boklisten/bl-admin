@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {PaymentChoice} from '../payment-choice';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { PaymentChoice } from "../payment-choice";
 
 @Component({
-	selector: 'app-payment-method-select',
-	templateUrl: './payment-method-select.component.html',
-	styleUrls: ['./payment-method-select.component.scss']
+	selector: "app-payment-method-select",
+	templateUrl: "./payment-method-select.component.html",
+	styleUrls: ["./payment-method-select.component.scss"],
 })
 export class PaymentMethodSelectComponent implements OnInit {
 	@Output() paymentChoices: EventEmitter<PaymentChoice[]>;
@@ -33,30 +33,36 @@ export class PaymentMethodSelectComponent implements OnInit {
 		this.paymentMethodForm = this._formBuilder.group({
 			card: false,
 			cash: false,
-			vipps: false
+			vipps: false,
 		});
 
-		this.paymentMethodForm.controls['card'].valueChanges.subscribe((selected) => {
-			this.card = selected;
-			this.handleInputs();
-		});
+		this.paymentMethodForm.controls["card"].valueChanges.subscribe(
+			(selected) => {
+				this.card = selected;
+				this.handleInputs();
+			}
+		);
 
-		this.paymentMethodForm.controls['cash'].valueChanges.subscribe((selected) => {
-			this.cash = selected;
-			this.handleInputs();
-		});
+		this.paymentMethodForm.controls["cash"].valueChanges.subscribe(
+			(selected) => {
+				this.cash = selected;
+				this.handleInputs();
+			}
+		);
 
-
-		this.paymentMethodForm.controls['vipps'].valueChanges.subscribe((selected) => {
-			this.vipps = selected;
-			this.handleInputs();
-		});
+		this.paymentMethodForm.controls["vipps"].valueChanges.subscribe(
+			(selected) => {
+				this.vipps = selected;
+				this.handleInputs();
+			}
+		);
 	}
 
 	public onInputChange() {
-		const totalAmount = parseInt(this.cardAmount.toString(), 10)
-			+ parseInt(this.cashAmount.toString(), 10)
-			+ parseInt(this.vippsAmount.toString(), 10);
+		const totalAmount =
+			parseInt(this.cardAmount.toString(), 10) +
+			parseInt(this.cashAmount.toString(), 10) +
+			parseInt(this.vippsAmount.toString(), 10);
 
 		if (totalAmount === this.amount) {
 			this.emitChoices();
@@ -69,15 +75,15 @@ export class PaymentMethodSelectComponent implements OnInit {
 		const paymentChoices: PaymentChoice[] = [];
 
 		if (this.card) {
-			paymentChoices.push({type: 'card', amount: this.cardAmount});
+			paymentChoices.push({ type: "card", amount: this.cardAmount });
 		}
 
 		if (this.cash) {
-			paymentChoices.push({type: 'cash', amount: this.cashAmount});
+			paymentChoices.push({ type: "cash", amount: this.cashAmount });
 		}
 
 		if (this.vipps) {
-			paymentChoices.push({type: 'vipps', amount: this.vippsAmount});
+			paymentChoices.push({ type: "vipps", amount: this.vippsAmount });
 		}
 
 		this.paymentChoices.emit(paymentChoices);
@@ -110,6 +116,4 @@ export class PaymentMethodSelectComponent implements OnInit {
 			this.failure.emit(true);
 		}
 	}
-
-
 }

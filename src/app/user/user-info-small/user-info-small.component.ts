@@ -5,7 +5,7 @@ import { UserService } from "../user.service";
 @Component({
 	selector: "app-user-info-small",
 	templateUrl: "./user-info-small.component.html",
-	styleUrls: ["./user-info-small.component.scss"]
+	styleUrls: ["./user-info-small.component.scss"],
 })
 export class UserInfoSmallComponent implements OnInit {
 	public permission: string;

@@ -6,7 +6,7 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-customer-item-list",
 	templateUrl: "./customer-item-list.component.html",
-	styleUrls: ["./customer-item-list.component.scss"]
+	styleUrls: ["./customer-item-list.component.scss"],
 })
 export class CustomerItemListComponent implements OnInit, OnDestroy {
 	@Input() title: string;
@@ -33,7 +33,7 @@ export class CustomerItemListComponent implements OnInit, OnDestroy {
 
 	private handleCustomerItemListChange() {
 		this.customerItemList$ = this._customerItemListService.subscribe(
-			customerItemsWithItem => {
+			(customerItemsWithItem) => {
 				this.customerItemList = customerItemsWithItem;
 			}
 		);
@@ -41,7 +41,7 @@ export class CustomerItemListComponent implements OnInit, OnDestroy {
 
 	private handleCustomerItemListWaitChange() {
 		this.customerItemListWait$ = this._customerItemListService.onWait(
-			wait => {
+			(wait) => {
 				this.wait = wait;
 			}
 		);

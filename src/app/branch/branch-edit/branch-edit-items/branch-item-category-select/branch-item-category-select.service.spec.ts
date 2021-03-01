@@ -1,15 +1,18 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject } from "@angular/core/testing";
 
-import { BranchItemCategorySelectService } from './branch-item-category-select.service';
+import { BranchItemCategorySelectService } from "./branch-item-category-select.service";
 
-describe('BranchItemCategorySelectService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [BranchItemCategorySelectService]
-    });
-  });
+describe("BranchItemCategorySelectService", () => {
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			providers: [BranchItemCategorySelectService],
+		});
+	});
 
-  it('should be created', inject([BranchItemCategorySelectService], (service: BranchItemCategorySelectService) => {
-    expect(service).toBeTruthy();
-  }));
+	it("should be created", inject(
+		[BranchItemCategorySelectService],
+		(service: BranchItemCategorySelectService) => {
+			expect(service).toBeTruthy();
+		}
+	));
 });

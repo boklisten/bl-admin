@@ -4,7 +4,7 @@ import {
 	Message,
 	CustomerItem,
 	CustomerItemType,
-	BlApiNotFoundError
+	BlApiNotFoundError,
 } from "@boklisten/bl-model";
 import { MessageService, CustomerItemService } from "@boklisten/bl-connect";
 import { BranchStoreService } from "../../branch/branch-store.service";
@@ -17,7 +17,7 @@ import { MessengerSendModalComponent } from "../messenger-send-modal/messenger-s
 @Component({
 	selector: "app-messenger-match",
 	templateUrl: "./messenger-match.component.html",
-	styleUrls: ["./messenger-match.component.scss"]
+	styleUrls: ["./messenger-match.component.scss"],
 })
 export class MessengerMatchComponent implements OnInit {
 	public deadline: Date;
@@ -70,7 +70,7 @@ export class MessengerMatchComponent implements OnInit {
 				this.loading = false;
 				this.openModal(uniqueCustomerIds);
 			})
-			.catch(err => {
+			.catch((err) => {
 				if (
 					err instanceof BlApiNotFoundError ||
 					(err.name && err.name === "BlApiNotFoundError")
@@ -87,7 +87,7 @@ export class MessengerMatchComponent implements OnInit {
 
 	private openModal(customerIds: string[]) {
 		const modalRef = this.modalService.open(MessengerSendModalComponent, {
-			size: "lg"
+			size: "lg",
 		});
 
 		modalRef.componentInstance.name = "MessageModal";
@@ -96,7 +96,7 @@ export class MessengerMatchComponent implements OnInit {
 			messageType: "match",
 			messageMethod: "sms",
 			sequenceNumber: this.sequenceNumber,
-			deadline: this.deadline
+			deadline: this.deadline,
 		};
 	}
 	private getUniqueCustomerWithNotReturnedCustomerItems(
@@ -112,7 +112,7 @@ export class MessengerMatchComponent implements OnInit {
 				.then((customerItems: CustomerItem[]) => {
 					resolve(this.getUniqueUserIds(customerItems));
 				})
-				.catch(err => {
+				.catch((err) => {
 					reject(err);
 				});
 		});

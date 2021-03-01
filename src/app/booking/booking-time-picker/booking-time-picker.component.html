@@ -3,7 +3,7 @@
 		class="list-group-item list-group-item-info d-flex justify-content-between"
 		(click)="onDateChange()"
 	>
-		{{pickedDate | blDate: "daymonth"}}
+		{{ pickedDate | blDate: "daymonth" }}
 		<fa-icon icon="bars"></fa-icon>
 	</li>
 </ul>
@@ -19,6 +19,6 @@
 		*ngFor="let bookingDate of bookingDates"
 		(click)="pick(bookingDate.from)"
 	>
-		{{ bookingDate.from | blDate:"daymonth" }}
+		{{ bookingDate.from | blDate: "daymonth" }}
 	</li>
 </ul>

@@ -3,7 +3,7 @@ import { Order, Payment } from "@boklisten/bl-model";
 import { PaymentService } from "@boklisten/bl-connect";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class PaymentHelperService {
 	constructor(private _paymentService: PaymentService) {}

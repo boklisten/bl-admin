@@ -1,6 +1,5 @@
-import {BlcKeyeventDoubleShiftDirective} from './blc-keyevent-double-shift.directive';
+import { BlcKeyeventDoubleShiftDirective } from "./blc-keyevent-double-shift.directive";
 
-describe('BlcKeyeventDoubleShiftDirective', () => {
-	it('should create an instance', () => {
-	});
+describe("BlcKeyeventDoubleShiftDirective", () => {
+	it("should create an instance", () => {});
 });

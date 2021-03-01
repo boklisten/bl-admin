@@ -17,7 +17,7 @@ import { FormsModule } from "@angular/forms";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import {
 	NgbDropdownModule,
-	NgbTooltipModule
+	NgbTooltipModule,
 } from "@ng-bootstrap/ng-bootstrap";
 import { ItemSelectListComponent } from "./item-select-list/item-select-list.component";
 import { ItemSearchResultItemComponent } from "./item-search/item-search-result/item-search-result-item/item-search-result-item.component";
@@ -33,7 +33,7 @@ import { ItemInformationComponent } from "./item-information/item-information.co
 		PriceModule,
 		FormsModule,
 		NgxDatatableModule,
-		NgbTooltipModule
+		NgbTooltipModule,
 	],
 	declarations: [
 		ItemDetailComponent,
@@ -46,7 +46,7 @@ import { ItemInformationComponent } from "./item-information/item-information.co
 		ItemSelectListComponent,
 		ItemSearchResultItemComponent,
 		ItemSearchSelectComponent,
-		ItemInformationComponent
+		ItemInformationComponent,
 	],
 	providers: [ItemSearchService],
 	exports: [
@@ -56,7 +56,7 @@ import { ItemInformationComponent } from "./item-information/item-information.co
 		ItemSelectListComponent,
 		ItemSearchComponent,
 		ItemSearchSelectComponent,
-		ItemInformationComponent
-	]
+		ItemInformationComponent,
+	],
 })
 export class ItemModule {}

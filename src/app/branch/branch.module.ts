@@ -19,7 +19,7 @@ import {
 	NgbAccordionModule,
 	NgbDatepickerModule,
 	NgbPopoverModule,
-	NgbTimepickerModule
+	NgbTimepickerModule,
 } from "@ng-bootstrap/ng-bootstrap";
 import { BranchItemCategorySelectService } from "./branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.service";
 import { FormsModule } from "@angular/forms";
@@ -43,7 +43,7 @@ import { BranchItemStoreService } from "./branch-item-store/branch-item-store.se
 		FormsModule,
 		NgbAccordionModule,
 		NgbTimepickerModule,
-		NgbDatepickerModule
+		NgbDatepickerModule,
 	],
 	declarations: [
 		BranchSelectComponent,
@@ -56,7 +56,7 @@ import { BranchItemStoreService } from "./branch-item-store/branch-item-store.se
 		BranchItemEditComponent,
 		BranchItemCategorySelectComponent,
 		BranchOpeningHoursEditComponent,
-		BranchCurrentComponent
+		BranchCurrentComponent,
 	],
 	providers: [
 		BranchItemHandlerService,
@@ -64,12 +64,12 @@ import { BranchItemStoreService } from "./branch-item-store/branch-item-store.se
 		OpeningHoursHandlerService,
 		BranchItemHelperService,
 		BranchHelperService,
-		BranchItemStoreService
+		BranchItemStoreService,
 	],
 	exports: [
 		BranchEditListComponent,
 		BranchUploadComponent,
-		BranchCurrentComponent
-	]
+		BranchCurrentComponent,
+	],
 })
 export class BranchModule {}

@@ -4,7 +4,7 @@ import {
 	OnInit,
 	Output,
 	OnDestroy,
-	ViewChild
+	ViewChild,
 } from "@angular/core";
 import { CartService } from "../cart.service";
 import { CartItem } from "../cart-item/cart-item";
@@ -16,7 +16,7 @@ import { PriceInformation } from "../../price/price-information";
 @Component({
 	selector: "app-cart-list",
 	templateUrl: "./cart-list.component.html",
-	styleUrls: ["./cart-list.component.scss"]
+	styleUrls: ["./cart-list.component.scss"],
 })
 export class CartListComponent implements OnInit, OnDestroy {
 	@Output() cartConfirmed: EventEmitter<boolean>;
@@ -75,7 +75,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 				beforeDismiss: () => {
 					this._cartService.clearLock();
 					return true;
-				}
+				},
 			}
 		);
 	}
@@ -94,7 +94,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 				beforeDismiss: () => {
 					this._cartService.clearLock();
 					return true;
-				}
+				},
 			}
 		);
 	}
@@ -111,7 +111,7 @@ export class CartListComponent implements OnInit, OnDestroy {
 	}
 
 	private handleCartChange() {
-		this.cart$ = this._cartService.subscribe(cart => {
+		this.cart$ = this._cartService.subscribe((cart) => {
 			this.cart = cart;
 			this.getTotalPriceInformation();
 		});

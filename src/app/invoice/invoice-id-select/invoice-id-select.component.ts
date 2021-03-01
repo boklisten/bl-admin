@@ -5,14 +5,14 @@ import {
 	EventEmitter,
 	Input,
 	Output,
-	SimpleChanges
+	SimpleChanges,
 } from "@angular/core";
 import { Invoice } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-invoice-id-select",
 	templateUrl: "./invoice-id-select.component.html",
-	styleUrls: ["./invoice-id-select.component.scss"]
+	styleUrls: ["./invoice-id-select.component.scss"],
 })
 export class InvoiceIdSelectComponent implements OnInit, OnChanges {
 	@Input() invoices: Invoice[];

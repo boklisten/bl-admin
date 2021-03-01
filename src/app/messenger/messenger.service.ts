@@ -5,7 +5,7 @@ import { Observable, Subject } from "rxjs";
 import { MessageSettings } from "./message-settings";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class MessengerService {
 	private successfullMessage$: Subject<string>;
@@ -20,13 +20,13 @@ export class MessengerService {
 		for (let customerId of customerIds) {
 			this.messageService
 				.add(this.createMessage(customerId, settings))
-				.then(message => {
+				.then((message) => {
 					this.successfullMessage$.next(message.customerId);
 				})
-				.catch(err => {
+				.catch((err) => {
 					this.failedMessages$.next({
 						userId: customerId,
-						error: JSON.stringify(err)
+						error: JSON.stringify(err),
 					});
 				});
 		}
@@ -55,7 +55,7 @@ export class MessengerService {
 				: 0,
 			subject: settings.subject ? settings.subject : null,
 			htmlContent: settings.htmlContent ? settings.htmlContent : null,
-			customerId: userId
+			customerId: userId,
 		};
 	}
 }

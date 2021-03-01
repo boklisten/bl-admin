@@ -1,18 +1,19 @@
-
 <div class="row justify-content-center">
 	<div class="col-auto">
 		<form [formGroup]="paymentMethodForm">
 			<div class="btn-group btn-group-toggle btn-group-lg">
 				<label class="btn-outline-secondary" ngbButtonLabel>
-					<input type="checkbox" formControlName="card" ngbButton> <fa-icon [icon]="'credit-card'" class="mr-2"></fa-icon>
+					<input type="checkbox" formControlName="card" ngbButton />
+					<fa-icon [icon]="'credit-card'" class="mr-2"></fa-icon>
 					<span i18n="@@paymentMethodSelectCard">Card</span>
 				</label>
 				<label class="btn-outline-secondary" ngbButtonLabel>
-					<input type="checkbox" formControlName="cash" ngbButton> <fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon>
+					<input type="checkbox" formControlName="cash" ngbButton />
+					<fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon>
 					<span i18n="@@paymentMethodSelectCash">Cash</span>
 				</label>
 				<label class="btn-outline-secondary" ngbButtonLabel>
-					<input type="checkbox" formControlName="vipps" ngbButton>
+					<input type="checkbox" formControlName="vipps" ngbButton />
 					<span i18n="@@paymentMethodSelectVipps">Vipps</span>
 				</label>
 			</div>
@@ -22,46 +23,61 @@
 
 <div class="row mt-5 justify-content-center">
 	<div class="col-6">
-
-        <div class="input-group input-group-lg mb-3 mr-2" *ngIf="card && showInput">
-
-            <input type="text" class="form-control" id="cardAmount" placeholder="card amount"
-				   [(ngModel)]="cardAmount"
-				   (click)="$event.target.select()"
-				   (keyup)="onInputChange()">
-
-            <div class="input-group-append">
-                <span class="input-group-text">
-                    <fa-icon [icon]="'credit-card'"></fa-icon>
-                </span>
-            </div>
-        </div>
-
-		<div class="input-group input-group-lg mb-3" *ngIf="cash && showInput">
-
-            <input type="text" class="form-control" id="cashAmount" placeholder="cash amount"
-				   [(ngModel)]="cashAmount"
-				   (click)="$event.target.select()"
-				   (keyup)="onInputChange()">
-
-            <div class="input-group-append">
-                <span class="input-group-text">
-					<fa-icon [icon]="'money-bill-alt'"></fa-icon>
-                </span>
-            </div>
-        </div>
-
-		<div class="input-group input-group-lg mb-3" *ngIf="vipps && showInput">
-
-            <input type="text" class="form-control" id="vippsAmount" placeholder="vipps amount" [(ngModel)]="vippsAmount"
-				   (click)="$event.target.select()"
-				   (keyup)="onInputChange()">
+		<div
+			class="input-group input-group-lg mb-3 mr-2"
+			*ngIf="card && showInput"
+		>
+			<input
+				type="text"
+				class="form-control"
+				id="cardAmount"
+				placeholder="card amount"
+				[(ngModel)]="cardAmount"
+				(click)="$event.target.select()"
+				(keyup)="onInputChange()"
+			/>
 
 			<div class="input-group-append">
-                <span class="input-group-text">
+				<span class="input-group-text">
+					<fa-icon [icon]="'credit-card'"></fa-icon>
+				</span>
+			</div>
+		</div>
+
+		<div class="input-group input-group-lg mb-3" *ngIf="cash && showInput">
+			<input
+				type="text"
+				class="form-control"
+				id="cashAmount"
+				placeholder="cash amount"
+				[(ngModel)]="cashAmount"
+				(click)="$event.target.select()"
+				(keyup)="onInputChange()"
+			/>
+
+			<div class="input-group-append">
+				<span class="input-group-text">
+					<fa-icon [icon]="'money-bill-alt'"></fa-icon>
+				</span>
+			</div>
+		</div>
+
+		<div class="input-group input-group-lg mb-3" *ngIf="vipps && showInput">
+			<input
+				type="text"
+				class="form-control"
+				id="vippsAmount"
+				placeholder="vipps amount"
+				[(ngModel)]="vippsAmount"
+				(click)="$event.target.select()"
+				(keyup)="onInputChange()"
+			/>
+
+			<div class="input-group-append">
+				<span class="input-group-text">
 					<span i18n="@@paymentMethodSelectVipps">Vipps</span>
-                </span>
-            </div>
-        </div>
+				</span>
+			</div>
+		</div>
 	</div>
 </div>

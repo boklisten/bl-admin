@@ -8,7 +8,7 @@ import { MessageSettings } from "../message-settings";
 @Component({
 	selector: "app-messenger-generic",
 	templateUrl: "./messenger-generic.component.html",
-	styleUrls: ["./messenger-generic.component.scss"]
+	styleUrls: ["./messenger-generic.component.scss"],
 })
 export class MessengerGenericComponent implements OnInit {
 	public htmlText: string;
@@ -52,7 +52,7 @@ export class MessengerGenericComponent implements OnInit {
 			.then((userDetailIds: string[]) => {
 				this.openModal(userDetailIds);
 			})
-			.catch(e => {
+			.catch((e) => {
 				this.noCustomersFoundError = true;
 				setTimeout(() => {
 					this.noCustomersFoundError = false;
@@ -63,7 +63,7 @@ export class MessengerGenericComponent implements OnInit {
 
 	private openModal(customerIds: string[]) {
 		const modalRef = this.modalService.open(MessengerSendModalComponent, {
-			size: "lg"
+			size: "lg",
 		});
 
 		modalRef.componentInstance.name = "MessageModal";
@@ -74,7 +74,7 @@ export class MessengerGenericComponent implements OnInit {
 			messageSubtype: "none",
 			messageMethod: "email",
 			subject: this.subject,
-			htmlContent: this.htmlText
+			htmlContent: this.htmlText,
 		};
 	}
 

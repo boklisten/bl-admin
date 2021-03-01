@@ -5,17 +5,17 @@ import {
 	OnChanges,
 	OnInit,
 	SimpleChanges,
-	ViewChild
+	ViewChild,
 } from "@angular/core";
 import { Item } from "@boklisten/bl-model";
 import { ItemService } from "@boklisten/bl-connect";
-import { selectRows } from "@swimlane/ngx-datatable/release/utils";
 import { DatabaseExcelService } from "../../../database/database-excel/database-excel.service";
+import { BlcSortService } from "../../../bl-common/blc-sort/blc-sort.service";
 
 @Component({
 	selector: "app-item-edit-list",
 	templateUrl: "./item-edit-list.component.html",
-	styleUrls: ["./item-edit-list.component.scss"]
+	styleUrls: ["./item-edit-list.component.scss"],
 })
 export class ItemEditListComponent implements OnInit, OnChanges {
 	@Input() items: Item[];
@@ -35,7 +35,8 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 	constructor(
 		private _itemService: ItemService,
 		private _changeDetectionRef: ChangeDetectorRef,
-		private _databaseExcelService: DatabaseExcelService
+		private _databaseExcelService: DatabaseExcelService,
+		private blcSortService: BlcSortService
 	) {
 		this.columns = [];
 		this.selected = [];
@@ -48,7 +49,24 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 		this._databaseExcelService.objectsToExcelFile(this.selected, "items");
 	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		if (!this.uploadList) {
+			this._itemService
+				.get()
+				.then((items: Item[]) => {
+					this.items = this.blcSortService.sortByField(
+						items,
+						"title"
+					);
+				})
+				.catch((err) => {
+					console.log(
+						"DatabaseItemsComponent: could not get items",
+						err
+					);
+				});
+		}
+	}
 
 	ngOnChanges(changes: SimpleChanges) {
 		for (const propName in changes) {
@@ -94,7 +112,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 				this.items[rowIndex] = updatedItem;
 				this.items = [...this.items];
 			})
-			.catch(updateItemError => {
+			.catch((updateItemError) => {
 				console.log(
 					"itemEditListComponent: could not update item",
 					updateItemError
@@ -119,7 +137,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 				this.items = [...this.items];
 				this._changeDetectionRef.markForCheck();
 			})
-			.catch(updateError => {
+			.catch((updateError) => {
 				console.log(
 					"itemEditListComponent: could not update item",
 					updateError
@@ -164,7 +182,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 
 						this.items = [...this.items];
 					})
-					.catch(err => {
+					.catch((err) => {
 						console.log(
 							"itemEditListComponent: could not add item",
 							err
@@ -174,11 +192,11 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 				this.updating[itemCell] = true;
 				this._itemService
 					.update(selectedItem.id, selectedItem)
-					.then(updatedItem => {
+					.then((updatedItem) => {
 						this.updating[itemCell] = false;
 						this.removeItemFromList(updatedItem.title);
 					})
-					.catch(err => {
+					.catch((err) => {
 						this.updating[itemCell] = false;
 						console.log(
 							"itemEditListComponent: could not update item",
@@ -186,7 +204,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 						);
 					});
 			}
-    }
+		}
 	}
 
 	private removeItemFromList(title) {

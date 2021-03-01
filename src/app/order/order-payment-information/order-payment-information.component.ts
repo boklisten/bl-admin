@@ -4,7 +4,7 @@ import { Order } from "@boklisten/bl-model";
 @Component({
 	selector: "app-order-payment-information",
 	templateUrl: "./order-payment-information.component.html",
-	styleUrls: ["./order-payment-information.component.scss"]
+	styleUrls: ["./order-payment-information.component.scss"],
 })
 export class OrderPaymentInformationComponent implements OnInit {
 	@Input() order: Order;

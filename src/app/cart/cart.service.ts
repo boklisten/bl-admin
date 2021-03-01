@@ -121,7 +121,7 @@ export class CartService {
 	}
 
 	public getCart(): CartItem[] {
-		return this._cartItems$.map(cartItemSub => {
+		return this._cartItems$.map((cartItemSub) => {
 			return cartItemSub.cartItem;
 		});
 	}
@@ -141,7 +141,7 @@ export class CartService {
 			cartItem: cartItem,
 			subscription: cartItem.subscribe(() => {
 				this.notifyCartChange(this.getCart());
-			})
+			}),
 		});
 	}
 
@@ -165,7 +165,7 @@ export class CartService {
 	}
 
 	private handleCustomerClearChange() {
-		this._customerService.onClear(clear => {
+		this._customerService.onClear((clear) => {
 			if (clear) {
 				this.clear();
 			}

@@ -4,7 +4,6 @@ import { CommonModule } from "@angular/common";
 import { DatabaseRoutingModule } from "./database-routing.module";
 import { DatabaseComponent } from "./database.component";
 import { DatabaseItemsComponent } from "./database-items/database-items.component";
-import { NgbTabsetModule } from "@ng-bootstrap/ng-bootstrap";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ItemModule } from "../item/item.module";
 import { DatabaseExcelService } from "./database-excel/database-excel.service";
@@ -17,7 +16,7 @@ import {
 	ReportDownloadModule,
 	OrderDownloadComponent,
 	PaymentDownloadComponent,
-	CustomerItemDownloadComponent
+	CustomerItemDownloadComponent,
 } from "@boklisten/bl-reporter";
 import { DatabaseCompaniesComponent } from "./database-companies/database-companies.component";
 import { DatabaseCompanyAddComponent } from "./database-companies/database-company-add/database-company-add.component";
@@ -28,13 +27,12 @@ import { DatabaseCompanyListComponent } from "./database-companies/database-comp
 	imports: [
 		CommonModule,
 		DatabaseRoutingModule,
-		NgbTabsetModule,
 		FontAwesomeModule,
 		ItemModule,
 		BranchModule,
 		BlCommonModule,
 		ReportDownloadModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
 	],
 	providers: [DatabaseExcelService],
 	declarations: [
@@ -45,7 +43,7 @@ import { DatabaseCompanyListComponent } from "./database-companies/database-comp
 		DatabaseReportOrderComponent,
 		DatabaseCompaniesComponent,
 		DatabaseCompanyAddComponent,
-		DatabaseCompanyListComponent
-	]
+		DatabaseCompanyListComponent,
+	],
 })
 export class DatabaseModule {}

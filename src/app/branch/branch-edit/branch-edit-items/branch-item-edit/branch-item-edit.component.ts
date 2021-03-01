@@ -5,7 +5,7 @@ import { BranchItemService, ItemService } from "@boklisten/bl-connect";
 @Component({
 	selector: "app-branch-item-edit",
 	templateUrl: "./branch-item-edit.component.html",
-	styleUrls: ["./branch-item-edit.component.scss"]
+	styleUrls: ["./branch-item-edit.component.scss"],
 })
 export class BranchItemEditComponent implements OnInit {
 	@Input() branchItem: BranchItem;
@@ -22,7 +22,7 @@ export class BranchItemEditComponent implements OnInit {
 			.then((item: Item) => {
 				this.item = item;
 			})
-			.catch(getItemError => {
+			.catch((getItemError) => {
 				console.log("BranchItemEditComponent: could not get item");
 			});
 	}
@@ -33,7 +33,7 @@ export class BranchItemEditComponent implements OnInit {
 			.then((updatedBranchItem: BranchItem) => {
 				this.branchItem = updatedBranchItem;
 			})
-			.catch(updateBranchItemError => {
+			.catch((updateBranchItemError) => {
 				console.log(
 					"branchItemEditComponent: could not update branchItem",
 					updateBranchItemError

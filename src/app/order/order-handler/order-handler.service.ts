@@ -50,7 +50,7 @@ export class OrderHandlerService {
 			.then((placedOrder: Order) => {
 				return true;
 			})
-			.catch(placeOrderError => {
+			.catch((placeOrderError) => {
 				throw new Error(
 					"orderHandlerService: could not place order" +
 						placeOrderError
@@ -86,7 +86,7 @@ export class OrderHandlerService {
 			employee: this._userService.getUserDetailId(),
 			viewableFor: this._customerService.haveCustomer()
 				? [this._customerDetailService.get().blid]
-				: null
+				: null,
 		} as Order;
 	}
 

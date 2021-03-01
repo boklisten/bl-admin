@@ -5,7 +5,7 @@ import { CustomerService } from "../customer.service";
 @Component({
 	selector: "app-customer-permission",
 	templateUrl: "./customer-permission.component.html",
-	styleUrls: ["./customer-permission.component.scss"]
+	styleUrls: ["./customer-permission.component.scss"],
 })
 export class CustomerPermissionComponent implements OnInit {
 	@Input() customer: UserDetail;
@@ -24,10 +24,10 @@ export class CustomerPermissionComponent implements OnInit {
 	public getPermission() {
 		this._customerService
 			.getPermission(this.customer.id)
-			.then(permission => {
+			.then((permission) => {
 				this.selectedPermission = permission;
 			})
-			.catch(e => {});
+			.catch((e) => {});
 	}
 
 	public getIcon(permission) {
@@ -50,7 +50,7 @@ export class CustomerPermissionComponent implements OnInit {
 			.then(() => {
 				this.wait = false;
 			})
-			.catch(e => {
+			.catch((e) => {
 				this.wait = false;
 			});
 	}

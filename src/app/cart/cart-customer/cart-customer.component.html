@@ -1,0 +1,22 @@
+<div class="row mt-2" *ngIf="!haveCustomer">
+	<div class="col-12">
+		<div class="alert alert-secondary text-center">
+			<fa-icon icon="exclamation-triangle" class="mr-2"></fa-icon>
+			<span i18n="@@cartNoCustomerSelected">No customer selected</span>
+		</div>
+	</div>
+</div>
+<div class="row mt-2" *ngIf="haveCustomer">
+	<div class="col-lg-6 col-md-12 col-12">
+		<h5 class="text-center text-white bg-warning" i18n="@@cartOrderedItems">
+			Ordered items
+		</h5>
+		<app-customer-order-item-list></app-customer-order-item-list>
+	</div>
+	<div class="col-lg-6 col-md-12 col-12">
+		<h5 class="text-center text-white bg-info" i18n="@@cartCustomerItems">
+			Customer items
+		</h5>
+		<app-customer-item-list></app-customer-item-list>
+	</div>
+</div>

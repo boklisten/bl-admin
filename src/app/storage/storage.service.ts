@@ -1,9 +1,8 @@
-import {Injectable} from '@angular/core';
-import {AuthService} from '../auth/auth.service';
+import { Injectable } from "@angular/core";
+import { AuthService } from "../auth/auth.service";
 
 @Injectable()
 export class StorageService {
-
 	constructor(private _authService: AuthService) {
 		this.onLogout();
 	}
@@ -33,5 +32,4 @@ export class StorageService {
 			this.clear();
 		});
 	}
-
 }

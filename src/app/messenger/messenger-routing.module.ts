@@ -16,13 +16,13 @@ const routes: Routes = [
 			{ path: "generic", component: MessengerGenericComponent },
 			{ path: "list", component: MessengerListComponent },
 			{ path: "reminder", component: MessengerReminderComponent },
-			{ path: "match", component: MessengerMatchComponent }
-		]
-	}
+			{ path: "match", component: MessengerMatchComponent },
+		],
+	},
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
 export class MessengerRoutingModule {}

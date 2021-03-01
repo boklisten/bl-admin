@@ -1,17 +1,17 @@
 <ul class="list-group" *ngIf="item">
-	<li class="list-group-item list-group-item-secondary">{{item.title}}</li>
+	<li class="list-group-item list-group-item-secondary">{{ item.title }}</li>
 	<li class="list-group-item d-flex justify-content-between">
 		<span i18n="@@itemInformaitonPrice">Price</span>
-		<span>{{item.price | blcPrice}}</span>
+		<span>{{ item.price | blcPrice }}</span>
 	</li>
 
 	<li class="list-group-item d-flex justify-content-between">
 		<span i18n="@@itemInformaitonISBN">ISBN</span>
-		<span>{{item.info.isbn}}</span>
+		<span>{{ item.info.isbn }}</span>
 	</li>
 
 	<li class="list-group-item d-flex justify-content-between">
 		<span i18n="@@itemInformaitonTaxRate">Tax rate</span>
-		<span>{{item.taxRate}}</span>
+		<span>{{ item.taxRate }}</span>
 	</li>
 </ul>

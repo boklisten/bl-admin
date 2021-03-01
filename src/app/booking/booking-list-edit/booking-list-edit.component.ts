@@ -1,13 +1,16 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy } from "@angular/core";
 import { Booking } from "@boklisten/bl-model";
 import { BookingService } from "@boklisten/bl-connect";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import * as moment from "moment";
+import { ActivatedRoute, Params } from "@angular/router";
+import { Subscription } from "rxjs";
+import { CustomerService } from "../../customer/customer.service";
 
 @Component({
 	selector: "app-booking-list-edit",
 	templateUrl: "./booking-list-edit.component.html",
-	styleUrls: ["./booking-list-edit.component.scss"]
+	styleUrls: ["./booking-list-edit.component.scss"],
 })
 export class BookingListEditComponent implements OnInit {
 	@Input() customerId: string;
@@ -20,12 +23,15 @@ export class BookingListEditComponent implements OnInit {
 	public numberOfBooked: number;
 
 	constructor(
+		private _route: ActivatedRoute,
 		private bookingService: BookingService,
-		private branchStoreService: BranchStoreService
+		private branchStoreService: BranchStoreService,
+		private customerService: CustomerService
 	) {
 		this.selectedList = {};
 		this.bookings = [];
 		this.numberOfBooked = 0;
+		this.customerId = this.customerService.getCustomerDetailId();
 	}
 
 	ngOnInit() {
@@ -37,6 +43,7 @@ export class BookingListEditComponent implements OnInit {
 			this.selectedList = {};
 			this.getBookings();
 		});
+
 	}
 
 	private getBookings() {
@@ -50,7 +57,7 @@ export class BookingListEditComponent implements OnInit {
 
 		this.bookingService
 			.get({ query: query, fresh: true })
-			.then(bookings => {
+			.then((bookings) => {
 				bookings.sort(
 					(a, b) => moment(a.from).unix() - moment(b.from).unix()
 				);

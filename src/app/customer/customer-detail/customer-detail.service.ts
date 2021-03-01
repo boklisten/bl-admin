@@ -42,7 +42,7 @@ export class CustomerDetailService {
 	}
 
 	private handleCustomerClear() {
-		this._customerService.onClear(cleared => {
+		this._customerService.onClear((cleared) => {
 			if (cleared) {
 				this.clear();
 			}

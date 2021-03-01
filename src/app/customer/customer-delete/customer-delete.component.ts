@@ -4,7 +4,7 @@ import {
 	Input,
 	ViewChild,
 	Output,
-	EventEmitter
+	EventEmitter,
 } from "@angular/core";
 import { UserDetail } from "@boklisten/bl-model";
 import { UserService } from "../../user/user.service";
@@ -15,7 +15,7 @@ import { ToasterService } from "../../toaster/toaster.service";
 @Component({
 	selector: "app-customer-delete",
 	templateUrl: "./customer-delete.component.html",
-	styleUrls: ["./customer-delete.component.scss"]
+	styleUrls: ["./customer-delete.component.scss"],
 })
 export class CustomerDeleteComponent implements OnInit {
 	@Input() customer: UserDetail;
@@ -48,7 +48,7 @@ export class CustomerDeleteComponent implements OnInit {
 				this.canConfirm = false;
 				this.showDeletionError = false;
 				return true;
-			}
+			},
 		});
 	}
 
@@ -67,7 +67,7 @@ export class CustomerDeleteComponent implements OnInit {
 				this.deleted.emit(true);
 				this._toasterService.add("SUCCESS", "user was deleted");
 			})
-			.catch(error => {
+			.catch((error) => {
 				this.showDeletionError = true;
 				this.wait = false;
 			});

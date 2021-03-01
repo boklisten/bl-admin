@@ -13,23 +13,23 @@ const routes: Routes = [
 		children: [
 			{
 				path: "select",
-				component: BranchSelectComponent
+				component: BranchSelectComponent,
 			},
 			{
 				path: ":id/info",
-				component: BranchInfoComponent
+				component: BranchInfoComponent,
 			},
 			{
 				path: ":id/edit",
 				canActivate: [AdminGuardService],
-				component: BranchEditComponent
-			}
-		]
-	}
+				component: BranchEditComponent,
+			},
+		],
+	},
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
 export class BranchRoutingModule {}

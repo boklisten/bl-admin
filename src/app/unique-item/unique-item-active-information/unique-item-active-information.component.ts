@@ -3,18 +3,15 @@ import {
 	OnInit,
 	Input,
 	SimpleChanges,
-	OnChanges
+	OnChanges,
 } from "@angular/core";
 import { UniqueItem, CustomerItem } from "@boklisten/bl-model";
-import {
-	UniqueItemService,
-	CustomerItemService
-} from "@boklisten/bl-connect";
+import { UniqueItemService, CustomerItemService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-unique-item-active-information",
 	templateUrl: "./unique-item-active-information.component.html",
-	styleUrls: ["./unique-item-active-information.component.scss"]
+	styleUrls: ["./unique-item-active-information.component.scss"],
 })
 export class UniqueItemActiveInformationComponent implements OnInit, OnChanges {
 	@Input() uniqueItem: UniqueItem;
@@ -38,13 +35,13 @@ export class UniqueItemActiveInformationComponent implements OnInit, OnChanges {
 		this.wait = true;
 		this._uniqueItemService
 			.getWithOperation(this.uniqueItem.id, "active")
-			.then(activeCustomerItem => {
+			.then((activeCustomerItem) => {
 				if (typeof activeCustomerItem == "string") {
 					this.getCustomerItem(activeCustomerItem);
 				}
 				this.wait = false;
 			})
-			.catch(e => {
+			.catch((e) => {
 				this.activeCustomerItem = null;
 				this.wait = false;
 				console.log("could not get active ");
@@ -54,9 +51,9 @@ export class UniqueItemActiveInformationComponent implements OnInit, OnChanges {
 	public getCustomerItem(customerItemId: string) {
 		this._customerItemService
 			.getById(customerItemId)
-			.then(customerItem => {
+			.then((customerItem) => {
 				this.activeCustomerItem = customerItem;
 			})
-			.catch(e => {});
+			.catch((e) => {});
 	}
 }

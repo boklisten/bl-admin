@@ -4,7 +4,7 @@ import { Subject } from "rxjs/internal/Subject";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class BlcKeyeventDoubleShiftService {
 	private _doubleShift$: Subject<boolean>;

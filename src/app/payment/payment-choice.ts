@@ -1,4 +1,4 @@
-import {PaymentMethod} from '@boklisten/bl-model';
+import { PaymentMethod } from "@boklisten/bl-model";
 
 export interface PaymentChoice {
 	type: PaymentMethod;

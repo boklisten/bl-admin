@@ -22,7 +22,7 @@ import { BookingTimePickerComponent } from "./booking-time-picker/booking-time-p
 		BookingViewComponent,
 		BookingListEditComponent,
 		BookingDisplayComponent,
-		BookingTimePickerComponent
+		BookingTimePickerComponent,
 	],
 	imports: [
 		CommonModule,
@@ -31,8 +31,8 @@ import { BookingTimePickerComponent } from "./booking-time-picker/booking-time-p
 		ReactiveFormsModule,
 		NgbTimepickerModule,
 		FormsModule,
-		BlCommonModule
+		BlCommonModule,
 	],
-	exports: [BookingViewComponent, BookingListEditComponent]
+	exports: [BookingViewComponent, BookingListEditComponent],
 })
 export class BookingModule {}

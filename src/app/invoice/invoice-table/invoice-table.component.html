@@ -102,7 +102,7 @@
 			</thead>
 			<tbody *ngIf="invoices">
 				<tr
-					*ngFor="let invoice of (invoices$ | async); let i = index"
+					*ngFor="let invoice of invoices$ | async; let i = index"
 					[ngClass]="{
 						'table-primary':
 							selectedInvoice &&

@@ -5,7 +5,7 @@ import { CustomerService } from "../../customer/customer.service";
 import { UserService } from "../../user/user.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class OrderGeneratorService {
 	constructor(
@@ -31,8 +31,8 @@ export class OrderGeneratorService {
 			delivery: null,
 			handoutByDelivery: false,
 			notification: {
-				email: false
-			}
+				email: false,
+			},
 		};
 	}
 

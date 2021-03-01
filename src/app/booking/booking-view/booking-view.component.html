@@ -43,20 +43,22 @@
 				<tbody>
 					<tr *ngFor="let booking of bookings; let i = index">
 						<td>
-							{{booking.from | blDate:"time"}}
+							{{ booking.from | blDate: "time" }}
 							<small class="text-muted">
 								<fa-icon
 									[icon]="'arrow-right'"
 									class="mr-2 ml-2"
 								></fa-icon>
-								{{ booking.to | blDate:"time"}}
+								{{ booking.to | blDate: "time" }}
 							</small>
 						</td>
 						<td class="text-center">
 							<span *ngIf="!booking.customer"> - </span>
 							<span
 								*ngIf="booking.customer"
-								[routerLink]="'/customer/' + booking.customer + '/detail'"
+								[routerLink]="
+									'/customer/' + booking.customer + '/detail'
+								"
 								class="bl-link-black"
 							>
 								{{ booking.customer | customerName | async }}

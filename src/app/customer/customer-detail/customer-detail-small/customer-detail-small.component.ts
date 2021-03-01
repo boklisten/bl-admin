@@ -3,7 +3,7 @@ import {
 	EventEmitter,
 	OnInit,
 	Output,
-	OnDestroy
+	OnDestroy,
 } from "@angular/core";
 import { CustomerService } from "../../customer.service";
 import { UserDetail } from "@boklisten/bl-model";
@@ -13,7 +13,7 @@ import { CustomerDetailService } from "../customer-detail.service";
 @Component({
 	selector: "app-customer-detail-small",
 	templateUrl: "./customer-detail-small.component.html",
-	styleUrls: ["./customer-detail-small.component.scss"]
+	styleUrls: ["./customer-detail-small.component.scss"],
 })
 export class CustomerDetailSmallComponent implements OnInit, OnDestroy {
 	public customerDetail: UserDetail;

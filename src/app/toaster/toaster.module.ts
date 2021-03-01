@@ -8,6 +8,6 @@ import { RouterModule } from "@angular/router";
 @NgModule({
 	declarations: [ToastComponent, ToasterComponent],
 	imports: [CommonModule, FontAwesomeModule, RouterModule],
-	exports: [ToasterComponent]
+	exports: [ToasterComponent],
 })
 export class ToasterModule {}

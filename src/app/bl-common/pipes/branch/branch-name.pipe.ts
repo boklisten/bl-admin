@@ -3,7 +3,7 @@ import { BranchService } from "@boklisten/bl-connect";
 import { Branch } from "@boklisten/bl-model";
 
 @Pipe({
-	name: "branchName"
+	name: "branchName",
 })
 export class BranchNamePipe implements PipeTransform {
 	constructor(private _branchService: BranchService) {}

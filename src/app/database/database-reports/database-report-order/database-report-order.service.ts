@@ -6,7 +6,7 @@ import { Order } from "@boklisten/bl-model";
 import { DatabaseExcelService } from "../../database-excel/database-excel.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class DatabaseReportOrderService {
 	private _dateFormat: string;
@@ -86,7 +86,7 @@ export class DatabaseReportOrderService {
 				taxAmount: orderItem.taxAmount,
 				type: orderItem.type,
 				movedToOrder: orderItem.movedToOrder,
-				creationTime: order.creationTime
+				creationTime: order.creationTime,
 			});
 		}
 

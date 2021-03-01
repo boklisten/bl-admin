@@ -5,7 +5,7 @@ import { BranchItem } from "@boklisten/bl-model";
 import { Subject, ReplaySubject, Subscription } from "rxjs";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class BranchItemStoreService {
 	private _branchItems: BranchItem[];
@@ -45,11 +45,11 @@ export class BranchItemStoreService {
 	}
 
 	private handleBranchChange() {
-		this._branchStoreService.subscribe(branch => {
+		this._branchStoreService.subscribe((branch) => {
 			this._wait$.next(true);
 			this._branchItemService
 				.get({ query: "?branch=" + branch.id })
-				.then(branchItems => {
+				.then((branchItems) => {
 					this.setBranchItems(branchItems);
 				})
 				.catch(() => {

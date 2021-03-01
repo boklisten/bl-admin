@@ -4,7 +4,7 @@ import { DeliveryService } from "@boklisten/bl-connect";
 import { CartService } from "../cart.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class CartDeliveryService {
 	constructor(

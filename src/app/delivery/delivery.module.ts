@@ -8,9 +8,9 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 @NgModule({
 	declarations: [
 		DeliveryDetailComponent,
-		DeliveryTrackingNumberEditComponent
+		DeliveryTrackingNumberEditComponent,
 	],
 	imports: [CommonModule, FormsModule, FontAwesomeModule],
-	exports: [DeliveryDetailComponent, DeliveryTrackingNumberEditComponent]
+	exports: [DeliveryDetailComponent, DeliveryTrackingNumberEditComponent],
 })
 export class DeliveryModule {}

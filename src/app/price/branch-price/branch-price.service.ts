@@ -99,7 +99,7 @@ export class BranchPriceService {
 	}
 
 	private handleBranchChange() {
-		this._branchStoreService.subscribe(branch => {
+		this._branchStoreService.subscribe((branch) => {
 			this._branch = branch;
 		});
 	}

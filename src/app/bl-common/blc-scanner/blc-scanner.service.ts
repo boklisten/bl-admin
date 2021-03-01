@@ -3,7 +3,7 @@ import { Observable } from "rxjs/internal/Observable";
 import { Subject, Subscription } from "rxjs";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class BlcScannerService {
 	private _isbn$: Subject<number>;

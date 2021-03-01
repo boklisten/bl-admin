@@ -6,7 +6,7 @@ import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 @Component({
 	selector: "app-branch-select",
 	templateUrl: "./branch-select.component.html",
-	styleUrls: ["./branch-select.component.scss"]
+	styleUrls: ["./branch-select.component.scss"],
 })
 export class BranchSelectComponent implements OnInit {
 	public branches: Branch[];

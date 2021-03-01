@@ -3,7 +3,7 @@ import {
 	OnInit,
 	Input,
 	SimpleChanges,
-	OnChanges
+	OnChanges,
 } from "@angular/core";
 import { Item } from "@boklisten/bl-model";
 import { ItemService } from "@boklisten/bl-connect";
@@ -11,7 +11,7 @@ import { ItemService } from "@boklisten/bl-connect";
 @Component({
 	selector: "app-item-information",
 	templateUrl: "./item-information.component.html",
-	styleUrls: ["./item-information.component.scss"]
+	styleUrls: ["./item-information.component.scss"],
 })
 export class ItemInformationComponent implements OnInit, OnChanges {
 	@Input() item: Item;
@@ -31,10 +31,10 @@ export class ItemInformationComponent implements OnInit, OnChanges {
 		if (this.itemId) {
 			this._itemService
 				.getById(this.itemId)
-				.then(item => {
+				.then((item) => {
 					this.item = item;
 				})
-				.catch(e => {
+				.catch((e) => {
 					console.log("could not get item", e);
 				});
 		}

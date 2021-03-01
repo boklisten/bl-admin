@@ -19,8 +19,8 @@ import { BlCommonModule } from "../bl-common/bl-common.module";
 		FontAwesomeModule,
 		DeliveryModule,
 		FormsModule,
-		BlCommonModule
+		BlCommonModule,
 	],
-	exports: [CheckoutComponent]
+	exports: [CheckoutComponent],
 })
 export class CheckoutModule {}

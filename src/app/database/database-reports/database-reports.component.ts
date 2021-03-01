@@ -5,7 +5,7 @@ import { Branch } from "@boklisten/bl-model";
 @Component({
 	selector: "app-database-reports",
 	templateUrl: "./database-reports.component.html",
-	styleUrls: ["./database-reports.component.scss"]
+	styleUrls: ["./database-reports.component.scss"],
 })
 export class DatabaseReportsComponent implements OnInit {
 	public currentBranchId: string;

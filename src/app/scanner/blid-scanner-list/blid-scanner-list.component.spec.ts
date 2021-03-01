@@ -8,7 +8,7 @@ describe("UidScannerListComponent", () => {
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-			declarations: [BlidScannerListComponent]
+			declarations: [BlidScannerListComponent],
 		}).compileComponents();
 	}));
 

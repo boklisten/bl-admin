@@ -5,7 +5,7 @@ import { BranchService } from "@boklisten/bl-connect";
 @Component({
 	selector: "app-branch-edit-price-info",
 	templateUrl: "./branch-edit-period-settings.component.html",
-	styleUrls: ["./branch-edit-period-settings.component.scss"]
+	styleUrls: ["./branch-edit-period-settings.component.scss"],
 })
 export class BranchEditPeriodSettingsComponent implements OnInit {
 	@Input() branch: Branch;
@@ -35,7 +35,7 @@ export class BranchEditPeriodSettingsComponent implements OnInit {
 		if (!this.branch.deliveryMethods) {
 			this.branch.deliveryMethods = {
 				byMail: false,
-				branch: false
+				branch: false,
 			};
 		} else {
 			this.branch.deliveryMethods.branch = this.branch.deliveryMethods
@@ -50,7 +50,7 @@ export class BranchEditPeriodSettingsComponent implements OnInit {
 
 		if (!this.branch.paymentInfo.sell) {
 			this.branch.paymentInfo.sell = {
-				percentage: 0
+				percentage: 0,
 			};
 		}
 	}
@@ -72,7 +72,7 @@ export class BranchEditPeriodSettingsComponent implements OnInit {
 			percentageBuyout: 1,
 			percentageBuyoutUsed: 1,
 			percentageUpFront: 1,
-			percentageUpFrontUsed: 1
+			percentageUpFrontUsed: 1,
 		});
 		this.onUpdate();
 	}
@@ -82,7 +82,7 @@ export class BranchEditPeriodSettingsComponent implements OnInit {
 			type: "semester",
 			date: new Date(),
 			maxNumberOfPeriods: 1,
-			percentage: 1
+			percentage: 1,
 		});
 		this.onUpdate();
 	}
@@ -97,7 +97,7 @@ export class BranchEditPeriodSettingsComponent implements OnInit {
 			type: "semester",
 			maxNumberOfPeriods: 1,
 			date: new Date(),
-			price: 1
+			price: 1,
 		});
 		this.onUpdate();
 	}
@@ -108,7 +108,7 @@ export class BranchEditPeriodSettingsComponent implements OnInit {
 			.then((updatedBranch: Branch) => {
 				this.branch = updatedBranch;
 			})
-			.catch(updateBranchError => {
+			.catch((updateBranchError) => {
 				console.log(
 					"branchEditPriceInfoComponent: could not update branch"
 				);

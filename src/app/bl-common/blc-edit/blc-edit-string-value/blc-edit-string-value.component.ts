@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
-	selector: 'app-blc-edit-string-value',
-	templateUrl: './blc-edit-string-value.component.html',
-	styleUrls: ['./blc-edit-string-value.component.scss']
+	selector: "app-blc-edit-string-value",
+	templateUrl: "./blc-edit-string-value.component.html",
+	styleUrls: ["./blc-edit-string-value.component.scss"],
 })
 export class BlcEditStringValueComponent implements OnInit {
 	@Input() value: string;
@@ -18,8 +18,7 @@ export class BlcEditStringValueComponent implements OnInit {
 		this.update = new EventEmitter<string>();
 	}
 
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	onUpdate(value) {
 		this.value = value;
@@ -27,5 +26,4 @@ export class BlcEditStringValueComponent implements OnInit {
 		this.update.emit(this.value);
 		this.editing = false;
 	}
-
 }

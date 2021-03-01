@@ -12,19 +12,19 @@ const routes: Routes = [
 		children: [
 			{
 				path: ":id/detail",
-				component: OrderDetailComponent
-			}
-		]
+				component: OrderDetailComponent,
+			},
+		],
 	},
 	{
 		path: "orders",
 		pathMatch: "full",
-		redirectTo: "order-manager"
-	}
+		redirectTo: "order-manager",
+	},
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
 export class OrderRoutingModule {}

@@ -3,7 +3,7 @@ import {
 	ActivatedRouteSnapshot,
 	CanActivate,
 	Router,
-	RouterStateSnapshot
+	RouterStateSnapshot,
 } from "@angular/router";
 import { BranchStoreService } from "./branch-store.service";
 import { BranchItemStoreService } from "./branch-item-store/branch-item-store.service";

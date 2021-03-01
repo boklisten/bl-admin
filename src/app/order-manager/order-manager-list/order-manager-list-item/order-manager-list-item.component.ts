@@ -3,14 +3,14 @@ import { Delivery, Order, UserDetail } from "@boklisten/bl-model";
 import {
 	CustomerItemService,
 	DeliveryService,
-	UserDetailService
+	UserDetailService,
 } from "@boklisten/bl-connect";
 import { CustomerService } from "../../../customer/customer.service";
 
 @Component({
 	selector: "app-order-manager-list-item",
 	templateUrl: "./order-manager-list-item.component.html",
-	styleUrls: ["./order-manager-list-item.component.scss"]
+	styleUrls: ["./order-manager-list-item.component.scss"],
 })
 export class OrderManagerListItemComponent implements OnInit {
 	@Input() order: Order;
@@ -37,7 +37,7 @@ export class OrderManagerListItemComponent implements OnInit {
 			.then((userDetail: UserDetail) => {
 				this.userDetail = userDetail;
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log("could not get customer detail", err);
 			});
 	}
@@ -49,7 +49,7 @@ export class OrderManagerListItemComponent implements OnInit {
 				this.delivery = delivery;
 				this.haveDelivery = this.delivery.method === "bring";
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log(
 					"OrderManagerListItem: could not get delivery",
 					err

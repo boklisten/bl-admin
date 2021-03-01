@@ -4,7 +4,7 @@ import {
 	CustomerItem,
 	Order,
 	OrderItem,
-	CustomerItemType
+	CustomerItemType,
 } from "@boklisten/bl-model";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { UserService } from "../../user/user.service";
@@ -84,7 +84,7 @@ export class CustomerItemHandlerService {
 	public async checkIfAlreadyUsed(blid: string): Promise<CustomerItem> {
 		try {
 			const customerItems = await this._customerItemService.get({
-				query: `?blid=${blid}`
+				query: `?blid=${blid}`,
 			});
 			for (let customerItem of customerItems) {
 				console.log("already used", customerItem);
@@ -109,7 +109,7 @@ export class CustomerItemHandlerService {
 		}
 
 		return this._customerItemService.get({
-			query: `?deadline=>${fromDate}&deadline=<${toDate}&returned=false&buyout=false&match=false&type=${customerItemType}`
+			query: `?deadline=>${fromDate}&deadline=<${toDate}&returned=false&buyout=false&match=false&type=${customerItemType}`,
 		});
 	}
 
@@ -166,7 +166,7 @@ export class CustomerItemHandlerService {
 						.then((updatedCustomerItem: CustomerItem) => {
 							resolve(updatedCustomerItem);
 						})
-						.catch(updateCustomerItemError => {
+						.catch((updateCustomerItemError) => {
 							reject(
 								new Error(
 									"customerItemHandlerService: could not patch customerItems"
@@ -211,8 +211,8 @@ export class CustomerItemHandlerService {
 				returnedTo: "branch",
 				returnedToId: branch.id,
 				returnEmployee: userId,
-				time: new Date()
-			}
+				time: new Date(),
+			},
 		};
 	}
 
@@ -221,7 +221,7 @@ export class CustomerItemHandlerService {
 		customerItem: CustomerItem
 	): any {
 		return {
-			buyout: true
+			buyout: true,
 		};
 	}
 
@@ -237,12 +237,12 @@ export class CustomerItemHandlerService {
 			from: orderItem.info.from,
 			to: orderItem.info.to,
 			periodType: orderItem.info.periodType,
-			time: new Date()
+			time: new Date(),
 		});
 
 		return {
 			deadline: orderItem.info.to,
-			periodExtends: periodExtends
+			periodExtends: periodExtends,
 		};
 	}
 
@@ -256,8 +256,8 @@ export class CustomerItemHandlerService {
 				returnedTo: "branch",
 				returnedToId: branch.id,
 				returnEmployee: employeeId,
-				time: new Date()
-			}
+				time: new Date(),
+			},
 		};
 	}
 
@@ -306,7 +306,7 @@ export class CustomerItemHandlerService {
 				handoutBy: "branch",
 				handoutById: branch.id,
 				handoutEmployee: this._userService.getUserDetailId(),
-				time: new Date()
+				time: new Date(),
 			},
 			amountLeftToPay:
 				orderItem.type === "partly-payment"
@@ -332,10 +332,10 @@ export class CustomerItemHandlerService {
 						: null,
 					email: customerDetail.guardian
 						? customerDetail.guardian.email
-						: null
-				}
+						: null,
+				},
 			},
-			returned: false
+			returned: false,
 		} as CustomerItem;
 	}
 }

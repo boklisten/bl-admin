@@ -1,12 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Order} from '@boklisten/bl-model';
-import {PaymentChoice} from './payment-choice';
-import {PaymentHandlerService} from './payment-handler/payment-handler.service';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Order } from "@boklisten/bl-model";
+import { PaymentChoice } from "./payment-choice";
+import { PaymentHandlerService } from "./payment-handler/payment-handler.service";
 
 @Component({
-	selector: 'app-payment',
-	templateUrl: './payment.component.html',
-	styleUrls: ['./payment.component.scss']
+	selector: "app-payment",
+	templateUrl: "./payment.component.html",
+	styleUrls: ["./payment.component.scss"],
 })
 export class PaymentComponent implements OnInit {
 	@Input() order: Order;
@@ -20,7 +20,6 @@ export class PaymentComponent implements OnInit {
 	}
 
 	ngOnInit() {
-
 		if (!this.order) {
 			this.paymentFailure.emit(true);
 			return;
@@ -32,13 +31,9 @@ export class PaymentComponent implements OnInit {
 	onPaymentChoices(paymentChoices: PaymentChoice[]) {
 		this._paymentHandlerService.setPaymentChoices(paymentChoices);
 		this.paymentComplete.emit(true);
-
 	}
 
 	onPaymentChoiceFailure() {
 		this.paymentFailure.emit(true);
 	}
-
-
-
 }

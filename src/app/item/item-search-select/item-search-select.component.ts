@@ -6,7 +6,7 @@ import {
 	EventEmitter,
 	Input,
 	SimpleChanges,
-	OnChanges
+	OnChanges,
 } from "@angular/core";
 import { Item } from "@boklisten/bl-model";
 import { ItemSearchService } from "../item-search/item-search.service";
@@ -15,7 +15,7 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-item-search-select",
 	templateUrl: "./item-search-select.component.html",
-	styleUrls: ["./item-search-select.component.scss"]
+	styleUrls: ["./item-search-select.component.scss"],
 })
 export class ItemSearchSelectComponent implements OnInit, OnDestroy, OnChanges {
 	@Output() itemSelect: EventEmitter<Item>;
@@ -67,7 +67,7 @@ export class ItemSearchSelectComponent implements OnInit, OnDestroy, OnChanges {
 	}
 
 	private handleItemSearchResultChange() {
-		this.itemSearchResult$ = this._itemSearchService.subscribe(items => {
+		this.itemSearchResult$ = this._itemSearchService.subscribe((items) => {
 			this.items = items;
 			if (this.items.length == 1) {
 				this.selectItem(0);
@@ -76,7 +76,7 @@ export class ItemSearchSelectComponent implements OnInit, OnDestroy, OnChanges {
 	}
 
 	private handleItemSearchResultWaitChange() {
-		this.itemSearchResultWait$ = this._itemSearchService.onWait(wait => {
+		this.itemSearchResultWait$ = this._itemSearchService.onWait((wait) => {
 			this.wait = wait;
 		});
 	}

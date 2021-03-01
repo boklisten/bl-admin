@@ -2,7 +2,7 @@ import { Directive, HostListener } from "@angular/core";
 import { BlcScannerService } from "./blc-scanner.service";
 
 @Directive({
-	selector: "[blcScanner]"
+	selector: "[blcScanner]",
 })
 export class BlcScannerDirective {
 	scannerString: string;

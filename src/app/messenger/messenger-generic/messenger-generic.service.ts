@@ -5,7 +5,7 @@ import { Observable, Subject } from "rxjs";
 import { BranchCustomerService } from "../../branch/branch-customer/branch-customer.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class MessengerGenericService {
 	private successfullMessage$: Subject<string>;
@@ -30,10 +30,10 @@ export class MessengerGenericService {
 				.then(() => {
 					this.successfullMessage$.next(userDetailId);
 				})
-				.catch(err => {
+				.catch((err) => {
 					this.failedMessages$.next({
 						userId: userDetailId,
-						error: err
+						error: err,
 					});
 				});
 		}
@@ -52,7 +52,7 @@ export class MessengerGenericService {
 			sequenceNumber: 0,
 			customerId: userId,
 			htmlContent: htmlContent,
-			subject: subject
+			subject: subject,
 		};
 	}
 

@@ -1,27 +1,40 @@
-
 <div class="row">
 	<div class="col-12 mb-3">
-		<button class="btn btn-sm mr-1" [ngClass]="{'btn-outline-success': selected.length > 0, 'btn-outline-secondary': selected.length <= 0}" [disabled]="selected.length <= 0" *ngIf="!autoUpdate" (click)="onUploadSelected()">
+		<button
+			class="btn btn-sm mr-1"
+			[ngClass]="{
+				'btn-outline-success': selected.length > 0,
+				'btn-outline-secondary': selected.length <= 0
+			}"
+			[disabled]="selected.length <= 0"
+			*ngIf="!autoUpdate"
+			(click)="onUploadSelected()"
+		>
 			<span i18n="@@branchEditListUploadSelected">Upload selected</span>
 		</button>
-		<button class="btn btn-sm" [ngClass]="{'btn-outline-info': selected.length > 0}" [disabled]="selected.length <= 0" (click)="onDownloadSelected()">
-			<span i18n="@@branchEditListDownloadSelected">Download selected</span>
+		<button
+			class="btn btn-sm"
+			[ngClass]="{ 'btn-outline-info': selected.length > 0 }"
+			[disabled]="selected.length <= 0"
+			(click)="onDownloadSelected()"
+		>
+			<span i18n="@@branchEditListDownloadSelected"
+				>Download selected</span
+			>
 		</button>
 	</div>
 </div>
 
-
 <div class="row">
 	<div class="col-12">
 		<div class="input-group mb-3">
-
-            <input
-                type='text'
+			<input
+				type="text"
 				class="form-control"
 				i18n-placeholder="@@branchEditListFilterByNamePlaceholder"
-                placeholder='Filter by name'
-                (keyup)='onUpdateFilter($event)'
-            />
+				placeholder="Filter by name"
+				(keyup)="onUpdateFilter($event)"
+			/>
 			<div class="input-group-append">
 				<span class="input-group-text">
 					<fa-icon [icon]="'filter'"></fa-icon>
@@ -44,66 +57,105 @@
 			[columnMode]="'force'"
 			[selected]="selected"
 			[selectionType]="'checkbox'"
-			(select)="onSelect($event)">
+			(select)="onSelect($event)"
+		>
+			<ngx-datatable-column
+				[width]="25"
+				[sortable]="false"
+				[headerCheckboxable]="true"
+				[checkboxable]="true"
+			>
+			</ngx-datatable-column>
 
-            <ngx-datatable-column
-                [width]="25"
-                [sortable]="false"
-                [headerCheckboxable]="true"
-                [checkboxable]="true">
-            </ngx-datatable-column>
+			<ngx-datatable-column name="name">
+				<ng-template
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+					let-row="row"
+				>
+					<app-blc-datatable-string-cell
+						[rowIndex]="rowIndex"
+						[name]="'name'"
+						[(value)]="branches[rowIndex].name"
+						[editingObj]="editing"
+						(update)="updateRowItem($event.rowIndex, $event.name)"
+					>
+					</app-blc-datatable-string-cell>
+				</ng-template>
+			</ngx-datatable-column>
 
-            <ngx-datatable-column name="name">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                    <app-blc-datatable-string-cell
-                        [rowIndex]="rowIndex"
-                        [name]="'name'"
-                        [(value)]="branches[rowIndex].name"
-                        [editingObj]="editing"
-                        (update)="updateRowItem($event.rowIndex, $event.name)">
-                    </app-blc-datatable-string-cell>
-                </ng-template>
-            </ngx-datatable-column>
-
-            <ngx-datatable-column name="type">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row">
-                    <app-blc-datatable-string-cell
-                        [rowIndex]="rowIndex"
-                        [name]="'type'"
-                        [(value)]="branches[rowIndex].type"
-                        [editingObj]="editing"
-                        (update)="updateRowItem($event.rowIndex, $event.name)">
-                    </app-blc-datatable-string-cell>
-                </ng-template>
-            </ngx-datatable-column>
+			<ngx-datatable-column name="type">
+				<ng-template
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+					let-row="row"
+				>
+					<app-blc-datatable-string-cell
+						[rowIndex]="rowIndex"
+						[name]="'type'"
+						[(value)]="branches[rowIndex].type"
+						[editingObj]="editing"
+						(update)="updateRowItem($event.rowIndex, $event.name)"
+					>
+					</app-blc-datatable-string-cell>
+				</ng-template>
+			</ngx-datatable-column>
 
 			<ngx-datatable-column name="active">
-                <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-					<app-bl-common-toggle-button [(value)]="branches[rowIndex].active" (update)="updateRowItem(rowIndex, 'active')"></app-bl-common-toggle-button>
-                </ng-template>
-            </ngx-datatable-column>
+				<ng-template
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+					let-value="value"
+					let-row="row"
+				>
+					<app-bl-common-toggle-button
+						[(value)]="branches[rowIndex].active"
+						(update)="updateRowItem(rowIndex, 'active')"
+					></app-bl-common-toggle-button>
+				</ng-template>
+			</ngx-datatable-column>
 
 			<ngx-datatable-column
 				[width]="100"
 				[canAutoResize]="false"
-				[frozenRight]="true">
-				<ng-template ngx-datatable-cell-template let-rowIndex="rowIndex">
-                    <span>
-                        <button class="btn btn-sm btn-outline-secondary" *ngIf="branches[rowIndex].id" routerLink="{{'/branch/' + branches[rowIndex].id + '/info'}}">
-                            <fa-icon [icon]="'info-circle'"></fa-icon>
-                        </button>
-                    </span>
+				[frozenRight]="true"
+			>
+				<ng-template
+					ngx-datatable-cell-template
+					let-rowIndex="rowIndex"
+				>
 					<span>
-                        <button class="btn btn-sm btn-outline-secondary" *ngIf="branches[rowIndex].id" routerLink="{{'/branch/' + branches[rowIndex].id + '/edit'}}">
-                            <fa-icon [icon]="'edit'"></fa-icon>
-                        </button>
-                    </span>
-                    <span>
-                        <fa-icon [icon]="'circle-notch'" class="ml-2" [spin]="true" *ngIf="updating[rowIndex]"></fa-icon>
-                    </span>
+						<button
+							class="btn btn-sm btn-outline-secondary"
+							*ngIf="branches[rowIndex].id"
+							routerLink="{{
+								'/branch/' + branches[rowIndex].id + '/info'
+							}}"
+						>
+							<fa-icon [icon]="'info-circle'"></fa-icon>
+						</button>
+					</span>
+					<span>
+						<button
+							class="btn btn-sm btn-outline-secondary"
+							*ngIf="branches[rowIndex].id"
+							routerLink="{{
+								'/branch/' + branches[rowIndex].id + '/edit'
+							}}"
+						>
+							<fa-icon [icon]="'edit'"></fa-icon>
+						</button>
+					</span>
+					<span>
+						<fa-icon
+							[icon]="'circle-notch'"
+							class="ml-2"
+							[spin]="true"
+							*ngIf="updating[rowIndex]"
+						></fa-icon>
+					</span>
 				</ng-template>
 			</ngx-datatable-column>
 		</ngx-datatable>
-
 	</div>
 </div>

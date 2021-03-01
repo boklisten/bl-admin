@@ -6,7 +6,7 @@ import { CustomerDetailService } from "../../customer/customer-detail/customer-d
 @Component({
 	selector: "app-delivery-detail",
 	templateUrl: "./delivery-detail.component.html",
-	styleUrls: ["./delivery-detail.component.scss"]
+	styleUrls: ["./delivery-detail.component.scss"],
 })
 export class DeliveryDetailComponent implements OnInit {
 	//@Input() deliveryId: string;

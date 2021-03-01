@@ -5,7 +5,7 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-item-search-bar",
 	templateUrl: "./item-search-bar.component.html",
-	styleUrls: ["./item-search-bar.component.scss"]
+	styleUrls: ["./item-search-bar.component.scss"],
 })
 export class ItemSearchBarComponent implements OnInit, OnDestroy {
 	public wait: boolean;
@@ -27,7 +27,7 @@ export class ItemSearchBarComponent implements OnInit, OnDestroy {
 	}
 
 	private handleItemSearchResultWaitChange() {
-		this.itemSearchResultWait$ = this._itemSearchService.onWait(wait => {
+		this.itemSearchResultWait$ = this._itemSearchService.onWait((wait) => {
 			this.wait = wait;
 		});
 	}

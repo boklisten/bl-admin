@@ -9,11 +9,7 @@ import { CustomerSearchResultComponent } from "./customer-search/customer-search
 import { CustomerSearchService } from "./customer-search/customer-search.service";
 import { CustomerDetailComponent } from "./customer-detail/customer-detail.component";
 import { CustomerDetailModalComponent } from "./customer-detail/customer-detail-modal/customer-detail-modal.component";
-import {
-	NgbModalModule,
-	NgbTabsetModule,
-	NgbPopoverModule
-} from "@ng-bootstrap/ng-bootstrap";
+import { NgbModalModule, NgbPopoverModule } from "@ng-bootstrap/ng-bootstrap";
 import { CustomerDetailModalContentComponent } from "./customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component";
 
 import { CustomerDetailCardComponent } from "./customer-detail/customer-detail-card/customer-detail-card.component";
@@ -29,7 +25,8 @@ import { BookingModule } from "../booking/booking.module";
 import { CustomerDeleteComponent } from "./customer-delete/customer-delete.component";
 import { CustomerPermissionComponent } from "./customer-permission/customer-permission.component";
 import { CustomerInformationComponent } from "./customer-information/customer-information.component";
-import { CustomerChangeEmailComponent } from './customer-change-email/customer-change-email.component';
+import { CustomerChangeEmailComponent } from "./customer-change-email/customer-change-email.component";
+import { CustomerComponent } from "./customer.component";
 
 @NgModule({
 	imports: [
@@ -41,11 +38,10 @@ import { CustomerChangeEmailComponent } from './customer-change-email/customer-c
 		NgbModalModule,
 		BlCommonModule,
 		NgbPopoverModule,
-		NgbTabsetModule,
 		OrderModule,
 		CustomerItemModule,
 		MessengerModule,
-		BookingModule
+		BookingModule,
 	],
 	providers: [CustomerSearchService, CustomerDetailService],
 	declarations: [
@@ -62,7 +58,8 @@ import { CustomerChangeEmailComponent } from './customer-change-email/customer-c
 		CustomerDeleteComponent,
 		CustomerPermissionComponent,
 		CustomerInformationComponent,
-		CustomerChangeEmailComponent
+		CustomerChangeEmailComponent,
+		CustomerComponent,
 	],
 	exports: [
 		CustomerCurrentComponent,
@@ -70,8 +67,8 @@ import { CustomerChangeEmailComponent } from './customer-change-email/customer-c
 		CustomerSearchComponent,
 		CustomerDetailSmallComponent,
 		CustomerSearchResultComponent,
-		CustomerInformationComponent
+		CustomerInformationComponent,
 	],
-	entryComponents: [CustomerDetailModalContentComponent]
+	entryComponents: [CustomerDetailModalContentComponent],
 })
 export class CustomerModule {}

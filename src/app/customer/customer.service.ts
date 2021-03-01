@@ -1,10 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Subject, ReplaySubject, Subscription } from "rxjs";
-import {
-	UserDetail,
-	CustomerItem,
-	UserPermission
-} from "@boklisten/bl-model";
+import { UserDetail, CustomerItem, UserPermission } from "@boklisten/bl-model";
 import { UserDetailService, StorageService } from "@boklisten/bl-connect";
 import { BlcHotkeyService } from "../bl-common/blc-hotkey/blc-hotkey.service";
 
@@ -46,7 +42,7 @@ export class CustomerService {
 			.then((userDetail: UserDetail) => {
 				this.setCustomerDetail(userDetail);
 			})
-			.catch(e => {
+			.catch((e) => {
 				this._wait$.next(false);
 			});
 	}

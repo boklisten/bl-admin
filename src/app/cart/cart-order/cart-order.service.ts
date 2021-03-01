@@ -4,7 +4,7 @@ import { CartService } from "../cart.service";
 import { OrderGeneratorService } from "../../order/order-generator/order-generator.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class CartOrderService {
 	constructor(

@@ -1,6 +1,5 @@
-import {CustomerNamePipe} from './customer-name.pipe';
+import { CustomerNamePipe } from "./customer-name.pipe";
 
-describe('CustomerNamePipe', () => {
-	it('create an instance', () => {
-	});
+describe("CustomerNamePipe", () => {
+	it("create an instance", () => {});
 });

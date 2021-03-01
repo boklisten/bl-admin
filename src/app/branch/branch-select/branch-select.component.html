@@ -6,13 +6,28 @@
 					<h3 i18n="@@branchSelectBranchTitle">Select a branch</h3>
 				</div>
 				<div class="card-body">
-				<button
-                class="btn mr-1 ml-1 mt-2"
-                *ngFor="let branch of branches"
-                (click)="setBranch(branch)"
-                [ngClass]="{'btn-secondary': (selectedBranch && selectedBranch.id === branch.id), 'btn-outline-secondary': (!selectedBranch || selectedBranch.id !== branch.id)}">
-                	<fa-icon [icon]="'check'" *ngIf="(selectedBranch && selectedBranch.id === branch.id)"></fa-icon> {{branch.name}}
-				</button>
+					<button
+						class="btn mr-1 ml-1 mt-2"
+						*ngFor="let branch of branches"
+						(click)="setBranch(branch)"
+						[ngClass]="{
+							'btn-secondary':
+								selectedBranch &&
+								selectedBranch.id === branch.id,
+							'btn-outline-secondary':
+								!selectedBranch ||
+								selectedBranch.id !== branch.id
+						}"
+					>
+						<fa-icon
+							[icon]="'check'"
+							*ngIf="
+								selectedBranch &&
+								selectedBranch.id === branch.id
+							"
+						></fa-icon>
+						{{ branch.name }}
+					</button>
 				</div>
 			</div>
 		</div>

@@ -8,7 +8,7 @@ import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 @Component({
 	selector: "app-database-items",
 	templateUrl: "./database-items.component.html",
-	styleUrls: ["./database-items.component.scss"]
+	styleUrls: ["./database-items.component.scss"],
 })
 export class DatabaseItemsComponent implements OnInit {
 	public databaseItems: Item[];
@@ -31,7 +31,7 @@ export class DatabaseItemsComponent implements OnInit {
 					"title"
 				);
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log("DatabaseItemsComponent: could not get items", err);
 			});
 	}
@@ -45,7 +45,7 @@ export class DatabaseItemsComponent implements OnInit {
 					"items_" + this._dateService.currentDateCompact() + ".xlsx"
 				);
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log(
 					"ItemUploadComponent: could not get the items",
 					err

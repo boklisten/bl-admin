@@ -1,13 +1,13 @@
-import { MessengerModule } from './messenger.module';
+import { MessengerModule } from "./messenger.module";
 
-describe('MessengerModule', () => {
-  let messengerModule: MessengerModule;
+describe("MessengerModule", () => {
+	let messengerModule: MessengerModule;
 
-  beforeEach(() => {
-    messengerModule = new MessengerModule();
-  });
+	beforeEach(() => {
+		messengerModule = new MessengerModule();
+	});
 
-  it('should create an instance', () => {
-    expect(messengerModule).toBeTruthy();
-  });
+	it("should create an instance", () => {
+		expect(messengerModule).toBeTruthy();
+	});
 });

@@ -3,7 +3,7 @@ import {
 	OnInit,
 	Input,
 	OnChanges,
-	SimpleChanges
+	SimpleChanges,
 } from "@angular/core";
 import { Invoice } from "@boklisten/bl-model";
 import { InvoiceService } from "@boklisten/bl-connect";
@@ -12,7 +12,7 @@ import { ActivatedRoute, Params } from "@angular/router";
 @Component({
 	selector: "app-invoice-detail",
 	templateUrl: "./invoice-detail.component.html",
-	styleUrls: ["./invoice-detail.component.scss"]
+	styleUrls: ["./invoice-detail.component.scss"],
 })
 export class InvoiceDetailComponent implements OnInit, OnChanges {
 	@Input() invoice: Invoice;
@@ -26,7 +26,7 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 		this.route.params.subscribe((params: Params) => {
 			const currentId = params["id"];
 			if (currentId) {
-				this.invoiceService.getById(currentId).then(invoice => {
+				this.invoiceService.getById(currentId).then((invoice) => {
 					this.invoice = invoice as any;
 				});
 			}
@@ -65,10 +65,10 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 			.update(this.invoice.id, {
 				toCreditNote: this.invoice.toCreditNote,
 				toDebtCollection: this.invoice.toDebtCollection,
-				customerHavePayed: this.invoice.customerHavePayed
+				customerHavePayed: this.invoice.customerHavePayed,
 			})
 			.then(() => {})
-			.catch(err => {});
+			.catch((err) => {});
 	}
 
 	public onCustomerItemPaymentCancel(index: number) {
@@ -76,9 +76,9 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 			.customerItemPayments[index].cancel;
 		this.invoiceService
 			.update(this.invoice.id, {
-				customerItemPayments: this.invoice.customerItemPayments
+				customerItemPayments: this.invoice.customerItemPayments,
 			})
 			.then(() => {})
-			.catch(err => {});
+			.catch((err) => {});
 	}
 }

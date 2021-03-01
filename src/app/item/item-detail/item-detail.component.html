@@ -1,8 +1,16 @@
 <div class="container-fluid mt-2">
 	<div class="row">
 		<div class="col-12">
-			<app-bl-common-alert *ngIf="notFoundText" [type]="'warning'" [text]="notFoundText" (exit)="notFoundText = null"></app-bl-common-alert>
-			<app-bl-common-update-button [wait]="wait" *ngIf="wait"></app-bl-common-update-button>
+			<app-bl-common-alert
+				*ngIf="notFoundText"
+				[type]="'warning'"
+				[text]="notFoundText"
+				(exit)="notFoundText = null"
+			></app-bl-common-alert>
+			<app-bl-common-update-button
+				[wait]="wait"
+				*ngIf="wait"
+			></app-bl-common-update-button>
 		</div>
 	</div>
 

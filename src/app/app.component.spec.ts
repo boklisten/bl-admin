@@ -1,25 +1,19 @@
-import {TestBed, async} from '@angular/core/testing';
-import {AppComponent} from './app.component';
-import {Component, Injectable} from '@angular/core';
-import {Router, RouterOutlet} from '@angular/router';
-import {AuthService} from './auth/auth.service';
-import {BranchStoreService} from './branch/branch-store.service';
-import {Observable} from 'rxjs/internal/Observable';
+import { TestBed, async } from "@angular/core/testing";
+import { AppComponent } from "./app.component";
+import { Component, Injectable } from "@angular/core";
+import { Router, RouterOutlet } from "@angular/router";
+import { AuthService } from "./auth/auth.service";
+import { BranchStoreService } from "./branch/branch-store.service";
+import { Observable } from "rxjs/internal/Observable";
 
-@Component({selector: 'app-header', template: ''})
-class HeaderStubComponent {
+@Component({ selector: "app-header", template: "" })
+class HeaderStubComponent {}
 
-}
+@Component({ selector: "app-side-bar", template: "" })
+class SideBarStubComponent {}
 
-@Component({selector: 'app-side-bar', template: ''})
-class SideBarStubComponent {
-
-}
-
-@Component({selector: 'router-outlet', template: ''})
-class RouterOutletStubComponent {
-
-}
+@Component({ selector: "router-outlet", template: "" })
+class RouterOutletStubComponent {}
 
 @Injectable()
 class AuthStubService {
@@ -41,9 +35,7 @@ class AuthStubService {
 }
 
 @Injectable()
-class BranchStoreStubService {
-
-}
+class BranchStoreStubService {}
 
 @Injectable()
 class RouterStubService {
@@ -54,24 +46,27 @@ class RouterStubService {
 	}
 }
 
-describe('AppComponent', () => {
+describe("AppComponent", () => {
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
 			declarations: [
 				AppComponent,
 				HeaderStubComponent,
 				SideBarStubComponent,
-				RouterOutletStubComponent
+				RouterOutletStubComponent,
 			],
 			providers: [
-				{provide: AuthService, useClass: AuthStubService},
-				{provide: BranchStoreService, useClass: BranchStoreStubService},
-				{provide: Router, useClass: RouterStubService}
-			]
+				{ provide: AuthService, useClass: AuthStubService },
+				{
+					provide: BranchStoreService,
+					useClass: BranchStoreStubService,
+				},
+				{ provide: Router, useClass: RouterStubService },
+			],
 		}).compileComponents();
 	}));
 
-	it('should create the app', async(() => {
+	it("should create the app", async(() => {
 		const fixture = TestBed.createComponent(AppComponent);
 		const app = fixture.debugElement.componentInstance;
 		expect(app).toBeTruthy();

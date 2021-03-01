@@ -5,7 +5,7 @@ type SelectableType = CustomerItemType | "all";
 @Component({
 	selector: "app-blc-type-select",
 	templateUrl: "./blc-type-select.component.html",
-	styleUrls: ["./blc-type-select.component.scss"]
+	styleUrls: ["./blc-type-select.component.scss"],
 })
 export class BlcTypeSelectComponent implements OnInit {
 	@Output() selectedType: EventEmitter<SelectableType>;

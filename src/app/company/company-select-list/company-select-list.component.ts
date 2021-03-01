@@ -5,7 +5,7 @@ import { CompanyService } from "@boklisten/bl-connect";
 @Component({
 	selector: "app-company-select-list",
 	templateUrl: "./company-select-list.component.html",
-	styleUrls: ["./company-select-list.component.scss"]
+	styleUrls: ["./company-select-list.component.scss"],
 })
 export class CompanySelectListComponent implements OnInit {
 	@Output() selected: EventEmitter<Company>;
@@ -23,11 +23,11 @@ export class CompanySelectListComponent implements OnInit {
 		this.wait = true;
 		this.companyService
 			.get({ fresh: true })
-			.then(companies => {
+			.then((companies) => {
 				this.companies = companies;
 				this.wait = false;
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log("error getting companies", err);
 				this.wait = false;
 			});

@@ -12,7 +12,7 @@ type ToastType =
 	| "CHECKOUT-CONFIRMED";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class ToasterService {
 	private toasts$: Subject<any>;
@@ -42,13 +42,13 @@ export class ToasterService {
 	}
 
 	private handleBlidScan() {
-		this._blcScannerService.onBlid(blid => {
+		this._blcScannerService.onBlid((blid) => {
 			this.add("BLID-SCAN", { blid: blid });
 		});
 	}
 
 	private handleIsbnScan() {
-		this._blcScannerService.onIsbn(isbn => {
+		this._blcScannerService.onIsbn((isbn) => {
 			this.add("ISBN-SCAN", { isbn: isbn });
 		});
 	}

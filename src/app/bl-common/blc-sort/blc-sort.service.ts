@@ -5,7 +5,7 @@ import { CustomerOrderService } from "../../order/customer-order/customer-order.
 import { Item } from "@boklisten/bl-model";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class BlcSortService {
 	constructor(

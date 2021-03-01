@@ -1,25 +1,41 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {EmployeeGuardService} from '../auth/guards/employee-guard.service';
-import {BranchGuardService} from '../branch/branch-guard.service';
-import {CustomerDetailComponent} from './customer-detail/customer-detail.component';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { EmployeeGuardService } from "../auth/guards/employee-guard.service";
+import { BranchGuardService } from "../branch/branch-guard.service";
+import { CustomerDetailComponent } from "./customer-detail/customer-detail.component";
+import { CustomerComponent } from "./customer.component";
+import { BookingListEditComponent } from "../booking/booking-list-edit/booking-list-edit.component";
+import { MessengerListComponent } from "../messenger/messenger-list/messenger-list.component";
 
 const routes: Routes = [
 	{
-		path: 'customer',
+		path: "customer",
+		component: CustomerComponent,
 		canActivate: [EmployeeGuardService, BranchGuardService],
 		children: [
 			{
-				path: ':id/detail',
-				component: CustomerDetailComponent
-			}
-		]
-	}
+				path: "",
+				redirectTo: "detail",
+				pathMatch: "full",
+			},
+			{
+				path: "detail",
+				component: CustomerDetailComponent,
+			},
+			{
+				path: "bookings",
+				component: BookingListEditComponent,
+			},
+			{
+				path: "messages",
+				component: MessengerListComponent,
+			},
+		],
+	},
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
-export class CustomerRoutingModule {
-}
+export class CustomerRoutingModule {}

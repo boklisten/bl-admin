@@ -18,9 +18,9 @@
 			<fa-icon [icon]="'dollar-sign'" class="mr-1"></fa-icon
 			><fa-icon [icon]="'check-circle'"></fa-icon>
 		</span>
-		<span *ngIf="!havePayed()" class="text-secondary "
-			>{{ customerOrderItem.orderItem.amount | blcPrice }}</span
-		>
+		<span *ngIf="!havePayed()" class="text-secondary">{{
+			customerOrderItem.orderItem.amount | blcPrice
+		}}</span>
 	</div>
 </div>
 
@@ -85,9 +85,9 @@
 			>
 				item is from another branch
 			</div>
-			<span class="font-weight-bold"
-				>{{ customerOrderItem.order.branch | branchName | async }}</span
-			>
+			<span class="font-weight-bold">{{
+				customerOrderItem.order.branch | branchName | async
+			}}</span>
 		</div>
 	</div>
 </div>

@@ -1,10 +1,16 @@
-
 <div class="row">
 	<div class="col-12">
 		<div class="form-group">
-            <label for="file" i18n="@@itemUploadChooseFile">Choose File</label>
-            <input id="file" type="file" (change)="onItemUpload($event.target.files)">
+			<label for="file" i18n="@@itemUploadChooseFile">Choose File</label>
+			<input
+				id="file"
+				type="file"
+				(change)="onItemUpload($event.target.files)"
+			/>
 		</div>
 	</div>
 </div>
-<app-item-edit-list [items]="uploadedItems" [uploadList]="true"></app-item-edit-list>
+<app-item-edit-list
+	[items]="uploadedItems"
+	[uploadList]="true"
+></app-item-edit-list>

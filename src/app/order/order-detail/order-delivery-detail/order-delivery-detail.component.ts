@@ -3,7 +3,7 @@ import {
 	Input,
 	OnChanges,
 	OnInit,
-	SimpleChanges
+	SimpleChanges,
 } from "@angular/core";
 import { BlApiError, Delivery, Order, UserDetail } from "@boklisten/bl-model";
 import { DeliveryService, UserDetailService } from "@boklisten/bl-connect";
@@ -12,7 +12,7 @@ import { CustomerService } from "../../../customer/customer.service";
 @Component({
 	selector: "app-order-delivery-detail",
 	templateUrl: "./order-delivery-detail.component.html",
-	styleUrls: ["./order-delivery-detail.component.scss"]
+	styleUrls: ["./order-delivery-detail.component.scss"],
 })
 export class OrderDeliveryDetailComponent implements OnInit, OnChanges {
 	@Input() order: Order;
@@ -56,7 +56,7 @@ export class OrderDeliveryDetailComponent implements OnInit, OnChanges {
 	getCustomer(customerId: string) {
 		this._userDetailService
 			.getById(customerId)
-			.then(customerDetail => {
+			.then((customerDetail) => {
 				this.customerDetail = customerDetail;
 			})
 			.catch(() => {});

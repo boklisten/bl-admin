@@ -5,11 +5,11 @@ import { UniqueItemSearchComponent } from "./unique-item-search/unique-item-sear
 
 const routes: Routes = [
 	{ path: "blid", component: UniqueItemSearchComponent },
-	{ path: "blid/:blid", component: UniqueItemDetailComponent }
+	{ path: "blid/:blid", component: UniqueItemDetailComponent },
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
 export class UniqueItemRoutingModule {}

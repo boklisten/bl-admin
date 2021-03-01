@@ -39,7 +39,10 @@
 				<button
 					class="btn btn-block"
 					[disabled]="cart.length <= 0"
-					[ngClass]="{'btn-success': cart.length > 0, 'btn-outline-secondary': cart.length <= 0}"
+					[ngClass]="{
+						'btn-success': cart.length > 0,
+						'btn-outline-secondary': cart.length <= 0
+					}"
 					(click)="onConfirm()"
 				>
 					<fa-icon

@@ -10,7 +10,7 @@ import { Item } from "@boklisten/bl-model";
 import { ToasterService } from "../../toaster/toaster.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class IsbnScannerService {
 	constructor(
@@ -48,7 +48,7 @@ export class IsbnScannerService {
 		if (this._cartService.contains(cartItem)) {
 			this._toasterService.add("CART-CONTAINS", {
 				id: cartItem.getISBN(),
-				title: cartItem.getTitle()
+				title: cartItem.getTitle(),
 			});
 		} else {
 			this._cartService.add(cartItem);

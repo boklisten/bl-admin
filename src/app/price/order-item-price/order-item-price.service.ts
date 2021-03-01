@@ -4,7 +4,7 @@ import {
 	CustomerItem,
 	Item,
 	Order,
-	OrderItem
+	OrderItem,
 } from "@boklisten/bl-model";
 import { ItemPriceService } from "../item-price/item-price.service";
 import { OrderItemType } from "@boklisten/bl-model/dist/order/order-item/order-item-type";
@@ -172,7 +172,7 @@ export class OrderItemPriceService {
 		return {
 			amount: amount,
 			unitPrice: unitPrice,
-			taxAmount: taxAmount
+			taxAmount: taxAmount,
 		};
 	}
 
@@ -258,7 +258,8 @@ export class OrderItemPriceService {
 	): boolean {
 		if (
 			!originalOrderItem ||
-			(!originalOrder.payments || originalOrder.payments.length <= 0)
+			!originalOrder.payments ||
+			originalOrder.payments.length <= 0
 		) {
 			return false;
 		}
@@ -289,7 +290,8 @@ export class OrderItemPriceService {
 		originalOrder?: Order
 	): number {
 		return originalOrderItem &&
-			(originalOrder.payments && originalOrder.payments.length > 0)
+			originalOrder.payments &&
+			originalOrder.payments.length > 0
 			? originalOrderItem.amount
 			: 0;
 	}

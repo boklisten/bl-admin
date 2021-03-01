@@ -7,7 +7,7 @@ import {
 	debounceTime,
 	map,
 	distinctUntilChanged,
-	switchMap
+	switchMap,
 } from "rxjs/operators";
 
 @Injectable()
@@ -70,11 +70,8 @@ export class CustomerSearchService {
 		});
 
 		this._searchTerms$
-			.pipe(
-				debounceTime(400),
-				distinctUntilChanged()
-			)
-			.subscribe(term => this.searchEntries(term));
+			.pipe(debounceTime(400), distinctUntilChanged())
+			.subscribe((term) => this.searchEntries(term));
 	}
 
 	private searchEntries(term: string) {
@@ -87,7 +84,7 @@ export class CustomerSearchService {
 		this._wait$.next(true);
 
 		this.fetchUserDetails(term)
-			.then(userDetails => {
+			.then((userDetails) => {
 				this.setSearchTerm(term);
 				this.setUserDetails(userDetails);
 			})
@@ -106,7 +103,7 @@ export class CustomerSearchService {
 		let userDetails = [];
 		try {
 			userDetails = await this._userDetailService.get({
-				query: "?s=" + searchTerm
+				query: "?s=" + searchTerm,
 			});
 		} catch (e) {
 			return userDetails;

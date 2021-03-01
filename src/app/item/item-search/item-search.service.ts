@@ -34,7 +34,7 @@ export class ItemSearchService {
 		}
 
 		this.searchByIsbn(isbn)
-			.then(items => {
+			.then((items) => {
 				this.setSearchResult(items);
 			})
 			.catch(() => {
@@ -67,7 +67,7 @@ export class ItemSearchService {
 	}
 
 	private handleIsbnScanChange() {
-		this._blcScannerService.onIsbn(isbn => {
+		this._blcScannerService.onIsbn((isbn) => {
 			this.searchISBN(isbn);
 		});
 	}
@@ -92,7 +92,7 @@ export class ItemSearchService {
 
 		try {
 			items = await this._itemService.get({
-				query: "?info.isbn=" + isbn
+				query: "?info.isbn=" + isbn,
 			});
 		} catch (e) {
 			items = [];
@@ -106,7 +106,7 @@ export class ItemSearchService {
 
 		try {
 			items = await this._itemService.get({
-				query: "?s=" + term
+				query: "?s=" + term,
 			});
 		} catch (e) {
 			throw e;

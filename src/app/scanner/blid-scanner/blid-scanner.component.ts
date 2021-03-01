@@ -3,7 +3,7 @@ import {
 	OnInit,
 	Output,
 	EventEmitter,
-	OnDestroy
+	OnDestroy,
 } from "@angular/core";
 import { BlcScannerService } from "../../bl-common/blc-scanner/blc-scanner.service";
 import { Subscription } from "rxjs";
@@ -11,7 +11,7 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-blid-scanner",
 	templateUrl: "./blid-scanner.component.html",
-	styleUrls: ["./blid-scanner.component.scss"]
+	styleUrls: ["./blid-scanner.component.scss"],
 })
 export class BlidScannerComponent implements OnInit, OnDestroy {
 	@Output() blid: EventEmitter<string>;
@@ -47,7 +47,7 @@ export class BlidScannerComponent implements OnInit, OnDestroy {
 	}
 
 	private handleBlidScanChange() {
-		this.blidScan$ = this._blcScannerService.onBlid(blid => {
+		this.blidScan$ = this._blcScannerService.onBlid((blid) => {
 			this.setBlid(blid);
 		});
 	}

@@ -1,15 +1,18 @@
-import {TestBed, inject} from '@angular/core/testing';
+import { TestBed, inject } from "@angular/core/testing";
 
-import {CustomerItemHandlerService} from './customer-item-handler.service';
+import { CustomerItemHandlerService } from "./customer-item-handler.service";
 
-describe('CustomerItemHandlerService', () => {
+describe("CustomerItemHandlerService", () => {
 	beforeEach(() => {
 		TestBed.configureTestingModule({
-			providers: [CustomerItemHandlerService]
+			providers: [CustomerItemHandlerService],
 		});
 	});
 
-	it('should be created', inject([CustomerItemHandlerService], (service: CustomerItemHandlerService) => {
-		expect(service).toBeTruthy();
-	}));
+	it("should be created", inject(
+		[CustomerItemHandlerService],
+		(service: CustomerItemHandlerService) => {
+			expect(service).toBeTruthy();
+		}
+	));
 });

@@ -90,7 +90,10 @@
 			<tbody>
 				<tr
 					*ngFor="let booking of bookings; let i = index"
-					[ngClass]="{'bg-info': activeBooking && activeBooking.id == booking.id}"
+					[ngClass]="{
+						'bg-info':
+							activeBooking && activeBooking.id == booking.id
+					}"
 				>
 					<th *ngIf="!customerId">
 						<app-blc-button-check
@@ -100,10 +103,10 @@
 						</app-blc-button-check>
 					</th>
 					<td (click)="setActive(booking)">
-						{{booking.from | blDate:"timestamp"}}
+						{{ booking.from | blDate: "timestamp" }}
 					</td>
 					<td *ngIf="customerId">
-						{{booking.branch | branchName | async }}
+						{{ booking.branch | branchName | async }}
 					</td>
 					<td (click)="setActive(booking)" style="text-align: center">
 						<fa-icon

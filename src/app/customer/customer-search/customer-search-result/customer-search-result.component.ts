@@ -3,7 +3,7 @@ import {
 	OnInit,
 	Output,
 	EventEmitter,
-	OnDestroy
+	OnDestroy,
 } from "@angular/core";
 import { CustomerSearchService } from "../customer-search.service";
 import { UserDetail } from "@boklisten/bl-model";
@@ -17,7 +17,7 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-customer-search-result",
 	templateUrl: "./customer-search-result.component.html",
-	styleUrls: ["./customer-search-result.component.scss"]
+	styleUrls: ["./customer-search-result.component.scss"],
 })
 export class CustomerSearchResultComponent implements OnInit, OnDestroy {
 	public wait: boolean;
@@ -93,13 +93,13 @@ export class CustomerSearchResultComponent implements OnInit, OnDestroy {
 	}
 
 	private handleSearchWaitChange() {
-		this.searchResultWait$ = this._customerSearchService.onWait(wait => {
+		this.searchResultWait$ = this._customerSearchService.onWait((wait) => {
 			this.wait = wait;
 		});
 	}
 
 	private handleSearchTermChange() {
-		this.searchTerm$ = this._customerSearchService.onSearchTerm(term => {
+		this.searchTerm$ = this._customerSearchService.onSearchTerm((term) => {
 			if (!term || term.length < 3) {
 				this.canShowNotFoundAlert = false;
 			} else {

@@ -5,7 +5,7 @@ import {
 	EventEmitter,
 	Output,
 	OnChanges,
-	SimpleChanges
+	SimpleChanges,
 } from "@angular/core";
 import { UniqueItem, Item } from "@boklisten/bl-model";
 import { UniqueItemStoreService } from "../unique-item-store.service";
@@ -13,7 +13,7 @@ import { UniqueItemStoreService } from "../unique-item-store.service";
 @Component({
 	selector: "app-unique-item-register",
 	templateUrl: "./unique-item-register.component.html",
-	styleUrls: ["./unique-item-register.component.scss"]
+	styleUrls: ["./unique-item-register.component.scss"],
 })
 export class UniqueItemRegisterComponent implements OnInit {
 	@Input() blid: string;
@@ -53,7 +53,7 @@ export class UniqueItemRegisterComponent implements OnInit {
 
 		this._uniqueItemStoreService
 			.get(this.blid)
-			.then(uniqueItem => {
+			.then((uniqueItem) => {
 				if (uniqueItem.item === this.itemId) {
 					this.registered.emit(uniqueItem);
 				} else {
@@ -61,7 +61,7 @@ export class UniqueItemRegisterComponent implements OnInit {
 					this.uniqueItem = uniqueItem;
 				}
 			})
-			.catch(e => {
+			.catch((e) => {
 				this.blidAlreadyAddedError = false;
 				this.uniqueItem = null;
 			});
@@ -74,7 +74,7 @@ export class UniqueItemRegisterComponent implements OnInit {
 
 		this._uniqueItemStoreService
 			.createAndAdd(this.blid, this.itemId, this.title)
-			.then(addedUniqueItem => {
+			.then((addedUniqueItem) => {
 				this.wait = false;
 				this.onClearItem();
 				this.onClearBlid();

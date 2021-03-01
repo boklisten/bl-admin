@@ -3,7 +3,7 @@ import {
 	Item,
 	Order,
 	OrderItem,
-	Period
+	Period,
 } from "@boklisten/bl-model";
 import { CartItemAction } from "./cart-item-action";
 import { PriceInformation } from "../../price/price-information";

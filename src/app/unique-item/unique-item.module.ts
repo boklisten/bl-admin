@@ -16,7 +16,7 @@ import { UniqueItemActiveInformationComponent } from "./unique-item-active-infor
 import { CustomerModule } from "../customer/customer.module";
 import { UniqueItemSearchComponent } from "./unique-item-search/unique-item-search.component";
 import { FormsModule } from "@angular/forms";
-import { UniqueItemSearchbarComponent } from './unique-item-searchbar/unique-item-searchbar.component';
+import { UniqueItemSearchbarComponent } from "./unique-item-searchbar/unique-item-searchbar.component";
 
 @NgModule({
 	declarations: [
@@ -28,7 +28,7 @@ import { UniqueItemSearchbarComponent } from './unique-item-searchbar/unique-ite
 		UniqueItemCustomerItemListComponent,
 		UniqueItemActiveInformationComponent,
 		UniqueItemSearchComponent,
-		UniqueItemSearchbarComponent
+		UniqueItemSearchbarComponent,
 	],
 	imports: [
 		CommonModule,
@@ -39,13 +39,13 @@ import { UniqueItemSearchbarComponent } from './unique-item-searchbar/unique-ite
 		UniqueItemRoutingModule,
 		CustomerItemModule,
 		CustomerModule,
-		FormsModule
+		FormsModule,
 	],
 	exports: [
 		UniqueItemRegisterComponent,
 		UniqueItemScanToCartComponent,
 		UniqueItemRegisterFromCartComponent,
-		UniqueItemScanOrderToCartComponent
-	]
+		UniqueItemScanOrderToCartComponent,
+	],
 })
 export class UniqueItemModule {}

@@ -3,14 +3,14 @@ import {
 	OnInit,
 	Input,
 	SimpleChanges,
-	OnChanges
+	OnChanges,
 } from "@angular/core";
 import { CompanyService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-database-company-list",
 	templateUrl: "./database-company-list.component.html",
-	styleUrls: ["./database-company-list.component.scss"]
+	styleUrls: ["./database-company-list.component.scss"],
 })
 export class DatabaseCompanyListComponent implements OnInit, OnChanges {
 	@Input() update: any;
@@ -33,11 +33,11 @@ export class DatabaseCompanyListComponent implements OnInit, OnChanges {
 		this.wait = true;
 		this.companyService
 			.get({ fresh: true })
-			.then(companies => {
+			.then((companies) => {
 				this.companies = companies;
 				this.wait = false;
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log("could not get companies", err);
 				this.companies = [];
 				this.wait = false;

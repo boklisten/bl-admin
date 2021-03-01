@@ -58,9 +58,7 @@ export class DateService {
 	}
 
 	public addDays(date: Date, days: number): Date {
-		return moment(date)
-			.add(days, "days")
-			.toDate();
+		return moment(date).add(days, "days").toDate();
 	}
 
 	public dateOnApiFormat(date: Date): string {
@@ -76,7 +74,7 @@ export class DateService {
 
 		return {
 			fromDate: currentDate.toDate(),
-			toDate: currentDate.add(1, "day").toDate()
+			toDate: currentDate.add(1, "day").toDate(),
 		};
 	}
 
@@ -99,7 +97,7 @@ export class DateService {
 			// the current semester is the fall semester
 			return {
 				fromDate: this._defaultSpringSemesterDeadlineDate.toDate(),
-				toDate: this._defaultFallSemesterDeadlineDate.toDate()
+				toDate: this._defaultFallSemesterDeadlineDate.toDate(),
 			};
 		} else {
 			// the current semester is the spring semester
@@ -109,7 +107,7 @@ export class DateService {
 			);
 			return {
 				fromDate: lastYearsFallDeadline.toDate(),
-				toDate: this._defaultSpringSemesterDeadlineDate.toDate()
+				toDate: this._defaultSpringSemesterDeadlineDate.toDate(),
 			};
 		}
 	}
@@ -119,7 +117,7 @@ export class DateService {
 		const fromDate = this.getCurrentDate().subtract(1, "year");
 		return {
 			fromDate: fromDate.toDate(),
-			toDate: toDate.toDate()
+			toDate: toDate.toDate(),
 		};
 	}
 
@@ -134,7 +132,7 @@ export class DateService {
 				.second(0)
 				.millisecond(0)
 				.toDate(),
-			toDate: this.getCurrentDate().toDate()
+			toDate: this.getCurrentDate().toDate(),
 		};
 	}
 
@@ -210,7 +208,7 @@ export class DateService {
 
 		return {
 			from: new Date(),
-			to: partlyPaymentPeriod.date
+			to: partlyPaymentPeriod.date,
 		};
 	}
 

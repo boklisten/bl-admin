@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import * as moment from 'moment';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import * as moment from "moment";
 
 @Component({
-	selector: 'app-blc-edit-date-value',
-	templateUrl: './blc-edit-date-value.component.html',
-	styleUrls: ['./blc-edit-date-value.component.scss']
+	selector: "app-blc-edit-date-value",
+	templateUrl: "./blc-edit-date-value.component.html",
+	styleUrls: ["./blc-edit-date-value.component.scss"],
 })
 export class BlcEditDateValueComponent implements OnInit {
 	@Input() value: Date;
@@ -19,8 +19,7 @@ export class BlcEditDateValueComponent implements OnInit {
 		this.update = new EventEmitter<Date>();
 	}
 
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	onUpdate(value) {
 		this.value = value;
@@ -28,5 +27,4 @@ export class BlcEditDateValueComponent implements OnInit {
 		this.update.emit(moment(this.value).toDate());
 		this.editing = false;
 	}
-
 }

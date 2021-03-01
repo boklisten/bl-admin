@@ -6,7 +6,7 @@ import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 @Component({
 	selector: "app-database-branches",
 	templateUrl: "./database-branches.component.html",
-	styleUrls: ["./database-branches.component.scss"]
+	styleUrls: ["./database-branches.component.scss"],
 })
 export class DatabaseBranchesComponent implements OnInit {
 	public branches: Branch[];
@@ -24,7 +24,7 @@ export class DatabaseBranchesComponent implements OnInit {
 					"name"
 				);
 			})
-			.catch(getBranchesError => {
+			.catch((getBranchesError) => {
 				console.log(
 					"databaseBranchesComponent: could not get branches",
 					getBranchesError

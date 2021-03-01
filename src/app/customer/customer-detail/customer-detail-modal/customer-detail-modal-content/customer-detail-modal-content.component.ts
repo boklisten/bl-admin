@@ -12,7 +12,7 @@ interface UserDetailPatch {
 @Component({
 	selector: "app-customer-detail-modal-content",
 	templateUrl: "./customer-detail-modal-content.component.html",
-	styleUrls: ["./customer-detail-modal-content.component.scss"]
+	styleUrls: ["./customer-detail-modal-content.component.scss"],
 })
 export class CustomerDetailModalContentComponent implements OnInit {
 	public userDetailForm: FormGroup;
@@ -93,17 +93,17 @@ export class CustomerDetailModalContentComponent implements OnInit {
 	private createUserDetailForm() {
 		this.userDetailForm = new FormGroup({
 			name: new FormControl(this.userDetail.name, [
-				Validators.minLength(2)
+				Validators.minLength(2),
 			]),
 			phone: new FormControl(this.userDetail.phone, [
-				Validators.minLength(8)
+				Validators.minLength(8),
 			]),
 			address: new FormControl(this.userDetail.address, []),
 			postCode: new FormControl(this.userDetail.postCode, [
-				Validators.minLength(4)
+				Validators.minLength(4),
 			]),
 			postCity: new FormControl(this.userDetail.postCity),
-			country: new FormControl(this.userDetail.country)
+			country: new FormControl(this.userDetail.country),
 		});
 
 		console.log("userDetaildob", this.userDetail.dob);

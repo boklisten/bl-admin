@@ -4,10 +4,10 @@ import { BranchStoreService } from "../../branch/branch-store.service";
 @Component({
 	selector: "app-blc-deadline-select",
 	templateUrl: "./blc-deadline-select.component.html",
-	styleUrls: ["./blc-deadline-select.component.scss"]
+	styleUrls: ["./blc-deadline-select.component.scss"],
 })
 export class BlcDeadlineSelectComponent implements OnInit {
-  @Input() deadline: Date;
+	@Input() deadline: Date;
 	@Output() deadlineChange: EventEmitter<Date>;
 	public deadlineOptions: Date[];
 	public customDeadline: boolean;
@@ -37,14 +37,14 @@ export class BlcDeadlineSelectComponent implements OnInit {
 
 		for (let period of branch.paymentInfo.rentPeriods) {
 			this.deadlineOptions.push(period.date);
-    }
+		}
 
-    for (let period of branch.paymentInfo.partlyPaymentPeriods) {
-      if (this.deadlineOptions.indexOf(period.date) <= -1) {
-			  this.deadlineOptions.push(period.date);
-      }
-    }
+		for (let period of branch.paymentInfo.partlyPaymentPeriods) {
+			if (this.deadlineOptions.indexOf(period.date) <= -1) {
+				this.deadlineOptions.push(period.date);
+			}
+		}
 
 		this.selectDeadline(this.deadlineOptions[0]);
-  }
+	}
 }

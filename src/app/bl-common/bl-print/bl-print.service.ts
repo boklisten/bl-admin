@@ -3,14 +3,15 @@ import { utils, WorkBook, write } from "xlsx";
 import { saveAs } from "file-saver";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class BlPrintService {
 	constructor() {}
 
-  public printVismaRows(vismaRows: any[]) {
-    const date = new Date();
-    const title = date.getFullYear() + date.getHours() + '_visma_invoice' + '.csv';
+	public printVismaRows(vismaRows: any[]) {
+		const date = new Date();
+		const title =
+			date.getFullYear() + date.getHours() + "_visma_invoice" + ".csv";
 		const workBook = this.makeWorkBook(title, vismaRows);
 		this.printWorkBookToSemiColFile(workBook, title);
 	}

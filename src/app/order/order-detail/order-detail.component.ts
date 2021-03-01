@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from "@angular/router";
 import {
 	OrderPdfService,
 	OrderService,
-	PrintPdfService
+	PrintPdfService,
 } from "@boklisten/bl-connect";
 import { BlApiError, Order } from "@boklisten/bl-model";
 import { CustomerService } from "../../customer/customer.service";
@@ -13,7 +13,7 @@ import { AuthService } from "../../auth/auth.service";
 @Component({
 	selector: "app-order-detail",
 	templateUrl: "./order-detail.component.html",
-	styleUrls: ["./order-detail.component.scss"]
+	styleUrls: ["./order-detail.component.scss"],
 })
 export class OrderDetailComponent implements OnInit {
 	public currentId: string;
@@ -80,7 +80,7 @@ export class OrderDetailComponent implements OnInit {
 	printReceipt() {
 		this._orderPdfService
 			.getOrderReceiptPdf(this.order.id)
-			.then(pdfContent => {
+			.then((pdfContent) => {
 				const fileName =
 					"ordredetaljer_" +
 					moment(this.order.creationTime).format("DDMMYYYY") +
@@ -95,7 +95,7 @@ export class OrderDetailComponent implements OnInit {
 	printAgreement() {
 		this._orderPdfService
 			.getOrderAgreementPdf(this.order.id)
-			.then(pdfContent => {
+			.then((pdfContent) => {
 				const fileName =
 					"laaneavtale_" +
 					moment(this.order.creationTime).format("DDMMYYYY") +

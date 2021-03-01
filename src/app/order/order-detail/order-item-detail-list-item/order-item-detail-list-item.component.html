@@ -71,10 +71,10 @@
 	<div
 		class="row justify-content-between text-secondary"
 		*ngIf="
-				orderItem.type === 'rent' ||
-				orderItem.type === 'extend' ||
-				orderItem.type === 'partly-payment'
-			"
+			orderItem.type === 'rent' ||
+			orderItem.type === 'extend' ||
+			orderItem.type === 'partly-payment'
+		"
 	>
 		<div
 			class="col-auto"
@@ -95,8 +95,8 @@
 					>
 				</span>
 				<span class="ml-2"
-					><fa-icon [icon]="'arrow-right'" class="mr-1"></fa-icon> {{
-					orderItem.info["to"] | blDate }}</span
+					><fa-icon [icon]="'arrow-right'" class="mr-1"></fa-icon>
+					{{ orderItem.info["to"] | blDate }}</span
 				>
 			</small>
 		</div>
@@ -134,10 +134,8 @@
 				class="bl-link-black mr-2 text-success"
 				*ngIf="orderItem.info && orderItem.info.customerItem"
 				routerLink="{{
-						'/customerItem/' +
-							orderItem.info.customerItem +
-							'/detail'
-					}}"
+					'/customerItem/' + orderItem.info.customerItem + '/detail'
+				}}"
 			>
 				<span>
 					<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>
@@ -146,12 +144,14 @@
 			</small>
 			<small
 				class="bl-link-black mr-2 text-success"
-				*ngIf="orderItem.customerItem && (!orderItem.info && !orderItem.info.customerItem)"
+				*ngIf="
+					orderItem.customerItem &&
+					!orderItem.info &&
+					!orderItem.info.customerItem
+				"
 				routerLink="{{
-						'/customerItem/' +
-							orderItem.customerItem +
-							'/detail'
-					}}"
+					'/customerItem/' + orderItem.customerItem + '/detail'
+				}}"
 			>
 				<span>
 					<fa-icon [icon]="'check-circle'" class="mr-2"></fa-icon>
@@ -166,9 +166,7 @@
 	<div class="row justify-content-md-end" *ngIf="orderItem.movedToOrder">
 		<div
 			class="col-auto bl-link-black font-italic"
-			routerLink="{{
-					'/order/' + orderItem.movedToOrder + '/detail'
-				}}"
+			routerLink="{{ '/order/' + orderItem.movedToOrder + '/detail' }}"
 		>
 			<small i18n="@@orderItemDetailListMovedToAnotherOrder">
 				moved to another order

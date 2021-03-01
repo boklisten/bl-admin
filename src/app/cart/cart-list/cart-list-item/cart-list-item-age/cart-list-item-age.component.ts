@@ -6,7 +6,7 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-cart-list-item-age",
 	templateUrl: "./cart-list-item-age.component.html",
-	styleUrls: ["./cart-list-item-age.component.scss"]
+	styleUrls: ["./cart-list-item-age.component.scss"],
 })
 export class CartListItemAgeComponent implements OnInit, OnDestroy {
 	@Input() cartItem: CartItem;

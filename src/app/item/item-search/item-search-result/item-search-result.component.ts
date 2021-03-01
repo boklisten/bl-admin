@@ -6,7 +6,7 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-item-search-result",
 	templateUrl: "./item-search-result.component.html",
-	styleUrls: ["./item-search-result.component.scss"]
+	styleUrls: ["./item-search-result.component.scss"],
 })
 export class ItemSearchResultComponent implements OnInit, OnDestroy {
 	public items: Item[];
@@ -29,13 +29,13 @@ export class ItemSearchResultComponent implements OnInit, OnDestroy {
 	}
 
 	private handleItemSearchResultChange() {
-		this.itemSearchResult$ = this._itemSearchService.subscribe(items => {
+		this.itemSearchResult$ = this._itemSearchService.subscribe((items) => {
 			this.items = items;
 		});
 	}
 
 	private handleItemSearchResultWaitChange() {
-		this.itemSearchResultWait$ = this._itemSearchService.onWait(wait => {
+		this.itemSearchResultWait$ = this._itemSearchService.onWait((wait) => {
 			this.wait = wait;
 		});
 	}

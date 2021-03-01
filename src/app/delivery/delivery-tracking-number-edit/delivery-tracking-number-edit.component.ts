@@ -7,7 +7,7 @@ import { BranchStoreService } from "../../branch/branch-store.service";
 @Component({
 	selector: "app-delivery-tracking-number-edit",
 	templateUrl: "./delivery-tracking-number-edit.component.html",
-	styleUrls: ["./delivery-tracking-number-edit.component.scss"]
+	styleUrls: ["./delivery-tracking-number-edit.component.scss"],
 })
 export class DeliveryTrackingNumberEditComponent implements OnInit {
 	@Input() delivery: Delivery;
@@ -42,8 +42,8 @@ export class DeliveryTrackingNumberEditComponent implements OnInit {
 				shipmentAddress: this.originalDelivery.info["shipmentAddress"],
 				estimatedDelivery: null,
 				branch: this._branchStoreService.getBranchId(),
-				trackingNumber: ""
-			}
+				trackingNumber: "",
+			},
 		};
 	}
 

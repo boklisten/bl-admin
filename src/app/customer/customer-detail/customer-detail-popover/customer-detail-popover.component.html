@@ -1,23 +1,27 @@
 <div class="row" *ngIf="customerDetail">
 	<div class="col-12">
-		<h4 class="text-center">{{customerDetail.name}}</h4>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <fa-icon [icon]="'at'" class="mr-2"></fa-icon> {{customerDetail.email}}
-            </li>
-            <li class="list-group-item">
-                <fa-icon [icon]="'phone'" class="mr-2"></fa-icon> {{customerDetail.phone}}
-            </li>
-            <li class="list-group-item">
-                <fa-icon [icon]="'address-card'" class="mr-2"></fa-icon> {{customerDetail.address}}
-            </li>
-            <li class="list-group-item">
-                <fa-icon [icon]="'address-card'" class="mr-2"></fa-icon> {{customerDetail.postCode}} {{customerDetail.postCity}}
-            </li>
-            <li class="list-group-item">
-                <fa-icon [icon]="'birthday-cake'" class="mr-2"></fa-icon>
-				{{customerDetail.dob | blDate}}
-            </li>
-        </ul>
+		<h4 class="text-center">{{ customerDetail.name }}</h4>
+		<ul class="list-group list-group-flush">
+			<li class="list-group-item">
+				<fa-icon [icon]="'at'" class="mr-2"></fa-icon>
+				{{ customerDetail.email }}
+			</li>
+			<li class="list-group-item">
+				<fa-icon [icon]="'phone'" class="mr-2"></fa-icon>
+				{{ customerDetail.phone }}
+			</li>
+			<li class="list-group-item">
+				<fa-icon [icon]="'address-card'" class="mr-2"></fa-icon>
+				{{ customerDetail.address }}
+			</li>
+			<li class="list-group-item">
+				<fa-icon [icon]="'address-card'" class="mr-2"></fa-icon>
+				{{ customerDetail.postCode }} {{ customerDetail.postCity }}
+			</li>
+			<li class="list-group-item">
+				<fa-icon [icon]="'birthday-cake'" class="mr-2"></fa-icon>
+				{{ customerDetail.dob | blDate }}
+			</li>
+		</ul>
 	</div>
 </div>

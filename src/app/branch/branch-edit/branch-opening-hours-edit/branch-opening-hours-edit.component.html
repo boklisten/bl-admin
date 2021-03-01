@@ -1,27 +1,42 @@
 <div class="row">
 	<div class="col-12">
 		<ul class="list-group">
-			<li class="list-group-item" *ngFor="let openingHour of sortedOpeningHours; let i = index">
+			<li
+				class="list-group-item"
+				*ngFor="let openingHour of sortedOpeningHours; let i = index"
+			>
 				<div class="row justify-content-between">
 					<div class="col-11">
-						<div class="row align-items-center align-content-center">
+						<div
+							class="row align-items-center align-content-center"
+						>
 							<div class="col-auto">
 								<span class="mr-2">
-                                    {{openingHour.from | blDate:'day'}}
+									{{ openingHour.from | blDate: "day" }}
 								</span>
-                                <span class="text-dark font-weight-bold">
-									{{openingHour.from | blDate:'date'}}
-                                </span>
+								<span class="text-dark font-weight-bold">
+									{{ openingHour.from | blDate: "date" }}
+								</span>
 							</div>
 							<div class="col-auto">
-								<span>{{openingHour.from | blDate:'time'}}</span>
-								<fa-icon [icon]="'arrow-right'" class="mr-2 ml-2"></fa-icon>
-								<span>{{openingHour.to | blDate:'time'}}</span>
+								<span>{{
+									openingHour.from | blDate: "time"
+								}}</span>
+								<fa-icon
+									[icon]="'arrow-right'"
+									class="mr-2 ml-2"
+								></fa-icon>
+								<span>{{
+									openingHour.to | blDate: "time"
+								}}</span>
 							</div>
 						</div>
 					</div>
 					<div class="col-1">
-						<fa-icon [icon]="'times'" (click)="onRemoveOpeningHour(i)"></fa-icon>
+						<fa-icon
+							[icon]="'times'"
+							(click)="onRemoveOpeningHour(i)"
+						></fa-icon>
 					</div>
 				</div>
 			</li>
@@ -30,8 +45,12 @@
 </div>
 
 <div class="row justify-content-end mt-4">
-	<div class="col-auto" [ngClass]="{'col-12': openingHours.length <= 0}">
-		<button class="btn btn-outline-success" [ngClass]="{'btn-block': openingHours.length <= 0}" (click)="openAddOpeningHour(addOpeningHour)">
+	<div class="col-auto" [ngClass]="{ 'col-12': openingHours.length <= 0 }">
+		<button
+			class="btn btn-outline-success"
+			[ngClass]="{ 'btn-block': openingHours.length <= 0 }"
+			(click)="openAddOpeningHour(addOpeningHour)"
+		>
 			<span i18n="@@blAddButton">Add</span>
 		</button>
 	</div>
@@ -39,23 +58,42 @@
 
 <ng-template #addOpeningHour let-c="close" let-d="dismiss">
 	<div class="modal-header">
-		<h4 class="modal-title" i18n="@@branchOpeningHoursEditAddOpeningHour">Add opening hour</h4>
-		<button type="button" class="close" aria-label="Close" (click)="c('Cross click')">
+		<h4 class="modal-title" i18n="@@branchOpeningHoursEditAddOpeningHour">
+			Add opening hour
+		</h4>
+		<button
+			type="button"
+			class="close"
+			aria-label="Close"
+			(click)="c('Cross click')"
+		>
 			<span aria-hidden="true">
 				<fa-icon [icon]="'times'"></fa-icon>
 			</span>
 		</button>
 	</div>
 	<div class="modal-body">
-		<div class="row justify-content-between align-content-center align-items-center">
+		<div
+			class="row justify-content-between align-content-center align-items-center"
+		>
 			<div class="col-auto">
 				<form class="form-inline">
 					<div class="form-group">
 						<div class="input-group">
-							<input class="form-control" placeholder="yyyy-mm-dd"
-								   name="dp" [(ngModel)]="fromDay" ngbDatepicker #d="ngbDatepicker">
+							<input
+								class="form-control"
+								placeholder="yyyy-mm-dd"
+								name="dp"
+								[(ngModel)]="fromDay"
+								ngbDatepicker
+								#d="ngbDatepicker"
+							/>
 							<div class="input-group-append">
-								<button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+								<button
+									class="btn btn-outline-secondary"
+									(click)="d.toggle()"
+									type="button"
+								>
 									<fa-icon [icon]="'calendar'"></fa-icon>
 								</button>
 							</div>
@@ -64,23 +102,34 @@
 				</form>
 			</div>
 			<div class="col-auto">
-				<ngb-timepicker [(ngModel)]="fromTime" [minuteStep]="minuteStep"></ngb-timepicker>
+				<ngb-timepicker
+					[(ngModel)]="fromTime"
+					[minuteStep]="minuteStep"
+				></ngb-timepicker>
 			</div>
 			<div class="col-auto">
 				<fa-icon [icon]="'arrow-right'"></fa-icon>
 			</div>
 			<div class="col-auto">
-				<ngb-timepicker [(ngModel)]="toTime" [minuteStep]="minuteStep"></ngb-timepicker>
+				<ngb-timepicker
+					[(ngModel)]="toTime"
+					[minuteStep]="minuteStep"
+				></ngb-timepicker>
 			</div>
 		</div>
 	</div>
 	<div class="modal-footer">
 		<div class="row justify-content-between">
 			<div class="col-auto">
-				<button type="button" class="btn btn-success"
-						[disabled]="!isOpeningHourValid()"
-						(click)="onAddOpeningHour()">
-					<span i18n="@@branchOpeningHoursEditAddOpeningHour">Add opening hour</span>
+				<button
+					type="button"
+					class="btn btn-success"
+					[disabled]="!isOpeningHourValid()"
+					(click)="onAddOpeningHour()"
+				>
+					<span i18n="@@branchOpeningHoursEditAddOpeningHour"
+						>Add opening hour</span
+					>
 				</button>
 			</div>
 		</div>

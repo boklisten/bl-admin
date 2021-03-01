@@ -1,0 +1,14 @@
+<div class="container-fluid mt-2 mb-2">
+	<ul class="nav nav-tabs">
+		<li *ngFor="let navItem of navNames" class="nav-item">
+			<a
+				class="nav-link"
+				[ngClass]="{ active: activeTab === 'view' }"
+				[routerLink]="navItem"
+				i18n="'@@booking' + navItem"
+				>{{ navItem | titlecase }}</a
+			>
+		</li>
+	</ul>
+</div>
+<div class="container-fluid pt-2"><router-outlet></router-outlet></div>

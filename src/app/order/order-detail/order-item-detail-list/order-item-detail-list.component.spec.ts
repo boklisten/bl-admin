@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OrderItemDetailListComponent } from './order-item-detail-list.component';
+import { OrderItemDetailListComponent } from "./order-item-detail-list.component";
 
-describe('OrderItemDetailListComponent', () => {
-  let component: OrderItemDetailListComponent;
-  let fixture: ComponentFixture<OrderItemDetailListComponent>;
+describe("OrderItemDetailListComponent", () => {
+	let component: OrderItemDetailListComponent;
+	let fixture: ComponentFixture<OrderItemDetailListComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ OrderItemDetailListComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [OrderItemDetailListComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(OrderItemDetailListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(OrderItemDetailListComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

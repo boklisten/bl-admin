@@ -14,7 +14,9 @@
 				>User details was updated!</span
 			>
 		</li>
-		<li class="list-group-item"><h4>{{ customerDetail.name }}</h4></li>
+		<li class="list-group-item">
+			<h4>{{ customerDetail.name }}</h4>
+		</li>
 		<li class="list-group-item">
 			<small>
 				<fa-icon [icon]="'at'" class="mr-2"></fa-icon>
@@ -30,16 +32,16 @@
 		<li class="list-group-item">
 			<small>
 				<fa-icon [icon]="'address-card'" class="mr-2"></fa-icon>
-				{{ customerDetail.address }} {{ customerDetail.postCode }} {{
-				customerDetail.postCity }}
+				{{ customerDetail.address }} {{ customerDetail.postCode }}
+				{{ customerDetail.postCity }}
 			</small>
 		</li>
 		<li class="list-group-item">
 			<small>
 				<fa-icon [icon]="'birthday-cake'" class="mr-2"></fa-icon>
-				<span *ngIf="customerDetail.dob"
-					>{{ customerDetail.dob | blDate }}</span
-				>
+				<span *ngIf="customerDetail.dob">{{
+					customerDetail.dob | blDate
+				}}</span>
 				<span
 					*ngIf="!customerDetail.dob"
 					i18n="@@customerDetailCartDobNotProvided"

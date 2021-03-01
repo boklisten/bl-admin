@@ -2,7 +2,7 @@ import { Directive, HostListener } from "@angular/core";
 import { BlcClickService } from "./blc-click.service";
 
 @Directive({
-	selector: "[blcClickEvent]"
+	selector: "[blcClickEvent]",
 })
 export class BlcClickDirective {
 	constructor(private blcClickService: BlcClickService) {}

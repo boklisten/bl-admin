@@ -10,7 +10,7 @@ import { UniqueItemScanToCartService } from "../unique-item-scan-to-cart/unique-
 @Component({
 	selector: "app-unique-item-scan-order-to-cart",
 	templateUrl: "./unique-item-scan-order-to-cart.component.html",
-	styleUrls: ["./unique-item-scan-order-to-cart.component.scss"]
+	styleUrls: ["./unique-item-scan-order-to-cart.component.scss"],
 })
 export class UniqueItemScanOrderToCartComponent implements OnInit {
 	@ViewChild("addUniqeItemModal") private addUniqeItemModalContent;
@@ -48,14 +48,16 @@ export class UniqueItemScanOrderToCartComponent implements OnInit {
 	}
 
 	private handleUniqueItemChange() {
-		this.uniqueItem$ = this._blidScannerService.onUniqueItem(uniqueItem => {
-			this.addUniqueItemToCart(uniqueItem);
-		});
+		this.uniqueItem$ = this._blidScannerService.onUniqueItem(
+			(uniqueItem) => {
+				this.addUniqueItemToCart(uniqueItem);
+			}
+		);
 	}
 
 	private handleUniqueItemNotExistChange() {
 		this.uniqueItemDoesNotExist$ = this._blidScannerService.onUniqueItemDoesNotExist(
-			blid => {
+			(blid) => {
 				this.notAddedUniqeItemBlid = blid;
 				this._modalService.dismissAll();
 				this._cartService.setLock();
@@ -65,7 +67,7 @@ export class UniqueItemScanOrderToCartComponent implements OnInit {
 						beforeDismiss: () => {
 							this._cartService.clearLock();
 							return true;
-						}
+						},
 					}
 				);
 			}
@@ -75,8 +77,8 @@ export class UniqueItemScanOrderToCartComponent implements OnInit {
 	private addUniqueItemToCart(uniqueItem: UniqueItem) {
 		this._uniqueItemScanToCartService
 			.addOrderItemAsUniqueItemToCart(this.order, uniqueItem)
-			.then(added => {})
-			.catch(e => {
+			.then((added) => {})
+			.catch((e) => {
 				console.log("could not add cart item", e);
 			});
 	}

@@ -24,7 +24,7 @@ export class CartItemOrderItemProvider {
 			customerItem: cartItem.getCustomerItemId(),
 			match: null,
 			movedToOrder: null,
-			movedFromOrder: cartItem.getMovedFromOrderId()
+			movedFromOrder: cartItem.getMovedFromOrderId(),
 		};
 	}
 
@@ -41,7 +41,7 @@ export class CartItemOrderItemProvider {
 				to: cartItemAction.deadline,
 				periodType: cartItemAction.period,
 				amountLeftToPay: priceInformation.amountLeftToPay,
-				customerItem: cartItem.getCustomerItemId()
+				customerItem: cartItem.getCustomerItemId(),
 			};
 		} else if (action === "rent") {
 			return {
@@ -49,7 +49,7 @@ export class CartItemOrderItemProvider {
 				to: cartItemAction.deadline,
 				numberOfPeriods: 1,
 				periodType: cartItemAction.period,
-				customerItem: cartItem.getCustomerItemId()
+				customerItem: cartItem.getCustomerItemId(),
 			};
 		} else if (action === "extend") {
 			return {
@@ -57,12 +57,12 @@ export class CartItemOrderItemProvider {
 				to: cartItemAction.deadline,
 				numberOfPeriods: 1,
 				periodType: cartItemAction.period,
-				customerItem: cartItem.getCustomerItemId()
+				customerItem: cartItem.getCustomerItemId(),
 			};
 		} else if (action === "buyback") {
 			return {
 				buybackAmount: priceInformation.amount,
-				customerItem: cartItem.getCustomerItemId()
+				customerItem: cartItem.getCustomerItemId(),
 			};
 		} else {
 			return null;

@@ -5,5 +5,5 @@ export const environment = {
 	apiPath: "https://blapi.test.boklisten.no/",
 	hmr: false,
 	version: version,
-	versionName: "DEV"
+	versionName: "DEV",
 };

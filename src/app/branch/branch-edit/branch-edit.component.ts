@@ -7,7 +7,7 @@ import { BranchStoreService } from "../branch-store.service";
 @Component({
 	selector: "app-branch-edit",
 	templateUrl: "./branch-edit.component.html",
-	styleUrls: ["./branch-edit.component.scss"]
+	styleUrls: ["./branch-edit.component.scss"],
 })
 export class BranchEditComponent implements OnInit {
 	private _currentId: string;
@@ -35,7 +35,7 @@ export class BranchEditComponent implements OnInit {
 			.then((branch: Branch) => {
 				this.branch = branch;
 			})
-			.catch(getBranchError => {
+			.catch((getBranchError) => {
 				console.log(
 					"branchInfoComponent: could not get branch",
 					getBranchError
@@ -50,7 +50,7 @@ export class BranchEditComponent implements OnInit {
 				this.branch = updatedBranch;
 				this._branchStoreService.setCurrentBranch(this.branch);
 			})
-			.catch(updateError => {
+			.catch((updateError) => {
 				console.log(
 					"BranchEditComponent: could not update branch",
 					updateError

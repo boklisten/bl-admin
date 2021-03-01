@@ -1,20 +1,17 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import {BlcEditNumberValueComponent} from './blc-edit-number-value.component';
-import {FormsModule} from '@angular/forms';
+import { BlcEditNumberValueComponent } from "./blc-edit-number-value.component";
+import { FormsModule } from "@angular/forms";
 
-describe('BlcEditNumberValueComponent', () => {
+describe("BlcEditNumberValueComponent", () => {
 	let component: BlcEditNumberValueComponent;
 	let fixture: ComponentFixture<BlcEditNumberValueComponent>;
 
 	beforeEach(async(() => {
 		TestBed.configureTestingModule({
-				declarations: [BlcEditNumberValueComponent],
-				imports: [
-					FormsModule
-				]
-			})
-			.compileComponents();
+			declarations: [BlcEditNumberValueComponent],
+			imports: [FormsModule],
+		}).compileComponents();
 	}));
 
 	beforeEach(() => {
@@ -23,7 +20,7 @@ describe('BlcEditNumberValueComponent', () => {
 		fixture.detectChanges();
 	});
 
-	it('should create', () => {
+	it("should create", () => {
 		expect(component).toBeTruthy();
 	});
 });

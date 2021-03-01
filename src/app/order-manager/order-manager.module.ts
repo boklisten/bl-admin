@@ -18,7 +18,7 @@ import { UniqueItemModule } from "../unique-item/unique-item.module";
 	declarations: [
 		OrderManagerComponent,
 		OrderManagerListComponent,
-		OrderManagerListItemComponent
+		OrderManagerListItemComponent,
 	],
 	imports: [
 		CommonModule,
@@ -28,8 +28,8 @@ import { UniqueItemModule } from "../unique-item/unique-item.module";
 		OrderModule,
 		CartModule,
 		CheckoutModule,
-		UniqueItemModule
+		UniqueItemModule,
 	],
-	providers: [OrderManagerListService]
+	providers: [OrderManagerListService],
 })
 export class OrderManagerModule {}

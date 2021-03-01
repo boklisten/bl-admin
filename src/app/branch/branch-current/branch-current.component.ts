@@ -7,7 +7,7 @@ import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 @Component({
 	selector: "app-branch-current",
 	templateUrl: "./branch-current.component.html",
-	styleUrls: ["./branch-current.component.scss"]
+	styleUrls: ["./branch-current.component.scss"],
 })
 export class BranchCurrentComponent implements OnInit {
 	public lastPopoverRef: any;
@@ -37,7 +37,7 @@ export class BranchCurrentComponent implements OnInit {
 					"name"
 				);
 			})
-			.catch(getBranchesError => {
+			.catch((getBranchesError) => {
 				console.log(
 					"HeaderComponent: could not get branches",
 					getBranchesError

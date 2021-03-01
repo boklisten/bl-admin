@@ -5,7 +5,7 @@ import { Branch } from "@boklisten/bl-model";
 @Component({
 	selector: "app-blc-branch-select",
 	templateUrl: "./blc-branch-select.component.html",
-	styleUrls: ["./blc-branch-select.component.scss"]
+	styleUrls: ["./blc-branch-select.component.scss"],
 })
 export class BlcBranchSelectComponent implements OnInit {
 	public branches: Branch[];
@@ -54,7 +54,7 @@ export class BlcBranchSelectComponent implements OnInit {
 	}
 
 	public selectAll() {
-		this.branches.forEach(b => this.selectedBranches.push(b.id));
+		this.branches.forEach((b) => this.selectedBranches.push(b.id));
 	}
 
 	public deselectAll() {

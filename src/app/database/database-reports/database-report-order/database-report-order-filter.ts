@@ -1,4 +1,3 @@
-
 export interface DatabaseReportOrderFilter {
 	branchId?: string;
 	fromDate?: Date;

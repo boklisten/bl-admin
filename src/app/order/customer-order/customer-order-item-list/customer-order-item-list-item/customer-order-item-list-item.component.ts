@@ -6,7 +6,7 @@ import { BranchStoreService } from "../../../../branch/branch-store.service";
 @Component({
 	selector: "app-customer-order-item-list-item",
 	templateUrl: "./customer-order-item-list-item.component.html",
-	styleUrls: ["./customer-order-item-list-item.component.scss"]
+	styleUrls: ["./customer-order-item-list-item.component.scss"],
 })
 export class CustomerOrderItemListItemComponent implements OnInit {
 	@Input() customerOrderItem: {
@@ -28,7 +28,7 @@ export class CustomerOrderItemListItemComponent implements OnInit {
 			this.wait = true;
 			this._deliveryService
 				.getById(this.customerOrderItem.order.delivery as string)
-				.then(delivery => {
+				.then((delivery) => {
 					this.delivery = delivery;
 					this.haveDelivery =
 						this.delivery.method === "bring" && this.havePayed();

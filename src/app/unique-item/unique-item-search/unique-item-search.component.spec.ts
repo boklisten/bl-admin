@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { UniqueItemSearchComponent } from './unique-item-search.component';
+import { UniqueItemSearchComponent } from "./unique-item-search.component";
 
-describe('UniqueItemSearchComponent', () => {
-  let component: UniqueItemSearchComponent;
-  let fixture: ComponentFixture<UniqueItemSearchComponent>;
+describe("UniqueItemSearchComponent", () => {
+	let component: UniqueItemSearchComponent;
+	let fixture: ComponentFixture<UniqueItemSearchComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ UniqueItemSearchComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [UniqueItemSearchComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(UniqueItemSearchComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(UniqueItemSearchComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

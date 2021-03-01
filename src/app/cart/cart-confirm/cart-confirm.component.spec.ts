@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CartConfirmComponent } from './cart-confirm.component';
+import { CartConfirmComponent } from "./cart-confirm.component";
 
-describe('CartConfirmComponent', () => {
-  let component: CartConfirmComponent;
-  let fixture: ComponentFixture<CartConfirmComponent>;
+describe("CartConfirmComponent", () => {
+	let component: CartConfirmComponent;
+	let fixture: ComponentFixture<CartConfirmComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CartConfirmComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [CartConfirmComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CartConfirmComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(CartConfirmComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

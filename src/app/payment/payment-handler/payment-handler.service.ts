@@ -1,11 +1,6 @@
 import { Injectable } from "@angular/core";
 import { PaymentChoice } from "../payment-choice";
-import {
-	Order,
-	Payment,
-	PaymentMethod,
-	UserDetail
-} from "@boklisten/bl-model";
+import { Order, Payment, PaymentMethod, UserDetail } from "@boklisten/bl-model";
 import { PaymentService } from "@boklisten/bl-connect";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { CustomerDetailService } from "../../customer/customer-detail/customer-detail.service";
@@ -74,7 +69,7 @@ export class PaymentHandlerService {
 			branch: branchId,
 			customer: customerDetail ? customerDetail.id : null,
 			viewableFor: [customerDetail ? customerDetail.blid : null],
-			taxAmount: 0
+			taxAmount: 0,
 		} as Payment;
 	}
 }

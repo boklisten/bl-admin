@@ -7,7 +7,7 @@ import { CartService } from "../../cart/cart.service";
 import { ToasterService } from "../../toaster/toaster.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class BlidScannerService {
 	private uniqueItem$: Subject<UniqueItem>;
@@ -35,20 +35,20 @@ export class BlidScannerService {
 	}
 
 	private handleBlidScanChange() {
-		this._blcScannerService.onBlid(blid => {
+		this._blcScannerService.onBlid((blid) => {
 			if (!this._cartService.isLocked()) {
 				this._toasterService.addWithId("WAIT", blid, {
-					text: "sjekker om BL-ID er i databasen"
+					text: "sjekker om BL-ID er i databasen",
 				});
 				this._uniqueItemService
 					.get({
-						query: `?blid=${blid}&blid=${this.invertBlid(blid)}`
+						query: `?blid=${blid}&blid=${this.invertBlid(blid)}`,
 					})
-					.then(uniqueItems => {
+					.then((uniqueItems) => {
 						this.uniqueItem$.next(uniqueItems[0]);
 						this._toasterService.removeId(blid);
 					})
-					.catch(e => {
+					.catch((e) => {
 						this.uniqueItemDoesNotExist$.next(blid);
 						this._toasterService.removeId(blid);
 					});
@@ -61,7 +61,7 @@ export class BlidScannerService {
 
 		sanitizedString = blid
 			.split("")
-			.map(c => {
+			.map((c) => {
 				if (c == c.toUpperCase()) {
 					console.log(c, "is uppercase");
 					return c.toLowerCase();

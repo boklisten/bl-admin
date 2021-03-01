@@ -8,7 +8,7 @@ import { Router } from "@angular/router";
 @Component({
 	selector: "app-invoice-create",
 	templateUrl: "./invoice-create.component.html",
-	styleUrls: ["./invoice-create.component.scss"]
+	styleUrls: ["./invoice-create.component.scss"],
 })
 export class InvoiceCreateComponent implements OnInit {
 	public invoiceItemList: InvoiceItem[];
@@ -29,11 +29,11 @@ export class InvoiceCreateComponent implements OnInit {
 		this.companyInvoiceForm = new FormGroup({
 			reference: new FormControl("", [Validators.required]),
 			ourReference: new FormControl("", [Validators.required]),
-			invoiceNumber: new FormControl("", [Validators.required])
+			invoiceNumber: new FormControl("", [Validators.required]),
 		});
 
 		this.invoiceCommentForm = new FormGroup({
-			comment: new FormControl("")
+			comment: new FormControl(""),
 		});
 	}
 
@@ -73,7 +73,7 @@ export class InvoiceCreateComponent implements OnInit {
 				this.wait = false;
 				this.router.navigate(["/invoices/view"]);
 			})
-			.catch(err => {
+			.catch((err) => {
 				this.wait = false;
 				this.createInvoiceError = true;
 			});

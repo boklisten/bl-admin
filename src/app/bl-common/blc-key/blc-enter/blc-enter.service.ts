@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Subject, Subscription } from "rxjs";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class BlcEnterService {
 	private _enter$: Subject<boolean>;

@@ -3,7 +3,7 @@ import { BlError, Order, OrderItem } from "@boklisten/bl-model";
 import { OrderService } from "@boklisten/bl-connect";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class OrderHelperService {
 	constructor(private _orderService: OrderService) {}
@@ -21,7 +21,7 @@ export class OrderHelperService {
 			);
 			return {
 				movedFromOrder: movedFromOrder,
-				movedFromOrderItem: movedFromOrderItem
+				movedFromOrderItem: movedFromOrderItem,
 			};
 		} catch (e) {
 			throw e;

@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 @Component({
 	selector: "app-bl-search-bar",
 	templateUrl: "./bl-search-bar.component.html",
-	styleUrls: ["./bl-search-bar.component.scss"]
+	styleUrls: ["./bl-search-bar.component.scss"],
 })
 export class BlSearchBarComponent implements OnInit {
 	@Input() placeholder: string;

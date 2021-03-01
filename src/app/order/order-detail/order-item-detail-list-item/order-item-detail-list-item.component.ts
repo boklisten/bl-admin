@@ -4,7 +4,7 @@ import {
 	Input,
 	ViewChild,
 	Output,
-	EventEmitter
+	EventEmitter,
 } from "@angular/core";
 import { OrderItem } from "@boklisten/bl-model";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
@@ -12,7 +12,7 @@ import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 @Component({
 	selector: "app-order-item-detail-list-item",
 	templateUrl: "./order-item-detail-list-item.component.html",
-	styleUrls: ["./order-item-detail-list-item.component.scss"]
+	styleUrls: ["./order-item-detail-list-item.component.scss"],
 })
 export class OrderItemDetailListItemComponent implements OnInit {
 	@Input() orderItem: OrderItem;

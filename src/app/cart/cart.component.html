@@ -4,71 +4,7 @@
 <div class="container-fluid" blcScanner>
 	<div class="row mt-2">
 		<div class="col-lg-6 col-md-12">
-			<ngb-tabset
-				#tabset="ngbTabset"
-				id="ngbTabset"
-				[activeId]="activeTab"
-				(tabChange)="onTabChange($event)"
-			>
-				<ngb-tab id="customer">
-					<ng-template ngbTabTitle>
-						<span class="text-secondary" i18n="@@cartCustomer"
-							>Customer
-						</span>
-					</ng-template>
-
-					<ng-template ngbTabContent>
-						<div class="row mt-2" *ngIf="!haveCustomer">
-							<div class="col-12">
-								<div class="alert alert-secondary text-center">
-									<fa-icon
-										icon="exclamation-triangle"
-										class="mr-2"
-									></fa-icon>
-									<span i18n="@@cartNoCustomerSelected"
-										>No customer selected</span
-									>
-								</div>
-							</div>
-						</div>
-						<div class="row mt-2" *ngIf="haveCustomer">
-							<div class="col-lg-6 col-md-12 col-12">
-								<h5
-									class="text-center text-white bg-warning"
-									i18n="@@cartOrderedItems"
-								>
-									Ordered items
-								</h5>
-								<app-customer-order-item-list></app-customer-order-item-list>
-							</div>
-							<div class="col-lg-6 col-md-12 col-12">
-								<h5
-									class="text-center text-white bg-info"
-									i18n="@@cartCustomerItems"
-								>
-									Customer items
-								</h5>
-								<app-customer-item-list></app-customer-item-list>
-							</div>
-						</div>
-					</ng-template>
-				</ngb-tab>
-
-				<ngb-tab id="item-search">
-					<ng-template ngbTabTitle>
-						<span class="text-secondary" i18n="@@cartSearch"
-							>Search</span
-						>
-					</ng-template>
-					<ng-template ngbTabContent>
-						<div class="row mt-2">
-							<div class="col-12">
-								<app-item-search></app-item-search>
-							</div>
-						</div>
-					</ng-template>
-				</ngb-tab>
-			</ngb-tabset>
+			<app-bl-nav [navNames]="['customer', 'search']"> </app-bl-nav>
 		</div>
 
 		<div class="col-lg-6 col-md-12">

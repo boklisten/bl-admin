@@ -15,32 +15,32 @@
 		class="list-group-item list-group-item-action bl-customer-search-result-item"
 		*ngFor="let userDetail of userDetails; let i = index"
 		(click)="onCustomerClick(userDetail)"
-		[ngClass]="{'list-group-item-primary': listIndex == i}"
+		[ngClass]="{ 'list-group-item-primary': listIndex == i }"
 	>
 		<div class="row justify-content-between">
 			<div class="col-auto">
 				<fa-icon [icon]="'user'" class="mr-1"></fa-icon>
-				<span>{{userDetail.name}}</span>
+				<span>{{ userDetail.name }}</span>
 			</div>
 		</div>
 		<div class="row justify-content-between text-secondary">
 			<div class="col-auto">
 				<small
 					><fa-icon [icon]="'address-card'" class="mr-1"></fa-icon>
-					{{userDetail.address}} {{userDetail.postCode}}
-					{{userDetail.postCity}}</small
+					{{ userDetail.address }} {{ userDetail.postCode }}
+					{{ userDetail.postCity }}</small
 				>
 			</div>
 			<div class="col-auto">
 				<small
 					><fa-icon [icon]="'at'" class="mr-1"></fa-icon>
-					{{userDetail.email}}</small
+					{{ userDetail.email }}</small
 				>
 			</div>
 			<div class="col-auto">
 				<small
 					><fa-icon [icon]="'phone'" class="mr-1"></fa-icon>
-					{{userDetail.phone}}</small
+					{{ userDetail.phone }}</small
 				>
 			</div>
 		</div>

@@ -15,7 +15,7 @@ type Step = {
 @Component({
 	selector: "app-checkout",
 	templateUrl: "./checkout.component.html",
-	styleUrls: ["./checkout.component.scss"]
+	styleUrls: ["./checkout.component.scss"],
 })
 export class CheckoutComponent implements OnInit {
 	@Output() dismiss: EventEmitter<boolean>;
@@ -84,13 +84,13 @@ export class CheckoutComponent implements OnInit {
 
 		this._checkoutService
 			.checkout(this.order, this.delivery)
-			.then(order => {
+			.then((order) => {
 				this.step = this.doneStep();
 				setTimeout(() => {
 					this.onDismiss();
 				}, 1500);
 			})
-			.catch(e => {
+			.catch((e) => {
 				this.onCheckoutError(e);
 			});
 	}
@@ -122,8 +122,8 @@ export class CheckoutComponent implements OnInit {
 				name: "summary",
 				valid: true,
 				showConfirmButton: true,
-				showHeader: true
-			}
+				showHeader: true,
+			},
 		];
 
 		if (this.order.amount !== 0) {
@@ -131,7 +131,7 @@ export class CheckoutComponent implements OnInit {
 				name: "payment",
 				valid: false,
 				showConfirmButton: true,
-				showHeader: true
+				showHeader: true,
 			});
 		}
 
@@ -159,7 +159,7 @@ export class CheckoutComponent implements OnInit {
 			name: "delivery",
 			valid: false,
 			showConfirmButton: false,
-			showHeader: true
+			showHeader: true,
 		};
 	}
 
@@ -168,7 +168,7 @@ export class CheckoutComponent implements OnInit {
 			name: "processing",
 			valid: true,
 			showConfirmButton: false,
-			showHeader: false
+			showHeader: false,
 		};
 	}
 
@@ -177,7 +177,7 @@ export class CheckoutComponent implements OnInit {
 			name: "error",
 			valid: false,
 			showConfirmButton: false,
-			showHeader: true
+			showHeader: true,
 		};
 	}
 
@@ -186,7 +186,7 @@ export class CheckoutComponent implements OnInit {
 			name: "done",
 			valid: false,
 			showConfirmButton: false,
-			showHeader: true
+			showHeader: true,
 		};
 	}
 
@@ -195,7 +195,7 @@ export class CheckoutComponent implements OnInit {
 			name: "loading",
 			valid: false,
 			showConfirmButton: false,
-			showHeader: false
+			showHeader: false,
 		};
 	}
 }

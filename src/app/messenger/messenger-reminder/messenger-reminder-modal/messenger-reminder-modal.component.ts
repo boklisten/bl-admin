@@ -6,7 +6,7 @@ import { TextBlock, CustomerItemType } from "@boklisten/bl-model";
 @Component({
 	selector: "app-messenger-reminder-modal",
 	templateUrl: "./messenger-reminder-modal.component.html",
-	styleUrls: ["./messenger-reminder-modal.component.scss"]
+	styleUrls: ["./messenger-reminder-modal.component.scss"],
 })
 export class MessengerReminderModalComponent implements OnInit {
 	@Input() name: string;
@@ -52,7 +52,7 @@ export class MessengerReminderModalComponent implements OnInit {
 		this.remindersDone = false;
 
 		let rerunMessages = [];
-		this.failedMessages.forEach(failedMessage => {
+		this.failedMessages.forEach((failedMessage) => {
 			rerunMessages.push(failedMessage.userId);
 		});
 
@@ -92,7 +92,7 @@ export class MessengerReminderModalComponent implements OnInit {
 	onFailedMessage() {
 		this.messengerReminderService
 			.onFailedMessage()
-			.subscribe(failedMessage => {
+			.subscribe((failedMessage) => {
 				this.failedMessages.push(failedMessage);
 				this.progressbarValue += this.progressBarValuePart;
 				this.checkIfDone();

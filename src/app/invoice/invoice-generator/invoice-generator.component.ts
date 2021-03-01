@@ -6,7 +6,7 @@ import { Invoice, CustomerItemType } from "@boklisten/bl-model";
 @Component({
 	selector: "app-invoice-generator",
 	templateUrl: "./invoice-generator.component.html",
-	styleUrls: ["./invoice-generator.component.scss"]
+	styleUrls: ["./invoice-generator.component.scss"],
 })
 export class InvoiceGeneratorComponent implements OnInit {
 	public invoices: Invoice[];
@@ -60,14 +60,14 @@ export class InvoiceGeneratorComponent implements OnInit {
 					fee: this.fee,
 					feePercentage: this.feePercentage,
 					daysToDeadline: this.daysToDeadline,
-					feeVatPercentage: this.feeVatPercentage
+					feeVatPercentage: this.feeVatPercentage,
 				},
 				this.customerItemType,
 				this.reference,
 				this.invoiceNumber,
 				this.period
 			)
-			.then(invoices => {
+			.then((invoices) => {
 				this.wait = false;
 				this.invoices = invoices;
 				this.invoiceGeneratorService.setUnsavedInvoices(invoices);
@@ -81,13 +81,13 @@ export class InvoiceGeneratorComponent implements OnInit {
 		this.waitAdd = true;
 		this.invoiceGeneratorService
 			.addInvoices(this.invoices)
-			.then(addedInvoices => {
+			.then((addedInvoices) => {
 				this.waitAdd = false;
 				if (addedInvoices.length === this.invoices.length) {
 					this.invoices = [];
 				}
 			})
-			.catch(err => {
+			.catch((err) => {
 				this.waitAdd = false;
 				console.log("could not add invoices", err);
 			});

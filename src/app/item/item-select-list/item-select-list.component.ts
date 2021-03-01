@@ -6,7 +6,7 @@ import {
 	OnInit,
 	Output,
 	SimpleChanges,
-	ViewChild
+	ViewChild,
 } from "@angular/core";
 import { Item } from "@boklisten/bl-model";
 import { ItemService } from "@boklisten/bl-connect";
@@ -14,7 +14,7 @@ import { ItemService } from "@boklisten/bl-connect";
 @Component({
 	selector: "app-item-select-list",
 	templateUrl: "./item-select-list.component.html",
-	styleUrls: ["./item-select-list.component.scss"]
+	styleUrls: ["./item-select-list.component.scss"],
 })
 export class ItemSelectListComponent implements OnInit, OnChanges {
 	@Input() query: string;
@@ -42,7 +42,7 @@ export class ItemSelectListComponent implements OnInit, OnChanges {
 				this.items = items;
 				this.temp = this.items;
 			})
-			.catch(getItemsError => {
+			.catch((getItemsError) => {
 				console.log("ItemSelectListComponent: could not get items");
 			});
 	}

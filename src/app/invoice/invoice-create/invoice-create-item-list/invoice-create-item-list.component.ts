@@ -6,7 +6,7 @@ import { CartItem } from "../../../cart/cart-item/cart-item";
 @Component({
 	selector: "app-invoice-create-item-list",
 	templateUrl: "./invoice-create-item-list.component.html",
-	styleUrls: ["./invoice-create-item-list.component.scss"]
+	styleUrls: ["./invoice-create-item-list.component.scss"],
 })
 export class InvoiceCreateItemListComponent implements OnInit {
 	@Output() invoiceItemList: EventEmitter<InvoiceItem[]>;
@@ -61,7 +61,7 @@ export class InvoiceCreateItemListComponent implements OnInit {
 					productNumber: productNumber,
 					total: cartItem.getItem().price,
 					tax: 0,
-					taxPercentage: 0
+					taxPercentage: 0,
 				});
 			} else {
 				newInvoiceItems.push(alreadyAddedInvoiceItem);

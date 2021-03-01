@@ -9,7 +9,7 @@ type Time = {
 };
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class BookingCreateService {
 	constructor(private branchStoreService: BranchStoreService) {}
@@ -59,7 +59,7 @@ export class BookingCreateService {
 					from: fromDate,
 					to: currentDate.add(interval, "minutes").toDate(),
 					customer: null,
-					branch: branchId
+					branch: branchId,
 				} as Booking);
 			}
 			alreadyAdded = false;

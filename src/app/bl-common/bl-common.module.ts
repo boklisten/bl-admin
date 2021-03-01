@@ -2,18 +2,21 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { BlCommonUpdateButtonComponent } from "./bl-common-update-button/bl-common-update-button.component";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import {
+	FaIconLibrary,
+	FontAwesomeModule,
+} from "@fortawesome/angular-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
 	faCircleNotch,
 	faCheckCircle,
-	faExclamation
+	faExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { BlCommonAlertComponent } from "./bl-common-alert/bl-common-alert.component";
 import {
 	NgbAlertModule,
 	NgbButtonsModule,
-	NgbTooltipModule
+	NgbTooltipModule,
 } from "@ng-bootstrap/ng-bootstrap";
 import { BlSearchBarComponent } from "./search/bl-search-bar/bl-search-bar.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -42,8 +45,7 @@ import { BlcArrowUpEventDirective } from "./blc-key/blc-arrow-up/blc-arrow-up.di
 import { BlcEnterEventDirective } from "./blc-key/blc-enter/blc-enter.directive";
 import { BlcClickDirective } from "./blc-click/blc-click.directive";
 import { BlcBlidComponent } from "./blc-blid/blc-blid.component";
-
-library.add(faCircleNotch, faCheckCircle, faExclamation);
+import { BlNavComponent } from "./bl-nav/bl-nav.component";
 
 @NgModule({
 	imports: [
@@ -55,7 +57,7 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		NgxDatatableModule,
 		ReactiveFormsModule,
 		NgbButtonsModule,
-		RouterModule
+		RouterModule,
 	],
 	declarations: [
 		BlCommonUpdateButtonComponent,
@@ -84,7 +86,8 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcArrowUpEventDirective,
 		BlcEnterEventDirective,
 		BlcClickDirective,
-		BlcBlidComponent
+		BlcBlidComponent,
+		BlNavComponent,
 	],
 	exports: [
 		BlCommonUpdateButtonComponent,
@@ -112,7 +115,12 @@ library.add(faCircleNotch, faCheckCircle, faExclamation);
 		BlcArrowUpEventDirective,
 		BlcEnterEventDirective,
 		BlcClickDirective,
-		BlcBlidComponent
-	]
+		BlcBlidComponent,
+		BlNavComponent,
+	],
 })
-export class BlCommonModule {}
+export class BlCommonModule {
+	constructor(library: FaIconLibrary) {
+		library.addIcons(faCircleNotch, faCheckCircle, faExclamation);
+	}
+}

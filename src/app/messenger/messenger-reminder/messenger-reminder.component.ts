@@ -4,7 +4,7 @@ import {
 	Message,
 	CustomerItem,
 	CustomerItemType,
-	BlApiNotFoundError
+	BlApiNotFoundError,
 } from "@boklisten/bl-model";
 import { MessageService, CustomerItemService } from "@boklisten/bl-connect";
 import { BranchStoreService } from "../../branch/branch-store.service";
@@ -17,7 +17,7 @@ import moment from "moment-es6";
 @Component({
 	selector: "app-messenger-reminder",
 	templateUrl: "./messenger-reminder.component.html",
-	styleUrls: ["./messenger-reminder.component.scss"]
+	styleUrls: ["./messenger-reminder.component.scss"],
 })
 export class MessengerReminderComponent implements OnInit {
 	public deadline: Date;
@@ -70,7 +70,7 @@ export class MessengerReminderComponent implements OnInit {
 				this.loading = false;
 				this.openModal(uniqueCustomerIds);
 			})
-			.catch(err => {
+			.catch((err) => {
 				if (
 					err instanceof BlApiNotFoundError ||
 					(err.name && err.name === "BlApiNotFoundError")
@@ -89,7 +89,7 @@ export class MessengerReminderComponent implements OnInit {
 		const modalRef = this.modalService.open(
 			MessengerReminderModalComponent,
 			{
-				size: "lg"
+				size: "lg",
 			}
 		);
 
@@ -110,7 +110,7 @@ export class MessengerReminderComponent implements OnInit {
 				.then((customerItems: CustomerItem[]) => {
 					resolve(this.getUniqueUserIds(customerItems));
 				})
-				.catch(err => {
+				.catch((err) => {
 					reject(err);
 				});
 		});

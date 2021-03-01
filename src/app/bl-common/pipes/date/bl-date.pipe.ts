@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 import * as moment from "moment";
 
 @Pipe({
-	name: "blDate"
+	name: "blDate",
 })
 export class BlDatePipe implements PipeTransform {
 	transform(
@@ -26,9 +26,7 @@ export class BlDatePipe implements PipeTransform {
 	}
 
 	private getDayDisplay(date: Date): string {
-		return moment(date)
-			.locale("nb")
-			.format("dddd");
+		return moment(date).locale("nb").format("dddd");
 	}
 
 	private defaultDateDisplay(date: Date): string {
@@ -58,9 +56,7 @@ export class BlDatePipe implements PipeTransform {
 	}
 
 	private getDayMonth(date: Date) {
-		return moment(date)
-			.locale("nb")
-			.format("dddd DD.MM.YY");
+		return moment(date).locale("nb").format("dddd DD.MM.YY");
 	}
 
 	private getDay(date: Date): string {

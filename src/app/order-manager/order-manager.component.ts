@@ -10,7 +10,7 @@ import { OrderManagerListService } from "./order-manager-list/order-manager-list
 @Component({
 	selector: "app-order-manager",
 	templateUrl: "./order-manager.component.html",
-	styleUrls: ["./order-manager.component.scss"]
+	styleUrls: ["./order-manager.component.scss"],
 })
 export class OrderManagerComponent implements OnInit, OnDestroy {
 	public activeOrder: Order;
@@ -47,7 +47,7 @@ export class OrderManagerComponent implements OnInit, OnDestroy {
 				this._cartService.clear();
 				this.activeOrder = order;
 			})
-			.catch(err => {
+			.catch((err) => {
 				//this.activeOrder = null;
 
 				this._cartService.clear();

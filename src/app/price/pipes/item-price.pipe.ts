@@ -4,7 +4,7 @@ import { BranchStoreService } from "../../branch/branch-store.service";
 import { ItemPriceService } from "../item-price/item-price.service";
 
 @Pipe({
-	name: "itemPrice"
+	name: "itemPrice",
 })
 export class ItemPricePipe implements PipeTransform {
 	constructor(private _itemPriceService: ItemPriceService) {}

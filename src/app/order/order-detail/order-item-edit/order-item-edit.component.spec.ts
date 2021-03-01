@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { OrderItemEditComponent } from './order-item-edit.component';
+import { OrderItemEditComponent } from "./order-item-edit.component";
 
-describe('OrderItemEditComponent', () => {
-  let component: OrderItemEditComponent;
-  let fixture: ComponentFixture<OrderItemEditComponent>;
+describe("OrderItemEditComponent", () => {
+	let component: OrderItemEditComponent;
+	let fixture: ComponentFixture<OrderItemEditComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ OrderItemEditComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [OrderItemEditComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(OrderItemEditComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(OrderItemEditComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

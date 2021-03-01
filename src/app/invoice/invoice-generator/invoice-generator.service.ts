@@ -4,19 +4,19 @@ import {
 	CustomerItemType,
 	UserDetail,
 	Invoice,
-	Item
+	Item,
 } from "@boklisten/bl-model";
 import { DateService } from "../../date/date.service";
 import {
 	InvoiceService,
 	UserDetailService,
-	ItemService
+	ItemService,
 } from "@boklisten/bl-connect";
 import { CustomerItemHandlerService } from "../../customer-item/customer-item-handler/customer-item-handler.service";
 import { PriceService } from "../../price/price.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class InvoiceGeneratorService {
 	private unsavedInvoices: Invoice[];
@@ -82,7 +82,7 @@ export class InvoiceGeneratorService {
 	}
 
 	public async addInvoices(invoices: Invoice[]): Promise<Invoice[]> {
-		const promiseArr: Promise<Invoice>[] = invoices.map(invoice => {
+		const promiseArr: Promise<Invoice>[] = invoices.map((invoice) => {
 			return this.invoiceService.add(invoice);
 		});
 
@@ -109,7 +109,7 @@ export class InvoiceGeneratorService {
 
 			if (!customersAndCustomerItems[customerItem.customer as string]) {
 				customersAndCustomerItems[customerItem.customer as string] = {
-					customerItems: []
+					customerItems: [],
 				};
 			}
 			customersAndCustomerItems[customerItem.customer as string][
@@ -124,7 +124,7 @@ export class InvoiceGeneratorService {
 				customersAndCustomerItemsArray.push({
 					customer: key,
 					customerItems:
-						customersAndCustomerItems[key]["customerItems"]
+						customersAndCustomerItems[key]["customerItems"],
 				});
 			}
 		}
@@ -201,27 +201,27 @@ export class InvoiceGeneratorService {
 					address: userDetail.address,
 					city: userDetail.postCity,
 					code: userDetail.postCode,
-					country: userDetail.country
-				}
+					country: userDetail.country,
+				},
 			},
 			payment: {
 				total: {
 					gross: 0,
 					net: 0,
 					vat: 0,
-					discount: 0
+					discount: 0,
 				},
 				fee: {
 					unit: 0,
 					gross: 0,
 					net: 0,
 					vat: 0,
-					discount: 0
+					discount: 0,
 				},
-				totalIncludingFee: 0
+				totalIncludingFee: 0,
 			},
 			reference: reference,
-			invoiceId: invoiceNumber.toString()
+			invoiceId: invoiceNumber.toString(),
 		} as Invoice;
 
 		invoice = this.calculateFeePayment(invoice);
@@ -246,7 +246,7 @@ export class InvoiceGeneratorService {
 				payment: this.createCustomerItemInvoicePayment(
 					customerItemObj,
 					customerItemObj.item as Item
-				)
+				),
 			});
 		}
 
@@ -269,7 +269,7 @@ export class InvoiceGeneratorService {
 				gross: customerItem.amountLeftToPay,
 				net: customerItem.amountLeftToPay,
 				vat: 0,
-				discount: 0
+				discount: 0,
 			};
 		}
 		return {
@@ -277,7 +277,7 @@ export class InvoiceGeneratorService {
 			gross: this.itemGrossPrice(item),
 			net: this.itemNetPrice(item),
 			vat: this.itemVatPrice(item),
-			discount: this.itemDiscountPrice(item)
+			discount: this.itemDiscountPrice(item),
 		};
 	}
 

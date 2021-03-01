@@ -51,7 +51,7 @@ export class BranchItemHandlerService {
 			.then((updatedBranch: Branch) => {
 				return updatedBranch.branchItems as string[];
 			})
-			.catch(updateBranchError => {
+			.catch((updateBranchError) => {
 				throw new Error(
 					"branchItemHandlerService: could not update branch when deleting branchItem"
 				);
@@ -75,7 +75,7 @@ export class BranchItemHandlerService {
 					return true;
 				});
 			})
-			.catch(getBranchItems => {
+			.catch((getBranchItems) => {
 				throw new Error("branchItemHandler: could not get branchItems");
 			});
 	}
@@ -97,14 +97,14 @@ export class BranchItemHandlerService {
 				.update(branch.id, { branchItems: branchItemIds })
 				.then((updatedBranch: Branch) => {
 					this.getBranchItems(branch.id)
-						.then(branchItems => {
+						.then((branchItems) => {
 							resolve(branchItems);
 						})
-						.catch(e => {
+						.catch((e) => {
 							reject(e);
 						});
 				})
-				.catch(updateBranchError => {
+				.catch((updateBranchError) => {
 					reject(
 						new Error(
 							"branchItemHandlerService: could not update branch with branchItems" +
@@ -122,7 +122,7 @@ export class BranchItemHandlerService {
 				.then((updatedBranchItems: BranchItem[]) => {
 					resolve(updatedBranchItems);
 				})
-				.catch(getBranchItemError => {
+				.catch((getBranchItemError) => {
 					reject(
 						new Error(
 							"branchItemHandlerService: could not get the updated branchItems"
@@ -141,7 +141,7 @@ export class BranchItemHandlerService {
 			branch: branchId,
 			sell: false,
 			buy: false,
-			rent: false
+			rent: false,
 		} as any;
 	}
 }

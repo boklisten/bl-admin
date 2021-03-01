@@ -3,7 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 @Component({
 	selector: "app-blid-scanner-input",
 	templateUrl: "./blid-scanner-input.component.html",
-	styleUrls: ["./blid-scanner-input.component.scss"]
+	styleUrls: ["./blid-scanner-input.component.scss"],
 })
 export class BlidScannerInputComponent implements OnInit {
 	@Output() blid: EventEmitter<string>;

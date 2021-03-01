@@ -6,7 +6,7 @@ import { UniqueItemStoreService } from "../unique-item-store.service";
 @Component({
 	selector: "app-unique-item-detail",
 	templateUrl: "./unique-item-detail.component.html",
-	styleUrls: ["./unique-item-detail.component.scss"]
+	styleUrls: ["./unique-item-detail.component.scss"],
 })
 export class UniqueItemDetailComponent implements OnInit {
 	public currentBlid: string;
@@ -41,11 +41,11 @@ export class UniqueItemDetailComponent implements OnInit {
 		this.wait = true;
 		this._uniqeItemStoreService
 			.get(blid)
-			.then(uniqueItem => {
+			.then((uniqueItem) => {
 				this.uniqueItem = uniqueItem;
 				this.wait = false;
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log("could not find uniqueItem", err);
 				this.uniqueItem = null;
 				this.wait = false;

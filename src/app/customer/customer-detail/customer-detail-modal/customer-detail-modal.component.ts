@@ -1,18 +1,18 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {UserDetail} from '@boklisten/bl-model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserDetailService} from '@boklisten/bl-connect';
-import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {CustomerDetailModalContentComponent} from './customer-detail-modal-content/customer-detail-modal-content.component';
-import {CustomerDetailService} from '../customer-detail.service';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { UserDetail } from "@boklisten/bl-model";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UserDetailService } from "@boklisten/bl-connect";
+import { NgbActiveModal, NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { CustomerDetailModalContentComponent } from "./customer-detail-modal-content/customer-detail-modal-content.component";
+import { CustomerDetailService } from "../customer-detail.service";
 
 @Component({
-	selector: 'app-customer-detail-modal',
-	templateUrl: './customer-detail-modal.component.html',
-	styleUrls: ['./customer-detail-modal.component.scss']
+	selector: "app-customer-detail-modal",
+	templateUrl: "./customer-detail-modal.component.html",
+	styleUrls: ["./customer-detail-modal.component.scss"],
 })
 export class CustomerDetailModalComponent implements OnInit {
-	@Input() buttonSize: 'small' | 'large';
+	@Input() buttonSize: "small" | "large";
 	@Input() customerDetail: UserDetail;
 	@Output() updated: EventEmitter<boolean>;
 
@@ -20,12 +20,13 @@ export class CustomerDetailModalComponent implements OnInit {
 		this.updated = new EventEmitter<boolean>();
 	}
 
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	public onShowModal() {
 		setTimeout(() => {
-			const modalRef = this._modalService.open(CustomerDetailModalContentComponent);
+			const modalRef = this._modalService.open(
+				CustomerDetailModalContentComponent
+			);
 			modalRef.componentInstance.userDetail = this.customerDetail;
 			modalRef.componentInstance.updated.subscribe(() => {
 				this.updated.emit(true);

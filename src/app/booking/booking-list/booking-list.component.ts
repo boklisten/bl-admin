@@ -4,7 +4,7 @@ import { Booking } from "@boklisten/bl-model";
 @Component({
 	selector: "app-booking-list",
 	templateUrl: "./booking-list.component.html",
-	styleUrls: ["./booking-list.component.scss"]
+	styleUrls: ["./booking-list.component.scss"],
 })
 export class BookingListComponent implements OnInit {
 	@Input() bookings: Booking[];

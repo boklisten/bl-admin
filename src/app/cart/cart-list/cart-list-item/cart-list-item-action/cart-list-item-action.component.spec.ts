@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CartListItemActionComponent } from './cart-list-item-action.component';
+import { CartListItemActionComponent } from "./cart-list-item-action.component";
 
-describe('CartListItemActionComponent', () => {
-  let component: CartListItemActionComponent;
-  let fixture: ComponentFixture<CartListItemActionComponent>;
+describe("CartListItemActionComponent", () => {
+	let component: CartListItemActionComponent;
+	let fixture: ComponentFixture<CartListItemActionComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ CartListItemActionComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [CartListItemActionComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CartListItemActionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(CartListItemActionComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

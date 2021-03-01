@@ -5,7 +5,7 @@ import { OrderService } from "@boklisten/bl-connect";
 @Component({
 	selector: "app-order-confirm",
 	templateUrl: "./order-confirm.component.html",
-	styleUrls: ["./order-confirm.component.scss"]
+	styleUrls: ["./order-confirm.component.scss"],
 })
 export class OrderConfirmComponent implements OnInit {
 	@Input() order: Order;
@@ -20,10 +20,10 @@ export class OrderConfirmComponent implements OnInit {
 	public onConfirm() {
 		this._orderService
 			.updateWithOperation(this.order.id, {}, "confirm")
-			.then(confirmedOrder => {
+			.then((confirmedOrder) => {
 				this.orderChange.emit(confirmedOrder);
 			})
-			.catch(e => {
+			.catch((e) => {
 				console.log("could not confirm", e);
 			});
 	}

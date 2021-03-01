@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { BlcHotkeyService } from './blc-hotkey.service';
+import { BlcHotkeyService } from "./blc-hotkey.service";
 
-describe('BlcHotkeyService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe("BlcHotkeyService", () => {
+	beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: BlcHotkeyService = TestBed.get(BlcHotkeyService);
-    expect(service).toBeTruthy();
-  });
+	it("should be created", () => {
+		const service: BlcHotkeyService = TestBed.inject(BlcHotkeyService);
+		expect(service).toBeTruthy();
+	});
 });

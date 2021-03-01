@@ -8,7 +8,7 @@ import { Observable } from "rxjs/internal/Observable";
 import { CustomerService } from "../../customer/customer.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class CartItemSearchService {
 	private _searching$: Subject<boolean>;
@@ -33,10 +33,10 @@ export class CartItemSearchService {
 			this._searching$.next(true);
 
 			this.handleIsbnScan(isbn)
-				.then(itemFound => {
+				.then((itemFound) => {
 					this._searching$.next(false);
 				})
-				.catch(err => {
+				.catch((err) => {
 					console.log("could not find item by isbn scan", err);
 				});
 		});

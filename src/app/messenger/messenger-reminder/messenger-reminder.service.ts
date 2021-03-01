@@ -5,7 +5,7 @@ import { Observable, Subject } from "rxjs";
 import { DateService } from "../../date/date.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class MessengerReminderService {
 	private successfullMessage$: Subject<string>;
@@ -39,10 +39,10 @@ export class MessengerReminderService {
 						textBlocks
 					)
 				)
-				.then(val => {
+				.then((val) => {
 					this.successfullMessage$.next(userId);
 				})
-				.catch(err => {
+				.catch((err) => {
 					this.failedMessages$.next({ userId: userId, error: err });
 				});
 		}
@@ -86,9 +86,9 @@ export class MessengerReminderService {
 			sequenceNumber: sequenceNumber,
 			customerId: userId,
 			info: {
-				deadline: this.dateService.toDeadlineFormat(deadline) as any
+				deadline: this.dateService.toDeadlineFormat(deadline) as any,
 			},
-			textBlocks: textBlocks && textBlocks.length > 0 ? textBlocks : []
+			textBlocks: textBlocks && textBlocks.length > 0 ? textBlocks : [],
 		};
 	}
 

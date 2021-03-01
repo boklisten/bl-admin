@@ -5,7 +5,7 @@ import { UserDetailService } from "@boklisten/bl-connect";
 @Component({
 	selector: "app-customer-change-email",
 	templateUrl: "./customer-change-email.component.html",
-	styleUrls: ["./customer-change-email.component.scss"]
+	styleUrls: ["./customer-change-email.component.scss"],
 })
 export class CustomerChangeEmailComponent implements OnInit {
 	@Input() userDetail: UserDetail;
@@ -35,7 +35,7 @@ export class CustomerChangeEmailComponent implements OnInit {
 				this.wait = false;
 				this.changed.emit(true);
 			})
-			.catch(e => {
+			.catch((e) => {
 				this.couldNotUpdateEmailError = true;
 				this.wait = false;
 			});

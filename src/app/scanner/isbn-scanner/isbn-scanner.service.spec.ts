@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { IsbnScannerService } from './isbn-scanner.service';
+import { IsbnScannerService } from "./isbn-scanner.service";
 
-describe('IsbnScannerService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe("IsbnScannerService", () => {
+	beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: IsbnScannerService = TestBed.get(IsbnScannerService);
-    expect(service).toBeTruthy();
-  });
+	it("should be created", () => {
+		const service: IsbnScannerService = TestBed.inject(IsbnScannerService);
+		expect(service).toBeTruthy();
+	});
 });

@@ -9,7 +9,10 @@ import { environment } from "../environments/environment";
 import { HeaderComponent } from "./header/header.component";
 import { SideBarComponent } from "./side-bar/side-bar.component";
 import { SideBarButtonComponent } from "./side-bar/side-bar-button/side-bar-button.component";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import {
+	FaIconLibrary,
+	FontAwesomeModule,
+} from "@fortawesome/angular-fontawesome";
 import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
 import { InvoiceModule } from "./invoice/invoice.module";
@@ -27,14 +30,13 @@ import { ItemModule } from "./item/item.module";
 import {
 	BlConnectConfigService,
 	BlConnectModule,
-	TokenService
+	TokenService,
 } from "@boklisten/bl-connect";
 import { CartModule } from "./cart/cart.module";
 import { CartService } from "./cart/cart.service";
 import { DateService } from "./date/date.service";
 import { CustomerOrderService } from "./order/customer-order/customer-order.service";
 import { CustomerService } from "./customer/customer.service";
-import { SearchModule } from "./search/search.module";
 import { UserService } from "./user/user.service";
 import { DatabaseModule } from "./database/database.module";
 import { BranchItemStoreService } from "./branch/branch-item-store/branch-item-store.service";
@@ -54,7 +56,7 @@ import { OrderManagerModule } from "./order-manager/order-manager.module";
 		SideBarComponent,
 		SideBarButtonComponent,
 		MessagesComponent,
-		HeaderCustomerSearchComponent
+		HeaderCustomerSearchComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -69,7 +71,6 @@ import { OrderManagerModule } from "./order-manager/order-manager.module";
 		BlCommonModule,
 		ItemModule,
 		CartModule,
-		SearchModule,
 		DatabaseModule,
 		PriceModule,
 		NgbDropdownModule,
@@ -78,7 +79,7 @@ import { OrderManagerModule } from "./order-manager/order-manager.module";
 		BookingModule,
 		ScannerModule,
 		ToasterModule,
-		OrderManagerModule
+		OrderManagerModule,
 	],
 	providers: [
 		AuthLoginService,
@@ -92,13 +93,16 @@ import { OrderManagerModule } from "./order-manager/order-manager.module";
 		CustomerService,
 		UserService,
 		BlcScannerService,
-		TokenService
+		TokenService,
 	],
-	bootstrap: [AppComponent]
+	bootstrap: [AppComponent],
 })
 export class AppModule {
-	constructor(private _blConnectConfig: BlConnectConfigService) {
-		addIconsToLibrary();
+	constructor(
+		private _blConnectConfig: BlConnectConfigService,
+		library: FaIconLibrary
+	) {
+		addIconsToLibrary(library);
 
 		LoginModule.withConfig({
 			successPath: "home",
@@ -113,8 +117,8 @@ export class AppModule {
 				local: true,
 				facebook: true,
 				google: true,
-				feide: false
-			}
+				feide: false,
+			},
 		});
 
 		_blConnectConfig.setConfig({ basePath: environment.apiPath });

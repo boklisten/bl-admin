@@ -1,12 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
-	selector: 'app-bl-common-alert',
-	templateUrl: './bl-common-alert.component.html',
-	styleUrls: ['./bl-common-alert.component.scss']
+	selector: "app-bl-common-alert",
+	templateUrl: "./bl-common-alert.component.html",
+	styleUrls: ["./bl-common-alert.component.scss"],
 })
 export class BlCommonAlertComponent implements OnInit {
-
 	@Input() type: "warning" | "success" | "danger" | "secondary";
 	@Input() text: string;
 	@Input() desc: string;
@@ -22,38 +21,32 @@ export class BlCommonAlertComponent implements OnInit {
 	ngOnInit() {
 		if (this.type) {
 			switch (this.type) {
-				case 'warning':
+				case "warning":
 					this.showDanger();
 					break;
-				case 'success':
+				case "success":
 					this.showSuccess();
 					break;
-				case 'danger':
+				case "danger":
 					this.showDanger();
 					break;
-				case 'secondary':
+				case "secondary":
 					this.showSecondary();
-          break;
-        default:
-          this.showSecondary();
-          this.type = 'secondary';
-          break;
+					break;
+				default:
+					this.showSecondary();
+					this.type = "secondary";
+					break;
 			}
 			this.showAlert = true;
 		}
 	}
 
-	showWarning() {
+	showWarning() {}
 
-	}
+	showDanger() {}
 
-	showDanger() {
-
-	}
-
-	showSecondary() {
-
-	}
+	showSecondary() {}
 
 	showSuccess() {
 		setTimeout(() => {
@@ -64,5 +57,4 @@ export class BlCommonAlertComponent implements OnInit {
 	onExit() {
 		this.exit.emit(true);
 	}
-
 }

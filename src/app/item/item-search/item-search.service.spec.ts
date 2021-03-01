@@ -1,15 +1,18 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject } from "@angular/core/testing";
 
-import { ItemSearchService } from './item-search.service';
+import { ItemSearchService } from "./item-search.service";
 
-describe('ItemSearchService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [ItemSearchService]
-    });
-  });
+describe("ItemSearchService", () => {
+	beforeEach(() => {
+		TestBed.configureTestingModule({
+			providers: [ItemSearchService],
+		});
+	});
 
-  it('should be created', inject([ItemSearchService], (service: ItemSearchService) => {
-    expect(service).toBeTruthy();
-  }));
+	it("should be created", inject(
+		[ItemSearchService],
+		(service: ItemSearchService) => {
+			expect(service).toBeTruthy();
+		}
+	));
 });

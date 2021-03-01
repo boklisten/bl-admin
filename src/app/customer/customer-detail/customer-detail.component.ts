@@ -12,9 +12,9 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-customer-detail",
 	templateUrl: "./customer-detail.component.html",
-	styleUrls: ["./customer-detail.component.scss"]
+	styleUrls: ["./customer-detail.component.scss"],
 })
-export class CustomerDetailComponent implements OnInit, OnDestroy {
+export class CustomerDetailComponent implements OnInit {
 	public customerDetail: UserDetail;
 	public showUserDetail: boolean;
 	public _currentId: string;
@@ -22,28 +22,26 @@ export class CustomerDetailComponent implements OnInit, OnDestroy {
 	public wait: boolean;
 	public warningText: string;
 	private customer$: Subscription;
-	private idParam$: Subscription;
 	private customerWait$: Subscription;
 
 	constructor(
 		private _route: ActivatedRoute,
 		private _authService: AuthService,
 		private _customerService: CustomerService,
-		private _customerDetailService: CustomerDetailService
+		private _customerDetailService: CustomerDetailService,
 	) {
 		this.customerDetailUpdated = false;
 		this.warningText = null;
+		this._currentId = _customerDetailService.getId();
 	}
 
 	ngOnInit() {
-		this.onIdParamChange();
 		this.onCustomerChange();
 		this.onCustomerWaitChange();
 	}
 
 	ngOnDestroy() {
 		this.customer$.unsubscribe();
-		this.idParam$.unsubscribe();
 		this.customerWait$.unsubscribe();
 	}
 
@@ -81,15 +79,8 @@ export class CustomerDetailComponent implements OnInit, OnDestroy {
 	}
 
 	private onCustomerWaitChange() {
-		this.customerWait$ = this._customerService.onWait(wait => {
+		this.customerWait$ = this._customerService.onWait((wait) => {
 			this.wait = wait;
-		});
-	}
-
-	private onIdParamChange() {
-		this.idParam$ = this._route.params.subscribe((params: Params) => {
-			this._currentId = params["id"];
-			this.setCustomerDetailIfNotSet();
 		});
 	}
 

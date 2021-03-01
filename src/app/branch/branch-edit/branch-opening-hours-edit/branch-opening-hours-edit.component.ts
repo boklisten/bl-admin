@@ -8,7 +8,7 @@ import * as moment from "moment";
 @Component({
 	selector: "app-branch-opening-hours-edit",
 	templateUrl: "./branch-opening-hours-edit.component.html",
-	styleUrls: ["./branch-opening-hours-edit.component.scss"]
+	styleUrls: ["./branch-opening-hours-edit.component.scss"],
 })
 export class BranchOpeningHoursEditComponent implements OnInit {
 	@Input() branch: Branch;
@@ -31,7 +31,7 @@ export class BranchOpeningHoursEditComponent implements OnInit {
 		this.fromDay = {
 			year: theDate.getFullYear(),
 			month: theDate.getMonth(),
-			day: theDate.getDay()
+			day: theDate.getDay(),
 		};
 		this.fromTime = { hour: theDate.getHours(), minute: 0 };
 		this.toTime = { hour: theDate.getHours() + 1, minute: 0 };
@@ -45,7 +45,7 @@ export class BranchOpeningHoursEditComponent implements OnInit {
 				this.openingHours = openingHours;
 				this.sortOpeningHours();
 			})
-			.catch(getOpeningHoursError => {
+			.catch((getOpeningHoursError) => {
 				console.log(
 					"branchOpeningHoursEditComponent: could not get opening hours",
 					getOpeningHoursError
@@ -60,7 +60,7 @@ export class BranchOpeningHoursEditComponent implements OnInit {
 				this.openingHours.splice(index, 1);
 				this.sortOpeningHours();
 			})
-			.catch(removeOpeningHourError => {
+			.catch((removeOpeningHourError) => {
 				console.log(
 					"branchOpeningHoursEditComponent: could not remove opening hour",
 					removeOpeningHourError
@@ -89,7 +89,7 @@ export class BranchOpeningHoursEditComponent implements OnInit {
 		const newOpeningHour: OpeningHour = {
 			from: fromDate,
 			to: toDate,
-			branch: this.branch.id
+			branch: this.branch.id,
 		} as OpeningHour;
 
 		this._openingHoursHandlerService
@@ -105,7 +105,7 @@ export class BranchOpeningHoursEditComponent implements OnInit {
 				this.fromDay.day = newFromDay.getDay() + 1;
 				this.sortOpeningHours();
 			})
-			.catch(addOpeningHourError => {
+			.catch((addOpeningHourError) => {
 				console.log(
 					"branchOpeningHoursEditComponent: could not add openingHour",
 					addOpeningHourError
@@ -116,7 +116,7 @@ export class BranchOpeningHoursEditComponent implements OnInit {
 	openAddOpeningHour(content) {
 		this._modalRef = this._modalService.open(content, {
 			size: "lg",
-			centered: true
+			centered: true,
 		});
 	}
 

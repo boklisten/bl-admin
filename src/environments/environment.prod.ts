@@ -4,5 +4,5 @@ export const environment = {
 	apiPath: "https://api.boklisten.no/",
 	hmr: false,
 	version: version,
-	versionName: ""
+	versionName: "",
 };

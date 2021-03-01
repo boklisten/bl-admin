@@ -3,7 +3,7 @@ import { Branch, BranchItem, Item } from "@boklisten/bl-model";
 import {
 	NgbActiveModal,
 	NgbModal,
-	NgbModalRef
+	NgbModalRef,
 } from "@ng-bootstrap/ng-bootstrap";
 import { BranchItemHandlerService } from "../../branch-item/branch-item-handler.service";
 import { BranchItemService } from "@boklisten/bl-connect";
@@ -12,7 +12,7 @@ import { BranchItemStoreService } from "../../branch-item-store/branch-item-stor
 @Component({
 	selector: "app-branch-edit-items",
 	templateUrl: "./branch-edit-items.component.html",
-	styleUrls: ["./branch-edit-items.component.scss"]
+	styleUrls: ["./branch-edit-items.component.scss"],
 })
 export class BranchEditItemsComponent implements OnInit {
 	@Input() branch: Branch;
@@ -36,7 +36,7 @@ export class BranchEditItemsComponent implements OnInit {
 		if (!this.branch.isBranchItemsLive) {
 			this.branch.isBranchItemsLive = {
 				online: false,
-				atBranch: false
+				atBranch: false,
 			};
 			this.onBranchItemsLiveUpdate();
 		}
@@ -60,7 +60,7 @@ export class BranchEditItemsComponent implements OnInit {
 	private getBranchItems() {
 		this._branchItemService
 			.get({ query: "?branch=" + this.branch.id })
-			.then(branchItems => {
+			.then((branchItems) => {
 				this.branchItems = branchItems;
 			})
 			.catch(() => {});
@@ -77,7 +77,7 @@ export class BranchEditItemsComponent implements OnInit {
 	openAddItems(content) {
 		this.modalRef = this._modalService.open(content, {
 			size: "lg",
-			centered: true
+			centered: true,
 		});
 	}
 
@@ -88,7 +88,7 @@ export class BranchEditItemsComponent implements OnInit {
 				this.branchItems = branchItems;
 				this.modalRef.close();
 			})
-			.catch(addBranchItemsError => {
+			.catch((addBranchItemsError) => {
 				console.log(
 					"branchEditItemsComponent: could not add branchItems",
 					addBranchItemsError
@@ -102,7 +102,7 @@ export class BranchEditItemsComponent implements OnInit {
 			.then(() => {
 				this.branchItems.splice(index, 1);
 			})
-			.catch(removeBranchItemError => {
+			.catch((removeBranchItemError) => {
 				console.log(
 					"branchEditItemsComponent: could not remove branchItem from branch",
 					removeBranchItemError

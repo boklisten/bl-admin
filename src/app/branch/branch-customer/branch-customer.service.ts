@@ -1,13 +1,10 @@
 import { Injectable } from "@angular/core";
 import { DateService } from "../../date/date.service";
-import {
-	CustomerItemService,
-	UserDetailService
-} from "@boklisten/bl-connect";
+import { CustomerItemService, UserDetailService } from "@boklisten/bl-connect";
 import { CustomerItem } from "@boklisten/bl-model";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class BranchCustomerService {
 	constructor(
@@ -21,7 +18,7 @@ export class BranchCustomerService {
 
 		const customerItems = await this.customerItemService.get({
 			query: `?deadline=>${fromDate}&returned=false&buyout=false&handoutInfo.handoutById=${branch}&og=customer`,
-			fresh: true
+			fresh: true,
 		});
 
 		return this.filterUniqueCustomerIds(customerItems);
@@ -30,10 +27,10 @@ export class BranchCustomerService {
 	public async getAllCustomers(branch: string): Promise<string[]> {
 		let userDetails = await this.userDetailService.get({
 			query: "?og=_id&branch=" + branch,
-			fresh: true
+			fresh: true,
 		});
 
-		const customerIds = userDetails.map(userDetail => {
+		const customerIds = userDetails.map((userDetail) => {
 			return userDetail.id;
 		});
 

@@ -5,7 +5,7 @@ import { UniqueItem } from "@boklisten/bl-model";
 @Component({
 	selector: "app-blid-scanner-list-item",
 	templateUrl: "./blid-scanner-list-item.component.html",
-	styleUrls: ["./blid-scanner-list-item.component.scss"]
+	styleUrls: ["./blid-scanner-list-item.component.scss"],
 })
 export class BlidScannerListItemComponent implements OnInit {
 	@Input() blid: string;
@@ -26,12 +26,12 @@ export class BlidScannerListItemComponent implements OnInit {
 		this.wait = true;
 		this._uniqueItemStoreService
 			.get(this.blid)
-			.then(uniqueItem => {
+			.then((uniqueItem) => {
 				this.wait = false;
 				this.uniqueItem = uniqueItem;
 				this.alreadyAdded.emit(true);
 			})
-			.catch(e => {
+			.catch((e) => {
 				this.wait = false;
 			});
 	}

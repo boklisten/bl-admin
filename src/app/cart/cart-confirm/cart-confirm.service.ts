@@ -31,8 +31,9 @@ export class CartConfirmService {
 	public async getOriginalDelivery(): Promise<Delivery> {
 		for (const cartItem of this._cartService.getCart()) {
 			if (cartItem.originalOrder && cartItem.originalOrder.delivery) {
-				const delivery = await this._deliveryService.getById(cartItem
-					.originalOrder.delivery as string);
+				const delivery = await this._deliveryService.getById(
+					cartItem.originalOrder.delivery as string
+				);
 				if (delivery.method === "bring") {
 					return delivery;
 				}

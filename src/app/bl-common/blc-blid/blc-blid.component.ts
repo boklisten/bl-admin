@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from "@angular/core";
 @Component({
 	selector: "app-blc-blid",
 	templateUrl: "./blc-blid.component.html",
-	styleUrls: ["./blc-blid.component.scss"]
+	styleUrls: ["./blc-blid.component.scss"],
 })
 export class BlcBlidComponent implements OnInit {
 	@Input() blid: string;

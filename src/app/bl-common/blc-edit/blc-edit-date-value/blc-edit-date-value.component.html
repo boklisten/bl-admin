@@ -2,8 +2,9 @@
 	<span
 		title="Double click to edit"
 		(dblclick)="editing = true"
-		*ngIf="!editing">
-		{{value | blDate}}
+		*ngIf="!editing"
+	>
+		{{ value | blDate }}
 	</span>
 	<input
 		title="date"
@@ -14,5 +15,6 @@
 		(blur)="onUpdate(value)"
 		(keyup.enter)="onUpdate(value)"
 		type="date"
-		class="form-control form-control-sm" />
+		class="form-control form-control-sm"
+	/>
 </span>

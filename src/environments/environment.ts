@@ -10,5 +10,5 @@ export const environment = {
 	apiPath: "http://localhost:1337/",
 	hmr: false,
 	version: version,
-	versionName: ""
+	versionName: "",
 };

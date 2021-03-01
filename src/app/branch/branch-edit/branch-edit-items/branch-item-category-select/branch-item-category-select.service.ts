@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class BranchItemCategorySelectService {
@@ -20,5 +20,4 @@ export class BranchItemCategorySelectService {
 	public getCategories(): string[] {
 		return this._categories;
 	}
-
 }

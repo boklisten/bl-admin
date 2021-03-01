@@ -4,7 +4,7 @@ import { CartItemAction } from "../../cart/cart-item/cart-item-action";
 import { BranchStoreService } from "../branch-store.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class BranchHelperService {
 	private _branch: Branch;
@@ -160,7 +160,7 @@ export class BranchHelperService {
 	}
 
 	private handleBranchChange() {
-		this.branchStoreService.subscribe(branch => {
+		this.branchStoreService.subscribe((branch) => {
 			this._branch = branch;
 		});
 	}

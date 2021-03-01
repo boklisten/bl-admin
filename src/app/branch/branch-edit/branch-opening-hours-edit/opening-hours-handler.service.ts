@@ -12,7 +12,7 @@ export class OpeningHoursHandlerService {
 	public add(branch: Branch, openingHour: OpeningHour): Promise<OpeningHour> {
 		return new Promise((resolve, reject) => {
 			let openingHourIds: string[] = branch.openingHours
-				? branch.openingHours as string[]
+				? (branch.openingHours as string[])
 				: [];
 
 			this._openingHourService
@@ -25,14 +25,14 @@ export class OpeningHoursHandlerService {
 						.then((updatedBranch: Branch) => {
 							resolve(addedOpeningHour);
 						})
-						.catch(updateBranchError => {
+						.catch((updateBranchError) => {
 							console.log(
 								"OpeningHoursHandlerService: could not update branch",
 								updateBranchError
 							);
 						});
 				})
-				.catch(addOpeningHourError => {
+				.catch((addOpeningHourError) => {
 					console.log(
 						"openingHoursHandlerService: could not add opening hour"
 					);
@@ -53,7 +53,7 @@ export class OpeningHoursHandlerService {
 			.then((updatedBranch: Branch) => {
 				return true;
 			})
-			.catch(updateBranchError => {
+			.catch((updateBranchError) => {
 				throw new Error(
 					"openingHoursHandlerService: could not update opening hours on branch"
 				);

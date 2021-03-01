@@ -1,12 +1,19 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Branch} from '@boklisten/bl-model';
-import {BranchService} from '@boklisten/bl-connect';
-import {DatabaseExcelService} from '../../database/database-excel/database-excel.service';
+import {
+	Component,
+	Input,
+	OnChanges,
+	OnInit,
+	SimpleChanges,
+} from "@angular/core";
+import { Branch } from "@boklisten/bl-model";
+import { BranchService } from "@boklisten/bl-connect";
+import { DatabaseExcelService } from "../../database/database-excel/database-excel.service";
+import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 
 @Component({
-	selector: 'app-branch-edit-list',
-	templateUrl: './branch-edit-list.component.html',
-	styleUrls: ['./branch-edit-list.component.scss']
+	selector: "app-branch-edit-list",
+	templateUrl: "./branch-edit-list.component.html",
+	styleUrls: ["./branch-edit-list.component.scss"],
 })
 export class BranchEditListComponent implements OnInit, OnChanges {
 	@Input() branches: Branch[];
@@ -18,7 +25,11 @@ export class BranchEditListComponent implements OnInit, OnChanges {
 	public editing: any;
 	public updating: any;
 
-	constructor(private _branchService: BranchService, private _databaseExcelService: DatabaseExcelService) {
+	constructor(
+		private _branchService: BranchService,
+		private blcSortService: BlcSortService,
+		private _databaseExcelService: DatabaseExcelService
+	) {
 		this.temp = [];
 		this.selected = [];
 		this.editing = {};
@@ -26,26 +37,46 @@ export class BranchEditListComponent implements OnInit, OnChanges {
 	}
 
 	ngOnInit() {
+		if (!this.uploadList) {
+			this._branchService
+				.get()
+				.then((branches: Branch[]) => {
+					this.branches = this.blcSortService.sortByField(
+						branches,
+						"name"
+					);
+				})
+				.catch((getBranchesError) => {
+					console.log(
+						"databaseBranchesComponent: could not get branches",
+						getBranchesError
+					);
+				});
+		}
 	}
-
 
 	ngOnChanges(changes: SimpleChanges) {
 		for (const propName in changes) {
-			if (propName === 'branches' && this.branches) {
+			if (propName === "branches" && this.branches) {
 				this.temp = [...this.branches];
 			}
 		}
 	}
 
 	public onDownloadSelected() {
-		this._databaseExcelService.objectsToExcelFile(this.selected, 'branches');
+		this._databaseExcelService.objectsToExcelFile(
+			this.selected,
+			"branches"
+		);
 	}
 
 	public onUpdateFilter(event) {
 		const fil = event.target.value.toLowerCase();
 
 		this.branches = this.temp.filter((branch: Branch) => {
-			return (fil.length <= 0 || branch.name.toLowerCase().indexOf(fil) !== -1);
+			return (
+				fil.length <= 0 || branch.name.toLowerCase().indexOf(fil) !== -1
+			);
 		});
 	}
 
@@ -53,7 +84,6 @@ export class BranchEditListComponent implements OnInit, OnChanges {
 		this.selected.splice(0, this.selected.length);
 		this.selected.push(...selected);
 	}
-
 
 	public updateRowItem(rowIndex: number, colName: string) {
 		this.editing[rowIndex + colName] = false;
@@ -65,25 +95,32 @@ export class BranchEditListComponent implements OnInit, OnChanges {
 	public updateBranchToDb(rowIndex: number, colName: string) {
 		this.updating[rowIndex] = true;
 
-		this._branchService.update(this.branches[rowIndex].id, this.branches[rowIndex]).then((updatedBranch: Branch) => {
-			this.editing[rowIndex + colName] = false;
-			this.updating[rowIndex] = false;
-			this.branches[rowIndex] = updatedBranch;
-			this.branches = [...this.branches];
-		}).catch((updateError) => {
-			console.log('branchEditListComponent: could not update branch');
-		});
+		this._branchService
+			.update(this.branches[rowIndex].id, this.branches[rowIndex])
+			.then((updatedBranch: Branch) => {
+				this.editing[rowIndex + colName] = false;
+				this.updating[rowIndex] = false;
+				this.branches[rowIndex] = updatedBranch;
+				this.branches = [...this.branches];
+			})
+			.catch((updateError) => {
+				console.log("branchEditListComponent: could not update branch");
+			});
 	}
 
 	public onUploadSelected() {
 		for (const selectedBranch of this.selected) {
 			if (!selectedBranch.id || selectedBranch.id.length <= 0) {
-
-				this._branchService.add(selectedBranch).then((addedBranch: Branch) => {
-					this.removeFromBranches(addedBranch);
-				}).catch((addError) => {
-					console.log('branchEditListComponent: could not add branch');
-				});
+				this._branchService
+					.add(selectedBranch)
+					.then((addedBranch: Branch) => {
+						this.removeFromBranches(addedBranch);
+					})
+					.catch((addError) => {
+						console.log(
+							"branchEditListComponent: could not add branch"
+						);
+					});
 			}
 		}
 	}
@@ -97,5 +134,4 @@ export class BranchEditListComponent implements OnInit, OnChanges {
 		}
 		this.branches = [...this.branches];
 	}
-
 }

@@ -2,7 +2,7 @@ import { Directive, HostListener } from "@angular/core";
 import { BlcKeyeventDoubleShiftService } from "./blc-keyevent-double-shift.service";
 
 @Directive({
-	selector: "[blcKeyeventDoubleShift]"
+	selector: "[blcKeyeventDoubleShift]",
 })
 export class BlcKeyeventDoubleShiftDirective {
 	private shiftCount: number;

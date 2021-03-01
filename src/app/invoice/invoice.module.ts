@@ -28,7 +28,7 @@ import { CompanyModule } from "../company/company.module";
 		InvoiceIdSelectComponent,
 		InvoiceCreateComponent,
 		InvoiceCreateItemListComponent,
-		InvoiceCreateItemListItemComponent
+		InvoiceCreateItemListItemComponent,
 	],
 	imports: [
 		CommonModule,
@@ -39,8 +39,8 @@ import { CompanyModule } from "../company/company.module";
 		ReactiveFormsModule,
 		FontAwesomeModule,
 		ItemModule,
-		CompanyModule
+		CompanyModule,
 	],
-	exports: [InvoiceComponent]
+	exports: [InvoiceComponent],
 })
 export class InvoiceModule {}

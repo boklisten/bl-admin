@@ -5,7 +5,7 @@ import {
 	OrderItem,
 	Order,
 	CustomerItem,
-	UniqueItem
+	UniqueItem,
 } from "@boklisten/bl-model";
 import { ItemCartItem } from "./cart-item-types/item-cart-item";
 import { ItemPriceService } from "../../price/item-price/item-price.service";
@@ -25,7 +25,7 @@ import { CustomerService } from "../../customer/customer.service";
 import { AuthService } from "../../auth/auth.service";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class CartItemService {
 	private _cartItemPriceProvider: CartItemPriceProvider;

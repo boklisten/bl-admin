@@ -12,7 +12,7 @@ import { environment } from "../../environments/environment";
 @Component({
 	selector: "app-side-bar",
 	templateUrl: "./side-bar.component.html",
-	styleUrls: ["./side-bar.component.scss"]
+	styleUrls: ["./side-bar.component.scss"],
 })
 export class SideBarComponent implements OnInit, OnDestroy {
 	public customerDetail: UserDetail;
@@ -51,56 +51,56 @@ export class SideBarComponent implements OnInit, OnDestroy {
 				link: "blid",
 				icon: "search",
 				permission: "employee",
-				selected: false
+				selected: false,
 			},
 			{
 				name: "cart",
 				link: "cart",
 				icon: "shopping-cart",
 				permission: "employee",
-				selected: false
+				selected: false,
 			},
 			{
 				name: "booking",
 				link: "booking",
 				icon: "calendar-alt",
 				permission: "employee",
-				selected: false
+				selected: false,
 			},
 			{
 				name: "orders",
 				link: "orders",
 				icon: "receipt",
 				permission: "employee",
-				selected: false
+				selected: false,
 			},
 			{
 				name: "scanner",
 				link: "scanner",
 				icon: "barcode",
 				permission: "employee",
-				selected: false
+				selected: false,
 			},
 			{
 				name: "invoices",
 				link: "invoices",
 				icon: "file-invoice-dollar",
 				permission: "admin",
-				selected: false
+				selected: false,
 			},
 			{
 				name: "messenger",
 				link: "messenger",
 				icon: "envelope",
 				permission: "admin",
-				selected: false
+				selected: false,
 			},
 			{
 				name: "database",
 				link: "database",
 				icon: "database",
 				permission: "admin",
-				selected: false
+				selected: false,
 			},
 			{
 				name: "user",
@@ -108,8 +108,8 @@ export class SideBarComponent implements OnInit, OnDestroy {
 				icon: this.getUserIcon(),
 				permission: "employee",
 				selected: false,
-				color: "info"
-			}
+				color: "info",
+			},
 		];
 	}
 
@@ -232,7 +232,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 	}
 
 	private removeCustomerSidebarLinks() {
-		this.sidebarLinks = this.sidebarLinks.filter(sl => {
+		this.sidebarLinks = this.sidebarLinks.filter((sl) => {
 			if (sl.name === "customer") {
 				return false;
 			}
@@ -254,7 +254,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 			icon: "address-card",
 			selected: false,
 			permission: "employee",
-			hide: false
+			hide: false,
 		});
 	}
 

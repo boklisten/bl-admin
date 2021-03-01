@@ -6,7 +6,7 @@ import { Subscription } from "rxjs";
 @Component({
 	selector: "app-unique-item-searchbar",
 	templateUrl: "./unique-item-searchbar.component.html",
-	styleUrls: ["./unique-item-searchbar.component.scss"]
+	styleUrls: ["./unique-item-searchbar.component.scss"],
 })
 export class UniqueItemSearchbarComponent implements OnInit, OnDestroy {
 	@Input() blid: string;
@@ -30,7 +30,7 @@ export class UniqueItemSearchbarComponent implements OnInit, OnDestroy {
 	}
 
 	private handleBlcScannerChange() {
-		this.blidScanner = this._blcScannerService.onBlid(blid => {
+		this.blidScanner = this._blcScannerService.onBlid((blid) => {
 			this.blid = blid;
 			this.onBlidSearch(this.blid);
 		});

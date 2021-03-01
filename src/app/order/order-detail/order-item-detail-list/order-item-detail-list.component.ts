@@ -4,7 +4,7 @@ import { OrderItem } from "@boklisten/bl-model";
 @Component({
 	selector: "app-order-item-detail-list",
 	templateUrl: "./order-item-detail-list.component.html",
-	styleUrls: ["./order-item-detail-list.component.scss"]
+	styleUrls: ["./order-item-detail-list.component.scss"],
 })
 export class OrderItemDetailListComponent implements OnInit {
 	@Input() orderItems: OrderItem[];

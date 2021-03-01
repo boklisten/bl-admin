@@ -6,7 +6,7 @@ import { InvoiceService } from "@boklisten/bl-connect";
 import * as moment from "moment";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class InvoiceCreateService {
 	constructor(
@@ -26,9 +26,7 @@ export class InvoiceCreateService {
 			id: "",
 			invoiceId: invoiceNumber,
 			reference: reference,
-			duedate: moment()
-				.add(2, "weeks")
-				.toDate(),
+			duedate: moment().add(2, "weeks").toDate(),
 			customerHavePayed: false,
 			toCreditNote: false,
 			toDebtCollection: false,
@@ -46,18 +44,18 @@ export class InvoiceCreateService {
 					address: company.contactInfo.address,
 					city: company.contactInfo.postCity,
 					code: company.contactInfo.postCode,
-					country: "norway"
-				}
+					country: "norway",
+				},
 			},
 			payment: {
 				total: {
 					gross: 0,
 					net: 0,
 					vat: 0,
-					discount: 0
+					discount: 0,
 				},
 				fee: null,
-				totalIncludingFee: 0
+				totalIncludingFee: 0,
 			},
 			comments: comment
 				? [
@@ -65,10 +63,10 @@ export class InvoiceCreateService {
 							id: "",
 							msg: comment,
 							creationTime: new Date(),
-							user: null
-						}
+							user: null,
+						},
 				  ]
-				: []
+				: [],
 		};
 
 		invoice = this.calculateTotalPayment(invoice);
@@ -76,10 +74,10 @@ export class InvoiceCreateService {
 		return new Promise((resolve, reject) => {
 			this.invoiceService
 				.add(invoice)
-				.then(addedInvoice => {
+				.then((addedInvoice) => {
 					resolve(addedInvoice);
 				})
-				.catch(err => {
+				.catch((err) => {
 					reject(err);
 				});
 		});
@@ -127,8 +125,8 @@ export class InvoiceCreateService {
 					gross: this.itemGrossPrice(invoiceItem),
 					net: this.itemNetPrice(invoiceItem),
 					vat: this.itemVatPrice(invoiceItem),
-					discount: this.itemDiscountPrice(invoiceItem)
-				}
+					discount: this.itemDiscountPrice(invoiceItem),
+				},
 			});
 		}
 		return invoiceItemPayments;

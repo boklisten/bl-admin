@@ -3,7 +3,7 @@ import { UniqueItem, Item } from "@boklisten/bl-model";
 import { UniqueItemService } from "@boklisten/bl-connect";
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class UniqueItemStoreService {
 	constructor(private _uniqueItemService: UniqueItemService) {}
@@ -28,7 +28,7 @@ export class UniqueItemStoreService {
 	public async get(blid: string): Promise<UniqueItem> {
 		try {
 			const uniqueItems = await this._uniqueItemService.get({
-				query: `?blid=${blid}`
+				query: `?blid=${blid}`,
 			});
 			return uniqueItems[0];
 		} catch (e) {
@@ -62,7 +62,7 @@ export class UniqueItemStoreService {
 			id: "",
 			blid: blid,
 			item: itemId,
-			title: title
+			title: title,
 		};
 	}
 }

@@ -14,14 +14,14 @@ import { CustomerItemListItemComponent } from "./customer-item-list/customer-ite
 		CommonModule,
 		CustomerItemRoutingModule,
 		BlCommonModule,
-		FontAwesomeModule
+		FontAwesomeModule,
 	],
 	declarations: [
 		CustomerItemDetailComponent,
 		CustomerItemListComponent,
-		CustomerItemListItemComponent
+		CustomerItemListItemComponent,
 	],
 	providers: [CustomerItemHandlerService],
-	exports: [CustomerItemListComponent, CustomerItemDetailComponent]
+	exports: [CustomerItemListComponent, CustomerItemDetailComponent],
 })
 export class CustomerItemModule {}

@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { MessageService } from "@boklisten/bl-connect";
 import { Message } from "@boklisten/bl-model";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { map, startWith } from "rxjs/operators";
+import { ActivatedRoute, Params } from "@angular/router";
 
 type SmsStatusType =
 	| "accepted"
@@ -19,7 +20,7 @@ type SmsStatusType =
 @Component({
 	selector: "app-messenger-list",
 	templateUrl: "./messenger-list.component.html",
-	styleUrls: ["./messenger-list.component.scss"]
+	styleUrls: ["./messenger-list.component.scss"],
 })
 export class MessengerListComponent implements OnInit {
 	public messages: Message[];
@@ -28,14 +29,18 @@ export class MessengerListComponent implements OnInit {
 	public selectedMessage: Message;
 	public selectAll: boolean;
 	public sortByEmailStatusDirection: "asc" | "desc" | "none";
-
+	idParam$: Subscription;
 	@Input() customerId: string;
 
 	public filter: FormControl;
 
-	constructor(private messageService: MessageService) {
+	constructor(private messageService: MessageService, private _route: ActivatedRoute) {
 		this.filter = new FormControl("");
 		this.selectedList = {};
+	}
+
+	ngOnDestroy(): void {
+		this.idParam$.unsubscribe();
 	}
 
 	ngOnInit() {
@@ -43,29 +48,36 @@ export class MessengerListComponent implements OnInit {
 
 		this.messages$ = this.filter.valueChanges.pipe(
 			startWith(""),
-			map(text => this.search(text))
+			map((text) => this.search(text))
 		);
 
 		let query = this.customerId ? `?customerId=${this.customerId}` : null;
 
 		this.messageService
 			.get({ query: query, fresh: true })
-			.then(messages => {
+			.then((messages) => {
 				console.log(messages);
 				this.messages = messages;
 
 				this.messages$ = this.filter.valueChanges.pipe(
 					startWith(""),
-					map(text => this.search(text))
+					map((text) => this.search(text))
 				);
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log(err);
 			});
+			this.onIdParamChange();
+	}
+
+	private onIdParamChange() {
+		this.idParam$ = this._route.params.subscribe((params: Params) => {
+			this.customerId = params["id"];
+		});
 	}
 
 	public search(text: string): Message[] {
-		return this.messages.filter(message => {
+		return this.messages.filter((message) => {
 			const term = text.toLowerCase();
 			return (
 				message.id.toLowerCase().includes(term) ||
@@ -81,7 +93,7 @@ export class MessengerListComponent implements OnInit {
 			this.sortByEmailStatusDirection = "asc";
 			this.messages$ = this.filter.valueChanges.pipe(
 				startWith(""),
-				map(text => {
+				map((text) => {
 					this.messages
 						.sort
 						//(a, b) => parseInt(b.invoiceId) - parseInt(a.invoiceId)
@@ -93,7 +105,7 @@ export class MessengerListComponent implements OnInit {
 			this.sortByEmailStatusDirection = "desc";
 			this.messages$ = this.filter.valueChanges.pipe(
 				startWith(""),
-				map(text => {
+				map((text) => {
 					this.messages
 						.sort
 						//(a, b) => parseInt(a.invoiceId) - parseInt(b.invoiceId)
@@ -105,7 +117,7 @@ export class MessengerListComponent implements OnInit {
 			this.sortByEmailStatusDirection = "none";
 			this.messages$ = this.filter.valueChanges.pipe(
 				startWith(""),
-				map(text => this.search(text))
+				map((text) => this.search(text))
 			);
 		}
 	}

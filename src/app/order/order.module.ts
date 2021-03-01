@@ -17,9 +17,9 @@ import { AddOrderToCartComponent } from "./add-order-to-cart/add-order-to-cart.c
 import { CustomerOrderItemListItemComponent } from "./customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component";
 import { OrderPaymentInformationComponent } from "./order-payment-information/order-payment-information.component";
 import { OrderDeleteComponent } from "./order-delete/order-delete.component";
-import { OrderItemEditComponent } from './order-detail/order-item-edit/order-item-edit.component';
-import { OrderItemDetailListItemComponent } from './order-detail/order-item-detail-list-item/order-item-detail-list-item.component';
-import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
+import { OrderItemEditComponent } from "./order-detail/order-item-edit/order-item-edit.component";
+import { OrderItemDetailListItemComponent } from "./order-detail/order-item-detail-list-item/order-item-detail-list-item.component";
+import { OrderConfirmComponent } from "./order-confirm/order-confirm.component";
 
 @NgModule({
 	imports: [
@@ -27,7 +27,7 @@ import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 		OrderRoutingModule,
 		FontAwesomeModule,
 		BlCommonModule,
-		FormsModule
+		FormsModule,
 	],
 	declarations: [
 		CustomerOrderListComponent,
@@ -44,7 +44,7 @@ import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 		OrderDeleteComponent,
 		OrderItemEditComponent,
 		OrderItemDetailListItemComponent,
-		OrderConfirmComponent
+		OrderConfirmComponent,
 	],
 	exports: [
 		CustomerOrderListComponent,
@@ -56,8 +56,8 @@ import { OrderConfirmComponent } from './order-confirm/order-confirm.component';
 		OrderDeliveryDetailComponent,
 		OrderPaymentDetailComponent,
 		AddOrderToCartComponent,
-		OrderDeleteComponent
+		OrderDeleteComponent,
 	],
-	providers: [OrderHandlerService]
+	providers: [OrderHandlerService],
 })
 export class OrderModule {}

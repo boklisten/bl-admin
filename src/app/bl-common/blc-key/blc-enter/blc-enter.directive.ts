@@ -2,7 +2,7 @@ import { Directive, HostListener } from "@angular/core";
 import { BlcEnterService } from "./blc-enter.service";
 
 @Directive({
-	selector: "[blcEnterEvent]"
+	selector: "[blcEnterEvent]",
 })
 export class BlcEnterEventDirective {
 	private ENTER_KEY_CODE = 13;

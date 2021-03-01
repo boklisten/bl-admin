@@ -4,6 +4,15 @@
 	"newProjectRoot": "projects",
 	"projects": {
 		"bl-admin": {
+			"i18n": {
+				"locales": {
+					"nb": {
+						"translation": "src/locale/messages.nb.xlf",
+						"baseHref": ""
+					}
+				},
+				"sourceLocale": "en"
+			},
 			"root": "",
 			"sourceRoot": "src",
 			"projectType": "application",
@@ -11,6 +20,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
+						"aot": true,
 						"outputPath": "dist",
 						"index": "src/index.html",
 						"main": "src/main.ts",
@@ -25,14 +35,20 @@
 							"src/styles.scss",
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
 							"node_modules/bootstrap/dist/css/bootstrap-grid.min.css",
-							"node_modules/@swimlane/ngx-datatable/release/index.css",
-							"node_modules/@swimlane/ngx-datatable/release/themes/bootstrap.css",
-							"node_modules/@swimlane/ngx-datatable/release/assets/icons.css"
+							"node_modules/@swimlane/ngx-datatable/index.css",
+							"node_modules/@swimlane/ngx-datatable/themes/bootstrap.css",
+							"node_modules/@swimlane/ngx-datatable/assets/icons.css"
 						],
 						"scripts": []
 					},
 					"configurations": {
 						"local": {
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
 							"sourceMap": true,
 
 							"scripts": [
@@ -43,37 +59,40 @@
 								{
 									"replace": "src/environments/environment.ts",
 									"with": "src/environments/environment.local.ts"
-								},
-								{
-									"replace": "src/main.ts",
-									"with": "src/main.hmr.ts"
 								}
 							]
 						},
 						"local-nb": {
 							"aot": true,
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
+							"localize": ["nb"],
 							"outputHashing": "all",
 							"sourceMap": false,
 							"extractCss": true,
 							"namedChunks": false,
 							"extractLicenses": true,
 							"vendorChunk": false,
-							"i18nFile": "src/locale/messages.nb.xlf",
-							"i18nFormat": "xlf",
-							"i18nLocale": "nb",
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
 									"with": "src/environments/environment.local.ts"
-								},
-								{
-									"replace": "src/main.ts",
-									"with": "src/main.hmr.ts"
 								}
 							]
 						},
 						"dev-nb": {
 							"aot": true,
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
+							"localize": ["nb"],
 							"optimization": false,
 							"outputHashing": "all",
 							"sourceMap": false,
@@ -81,9 +100,6 @@
 							"namedChunks": false,
 							"extractLicenses": true,
 							"vendorChunk": false,
-							"i18nFile": "src/locale/messages.nb.xlf",
-							"i18nFormat": "xlf",
-							"i18nLocale": "nb",
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -93,6 +109,13 @@
 						},
 						"production-nb": {
 							"aot": true,
+							"budgets": [
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "6kb"
+								}
+							],
+							"localize": ["nb"],
 							"optimization": false,
 							"outputHashing": "all",
 							"sourceMap": false,
@@ -100,9 +123,6 @@
 							"namedChunks": false,
 							"extractLicenses": true,
 							"vendorChunk": false,
-							"i18nFile": "src/locale/messages.nb.xlf",
-							"i18nFormat": "xlf",
-							"i18nLocale": "nb",
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
@@ -125,7 +145,7 @@
 							"browserTarget": "bl-admin:build:production"
 						},
 						"local": {
-							"hmr": true,
+							"hmr": false,
 							"browserTarget": "bl-admin:build:local"
 						}
 					}
@@ -134,7 +154,6 @@
 					"builder": "@angular-devkit/build-angular:extract-i18n",
 					"options": {
 						"outputPath": "locale",
-						"i18nLocale": "en",
 						"browserTarget": "bl-admin:build"
 					}
 				},
@@ -174,7 +193,7 @@
 	"schematics": {
 		"@schematics/angular:component": {
 			"prefix": "app",
-			"styleext": "scss"
+			"style": "scss"
 		},
 		"@schematics/angular:directive": {
 			"prefix": "app"

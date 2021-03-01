@@ -1,12 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { ItemStoreService } from './item-store.service';
+import { ItemStoreService } from "./item-store.service";
 
-describe('ItemStoreService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe("ItemStoreService", () => {
+	beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: ItemStoreService = TestBed.get(ItemStoreService);
-    expect(service).toBeTruthy();
-  });
+	it("should be created", () => {
+		const service: ItemStoreService = TestBed.inject(ItemStoreService);
+		expect(service).toBeTruthy();
+	});
 });

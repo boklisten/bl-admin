@@ -1,5 +1,3 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
-
 import {
 	faChevronDown,
 	faChevronUp,
@@ -76,11 +74,11 @@ import {
 	faEnvelope,
 	faBell,
 	faPaperPlane,
-	faKeyboard
+	faKeyboard,
 } from "@fortawesome/free-solid-svg-icons";
 
-export function addIconsToLibrary() {
-	library.add(
+export function addIconsToLibrary(library) {
+	library.addIcons(
 		faChevronUp,
 		faChevronDown,
 		faKeyboard,

@@ -7,7 +7,7 @@ import { CustomerItemListService } from "../customer-item-list.service";
 @Component({
 	selector: "app-customer-item-list-item",
 	templateUrl: "./customer-item-list-item.component.html",
-	styleUrls: ["./customer-item-list-item.component.scss"]
+	styleUrls: ["./customer-item-list-item.component.scss"],
 })
 export class CustomerItemListItemComponent implements OnInit {
 	@Input() customerItem: CustomerItem;

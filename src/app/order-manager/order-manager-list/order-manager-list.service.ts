@@ -21,7 +21,7 @@ export interface OrderFilter {
 }
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class OrderManagerListService {
 	private fetching: boolean;
@@ -52,7 +52,7 @@ export class OrderManagerListService {
 	public async getPlacedOrders(): Promise<Order[]> {
 		try {
 			const orders = await this._orderService.get({
-				query: this.getOrderQueryBasedOnFilter(this.orderFilter)
+				query: this.getOrderQueryBasedOnFilter(this.orderFilter),
 			});
 			return await this.filterOrders(orders);
 		} catch (e) {
@@ -69,7 +69,7 @@ export class OrderManagerListService {
 	}
 
 	private handleCheckoutChange() {
-		this.checkoutChange$ = this._checkoutService.subscribe(status => {
+		this.checkoutChange$ = this._checkoutService.subscribe((status) => {
 			console.log("checkout!", status);
 			this.getPlacedOrders();
 		});
@@ -120,14 +120,12 @@ export class OrderManagerListService {
 			placed: true,
 			byCustomer: true,
 			processed: false,
-			from: moment()
-				.subtract("1", "week")
-				.toDate(),
+			from: moment().subtract("1", "week").toDate(),
 			to: new Date(),
 			delivery: false,
 			payment: false,
 			onlyCurrentBranch: true,
-			autoFetch: false
+			autoFetch: false,
 		};
 	}
 

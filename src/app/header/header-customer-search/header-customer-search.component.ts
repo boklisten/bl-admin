@@ -3,7 +3,7 @@ import {
 	OnInit,
 	ElementRef,
 	ViewChild,
-	OnDestroy
+	OnDestroy,
 } from "@angular/core";
 import { CustomerSearchService } from "../../customer/customer-search/customer-search.service";
 import { BlcKeyeventDoubleShiftService } from "../../bl-common/blc-keyevent/blc-keyevent-double-shift.service";
@@ -13,7 +13,7 @@ import { Subscription, Subject } from "rxjs";
 @Component({
 	selector: "app-header-customer-search",
 	templateUrl: "./header-customer-search.component.html",
-	styleUrls: ["./header-customer-search.component.scss"]
+	styleUrls: ["./header-customer-search.component.scss"],
 })
 export class HeaderCustomerSearchComponent implements OnInit, OnDestroy {
 	public wait: boolean;
@@ -102,14 +102,14 @@ export class HeaderCustomerSearchComponent implements OnInit, OnDestroy {
 
 	private handleCustomerSearchResultWaitChange() {
 		this.customerSearchResultWait$ = this._customerSearchService.onWait(
-			wait => {
+			(wait) => {
 				this.wait = wait;
 			}
 		);
 	}
 
 	private handleClickEvent() {
-		this.clickEvent$ = this._blcClickService.onClick(target => {
+		this.clickEvent$ = this._blcClickService.onClick((target) => {
 			if (this.customerSearchResultChild) {
 				if (this.clickedOutsideSearchBarAndResult(target)) {
 					this.showSearchResult = false;

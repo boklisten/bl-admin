@@ -12,7 +12,7 @@
 	</li>
 	<li class="list-group-item justify-content-between d-flex">
 		<span i18n="@@customerItemDetailType" class="text-secondary">Type</span>
-		<span>{{ customerItem.type}}</span>
+		<span>{{ customerItem.type }}</span>
 	</li>
 	<li class="list-group-item justify-content-between d-flex">
 		<span i18n="@@customerItemDetailHandoutTime" class="text-secondary"
@@ -34,13 +34,23 @@
 		<fa-icon
 			icon="check-circle"
 			class="text-success mr-2"
-			*ngIf="customerItem.returned || customerItem.cancel || customerItem.buyout || customerItem.buyback"
+			*ngIf="
+				customerItem.returned ||
+				customerItem.cancel ||
+				customerItem.buyout ||
+				customerItem.buyback
+			"
 		>
 		</fa-icon>
 		<fa-icon
 			icon="times-circle"
 			class="text-danger"
-			*ngIf="!customerItem.returned && !customerItem.cancel && !customerItem.buyout && !customerItem.buyback"
+			*ngIf="
+				!customerItem.returned &&
+				!customerItem.cancel &&
+				!customerItem.buyout &&
+				!customerItem.buyback
+			"
 		>
 		</fa-icon>
 	</li>
@@ -78,7 +88,7 @@
 			>Handout at</span
 		>
 		<span>
-			{{customerItem.handoutInfo.handoutById | branchName | async }}
+			{{ customerItem.handoutInfo.handoutById | branchName | async }}
 		</span>
 	</li>
 
@@ -93,14 +103,18 @@
 					'/detail'
 			}}"
 			class="bl-link-black"
-			>{{ customerItem.handoutInfo.handoutEmployee | customerName | async
+			>{{
+				customerItem.handoutInfo.handoutEmployee | customerName | async
 			}}</span
 		>
 	</li>
 
 	<li
 		class="list-group-item"
-		*ngIf="showMore && (customerItem.type === 'rent' || customerItem.type === 'loan')"
+		*ngIf="
+			showMore &&
+			(customerItem.type === 'rent' || customerItem.type === 'loan')
+		"
 	>
 		<ul class="list-group">
 			<li class="list-group-item justify-content-between d-flex">
@@ -120,10 +134,9 @@
 						*ngIf="!customerItem.returned"
 					>
 					</fa-icon>
-					<span *ngIf="customerItem.returnInfo"
-						>{{customerItem.returnInfo.time | blDate: "timestamp"
-						}}</span
-					>
+					<span *ngIf="customerItem.returnInfo">{{
+						customerItem.returnInfo.time | blDate: "timestamp"
+					}}</span>
 				</span>
 			</li>
 			<li
@@ -135,10 +148,11 @@
 					class="text-secondary"
 					>Returned by</span
 				>
-				<span
-					>{{customerItem.returnInfo.returnEmployee | customerName |
-					async}}</span
-				>
+				<span>{{
+					customerItem.returnInfo.returnEmployee
+						| customerName
+						| async
+				}}</span>
 			</li>
 			<li
 				class="list-group-item justify-content-between d-flex"
@@ -149,10 +163,9 @@
 					class="text-secondary"
 					>Returned at</span
 				>
-				<span
-					>{{customerItem.returnInfo.returnedToId | branchName | async
-					}}</span
-				>
+				<span>{{
+					customerItem.returnInfo.returnedToId | branchName | async
+				}}</span>
 			</li>
 		</ul>
 	</li>
@@ -179,10 +192,9 @@
 						*ngIf="!customerItem.buyback"
 					>
 					</fa-icon>
-					<span *ngIf="customerItem.buybackInfo"
-						>{{customerItem.buybackInfo.time | blDate: "timestamp"
-						}}</span
-					>
+					<span *ngIf="customerItem.buybackInfo">{{
+						customerItem.buybackInfo.time | blDate: "timestamp"
+					}}</span>
 				</span>
 			</li>
 			<li
@@ -195,9 +207,11 @@
 					>Order</span
 				>
 				<span
-					[routerLink]="'/order/' + customerItem.buybackInfo.order + '/detail'"
+					[routerLink]="
+						'/order/' + customerItem.buybackInfo.order + '/detail'
+					"
 					class="bl-link-black"
-					>{{customerItem.buybackInfo.order}}</span
+					>{{ customerItem.buybackInfo.order }}</span
 				>
 			</li>
 		</ul>
@@ -212,10 +226,9 @@
 				<span>
 					<fa-icon icon="check-circle" class="text-success mr-2">
 					</fa-icon>
-					<span *ngIf="customerItem.buyout"
-						>{{customerItem.buyoutInfo.time | blDate: "timestamp"
-						}}</span
-					>
+					<span *ngIf="customerItem.buyout">{{
+						customerItem.buyoutInfo.time | blDate: "timestamp"
+					}}</span>
 				</span>
 			</li>
 			<li
@@ -228,9 +241,11 @@
 					>Order</span
 				>
 				<span
-					[routerLink]="'/order/' + customerItem.buyoutInfo.order + '/detail'"
+					[routerLink]="
+						'/order/' + customerItem.buyoutInfo.order + '/detail'
+					"
 					class="bl-link-black"
-					>{{customerItem.buyoutInfo.order}}</span
+					>{{ customerItem.buyoutInfo.order }}</span
 				>
 			</li>
 		</ul>
@@ -245,10 +260,9 @@
 				<span>
 					<fa-icon icon="check-circle" class="text-success mr-2">
 					</fa-icon>
-					<span
-						>{{customerItem.cancelInfo.time | blDate: "timestamp"
-						}}</span
-					>
+					<span>{{
+						customerItem.cancelInfo.time | blDate: "timestamp"
+					}}</span>
 				</span>
 			</li>
 			<li class="list-group-item justify-content-between d-flex">
@@ -258,15 +272,17 @@
 					>Order</span
 				>
 				<span
-					[routerLink]="'/order/' + customerItem.cancelInfo.order + '/detail'"
+					[routerLink]="
+						'/order/' + customerItem.cancelInfo.order + '/detail'
+					"
 					class="bl-link-black"
-					>{{customerItem.cancelInfo.order}}</span
+					>{{ customerItem.cancelInfo.order }}</span
 				>
 			</li>
 		</ul>
 	</li>
 
-	<li class="list-group-item" *ngIf=" showMore && customerItem.orders">
+	<li class="list-group-item" *ngIf="showMore && customerItem.orders">
 		<ul class="list-group">
 			<li class="list-group-item text-center">Orders</li>
 			<li

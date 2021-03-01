@@ -5,67 +5,86 @@
 				Orders
 			</div>
 			<div class="card-body">
-                <div class="row mb-2" *ngIf="noOrdersFound">
-                    <div class="col-12">
-                        <div class="alert alert-secondary" i18n="@@databaseReportOrderNoOrdersFound">
-                            No orders found
-                        </div>
-                    </div>
+				<div class="row mb-2" *ngIf="noOrdersFound">
+					<div class="col-12">
+						<div
+							class="alert alert-secondary"
+							i18n="@@databaseReportOrderNoOrdersFound"
+						>
+							No orders found
+						</div>
+					</div>
 				</div>
 
 				<div class="row mb-2" *ngIf="wait">
-                    <div class="col-12">
-                        <app-bl-common-update-button [wait]="wait"></app-bl-common-update-button>
-                    </div>
-                </div>
+					<div class="col-12">
+						<app-bl-common-update-button
+							[wait]="wait"
+						></app-bl-common-update-button>
+					</div>
+				</div>
 
 				<div class="row justify-content-between">
-                    <div class="col-auto">
-                        <fa-icon [icon]="'location-arrow'"></fa-icon>
-                    </div>
-                    <div class="col-auto">
-                        <app-bl-common-toggle-button
-                            [(value)]="currentBranch"
-                        ></app-bl-common-toggle-button>
-                    </div>
-                </div>
-
-                <div class="row justify-content-between">
-                    <div class="col-auto" i18n="@@databaseReportOrderNotDelivered">
-                        Not delivered
-                    </div>
-                    <div class="col-auto">
-                        <app-bl-common-toggle-button
-                            [(value)]="notDelivered"
-                        ></app-bl-common-toggle-button>
-                    </div>
-                </div>
+					<div class="col-auto">
+						<fa-icon [icon]="'location-arrow'"></fa-icon>
+					</div>
+					<div class="col-auto">
+						<app-bl-common-toggle-button
+							[(value)]="currentBranch"
+						></app-bl-common-toggle-button>
+					</div>
+				</div>
 
 				<div class="row justify-content-between">
-                    <div class="col-auto" i18n="@@databaseReportOrderByCustomer">
-                       	By customer
-                    </div>
-                    <div class="col-auto">
-                        <app-bl-common-toggle-button
-                            [(value)]="byCustomer"
-                        ></app-bl-common-toggle-button>
-                    </div>
-                </div>
+					<div
+						class="col-auto"
+						i18n="@@databaseReportOrderNotDelivered"
+					>
+						Not delivered
+					</div>
+					<div class="col-auto">
+						<app-bl-common-toggle-button
+							[(value)]="notDelivered"
+						></app-bl-common-toggle-button>
+					</div>
+				</div>
+
+				<div class="row justify-content-between">
+					<div
+						class="col-auto"
+						i18n="@@databaseReportOrderByCustomer"
+					>
+						By customer
+					</div>
+					<div class="col-auto">
+						<app-bl-common-toggle-button
+							[(value)]="byCustomer"
+						></app-bl-common-toggle-button>
+					</div>
+				</div>
 
 				<div class="row mt-2 justify-content-center">
 					<div class="col-auto">
-						<app-blc-period-select (periodChange)="onPeriodChange($event)"></app-blc-period-select>
+						<app-blc-period-select
+							(periodChange)="onPeriodChange($event)"
+						></app-blc-period-select>
 					</div>
 				</div>
 
 				<div class="row mt-5">
 					<div class="col-12">
-                        <button type="button" class="btn btn-outline-info btn-block" (click)="onGetOrders()">
-							<span i18n="@@databaseReportOrderGetOrdersButton">Get orders</span>
-                        </button>
+						<button
+							type="button"
+							class="btn btn-outline-info btn-block"
+							(click)="onGetOrders()"
+						>
+							<span i18n="@@databaseReportOrderGetOrdersButton"
+								>Get orders</span
+							>
+						</button>
 					</div>
 				</div>
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>
+	</div>
 </div>

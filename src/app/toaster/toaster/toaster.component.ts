@@ -4,7 +4,7 @@ import { ToasterService } from "../toaster.service";
 @Component({
 	selector: "app-toaster",
 	templateUrl: "./toaster.component.html",
-	styleUrls: ["./toaster.component.scss"]
+	styleUrls: ["./toaster.component.scss"],
 })
 export class ToasterComponent implements OnInit {
 	public toasts: any[];
@@ -14,7 +14,7 @@ export class ToasterComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this._toasterService.subscribe(toast => {
+		this._toasterService.subscribe((toast) => {
 			if (toast.id) {
 				toast.ms = 99999;
 				let removed = this.removeToastIfAlreadyAdded(toast.id);

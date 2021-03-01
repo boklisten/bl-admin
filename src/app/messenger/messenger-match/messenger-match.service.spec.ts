@@ -1,12 +1,14 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { MessengerMatchService } from './messenger-match.service';
+import { MessengerMatchService } from "./messenger-match.service";
 
-describe('MessengerMatchService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe("MessengerMatchService", () => {
+	beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: MessengerMatchService = TestBed.get(MessengerMatchService);
-    expect(service).toBeTruthy();
-  });
+	it("should be created", () => {
+		const service: MessengerMatchService = TestBed.inject(
+			MessengerMatchService
+		);
+		expect(service).toBeTruthy();
+	});
 });

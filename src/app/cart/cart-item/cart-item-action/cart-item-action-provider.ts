@@ -168,7 +168,7 @@ export class CartItemActionProvider {
 			actions.push({
 				action: "extend",
 				period: "semester",
-				deadline: semesterExtendPeriod.date
+				deadline: semesterExtendPeriod.date,
 			});
 		} catch (e) {}
 
@@ -180,7 +180,7 @@ export class CartItemActionProvider {
 			actions.push({
 				action: "extend",
 				period: "semester",
-				deadline: yearExtendPeriod.date
+				deadline: yearExtendPeriod.date,
 			});
 		} catch (e) {}
 
@@ -226,7 +226,7 @@ export class CartItemActionProvider {
 				age: "new",
 				deadline: this._branchItemHelperService.getDeadlineForPartlyPaymentPeriod(
 					"semester"
-				)
+				),
 			});
 		}
 
@@ -242,7 +242,7 @@ export class CartItemActionProvider {
 				age: "new",
 				deadline: this._branchItemHelperService.getDeadlineForPartlyPaymentPeriod(
 					"year"
-				)
+				),
 			});
 		}
 		return actions;
@@ -256,7 +256,7 @@ export class CartItemActionProvider {
 				period: "semester",
 				deadline: this._branchItemHelperService.getDeadlineForRentPeriod(
 					"semester"
-				)
+				),
 			});
 		}
 
@@ -266,7 +266,7 @@ export class CartItemActionProvider {
 				period: "year",
 				deadline: this._branchItemHelperService.getDeadlineForRentPeriod(
 					"year"
-				)
+				),
 			});
 		}
 		return actions;

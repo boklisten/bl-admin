@@ -13,7 +13,7 @@ import { AuthService } from "../../auth/auth.service";
 @Component({
 	selector: "app-unique-item-scan-to-cart",
 	templateUrl: "./unique-item-scan-to-cart.component.html",
-	styleUrls: ["./unique-item-scan-to-cart.component.scss"]
+	styleUrls: ["./unique-item-scan-to-cart.component.scss"],
 })
 export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 	@ViewChild("addUniqeItemModal") private addUniqeItemModalContent;
@@ -64,25 +64,27 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 	}
 
 	private handleUniqueItemChange() {
-		this.uniqueItem$ = this._blidScannerService.onUniqueItem(uniqueItem => {
-			this.uniqueItem = uniqueItem;
+		this.uniqueItem$ = this._blidScannerService.onUniqueItem(
+			(uniqueItem) => {
+				this.uniqueItem = uniqueItem;
 
-			const customerItemWithItem = this._customerItemListService.containsMismatchedBlid(
-				uniqueItem
-			);
+				const customerItemWithItem = this._customerItemListService.containsMismatchedBlid(
+					uniqueItem
+				);
 
-			if (customerItemWithItem) {
-				if (!this._modalService.hasOpenModals()) {
-					this.mismatchedCustomerItemWithItem = customerItemWithItem;
-					this.anotherBlidOnCustomerItemModal = this._modalService.open(
-						this.anotherBlidOnCustomerItemModalContent
-					);
+				if (customerItemWithItem) {
+					if (!this._modalService.hasOpenModals()) {
+						this.mismatchedCustomerItemWithItem = customerItemWithItem;
+						this.anotherBlidOnCustomerItemModal = this._modalService.open(
+							this.anotherBlidOnCustomerItemModalContent
+						);
+					}
+					return;
 				}
-				return;
-			}
 
-			this.addUniqueItemToCart(uniqueItem);
-		});
+				this.addUniqueItemToCart(uniqueItem);
+			}
+		);
 	}
 
 	public onAddUniqueItemAnywayClick(uniqueItem: UniqueItem) {
@@ -96,7 +98,7 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 
 	private handleUniqueItemNotExistChange() {
 		this.uniqueItemDoesNotExist$ = this._blidScannerService.onUniqueItemDoesNotExist(
-			blid => {
+			(blid) => {
 				this.notAddedUniqeItemBlid = blid;
 				this._modalService.dismissAll();
 				this._cartService.setLock();
@@ -106,7 +108,7 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 						beforeDismiss: () => {
 							this._cartService.clearLock();
 							return true;
-						}
+						},
 					}
 				);
 			}
@@ -116,7 +118,7 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 	private addUniqueItemToCart(uniqueItem: UniqueItem) {
 		this._uniqueItemScanToCartService
 			.addUniqueItemToCart(uniqueItem)
-			.then(added => {
+			.then((added) => {
 				/*
 				this._uniqueItemService
 					.getWithOperation(uniqueItem.id, "active")
@@ -128,7 +130,7 @@ export class UniqueItemScanToCartComponent implements OnInit, OnDestroy {
 					});
          */
 			})
-			.catch(e => {
+			.catch((e) => {
 				console.log("could not add cart item", e);
 			});
 	}

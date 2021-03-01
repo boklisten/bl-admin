@@ -2,7 +2,7 @@ import { Directive, HostListener } from "@angular/core";
 import { BlcArrowUpService } from "./blc-arrow-up.service";
 
 @Directive({
-	selector: "[blcArrowUpEvent]"
+	selector: "[blcArrowUpEvent]",
 })
 export class BlcArrowUpEventDirective {
 	private ARROW_UP_KEY_CODE = 38;

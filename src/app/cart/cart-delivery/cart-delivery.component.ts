@@ -5,7 +5,7 @@ import { CustomerDetailService } from "../../customer/customer-detail/customer-d
 @Component({
 	selector: "app-cart-delivery",
 	templateUrl: "./cart-delivery.component.html",
-	styleUrls: ["./cart-delivery.component.scss"]
+	styleUrls: ["./cart-delivery.component.scss"],
 })
 export class CartDeliveryComponent implements OnInit {
 	@Input() order: Order;
@@ -40,8 +40,8 @@ export class CartDeliveryComponent implements OnInit {
 				shipmentAddress: this.originalDelivery.info["shipmentAddress"],
 				estimatedDelivery: null,
 				branch: this.order.branch as string,
-				trackingNumber: ""
-			}
+				trackingNumber: "",
+			},
 		};
 	}
 
@@ -57,10 +57,10 @@ export class CartDeliveryComponent implements OnInit {
 		this.delivery.info["trackingNumber"] = this.trackingNumber;
 		this._deliveryService
 			.add(this.delivery)
-			.then(addedDelivery => {
+			.then((addedDelivery) => {
 				this.deliveryConfirmed.emit(true);
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log("could not add delivery");
 			});
 	}

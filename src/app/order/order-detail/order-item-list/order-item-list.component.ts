@@ -5,7 +5,7 @@ import { OrderService } from "@boklisten/bl-connect";
 @Component({
 	selector: "app-order-item-list",
 	templateUrl: "./order-item-list.component.html",
-	styleUrls: ["./order-item-list.component.scss"]
+	styleUrls: ["./order-item-list.component.scss"],
 })
 export class OrderItemListComponent implements OnInit {
 	@Input() order: Order;

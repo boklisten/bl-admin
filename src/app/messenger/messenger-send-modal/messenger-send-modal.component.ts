@@ -6,7 +6,7 @@ import { MessageSettings } from "../message-settings";
 @Component({
 	selector: "app-messenger-send-modal",
 	templateUrl: "./messenger-send-modal.component.html",
-	styleUrls: ["./messenger-send-modal.component.scss"]
+	styleUrls: ["./messenger-send-modal.component.scss"],
 })
 export class MessengerSendModalComponent implements OnInit {
 	@Input() customerIds: string[];
@@ -75,7 +75,7 @@ export class MessengerSendModalComponent implements OnInit {
 	}
 
 	private onFailedMessage() {
-		this.messengerService.onFailedMessage().subscribe(failedMessage => {
+		this.messengerService.onFailedMessage().subscribe((failedMessage) => {
 			this.failedMessages.push(failedMessage);
 			this.progressbarValue += this.progressBarValuePart;
 			this.checkIfDone();

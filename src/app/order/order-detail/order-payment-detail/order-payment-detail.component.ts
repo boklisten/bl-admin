@@ -5,7 +5,7 @@ import {
 	OnInit,
 	SimpleChanges,
 	Output,
-	EventEmitter
+	EventEmitter,
 } from "@angular/core";
 import { BlApiError, Order, Payment } from "@boklisten/bl-model";
 import { PaymentService, OrderService } from "@boklisten/bl-connect";
@@ -14,7 +14,7 @@ import { AuthService } from "../../../auth/auth.service";
 @Component({
 	selector: "app-order-payment-detail",
 	templateUrl: "./order-payment-detail.component.html",
-	styleUrls: ["./order-payment-detail.component.scss"]
+	styleUrls: ["./order-payment-detail.component.scss"],
 })
 export class OrderPaymentDetailComponent implements OnInit, OnChanges {
 	@Input() order: Order;
@@ -77,16 +77,16 @@ export class OrderPaymentDetailComponent implements OnInit, OnChanges {
 	public deletePayment(payment: Payment) {
 		this._paymentService
 			.remove(payment.id)
-			.then(removed => {
+			.then((removed) => {
 				this.removePaymentFromOrder(payment.id)
 					.then(() => {
 						this.paymentChange.emit(true);
 					})
-					.catch(e => {
+					.catch((e) => {
 						console.log("could not remove payment from order", e);
 					});
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log("could not remove payment");
 			});
 	}
@@ -94,13 +94,13 @@ export class OrderPaymentDetailComponent implements OnInit, OnChanges {
 	private async removePaymentFromOrder(paymentId: string): Promise<Order> {
 		let payments = this.order.payments as string[];
 
-		payments = payments.filter(pid => {
+		payments = payments.filter((pid) => {
 			return pid != paymentId;
 		});
 
 		try {
 			return await this._orderService.update(this.order.id, {
-				payments: payments
+				payments: payments,
 			});
 		} catch (e) {
 			throw e;

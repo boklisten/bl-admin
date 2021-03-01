@@ -9,7 +9,7 @@ import { CustomerOrderService } from "../../../../order/customer-order/customer-
 @Component({
 	selector: "app-item-search-result-item",
 	templateUrl: "./item-search-result-item.component.html",
-	styleUrls: ["./item-search-result-item.component.scss"]
+	styleUrls: ["./item-search-result-item.component.scss"],
 })
 export class ItemSearchResultItemComponent implements OnInit {
 	@Input() item: Item;
@@ -54,7 +54,7 @@ export class ItemSearchResultItemComponent implements OnInit {
 		try {
 			const {
 				orderItem,
-				order
+				order,
 			} = this.customerOrderService.getOrderedItem(itemId);
 
 			return (

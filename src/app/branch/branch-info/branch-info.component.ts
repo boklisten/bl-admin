@@ -1,23 +1,25 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
-import {BranchService} from '@boklisten/bl-connect';
-import {Branch} from '@boklisten/bl-model';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Params } from "@angular/router";
+import { BranchService } from "@boklisten/bl-connect";
+import { Branch } from "@boklisten/bl-model";
 
 @Component({
-	selector: 'app-branch-info',
-	templateUrl: './branch-info.component.html',
-	styleUrls: ['./branch-info.component.scss']
+	selector: "app-branch-info",
+	templateUrl: "./branch-info.component.html",
+	styleUrls: ["./branch-info.component.scss"],
 })
 export class BranchInfoComponent implements OnInit {
 	private _currentId: string;
 	public branch: Branch;
 
-	constructor(private _branchService: BranchService, private _route: ActivatedRoute) {
-	}
+	constructor(
+		private _branchService: BranchService,
+		private _route: ActivatedRoute
+	) {}
 
 	ngOnInit() {
 		this._route.params.subscribe((params: Params) => {
-			this._currentId = params['id'];
+			this._currentId = params["id"];
 
 			if (this._currentId) {
 				this.getBranch(this._currentId);
@@ -26,12 +28,16 @@ export class BranchInfoComponent implements OnInit {
 	}
 
 	getBranch(id: string) {
-		this._branchService.getById(id).then((branch: Branch) => {
-			this.branch = branch;
-		}).catch((getBranchError) => {
-			console.log('branchInfoComponent: could not get branch', getBranchError);
-		});
+		this._branchService
+			.getById(id)
+			.then((branch: Branch) => {
+				this.branch = branch;
+			})
+			.catch((getBranchError) => {
+				console.log(
+					"branchInfoComponent: could not get branch",
+					getBranchError
+				);
+			});
 	}
-
-
 }

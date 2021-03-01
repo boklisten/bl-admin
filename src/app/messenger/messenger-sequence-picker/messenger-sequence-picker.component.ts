@@ -5,13 +5,13 @@ import {
 	Output,
 	EventEmitter,
 	OnChanges,
-	SimpleChanges
+	SimpleChanges,
 } from "@angular/core";
 
 @Component({
 	selector: "app-messenger-sequence-picker",
 	templateUrl: "./messenger-sequence-picker.component.html",
-	styleUrls: ["./messenger-sequence-picker.component.scss"]
+	styleUrls: ["./messenger-sequence-picker.component.scss"],
 })
 export class MessengerSequencePickerComponent implements OnInit, OnChanges {
 	@Input() messageType: string;

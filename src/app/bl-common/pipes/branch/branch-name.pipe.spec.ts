@@ -1,6 +1,5 @@
-import {BranchNamePipe} from './branch-name.pipe';
+import { BranchNamePipe } from "./branch-name.pipe";
 
-describe('BranchNamePipe', () => {
-	it('create an instance', () => {
-	});
+describe("BranchNamePipe", () => {
+	it("create an instance", () => {});
 });

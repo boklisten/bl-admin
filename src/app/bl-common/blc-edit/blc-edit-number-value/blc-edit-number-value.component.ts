@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 @Component({
 	selector: "app-blc-edit-number-value",
 	templateUrl: "./blc-edit-number-value.component.html",
-	styleUrls: ["./blc-edit-number-value.component.scss"]
+	styleUrls: ["./blc-edit-number-value.component.scss"],
 })
 export class BlcEditNumberValueComponent implements OnInit {
 	@Input() value: number;

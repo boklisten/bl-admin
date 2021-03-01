@@ -10,7 +10,7 @@ type CustomerItemWithItem = {
 };
 
 @Injectable({
-	providedIn: "root"
+	providedIn: "root",
 })
 export class CustomerItemListService {
 	private _customerItemList: { customerItem: CustomerItem; item: Item }[];
@@ -110,7 +110,7 @@ export class CustomerItemListService {
 	}
 
 	private handleCustomerWaitChange() {
-		this._customerService.onWait(wait => {
+		this._customerService.onWait((wait) => {
 			if (wait) {
 				this.setCustomerItemList([]);
 				this._wait$.next(wait);
@@ -119,10 +119,10 @@ export class CustomerItemListService {
 	}
 
 	private handleCustomerChange() {
-		this._customerService.subscribe(customerDetail => {
+		this._customerService.subscribe((customerDetail) => {
 			this._wait$.next(true);
 			this.fetchCustomerItemList(customerDetail.id)
-				.then(customerItemList => {
+				.then((customerItemList) => {
 					this.setCustomerItemList(customerItemList);
 				})
 				.catch(() => {
@@ -132,7 +132,7 @@ export class CustomerItemListService {
 	}
 
 	private handleCustomerClear() {
-		this._customerService.onClear(cleared => {
+		this._customerService.onClear((cleared) => {
 			if (cleared) {
 				this.setCustomerItemList([]);
 			}
@@ -170,7 +170,7 @@ export class CustomerItemListService {
 
 		try {
 			customerItems = await this._customerItemService.get({
-				query: `?customer=${customerDetailId}`
+				query: `?customer=${customerDetailId}`,
 			});
 		} catch (e) {
 			return [];
@@ -190,7 +190,7 @@ export class CustomerItemListService {
 
 				customerItemList.push({
 					customerItem: customerItem,
-					item: item
+					item: item,
 				});
 			}
 		}

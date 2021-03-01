@@ -1,6 +1,5 @@
-import {ItemPricePipe} from './item-price.pipe';
+import { ItemPricePipe } from "./item-price.pipe";
 
-describe('ItemPricePipe', () => {
-	it('create an instance', () => {
-	});
+describe("ItemPricePipe", () => {
+	it("create an instance", () => {});
 });

@@ -4,7 +4,7 @@ import { UserDetail } from "@boklisten/bl-model";
 @Component({
 	selector: "app-customer-detail-card",
 	templateUrl: "./customer-detail-card.component.html",
-	styleUrls: ["./customer-detail-card.component.scss"]
+	styleUrls: ["./customer-detail-card.component.scss"],
 })
 export class CustomerDetailCardComponent implements OnInit {
 	@Input() customerDetail: UserDetail;

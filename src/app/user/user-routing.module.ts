@@ -1,19 +1,18 @@
-import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {UserComponent} from './user.component';
-import {EmployeeGuardService} from '../auth/guards/employee-guard.service';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { UserComponent } from "./user.component";
+import { EmployeeGuardService } from "../auth/guards/employee-guard.service";
 
 const routes: Routes = [
 	{
-		path: 'user',
+		path: "user",
 		component: UserComponent,
-		canActivate: [EmployeeGuardService]
-	}
+		canActivate: [EmployeeGuardService],
+	},
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule]
+	exports: [RouterModule],
 })
-export class UserRoutingModule {
-}
+export class UserRoutingModule {}

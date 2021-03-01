@@ -9,7 +9,7 @@ import { CartItemService } from "../../cart/cart-item/cart-item.service";
 @Component({
 	selector: "app-add-order-to-cart",
 	templateUrl: "./add-order-to-cart.component.html",
-	styleUrls: ["./add-order-to-cart.component.scss"]
+	styleUrls: ["./add-order-to-cart.component.scss"],
 })
 export class AddOrderToCartComponent implements OnInit {
 	@Input() order: Order;

@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DatabaseCompanyAddComponent } from './database-company-add.component';
+import { DatabaseCompanyAddComponent } from "./database-company-add.component";
 
-describe('DatabaseCompanyAddComponent', () => {
-  let component: DatabaseCompanyAddComponent;
-  let fixture: ComponentFixture<DatabaseCompanyAddComponent>;
+describe("DatabaseCompanyAddComponent", () => {
+	let component: DatabaseCompanyAddComponent;
+	let fixture: ComponentFixture<DatabaseCompanyAddComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DatabaseCompanyAddComponent ]
-    })
-    .compileComponents();
-  }));
+	beforeEach(async(() => {
+		TestBed.configureTestingModule({
+			declarations: [DatabaseCompanyAddComponent],
+		}).compileComponents();
+	}));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DatabaseCompanyAddComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+	beforeEach(() => {
+		fixture = TestBed.createComponent(DatabaseCompanyAddComponent);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it("should create", () => {
+		expect(component).toBeTruthy();
+	});
 });

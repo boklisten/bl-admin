@@ -5,7 +5,7 @@ import { UserService } from "../../../user/user.service";
 @Component({
 	selector: "app-order-item-edit",
 	templateUrl: "./order-item-edit.component.html",
-	styleUrls: ["./order-item-edit.component.scss"]
+	styleUrls: ["./order-item-edit.component.scss"],
 })
 export class OrderItemEditComponent implements OnInit {
 	@Input() orderItem: OrderItem;
