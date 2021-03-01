@@ -6,7 +6,7 @@ describe('BlcSortService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: BlcSortService = TestBed.get(BlcSortService);
+    const service: BlcSortService = TestBed.inject(BlcSortService);
     expect(service).toBeTruthy();
   });
 });

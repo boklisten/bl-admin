@@ -6,7 +6,7 @@ describe('IsbnScannerService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: IsbnScannerService = TestBed.get(IsbnScannerService);
+    const service: IsbnScannerService = TestBed.inject(IsbnScannerService);
     expect(service).toBeTruthy();
   });
 });

@@ -6,7 +6,7 @@ describe('InvoiceGeneratorService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: InvoiceGeneratorService = TestBed.get(InvoiceGeneratorService);
+    const service: InvoiceGeneratorService = TestBed.inject(InvoiceGeneratorService);
     expect(service).toBeTruthy();
   });
 });

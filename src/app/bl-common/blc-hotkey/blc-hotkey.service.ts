@@ -1,5 +1,5 @@
 import { Injectable, Inject } from "@angular/core";
-import { EventManager, DOCUMENT } from "@angular/platform-browser";
+import { EventManager } from "@angular/platform-browser";import { DOCUMENT } from "@angular/common";
 import { Observable } from "rxjs";
 
 type Options = {

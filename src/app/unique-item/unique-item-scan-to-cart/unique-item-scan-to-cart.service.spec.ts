@@ -6,7 +6,7 @@ describe('UniqueItemScanToCartService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: UniqueItemScanToCartService = TestBed.get(UniqueItemScanToCartService);
+    const service: UniqueItemScanToCartService = TestBed.inject(UniqueItemScanToCartService);
     expect(service).toBeTruthy();
   });
 });

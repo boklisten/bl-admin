@@ -6,7 +6,7 @@ describe('InvoiceVismaService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: InvoiceVismaService = TestBed.get(InvoiceVismaService);
+    const service: InvoiceVismaService = TestBed.inject(InvoiceVismaService);
     expect(service).toBeTruthy();
   });
 });

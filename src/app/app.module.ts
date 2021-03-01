@@ -9,7 +9,7 @@ import { environment } from "../environments/environment";
 import { HeaderComponent } from "./header/header.component";
 import { SideBarComponent } from "./side-bar/side-bar.component";
 import { SideBarButtonComponent } from "./side-bar/side-bar-button/side-bar-button.component";
-import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { FaIconLibrary, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { AuthModule } from "./auth/auth.module";
 import { UserModule } from "./user/user.module";
 import { InvoiceModule } from "./invoice/invoice.module";
@@ -97,8 +97,8 @@ import { OrderManagerModule } from "./order-manager/order-manager.module";
 	bootstrap: [AppComponent]
 })
 export class AppModule {
-	constructor(private _blConnectConfig: BlConnectConfigService) {
-		addIconsToLibrary();
+	constructor(private _blConnectConfig: BlConnectConfigService, library: FaIconLibrary) {
+		addIconsToLibrary(library);
 
 		LoginModule.withConfig({
 			successPath: "home",

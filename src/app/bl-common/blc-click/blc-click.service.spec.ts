@@ -6,7 +6,7 @@ describe('BlcClickService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: BlcClickService = TestBed.get(BlcClickService);
+    const service: BlcClickService = TestBed.inject(BlcClickService);
     expect(service).toBeTruthy();
   });
 });

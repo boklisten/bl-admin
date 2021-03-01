@@ -6,7 +6,7 @@ describe('BlcArrowDownService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: BlcArrowDownService = TestBed.get(BlcArrowDownService);
+    const service: BlcArrowDownService = TestBed.inject(BlcArrowDownService);
     expect(service).toBeTruthy();
   });
 });

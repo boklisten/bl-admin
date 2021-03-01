@@ -6,7 +6,7 @@ describe('UniqueItemStoreService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: UniqueItemStoreService = TestBed.get(UniqueItemStoreService);
+    const service: UniqueItemStoreService = TestBed.inject(UniqueItemStoreService);
     expect(service).toBeTruthy();
   });
 });

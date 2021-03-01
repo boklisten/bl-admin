@@ -6,7 +6,7 @@ describe('BlcHotkeyService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: BlcHotkeyService = TestBed.get(BlcHotkeyService);
+    const service: BlcHotkeyService = TestBed.inject(BlcHotkeyService);
     expect(service).toBeTruthy();
   });
 });

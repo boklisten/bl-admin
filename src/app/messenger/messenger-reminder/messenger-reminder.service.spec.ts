@@ -6,7 +6,7 @@ describe('MessengerReminderService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: MessengerReminderService = TestBed.get(MessengerReminderService);
+    const service: MessengerReminderService = TestBed.inject(MessengerReminderService);
     expect(service).toBeTruthy();
   });
 });
