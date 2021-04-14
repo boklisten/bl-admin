@@ -9,9 +9,9 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"resolveJsonModule": true,
-		"target": "es6",
+		"target": "esnext",
 		"typeRoots": ["node_modules/@types"],
-		"lib": ["es6", "dom"],
+		"lib": ["esnext", "dom"],
 		"types": ["node"]
 	},
 	"angularCompilerOptions": {

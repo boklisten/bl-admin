@@ -73,7 +73,6 @@
 							"localize": ["nb"],
 							"outputHashing": "all",
 							"sourceMap": false,
-							"extractCss": true,
 							"namedChunks": false,
 							"extractLicenses": true,
 							"vendorChunk": false,
@@ -92,11 +91,12 @@
 									"maximumWarning": "6kb"
 								}
 							],
-							"localize": ["nb"],
+							"i18nFile": "src/locale/messages.nb.xlf",
+							"i18nFormat": "xlf",
+							"i18nLocale": "nb",
 							"optimization": false,
 							"outputHashing": "all",
 							"sourceMap": false,
-							"extractCss": true,
 							"namedChunks": false,
 							"extractLicenses": true,
 							"vendorChunk": false,
@@ -108,27 +108,24 @@
 							]
 						},
 						"production-nb": {
-							"aot": true,
-							"budgets": [
-								{
-									"type": "anyComponentStyle",
-									"maximumWarning": "6kb"
-								}
-							],
-							"localize": ["nb"],
-							"optimization": false,
+							"optimization": true,
 							"outputHashing": "all",
 							"sourceMap": false,
-							"extractCss": true,
 							"namedChunks": false,
+							"aot": true,
+							"i18nFile": "src/locale/messages.nb.xlf",
+							"i18nFormat": "xlf",
+							"i18nLocale": "nb",
 							"extractLicenses": true,
 							"vendorChunk": false,
+							"buildOptimizer": true,
 							"fileReplacements": [
 								{
 									"replace": "src/environments/environment.ts",
 									"with": "src/environments/environment.prod.ts"
 								}
 							]
+
 						}
 					}
 				},
