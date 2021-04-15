@@ -250,7 +250,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 		this.removeCustomerSidebarLinks();
 		this.sidebarLinks.unshift({
 			name: "customer",
-			link: "customer/" + customerDetailId + "/detail",
+			link: "/customer/detail",
 			icon: "address-card",
 			selected: false,
 			permission: "employee",
