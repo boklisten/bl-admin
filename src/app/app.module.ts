@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { APP_INITIALIZER, ErrorHandler, NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
 import { AuthLoginService, LoginModule } from "@boklisten/bl-login";
@@ -47,6 +47,8 @@ import { MessagesComponent } from "./messages/messages.component";
 import { HeaderCustomerSearchComponent } from "./header/header-customer-search/header-customer-search.component";
 import { ToasterModule } from "./toaster/toaster.module";
 import { OrderManagerModule } from "./order-manager/order-manager.module";
+import * as Sentry from "@sentry/angular";
+import { Router } from "@angular/router";
 
 @NgModule({
 	declarations: [
@@ -94,6 +96,22 @@ import { OrderManagerModule } from "./order-manager/order-manager.module";
 		UserService,
 		BlcScannerService,
 		TokenService,
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        showDialog: true,
+      }),
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => {},
+      deps: [Sentry.TraceService],
+      multi: true,
+    },
 	],
 	bootstrap: [AppComponent],
 })
