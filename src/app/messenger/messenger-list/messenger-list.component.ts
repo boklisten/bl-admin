@@ -34,7 +34,10 @@ export class MessengerListComponent implements OnInit {
 
 	public filter: FormControl;
 
-	constructor(private messageService: MessageService, private _route: ActivatedRoute) {
+	constructor(
+		private messageService: MessageService,
+		private _route: ActivatedRoute
+	) {
 		this.filter = new FormControl("");
 		this.selectedList = {};
 	}
@@ -67,7 +70,7 @@ export class MessengerListComponent implements OnInit {
 			.catch((err) => {
 				console.log(err);
 			});
-			this.onIdParamChange();
+		this.onIdParamChange();
 	}
 
 	private onIdParamChange() {

@@ -3,6 +3,7 @@
 		<div class="col-4 p-3">
 			<app-unique-item-searchbar
 				[blid]="currentBlid"
+				(onSearch)="onBlidSearch($event)"
 			></app-unique-item-searchbar>
 		</div>
 	</div>

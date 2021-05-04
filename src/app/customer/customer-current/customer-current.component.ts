@@ -50,9 +50,7 @@ export class CustomerCurrentComponent implements OnInit, OnDestroy {
 			this._router.navigate(["/cart"]);
 		} else {
 			this.navigateToCart = true;
-			this._router.navigate([
-				"/customer/detail",
-			]);
+			this._router.navigate(["/customer/detail"]);
 		}
 	}
 

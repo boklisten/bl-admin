@@ -14,24 +14,32 @@ export class OrderGeneratorService {
 		private _userService: UserService
 	) {}
 
-	public generateOrder(orderItems: OrderItem[]): Order {
+	public generateOrder(
+		orderItems: OrderItem[],
+		customer?: string,
+		email?: boolean
+	): Order {
 		return {
 			id: "",
 			amount: this.calculateTotalAmount(orderItems),
 			orderItems: orderItems,
 			branch: this._branchStoreService.getBranchId(),
-			customer: this._customerService.haveCustomer()
+			customer: customer
+				? customer
+				: this._customerService.haveCustomer()
 				? this._customerService.getCustomerDetailId()
 				: null,
 			byCustomer: false,
 			employee: this._userService.getUserDetailId(),
-			viewableFor: [this._customerService.getUserId()],
+			viewableFor: customer
+				? [customer]
+				: [this._customerService.getUserId()],
 			placed: false,
 			payments: [],
 			delivery: null,
 			handoutByDelivery: false,
 			notification: {
-				email: false,
+				email: email || false,
 			},
 		};
 	}

@@ -23,8 +23,8 @@ $header_height: 38px;
 }
 
 .bl-flex-row {
-	//flex: 1 1 0;
-	//display: flex;
+	display: flex;
+	flex-direction: row;
 }
 
 .bl-digital-bg {

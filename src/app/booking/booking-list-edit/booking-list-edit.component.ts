@@ -43,7 +43,6 @@ export class BookingListEditComponent implements OnInit {
 			this.selectedList = {};
 			this.getBookings();
 		});
-
 	}
 
 	private getBookings() {

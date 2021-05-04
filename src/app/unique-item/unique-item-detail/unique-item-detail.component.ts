@@ -51,4 +51,8 @@ export class UniqueItemDetailComponent implements OnInit {
 				this.wait = false;
 			});
 	}
+
+	public onBlidSearch(blid: string) {
+		this._router.navigate(["/blid/" + blid]);
+	}
 }

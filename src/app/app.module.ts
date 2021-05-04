@@ -49,6 +49,7 @@ import { ToasterModule } from "./toaster/toaster.module";
 import { OrderManagerModule } from "./order-manager/order-manager.module";
 import * as Sentry from "@sentry/angular";
 import { Router } from "@angular/router";
+import { BulkCollectionModule } from "./bulk-collection/bulk-collection.module";
 
 @NgModule({
 	declarations: [
@@ -82,6 +83,7 @@ import { Router } from "@angular/router";
 		ScannerModule,
 		ToasterModule,
 		OrderManagerModule,
+		BulkCollectionModule,
 	],
 	providers: [
 		AuthLoginService,
@@ -96,22 +98,22 @@ import { Router } from "@angular/router";
 		UserService,
 		BlcScannerService,
 		TokenService,
-    {
-      provide: ErrorHandler,
-      useValue: Sentry.createErrorHandler({
-        showDialog: false,
-      }),
-    },
-    {
-      provide: Sentry.TraceService,
-      deps: [Router],
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => () => {},
-      deps: [Sentry.TraceService],
-      multi: true,
-    },
+		{
+			provide: ErrorHandler,
+			useValue: Sentry.createErrorHandler({
+				showDialog: false,
+			}),
+		},
+		{
+			provide: Sentry.TraceService,
+			deps: [Router],
+		},
+		{
+			provide: APP_INITIALIZER,
+			useFactory: () => () => {},
+			deps: [Sentry.TraceService],
+			multi: true,
+		},
 	],
 	bootstrap: [AppComponent],
 })

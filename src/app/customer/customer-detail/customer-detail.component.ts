@@ -28,7 +28,7 @@ export class CustomerDetailComponent implements OnInit {
 		private _route: ActivatedRoute,
 		private _authService: AuthService,
 		private _customerService: CustomerService,
-		private _customerDetailService: CustomerDetailService,
+		private _customerDetailService: CustomerDetailService
 	) {
 		this.customerDetailUpdated = false;
 		this.warningText = null;

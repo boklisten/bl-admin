@@ -46,6 +46,7 @@ import { UniqueItemSearchbarComponent } from "./unique-item-searchbar/unique-ite
 		UniqueItemScanToCartComponent,
 		UniqueItemRegisterFromCartComponent,
 		UniqueItemScanOrderToCartComponent,
+		UniqueItemSearchbarComponent,
 	],
 })
 export class UniqueItemModule {}
