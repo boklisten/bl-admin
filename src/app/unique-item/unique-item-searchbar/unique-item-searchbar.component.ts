@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, OnDestroy } from "@angular/core";
+import {
+	Component,
+	OnInit,
+	Input,
+	OnDestroy,
+	Output,
+	EventEmitter,
+} from "@angular/core";
 import { Router } from "@angular/router";
 import { BlcScannerService } from "../../bl-common/blc-scanner/blc-scanner.service";
 import { Subscription } from "rxjs";
@@ -10,18 +17,18 @@ import { Subscription } from "rxjs";
 })
 export class UniqueItemSearchbarComponent implements OnInit, OnDestroy {
 	@Input() blid: string;
+	@Output() onSearch: EventEmitter<string>;
 	private blidScanner: Subscription;
 
 	constructor(
 		private _router: Router,
 		private _blcScannerService: BlcScannerService
-	) {}
+	) {
+		this.onSearch = new EventEmitter();
+	}
 
 	ngOnInit() {
-		if (!this.blid) {
-			this.blid = "";
-		}
-
+		this.blid = "";
 		this.handleBlcScannerChange();
 	}
 
@@ -37,6 +44,6 @@ export class UniqueItemSearchbarComponent implements OnInit, OnDestroy {
 	}
 
 	public onBlidSearch(blid: string) {
-		this._router.navigate(["/blid/" + blid]);
+		this.onSearch.emit(blid);
 	}
 }

@@ -125,7 +125,6 @@
 									"with": "src/environments/environment.prod.ts"
 								}
 							]
-
 						}
 					}
 				},

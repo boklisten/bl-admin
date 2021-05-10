@@ -4,4 +4,5 @@ export interface DatabaseReportOrderFilter {
 	toDate?: Date;
 	byCustomer?: boolean;
 	orderItemNotDelivered?: boolean;
+	type?: string;
 }

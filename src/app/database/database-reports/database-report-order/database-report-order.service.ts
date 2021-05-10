@@ -121,6 +121,10 @@ export class DatabaseReportOrderService {
 			query += "&orderItems.handout=" + !filter.orderItemNotDelivered;
 		}
 
+		if (filter.type) {
+			query += "&orderItems.type=" + filter.type;
+		}
+
 		return query;
 	}
 

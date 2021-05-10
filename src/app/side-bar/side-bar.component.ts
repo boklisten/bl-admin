@@ -61,6 +61,13 @@ export class SideBarComponent implements OnInit, OnDestroy {
 				selected: false,
 			},
 			{
+				name: "bulk",
+				link: "bulk",
+				icon: "qrcode",
+				permission: "employee",
+				selected: false,
+			},
+			{
 				name: "booking",
 				link: "booking",
 				icon: "calendar-alt",

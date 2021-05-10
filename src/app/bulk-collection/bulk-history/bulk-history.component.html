@@ -1,0 +1,35 @@
+<div class="card">
+	<div class="card-header bl-flex-row cardHeader">
+		<h4>Historikk (24t)</h4>
+		<button
+			type="button"
+			class="btn"
+			(click)="collapse.toggle(); getHistory()"
+			[attr.aria-expanded]="!isCollapsed"
+			aria-controls="collapseExample"
+		>
+			<fa-icon *ngIf="!isCollapsed" icon="chevron-up"></fa-icon>
+			<fa-icon *ngIf="isCollapsed" icon="chevron-down"></fa-icon>
+		</button>
+	</div>
+	<div
+		#collapse="ngbCollapse"
+		class="collapseBody"
+		[(ngbCollapse)]="isCollapsed"
+	>
+		<p *ngIf="waiting">
+			Laster
+			<fa-icon [icon]="'circle-notch'" [spin]="true"></fa-icon>
+		</p>
+		<div class="card-body" *ngIf="!waiting">
+			<p *ngIf="history.length === 0">
+				Fant ingen innsamlinger ved denne skolen siste 24 timer
+			</p>
+			<app-user-order-summary
+				*ngFor="let userBooks of history"
+				[userBooks]="userBooks"
+				[isHistory]="true"
+			></app-user-order-summary>
+		</div>
+	</div>
+</div>
