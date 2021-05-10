@@ -52,6 +52,7 @@ export class BulkCollectionService {
 		blid: string,
 		initialCustomerItem?: string
 	): Promise<ScannedBook> {
+		console.log(blid)
 		try {
 			const result = await Promise.all([
 				this._uniqeItemStoreService.get(blid),

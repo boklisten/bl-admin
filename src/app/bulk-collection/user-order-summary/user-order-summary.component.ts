@@ -31,7 +31,7 @@ export class UserOrderSummaryComponent implements OnInit {
 				const customerItems = await this._customerItemService.get({
 					query: `?customer=${this.userBooks[0].customerId}&returned=false`,
 				});
-				const requests = customerItems.map((customerItem) =>
+				const requests = customerItems.filter(customerItem => customerItem.blid).map((customerItem) =>
 					this._bulkCollectionService.createBookFromBlid(
 						customerItem.blid
 					)
