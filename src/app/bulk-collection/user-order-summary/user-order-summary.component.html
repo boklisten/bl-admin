@@ -13,8 +13,11 @@
 			}})
 		</p>
 		<div class="actionIcons">
-			<!-- TODO - link to user profile -->
-			<button class="btn">
+			<button
+				class="btn"
+				[routerLink]="'/customer/detail'"
+				[queryParams]="{ customerId: userBooks[0].customerId }"
+			>
 				<fa-icon icon="user-circle"></fa-icon>
 			</button>
 			<button

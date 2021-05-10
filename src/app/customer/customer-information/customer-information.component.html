@@ -2,7 +2,8 @@
 	<li class="list-group-item list-group-item-secondary">
 		<h4
 			class="text-center bl-link-black"
-			routerLink="{{ '/customer/' + userDetail.id + '/detail' }}"
+			routerLink="{{ '/customer/detail' }}"
+			[queryParams]="{ customerId: userDetail.id }"
 		>
 			{{ userDetail.name }}
 		</h4>

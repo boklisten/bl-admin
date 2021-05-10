@@ -4,7 +4,8 @@
 			>Customer</span
 		>
 		<span
-			routerLink="{{ '/customer/' + customerItem.customer + '/detail' }}"
+			routerLink="{{ '/customer/detail' }}"
+			[queryParams]="{ customerId: customerItem.customer }"
 			class="bl-link-black"
 		>
 			{{ customerItem.customer | customerName | async }}
@@ -98,9 +99,8 @@
 		>
 		<span
 			routerLink="{{
-				'/customer/' +
-					customerItem.handoutInfo.handoutEmployee +
-					'/detail'
+				'/customer/detail?custoemrId=' +
+					customerItem.handoutInfo.handoutEmployee
 			}}"
 			class="bl-link-black"
 			>{{

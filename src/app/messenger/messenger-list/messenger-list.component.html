@@ -73,7 +73,10 @@
 					<td
 						*ngIf="!customerId"
 						class="bl-link-black"
-						routerLink="/customer/{{ message.customerId }}/detail"
+						routerLink="/customer/detail"
+						[queryParams]="{
+							customerId: message.customerId
+						}"
 					>
 						{{ message.customerId }}
 					</td>

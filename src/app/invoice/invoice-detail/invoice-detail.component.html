@@ -83,11 +83,11 @@
 						<div class="col-auto">
 							<span
 								class="float-right bl-link-black"
-								[routerLink]="
-									'/customer/' +
-									invoice.customerInfo.customerDetail +
-									'/detail'
-								"
+								[routerLink]="'/customer/detail'"
+								[queryParams]="{
+									customerId:
+										invoice.customerInfo.customerDetail
+								}"
 								>{{ invoice.customerInfo.name }}</span
 							>
 						</div>

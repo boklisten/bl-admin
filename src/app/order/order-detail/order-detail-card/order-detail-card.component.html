@@ -14,7 +14,10 @@
 				</li>
 				<li
 					class="list-group-item list-group-item-action"
-					routerLink="{{ '/customer/' + order.customer + '/detail' }}"
+					routerLink="{{ '/customer/detail' }}"
+					[queryParams]="{
+						customerId: order.customer
+					}"
 				>
 					<span class="bl-link-black"
 						><fa-icon [icon]="'user'" class="mr-2"></fa-icon>

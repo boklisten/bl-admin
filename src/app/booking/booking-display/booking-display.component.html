@@ -23,7 +23,8 @@
 				</span>
 				<span
 					*ngIf="booking.customer"
-					[routerLink]="'/customer/' + booking.customer + '/detail'"
+					[routerLink]="'/customer/detail'"
+					[queryParams]="{ customerId: booking.customer }"
 					class="bl-link-black"
 				>
 					<fa-icon

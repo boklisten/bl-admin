@@ -126,11 +126,10 @@
 					<td>
 						<span
 							class="bl-link-black"
-							[routerLink]="
-								'/customer/' +
-								invoice.customerInfo.userDetail +
-								'/detail'
-							"
+							[routerLink]="'/customer/detail'"
+							[queryParams]="{
+								customerId: invoice.customerInfo.userDetail
+							}"
 						>
 							<ngb-highlight
 								[result]="invoice.customerInfo.name"

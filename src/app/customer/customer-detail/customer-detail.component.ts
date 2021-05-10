@@ -32,7 +32,14 @@ export class CustomerDetailComponent implements OnInit {
 	) {
 		this.customerDetailUpdated = false;
 		this.warningText = null;
-		this._currentId = _customerDetailService.getId();
+		try {
+			this._currentId = _customerDetailService.getId();
+		} catch (error) {}
+		this._route.queryParams.subscribe((params) => {
+			if (params.customerId) {
+				this._customerService.set(params.customerId);
+			}
+		});
 	}
 
 	ngOnInit() {
