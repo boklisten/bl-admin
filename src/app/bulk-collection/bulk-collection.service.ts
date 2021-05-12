@@ -29,7 +29,7 @@ export class BulkCollectionService {
 		const placeOrderRequests = completedOrders.map((order) =>
 			this._orderService.updateWithOperation(order.id, {}, "place")
 		);
-		await Promise.all(placeOrderRequests);
+		return await Promise.all(placeOrderRequests);
 	}
 
 	public separateBooksByCustomer(
@@ -52,7 +52,6 @@ export class BulkCollectionService {
 		blid: string,
 		initialCustomerItem?: string
 	): Promise<ScannedBook> {
-		console.log(blid)
 		try {
 			const result = await Promise.all([
 				this._uniqeItemStoreService.get(blid),
@@ -92,7 +91,7 @@ export class BulkCollectionService {
 		}
 	}
 
-	private async getCustomerItem(
+	public async getCustomerItem(
 		blid: string,
 		customerItem: string
 	): Promise<CustomerItem> {
@@ -119,7 +118,7 @@ export class BulkCollectionService {
 		);
 	}
 
-	private prettyTime(inputDate: Date = new Date()) {
+	public prettyTime(inputDate: Date = new Date()) {
 		const date = new Date(inputDate);
 		const hours = this.addZeroToNum(date.getHours());
 		const minutes = this.addZeroToNum(date.getMinutes());

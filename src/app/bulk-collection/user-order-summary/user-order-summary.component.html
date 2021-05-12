@@ -1,5 +1,8 @@
 <div class="card">
-	<div class="card-header bl-flex-row cardHeader">
+	<div
+		class="card-header bl-flex-row cardHeader"
+		(click)="onCollapseChange()"
+	>
 		<p>
 			{{ userBooks[0].customerName }} ({{
 				userBooks.length +
@@ -23,7 +26,6 @@
 			<button
 				type="button"
 				class="btn"
-				(click)="collapse.toggle()"
 				[attr.aria-expanded]="!isCollapsed"
 			>
 				<fa-icon *ngIf="!isCollapsed" icon="chevron-up"></fa-icon>
@@ -32,12 +34,19 @@
 		</div>
 	</div>
 	<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-		<div class="card-body">
+		<div class="card-body" *ngIf="waiting">
+			<p>
+				Laster
+				<fa-icon [icon]="'circle-notch'" [spin]="true"></fa-icon>
+			</p>
+		</div>
+		<div *ngIf="!waiting" class="card-body">
 			<h5>Leverte bøker</h5>
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th scope="col">Tidspunkt</th>
+						<th scope="col">Ordrenummer</th>
 						<th scope="col">Tittel</th>
 						<th scope="col">Frist</th>
 					</tr>
@@ -45,6 +54,12 @@
 				<tbody>
 					<tr *ngFor="let book of userBooks">
 						<td>{{ book.collectedAt }}</td>
+						<td
+							class="orderDetailLink"
+							(click)="onCustomerOrderIdClick(book.orderId)"
+						>
+							{{ book.orderId }}
+						</td>
 						<td>
 							<app-book-detail-modal
 								[scannedBook]="book"

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ToasterService } from "../toaster/toaster.service";
 import { BulkCollectionService } from "./bulk-collection.service";
 import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-collection";
+import { CustomerItemService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-bulk-collection",
@@ -12,11 +13,13 @@ export class BulkCollectionComponent implements OnInit {
 	public scannedBooks: Array<ScannedBook> = [];
 	public showReceipt: boolean = false;
 	public separatedBooks: Array<ScannedBook[]> = [];
+	public customerRemainingBooksDict: Object = {};
 	public waiting: boolean = false;
 
 	constructor(
 		private _bulkCollectionService: BulkCollectionService,
-		private _toasterService: ToasterService
+		private _toasterService: ToasterService,
+		private _customerItemService: CustomerItemService
 	) {}
 
 	ngOnInit(): void {}
@@ -27,9 +30,33 @@ export class BulkCollectionComponent implements OnInit {
 			this.scannedBooks
 		);
 		try {
-			await this._bulkCollectionService.collectOrders(
+			const completedOrders = await this._bulkCollectionService.collectOrders(
 				this.separatedBooks
 			);
+			for (const scannedBook of this.scannedBooks) {
+				scannedBook.collectedAt = this._bulkCollectionService.prettyTime(
+					completedOrders[0].lastUpdated
+				);
+				scannedBook.orderId = completedOrders.find(
+					(order) => order.customer === scannedBook.customerId
+				)?.id;
+			}
+
+			const fetchRemainingBooks = completedOrders.map((order) =>
+				this.getRemainingBooks(order.customer as string)
+			);
+			const customerRemainingBooks: Array<
+				ScannedBook[]
+			> = await Promise.all(fetchRemainingBooks);
+
+			for (const remainingBooks of customerRemainingBooks) {
+				if (remainingBooks) {
+					this.customerRemainingBooksDict[
+						remainingBooks[0].customerId
+					] = remainingBooks;
+				}
+			}
+
 			this.showReceipt = true;
 			this._toasterService.add(
 				"CHECKOUT-CONFIRMED",
@@ -57,6 +84,7 @@ export class BulkCollectionComponent implements OnInit {
 		this.waiting = false;
 		this.scannedBooks = [];
 		this.separatedBooks = [];
+		this.customerRemainingBooksDict = {};
 	}
 
 	public async registerBlid(blid: string) {
@@ -65,7 +93,7 @@ export class BulkCollectionComponent implements OnInit {
 				blid
 			);
 			if (scannedBook && this.verifyBook(blid)) {
-				this.scannedBooks.push(scannedBook);
+				this.scannedBooks.unshift(scannedBook);
 			}
 		} else {
 			this._toasterService.add(
@@ -86,5 +114,21 @@ export class BulkCollectionComponent implements OnInit {
 		this.scannedBooks = this.scannedBooks.filter(
 			(book) => book.blid !== blid
 		);
+	}
+
+	public async getRemainingBooks(customerId: string) {
+		try {
+			const customerItems = await this._customerItemService.get({
+				query: `?customer=${customerId}&returned=false`,
+			});
+			const requests = customerItems
+				.filter((customerItem) => customerItem.blid)
+				.map((customerItem) =>
+					this._bulkCollectionService.createBookFromBlid(
+						customerItem.blid
+					)
+				);
+			return await Promise.all(requests);
+		} catch (error) {}
 	}
 }

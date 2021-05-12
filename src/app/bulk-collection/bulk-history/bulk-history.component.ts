@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Order } from "@boklisten/bl-model";
 import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-collection";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { DatabaseReportOrderFilter } from "../../database/database-reports/database-report-order/database-report-order-filter";
@@ -12,6 +13,7 @@ import { BulkCollectionService } from "../bulk-collection.service";
 })
 export class BulkHistoryComponent implements OnInit {
 	public history: Array<ScannedBook[]> = [];
+	public orders: Order[];
 	public waiting: boolean;
 	public isCollapsed = true;
 
@@ -23,12 +25,13 @@ export class BulkHistoryComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	async getHistory() {
+	async createHistoryPreview() {
+		this.isCollapsed = !this.isCollapsed;
 		if (this.history.length > 0) {
 			return;
 		}
+
 		this.waiting = true;
-		this.history = [];
 		const filter: DatabaseReportOrderFilter = {
 			branchId: this._branchStoreService.getCurrentBranch().id,
 			orderItemNotDelivered: false,
@@ -39,33 +42,77 @@ export class BulkHistoryComponent implements OnInit {
 		};
 
 		try {
-			const res = await this._databaseReportOrderService.getOrdersByFilter(
+			this.orders = await this._databaseReportOrderService.getOrdersByFilter(
 				filter
 			);
-			const requests = [];
-			for (const orders of res) {
-				for (const orderItem of orders.orderItems) {
-					if (orderItem.customerItem && orderItem.blid) {
-						requests.push(
-							this._bulkCollectionService.createBookFromBlid(
-								orderItem.blid,
-								orderItem.customerItem as string
-							)
-						);
+			for (const order of this.orders) {
+				let customerIndex = this.history.findIndex(
+					(customerBooks) =>
+						customerBooks[0].customerId === order.customer
+				);
+				for (const orderItem of order.orderItems) {
+					if (!orderItem.customerItem || !orderItem.blid) {
+						continue;
 					}
+					if (customerIndex === -1) {
+						const customerItem = await this._bulkCollectionService.getCustomerItem(
+							"",
+							order.orderItems[0].customerItem as string
+						);
+						this.history.push([
+							{
+								customerId: order.customer as string,
+								blid: orderItem.blid,
+								title: "",
+								customerName: customerItem.customerInfo.name,
+								deadline: "",
+								id: orderItem.customerItem as string,
+								item: "",
+								orderId: order.id,
+							},
+						]);
+						customerIndex = this.history.length - 1;
+					} else {
+					}
+					this.history[customerIndex].push({
+						customerId: order.customer as string,
+						blid: orderItem.blid,
+						title: "",
+						customerName: "",
+						deadline: "",
+						id: orderItem.customerItem as string,
+						item: "",
+						orderId: order.id,
+					});
 				}
 			}
-
-			await Promise.all(requests).then((customerBooks) => {
-				this.history = this._bulkCollectionService
-					.separateBooksByCustomer(customerBooks)
-					.sort((a: ScannedBook[], b: ScannedBook[]) =>
-						a[0].customerName > b[0].customerName ? 1 : -1
-					);
-			});
 		} catch (error) {
 		} finally {
 			this.waiting = false;
 		}
+	}
+
+	async fetchCustomerHistory(customerId: string) {
+		const customerIndex = this.history.findIndex(
+			(customerBooks) => customerBooks[0].customerId === customerId
+		);
+		try {
+			const requests = [];
+			for (const customerBook of this.history[customerIndex]) {
+				requests.push(
+					this._bulkCollectionService.createBookFromBlid(
+						customerBook.blid,
+						customerBook.id
+					)
+				);
+			}
+			const customerHistory: ScannedBook[] = await Promise.all(requests);
+			this.history[customerIndex] = customerHistory.map((book) => {
+				book.orderId = this.history[customerIndex].find(
+					(historyBook) => historyBook.id === book.id
+				)?.orderId;
+				return book;
+			});
+		} catch (error) {}
 	}
 }

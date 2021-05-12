@@ -1,10 +1,12 @@
 <div class="card">
-	<div class="card-header bl-flex-row cardHeader">
+	<div
+		class="card-header bl-flex-row cardHeader"
+		(click)="createHistoryPreview()"
+	>
 		<h4>Historikk (24t)</h4>
 		<button
 			type="button"
 			class="btn"
-			(click)="collapse.toggle(); getHistory()"
 			[attr.aria-expanded]="!isCollapsed"
 			aria-controls="collapseExample"
 		>
@@ -25,11 +27,14 @@
 			<p *ngIf="history.length === 0">
 				Fant ingen innsamlinger ved denne skolen siste 24 timer
 			</p>
-			<app-user-order-summary
-				*ngFor="let userBooks of history"
-				[userBooks]="userBooks"
-				[isHistory]="true"
-			></app-user-order-summary>
+			<div>
+				<app-user-order-summary
+					*ngFor="let userBooks of history"
+					[userBooks]="userBooks"
+					[isHistory]="true"
+					(fetchData)="fetchCustomerHistory($event)"
+				></app-user-order-summary>
+			</div>
 		</div>
 	</div>
 </div>

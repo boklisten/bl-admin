@@ -64,6 +64,9 @@
 		<app-user-order-summary
 			*ngFor="let userItems of separatedBooks"
 			[userBooks]="userItems"
+			[remainingBooks]="
+				customerRemainingBooksDict[userItems[0].customerId] || []
+			"
 			[isHistory]="false"
 		></app-user-order-summary>
 	</div>
