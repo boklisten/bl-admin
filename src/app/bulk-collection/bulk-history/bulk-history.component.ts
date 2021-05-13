@@ -14,7 +14,7 @@ import { BulkCollectionService } from "../bulk-collection.service";
 export class BulkHistoryComponent implements OnInit {
 	public history: Array<ScannedBook[]> = [];
 	public orders: Order[];
-	public waiting: boolean;
+	public waiting: boolean = true;
 	public isCollapsed = true;
 
 	constructor(
@@ -31,7 +31,6 @@ export class BulkHistoryComponent implements OnInit {
 			return;
 		}
 
-		this.waiting = true;
 		const filter: DatabaseReportOrderFilter = {
 			branchId: this._branchStoreService.getCurrentBranch().id,
 			orderItemNotDelivered: false,
@@ -73,19 +72,22 @@ export class BulkHistoryComponent implements OnInit {
 						]);
 						customerIndex = this.history.length - 1;
 					} else {
+						this.history[customerIndex].push({
+							customerId: order.customer as string,
+							blid: orderItem.blid,
+							title: "",
+							customerName: "",
+							deadline: "",
+							id: orderItem.customerItem as string,
+							item: "",
+							orderId: order.id,
+						});
 					}
-					this.history[customerIndex].push({
-						customerId: order.customer as string,
-						blid: orderItem.blid,
-						title: "",
-						customerName: "",
-						deadline: "",
-						id: orderItem.customerItem as string,
-						item: "",
-						orderId: order.id,
-					});
 				}
 			}
+			this.history.sort((a, b) =>
+				a[0].customerName > b[0].customerName ? 1 : -1
+			);
 		} catch (error) {
 		} finally {
 			this.waiting = false;

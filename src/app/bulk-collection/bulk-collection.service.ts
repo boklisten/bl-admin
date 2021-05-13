@@ -98,7 +98,7 @@ export class BulkCollectionService {
 		try {
 			const query = customerItem
 				? "/" + customerItem
-				: "?blid=" + blid + "&returned=false";
+				: "?blid=" + blid + "&returned=false&buyout=false";
 			const customerItems = await this._customerItemService.get({
 				query: query,
 			});

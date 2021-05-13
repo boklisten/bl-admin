@@ -18,13 +18,16 @@ export class UserOrderSummaryComponent implements OnInit {
 	constructor(private _router: Router) {}
 
 	ngOnInit(): void {
-		this.isCollapsed =
-			!this.userBooks || this.userBooks[0].item === "" ? true : false;
+		this.isCollapsed = this.isLoading() || !this.isHistory;
+		this.waiting = this.isLoading();
+	}
+
+	private isLoading(): boolean {
+		return !this.userBooks || this.userBooks[0].item === "" ? true : false;
 	}
 
 	onCollapseChange() {
 		if (this.userBooks[0].item === "" && this.isCollapsed === true) {
-			this.waiting = true;
 			this.fetchData.emit(this.userBooks[0].customerId);
 		}
 		this.isCollapsed = !this.isCollapsed;
