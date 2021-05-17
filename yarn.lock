@@ -1176,11 +1176,11 @@
     tslib "^2.1.0"
 
 "@boklisten/bl-model@^0.25.0", "@boklisten/bl-model@^0.25.3":
-  version "0.25.3"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-model/-/bl-model-0.25.3.tgz#800a98e6a7c4d0162f47433fb18013058551c4b3"
-  integrity sha512-63gkBHDREt990v1wteHlI3rObeIgv18gy0YZF5C47H/NALnuGKP6qOMDjfXU+QltZf24wEb8SVkXHqxC/s5/Nw==
+  version "0.25.4"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-model/-/bl-model-0.25.4.tgz#70a69bcf52f7320c4027da8120ba9e68b7eddfde"
+  integrity sha512-bxHvkEAQ95i3woQTe8hxU0V+07lyEqdvy+5DPrEAgtaKHXHaFTynPstJEhk6Jp3CAB9LRJRQK0OYDEW7oP0NZg==
   dependencies:
-    typescript "^4.1.4"
+    typescript "^4.2.4"
 
 "@boklisten/bl-reporter@^0.4.0":
   version "0.4.0"
@@ -8570,7 +8570,7 @@ typescript@4.1, typescript@4.1.5:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.5.tgz#123a3b214aaff3be32926f0d8f1f6e704eb89a72"
   integrity sha512-6OSu9PTIzmn9TCDiovULTnET6BgXtDYL4Gg4szY+cGsc3JP1dQL8qvE8kShTRx1NIw4Q9IBHlwODjkjWEtMUyA==
 
-typescript@^4.1.4:
+typescript@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
   integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
