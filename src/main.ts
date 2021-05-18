@@ -20,9 +20,9 @@ if (environment.production) {
 		// of transactions for performance monitoring.
 		// We recommend adjusting this value in production
 		tracesSampleRate: 1.0,
-	});  
+	});
 	document.write(
-    `
+		`
       <script type="text/javascript">
 			(function (h, o, t, j, a, r) {
 				h.hj =
@@ -44,7 +44,7 @@ if (environment.production) {
 			);
       </script>
     `
-  );
+	);
 
 	enableProdMode();
 }

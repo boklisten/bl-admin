@@ -85,8 +85,7 @@
 								class="float-right bl-link-black"
 								[routerLink]="'/customer/detail'"
 								[queryParams]="{
-									customerId:
-										invoice.customerInfo.customerDetail
+									customerId: invoice.customerInfo.userDetail
 								}"
 								>{{ invoice.customerInfo.name }}</span
 							>
