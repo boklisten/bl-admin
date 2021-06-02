@@ -45,6 +45,7 @@ export class BranchEditListComponent implements OnInit, OnChanges {
 						branches,
 						"name"
 					);
+					this.temp = this.branches;
 				})
 				.catch((getBranchesError) => {
 					console.log(

@@ -58,6 +58,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 						items,
 						"title"
 					);
+					this.temp = this.items;
 				})
 				.catch((err) => {
 					console.log(
