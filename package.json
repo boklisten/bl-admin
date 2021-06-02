@@ -28,7 +28,6 @@
 		"@boklisten/bl-connect": "^0.19.0",
 		"@boklisten/bl-login": "^1.1.5",
 		"@boklisten/bl-model": "^0.25.3",
-		"@boklisten/bl-post-office": "^0.5.18",
 		"@boklisten/bl-reporter": "^0.4.0",
 		"@fortawesome/angular-fontawesome": "^0.8.2",
 		"@fortawesome/fontawesome-svg-core": "^1.2.34",
