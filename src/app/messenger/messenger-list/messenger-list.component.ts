@@ -5,6 +5,7 @@ import { Observable, Subscription } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { map, startWith } from "rxjs/operators";
 import { ActivatedRoute, Params } from "@angular/router";
+import { CustomerService } from "../../customer/customer.service";
 
 type SmsStatusType =
 	| "accepted"
@@ -36,7 +37,8 @@ export class MessengerListComponent implements OnInit {
 
 	constructor(
 		private messageService: MessageService,
-		private _route: ActivatedRoute
+		private _route: ActivatedRoute,
+		private _customerService: CustomerService
 	) {
 		this.filter = new FormControl("");
 		this.selectedList = {};
@@ -47,29 +49,35 @@ export class MessengerListComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.messages = [];
+		if (this.customerId === undefined) {
+			this.customerId = this._customerService.getCustomerDetailId();
+		}
+		if (this.customerId) {
+			this.messages = [];
+			this.messages$ = this.filter.valueChanges.pipe(
+				startWith(""),
+				map((text) => this.search(text))
+			);
 
-		this.messages$ = this.filter.valueChanges.pipe(
-			startWith(""),
-			map((text) => this.search(text))
-		);
+			let query = this.customerId
+				? `?customerId=${this.customerId}`
+				: null;
 
-		let query = this.customerId ? `?customerId=${this.customerId}` : null;
+			this.messageService
+				.get({ query: query, fresh: true })
+				.then((messages) => {
+					console.log(messages);
+					this.messages = messages;
 
-		this.messageService
-			.get({ query: query, fresh: true })
-			.then((messages) => {
-				console.log(messages);
-				this.messages = messages;
-
-				this.messages$ = this.filter.valueChanges.pipe(
-					startWith(""),
-					map((text) => this.search(text))
-				);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+					this.messages$ = this.filter.valueChanges.pipe(
+						startWith(""),
+						map((text) => this.search(text))
+					);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		}
 		this.onIdParamChange();
 	}
 
