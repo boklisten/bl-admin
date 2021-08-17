@@ -1,48 +1,18 @@
-<div class="row">
-	<div class="col-12">
-		<div
-			class="btn-group btn-group-toggle"
-			ngbRadioGroup
-			[(ngModel)]="id"
-			(ngModelChange)="selectId($event)"
+<div ngbDropdown class="d-inline-block">
+	<button
+		class="btn btn-outline-primary"
+		id="dropdownBasic1"
+		ngbDropdownToggle
+	>
+		{{ id || "Velg faktura" }}
+	</button>
+	<div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+		<button
+			(click)="selectId(idOption)"
+			*ngFor="let idOption of idOptions"
+			ngbDropdownItem
 		>
-			<label
-				ngbButtonLabel
-				class="btn-outline-secondary"
-				*ngFor="let idOption of idOptions"
-			>
-				<input ngbButton type="radio" [value]="idOption" />
-				{{ idOption }}
-			</label>
-			<!--
-			<label ngbButtonLabel class="btn-outline-secondary">
-				<input
-					ngbButton
-					type="radio"
-					value="custom"
-					i18n="@@blcPeriodSelectCustom"
-				/>
-				Custom
-			</label>
-        --></div>
+			{{ idOption }}
+		</button>
 	</div>
-	<!--
-  <div class="col-12">
-    <div class="row mt-2" *ngIf="customDeadline">
-      <div class="col-12">
-        <div class="row justify-content-between">
-          <div class="col-auto font-weight-bold" i18n="@@blcPeriodSelectFrom">
-              Deadline
-          </div>
-          <div class="col-auto">
-              <app-blc-edit-date-value
-                  [(value)]="deadline"
-                  (valueChange)="selectDeadline(deadline)"
-              ></app-blc-edit-date-value>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  -->
 </div>
