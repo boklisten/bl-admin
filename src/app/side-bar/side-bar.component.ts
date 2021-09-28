@@ -8,6 +8,7 @@ import { AuthService } from "../auth/auth.service";
 import { Subscription } from "rxjs";
 import { BlcHotkeyService } from "../bl-common/blc-hotkey/blc-hotkey.service";
 import { environment } from "../../environments/environment";
+import { BranchStoreService } from "../branch/branch-store.service";
 
 @Component({
 	selector: "app-side-bar",
@@ -40,6 +41,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 		private _router: Router,
 		private _userService: UserService,
 		private _authService: AuthService,
+		private _branchStoreService: BranchStoreService,
 		private _blcHotkeyService: BlcHotkeyService
 	) {
 		this.isDevEnvironment = !environment.production;
@@ -133,6 +135,10 @@ export class SideBarComponent implements OnInit, OnDestroy {
 		this.customer$.unsubscribe();
 		this.customerClear$.unsubscribe();
 		this.router$.unsubscribe();
+	}
+
+	get getHasSelectedBranch() {
+		return this._branchStoreService.haveBranch();
 	}
 
 	private handleUpShortcut() {

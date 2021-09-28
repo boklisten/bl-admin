@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Branch, UserPermission } from "@boklisten/bl-model";
 import { AuthService } from "../auth/auth.service";
 import { BlcKeyeventDoubleShiftService } from "../bl-common/blc-keyevent/blc-keyevent-double-shift.service";
+import { BranchStoreService } from "../branch/branch-store.service";
 
 @Component({
 	selector: "app-header",
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
 
 	constructor(
 		private _authService: AuthService,
+		private _branchStoreService: BranchStoreService,
 		private _blcKeyeventDoubleShiftService: BlcKeyeventDoubleShiftService
 	) {
 		this.searchTerm = "";
@@ -36,6 +38,10 @@ export class HeaderComponent implements OnInit {
 		this.permission = this._authService.getPermission();
 		this.userPermission = this.translateUserPermission(this.permission);
 		this.username = this._authService.getUsername();
+	}
+
+	get getHasSelectedBranch() {
+		return this._branchStoreService.haveBranch();
 	}
 
 	private translateUserPermission(userPermission: UserPermission) {

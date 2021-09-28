@@ -7,14 +7,14 @@
 		/>
 	</div>
 
-	<div class="bl-header-search-bar">
+	<div class="bl-header-search-bar" *ngIf="getHasSelectedBranch">
 		<app-header-customer-search></app-header-customer-search>
 	</div>
 
-	<div class="bl-header-customer-current">
+	<div class="bl-header-customer-current" *ngIf="getHasSelectedBranch">
 		<app-customer-current></app-customer-current>
 	</div>
-	<div class="bl-header-branch-current">
+	<div class="bl-header-branch-current" *ngIf="getHasSelectedBranch">
 		<app-branch-current></app-branch-current>
 	</div>
 </div>

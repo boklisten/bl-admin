@@ -1,4 +1,4 @@
-<div class="bl-sidebar">
+<div class="bl-sidebar" *ngIf="getHasSelectedBranch">
 	<span *ngFor="let sidebarLink of sidebarLinks">
 		<app-side-bar-button
 			*ngIf="!sidebarLink.hide"
