@@ -144,13 +144,14 @@ export class CartItemActionProvider {
 		customerItem: CustomerItem
 	): CartItemAction[] {
 		if (
-			this._dateService.isDeadlineExpired(customerItem.deadline) &&
+			(this._dateService.isDeadlineExpired(customerItem.deadline) ||
+				customerItem.periodExtends.length >= 2) &&
 			!this._authService.isAdmin()
 		) {
 			return [];
 		}
 
-		let actions = [];
+		const actions = [];
 
 		try {
 			const semesterExtendPeriod = this._branchHelperService.getExtendPeriod(
