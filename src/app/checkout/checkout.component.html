@@ -3,7 +3,7 @@
 	*ngIf="step.showHeader"
 >
 	<app-bl-common-toggle-button
-		[value]="sendEmailNotification"
+		[(value)]="sendEmailNotification"
 		[(ngModel)]="sendEmailNotification"
 		class="mr-5"
 		*ngIf="isAdmin"
