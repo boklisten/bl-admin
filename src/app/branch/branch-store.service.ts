@@ -32,9 +32,12 @@ export class BranchStoreService {
 		this._branchChange$ = new Subject<Branch>();
 		this.redirectUrl = null;
 		if (this._storageService.get("bl-branch")) {
-			this._currentBranch = this._storageService.get("bl-branch");
-			this._branchChange$.next(this._currentBranch);
-			this.setBranch(this._currentBranch);
+			const storedBranch = this._storageService.get("bl-branch");
+			if (this.storedBranchIsUpToDate(storedBranch)) {
+				this._currentBranch = storedBranch;
+				this._branchChange$.next(storedBranch);
+				this.setBranch(storedBranch);
+			}
 		}
 		this.getAllBranches()
 			.then((branches: Branch[]) => {})
@@ -55,6 +58,12 @@ export class BranchStoreService {
 
 	public set(branch: Branch) {
 		this.setBranch(branch);
+	}
+
+	private storedBranchIsUpToDate(branch: Branch): boolean {
+		return branch.paymentInfo.partlyPaymentPeriods.every(
+			(period) => new Date(period.date) > new Date()
+		);
 	}
 
 	private setBranch(branch: Branch) {
