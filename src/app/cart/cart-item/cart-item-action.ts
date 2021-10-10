@@ -5,4 +5,5 @@ export interface CartItemAction {
 	period?: Period;
 	deadline?: Date;
 	age?: "new" | "used";
+	error?: string;
 }

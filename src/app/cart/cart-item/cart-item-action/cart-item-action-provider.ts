@@ -143,12 +143,28 @@ export class CartItemActionProvider {
 	private getValidActionsForExtend(
 		customerItem: CustomerItem
 	): CartItemAction[] {
-		if (
-			(this._dateService.isDeadlineExpired(customerItem.deadline) ||
-				customerItem.periodExtends.length >= 2) &&
-			!this._authService.isAdmin()
-		) {
-			return [];
+		if (!this._authService.isAdmin()) {
+			if (this._dateService.isDeadlineExpired(customerItem.deadline)) {
+				return [
+					{
+						action: "extend",
+						period: "semester",
+						deadline: new Date(),
+						error:
+							"Kan ikke forlenges fordi fristen for innlevering har utløpt",
+					},
+				];
+			} else if (customerItem.periodExtends.length >= 1) {
+				return [
+					{
+						action: "extend",
+						period: "semester",
+						deadline: new Date(),
+						error:
+							"Kan ikke forlenges fordi boken allerede har vært forlenget",
+					},
+				];
+			}
 		}
 
 		const actions = [];

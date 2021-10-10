@@ -8,12 +8,14 @@
 		ngbButtonLabel
 		class="btn-outline-secondary"
 		*ngFor="let actionChoice of actionList"
+		[title]="actionChoice.error ? actionChoice.error : ''"
 	>
 		<input
 			ngbButton
 			type="radio"
 			[value]="getActionName(actionChoice)"
 			(click)="onActionChange(actionChoice)"
+			[disabled]="actionChoice.error !== undefined"
 		/>
 		<span
 			*ngIf="
