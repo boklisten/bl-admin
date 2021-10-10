@@ -1182,10 +1182,10 @@
   dependencies:
     typescript "^4.1.4"
 
-"@boklisten/bl-reporter@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.npmjs.org/@boklisten/bl-reporter/-/bl-reporter-0.4.0.tgz"
-  integrity sha512-+Bw+3UEmZvje//FGU9tjh63xK3mUhNYOfuM0j0eMSvJJbcI8al2T/+dq+HZ7/eW4kw5bVck1V77pJpdgbKXV+w==
+"@boklisten/bl-reporter@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-reporter/-/bl-reporter-0.4.1.tgz#8c05b032f99e41e1803e598703a7eb1fc6e1de82"
+  integrity sha512-ySrtVzyImfDR1R3dNbvVcDvFWtG5cYlSNDUuCcy+okfuswjAvc5L9C3TKoULiO2Z8RqZJsxxZ9ARQpzCBHPFsw==
   dependencies:
     "@angular/localize" "^11.2.3"
     "@boklisten/bl-connect" "^0.19.0"
