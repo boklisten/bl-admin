@@ -67,7 +67,7 @@ export class InvoiceGeneratorService {
 			[]
 		);
 
-		const groupedCustomerItems = await this.groupCustomerItemsByCustomer(
+		const groupedCustomerItems = this.groupCustomerItemsByCustomer(
 			notReturnedCustomerItems
 		);
 
@@ -82,11 +82,7 @@ export class InvoiceGeneratorService {
 	}
 
 	public async addInvoices(invoices: Invoice[]): Promise<Invoice[]> {
-		const promiseArr: Promise<Invoice>[] = invoices.map((invoice) => {
-			return this.invoiceService.add(invoice);
-		});
-
-		return await Promise.all(promiseArr);
+		return Promise.all(invoices.map(this.invoiceService.add));
 	}
 
 	public setUnsavedInvoices(invoices: Invoice[]) {
@@ -97,37 +93,25 @@ export class InvoiceGeneratorService {
 		return this.unsavedInvoices;
 	}
 
-	private async groupCustomerItemsByCustomer(
+	private groupCustomerItemsByCustomer(
 		customerItems: CustomerItem[]
-	): Promise<{ customer: string; customerItems: CustomerItem[] }[]> {
-		const customersAndCustomerItems = {}; // {customer: string, customerItems: CustomerItem[]};
-
+	): { customer: string; customerItems: CustomerItem[] }[] {
+		// Group customers with thir respective customerItems
+		const customersAndCustomerItems = {};
 		for (const customerItem of customerItems) {
-			customerItem.item = await this.itemService.getById(
-				customerItem.item as string
+			customersAndCustomerItems[customerItem.customer as string] ??= [];
+			customersAndCustomerItems[customerItem.customer as string].push(
+				customerItem
 			);
-
-			if (!customersAndCustomerItems[customerItem.customer as string]) {
-				customersAndCustomerItems[customerItem.customer as string] = {
-					customerItems: [],
-				};
-			}
-			customersAndCustomerItems[customerItem.customer as string][
-				"customerItems"
-			].push(customerItem);
 		}
 
-		const customersAndCustomerItemsArray = [];
-
-		for (const key in customersAndCustomerItems) {
-			if (key) {
-				customersAndCustomerItemsArray.push({
-					customer: key,
-					customerItems:
-						customersAndCustomerItems[key]["customerItems"],
-				});
-			}
-		}
+		// Put everything in an array
+		const customersAndCustomerItemsArray = Object.keys(
+			customersAndCustomerItems
+		).map((customer) => ({
+			customer: customer,
+			customerItems: customersAndCustomerItems[customer],
+		}));
 
 		return customersAndCustomerItemsArray;
 	}
@@ -141,31 +125,37 @@ export class InvoiceGeneratorService {
 			customerItems: CustomerItem[];
 		}[]
 	): Promise<Invoice[]> {
-		const invoices = [];
 		const duedate = this.dateService.addDays(
 			new Date(),
 			this.daysToDeadline
 		);
 
-		for (const customerWithCustomerItem of customersWithCustomerItems) {
-			customerWithCustomerItem.customer = await this.userDetailService.getById(
-				customerWithCustomerItem.customer as string
-			);
-
-			invoices.push(
-				this.convertToInvoice(
+		return await Promise.all(
+			customersWithCustomerItems.map(async (customerWithCustomerItem) => {
+				await Promise.all(
+					customerWithCustomerItem.customerItems.map(
+						async (customerItem) => {
+							customerItem.item = await this.itemService.getById(
+								customerItem.item as string
+							);
+						}
+					)
+				);
+				customerWithCustomerItem.customer = await this.userDetailService.getById(
+					customerWithCustomerItem.customer as string
+				);
+				const currentInvoiceNumber = invoiceNumber;
+				invoiceNumber += 1;
+				return this.convertToInvoice(
 					reference,
-					invoiceNumber,
+					currentInvoiceNumber,
 					duedate,
 					customerItemType,
 					customerWithCustomerItem.customer,
 					customerWithCustomerItem.customerItems
-				)
-			);
-			invoiceNumber += 1;
-		}
-
-		return invoices;
+				);
+			})
+		);
 	}
 
 	private convertToInvoice(
