@@ -113,14 +113,20 @@ export class CustomerItemPriceService {
 
 	private async amountCancel(customerItem: CustomerItem): Promise<number> {
 		if (customerItem.handout && customerItem.handoutInfo) {
-			let totalCancelAmount = 0;
+			const orders = customerItem.orders as string[];
+			const itemCancelAmounts = await Promise.all(
+				orders.map((orderId) =>
+					this.calculateOrderItemCancelAmount(
+						orderId as string,
+						customerItem.item as string
+					)
+				)
+			);
 
-			for (const orderId of customerItem.orders) {
-				totalCancelAmount += await this.calculateOrderItemCancelAmount(
-					orderId as string,
-					customerItem.item as string
-				);
-			}
+			const totalCancelAmount = itemCancelAmounts.reduce(
+				(sum, amount) => sum + amount,
+				0
+			);
 
 			return 0 - totalCancelAmount;
 		}

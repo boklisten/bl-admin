@@ -82,7 +82,9 @@ export class InvoiceGeneratorService {
 	}
 
 	public async addInvoices(invoices: Invoice[]): Promise<Invoice[]> {
-		return Promise.all(invoices.map(this.invoiceService.add));
+		return Promise.all(
+			invoices.map((invoice) => this.invoiceService.add(invoice))
+		);
 	}
 
 	public setUnsavedInvoices(invoices: Invoice[]) {

@@ -264,15 +264,14 @@ export class CustomerItemHandlerService {
 	private async addCustomerItemsToApi(
 		customerItems: CustomerItem[]
 	): Promise<CustomerItem[]> {
-		const addedCustomerItems: CustomerItem[] = [];
+		let addedCustomerItems: CustomerItem[];
 
 		try {
-			for (const customerItem of customerItems) {
-				const addedCustomerItem = await this._customerItemService.add(
-					customerItem
-				);
-				addedCustomerItems.push(addedCustomerItem);
-			}
+			addedCustomerItems = await Promise.all(
+				customerItems.map((customerItem) =>
+					this._customerItemService.add(customerItem)
+				)
+			);
 		} catch (e) {
 			throw new Error(
 				"customerItemHandlerService: could not add customer item: " + e

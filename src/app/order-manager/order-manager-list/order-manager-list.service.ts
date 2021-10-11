@@ -96,17 +96,12 @@ export class OrderManagerListService {
 				}
 			}
 
-			let shouldInclude = false;
-
-			for (const orderItem of order.orderItems) {
-				if (
+			const shouldInclude = order.orderItems.some(
+				(orderItem) =>
 					orderItem.type !== "extend" &&
 					orderItem.type !== "buyout" &&
 					!orderItem.movedToOrder
-				) {
-					shouldInclude = true;
-				}
-			}
+			);
 
 			if (shouldInclude) {
 				returnOrders.push(order);

@@ -12,27 +12,16 @@ export class PaymentHelperService {
 		if (!order.payments || order.payments.length <= 0) {
 			return true;
 		}
-
-		for (let paymentId of order.payments) {
-			let payment;
-			try {
-				payment = await this._paymentService.getById(
-					paymentId as string
-				);
-			} catch (e) {}
-
-			if (this.isPaymentConfirmed(payment)) {
-				return true;
-			}
-		}
-
-		return false;
+		const paymentIds = order.payments as string[];
+		const payments = await Promise.all(
+			paymentIds.map((paymentId) =>
+				this._paymentService.getById(paymentId)
+			)
+		);
+		return payments.some((payment) => this.isPaymentConfirmed(payment));
 	}
 
 	private isPaymentConfirmed(payment: Payment): boolean {
-		if (payment.confirmed) {
-			return true;
-		}
-		return false;
+		return payment.confirmed;
 	}
 }

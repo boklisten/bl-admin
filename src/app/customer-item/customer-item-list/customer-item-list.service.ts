@@ -182,20 +182,12 @@ export class CustomerItemListService {
 	private async fetchAndAttachItemsToCustomerItems(
 		customerItems: CustomerItem[]
 	): Promise<CustomerItemWithItem[]> {
-		const customerItemList = [];
-
-		for (const customerItem of customerItems) {
-			if (this.isActive(customerItem)) {
-				const item = await this.fetchItem(customerItem.item as string);
-
-				customerItemList.push({
-					customerItem: customerItem,
-					item: item,
-				});
-			}
-		}
-
-		return customerItemList;
+		return await Promise.all(
+			customerItems.filter(this.isActive).map(async (customerItem) => ({
+				customerItem: customerItem,
+				item: await this.fetchItem(customerItem.item as string),
+			}))
+		);
 	}
 
 	private async fetchItem(itemId: string): Promise<Item> {

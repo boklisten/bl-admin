@@ -59,19 +59,16 @@ export class ScannerComponent implements OnInit {
 	}
 
 	private async pushUniqueItemsToDB(): Promise<boolean> {
-		for (let blid of this.blids) {
-			try {
-				await this.uniqeItemService.add({
+		await Promise.all(
+			this.blids.map((blid) =>
+				this.uniqeItemService.add({
 					id: "",
 					item: this.selectedItem.id,
 					blid: blid,
 					title: this.selectedItem.title,
-				});
-			} catch (e) {
-				throw e;
-			}
-		}
-
+				})
+			)
+		);
 		return true;
 	}
 }

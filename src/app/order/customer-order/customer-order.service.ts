@@ -43,12 +43,13 @@ export class CustomerOrderService {
 		}
 
 		let validOrders = [];
-
-		for (let order of orders) {
-			if (await this._paymentHelperService.isOrderPayedFor(order)) {
-				validOrders.push(order);
-			}
-		}
+		await Promise.all(
+			orders.map(async (order) => {
+				if (await this._paymentHelperService.isOrderPayedFor(order)) {
+					validOrders.push(order);
+				}
+			})
+		);
 
 		validOrders = this.sortOrders(validOrders);
 

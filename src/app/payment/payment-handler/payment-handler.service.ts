@@ -22,10 +22,9 @@ export class PaymentHandlerService {
 	public async addPayments(order: Order): Promise<boolean> {
 		const payments = this.createPayments(order.id);
 
-		for (const payment of payments) {
-			await this._paymentService.add(payment);
-		}
-
+		await Promise.all(
+			payments.map((payment) => this._paymentService.add(payment))
+		);
 		return true;
 	}
 
