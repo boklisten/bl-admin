@@ -88,9 +88,7 @@ export class BranchEditListComponent implements OnInit, OnChanges {
 
 	public updateRowItem(rowIndex: number, colName: string) {
 		this.editing[rowIndex + colName] = false;
-		if (this.autoUpdate) {
-			this.updateBranchToDb(rowIndex, colName);
-		}
+		this.updateBranchToDb(rowIndex, colName);
 	}
 
 	public updateBranchToDb(rowIndex: number, colName: string) {

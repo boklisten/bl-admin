@@ -87,9 +87,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 	updateRowItem(rowIndex: number, colName: string) {
 		this.editing[rowIndex + colName] = false;
 
-		if (this.autoUpdate) {
-			this.updateItemToDb(rowIndex, colName);
-		}
+		this.updateItemToDb(rowIndex, colName);
 	}
 
 	updateValue(value, cell: string, rowIndex: number) {
@@ -97,9 +95,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 		this.items[rowIndex][cell] = value;
 		this.items = [...this.items];
 
-		if (this.autoUpdate) {
-			this.updateItem(rowIndex, cell);
-		}
+		this.updateItem(rowIndex, cell);
 	}
 
 	private updateItemToDb(rowIndex: number, colName: string) {
