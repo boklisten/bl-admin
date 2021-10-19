@@ -140,7 +140,9 @@ export class MessengerReminderComponent implements OnInit {
 		let query = `?returned=false&buyout=false&match=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
 
 		// we currently have no notion of "loan" and therefore need to create this 'hack'
-		const loanBranches = await this.getLoanBranches();
+		const loanBranches = (
+			await this.branchStoreService.getAllBranches()
+		).map((branch) => branch.id);
 		if (type === "loan") {
 			let filteredBranches = [];
 			if (this.selectedBranches.length > 0) {
@@ -160,7 +162,9 @@ export class MessengerReminderComponent implements OnInit {
 			query += this.getBranchQuery(filteredBranches);
 		} else {
 			let filteredBranches = [];
-			const noLoanBranches = await this.branchHelperService.getNoneLoanBranches();
+			const noLoanBranches = (
+				await this.branchStoreService.getAllBranches()
+			).map((branch) => branch.id);
 
 			if (this.selectedBranches.length > 0) {
 				for (const branchId of this.selectedBranches) {

@@ -98,7 +98,9 @@ export class BranchHelperService {
 		let filteredBranches = [];
 
 		if (customerItemType === "loan") {
-			const loanBranches = await this.getLoanBranches();
+			const loanBranches = (
+				await this.branchStoreService.getAllBranches()
+			).map((branch) => branch.id);
 
 			if (selectedBranches.length > 0) {
 				for (const branchId of selectedBranches) {
@@ -115,7 +117,9 @@ export class BranchHelperService {
 				);
 			}
 		} else {
-			const noLoanBranches = await this.getNoneLoanBranches();
+			const noLoanBranches = (
+				await this.branchStoreService.getAllBranches()
+			).map((branch) => branch.id);
 
 			if (selectedBranches.length > 0) {
 				for (const branchId of selectedBranches) {
