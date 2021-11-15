@@ -126,7 +126,7 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	private printOrderOverviewToExcel() {
+	public printOrderOverviewToExcel() {
 		const orderOverview = [];
 		this.placedOrders.forEach((placedOrder) => {
 			placedOrder.orderItems.forEach((orderItem) => {
