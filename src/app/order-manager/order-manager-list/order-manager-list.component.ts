@@ -16,6 +16,7 @@ import { timer } from "rxjs/internal/observable/timer";
 import { Observable } from "rxjs/internal/Observable";
 import { Subscription } from "rxjs";
 import { CheckoutService } from "../../checkout/checkout.service";
+import { DatabaseExcelService } from "../../database/database-excel/database-excel.service";
 
 @Component({
 	selector: "app-order-manager-list",
@@ -36,6 +37,7 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 	private orderManagerListChange$: Subscription;
 
 	constructor(
+		private _databaseExcelService: DatabaseExcelService,
 		private _orderManagerListService: OrderManagerListService,
 		private _branchStoreService: BranchStoreService,
 		private _customerService: CustomerService,
@@ -104,6 +106,8 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 	}
 
 	private getOrders() {
+		this.fetching = true;
+		this.placedOrders = [];
 		this._orderManagerListService
 			.getPlacedOrders()
 			.then((orders: Order[]) => {
@@ -120,6 +124,25 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 				this.placedOrders = [];
 				this.fetching = false;
 			});
+	}
+
+	private printOrderOverviewToExcel() {
+		const orderOverview = [];
+		this.placedOrders.forEach((placedOrder) => {
+			placedOrder.orderItems.forEach((orderItem) => {
+				const result = orderOverview.find(
+					(order) => order.title === orderItem.title
+				);
+
+				if (!result) {
+					orderOverview.push({ title: orderItem.title, count: 1 });
+				} else {
+					result.count += 1;
+				}
+			});
+		});
+		orderOverview.sort((a, b) => a.title.localeCompare(b.title));
+		this._databaseExcelService.objectsToExcelFile(orderOverview, "orders");
 	}
 
 	onBranchChange() {

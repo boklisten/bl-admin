@@ -2,7 +2,16 @@
 	<div class="col">
 		<div class="card">
 			<div class="card-header">
-				<div class="row justify-content-end text-secondary">
+				<div class="row justify-content-center mb-4">
+					<button
+						[disabled]="fetching"
+						class="btn btn-outline-info btn-block"
+						(click)="printOrderOverviewToExcel()"
+					>
+						Last ned ordreoversikt
+					</button>
+				</div>
+				<div class="row justify-content-center text-secondary">
 					<!--
 					<div class="col-2">
                         <span class="mr-2 pb-2">
@@ -54,9 +63,14 @@
 				class="card-body"
 				*ngIf="placedOrders && placedOrders.length <= 0"
 			>
+				<div class="alert alert-secondary" *ngIf="fetching">
+					Laster
+					<fa-icon [icon]="'sync-alt'" [spin]="fetching"></fa-icon>
+				</div>
 				<div
 					class="alert alert-secondary"
 					i18n="@@orderManagerListNoOrdersFoundError"
+					*ngIf="!fetching"
 				>
 					No orders found
 				</div>
