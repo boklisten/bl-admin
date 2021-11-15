@@ -8,6 +8,7 @@ import {
 import { Invoice } from "@boklisten/bl-model";
 import { InvoiceService } from "@boklisten/bl-connect";
 import { ActivatedRoute, Params } from "@angular/router";
+import { CustomerItemService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-invoice-detail",
@@ -18,6 +19,7 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 	@Input() invoice: Invoice;
 
 	constructor(
+		private _customerItemService: CustomerItemService,
 		private invoiceService: InvoiceService,
 		private route: ActivatedRoute
 	) {}
@@ -39,11 +41,23 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 		}
 	}
 
+	private updateCustomerItemsBuyoutStatus(buyout) {
+		Promise.all(
+			this.invoice.customerItemPayments.map((payment) => {
+				return this._customerItemService.update(
+					payment.customerItem as string,
+					{ buyout: buyout }
+				);
+			})
+		);
+	}
+
 	public onCustomerHavePayedChange(customerHavePayed: boolean) {
 		this.invoice.customerHavePayed = customerHavePayed;
 		this.invoice.toDebtCollection = false;
 		this.invoice.toCreditNote = false;
 		this.updateInvoiceStatus();
+		this.updateCustomerItemsBuyoutStatus(customerHavePayed);
 	}
 
 	public onInvoiceToDebtCollection(toDebtCollection: boolean) {
