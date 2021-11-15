@@ -11,6 +11,7 @@ export class BlCommonToggleButtonComponent implements OnInit {
 	@Output() valueChange: EventEmitter<boolean>;
 	@Output() update: EventEmitter<boolean>;
 	@Input() tooltip: string;
+	@Input() confirmMessage: string;
 
 	constructor() {
 		this.valueChange = new EventEmitter<boolean>();
@@ -20,8 +21,15 @@ export class BlCommonToggleButtonComponent implements OnInit {
 	ngOnInit() {}
 
 	onUpdate(value) {
-		this.value = value;
-		this.valueChange.emit(value);
-		this.update.emit(value);
+		let confirmed = true;
+		if (this.confirmMessage) {
+			confirmed = confirm(this.confirmMessage);
+		}
+
+		if (confirmed) {
+			this.value = value;
+			this.valueChange.emit(value);
+			this.update.emit(value);
+		}
 	}
 }
