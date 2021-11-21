@@ -95,7 +95,11 @@ export class CartItemActionProvider {
 	}
 
 	private isBuybackValid(customerItem: CustomerItem): boolean {
-		return customerItem.type === "partly-payment";
+		return (
+			customerItem.type === "partly-payment" &&
+			(this._authService.isAdmin() ||
+				!this._dateService.isDeadlineExpired(customerItem.deadline))
+		);
 	}
 
 	private getValidActionsForBuyout(
