@@ -69,6 +69,7 @@ export class BulkCollectionService {
 				title: uniqueItem.title,
 				customerName: customerItem.customerInfo.name,
 				collectedAt: this.prettyTime(customerItem.returnInfo?.time),
+				type: customerItem.type,
 			};
 		} catch (error) {
 			const errorMessage = error.message || error.name || error.msg;
@@ -152,7 +153,7 @@ export class BulkCollectionService {
 		const priceInformation = this._priceService.getEmptyPriceInformation();
 
 		return {
-			type: "return",
+			type: scannedBook.type === "partly-payment" ? "buyback" : "return",
 			item: scannedBook.item,
 			title: scannedBook.title,
 			blid: scannedBook.blid,
