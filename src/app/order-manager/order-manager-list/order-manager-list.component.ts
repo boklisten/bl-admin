@@ -17,6 +17,7 @@ import { Observable } from "rxjs/internal/Observable";
 import { Subscription } from "rxjs";
 import { CheckoutService } from "../../checkout/checkout.service";
 import { DatabaseExcelService } from "../../database/database-excel/database-excel.service";
+import { ItemService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-order-manager-list",
@@ -41,7 +42,8 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 		private _orderManagerListService: OrderManagerListService,
 		private _branchStoreService: BranchStoreService,
 		private _customerService: CustomerService,
-		private _checkoutService: CheckoutService
+		private _checkoutService: CheckoutService,
+		private _itemService: ItemService
 	) {
 		this.selectedOrder = new EventEmitter<Order>();
 		this.allBranchesFilter = false;
@@ -126,7 +128,7 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 			});
 	}
 
-	public printOrderOverviewToExcel() {
+	public async printOrderOverviewToExcel() {
 		const orderOverview = [];
 		this.placedOrders.forEach((placedOrder) => {
 			placedOrder.orderItems.forEach((orderItem) => {
@@ -135,12 +137,27 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 				);
 
 				if (!result) {
-					orderOverview.push({ title: orderItem.title, count: 1 });
+					orderOverview.push({
+						title: orderItem.title,
+						isbn: orderItem.item,
+						count: 1,
+					});
 				} else {
 					result.count += 1;
 				}
 			});
 		});
+
+		await Promise.all(
+			orderOverview.map(async (itemOverview) => {
+				const item = await this._itemService.getById(
+					itemOverview.isbn as string
+				);
+				itemOverview.isbn = item.info.isbn;
+				return itemOverview;
+			})
+		);
+
 		orderOverview.sort((a, b) => a.title.localeCompare(b.title));
 		this._databaseExcelService.objectsToExcelFile(orderOverview, "orders");
 	}
