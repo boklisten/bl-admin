@@ -76,26 +76,9 @@ export class OrderManagerListService {
 	}
 
 	private async filterOrders(orders: Order[]): Promise<Order[]> {
-		const returnOrders: Order[] = [];
+		const returnOrders = [];
 
 		for (const order of orders) {
-			if (this.orderFilter.delivery) {
-				if (
-					!order.delivery ||
-					(typeof order.delivery === "string" &&
-						order.delivery.length <= 0)
-				) {
-					continue;
-				}
-				const delivery = await this._deliveryService.getById(
-					order.delivery as string
-				);
-
-				if (delivery.method !== "bring") {
-					continue;
-				}
-			}
-
 			const shouldInclude = order.orderItems.some(
 				(orderItem) =>
 					orderItem.type !== "extend" &&
@@ -104,6 +87,25 @@ export class OrderManagerListService {
 			);
 
 			if (shouldInclude) {
+				if (this.orderFilter.delivery) {
+					if (
+						!order.delivery ||
+						(typeof order.delivery === "string" &&
+							order.delivery.length <= 0)
+					) {
+						continue;
+					}
+					let delivery;
+					try {
+						delivery = await this._deliveryService.getById(
+							order.delivery as string
+						);
+					} catch {}
+
+					if (!delivery || delivery.method !== "bring") {
+						continue;
+					}
+				}
 				returnOrders.push(order);
 			}
 		}
