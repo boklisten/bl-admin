@@ -5,10 +5,12 @@ import {
 	OnChanges,
 	SimpleChanges,
 } from "@angular/core";
-import { Invoice } from "@boklisten/bl-model";
+import { Invoice, OrderItem } from "@boklisten/bl-model";
 import { InvoiceService } from "@boklisten/bl-connect";
 import { ActivatedRoute, Params } from "@angular/router";
-import { CustomerItemService } from "@boklisten/bl-connect";
+import { CustomerItemService, OrderService } from "@boklisten/bl-connect";
+import { OrderGeneratorService } from "../../order/order-generator/order-generator.service";
+import { PriceService } from "../../price/price.service";
 
 @Component({
 	selector: "app-invoice-detail",
@@ -21,7 +23,10 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 	constructor(
 		private _customerItemService: CustomerItemService,
 		private invoiceService: InvoiceService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private _orderGeneratorService: OrderGeneratorService,
+		private _priceService: PriceService,
+		private _orderService: OrderService
 	) {}
 
 	public ngOnInit() {
@@ -41,7 +46,61 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 		}
 	}
 
-	private updateCustomerItemsBuyoutStatus(buyout) {
+	private async createBuyoutOrder(customerItemPayments) {
+		let customerItems = [];
+		try {
+			customerItems = await Promise.all(
+				customerItemPayments.map(async (payment) => {
+					const items = await this._customerItemService.get({
+						query: "/" + payment.customerItem,
+					});
+					return items[0];
+				})
+			);
+		} catch (error) {}
+		const orderItems = customerItemPayments.map(
+			(payment, index): OrderItem => {
+				const priceInformation = this._priceService.getEmptyPriceInformation();
+
+				return {
+					type: "buyout",
+					item: payment.item,
+					title: payment.title,
+					blid: customerItems[index].blid,
+					age: "used",
+					amount: priceInformation.amount,
+					unitPrice: priceInformation.unitPrice,
+					taxRate: priceInformation.taxRate,
+					taxAmount: priceInformation.taxAmount,
+					handout: true,
+					info: {
+						buybackAmount: priceInformation.amount,
+						customerItem: payment.customerItem,
+					},
+					discount: null,
+					delivered: true,
+					customerItem: payment.customerItem,
+					match: null,
+					movedToOrder: null,
+					movedFromOrder: null,
+				};
+			}
+		);
+		const order = this._orderGeneratorService.generateOrder(
+			orderItems,
+			customerItems[0].customer,
+			false
+		);
+		try {
+			const res = await this._orderService.add(order);
+			this._orderService.updateWithOperation(res.id, {}, "place");
+		} catch {}
+	}
+
+	private async updateCustomerItemsBuyoutStatus(buyout) {
+		if (buyout) {
+			this.createBuyoutOrder(this.invoice.customerItemPayments);
+		}
 		Promise.all(
 			this.invoice.customerItemPayments.map((payment) => {
 				return this._customerItemService.update(
@@ -52,7 +111,7 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 		);
 	}
 
-	public onCustomerHavePayedChange(customerHavePayed: boolean) {
+	public async onCustomerHavePayedChange(customerHavePayed: boolean) {
 		this.invoice.customerHavePayed = customerHavePayed;
 		this.invoice.toDebtCollection = false;
 		this.invoice.toCreditNote = false;
