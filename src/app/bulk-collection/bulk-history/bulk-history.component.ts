@@ -14,7 +14,7 @@ import { BulkCollectionService } from "../bulk-collection.service";
 export class BulkHistoryComponent implements OnInit {
 	public history: Array<ScannedBook[]> = [];
 	public orders: Order[];
-	public waiting: boolean = true;
+	public waiting = true;
 	public isCollapsed = true;
 
 	constructor(
@@ -30,6 +30,9 @@ export class BulkHistoryComponent implements OnInit {
 		if (this.history.length > 0) {
 			return;
 		}
+		const isBuyback =
+			this._branchStoreService.getCurrentBranch().paymentInfo
+				.partlyPaymentPeriods.length > 0;
 
 		const filter: DatabaseReportOrderFilter = {
 			branchId: this._branchStoreService.getCurrentBranch().id,
@@ -37,7 +40,7 @@ export class BulkHistoryComponent implements OnInit {
 			fromDate: new Date(Date.now() - 86400000),
 			byCustomer: false,
 			toDate: new Date(Date.now() + 86400000),
-			type: "return",
+			type: isBuyback ? "buyback" : "return",
 		};
 
 		try {

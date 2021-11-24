@@ -41,8 +41,11 @@ export class BulkCollectionService {
 				(customerBooks) =>
 					customerBooks[0].customerId === book.customerId
 			);
-			if (index === -1) separatedBooks.push([book]);
-			else separatedBooks[index].push(book);
+			if (index === -1) {
+				separatedBooks.push([book]);
+			} else {
+				separatedBooks[index].push(book);
+			}
 		}
 
 		return separatedBooks;
@@ -59,6 +62,14 @@ export class BulkCollectionService {
 			]);
 			const uniqueItem = result[0];
 			const customerItem = result[1];
+			const buybackInfo = customerItem.buybackInfo as {
+				order: string;
+				time: Date;
+			};
+			const collectionTime =
+				customerItem.type === "partly-payment"
+					? buybackInfo?.time
+					: customerItem.returnInfo?.time;
 
 			return {
 				id: customerItem.id,
@@ -68,7 +79,7 @@ export class BulkCollectionService {
 				deadline: this.prettyDate(customerItem.deadline),
 				title: uniqueItem.title,
 				customerName: customerItem.customerInfo.name,
-				collectedAt: this.prettyTime(customerItem.returnInfo?.time),
+				collectedAt: this.prettyTime(collectionTime),
 				type: customerItem.type,
 			};
 		} catch (error) {
