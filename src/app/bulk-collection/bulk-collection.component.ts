@@ -11,10 +11,10 @@ import { CustomerItemService } from "@boklisten/bl-connect";
 })
 export class BulkCollectionComponent implements OnInit {
 	public scannedBooks: Array<ScannedBook> = [];
-	public showReceipt: boolean = false;
+	public showReceipt = false;
 	public separatedBooks: Array<ScannedBook[]> = [];
 	public customerRemainingBooksDict: Object = {};
-	public waiting: boolean = false;
+	public waiting = false;
 
 	constructor(
 		private _bulkCollectionService: BulkCollectionService,
@@ -119,7 +119,7 @@ export class BulkCollectionComponent implements OnInit {
 	public async getRemainingBooks(customerId: string) {
 		try {
 			const customerItems = await this._customerItemService.get({
-				query: `?customer=${customerId}&returned=false`,
+				query: `?customer=${customerId}&returned=false&buyback=false&buyout=false&cancel=false`,
 			});
 			const requests = customerItems
 				.filter((customerItem) => customerItem.blid)
