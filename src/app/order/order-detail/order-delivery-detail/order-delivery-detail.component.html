@@ -104,6 +104,18 @@
 					</div>
 					<div class="row mt-2">
 						<div class="col-auto text-secondary">
+							<span class="mr-2">Pakketype: </span>
+							<span>
+								{{
+									delivery.info["product"] === "3584"
+										? "pakke i postkassen"
+										: "pakke til hentested"
+								}}
+							</span>
+						</div>
+					</div>
+					<div class="row mt-2">
+						<div class="col-auto text-secondary">
 							<span
 								class="mr-2"
 								i18n="@@orderDeliveryDetailTrackingNumber"
