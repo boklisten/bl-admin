@@ -9,7 +9,7 @@ import {
 	OrderFilter,
 	OrderManagerListService,
 } from "./order-manager-list.service";
-import { Order } from "@boklisten/bl-model";
+import { Order, Delivery } from "@boklisten/bl-model";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { CustomerService } from "../../customer/customer.service";
 import { timer } from "rxjs/internal/observable/timer";
@@ -17,7 +17,11 @@ import { Observable } from "rxjs/internal/Observable";
 import { Subscription } from "rxjs";
 import { CheckoutService } from "../../checkout/checkout.service";
 import { DatabaseExcelService } from "../../database/database-excel/database-excel.service";
-import { ItemService } from "@boklisten/bl-connect";
+import {
+	ItemService,
+	DeliveryService,
+	UserDetailService,
+} from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-order-manager-list",
@@ -43,7 +47,9 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 		private _branchStoreService: BranchStoreService,
 		private _customerService: CustomerService,
 		private _checkoutService: CheckoutService,
-		private _itemService: ItemService
+		private _itemService: ItemService,
+		private _deliveryService: DeliveryService,
+		private _userDetailService: UserDetailService
 	) {
 		this.selectedOrder = new EventEmitter<Order>();
 		this.allBranchesFilter = false;
@@ -128,7 +134,67 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 			});
 	}
 
+	public async printBringDeliveriesToExcel() {
+		this.fetching = true;
+		const pickupPointParcels = [];
+		const mailParcels = [];
+		for (const placedOrder of this.placedOrders) {
+			try {
+				const delivery: Delivery = await this._deliveryService.getById(
+					placedOrder.delivery as string
+				);
+				if (delivery.method === "bring") {
+					const customerDetail = await this._userDetailService.getById(
+						placedOrder.customer as string
+					);
+					const shipmentAddress = delivery.info["shipmentAddress"];
+					if (delivery.info["product"] === "3584") {
+						mailParcels.push({
+							"Name *": shipmentAddress.name,
+							"Address line 1 *": shipmentAddress.address,
+							"Address line 2 *": "",
+							"Postal code *": shipmentAddress.postalCode,
+							"Contact person": shipmentAddress.name,
+							"Mobile number *": "+47" + customerDetail.phone,
+							"E-mail *": customerDetail.email,
+							"Sender's reference": "",
+							"Recipient's reference": "",
+							"Bag on Door (yes/no)": "no",
+						});
+					} else {
+						pickupPointParcels.push({
+							"Number of items (per shipment) *": 1,
+							"Name *": shipmentAddress.name,
+							"Address line 1 *": shipmentAddress.address,
+							"Address line 2 *": "",
+							"Postal code *": shipmentAddress.postalCode,
+							"Contact person": shipmentAddress.name,
+							"Mobile number (incl. country code) *":
+								"+47" + customerDetail.phone,
+							"E-mail *": customerDetail.email,
+							"Sender's reference": "",
+							"Recipient's reference": "",
+						});
+					}
+				}
+			} catch (err) {
+				console.log(
+					"OrderMangerPrintBring: could not fetch details",
+					err
+				);
+			}
+		}
+
+		this._databaseExcelService.objectsToExcelFile(
+			pickupPointParcels,
+			"hentested"
+		);
+		this._databaseExcelService.objectsToExcelFile(mailParcels, "post");
+		this.fetching = false;
+	}
+
 	public async printOrderOverviewToExcel() {
+		this.fetching = true;
 		const orderOverview = [];
 		this.placedOrders.forEach((placedOrder) => {
 			placedOrder.orderItems.forEach((orderItem) => {
@@ -160,6 +226,7 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 
 		orderOverview.sort((a, b) => a.title.localeCompare(b.title));
 		this._databaseExcelService.objectsToExcelFile(orderOverview, "orders");
+		this.fetching = false;
 	}
 
 	onBranchChange() {

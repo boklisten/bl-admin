@@ -10,6 +10,13 @@
 					>
 						Last ned ordreoversikt
 					</button>
+					<button
+						[disabled]="fetching"
+						class="btn btn-outline-info btn-block"
+						(click)="printBringDeliveriesToExcel()"
+					>
+						Last ned Bring-leveranser
+					</button>
 				</div>
 				<div class="row justify-content-center text-secondary">
 					<!--
