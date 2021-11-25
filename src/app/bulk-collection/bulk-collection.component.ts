@@ -3,6 +3,7 @@ import { ToasterService } from "../toaster/toaster.service";
 import { BulkCollectionService } from "./bulk-collection.service";
 import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-collection";
 import { CustomerItemService } from "@boklisten/bl-connect";
+import * as moment from "moment";
 
 @Component({
 	selector: "app-bulk-collection",
@@ -24,7 +25,26 @@ export class BulkCollectionComponent implements OnInit {
 
 	ngOnInit(): void {}
 
+	public deadlineHasPassed(deadline: string): boolean {
+		return moment(deadline, "DD/MM/YYYY").isBefore(moment());
+	}
+
+	private hasExpiredDeadlines() {
+		return this.scannedBooks.some((scannedBook) =>
+			this.deadlineHasPassed(scannedBook.deadline)
+		);
+	}
+
 	public async deliverBooks() {
+		if (this.hasExpiredDeadlines()) {
+			if (
+				!confirm(
+					"Noen av bøkene har utløpt frist! Er du sikker på at du vil levere?"
+				)
+			) {
+				return;
+			}
+		}
 		this.waiting = true;
 		this.separatedBooks = this._bulkCollectionService.separateBooksByCustomer(
 			this.scannedBooks

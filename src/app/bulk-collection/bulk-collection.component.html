@@ -26,7 +26,19 @@
 						[scannedBook]="book"
 					></app-book-detail-modal>
 				</td>
-				<td>{{ book.deadline }}</td>
+				<td title="Fristen har utløpt!">
+					<fa-icon
+						*ngIf="deadlineHasPassed(book.deadline)"
+						icon="exclamation-circle"
+						class="text-danger"
+					></fa-icon>
+					<span> {{ book.deadline }} </span>
+					<fa-icon
+						*ngIf="deadlineHasPassed(book.deadline)"
+						icon="exclamation-circle"
+						class="text-danger"
+					></fa-icon>
+				</td>
 				<td>{{ book.customerName }}</td>
 				<td class="table-delete">
 					<button
