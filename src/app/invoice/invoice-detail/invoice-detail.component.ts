@@ -46,7 +46,7 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 		}
 	}
 
-	private async createBuyoutOrder(customerItemPayments) {
+	private async createInvoiceOrder(customerItemPayments) {
 		let customerItems = [];
 		try {
 			customerItems = await Promise.all(
@@ -60,29 +60,26 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 		} catch (error) {}
 		const orderItems = customerItemPayments.map(
 			(payment, index): OrderItem => {
-				const priceInformation = this._priceService.getEmptyPriceInformation();
-
+				const priceInfo = this._priceService.calculatePriceInformation(
+					payment.payment.net,
+					payment.taxRate
+				);
 				return {
-					type: "buyout",
+					type: "invoice-paid",
 					item: payment.item,
 					title: payment.title,
 					blid: customerItems[index].blid,
 					age: "used",
-					amount: priceInformation.amount,
-					unitPrice: priceInformation.unitPrice,
-					taxRate: priceInformation.taxRate,
-					taxAmount: priceInformation.taxAmount,
+					amount: priceInfo.amount,
+					unitPrice: priceInfo.unitPrice,
+					taxRate: priceInfo.taxRate,
+					taxAmount: priceInfo.taxAmount,
 					handout: true,
 					info: {
-						buybackAmount: priceInformation.amount,
 						customerItem: payment.customerItem,
 					},
-					discount: null,
 					delivered: true,
 					customerItem: payment.customerItem,
-					match: null,
-					movedToOrder: null,
-					movedFromOrder: null,
 				};
 			}
 		);
@@ -97,15 +94,62 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 		} catch {}
 	}
 
-	private async updateCustomerItemsBuyoutStatus(buyout) {
-		if (buyout) {
-			this.createBuyoutOrder(this.invoice.customerItemPayments);
+	private async deleteInvoiceOrder() {
+		let orders;
+		try {
+			orders = await this._orderService.get({
+				query: `?placed=true&customer=${this.invoice.customerInfo.userDetail}`,
+			});
+		} catch (e) {
+			orders = [];
+		}
+
+		const invoiceItems = this.invoice.customerItemPayments;
+		const invoiceItemIds = invoiceItems
+			.map((invoiceItem) => invoiceItem.item)
+			.sort();
+
+		const invoiceOrder = orders.find((order) => {
+			const orderItems = order.orderItems;
+
+			if (
+				orderItems.length === invoiceItems.length &&
+				orderItems.some(
+					(orderItem) => orderItem.type === "invoice-paid"
+				)
+			) {
+				const orderItemIds = orderItems
+					.map((orderItem) => orderItem.item)
+					.sort();
+
+				if (
+					invoiceItemIds.every(
+						(itemId, index) => itemId === orderItemIds[index]
+					)
+				) {
+					return order;
+				}
+			}
+		});
+
+		if (!invoiceOrder) {
+			throw new Error("Could not find invoice order!");
+		}
+
+		this._orderService.remove(invoiceOrder.id);
+	}
+
+	private async updateCustomerItems(hasPaid: boolean) {
+		if (hasPaid) {
+			this.createInvoiceOrder(this.invoice.customerItemPayments);
+		} else {
+			this.deleteInvoiceOrder();
 		}
 		Promise.all(
 			this.invoice.customerItemPayments.map((payment) => {
 				return this._customerItemService.update(
 					payment.customerItem as string,
-					{ buyout: buyout }
+					{ buyout: hasPaid }
 				);
 			})
 		);
@@ -116,7 +160,7 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 		this.invoice.toDebtCollection = false;
 		this.invoice.toCreditNote = false;
 		this.updateInvoiceStatus();
-		this.updateCustomerItemsBuyoutStatus(customerHavePayed);
+		this.updateCustomerItems(customerHavePayed);
 	}
 
 	public onInvoiceToDebtCollection(toDebtCollection: boolean) {

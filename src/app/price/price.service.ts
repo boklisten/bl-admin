@@ -42,7 +42,7 @@ export class PriceService {
 		amountLeftToPay?: number,
 		alreadyPayed?: number
 	): PriceInformation {
-		let taxAmount =
+		const taxAmount =
 			amount > 0 && taxRate > 0
 				? this.toFixed(amount - amount / taxRate)
 				: 0;
@@ -52,10 +52,8 @@ export class PriceService {
 			unitPrice: this.toFixed(amount - taxAmount),
 			taxRate: taxAmount > 0 ? taxRate : 0,
 			taxAmount: taxAmount,
-			amountLeftToPay: this.toFixed(
-				amountLeftToPay ? amountLeftToPay : 0
-			),
-			alreadyPayed: this.toFixed(alreadyPayed ? alreadyPayed : 0),
+			amountLeftToPay: this.toFixed(amountLeftToPay ?? 0),
+			alreadyPayed: this.toFixed(alreadyPayed ?? 0),
 			discountRate: this.toFixed(0),
 			discount: this.toFixed(0),
 		});
