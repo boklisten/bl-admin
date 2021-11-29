@@ -5,7 +5,7 @@ import {
 	OnChanges,
 	SimpleChanges,
 } from "@angular/core";
-import { Invoice, OrderItem } from "@boklisten/bl-model";
+import { CustomerItem, Invoice, OrderItem } from "@boklisten/bl-model";
 import { InvoiceService } from "@boklisten/bl-connect";
 import { ActivatedRoute, Params } from "@angular/router";
 import { CustomerItemService, OrderService } from "@boklisten/bl-connect";
@@ -49,15 +49,22 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 	private async createInvoiceOrder(customerItemPayments) {
 		let customerItems = [];
 		try {
-			customerItems = await Promise.all(
-				customerItemPayments.map(async (payment) => {
-					const items = await this._customerItemService.get({
-						query: "/" + payment.customerItem,
-					});
-					return items[0];
-				})
-			);
+			customerItems = (
+				await Promise.all(
+					customerItemPayments.map(async (payment) => {
+						const items = await this._customerItemService.get({
+							query: "/" + payment.customerItem,
+						});
+						return items[0];
+					})
+				)
+			).filter((customerItem: CustomerItem) => !customerItem.returned);
 		} catch (error) {}
+		customerItemPayments = customerItemPayments.filter((payment) =>
+			customerItems.some(
+				(customerItem) => customerItem.item === payment.item
+			)
+		);
 		const orderItems = customerItemPayments.map(
 			(payment, index): OrderItem => {
 				const priceInfo = this._priceService.calculatePriceInformation(
@@ -113,7 +120,6 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 			const orderItems = order.orderItems;
 
 			if (
-				orderItems.length === invoiceItems.length &&
 				orderItems.some(
 					(orderItem) => orderItem.type === "invoice-paid"
 				)
@@ -123,8 +129,8 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 					.sort();
 
 				if (
-					invoiceItemIds.every(
-						(itemId, index) => itemId === orderItemIds[index]
+					orderItemIds.every((itemId) =>
+						invoiceItemIds.includes(itemId)
 					)
 				) {
 					return order;
