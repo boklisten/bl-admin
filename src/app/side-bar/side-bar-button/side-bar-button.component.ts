@@ -13,6 +13,7 @@ export class SideBarButtonComponent implements OnInit {
 	@Input() notification: boolean;
 	@Input() selected: boolean;
 	@Input() color: string;
+	@Input() customerId: string;
 
 	constructor() {}
 

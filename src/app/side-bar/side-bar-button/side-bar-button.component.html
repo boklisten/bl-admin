@@ -1,6 +1,9 @@
 <div
 	class="bl-sidebar-button text-center"
 	routerLink="{{ link }}"
+	[queryParams]="{
+		customerId: customerId
+	}"
 	[ngClass]="{
 		'bl-sidebar-button-selected': selected,
 		'text-info': color == 'info' && !selected

@@ -15,7 +15,6 @@ export class CustomerCurrentComponent implements OnInit, OnDestroy {
 	public wait: boolean;
 	private customer$: Subscription;
 	private customerWait$: Subscription;
-	private navigateToCart: boolean;
 	private customerClear$: Subscription;
 
 	constructor(
@@ -45,12 +44,12 @@ export class CustomerCurrentComponent implements OnInit, OnDestroy {
 	}
 
 	public onCustomerNameClick() {
-		if (this.navigateToCart) {
-			this.navigateToCart = false;
+		if (this._router.url.includes("customer/detail")) {
 			this._router.navigate(["/cart"]);
 		} else {
-			this.navigateToCart = true;
-			this._router.navigate(["/customer/detail"]);
+			this._router.navigate(["/customer/detail"], {
+				queryParams: { customerId: this.customerDetail.id },
+			});
 		}
 	}
 

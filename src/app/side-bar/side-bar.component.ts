@@ -29,6 +29,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 		permission: UserPermission;
 		hide?: boolean;
 		color?: string;
+		customerId?: string;
 	}[];
 
 	private customer$: Subscription;
@@ -265,9 +266,10 @@ export class SideBarComponent implements OnInit, OnDestroy {
 			name: "customer",
 			link: "/customer/detail",
 			icon: "address-card",
-			selected: false,
+			selected: this._router.url.includes("customer/detail"),
 			permission: "employee",
 			hide: false,
+			customerId: customerDetailId,
 		});
 	}
 
