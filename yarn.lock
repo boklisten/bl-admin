@@ -1165,10 +1165,10 @@
   dependencies:
     tslib "^2.1.0"
 
-"@boklisten/bl-login@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.npmjs.org/@boklisten/bl-login/-/bl-login-1.1.5.tgz"
-  integrity sha512-B3EACCEQhriDcF5GDUTJDCwK4i6wlyVfGjpoC3cmE1BtYQXTQ+cPxexKMbsU1LWc8aR9H177/c3N0FUjX8LIpg==
+"@boklisten/bl-login@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-login/-/bl-login-1.2.3.tgz#2ba81e065d5b977ffe94f2acf4ac05acdbd84466"
+  integrity sha512-N3R7Q88DvGX5SSo+qiRhLLdIkQUIKR923obXwJ7N7+GaXkSC9BFva91fsvvKUviCmWgeofKYNr/HocipWqxvkQ==
   dependencies:
     "@auth0/angular-jwt" "^5.0.2"
     "@boklisten/bl-connect" "^0.19.0"
@@ -3018,9 +3018,9 @@ core-js@3.8.3:
   integrity sha512-KPYXeVZYemC2TkNEkX/01I+7yd+nX3KddKwZ1Ww7SKWdI2wQprSgLmrTddT8nw92AjEklTsPBoSdQBhbI1bQ6Q==
 
 core-js@^3.9.1:
-  version "3.12.1"
-  resolved "https://registry.npmjs.org/core-js/-/core-js-3.12.1.tgz"
-  integrity sha512-Ne9DKPHTObRuB09Dru5AjwKjY4cJHVGu+y5f7coGn1E9Grkc3p2iBwE9AI/nJzsE29mQF7oq+mhYYRqOMFN1Bw==
+  version "3.19.2"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.19.2.tgz#ae216d7f4f7e924d9a2e3ff1e4b1940220f9157b"
+  integrity sha512-ciYCResnLIATSsXuXnIOH4CbdfgV+H1Ltg16hJFN7/v6OxqnFr/IFGeLacaZ+fHLAm0TBbXwNK9/DNBzBUrO/g==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
