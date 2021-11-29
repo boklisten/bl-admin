@@ -70,7 +70,7 @@ export class BulkCollectionComponent implements OnInit {
 			> = await Promise.all(fetchRemainingBooks);
 
 			for (const remainingBooks of customerRemainingBooks) {
-				if (remainingBooks) {
+				if (remainingBooks?.length > 0) {
 					this.customerRemainingBooksDict[
 						remainingBooks[0].customerId
 					] = remainingBooks;
