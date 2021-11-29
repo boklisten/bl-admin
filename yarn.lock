@@ -1165,10 +1165,10 @@
   dependencies:
     tslib "^2.1.0"
 
-"@boklisten/bl-login@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.npmjs.org/@boklisten/bl-login/-/bl-login-1.1.5.tgz"
-  integrity sha512-B3EACCEQhriDcF5GDUTJDCwK4i6wlyVfGjpoC3cmE1BtYQXTQ+cPxexKMbsU1LWc8aR9H177/c3N0FUjX8LIpg==
+"@boklisten/bl-login@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-login/-/bl-login-1.2.3.tgz#2ba81e065d5b977ffe94f2acf4ac05acdbd84466"
+  integrity sha512-N3R7Q88DvGX5SSo+qiRhLLdIkQUIKR923obXwJ7N7+GaXkSC9BFva91fsvvKUviCmWgeofKYNr/HocipWqxvkQ==
   dependencies:
     "@auth0/angular-jwt" "^5.0.2"
     "@boklisten/bl-connect" "^0.19.0"
