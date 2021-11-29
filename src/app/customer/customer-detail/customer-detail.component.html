@@ -16,7 +16,6 @@
 							<div class="row justify-content-between">
 								<div class="col-12">
 									<app-customer-change-email
-										[userDetail]="customerDetail"
 										(changed)="onUserDetailEmailChange()"
 										*ngIf="isManager()"
 									></app-customer-change-email>

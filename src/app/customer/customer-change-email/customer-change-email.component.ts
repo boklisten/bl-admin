@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { UserDetail } from "@boklisten/bl-model";
 import { UserDetailService } from "@boklisten/bl-connect";
 import { CustomerService } from "../customer.service";
@@ -9,11 +9,11 @@ import { CustomerService } from "../customer.service";
 	styleUrls: ["./customer-change-email.component.scss"],
 })
 export class CustomerChangeEmailComponent implements OnInit {
-	@Input() userDetail: UserDetail;
 	@Output() changed: EventEmitter<boolean>;
 	public email: string;
 	public wait: boolean;
 	public couldNotUpdateEmailError: boolean;
+	private userDetail: UserDetail;
 
 	constructor(
 		private _userDetailService: UserDetailService,
@@ -23,12 +23,12 @@ export class CustomerChangeEmailComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.email = this.userDetail.email;
 		this.onCustomerChange();
 	}
 
 	private onCustomerChange() {
 		this._customerService.subscribe((customerDetail: UserDetail) => {
+			this.userDetail = customerDetail;
 			this.email = customerDetail.email;
 		});
 	}
