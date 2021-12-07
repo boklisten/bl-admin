@@ -65,6 +65,10 @@ export class CartItemActionProvider {
 			this.getValidActionsForCustomerItemCancel(customerItem)
 		);
 
+		if (actions.length === 1 && actions[0].error.length > 0) {
+			actions = [];
+		}
+
 		return actions;
 	}
 
