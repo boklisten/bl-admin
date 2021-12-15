@@ -21,6 +21,7 @@ import {
 	ItemService,
 	DeliveryService,
 	UserDetailService,
+	BranchService,
 } from "@boklisten/bl-connect";
 
 @Component({
@@ -49,7 +50,8 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 		private _checkoutService: CheckoutService,
 		private _itemService: ItemService,
 		private _deliveryService: DeliveryService,
-		private _userDetailService: UserDetailService
+		private _userDetailService: UserDetailService,
+		private branchService: BranchService
 	) {
 		this.selectedOrder = new EventEmitter<Order>();
 		this.allBranchesFilter = false;
@@ -198,19 +200,12 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 		const orderOverview = [];
 		this.placedOrders.forEach((placedOrder) => {
 			placedOrder.orderItems.forEach((orderItem) => {
-				const result = orderOverview.find(
-					(order) => order.title === orderItem.title
-				);
-
-				if (!result) {
-					orderOverview.push({
-						title: orderItem.title,
-						isbn: orderItem.item,
-						count: 1,
-					});
-				} else {
-					result.count += 1;
-				}
+				orderOverview.push({
+					title: orderItem.title,
+					isbn: orderItem.item,
+					school: placedOrder.branch,
+					pivot: 1,
+				});
 			});
 		});
 
@@ -219,6 +214,10 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 				const item = await this._itemService.getById(
 					itemOverview.isbn as string
 				);
+				const branch = await this.branchService.getById(
+					itemOverview.school
+				);
+				itemOverview.school = branch.name;
 				itemOverview.isbn = item.info.isbn;
 				return itemOverview;
 			})
