@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Branch } from "@boklisten/bl-model";
 import { BranchStoreService } from "../branch-store.service";
 import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: "app-branch-select",
@@ -14,7 +15,8 @@ export class BranchSelectComponent implements OnInit {
 
 	constructor(
 		private _branchStoreService: BranchStoreService,
-		private blcSortService: BlcSortService
+		private blcSortService: BlcSortService,
+		private _router: Router
 	) {}
 
 	ngOnInit() {
@@ -36,5 +38,6 @@ export class BranchSelectComponent implements OnInit {
 	public setBranch(branch: Branch) {
 		this._branchStoreService.setCurrentBranch(branch);
 		this.selectedBranch = branch;
+		this._router.navigate(["/"]);
 	}
 }
