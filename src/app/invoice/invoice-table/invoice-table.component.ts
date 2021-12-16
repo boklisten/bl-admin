@@ -115,6 +115,20 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 			});
 	}
 
+	public exportToExcelTripletex() {
+		const selectedInvoices = this.getSelected();
+		this.printToExcelWait = true;
+
+		this.invoiceVismaService
+			.printToTripletexInvoices(selectedInvoices)
+			.then(() => {
+				this.printToExcelWait = false;
+			})
+			.catch(() => {
+				this.printToExcelWait = false;
+			});
+	}
+
 	public search(text: string): Invoice[] {
 		return this.invoices.filter((invoice) => {
 			const term = text.toLowerCase();

@@ -8,6 +8,17 @@ import { saveAs } from "file-saver";
 export class BlPrintService {
 	constructor() {}
 
+	public printTripletexRows(tripletexRows: any[]) {
+		const date = new Date();
+		const title =
+			date.getFullYear() +
+			date.getHours() +
+			"_tripletex_invoice" +
+			".csv";
+		const workBook = this.makeWorkBook(title, tripletexRows);
+		this.printWorkBookToSemiColFile(workBook, title);
+	}
+
 	public printVismaRows(vismaRows: any[]) {
 		const date = new Date();
 		const title =

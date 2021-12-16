@@ -31,6 +31,22 @@
 	<div class="col-auto">
 		<button
 			class="btn btn-sm btn-outline-primary"
+			(click)="exportToExcelTripletex()"
+		>
+			<fa-icon icon="file-excel" class="mr-2"></fa-icon>
+			<fa-icon
+				icon="circle-notch"
+				[spin]="true"
+				*ngIf="printToExcelWait"
+			></fa-icon>
+			<span i18n="@@invoiceTablePrintSelected" *ngIf="!printToExcelWait"
+				>Tripletex format</span
+			>
+		</button>
+	</div>
+	<div class="col-auto">
+		<button
+			class="btn btn-sm btn-outline-primary"
 			(click)="exportToExcel(false)"
 		>
 			<fa-icon icon="file-excel" class="mr-2"></fa-icon>

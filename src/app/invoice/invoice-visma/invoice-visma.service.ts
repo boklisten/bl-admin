@@ -3,6 +3,7 @@ import { Invoice } from "@boklisten/bl-model";
 import { DateService } from "../../date/date.service";
 import { BlPrintService } from "../../bl-common/bl-print/bl-print.service";
 import { BranchService } from "@boklisten/bl-connect";
+import * as moment from "moment";
 
 @Injectable({
 	providedIn: "root",
@@ -39,6 +40,133 @@ export class InvoiceVismaService {
 			},
 		};
 		this.feeTitle = "Administrasjonsgebyr";
+	}
+
+	public async printToTripletexInvoices(
+		invoices: Invoice[]
+	): Promise<boolean> {
+		const headers = [
+			"INVOICE NO",
+			"INVOICE DATE",
+			"DUE DATE",
+			"KID",
+			"PAYMENT TYPE",
+			"PAID AMOUNT",
+			"ORDER NO",
+			"ORDER DATE",
+			"CUSTOMER NO",
+			"CUSTOMER NAME",
+			"ORGANIZATION NO",
+			"CUSTOMER EMAIL",
+			"CUSTOMER PHONE",
+			"CUSTOMER MOBILE",
+			"POSTAL ADDR - LINE 1",
+			"POSTAL ADDR - LINE 2",
+			"POSTAL ADDR - POSTAL NO",
+			"POSTAL ADDR - CITY",
+			"POSTAL ADDR - COUNTRY",
+			"BUSINESS ADDR - LINE 1",
+			"BUSINESS ADDR - LINE 2",
+			"BUSINESS ADDR - POSTAL NO",
+			"BUSINESS ADDR - CITY ",
+			"BUSINESS ADDR - COUNTRY",
+			"CUSTOMER CAT 1 - NO",
+			"CUSTOMER CAT 1 - NAME",
+			"CUSTOMER CAT 2 - NO",
+			"CUSTOMER CAT 2 - NAME",
+			"CUSTOMER CAT 3 - NO",
+			"CUSTOMER CAT 3 - NAME",
+			"CONTACT - FIRST NAME",
+			"CONTACT - LAST NAME ",
+			"ATTN - FIRST NAME",
+			"ATTN - LAST NAME",
+			"REFERENCE NO",
+			"DEPARTMENT NO ",
+			"DEPARTMENT NAME",
+			"PROJECT NO",
+			"PROJECT NAME",
+			"COMMENTS",
+			"CURRENCY",
+			"DELIVERY DATE",
+			"DELIVERY ADDR - LINE 1",
+			"DELIVERY ADDR - LINE 2",
+			"DELIVERY ADDR - POSTAL NO",
+			"DELIVERY ADDR - CITY",
+			"DELIVERY ADDR - COUNTRY",
+			"INVENTORY NO",
+			"INVENTORY NAME",
+			"ORDER LINE - PROD NO",
+			"ORDER LINE - PROD NAME",
+			"ORDER LINE - DESCRIPTION",
+			"ORDER LINE - UNIT PRICE",
+			"ORDER LINE - COUNT",
+			"ORDER LINE - DISCOUNT",
+			"ORDER LINE - VAT CODE",
+		];
+		const tripletexRows = [headers];
+		await this.addBranchNames(invoices);
+		for (const invoice of invoices) {
+			tripletexRows.push([
+				invoice.invoiceId,
+				moment(invoice.creationTime).format("YYYY-MM-DD"),
+				moment(invoice.duedate).format("YYYY-MM-DD"),
+				"todo",
+				"todo",
+				String(invoice.payment.totalIncludingFee),
+				"todo",
+				"todo",
+				String(invoice.customerInfo.userDetail),
+				invoice.customerInfo.name,
+				"",
+				invoice.customerInfo.email,
+				invoice.customerInfo.phone,
+				invoice.customerInfo.phone,
+				invoice.customerInfo.postal.address,
+				"",
+				invoice.customerInfo.postal.code,
+				invoice.customerInfo.postal.city,
+				"NO",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"todo",
+				"todo",
+				"todo",
+				"todo",
+				"todo",
+				"todo",
+				invoice.customerInfo.name,
+				"todo (vi lagrer ikke etternavn separat :eyes:)",
+				"todo",
+				"todo",
+				"todo",
+				invoice.branch,
+				invoice.customerInfo.branchName,
+				"todo",
+				"todo",
+				"todo",
+				"NOK",
+				"todo",
+				"todo",
+				"todo",
+				"todo",
+				"todo",
+				"todo",
+				"todo",
+				"todo",
+				"todo - hvordan skal flere items håndteres?",
+				"todo",
+				"todo",
+				"todo",
+				"todo",
+				"todo",
+				"todo",
+			]);
+		}
+		this.printService.printTripletexRows(tripletexRows);
+		return true;
 	}
 
 	public async printToVismaInvoices(
