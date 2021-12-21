@@ -50,6 +50,7 @@
 								}
 							],
 							"sourceMap": true,
+							"localize": ["nb"],
 
 							"scripts": [
 								"node_modules/jquery/dist/jquery.slim.min.js",

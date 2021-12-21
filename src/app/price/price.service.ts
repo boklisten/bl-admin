@@ -86,9 +86,7 @@ export class PriceService {
 			unitPrice: pi.unitPrice ? this.sanitize(pi.unitPrice) : 0,
 			taxRate: pi.taxRate ? pi.taxRate : 0,
 			taxAmount: pi.taxAmount ? pi.taxAmount : 0,
-			amountLeftToPay: pi.amountLeftToPay
-				? this.sanitize(pi.amountLeftToPay)
-				: 0,
+			amountLeftToPay: Math.round(pi.amountLeftToPay / 10) * 10,
 			alreadyPayed: pi.alreadyPayed ? pi.alreadyPayed : 0,
 			discountRate: pi.discountRate ? pi.discountRate : 0,
 			discount: pi.discount ? pi.discount : 0,
@@ -99,7 +97,8 @@ export class PriceService {
 		priceInformation: PriceInformation,
 		originalPriceInformation: PriceInformation
 	): PriceInformation {
-		let amount = priceInformation.amount - originalPriceInformation.amount;
+		const amount =
+			priceInformation.amount - originalPriceInformation.amount;
 
 		return this.calculatePriceInformation(
 			amount,
