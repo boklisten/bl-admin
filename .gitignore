@@ -45,3 +45,5 @@ Thumbs.db
 # Vim
 *.swp
 Session.vim
+
+.vercel
