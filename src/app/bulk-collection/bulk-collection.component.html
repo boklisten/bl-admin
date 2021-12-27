@@ -39,7 +39,15 @@
 						class="text-danger"
 					></fa-icon>
 				</td>
-				<td>{{ book.customerName }}</td>
+				<td>
+					{{ book.customerName }}
+					<button
+						(click)="warnBeforeRedirect(book.customerId)"
+						class="btn"
+					>
+						<fa-icon icon="user-circle"></fa-icon>
+					</button>
+				</td>
 				<td class="table-delete">
 					<button
 						class="btn btn-danger"

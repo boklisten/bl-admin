@@ -3,7 +3,8 @@ import { ToasterService } from "../toaster/toaster.service";
 import { BulkCollectionService } from "./bulk-collection.service";
 import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-collection";
 import { CustomerItemService } from "@boklisten/bl-connect";
-import * as moment from "moment";
+import moment from "moment";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: "app-bulk-collection",
@@ -20,13 +21,14 @@ export class BulkCollectionComponent implements OnInit {
 	constructor(
 		private _bulkCollectionService: BulkCollectionService,
 		private _toasterService: ToasterService,
-		private _customerItemService: CustomerItemService
+		private _customerItemService: CustomerItemService,
+		private router: Router
 	) {}
 
 	ngOnInit(): void {}
 
 	public deadlineHasPassed(deadline: string): boolean {
-		return moment(deadline, "DD/MM/YYYY").isBefore(moment());
+		return moment(deadline, "DD/MM/YYYY").isBefore(moment().add(1, "day"));
 	}
 
 	private hasExpiredDeadlines() {
@@ -150,5 +152,17 @@ export class BulkCollectionComponent implements OnInit {
 				);
 			return await Promise.all(requests);
 		} catch (error) {}
+	}
+
+	warnBeforeRedirect(customerId: string) {
+		if (
+			confirm(
+				"Er du sikker på at du vil gå til denne brukeren? Alle scannende bøker vil IKKE bli registrert."
+			)
+		) {
+			this.router.navigate(["/customer/detail"], {
+				queryParams: { customerId: customerId },
+			});
+		}
 	}
 }

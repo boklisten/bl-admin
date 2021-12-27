@@ -5,6 +5,7 @@ import { BranchStoreService } from "../../branch/branch-store.service";
 import { DatabaseReportOrderFilter } from "../../database/database-reports/database-report-order/database-report-order-filter";
 import { DatabaseReportOrderService } from "../../database/database-reports/database-report-order/database-report-order.service";
 import { BulkCollectionService } from "../bulk-collection.service";
+import moment from "moment";
 
 @Component({
 	selector: "app-bulk-history",
@@ -30,17 +31,12 @@ export class BulkHistoryComponent implements OnInit {
 		if (this.history.length > 0) {
 			return;
 		}
-		const isBuyback =
-			this._branchStoreService.getCurrentBranch().paymentInfo
-				.partlyPaymentPeriods.length > 0;
-
 		const filter: DatabaseReportOrderFilter = {
 			branchId: this._branchStoreService.getCurrentBranch().id,
 			orderItemNotDelivered: false,
 			fromDate: new Date(Date.now() - 86400000),
 			byCustomer: false,
 			toDate: new Date(Date.now() + 86400000),
-			type: isBuyback ? "buyback" : "return",
 		};
 
 		try {
@@ -53,7 +49,12 @@ export class BulkHistoryComponent implements OnInit {
 						customerBooks[0].customerId === order.customer
 				);
 				for (const orderItem of order.orderItems) {
-					if (!orderItem.customerItem || !orderItem.blid) {
+					if (
+						!orderItem.customerItem ||
+						!orderItem.blid ||
+						(orderItem.type !== "buyback" &&
+							orderItem.type !== "return")
+					) {
 						continue;
 					}
 					if (customerIndex === -1) {
@@ -61,6 +62,12 @@ export class BulkHistoryComponent implements OnInit {
 							"",
 							order.orderItems[0].customerItem as string
 						);
+						const collectionTime = moment(
+							(customerItem?.returnInfo
+								? customerItem.returnInfo.time
+								: customerItem.buybackInfo["time"]) ??
+								new Date()
+						).format("HH:mm:ss");
 						this.history.push([
 							{
 								customerId: order.customer as string,
@@ -71,6 +78,7 @@ export class BulkHistoryComponent implements OnInit {
 								id: orderItem.customerItem as string,
 								item: "",
 								orderId: order.id,
+								collectedAt: collectionTime,
 							},
 						]);
 						customerIndex = this.history.length - 1;
@@ -88,13 +96,23 @@ export class BulkHistoryComponent implements OnInit {
 					}
 				}
 			}
-			this.history.sort((a, b) =>
-				a[0].customerName > b[0].customerName ? 1 : -1
-			);
+			this.sortHistoryByCustomerName();
 		} catch (error) {
 		} finally {
 			this.waiting = false;
 		}
+	}
+
+	sortHistoryByCustomerName() {
+		this.history.sort((a, b) =>
+			a[0].customerName > b[0].customerName ? 1 : -1
+		);
+	}
+
+	sortHistoryByDate() {
+		this.history.sort((a, b) =>
+			a[0].collectedAt < b[0].collectedAt ? 1 : -1
+		);
 	}
 
 	async fetchCustomerHistory(customerId: string) {
