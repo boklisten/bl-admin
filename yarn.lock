@@ -1392,35 +1392,44 @@
     semver-intersect "1.4.0"
 
 "@sentry/angular@^6.3.1":
-  version "6.3.6"
-  resolved "https://registry.npmjs.org/@sentry/angular/-/angular-6.3.6.tgz"
-  integrity sha512-Y1DsFX8X6h3zMlVPdlK8agJiqU/6u17fcakIuboL8EgzJcLcWnzDK7KG6WGnOHTdttHCDyU5ubVVptHyHJK1vQ==
+  version "6.17.1"
+  resolved "https://registry.yarnpkg.com/@sentry/angular/-/angular-6.17.1.tgz#6e687e25d9d58a9e8afaa714b8ae84505f062f57"
+  integrity sha512-n9jimJslPftSSWmQxIFXF6WJcJnDTpNejeig7IRtVDU56b3xbbZoGuMd7wXl9+QbpbISiaXqvpE/un7JXe0Rjw==
   dependencies:
-    "@sentry/browser" "6.3.6"
-    "@sentry/types" "6.3.6"
-    "@sentry/utils" "6.3.6"
+    "@sentry/browser" "6.17.1"
+    "@sentry/types" "6.17.1"
+    "@sentry/utils" "6.17.1"
     rxjs "^6.6.0"
     tslib "^1.9.3"
 
-"@sentry/browser@6.3.6":
-  version "6.3.6"
-  resolved "https://registry.npmjs.org/@sentry/browser/-/browser-6.3.6.tgz"
-  integrity sha512-l4323jxuBOArki6Wf+EHes39IEyJ2Zj/CIUaTY7GWh7CntpfHQAfFmZWQw3Ozq+ka1u8lVp25RPhb4Wng3azNA==
+"@sentry/browser@6.17.1":
+  version "6.17.1"
+  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-6.17.1.tgz#4dd3a27042d73548fd2444b832947e0944db49b8"
+  integrity sha512-Tj4uXNRA6dAwKzOwLGvTOsD8WNk6tiPaIYXPsIIOdBjDsFBfiu4JY8ygCzQpj7Fwy8qL6UULygU4kBuAx2ieyQ==
   dependencies:
-    "@sentry/core" "6.3.6"
-    "@sentry/types" "6.3.6"
-    "@sentry/utils" "6.3.6"
+    "@sentry/core" "6.17.1"
+    "@sentry/types" "6.17.1"
+    "@sentry/utils" "6.17.1"
     tslib "^1.9.3"
 
-"@sentry/core@6.3.6":
-  version "6.3.6"
-  resolved "https://registry.npmjs.org/@sentry/core/-/core-6.3.6.tgz"
-  integrity sha512-w6BRizAqh7BaiM9oeKzO6aACXwRijUPacYaVLX/OfhqCSueF9uDxpMRT7+4D/eCeDVqgJYhBJ4Vsu2NSstkk4A==
+"@sentry/core@6.17.1":
+  version "6.17.1"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-6.17.1.tgz#669b8732e49a44aff661b09590323f56d2117f78"
+  integrity sha512-dRcKs3+IKx2w7+xwg3mWRc4ghjnY+36W+qCOJXRbWyRjlzb67Es+TDYY3BxWwN4beNr2dvQkRt5HoPxJnrzGVQ==
   dependencies:
-    "@sentry/hub" "6.3.6"
-    "@sentry/minimal" "6.3.6"
-    "@sentry/types" "6.3.6"
-    "@sentry/utils" "6.3.6"
+    "@sentry/hub" "6.17.1"
+    "@sentry/minimal" "6.17.1"
+    "@sentry/types" "6.17.1"
+    "@sentry/utils" "6.17.1"
+    tslib "^1.9.3"
+
+"@sentry/hub@6.17.1":
+  version "6.17.1"
+  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-6.17.1.tgz#e973c8b856e7211e7715e41c2f67f8c3f0651d9d"
+  integrity sha512-14lNcM4kt2sKhsfZ6WG2gbsPMydxBAY1OSk+WodO/x0Esdr7VbaVngSJSFzCI0iRBPLSQuFVtUWaAZzSF+WdiA==
+  dependencies:
+    "@sentry/types" "6.17.1"
+    "@sentry/utils" "6.17.1"
     tslib "^1.9.3"
 
 "@sentry/hub@6.3.6":
@@ -1430,6 +1439,15 @@
   dependencies:
     "@sentry/types" "6.3.6"
     "@sentry/utils" "6.3.6"
+    tslib "^1.9.3"
+
+"@sentry/minimal@6.17.1":
+  version "6.17.1"
+  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-6.17.1.tgz#34c888ffec803a82895502fe0ec145b364c16ff7"
+  integrity sha512-0V5YqVCylMjjDhD98Xod1ZdxzVRUjDSq7ssCJ2PRjfRAEtk7mN5oeznyZUhyx4pZB8hNh2G9PdasIR2WIjYN9w==
+  dependencies:
+    "@sentry/hub" "6.17.1"
+    "@sentry/types" "6.17.1"
     tslib "^1.9.3"
 
 "@sentry/minimal@6.3.6":
@@ -1452,10 +1470,23 @@
     "@sentry/utils" "6.3.6"
     tslib "^1.9.3"
 
+"@sentry/types@6.17.1":
+  version "6.17.1"
+  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-6.17.1.tgz#9aae33d00769db67e9231febf2514837e49b2f7b"
+  integrity sha512-EBFiN3utd1xoxowy+WFSDQGgS4J+VEZbc7j3uYVZNjn03/w5pe9FfeLsszJ2s1/hCf/K7GAGH4NA7i0r7SWF3g==
+
 "@sentry/types@6.3.6":
   version "6.3.6"
   resolved "https://registry.npmjs.org/@sentry/types/-/types-6.3.6.tgz"
   integrity sha512-93cFJdJkWyCfyZeWFARSU11qnoHVOS/R2h5WIsEf+jbQmkqG2C+TXVz/19s6nHVsfDrwpvYpwALPv4/nrxfU7g==
+
+"@sentry/utils@6.17.1":
+  version "6.17.1"
+  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-6.17.1.tgz#4297dbbd1c1ae8a38254dd133ca9e0f40ba60831"
+  integrity sha512-FOjxMZ4yBflYvJYhNDacRfSa0NTKLsjCXQ3u1phxODRUwhQ7wwqmtwy86AL5uzfpiqZKwXAPlWoWihBluw7vqw==
+  dependencies:
+    "@sentry/types" "6.17.1"
+    tslib "^1.9.3"
 
 "@sentry/utils@6.3.6":
   version "6.3.6"
