@@ -1,20 +1,46 @@
 import { Directive, HostListener } from "@angular/core";
 import { BlcScannerService } from "./blc-scanner.service";
+import { ToasterService } from "../../toaster/toaster.service";
 
 @Directive({
 	selector: "[blcScanner]",
 })
 export class BlcScannerDirective {
 	scannerString: string;
+	capsLock: boolean;
 
-	constructor(private _blcScannerService: BlcScannerService) {
+	constructor(
+		private _blcScannerService: BlcScannerService,
+		private _toasterService: ToasterService
+	) {
 		this.scannerString = "";
+	}
+
+	private checkCapsLock(event: KeyboardEvent) {
+		this.capsLock =
+			event.getModifierState && event.getModifierState("CapsLock");
+	}
+
+	@HostListener("window:keyup", ["$event"])
+	handleKeyUp(event: KeyboardEvent) {
+		this.checkCapsLock(event);
 	}
 
 	@HostListener("window:keydown", ["$event"])
 	handleKeyDown(event: KeyboardEvent) {
-		if (event.keyCode === 13) {
-			// enter
+		this.checkCapsLock(event);
+		if (this.capsLock) {
+			this._toasterService.add(
+				"WARNING",
+				{
+					text: "CAPS LOCK er på.",
+				},
+				5000
+			);
+			return;
+		}
+
+		if (event.key === "Enter") {
 			if (this.scannerString.length === 12) {
 				this._blcScannerService.scanBlid(this.scannerString);
 			}
@@ -37,9 +63,6 @@ export class BlcScannerDirective {
 	}
 
 	private isAlphaNumeric(key: string) {
-		if (!key || key === "Shift") {
-			return false;
-		}
-		return true;
+		return !(!key || key === "Shift");
 	}
 }
