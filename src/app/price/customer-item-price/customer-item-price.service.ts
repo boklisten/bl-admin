@@ -3,7 +3,7 @@ import { CustomerItem, Item } from "@boklisten/bl-model";
 import { Period } from "@boklisten/bl-model/dist/period/period";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { PriceService } from "../price.service";
-import { OrderService } from "@boklisten/bl-connect";
+import { BranchService, OrderService } from "@boklisten/bl-connect";
 import { OrderHelperService } from "../../order/order-helper/order-helper.service";
 import { PriceInformation } from "../price-information";
 
@@ -19,7 +19,8 @@ export class CustomerItemPriceService {
 		private _branchStoreService: BranchStoreService,
 		private _orderService: OrderService,
 		private _orderHelperService: OrderHelperService,
-		private _priceService: PriceService
+		private _priceService: PriceService,
+		private _branchService: BranchService
 	) {}
 
 	public getPartlyPaymentBuyoutPriceInformation(
@@ -34,11 +35,16 @@ export class CustomerItemPriceService {
 		);
 	}
 
-	public getRentBuyoutPriceInformation(
+	public async getRentBuyoutPriceInformation(
 		customerItem: CustomerItem,
 		item: Item
-	): PriceInformation {
-		const branch = this._branchStoreService.getCurrentBranch();
+	): Promise<PriceInformation> {
+		const customerItemBranch = customerItem.handoutInfo.handoutById;
+		const currentBranch = this._branchStoreService.getCurrentBranch();
+		const branch =
+			customerItemBranch === currentBranch.id
+				? currentBranch
+				: await this._branchService.getById(customerItemBranch);
 		const amount = item.price * branch.paymentInfo.buyout.percentage;
 		return this._priceService.calculatePriceInformation(
 			amount,
