@@ -28,7 +28,7 @@ export class BulkCollectionComponent implements OnInit {
 	ngOnInit(): void {}
 
 	public deadlineHasPassed(deadline: string): boolean {
-		return moment(deadline, "DD/MM/YYYY").isBefore(moment().add(1, "day"));
+		return moment().isAfter(moment(deadline, "DD/MM/YYYY").add(1, "day"));
 	}
 
 	private hasExpiredDeadlines() {
