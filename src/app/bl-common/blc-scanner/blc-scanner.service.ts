@@ -23,13 +23,18 @@ export class BlcScannerService {
 	}
 
 	public scanBlid(scannedString: string) {
-		if (this.isNumeric(scannedString)) {
+		if (this.isNumeric(scannedString) && scannedString.length !== 8) {
 			return;
 		}
+		let blid = scannedString;
+		if (
+			scannedString.length === 12 &&
+			this.isNumeric(scannedString.slice(4))
+		) {
+			blid = scannedString.slice(4);
+		}
 
-		const blid = scannedString;
-
-		if (blid.length === 12) {
+		if (blid.length === 8 || blid.length === 12) {
 			this._blid$.next(blid);
 		}
 	}
