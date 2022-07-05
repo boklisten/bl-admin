@@ -29,7 +29,9 @@ export class BranchItemCategorySelectComponent implements OnInit {
 			this._branchItemCategorySelectService.add(category);
 		}
 
-		this.availableCategories = this._branchItemCategorySelectService.getCategories();
+		this.availableCategories = this._branchItemCategorySelectService
+			.getCategories()
+			.sort((a, b) => a.localeCompare(b));
 	}
 
 	onAddCategory() {
@@ -52,6 +54,9 @@ export class BranchItemCategorySelectComponent implements OnInit {
 			this.categories.splice(this.categories.indexOf(name), 1);
 		} else {
 			this.categories.push(name);
+			this.categories = this.categories.sort((a, b) =>
+				a.localeCompare(b)
+			);
 		}
 		this.updateBranchItem();
 	}

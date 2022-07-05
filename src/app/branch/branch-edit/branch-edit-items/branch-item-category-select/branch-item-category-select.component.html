@@ -60,10 +60,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="row justify-content-between">
-		<div class="col-auto mt-2" *ngFor="let category of availableCategories">
+	<div class="row">
+		<div class="mt-2" *ngFor="let category of availableCategories">
 			<button
-				class="btn btn-sm"
+				class="btn ml-2"
 				[ngClass]="{
 					'btn-outline-secondary': !isCategorySelected(category),
 					'btn-secondary': isCategorySelected(category)
