@@ -32,11 +32,12 @@ export class BranchStoreService {
 		this._branchChange$ = new Subject<Branch>();
 		this.redirectUrl = null;
 		if (this._storageService.get("bl-branch")) {
-			const storedBranch = this._storageService.get("bl-branch");
-			if (this.storedBranchIsUpToDate(storedBranch)) {
-				this._currentBranch = storedBranch;
-				this._branchChange$.next(storedBranch);
-				this.setBranch(storedBranch);
+			const storedBranchId = this._storageService.get("bl-branch");
+
+			if (typeof storedBranchId === "string") {
+				this.fetchAndStoreBranchInfo(storedBranchId);
+			} else {
+				this._authService.logout();
 			}
 		}
 		this.getAllBranches()
@@ -46,6 +47,19 @@ export class BranchStoreService {
 			});
 
 		this.onLogout();
+	}
+
+	private async fetchAndStoreBranchInfo(branchID: string) {
+		this.setBranch({} as Branch);
+		let branch: Branch;
+		try {
+			branch = await this._branchService.getById(branchID);
+		} catch (e) {
+			this._authService.logout();
+		}
+		this._currentBranch = branch;
+		this._branchChange$.next(branch);
+		this.setBranch(branch);
 	}
 
 	public subscribe(func: (branch: Branch) => void): Subscription {
@@ -58,12 +72,6 @@ export class BranchStoreService {
 
 	public set(branch: Branch) {
 		this.setBranch(branch);
-	}
-
-	private storedBranchIsUpToDate(branch: Branch): boolean {
-		return branch.paymentInfo.partlyPaymentPeriods.every(
-			(period) => new Date(period.date) > new Date()
-		);
 	}
 
 	private setBranch(branch: Branch) {
@@ -93,16 +101,13 @@ export class BranchStoreService {
 	}
 
 	public getBranchId(): string {
-		if (!this._currentBranch) {
-			return null;
-		}
-		return this._currentBranch.id;
+		return this._currentBranch?.id ?? null;
 	}
 
 	public setCurrentBranch(branch: Branch) {
 		this.setBranch(branch);
 		this._currentBranch = branch;
-		this._storageService.store("bl-branch", branch);
+		this._storageService.store("bl-branch", branch.id);
 		this._branchChange$.next(this._currentBranch);
 
 		if (this.redirectUrl) {
