@@ -1,8 +1,12 @@
 import { Injectable } from "@angular/core";
-import { Invoice } from "@boklisten/bl-model";
+import { CustomerItem, Invoice } from "@boklisten/bl-model";
 import { DateService } from "../../date/date.service";
 import { BlPrintService } from "../../bl-common/bl-print/bl-print.service";
-import { BranchService } from "@boklisten/bl-connect";
+import {
+	BranchService,
+	CustomerItemService,
+	ItemService,
+} from "@boklisten/bl-connect";
 import * as moment from "moment";
 
 @Injectable({
@@ -21,7 +25,9 @@ export class InvoiceVismaService {
 	constructor(
 		private dateService: DateService,
 		private printService: BlPrintService,
-		private branchService: BranchService
+		private branchService: BranchService,
+		private customerItemService: CustomerItemService,
+		private itemService: ItemService
 	) {
 		this.textFields = [
 			"Fakturaen gjelder manglende/for sent leverte bøker fra forrige semester hos: ",
@@ -106,64 +112,82 @@ export class InvoiceVismaService {
 		const tripletexRows = [headers];
 		await this.addBranchNames(invoices);
 		for (const invoice of invoices) {
-			tripletexRows.push([
-				invoice.invoiceId,
-				moment(invoice.creationTime).format("YYYY-MM-DD"),
-				moment(invoice.duedate).format("YYYY-MM-DD"),
-				"todo",
-				"todo",
-				String(invoice.payment.totalIncludingFee),
-				"todo",
-				"todo",
-				String(invoice.customerInfo.userDetail),
-				invoice.customerInfo.name,
-				"",
-				invoice.customerInfo.email,
-				invoice.customerInfo.phone,
-				invoice.customerInfo.phone,
-				invoice.customerInfo.postal.address,
-				"",
-				invoice.customerInfo.postal.code,
-				invoice.customerInfo.postal.city,
-				"NO",
-				"",
-				"",
-				"",
-				"",
-				"",
-				"todo",
-				"todo",
-				"todo",
-				"todo",
-				"todo",
-				"todo",
-				invoice.customerInfo.name,
-				"todo (vi lagrer ikke etternavn separat :eyes:)",
-				"todo",
-				"todo",
-				"todo",
-				invoice.branch,
-				invoice.customerInfo.branchName,
-				"todo",
-				"todo",
-				"todo",
-				"NOK",
-				"todo",
-				"todo",
-				"todo",
-				"todo",
-				"todo",
-				"todo",
-				"todo",
-				"todo",
-				"todo - hvordan skal flere items håndteres?",
-				"todo",
-				"todo",
-				"todo",
-				"todo",
-				"todo",
-				"todo",
-			]);
+			const customerItemIds = invoice.customerItemPayments.map(
+				(customerItemPayment) => customerItemPayment.customerItem
+			);
+			const customerItems: CustomerItem[] = await Promise.all(
+				customerItemIds.map((customerItemId) =>
+					this.customerItemService.getById(customerItemId as string)
+				)
+			);
+			for (const customerItem of customerItems) {
+				const item = await this.itemService.getById(
+					customerItem.item as string
+				);
+				const handoutBranch = await this.branchService.getById(
+					customerItem.handoutInfo.handoutById
+				);
+				tripletexRows.push([
+					invoice.invoiceId,
+					moment(invoice.creationTime).format("YYYY-MM-DD"),
+					moment(invoice.duedate).format("YYYY-MM-DD"),
+					"",
+					"",
+					"",
+					(customerItem.orders as string[])[
+						customerItem.orders.length - 1
+					],
+					moment(customerItem.creationTime).format("YYYY-MM-DD"),
+					String(invoice.customerInfo.phone),
+					invoice.customerInfo.name,
+					"",
+					invoice.customerInfo.email,
+					invoice.customerInfo.phone,
+					"",
+					invoice.customerInfo.postal.address,
+					"",
+					invoice.customerInfo.postal.code,
+					invoice.customerInfo.postal.city,
+					"NO",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					"",
+					invoice.reference,
+					"",
+					"",
+					"",
+					"",
+					"Ved spørsmål, ta vennligst kontakt på epost: info@boklisten.no",
+					"NOK",
+					moment(customerItem.creationTime).format("YYYY-MM-DD"),
+					handoutBranch.name,
+					handoutBranch.location.address,
+					handoutBranch.location.postCode,
+					handoutBranch.location.postCity,
+					"",
+					"",
+					"",
+					item.id,
+					item.title,
+					"",
+					String(customerItem.amountLeftToPay),
+					"1",
+					"0",
+					"5",
+				]);
+			}
 		}
 		this.printService.printTripletexRows(tripletexRows);
 		return true;
