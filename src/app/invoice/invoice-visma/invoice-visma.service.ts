@@ -173,7 +173,7 @@ export class InvoiceVismaService {
 					"",
 					"",
 					isFirstItem
-						? "Faktura gjelder manglende betaling av andre avdrag. Ved henvendelser om denne faktura, send mail til info@boklisten.no"
+						? `Faktura gjelder manglende betaling av andre avdrag ved ${handoutBranch.name}. Ved henvendelser om denne faktura, send mail til info@boklisten.no`
 						: "",
 					"NOK",
 					moment(customerItem.creationTime).format("YYYY-MM-DD"),
@@ -252,7 +252,7 @@ export class InvoiceVismaService {
 				String(invoice.payment.fee.unit),
 				String(invoice.customerItemPayments.length),
 				String(invoice.payment.total.discount),
-				"5",
+				"3",
 			]);
 		}
 		this.printService.printTripletexRows(tripletexRows);
