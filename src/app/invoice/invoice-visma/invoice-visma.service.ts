@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { CustomerItem, Invoice } from "@boklisten/bl-model";
+import { CustomerItem, Invoice, Item } from "@boklisten/bl-model";
 import { DateService } from "../../date/date.service";
 import { BlPrintService } from "../../bl-common/bl-print/bl-print.service";
 import {
@@ -120,8 +120,9 @@ export class InvoiceVismaService {
 					this.customerItemService.getById(customerItemId as string)
 				)
 			);
+			let isFirstItem = true;
 			for (const customerItem of customerItems) {
-				const item = await this.itemService.getById(
+				const item: Item = await this.itemService.getById(
 					customerItem.item as string
 				);
 				const handoutBranch = await this.branchService.getById(
@@ -138,7 +139,9 @@ export class InvoiceVismaService {
 						customerItem.orders.length - 1
 					],
 					moment(customerItem.creationTime).format("YYYY-MM-DD"),
-					String(invoice.customerInfo.phone),
+					this.getMongoIdMiniEpoch(
+						invoice.customerInfo.userDetail as string
+					).toString(),
 					invoice.customerInfo.name,
 					"",
 					invoice.customerInfo.email,
@@ -169,7 +172,9 @@ export class InvoiceVismaService {
 					"",
 					"",
 					"",
-					"Ved spørsmål, ta vennligst kontakt på epost: info@boklisten.no",
+					isFirstItem
+						? "Faktura gjelder manglende betaling av andre avdrag. Ved henvendelser om denne faktura, send mail til info@boklisten.no"
+						: "",
 					"NOK",
 					moment(customerItem.creationTime).format("YYYY-MM-DD"),
 					handoutBranch.name,
@@ -179,7 +184,7 @@ export class InvoiceVismaService {
 					"",
 					"",
 					"",
-					item.id,
+					String(item.info.isbn),
 					item.title,
 					"",
 					String(customerItem.amountLeftToPay),
@@ -187,7 +192,68 @@ export class InvoiceVismaService {
 					"0",
 					"5",
 				]);
+				isFirstItem = false;
 			}
+			tripletexRows.push([
+				invoice.invoiceId,
+				moment(invoice.creationTime).format("YYYY-MM-DD"),
+				moment(invoice.duedate).format("YYYY-MM-DD"),
+				"",
+				"",
+				"",
+				invoice.invoiceId,
+				moment(invoice.creationTime).format("YYYY-MM-DD"),
+				this.getMongoIdMiniEpoch(
+					invoice.customerInfo.userDetail as string
+				).toString(),
+				invoice.customerInfo.name,
+				"",
+				invoice.customerInfo.email,
+				invoice.customerInfo.phone,
+				"",
+				invoice.customerInfo.postal.address,
+				"",
+				invoice.customerInfo.postal.code,
+				invoice.customerInfo.postal.city,
+				"NO",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				invoice.reference,
+				"",
+				"",
+				"",
+				"",
+				"",
+				"NOK",
+				moment(invoice.creationTime).format("YYYY-MM-DD"),
+				"", // location infos
+				"",
+				"",
+				"",
+				"",
+				"",
+				"",
+				"1000",
+				this.feeTitle,
+				"",
+				String(invoice.payment.fee.unit),
+				String(invoice.customerItemPayments.length),
+				String(invoice.payment.total.discount),
+				"5",
+			]);
 		}
 		this.printService.printTripletexRows(tripletexRows);
 		return true;
