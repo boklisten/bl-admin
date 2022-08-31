@@ -23,9 +23,6 @@ export class BlidScannerInputComponent implements OnInit {
 	}
 
 	private isBlidValid(blid: string): boolean {
-		if (blid.length !== 12) {
-			return false;
-		}
-		return true;
+		return blid.length === 8 || blid.length === 12;
 	}
 }
