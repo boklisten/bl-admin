@@ -1,17 +1,40 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/internal/Observable";
 import { Subject, Subscription } from "rxjs";
+import { StorageService } from "../../storage/storage.service";
+import { BranchService } from "@boklisten/bl-connect";
+import { Branch } from "@boklisten/bl-model";
 
 @Injectable({
 	providedIn: "root",
 })
 export class BlcScannerService {
+	private handoutBranch: Branch;
+
+	constructor(
+		private _branchService: BranchService,
+		private _storageService: StorageService
+	) {
+		const fetchHandoutBranch = async () => {
+			console.log("fetchHandoutbranch");
+			this.handoutBranch = await this._branchService.getById(
+				this._storageService.get("bl-branch")
+			);
+			console.log(this.handoutBranch);
+		};
+		fetchHandoutBranch();
+
+		this._isbn$ = new Subject<number>();
+		this._blid$ = new Subject<string>();
+	}
 	private _isbn$: Subject<number>;
 	private _blid$: Subject<string>;
 
-	constructor() {
-		this._isbn$ = new Subject<number>();
-		this._blid$ = new Subject<string>();
+	public isUllernBlid(value: string) {
+		return (
+			value.length === 8 &&
+			this.isNumeric(value) &&
+			this.handoutBranch.name.includes("Ullern")
+		);
 	}
 
 	public onIsbn(func: (isbn: number) => void): Subscription {
@@ -34,7 +57,7 @@ export class BlcScannerService {
 			blid = scannedString.slice(4);
 		}
 
-		if (blid.length === 8 || blid.length === 12) {
+		if (blid.length === 12 || this.isUllernBlid(blid)) {
 			this._blid$.next(blid);
 		}
 	}

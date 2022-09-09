@@ -42,8 +42,8 @@ export class BlcScannerDirective {
 
 		if (event.key === "Enter") {
 			if (
-				this.scannerString.length === 8 ||
-				this.scannerString.length === 12
+				this.scannerString.length === 12 ||
+				this._blcScannerService.isUllernBlid(this.scannerString)
 			) {
 				this._blcScannerService.scanBlid(this.scannerString);
 			} else if (

@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { BlcScannerService } from "../../bl-common/blc-scanner/blc-scanner.service";
 
 @Component({
 	selector: "app-blid-scanner-input",
@@ -9,7 +10,7 @@ export class BlidScannerInputComponent implements OnInit {
 	@Output() blid: EventEmitter<string>;
 	public blidInput: string;
 
-	constructor() {
+	constructor(private _blcScannerService: BlcScannerService) {
 		this.blid = new EventEmitter();
 	}
 
@@ -23,6 +24,6 @@ export class BlidScannerInputComponent implements OnInit {
 	}
 
 	private isBlidValid(blid: string): boolean {
-		return blid.length === 8 || blid.length === 12;
+		return blid.length === 12 || this._blcScannerService.isUllernBlid(blid);
 	}
 }
