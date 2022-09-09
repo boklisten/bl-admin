@@ -19,7 +19,7 @@
 
 <div class="row">
 	<div class="col-6">
-		<span i18n="@@invoiceCreateItemListPrice">Price:</span>
+		<span>Pris (eks. mva): </span>
 		<app-blc-edit-number-value
 			name="invoiceItemPrice"
 			[value]="invoiceItem.price"
@@ -27,6 +27,7 @@
 			(valueChange)="updateTotal()"
 			ngDefaultControl
 		></app-blc-edit-number-value>
+		kr
 	</div>
 
 	<div class="col-6">
@@ -57,7 +58,7 @@
 	</div>
 
 	<div class="col-6">
-		<span i18n="@@invoiceCreateItemListTaxRate">Tax rate: </span>
+		<span>MVA: </span>
 
 		<app-blc-edit-number-value
 			name="invoiceItemTaxPercentage"
@@ -66,6 +67,7 @@
 			(valueChange)="updateTotal()"
 			ngDefaultControl
 		></app-blc-edit-number-value>
+		%
 	</div>
 </div>
 
@@ -82,7 +84,7 @@
 	</div>
 
 	<div class="col-6">
-		<span i18n="@@invoiceCreateItemListTotal">Total: </span>
+		<span>Total: </span>
 		<span>{{ invoiceItem.total | blcPrice }}</span>
 
 		(<span i18n="@@invoiceCreateItemListTax">Tax: </span>
