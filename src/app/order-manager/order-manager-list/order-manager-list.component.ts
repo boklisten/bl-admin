@@ -121,7 +121,12 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 		this._orderManagerListService
 			.getPlacedOrders()
 			.then((orders: Order[]) => {
-				this.placedOrders = orders;
+				this.placedOrders = orders.map((order) => {
+					order.orderItems = order.orderItems.filter(
+						(orderItem) => orderItem.movedToOrder === undefined
+					);
+					return order;
+				});
 				this.tempPlacedOrders = orders;
 				this.filterOnlyCurrentBranch();
 				this.filterNewestFirst();
