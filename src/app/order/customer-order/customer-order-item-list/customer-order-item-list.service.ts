@@ -77,7 +77,7 @@ export class CustomerOrderItemListService {
 	private filterOrderdItems(
 		orders: Order[]
 	): { order: Order; orderItem: OrderItem }[] {
-		let customerOrderItems = [];
+		const customerOrderItems = [];
 
 		for (const order of orders) {
 			if (order.orderItems) {
