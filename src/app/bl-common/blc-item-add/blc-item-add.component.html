@@ -30,8 +30,8 @@
 	<div class="modal-body">
 		<div class="card">
 			<div class="card-body">
-				<h4>{{ item.title }}</h4>
-				<h5 *ngIf="item.info">
+				<h4>{{ item ? item.title : orderItem.title }}</h4>
+				<h5 *ngIf="item?.info">
 					<span class="badge badge-pill badge-secondary">
 						ISBN: {{ item.info["isbn"] }}</span
 					>
