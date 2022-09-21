@@ -16,6 +16,14 @@
 					<input type="checkbox" formControlName="vipps" ngbButton />
 					<span i18n="@@paymentMethodSelectVipps">Vipps</span>
 				</label>
+				<label
+					class="btn-outline-secondary"
+					ngbButtonLabel
+					*ngIf="amount < 0"
+				>
+					<input type="checkbox" formControlName="dibs" ngbButton />
+					<span>DIBS</span>
+				</label>
 			</div>
 		</form>
 	</div>
@@ -76,6 +84,24 @@
 			<div class="input-group-append">
 				<span class="input-group-text">
 					<span i18n="@@paymentMethodSelectVipps">Vipps</span>
+				</span>
+			</div>
+		</div>
+
+		<div class="input-group input-group-lg mb-3" *ngIf="dibs && showInput">
+			<input
+				type="text"
+				class="form-control"
+				id="dibsAmount"
+				placeholder="dibs amount"
+				[(ngModel)]="dibsAmount"
+				(click)="$event.target.select()"
+				(keyup)="onInputChange()"
+			/>
+
+			<div class="input-group-append">
+				<span class="input-group-text">
+					<span>DIBS</span>
 				</span>
 			</div>
 		</div>

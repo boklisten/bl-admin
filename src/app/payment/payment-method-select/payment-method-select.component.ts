@@ -18,6 +18,8 @@ export class PaymentMethodSelectComponent implements OnInit {
 	public cardAmount: number;
 	public cash: boolean;
 	public cashAmount: number;
+	public dibs: boolean;
+	public dibsAmount: number;
 	public showInput: boolean;
 
 	constructor(private _formBuilder: FormBuilder) {
@@ -27,6 +29,7 @@ export class PaymentMethodSelectComponent implements OnInit {
 		this.vippsAmount = 0;
 		this.cashAmount = 0;
 		this.cardAmount = 0;
+		this.dibsAmount = 0;
 	}
 
 	ngOnInit() {
@@ -34,6 +37,7 @@ export class PaymentMethodSelectComponent implements OnInit {
 			card: false,
 			cash: false,
 			vipps: false,
+			dibs: false,
 		});
 
 		this.paymentMethodForm.controls["card"].valueChanges.subscribe(
@@ -56,13 +60,21 @@ export class PaymentMethodSelectComponent implements OnInit {
 				this.handleInputs();
 			}
 		);
+
+		this.paymentMethodForm.controls["dibs"].valueChanges.subscribe(
+			(selected) => {
+				this.dibs = selected;
+				this.handleInputs();
+			}
+		);
 	}
 
 	public onInputChange() {
 		const totalAmount =
 			parseInt(this.cardAmount.toString(), 10) +
 			parseInt(this.cashAmount.toString(), 10) +
-			parseInt(this.vippsAmount.toString(), 10);
+			parseInt(this.vippsAmount.toString(), 10) +
+			parseInt(this.dibsAmount.toString(), 10);
 
 		if (totalAmount === this.amount) {
 			this.emitChoices();
@@ -86,6 +98,10 @@ export class PaymentMethodSelectComponent implements OnInit {
 			paymentChoices.push({ type: "vipps", amount: this.vippsAmount });
 		}
 
+		if (this.dibs) {
+			paymentChoices.push({ type: "dibs", amount: this.dibsAmount });
+		}
+
 		this.paymentChoices.emit(paymentChoices);
 	}
 
@@ -96,22 +112,27 @@ export class PaymentMethodSelectComponent implements OnInit {
 			this.cardAmount = 0;
 			this.cashAmount = 0;
 			this.vippsAmount = 0;
+			this.dibsAmount = 0;
 			this.failure.emit(true);
 		}
 
-		if (this.cash && !this.card && !this.vipps) {
+		if (this.cash && !this.card && !this.vipps && !this.dibs) {
 			this.cashAmount = this.amount;
 			this.emitChoices();
-		} else if (this.card && !this.cash && !this.vipps) {
+		} else if (this.card && !this.cash && !this.vipps && !this.dibs) {
 			this.cardAmount = this.amount;
 			this.emitChoices();
-		} else if (this.vipps && !this.cash && !this.card) {
+		} else if (this.vipps && !this.cash && !this.card && !this.dibs) {
 			this.vippsAmount = this.amount;
+			this.emitChoices();
+		} else if (this.dibs && !this.vipps && !this.cash && !this.card) {
+			this.dibsAmount = this.amount;
 			this.emitChoices();
 		} else {
 			this.cardAmount = 0;
 			this.vippsAmount = 0;
 			this.cashAmount = 0;
+			this.dibsAmount = 0;
 			this.showInput = true;
 			this.failure.emit(true);
 		}
