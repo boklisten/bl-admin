@@ -121,12 +121,7 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 		this._orderManagerListService
 			.getPlacedOrders()
 			.then((orders: Order[]) => {
-				this.placedOrders = orders.map((order) => {
-					order.orderItems = order.orderItems.filter(
-						(orderItem) => orderItem.movedToOrder === undefined
-					);
-					return order;
-				});
+				this.placedOrders = orders;
 				this.tempPlacedOrders = orders;
 				this.filterOnlyCurrentBranch();
 				this.filterNewestFirst();
@@ -203,7 +198,13 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 	public async printOrderOverviewToExcel() {
 		this.fetching = true;
 		const orderOverview = [];
-		this.placedOrders.forEach((placedOrder) => {
+		const filteredOrders = this.placedOrders.map((order) => {
+			order.orderItems = order.orderItems.filter(
+				(orderItem) => orderItem.movedToOrder === undefined
+			);
+			return order;
+		});
+		filteredOrders.forEach((placedOrder) => {
 			placedOrder.orderItems.forEach((orderItem) => {
 				orderOverview.push({
 					title: orderItem.title,
