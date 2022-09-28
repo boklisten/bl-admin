@@ -1,15 +1,15 @@
 import {
 	Component,
 	EventEmitter,
+	OnDestroy,
 	OnInit,
 	Output,
-	OnDestroy,
 } from "@angular/core";
 import {
 	OrderFilter,
 	OrderManagerListService,
 } from "./order-manager-list.service";
-import { Order, Delivery } from "@boklisten/bl-model";
+import { Delivery, Order } from "@boklisten/bl-model";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { CustomerService } from "../../customer/customer.service";
 import { timer } from "rxjs/internal/observable/timer";
@@ -18,10 +18,10 @@ import { Subscription } from "rxjs";
 import { CheckoutService } from "../../checkout/checkout.service";
 import { DatabaseExcelService } from "../../database/database-excel/database-excel.service";
 import {
-	ItemService,
-	DeliveryService,
-	UserDetailService,
 	BranchService,
+	DeliveryService,
+	ItemService,
+	UserDetailService,
 } from "@boklisten/bl-connect";
 
 @Component({
@@ -207,15 +207,15 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 		filteredOrders.forEach((placedOrder) => {
 			placedOrder.orderItems.forEach((orderItem) => {
 				orderOverview.push({
+					customer: placedOrder.customer,
 					title: orderItem.title,
 					isbn: orderItem.item,
 					school: placedOrder.branch,
-					pivot: 1,
 				});
 			});
 		});
 
-		await Promise.all(
+		const populatedRows = await Promise.all(
 			orderOverview.map(async (itemOverview) => {
 				const item = await this._itemService.getById(
 					itemOverview.isbn as string
@@ -223,14 +223,25 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 				const branch = await this.branchService.getById(
 					itemOverview.school
 				);
-				itemOverview.school = branch.name;
-				itemOverview.isbn = item.info.isbn;
-				return itemOverview;
+				const customer = await this._userDetailService.getById(
+					itemOverview.customer as string
+				);
+
+				return {
+					name: customer.name,
+					email: customer.email,
+					phone: customer.phone,
+					address: customer.address,
+					school: branch.name,
+					title: itemOverview.title,
+					isbn: item.info.isbn,
+					pivot: 1,
+				};
 			})
 		);
 
-		orderOverview.sort((a, b) => a.title.localeCompare(b.title));
-		this._databaseExcelService.objectsToExcelFile(orderOverview, "orders");
+		populatedRows.sort((a, b) => a.name.localeCompare(b.name));
+		this._databaseExcelService.objectsToExcelFile(populatedRows, "orders");
 		this.fetching = false;
 	}
 
