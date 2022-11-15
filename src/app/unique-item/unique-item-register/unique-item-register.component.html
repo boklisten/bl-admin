@@ -30,6 +30,14 @@
 					registered before?</span
 				>
 			</div>
+
+			<div class="alert alert-danger" *ngIf="blidIsPartOfISBN">
+				<fa-icon icon="exclamation-triangle" class="mr-2"></fa-icon>
+				<span
+					>Denne BLIDen er en del av ISBNen til boka. Er du sikker på
+					at du har skannet riktig strekkode?</span
+				>
+			</div>
 		</div>
 	</div>
 	<div class="row mb-2">
@@ -39,7 +47,10 @@
 					class="list-group-item list-group-item-secondary"
 					[ngClass]="{
 						'list-group-item-success':
-							blid && itemId && !blidAlreadyAddedError
+							blid &&
+							itemId &&
+							!blidAlreadyAddedError &&
+							!blidIsPartOfISBN
 					}"
 					*ngIf="itemId"
 				>
@@ -60,8 +71,12 @@
 					class="list-group-item list-group-item-secondary"
 					[ngClass]="{
 						'list-group-item-success':
-							blid && itemId && !blidAlreadyAddedError,
-						'list-group-item-danger': blidAlreadyAddedError
+							blid &&
+							itemId &&
+							!blidAlreadyAddedError &&
+							!blidIsPartOfISBN,
+						'list-group-item-danger':
+							blidAlreadyAddedError && !blidIsPartOfISBN
 					}"
 					*ngIf="blid"
 				>
@@ -85,7 +100,7 @@
 	</div>
 	<div
 		class="row mt-2 mb-2"
-		*ngIf="!itemId || !blid || blidAlreadyAddedError"
+		*ngIf="!itemId || !blid || blidAlreadyAddedError || blidIsPartOfISBN"
 	>
 		<div class="col-12">
 			<app-item-search-select
@@ -94,7 +109,7 @@
 			></app-item-search-select>
 
 			<app-blid-scanner
-				*ngIf="!blid || blidAlreadyAddedError"
+				*ngIf="!blid || blidAlreadyAddedError || blidIsPartOfISBN"
 				(blid)="onBlid($event)"
 			></app-blid-scanner>
 		</div>
@@ -109,10 +124,13 @@
 			<button
 				class="btn btn-outline-success btn-block"
 				*ngIf="!wait"
-				[disabled]="!itemId || !blid"
+				[disabled]="!itemId || !blid || blidIsPartOfISBN"
 				[ngClass]="{
 					'btn-success text-white':
-						itemId && blid && !blidAlreadyAddedError
+						itemId &&
+						blid &&
+						!blidAlreadyAddedError &&
+						!blidIsPartOfISBN
 				}"
 				(click)="onInsertToDB()"
 				(keydown.enter)="$event.preventDefault()"

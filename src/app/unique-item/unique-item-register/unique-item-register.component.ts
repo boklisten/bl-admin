@@ -29,6 +29,7 @@ export class UniqueItemRegisterComponent implements OnInit {
 	public editBlid: boolean;
 	public editItem: boolean;
 	public uniqueItemRegisterError: boolean;
+	public blidIsPartOfISBN: boolean;
 
 	constructor(private _uniqueItemStoreService: UniqueItemStoreService) {
 		this.registered = new EventEmitter();
@@ -50,6 +51,7 @@ export class UniqueItemRegisterComponent implements OnInit {
 	public onBlid(blid: string) {
 		this.blid = blid;
 		this.blidAlreadyAddedError = false;
+		this.blidIsPartOfISBN = String(this.isbn).includes(blid);
 
 		this._uniqueItemStoreService
 			.get(this.blid)
