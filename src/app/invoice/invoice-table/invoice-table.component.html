@@ -162,16 +162,19 @@
 						[ngClass]="{
 							'text-success':
 								invoice.customerHavePayed ||
-								invoice.toCreditNote,
+								invoice.toCreditNote ||
+								invoice.toLossNote,
 							'text-danger':
 								!invoice.customerHavePayed &&
-								!invoice.toCreditNote
+								!invoice.toCreditNote &&
+								!invoice.toLossNote
 						}"
 					>
 						<fa-icon
 							[icon]="
 								invoice.customerHavePayed ||
-								invoice.toCreditNote
+								invoice.toCreditNote ||
+								invoice.toLossNote
 									? 'check-circle'
 									: 'times-circle'
 							"

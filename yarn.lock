@@ -1182,10 +1182,10 @@
   dependencies:
     typescript "^4.2.4"
 
-"@boklisten/bl-model@^0.25.7":
-  version "0.25.7"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-model/-/bl-model-0.25.7.tgz#080bcda0b23398ff930cf900757aab7eb7c11fa5"
-  integrity sha512-DlS1+8BgxPej0WGjOAFmYNW+ONBrWObtBKKpJ8OiOuDa8+qW/G4TIZDfjINiCS2tePdbVJjs7jvKmS3O5aFIvQ==
+"@boklisten/bl-model@^0.25.8":
+  version "0.25.8"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-model/-/bl-model-0.25.8.tgz#b74f5066500f6b703ba87aae19821ba4c7f5be5b"
+  integrity sha512-6G8DjQkb/kMJWl8FABAzTiXXREhSJsSFXwcBHGFuoCAIrwxsS6QZBe3YxZEQsHOwXV6NxmM20TtCkpogZxRB/A==
   dependencies:
     typescript "^4.5.2"
 

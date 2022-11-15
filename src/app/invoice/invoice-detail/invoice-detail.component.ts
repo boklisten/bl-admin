@@ -165,6 +165,7 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 		this.invoice.customerHavePayed = customerHavePayed;
 		this.invoice.toDebtCollection = false;
 		this.invoice.toCreditNote = false;
+		this.invoice.toLossNote = false;
 		this.updateInvoiceStatus();
 		this.updateCustomerItems(customerHavePayed);
 	}
@@ -173,11 +174,21 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 		this.invoice.toDebtCollection = toDebtCollection;
 		this.invoice.customerHavePayed = false;
 		this.invoice.toCreditNote = false;
+		this.invoice.toLossNote = false;
 		this.updateInvoiceStatus();
 	}
 
 	public onInvoiceToCreditNote(toCreditNote: boolean) {
 		this.invoice.toCreditNote = toCreditNote;
+		this.invoice.customerHavePayed = false;
+		this.invoice.toDebtCollection = false;
+		this.invoice.toLossNote = false;
+		this.updateInvoiceStatus();
+	}
+
+	public onInvoiceToLossNote(toLossNote: boolean) {
+		this.invoice.toLossNote = toLossNote;
+		this.invoice.toCreditNote = false;
 		this.invoice.customerHavePayed = false;
 		this.invoice.toDebtCollection = false;
 		this.updateInvoiceStatus();
@@ -189,6 +200,7 @@ export class InvoiceDetailComponent implements OnInit, OnChanges {
 				toCreditNote: this.invoice.toCreditNote,
 				toDebtCollection: this.invoice.toDebtCollection,
 				customerHavePayed: this.invoice.customerHavePayed,
+				toLossNote: this.invoice.toLossNote,
 			})
 			.then(() => {})
 			.catch((err) => {});

@@ -78,6 +78,18 @@
 					</div>
 
 					<div class="row justify-content-between">
+						<div class="col-auto">Faktura er tapsført</div>
+						<div class="col-auto">
+							<app-bl-common-toggle-button
+								class="align-middle float-right"
+								[value]="invoice.toLossNote"
+								(valueChange)="onInvoiceToLossNote($event)"
+							>
+							</app-bl-common-toggle-button>
+						</div>
+					</div>
+
+					<div class="row justify-content-between">
 						<div class="col-auto" i18n="@@invoiceDetailName">
 							Name
 						</div>
