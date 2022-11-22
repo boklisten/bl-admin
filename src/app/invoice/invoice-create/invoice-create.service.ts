@@ -133,7 +133,7 @@ export class InvoiceCreateService {
 	}
 
 	private itemUnitPrice(invoiceItem: InvoiceItem): number {
-		return invoiceItem.price;
+		return invoiceItem.total;
 	}
 
 	private itemGrossPrice(invoiceItem: InvoiceItem): number {
