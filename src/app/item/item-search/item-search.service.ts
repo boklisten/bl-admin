@@ -106,7 +106,7 @@ export class ItemSearchService {
 
 		try {
 			items = await this._itemService.get({
-				query: "?s=" + term,
+				query: `?s=${term}&active=true`,
 			});
 		} catch (e) {
 			throw e;
