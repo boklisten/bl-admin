@@ -44,6 +44,16 @@
 
 <div class="row">
 	<div class="col-12" style="min-height: 500px">
+		<div style="display: flex">
+			<app-bl-common-toggle-button
+				[(value)]="onlyActive"
+				(update)="filterActive()"
+				[tooltip]="'Vis eller skjul inaktive bøker'"
+			></app-bl-common-toggle-button>
+			<p style="margin-top: 0.5rem; margin-left: 0.2rem">
+				Vis kun aktive
+			</p>
+		</div>
 		<!--
 
     <table>
@@ -87,7 +97,7 @@
 				<ng-template
 					ngx-datatable-header-template
 					let-value="value"
-					let-allRowsSelectedj="allRowsSelected"
+					let-allRowsSelected="allRowsSelected"
 					let-selectFn="selectFn"
 				>
 					<input
@@ -218,45 +228,6 @@
 						(update)="updateRowItem(rowIndex, 'digital')"
 						[tooltip]="'change digital state'"
 					></app-bl-common-toggle-button>
-				</ng-template>
-			</ngx-datatable-column>
-
-			<ngx-datatable-column [frozenRight]="true">
-				<ng-template
-					let-row="row"
-					ngx-datatable-cell-template
-					let-rowIndex="rowIndex"
-				>
-					<div>
-						<span
-							*ngIf="uploadList && items[rowIndex].id"
-							class="text-danger mr-2"
-						>
-							<fa-icon
-								[icon]="'eraser'"
-								[size]="'1x'"
-								ngbTooltip="'May override some data'"
-								placement="left"
-							></fa-icon>
-						</span>
-
-						<span>
-							<button
-								class="btn btn-sm btn-outline-secondary"
-								*ngIf="items[rowIndex].id"
-							>
-								<fa-icon [icon]="'info-circle'"></fa-icon>
-							</button>
-						</span>
-						<span>
-							<fa-icon
-								[icon]="'circle-notch'"
-								class="ml-2"
-								[spin]="true"
-								*ngIf="updating[rowIndex]"
-							></fa-icon>
-						</span>
-					</div>
 				</ng-template>
 			</ngx-datatable-column>
 		</ngx-datatable>

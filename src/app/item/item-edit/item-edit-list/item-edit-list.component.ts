@@ -28,9 +28,10 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 	public columns: any[];
 	public editing = {};
 	public updating = {};
-	public expanded = {};
 	public temp: Item[];
 	public selected: Item[];
+	public onlyActive = true;
+	public prevSearch = "";
 
 	constructor(
 		private _itemService: ItemService,
@@ -59,6 +60,7 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 						"title"
 					);
 					this.temp = this.items;
+					this.filterActive();
 				})
 				.catch((err) => {
 					console.log(
@@ -143,25 +145,28 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 			});
 	}
 
-	public toggleExpandRow(row) {
-		this.table.rowDetail.toggleExpandRow(row);
+	public updateFilter(event) {
+		const searchValue = event.target.value.toLowerCase();
+		this.prevSearch = searchValue;
+		this.filterActive(searchValue);
 	}
 
-	public onDetailToggle(event) {}
-
-	public updateFilter(event) {
-		const val = event.target.value.toLowerCase();
-
-		this.items = this.temp.filter((item: Item) => {
-			return (
-				item.title.toLowerCase().indexOf(val) !== -1 ||
-				(item.info &&
-					item.info.isbn &&
-					typeof item.info.isbn === "string" &&
-					item.info.isbn.toLowerCase().indexOf(val) !== -1) ||
-				val.length <= 0
+	filterActive(searchValue?: string) {
+		this.filterBySearch(searchValue ?? this.prevSearch);
+		if (this.onlyActive) {
+			this.items = this.items.filter(
+				(item) => item.active === this.onlyActive
 			);
-		});
+		}
+	}
+
+	filterBySearch(searchValue) {
+		this.items = this.temp.filter(
+			(item: Item) =>
+				item.title.toLowerCase().includes(searchValue) ||
+				String(item.info.isbn).includes(searchValue) ||
+				searchValue.length === 0
+		);
 	}
 
 	public uploadSelected() {
@@ -205,11 +210,6 @@ export class ItemEditListComponent implements OnInit, OnChanges {
 	}
 
 	private removeItemFromList(title) {
-		for (let i = 0; i < this.items.length; i++) {
-			if (this.items[i].title === title) {
-				this.items.splice(i, 1);
-				break;
-			}
-		}
+		this.items = this.items.filter((item) => item.title !== title);
 	}
 }
