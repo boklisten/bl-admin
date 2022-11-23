@@ -1,19 +1,9 @@
-import { Injectable } from "@angular/core";
-import {
-	CustomerItem,
-	CustomerItemType,
-	UserDetail,
-	Invoice,
-	Item,
-} from "@boklisten/bl-model";
-import { DateService } from "../../date/date.service";
-import {
-	InvoiceService,
-	UserDetailService,
-	ItemService,
-} from "@boklisten/bl-connect";
-import { CustomerItemHandlerService } from "../../customer-item/customer-item-handler/customer-item-handler.service";
-import { PriceService } from "../../price/price.service";
+import {Injectable} from "@angular/core";
+import {CustomerItem, CustomerItemType, Invoice, Item, UserDetail,} from "@boklisten/bl-model";
+import {DateService} from "../../date/date.service";
+import {InvoiceService, ItemService, UserDetailService,} from "@boklisten/bl-connect";
+import {CustomerItemHandlerService} from "../../customer-item/customer-item-handler/customer-item-handler.service";
+import {PriceService} from "../../price/price.service";
 
 @Injectable({
 	providedIn: "root",
@@ -108,14 +98,12 @@ export class InvoiceGeneratorService {
 		}
 
 		// Put everything in an array
-		const customersAndCustomerItemsArray = Object.keys(
+		return Object.keys(
 			customersAndCustomerItems
 		).map((customer) => ({
 			customer: customer,
 			customerItems: customersAndCustomerItems[customer],
 		}));
-
-		return customersAndCustomerItemsArray;
 	}
 
 	private async generateInvoices(

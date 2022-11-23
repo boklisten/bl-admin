@@ -121,7 +121,7 @@ export class InvoiceCreateService {
 				numberOfItems: parseFloat(invoiceItem.numberOfUnits + ""),
 				productNumber: invoiceItem.productNumber,
 				payment: {
-					unit: this.itemUnitPrice(invoiceItem),
+					unit: invoiceItem.price,
 					gross: this.itemGrossPrice(invoiceItem),
 					net: this.itemNetPrice(invoiceItem),
 					vat: this.itemVatPrice(invoiceItem),
@@ -132,13 +132,9 @@ export class InvoiceCreateService {
 		return invoiceItemPayments;
 	}
 
-	private itemUnitPrice(invoiceItem: InvoiceItem): number {
-		return invoiceItem.total;
-	}
-
 	private itemGrossPrice(invoiceItem: InvoiceItem): number {
 		return this.priceService.withTwoDecimals(
-			this.itemUnitPrice(invoiceItem) *
+			invoiceItem.total *
 				invoiceItem.discount *
 				invoiceItem.numberOfUnits
 		);
