@@ -4,6 +4,11 @@ import { Branch, UserPermission } from "@boklisten/bl-model";
 
 import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 
+enum BranchType {
+	Public = "VGS",
+	Private = "privatist",
+}
+
 @Component({
 	selector: "app-branch-current",
 	templateUrl: "./branch-current.component.html",
@@ -12,7 +17,9 @@ import { BlcSortService } from "../../bl-common/blc-sort/blc-sort.service";
 export class BranchCurrentComponent implements OnInit {
 	public lastPopoverRef: any;
 	public currentBranch: Branch;
-	public branches: Branch[];
+	public currentBranchType: BranchType;
+	public filteredBranches: Branch[];
+	private allBranches: Branch[];
 
 	constructor(
 		private _branchStoreService: BranchStoreService,
@@ -22,20 +29,23 @@ export class BranchCurrentComponent implements OnInit {
 	ngOnInit() {
 		if (this._branchStoreService.getCurrentBranch()) {
 			this.currentBranch = this._branchStoreService.getCurrentBranch();
+			this.currentBranchType = this.currentBranch?.type as BranchType;
 		}
 		this._branchStoreService
 			.onBranchChange()
 			.subscribe((branch: Branch) => {
 				this.currentBranch = branch;
+				this.currentBranchType = this.currentBranch?.type as BranchType;
 			});
 
 		this._branchStoreService
 			.getAllBranches()
 			.then((branches: Branch[]) => {
-				this.branches = this.blcSortService.sortByField(
-					branches,
-					"name"
-				);
+				this.filteredBranches = this.blcSortService
+					.sortByField(branches, "name")
+					.filter((branch) => branch.active);
+				this.allBranches = this.filteredBranches;
+				this.filterBranchesByType(this.currentBranchType);
 			})
 			.catch((getBranchesError) => {
 				console.log(
@@ -71,5 +81,20 @@ export class BranchCurrentComponent implements OnInit {
 
 	public onSelectBranch(branch: Branch) {
 		this._branchStoreService.setCurrentBranch(branch);
+	}
+
+	public onSelectBranchType(branchType: string) {
+		this.currentBranchType = branchType as BranchType;
+		this.filterBranchesByType(this.currentBranchType);
+
+		if (this.currentBranch?.type !== this.currentBranchType) {
+			this.onSelectBranch(this.filteredBranches[0]);
+		}
+	}
+
+	private filterBranchesByType(branchType: string) {
+		this.filteredBranches = this.allBranches.filter(
+			(branch) => branch.type === branchType
+		);
 	}
 }

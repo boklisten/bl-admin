@@ -1,22 +1,78 @@
-<div
-	class="btn btn-outline-dark btn-sm btn-block bl-branch-current"
-	[ngbPopover]="branchSelectPopover"
-	placement="bottom-right"
-	#branchSelectPopoverRef="ngbPopover"
-	(click)="setCurrentPopoverOpen(branchSelectPopoverRef)"
->
-	<fa-icon [icon]="'location-arrow'"></fa-icon>
-	<span
-		class="d-lg-inline d-md-none d-sm-none d-none ml-2"
-		*ngIf="currentBranch"
-		>{{ currentBranch.name }}</span
+<div style="display: flex; justify-content: center; align-items: center">
+	<div
+		class="btn btn-outline-dark btn-sm btn-block"
+		style="width: 8rem; margin-right: 0.2rem; margin-top: 0"
+		[ngbPopover]="branchTypeSelectPopover"
+		#branchSelectPopoverRef="ngbPopover"
+		(click)="setCurrentPopoverOpen(branchSelectPopoverRef)"
 	>
+		<fa-icon [icon]="'graduation-cap'"></fa-icon>
+		<span
+			class="d-lg-inline d-md-none d-sm-none d-none ml-2"
+			*ngIf="currentBranchType"
+			>{{ currentBranchType }}</span
+		>
+		<span
+			class="d-lg-inline d-md-none d-sm-none d-none ml-2"
+			*ngIf="!currentBranchType"
+			>Velg skoletype</span
+		>
+	</div>
+
+	<div
+		class="btn btn-outline-dark btn-sm btn-block"
+		style="width: 14rem; margin-top: 0"
+		[ngbPopover]="branchSelectPopover"
+		#branchSelectPopoverRef="ngbPopover"
+		(click)="setCurrentPopoverOpen(branchSelectPopoverRef)"
+	>
+		<fa-icon [icon]="'location-arrow'"></fa-icon>
+		<span
+			class="d-lg-inline d-md-none d-sm-none d-none ml-2"
+			*ngIf="currentBranch"
+			>{{ currentBranch.name }}</span
+		>
+
+		<span
+			class="d-lg-inline d-md-none d-sm-none d-none ml-2"
+			*ngIf="!currentBranch?.name"
+			>Velg filial</span
+		>
+	</div>
 </div>
+
+<ng-template #branchTypeSelectPopover>
+	<button
+		class="dropdown-item"
+		(click)="onSelectBranchType('VGS')"
+		[ngClass]="{
+			'btn-secondary': currentBranchType === 'VGS',
+			'btn-outline-secondary': currentBranchType !== 'VGS'
+		}"
+	>
+		<fa-icon [icon]="'check'" *ngIf="currentBranchType === 'VGS'"></fa-icon>
+		VGS
+	</button>
+	<button
+		class="dropdown-item"
+		(click)="onSelectBranchType('privatist')"
+		[ngClass]="{
+			'btn-secondary': currentBranchType === 'privatist',
+			'btn-outline-secondary': currentBranchType !== 'privatist'
+		}"
+	>
+		<fa-icon
+			[icon]="'check'"
+			*ngIf="currentBranchType === 'privatist'"
+		></fa-icon>
+		privatist
+	</button>
+</ng-template>
 
 <ng-template #branchSelectPopover>
 	<button
 		class="dropdown-item"
-		*ngFor="let branch of branches"
+		*ngFor="let branch of filteredBranches"
 		(click)="onSelectBranch(branch)"
 		[ngClass]="{
 			'btn-secondary': currentBranch && currentBranch.id === branch.id,
