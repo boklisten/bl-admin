@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { InvoiceItem } from "../invoice-item";
-import { PriceService } from "../../../../price/price.service";
 
 @Component({
 	selector: "app-invoice-create-item-list-item",
@@ -11,7 +10,7 @@ export class InvoiceCreateItemListItemComponent implements OnInit {
 	@Input() invoiceItem: InvoiceItem;
 	@Output() update: EventEmitter<boolean>;
 
-	constructor(private priceService: PriceService) {
+	constructor() {
 		this.update = new EventEmitter();
 	}
 
@@ -26,7 +25,7 @@ export class InvoiceCreateItemListItemComponent implements OnInit {
 
 	private calculateTax(): number {
 		const taxPercentage =
-			parseInt(this.invoiceItem.taxPercentage + "") / 100;
+			Number(this.invoiceItem.taxPercentage) / 100;
 
 		if (taxPercentage === 0) {
 			return 0;

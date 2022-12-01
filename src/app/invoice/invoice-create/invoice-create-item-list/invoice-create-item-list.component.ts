@@ -25,24 +25,16 @@ export class InvoiceCreateItemListComponent implements OnInit {
 		});
 	}
 
-	public createInvoice() {
-		let grandTotal = 0;
-		for (const invoiceItem of this.invoiceItems) {
-			grandTotal += parseFloat(invoiceItem.total + "");
-		}
-	}
-
 	public onInvoiceItemUpdate() {
 		this.invoiceItemList.emit(this.invoiceItems);
 	}
 
 	private setInvoiceItems() {
 		const newInvoiceItems: any[] = [];
-		let productNumber = 1;
+		const productNumber = 1;
 
 		for (const cartItem of this.cart) {
 			let alreadyAddedInvoiceItem = null;
-			console.log("cart item", cartItem);
 
 			for (const invoiceItem of this.invoiceItems) {
 				if (cartItem.getItemId() === invoiceItem.item.id) {

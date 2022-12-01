@@ -41,20 +41,11 @@ export class InvoiceCreateComponent implements OnInit {
 
 	public onInvoiceItemListUpdate(invoiceItemList: InvoiceItem[]) {
 		this.invoiceItemList = invoiceItemList;
-		this.total = this.getTotal();
+		this.total = this.invoiceItemList.reduce((total, nextItem) => total + Number(nextItem.total), 0);
 	}
 
 	public onCompanyUpdate(company: Company) {
 		this.company = company;
-	}
-
-	private getTotal() {
-		let tot = 0;
-
-		for (const invoiceItem of this.invoiceItemList) {
-			tot += parseFloat(invoiceItem.total + "");
-		}
-		return tot;
 	}
 
 	public createInvoice() {
