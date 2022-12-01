@@ -24,8 +24,7 @@ export class InvoiceCreateItemListItemComponent implements OnInit {
 	}
 
 	private calculateTax(): number {
-		const taxPercentage =
-			Number(this.invoiceItem.taxPercentage) / 100;
+		const taxPercentage = Number(this.invoiceItem.taxPercentage) / 100;
 
 		if (taxPercentage === 0) {
 			return 0;

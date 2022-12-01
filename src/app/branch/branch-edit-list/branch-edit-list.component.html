@@ -46,12 +46,44 @@
 
 <div class="row">
 	<div class="col-12">
+		<div style="display: flex">
+			<app-bl-common-toggle-button
+				[(value)]="onlyActive"
+				(update)="filterWithOptions()"
+				[tooltip]="'Vis eller skjul inaktive bøker'"
+			></app-bl-common-toggle-button>
+			<p style="margin-top: 0.5rem; margin-left: 0.2rem">
+				Vis kun aktive
+			</p>
+		</div>
+
+		<div style="display: flex">
+			<app-bl-common-toggle-button
+				[(value)]="showPublicSchools"
+				(update)="filterWithOptions()"
+				[tooltip]="'Vis eller skjul VGS-filialer'"
+			></app-bl-common-toggle-button>
+			<p style="margin-top: 0.5rem; margin-left: 0.2rem">
+				Vis VGS-filialer
+			</p>
+		</div>
+
+		<div style="display: flex">
+			<app-bl-common-toggle-button
+				[(value)]="showPrivateSchools"
+				(update)="filterWithOptions()"
+				[tooltip]="'Vis eller skjul privatist-filialer'"
+			></app-bl-common-toggle-button>
+			<p style="margin-top: 0.5rem; margin-left: 0.2rem">
+				Vis privatist-filialer
+			</p>
+		</div>
+
 		<ngx-datatable
 			#branchEditTable
 			class="bootstrap"
 			[headerHeight]="50"
 			[footerHeight]="25"
-			[limit]="10"
 			[rows]="branches"
 			[rowHeight]="50"
 			[columnMode]="'force'"

@@ -134,9 +134,7 @@ export class InvoiceCreateService {
 
 	private itemGrossPrice(invoiceItem: InvoiceItem): number {
 		return this.priceService.withTwoDecimals(
-			invoiceItem.total *
-				invoiceItem.discount *
-				invoiceItem.numberOfUnits
+			invoiceItem.total * invoiceItem.discount * invoiceItem.numberOfUnits
 		);
 	}
 

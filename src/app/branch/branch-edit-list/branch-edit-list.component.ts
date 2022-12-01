@@ -24,6 +24,10 @@ export class BranchEditListComponent implements OnInit, OnChanges {
 	public temp: Branch[];
 	public editing: any;
 	public updating: any;
+	public prevSearch = "";
+	public onlyActive = true;
+	public showPrivateSchools = true;
+	public showPublicSchools = true;
 
 	constructor(
 		private _branchService: BranchService,
@@ -46,6 +50,7 @@ export class BranchEditListComponent implements OnInit, OnChanges {
 						"name"
 					);
 					this.temp = this.branches;
+					this.filterWithOptions();
 				})
 				.catch((getBranchesError) => {
 					console.log(
@@ -72,13 +77,40 @@ export class BranchEditListComponent implements OnInit, OnChanges {
 	}
 
 	public onUpdateFilter(event) {
-		const fil = event.target.value.toLowerCase();
+		const searchValue = event.target.value.toLowerCase();
+		this.prevSearch = searchValue;
 
-		this.branches = this.temp.filter((branch: Branch) => {
-			return (
-				fil.length <= 0 || branch.name.toLowerCase().indexOf(fil) !== -1
+		this.filterWithOptions(searchValue);
+	}
+
+	filterWithOptions(searchValue?: string) {
+		this.filterBySearch(searchValue ?? this.prevSearch);
+
+		if (this.onlyActive) {
+			this.branches = this.branches.filter(
+				(branch) => branch.active === this.onlyActive
 			);
-		});
+		}
+
+		if (!this.showPublicSchools) {
+			this.branches = this.branches.filter(
+				(branch) => !branch.type.toLowerCase().includes("vgs")
+			);
+		}
+
+		if (!this.showPrivateSchools) {
+			this.branches = this.branches.filter(
+				(branch) => !branch.type.toLowerCase().includes("privat")
+			);
+		}
+	}
+
+	private filterBySearch(searchValue) {
+		this.branches = this.temp.filter(
+			(branch) =>
+				searchValue.length === 0 ||
+				branch.name.toLowerCase().includes(searchValue)
+		);
 	}
 
 	onSelect({ selected }) {
