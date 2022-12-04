@@ -5,6 +5,8 @@ import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-colle
 import { CustomerItemService } from "@boklisten/bl-connect";
 import moment from "moment";
 import { Router } from "@angular/router";
+import { BranchStoreService } from "../branch/branch-store.service";
+import { Branch } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-bulk-collection",
@@ -17,15 +19,23 @@ export class BulkCollectionComponent implements OnInit {
 	public separatedBooks: Array<ScannedBook[]> = [];
 	public customerRemainingBooksDict: Object = {};
 	public waiting = false;
+	public currentBranch: Branch;
 
 	constructor(
 		private _bulkCollectionService: BulkCollectionService,
 		private _toasterService: ToasterService,
 		private _customerItemService: CustomerItemService,
+		private _branchStoreService: BranchStoreService,
 		private router: Router
 	) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this._branchStoreService
+			.onBranchChange()
+			.subscribe((branch: Branch) => {
+				this.currentBranch = branch;
+			});
+	}
 
 	public deadlineHasPassed(deadline: string): boolean {
 		return moment().isAfter(moment(deadline, "DD/MM/YYYY").add(1, "day"));

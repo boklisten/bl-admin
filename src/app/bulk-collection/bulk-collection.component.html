@@ -1,5 +1,22 @@
 <div class="center">
 	<h1>Bulk-innsamling</h1>
+	<div style="text-align: center" *ngIf="currentBranch && !showReceipt">
+		<span>Du samler nå inn på</span>
+		<div
+			style="
+				display: flex;
+				background-color: #3387a1;
+				border-radius: 2%;
+				align-items: center;
+				padding: 0.4rem;
+				color: white;
+				margin-bottom: 1rem;
+			"
+		>
+			<fa-icon [icon]="'store'"></fa-icon>
+			<span style="margin-left: 0.3rem">{{ currentBranch.name }}</span>
+		</div>
+	</div>
 	<app-unique-item-searchbar
 		*ngIf="!showReceipt"
 		(onSearch)="registerBlid($event)"

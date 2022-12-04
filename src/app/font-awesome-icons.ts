@@ -75,6 +75,7 @@ import {
 	faBell,
 	faPaperPlane,
 	faKeyboard,
+	faStore,
 } from "@fortawesome/free-solid-svg-icons";
 
 export function addIconsToLibrary(library) {
@@ -154,6 +155,7 @@ export function addIconsToLibrary(library) {
 		faAtom,
 		faExclamationCircle,
 		faUserFriends,
-		faBars
+		faBars,
+		faStore
 	);
 }
