@@ -2,9 +2,7 @@
 	<div
 		class="btn btn-outline-dark btn-sm btn-block"
 		style="width: 8rem; margin-right: 0.2rem; margin-top: 0"
-		[ngbPopover]="branchTypeSelectPopover"
-		#branchSelectPopoverRef="ngbPopover"
-		(click)="setCurrentPopoverOpen(branchSelectPopoverRef)"
+		(click)="toggleBranchType()"
 	>
 		<fa-icon [icon]="'graduation-cap'"></fa-icon>
 		<span
@@ -23,6 +21,7 @@
 		class="btn btn-outline-dark btn-sm btn-block"
 		style="width: 14rem; margin-top: 0"
 		[ngbPopover]="branchSelectPopover"
+		placement="bottom"
 		#branchSelectPopoverRef="ngbPopover"
 		(click)="setCurrentPopoverOpen(branchSelectPopoverRef)"
 	>
@@ -40,34 +39,6 @@
 		>
 	</div>
 </div>
-
-<ng-template #branchTypeSelectPopover>
-	<button
-		class="dropdown-item"
-		(click)="onSelectBranchType('VGS')"
-		[ngClass]="{
-			'btn-secondary': currentBranchType === 'VGS',
-			'btn-outline-secondary': currentBranchType !== 'VGS'
-		}"
-	>
-		<fa-icon [icon]="'check'" *ngIf="currentBranchType === 'VGS'"></fa-icon>
-		VGS
-	</button>
-	<button
-		class="dropdown-item"
-		(click)="onSelectBranchType('privatist')"
-		[ngClass]="{
-			'btn-secondary': currentBranchType === 'privatist',
-			'btn-outline-secondary': currentBranchType !== 'privatist'
-		}"
-	>
-		<fa-icon
-			[icon]="'check'"
-			*ngIf="currentBranchType === 'privatist'"
-		></fa-icon>
-		privatist
-	</button>
-</ng-template>
 
 <ng-template #branchSelectPopover>
 	<button

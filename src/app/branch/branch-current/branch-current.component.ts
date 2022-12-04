@@ -79,6 +79,14 @@ export class BranchCurrentComponent implements OnInit {
 		this.lastPopoverRef = popReference;
 	}
 
+	public toggleBranchType() {
+		this.currentBranchType =
+			this.currentBranchType === BranchType.Public
+				? BranchType.Private
+				: BranchType.Public;
+		this.onSelectBranchType(this.currentBranchType);
+	}
+
 	public onSelectBranch(branch: Branch) {
 		this._branchStoreService.setCurrentBranch(branch);
 	}
