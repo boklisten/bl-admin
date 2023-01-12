@@ -35,6 +35,9 @@ export class InvoiceCreateItemListItemComponent implements OnInit {
 
 	public getDiscountedTotal(): number {
 		const discount = 1 - Number("0." + this.invoiceItem.discount);
-		return Number(this.invoiceItem.price) * discount + this.calculateTax();
+		return (
+			(Number(this.invoiceItem.price) * discount + this.calculateTax()) *
+			this.invoiceItem.numberOfUnits
+		);
 	}
 }

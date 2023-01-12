@@ -39,10 +39,29 @@ export class InvoiceCreateComponent implements OnInit {
 
 	ngOnInit() {}
 
+	private calculateTax(invoiceItem: InvoiceItem): number {
+		const taxPercentage = Number(invoiceItem.taxPercentage) / 100;
+
+		if (taxPercentage === 0) {
+			return 0;
+		}
+
+		return invoiceItem.price * taxPercentage;
+	}
+
+	private getDiscountedTotal(invoiceItem: InvoiceItem): number {
+		const discount = 1 - Number("0." + invoiceItem.discount);
+		return (
+			(Number(invoiceItem.price) * discount +
+				this.calculateTax(invoiceItem)) *
+			invoiceItem.numberOfUnits
+		);
+	}
+
 	public onInvoiceItemListUpdate(invoiceItemList: InvoiceItem[]) {
 		this.invoiceItemList = invoiceItemList;
 		this.total = this.invoiceItemList.reduce(
-			(total, nextItem) => total + Number(nextItem.total),
+			(total, nextItem) => total + this.getDiscountedTotal(nextItem),
 			0
 		);
 	}

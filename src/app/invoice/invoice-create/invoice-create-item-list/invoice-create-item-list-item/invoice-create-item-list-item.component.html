@@ -88,7 +88,10 @@
 		<span>{{ getDiscountedTotal() | blcPrice }}</span>
 
 		(<span i18n="@@invoiceCreateItemListTax">Tax: </span>
-		<span>{{ invoiceItem.tax | blcPrice: "international" }}</span
+		<span>{{
+			invoiceItem.tax * this.invoiceItem.numberOfUnits
+				| blcPrice: "international"
+		}}</span
 		>)
 	</div>
 </div>
