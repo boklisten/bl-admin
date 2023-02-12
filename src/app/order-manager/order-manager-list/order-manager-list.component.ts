@@ -273,6 +273,14 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 	}
 
 	onOrderClick(order: Order) {
+		if (!this._orderManagerListService.getOrderFilter().onlyCurrentBranch) {
+			this.branchService
+				.getById(order.branch as string)
+				.then((branch) => {
+					this._branchStoreService.setCurrentBranch(branch);
+				});
+		}
+
 		this.activeOrder = order;
 		this.selectedOrder.emit(order);
 	}
