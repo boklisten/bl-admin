@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { PaymentChoice } from "../payment-choice";
+import { Order } from "@boklisten/bl-model";
+import { OrderService } from "@boklisten/bl-connect";
 
 @Component({
 	selector: "app-payment-method-select",
@@ -10,7 +12,7 @@ import { PaymentChoice } from "../payment-choice";
 export class PaymentMethodSelectComponent implements OnInit {
 	@Output() paymentChoices: EventEmitter<PaymentChoice[]>;
 	@Output() failure: EventEmitter<boolean>;
-	@Input() amount: number;
+	@Input() order: Order;
 	public paymentMethodForm: FormGroup;
 	public vipps: boolean;
 	public vippsAmount: number;
@@ -21,8 +23,12 @@ export class PaymentMethodSelectComponent implements OnInit {
 	public dibs: boolean;
 	public dibsAmount: number;
 	public showInput: boolean;
+	public dibsAvailable: boolean;
 
-	constructor(private _formBuilder: FormBuilder) {
+	constructor(
+		private _formBuilder: FormBuilder,
+		private _orderService: OrderService
+	) {
 		this.paymentChoices = new EventEmitter<PaymentChoice[]>();
 		this.failure = new EventEmitter<boolean>();
 
@@ -32,7 +38,8 @@ export class PaymentMethodSelectComponent implements OnInit {
 		this.dibsAmount = 0;
 	}
 
-	ngOnInit() {
+	async ngOnInit() {
+		this.dibsAvailable = await this.checkDibsRepaymentAvailable();
 		this.paymentMethodForm = this._formBuilder.group({
 			card: false,
 			cash: false,
@@ -69,6 +76,24 @@ export class PaymentMethodSelectComponent implements OnInit {
 		);
 	}
 
+	private async checkDibsRepaymentAvailable() {
+		const originalOrderIds = [
+			...new Set(
+				this.order.orderItems
+					.map((orderItem) => orderItem.movedFromOrder as string)
+					.filter((orderId) => orderId.length > 0)
+			),
+		];
+
+		const originalOrders = await Promise.all(
+			originalOrderIds.map((orderId) =>
+				this._orderService.getById(orderId)
+			)
+		);
+
+		return originalOrders.every((order) => order.byCustomer);
+	}
+
 	public onInputChange() {
 		const totalAmount =
 			parseInt(this.cardAmount.toString(), 10) +
@@ -76,7 +101,7 @@ export class PaymentMethodSelectComponent implements OnInit {
 			parseInt(this.vippsAmount.toString(), 10) +
 			parseInt(this.dibsAmount.toString(), 10);
 
-		if (totalAmount === this.amount) {
+		if (totalAmount === this.order.amount) {
 			this.emitChoices();
 		} else {
 			this.failure.emit(true);
@@ -117,16 +142,16 @@ export class PaymentMethodSelectComponent implements OnInit {
 		}
 
 		if (this.cash && !this.card && !this.vipps && !this.dibs) {
-			this.cashAmount = this.amount;
+			this.cashAmount = this.order.amount;
 			this.emitChoices();
 		} else if (this.card && !this.cash && !this.vipps && !this.dibs) {
-			this.cardAmount = this.amount;
+			this.cardAmount = this.order.amount;
 			this.emitChoices();
 		} else if (this.vipps && !this.cash && !this.card && !this.dibs) {
-			this.vippsAmount = this.amount;
+			this.vippsAmount = this.order.amount;
 			this.emitChoices();
 		} else if (this.dibs && !this.vipps && !this.cash && !this.card) {
-			this.dibsAmount = this.amount;
+			this.dibsAmount = this.order.amount;
 			this.emitChoices();
 		} else {
 			this.cardAmount = 0;

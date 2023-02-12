@@ -23,7 +23,7 @@
 		<div class="row mt-2">
 			<div class="col-12">
 				<app-payment-method-select
-					[amount]="order.amount"
+					[order]="order"
 					(paymentChoices)="onPaymentChoices($event)"
 					(failure)="onPaymentChoiceFailure()"
 				></app-payment-method-select>

@@ -19,7 +19,7 @@
 				<label
 					class="btn-outline-secondary"
 					ngbButtonLabel
-					*ngIf="amount < 0"
+					*ngIf="order.amount < 0 && dibsAvailable"
 				>
 					<input type="checkbox" formControlName="dibs" ngbButton />
 					<span>DIBS</span>
