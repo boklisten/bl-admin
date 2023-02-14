@@ -80,8 +80,13 @@ export class PaymentMethodSelectComponent implements OnInit {
 		const originalOrderIds = [
 			...new Set(
 				this.order.orderItems
+					.filter(
+						(orderItem) =>
+							orderItem.movedFromOrder !== null &&
+							typeof orderItem.movedFromOrder === "string"
+					)
 					.map((orderItem) => orderItem.movedFromOrder as string)
-					.filter((orderId) => orderId.length > 0)
+					.filter((orderItem) => orderItem.length > 0)
 			),
 		];
 
