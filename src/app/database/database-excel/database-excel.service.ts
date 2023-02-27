@@ -1,6 +1,11 @@
 import { Injectable } from "@angular/core";
-import { read, write, utils, WorkBook, writeFile } from "xlsx";
+import { read, utils, WorkBook, writeFile } from "xlsx";
 import { DateService } from "../../date/date.service";
+
+const PRIORITIZED_HEADER_FIELDS = [
+	"id", "item.id", "name", "title", "item.title", "info.isbn", "item.info.isbn", "type",
+	"customer.name", "customer.username", "price", "info.subject", "info.year"
+];
 
 @Injectable()
 export class DatabaseExcelService {
@@ -13,7 +18,10 @@ export class DatabaseExcelService {
 			flattenObjects.push(this.flattenObj(obj));
 		}
 
-		const sheet = utils.json_to_sheet(flattenObjects);
+		const header = flattenObjects.length > 0
+			? PRIORITIZED_HEADER_FIELDS.filter(field => Object.keys(flattenObjects[0]).includes(field))
+			: undefined;
+		const sheet = utils.json_to_sheet(flattenObjects, {header});
 		const workBook: WorkBook = utils.book_new();
 
 		const fileNameWithDate =
