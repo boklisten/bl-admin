@@ -3,18 +3,12 @@
 	"version": "1.10.13",
 	"license": "MIT",
 	"scripts": {
-		"ng": "ng",
-		"start": "node server.js",
-		"watch": "ng serve --port 8080 --configuration=local",
-		"build": "ng build --configuration=${ANGULAR_ENV}",
-		"build:prod": "ng build --configuration=production-nb",
-		"extract-i18n": "ng xi18n && xliffmerge --profile xliffmerge.json en nb",
-		"test": "ng test",
-		"lint": "ng lint",
-		"e2e": "ng e2e",
-		"prettier": "prettier --write . --ignore-path=.gitignore"
+		"dev": "ng serve --port 8080 --configuration=local",
+		"build": "ng build --configuration=production-nb",
+		"serve": "node server.js",
+		"prettier": "prettier --write '**/*.{html,js,ts,tsx,md,json,yml,css,scss}' --ignore-path=.gitignore",
+		"prettier:check": "prettier --check '**/*.{html,js,ts,tsx,md,json,yml,css,scss}' --ignore-path=.gitignore"
 	},
-	"private": false,
 	"dependencies": {
 		"@angular/animations": "^11.2.4",
 		"@angular/common": "^11.2.4",
