@@ -43,7 +43,13 @@
 						[scannedBook]="book"
 					></app-book-detail-modal>
 				</td>
-				<td [title]="deadlineHasPassed(book.deadline) ? 'Fristen har utløpt!' : 'Fristen har ikke utløpt'">
+				<td
+					[title]="
+						deadlineHasPassed(book.deadline)
+							? 'Fristen har utløpt!'
+							: 'Fristen har ikke utløpt'
+					"
+				>
 					<fa-icon
 						*ngIf="deadlineHasPassed(book.deadline)"
 						icon="exclamation-circle"
