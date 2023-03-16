@@ -2,7 +2,7 @@ const { version } = require("../../package.json");
 export const environment = {
 	production: false,
 	apiPath: "http://localhost:1337/",
-	hmr: false,
+	hmr: true,
 	version: version,
 	versionName: "LOCAL",
 };
