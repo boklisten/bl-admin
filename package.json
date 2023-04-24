@@ -42,7 +42,7 @@
 		"ngx-i18nsupport": "^0.17.1",
 		"rxjs": "^6.6.6",
 		"tslib": "^2.1.0",
-		"xlsx": "^0.16.9",
+		"xlsx": "^0.18.5",
 		"zone.js": "~0.11.4"
 	},
 	"devDependencies": {
