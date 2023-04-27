@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"scripts": {
 		"dev": "ng serve --port 8080 --configuration=local",
-		"build": "ng build --configuration=production-nb",
+		"build": "ng build --configuration=${ANGULAR_ENV}",
 		"serve": "node server.js",
 		"prettier": "prettier --write '**/*.{html,js,ts,tsx,md,json,yml,css,scss}' --ignore-path=.gitignore",
 		"prettier:check": "prettier --check '**/*.{html,js,ts,tsx,md,json,yml,css,scss}' --ignore-path=.gitignore"
