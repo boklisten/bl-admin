@@ -81,7 +81,17 @@
 		<span i18n="@@customerItemDetailDeadline" class="text-secondary"
 			>Deadline</span
 		>
-		<span>{{ customerItem.deadline | blDate }}</span>
+		<div class="d-flex flex-row" *ngIf="isAdmin">
+			<input [(ngModel)]="deadlineInput" class="form-control" />
+			<button
+				[disabled]="!hasChangedDate()"
+				(click)="handleUpdateDeadline()"
+				class="btn btn-outline-primary btn-sm"
+			>
+				Oppdater
+			</button>
+		</div>
+		<span *ngIf="!isAdmin">{{ customerItem.deadline | blDate }}</span>
 	</li>
 
 	<li class="list-group-item justify-content-between d-flex" *ngIf="showMore">
