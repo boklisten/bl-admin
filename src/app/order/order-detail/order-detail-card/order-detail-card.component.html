@@ -28,9 +28,25 @@
 					<fa-icon [icon]="'user-circle'" class="mr-2"></fa-icon>
 					{{ order.employee | customerName | async }}
 				</li>
-				<li class="list-group-item">
+				<li class="list-group-item d-flex flex-row">
 					<fa-icon [icon]="'warehouse'" class="mr-2"></fa-icon>
-					{{ order.branch | branchName | async }}
+					<select
+						*ngIf="isAdmin"
+						[(ngModel)]="selectedBranch"
+						class="form-control"
+						(ngModelChange)="updateOrderBranch(selectedBranch)"
+					>
+						<option
+							*ngFor="let branch of branches"
+							value="{{ branch.id }}"
+						>
+							<fa-icon class="mr-2"></fa-icon>
+							{{ branch.name }}
+						</option>
+					</select>
+					<p *ngIf="!isAdmin">
+						{{ order.branch | branchName | async }}
+					</p>
 				</li>
 				<li class="list-group-item">
 					<fa-icon [icon]="'clock'" class="mr-2"></fa-icon>
