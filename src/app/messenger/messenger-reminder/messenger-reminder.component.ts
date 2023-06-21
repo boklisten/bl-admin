@@ -131,10 +131,10 @@ export class MessengerReminderComponent implements OnInit {
 		type: CustomerItemType | "all"
 	): Promise<CustomerItem[]> {
 		const deadlineAboveString = moment(this.deadline)
-			.subtract("day", 1)
+			.subtract("day", 2)
 			.format("DDMMYYYYHHmm");
 		const deadlineBelowString = moment(this.deadline)
-			.add("day", 1)
+			.add("day", 2)
 			.format("DDMMYYYYHHmm");
 
 		let query = `?returned=false&buyout=false&match=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
