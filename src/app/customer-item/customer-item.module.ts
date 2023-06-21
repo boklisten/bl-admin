@@ -8,6 +8,7 @@ import { BlCommonModule } from "../bl-common/bl-common.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { CustomerItemListComponent } from "./customer-item-list/customer-item-list.component";
 import { CustomerItemListItemComponent } from "./customer-item-list/customer-item-list-item/customer-item-list-item.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
 	imports: [
@@ -15,6 +16,8 @@ import { CustomerItemListItemComponent } from "./customer-item-list/customer-ite
 		CustomerItemRoutingModule,
 		BlCommonModule,
 		FontAwesomeModule,
+		ReactiveFormsModule,
+		FormsModule,
 	],
 	declarations: [
 		CustomerItemDetailComponent,
