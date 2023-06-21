@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Branch, Order } from "@boklisten/bl-model";
-import { BranchService, OrderService } from "@boklisten/bl-connect";
+import {
+	BranchService,
+	CustomerItemService,
+	OrderService,
+} from "@boklisten/bl-connect";
 import { ToasterService } from "../../../toaster/toaster.service";
 import { AuthService } from "../../../auth/auth.service";
 
@@ -20,14 +24,14 @@ export class OrderDetailCardComponent implements OnInit {
 		private _branchService: BranchService,
 		private _orderService: OrderService,
 		private _toasterService: ToasterService,
-		private _authService: AuthService
+		private _authService: AuthService,
+		private _customerItemService: CustomerItemService
 	) {}
 
 	ngOnInit() {
 		this.isAdmin = this._authService.isAdmin();
 		this.getAllBranches();
 		this.selectedBranch = String(this.order.branch);
-		console.log(this.selectedBranch);
 	}
 
 	private async getAllBranches() {
@@ -41,6 +45,21 @@ export class OrderDetailCardComponent implements OnInit {
 			this.order = await this._orderService.update(this.order.id, {
 				branch: newBranchId,
 			});
+			const customerItems = await this._customerItemService.getManyByIds(
+				this.order.orderItems.map((orderItem) =>
+					String(orderItem.customerItem)
+				)
+			);
+			await Promise.all(
+				customerItems.map((customerItem) =>
+					this._customerItemService.update(customerItem.id, {
+						handoutInfo: {
+							...customerItem?.handoutInfo,
+							handoutById: newBranchId,
+						},
+					})
+				)
+			);
 			this._toasterService.add("SUCCESS", "Filial ble oppdatert!");
 		} catch (e) {
 			this._toasterService.add("WARNING", {
