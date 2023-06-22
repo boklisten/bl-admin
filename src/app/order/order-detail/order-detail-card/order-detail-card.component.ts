@@ -45,11 +45,15 @@ export class OrderDetailCardComponent implements OnInit {
 			this.order = await this._orderService.update(this.order.id, {
 				branch: newBranchId,
 			});
-			const customerItems = await this._customerItemService.getManyByIds(
-				this.order.orderItems.map((orderItem) =>
-					String(orderItem.customerItem)
+			const customerItems = (
+				await Promise.all(
+					this.order.orderItems.map((orderItem) =>
+						this._customerItemService.get({
+							query: `?blid=${orderItem.blid}&returned=false&buyout=false&cancel=false`,
+						})
+					)
 				)
-			);
+			).flat();
 			await Promise.all(
 				customerItems.map((customerItem) =>
 					this._customerItemService.update(customerItem.id, {
