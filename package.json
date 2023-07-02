@@ -3,8 +3,8 @@
 	"version": "1.10.13",
 	"license": "MIT",
 	"scripts": {
-		"dev": "ng serve --port 8080 --configuration=local",
-		"build": "ng build --configuration=${ANGULAR_ENV}",
+		"dev": "export NODE_OPTIONS=--openssl-legacy-provider; ng serve --port 8080 --configuration=local",
+		"build": "export NODE_OPTIONS=--openssl-legacy-provider; ng build --configuration=${ANGULAR_ENV}",
 		"serve": "node server.js",
 		"prettier": "prettier --write '**/*.{html,js,ts,tsx,md,json,yml,css,scss}' --ignore-path=.gitignore",
 		"prettier:check": "prettier --check '**/*.{html,js,ts,tsx,md,json,yml,css,scss}' --ignore-path=.gitignore"
