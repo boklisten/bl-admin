@@ -1,19 +1,31 @@
 <div class="row justify-content-center">
 	<div class="col-auto">
-		<form [formGroup]="paymentMethodForm">
+		<form>
 			<div class="btn-group btn-group-toggle btn-group-lg">
 				<label class="btn-outline-secondary" ngbButtonLabel>
-					<input type="checkbox" formControlName="card" ngbButton />
+					<input
+						type="checkbox"
+						ngbButton
+						(change)="toggleSelectedPaymentMethod('card')"
+					/>
 					<fa-icon [icon]="'credit-card'" class="mr-2"></fa-icon>
 					<span i18n="@@paymentMethodSelectCard">Card</span>
 				</label>
 				<label class="btn-outline-secondary" ngbButtonLabel>
-					<input type="checkbox" formControlName="cash" ngbButton />
+					<input
+						type="checkbox"
+						ngbButton
+						(change)="toggleSelectedPaymentMethod('cash')"
+					/>
 					<fa-icon [icon]="'money-bill-alt'" class="mr-2"></fa-icon>
 					<span i18n="@@paymentMethodSelectCash">Cash</span>
 				</label>
 				<label class="btn-outline-secondary" ngbButtonLabel>
-					<input type="checkbox" formControlName="vipps" ngbButton />
+					<input
+						type="checkbox"
+						ngbButton
+						(change)="toggleSelectedPaymentMethod('vipps')"
+					/>
 					<span i18n="@@paymentMethodSelectVipps">Vipps</span>
 				</label>
 				<label
@@ -21,7 +33,11 @@
 					ngbButtonLabel
 					*ngIf="order.amount < 0 && dibsAvailable"
 				>
-					<input type="checkbox" formControlName="dibs" ngbButton />
+					<input
+						type="checkbox"
+						ngbButton
+						(change)="toggleSelectedPaymentMethod('dibs')"
+					/>
 					<span>DIBS</span>
 				</label>
 			</div>
