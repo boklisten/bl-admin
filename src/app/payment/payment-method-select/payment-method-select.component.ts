@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { PaymentChoice } from "../payment-choice";
-import { Order } from "@boklisten/bl-model";
+import { Order, PaymentMethod } from "@boklisten/bl-model";
 import { OrderService } from "@boklisten/bl-connect";
 
 @Component({
@@ -13,7 +13,6 @@ export class PaymentMethodSelectComponent implements OnInit {
 	@Output() paymentChoices: EventEmitter<PaymentChoice[]>;
 	@Output() failure: EventEmitter<boolean>;
 	@Input() order: Order;
-	public paymentMethodForm: FormGroup;
 	public vipps: boolean;
 	public vippsAmount: number;
 	public card: boolean;
@@ -36,44 +35,35 @@ export class PaymentMethodSelectComponent implements OnInit {
 		this.cashAmount = 0;
 		this.cardAmount = 0;
 		this.dibsAmount = 0;
+
+		this.cash = false;
+		this.card = false;
+		this.vipps = false;
+		this.dibs = false;
 	}
 
 	async ngOnInit() {
 		this.dibsAvailable = await this.checkDibsRepaymentAvailable();
-		this.paymentMethodForm = this._formBuilder.group({
-			card: false,
-			cash: false,
-			vipps: false,
-			dibs: false,
-		});
+	}
 
-		this.paymentMethodForm.controls["card"].valueChanges.subscribe(
-			(selected) => {
-				this.card = selected;
-				this.handleInputs();
-			}
-		);
-
-		this.paymentMethodForm.controls["cash"].valueChanges.subscribe(
-			(selected) => {
-				this.cash = selected;
-				this.handleInputs();
-			}
-		);
-
-		this.paymentMethodForm.controls["vipps"].valueChanges.subscribe(
-			(selected) => {
-				this.vipps = selected;
-				this.handleInputs();
-			}
-		);
-
-		this.paymentMethodForm.controls["dibs"].valueChanges.subscribe(
-			(selected) => {
-				this.dibs = selected;
-				this.handleInputs();
-			}
-		);
+	public toggleSelectedPaymentMethod(paymentMethod: PaymentMethod) {
+		switch (paymentMethod) {
+			case "cash":
+				this.cash = !this.cash;
+				break;
+			case "card":
+				this.card = !this.card;
+				break;
+			case "vipps":
+				this.vipps = !this.vipps;
+				break;
+			case "dibs":
+				this.dibs = !this.dibs;
+				break;
+			default:
+				throw new Error("Illegal payment method");
+		}
+		this.handleInputs();
 	}
 
 	private async checkDibsRepaymentAvailable() {
