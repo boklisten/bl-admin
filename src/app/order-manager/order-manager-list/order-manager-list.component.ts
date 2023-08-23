@@ -125,6 +125,16 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 				this.tempPlacedOrders = orders;
 				this.filterOnlyCurrentBranch();
 				this.filterNewestFirst();
+				this.placedOrders = this.placedOrders.filter(
+					(order) =>
+						!order.orderItems.some(
+							(orderItem) =>
+								// @ts-ignore
+								orderItem.type === "match-deliver" ||
+								// @ts-ignore
+								orderItem.type === "match-receive"
+						)
+				);
 
 				setTimeout(() => {
 					this.fetching = false;
