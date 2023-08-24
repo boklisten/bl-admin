@@ -101,7 +101,9 @@ export class BulkCollectionComponent implements OnInit {
 			this._toasterService.add(
 				"WARNING",
 				{
-					text: "Tilkoblingen ble brutt! Vennligst prøv igjen.",
+					text:
+						error.msg ??
+						"Tilkoblingen ble brutt! Vennligst prøv igjen.",
 				},
 				15000
 			);
