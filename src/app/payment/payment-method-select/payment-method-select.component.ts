@@ -86,7 +86,10 @@ export class PaymentMethodSelectComponent implements OnInit {
 			)
 		);
 
-		return originalOrders.every((order) => order.byCustomer);
+		return (
+			originalOrders.length > 0 &&
+			originalOrders.every((order) => order.byCustomer)
+		);
 	}
 
 	public onInputChange() {
