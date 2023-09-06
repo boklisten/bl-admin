@@ -79,6 +79,7 @@ export class BulkHistoryComponent implements OnInit {
 								item: "",
 								orderId: order.id,
 								collectedAt: collectionTime,
+								handoutBranchName: "",
 							},
 						]);
 						customerIndex = this.history.length - 1;
@@ -92,6 +93,7 @@ export class BulkHistoryComponent implements OnInit {
 							id: orderItem.customerItem as string,
 							item: "",
 							orderId: order.id,
+							handoutBranchName: "",
 						});
 					}
 				}

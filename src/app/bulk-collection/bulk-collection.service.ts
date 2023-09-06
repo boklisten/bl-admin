@@ -1,11 +1,17 @@
 import { Injectable } from "@angular/core";
-import { CustomerItemService, OrderService } from "@boklisten/bl-connect";
+import {
+	BranchService,
+	CustomerItemService,
+	OrderService,
+	UserDetailService,
+} from "@boklisten/bl-connect";
 import { CustomerItem, OrderItem } from "@boklisten/bl-model";
 import { ScannedBook } from "@boklisten/bl-model/bulk-collection/bulk-collection";
 import { OrderGeneratorService } from "../order/order-generator/order-generator.service";
 import { PriceService } from "../price/price.service";
 import { ToasterService } from "../toaster/toaster.service";
 import { UniqueItemStoreService } from "../unique-item/unique-item-store.service";
+import { BranchStoreService } from "../branch/branch-store.service";
 
 @Injectable({
 	providedIn: "root",
@@ -17,6 +23,8 @@ export class BulkCollectionService {
 		private _orderGeneratorService: OrderGeneratorService,
 		private _uniqueItemStoreService: UniqueItemStoreService,
 		private _customerItemService: CustomerItemService,
+		private _branchService: BranchService,
+		private _branchStoreService: BranchStoreService,
 		private _toasterService: ToasterService
 	) {}
 
@@ -71,6 +79,13 @@ export class BulkCollectionService {
 					? buybackInfo?.time
 					: customerItem.returnInfo?.time;
 
+			let handoutBranch = this._branchStoreService.getCurrentBranch();
+			if (handoutBranch.id !== customerItem.handoutInfo.handoutById) {
+				handoutBranch = await this._branchService.getById(
+					customerItem.handoutInfo.handoutById
+				);
+			}
+
 			return {
 				id: customerItem.id,
 				customerId: customerItem.customer as string,
@@ -79,6 +94,7 @@ export class BulkCollectionService {
 				deadline: this.prettyDate(customerItem.deadline),
 				title: uniqueItem.title,
 				customerName: customerItem.customerInfo.name,
+				handoutBranchName: handoutBranch.name,
 				collectedAt: this.prettyTime(collectionTime),
 				type: customerItem.type,
 			};
