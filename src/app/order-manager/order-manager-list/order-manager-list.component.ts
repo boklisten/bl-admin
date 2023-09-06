@@ -250,7 +250,7 @@ export class OrderManagerListComponent implements OnInit, OnDestroy {
 			})
 		);
 
-		populatedRows.sort((a, b) => a.name.localeCompare(b.name));
+		populatedRows.sort((a, b) => a.name?.localeCompare(b.name));
 		this._databaseExcelService.objectsToExcelFile(populatedRows, "orders");
 		this.fetching = false;
 	}
