@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Order } from "@boklisten/bl-model";
-import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-collection";
+import { ScannedBook } from "@boklisten/bl-model/bulk-collection/bulk-collection";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { DatabaseReportOrderFilter } from "../../database/database-reports/database-report-order/database-report-order-filter";
 import { DatabaseReportOrderService } from "../../database/database-reports/database-report-order/database-report-order.service";

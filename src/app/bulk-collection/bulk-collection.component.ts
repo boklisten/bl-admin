@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ToasterService } from "../toaster/toaster.service";
 import { BulkCollectionService } from "./bulk-collection.service";
-import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-collection";
+import { ScannedBook } from "@boklisten/bl-model/bulk-collection/bulk-collection";
 import { CustomerItemService } from "@boklisten/bl-connect";
 import moment from "moment";
 import { Router } from "@angular/router";

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { Branch, Item } from "@boklisten/bl-model";
-import { Period } from "@boklisten/bl-model/dist/period/period";
+import { Period } from "@boklisten/bl-model/period/period";
 
 @Injectable()
 export class BranchPriceService {

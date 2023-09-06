@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { CustomerItemService, OrderService } from "@boklisten/bl-connect";
 import { CustomerItem, OrderItem } from "@boklisten/bl-model";
-import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-collection";
+import { ScannedBook } from "@boklisten/bl-model/bulk-collection/bulk-collection";
 import { OrderGeneratorService } from "../order/order-generator/order-generator.service";
 import { PriceService } from "../price/price.service";
 import { ToasterService } from "../toaster/toaster.service";
@@ -15,7 +15,7 @@ export class BulkCollectionService {
 		private _orderService: OrderService,
 		private _priceService: PriceService,
 		private _orderGeneratorService: OrderGeneratorService,
-		private _uniqeItemStoreService: UniqueItemStoreService,
+		private _uniqueItemStoreService: UniqueItemStoreService,
 		private _customerItemService: CustomerItemService,
 		private _toasterService: ToasterService
 	) {}
@@ -57,7 +57,7 @@ export class BulkCollectionService {
 	): Promise<ScannedBook> {
 		try {
 			const result = await Promise.all([
-				this._uniqeItemStoreService.get(blid),
+				this._uniqueItemStoreService.get(blid),
 				this.getCustomerItem(blid, initialCustomerItem),
 			]);
 			const uniqueItem = result[0];
