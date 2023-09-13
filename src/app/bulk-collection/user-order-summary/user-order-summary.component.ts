@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { Router } from "@angular/router";
-import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-collection";
+import { ScannedBook } from "@boklisten/bl-model/bulk-collection/bulk-collection";
 
 @Component({
 	selector: "app-user-order-summary",

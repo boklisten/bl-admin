@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Period } from "@boklisten/bl-model/dist/period/period";
+import { Period } from "@boklisten/bl-model/period/period";
 import { BranchStoreService } from "../branch/branch-store.service";
 import * as moment from "moment";
 import { BranchHelperService } from "../branch/branch-helper/branch-helper.service";

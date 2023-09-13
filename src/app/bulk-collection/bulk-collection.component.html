@@ -32,6 +32,7 @@
 		<thead>
 			<tr>
 				<th scope="col">Tittel</th>
+				<th scope="col">Utdelt på</th>
 				<th scope="col">Frist</th>
 				<th scope="col">Lånt av</th>
 			</tr>
@@ -43,6 +44,7 @@
 						[scannedBook]="book"
 					></app-book-detail-modal>
 				</td>
+				<td>{{ book.handoutBranchName }}</td>
 				<td
 					[title]="
 						deadlineHasPassed(book.deadline)

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { CustomerItem, Item } from "@boklisten/bl-model";
-import { Period } from "@boklisten/bl-model/dist/period/period";
+import { Period } from "@boklisten/bl-model/period/period";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { PriceService } from "../price.service";
 import { BranchService, OrderService } from "@boklisten/bl-connect";

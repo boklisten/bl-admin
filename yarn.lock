@@ -1253,15 +1253,29 @@
   dependencies:
     tslib "^2.1.0"
 
-"@boklisten/bl-login@^1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-login/-/bl-login-1.2.3.tgz#2ba81e065d5b977ffe94f2acf4ac05acdbd84466"
-  integrity sha512-N3R7Q88DvGX5SSo+qiRhLLdIkQUIKR923obXwJ7N7+GaXkSC9BFva91fsvvKUviCmWgeofKYNr/HocipWqxvkQ==
+"@boklisten/bl-connect@^0.19.6":
+  version "0.19.6"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-connect/-/bl-connect-0.19.6.tgz#af327ff85a7829f0d137fc265a599363ae43bf81"
+  integrity sha512-r7s2GNeHxRo3vQNc0zC9yuhcPDPpYwcs9nzSTTyksLZgAcmAXHUn2FV721p3RFEJVisAyBPc52hSfKgZjHuEoA==
+  dependencies:
+    tslib "^2.1.0"
+
+"@boklisten/bl-login@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-login/-/bl-login-1.2.4.tgz#d5f5043f89025af9e2d367ad0612985ccf6026cf"
+  integrity sha512-rGgkBpHEk+d+Gl523kJtk+OXVru0CzAnPV9C0mC8vff7nUX28UPeM4UaIukLVCfdiJFDX8iXMTWIGr4GivQ0CA==
   dependencies:
     "@auth0/angular-jwt" "^5.0.2"
-    "@boklisten/bl-connect" "^0.19.0"
+    "@boklisten/bl-connect" "^0.19.6"
     date-fns "^2.17.0"
     tslib "^2.1.0"
+
+"@boklisten/bl-model@0.25.20":
+  version "0.25.20"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-model/-/bl-model-0.25.20.tgz#17d6ddaacdcd842accbcc0b249d73d8189e21a55"
+  integrity sha512-9YhGzZMt4GY4tnIyuqkrQTSSfUv0dwy9mFSt0MZEj1eMW0Ri5g0PVem1UPnCoXHUmRklBJs4xwdnUhZ92kcRwA==
+  dependencies:
+    typescript "^4.5.2"
 
 "@boklisten/bl-model@^0.25.0":
   version "0.25.5"
@@ -1269,13 +1283,6 @@
   integrity sha512-6qZu/ydLhW1GLBGPVywRmGvoY+EL7OP2u+bZIiGHagkQefBJi8wEiVF7duadYtVN54WaQ/JyAalW3iYM+2hE3g==
   dependencies:
     typescript "^4.2.4"
-
-"@boklisten/bl-model@^0.25.8":
-  version "0.25.8"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-model/-/bl-model-0.25.8.tgz#b74f5066500f6b703ba87aae19821ba4c7f5be5b"
-  integrity sha512-6G8DjQkb/kMJWl8FABAzTiXXREhSJsSFXwcBHGFuoCAIrwxsS6QZBe3YxZEQsHOwXV6NxmM20TtCkpogZxRB/A==
-  dependencies:
-    typescript "^4.5.2"
 
 "@boklisten/bl-reporter@^0.4.6":
   version "0.4.6"

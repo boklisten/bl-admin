@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-collection";
+import { ScannedBook } from "@boklisten/bl-model/bulk-collection/bulk-collection";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { BookDetailModalContentComponent } from "./book-detail-modal-content/book-detail-modal-content.component";
 

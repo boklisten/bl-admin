@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Order } from "@boklisten/bl-model";
-import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-collection";
+import { ScannedBook } from "@boklisten/bl-model/bulk-collection/bulk-collection";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { DatabaseReportOrderFilter } from "../../database/database-reports/database-report-order/database-report-order-filter";
 import { DatabaseReportOrderService } from "../../database/database-reports/database-report-order/database-report-order.service";
@@ -79,6 +79,7 @@ export class BulkHistoryComponent implements OnInit {
 								item: "",
 								orderId: order.id,
 								collectedAt: collectionTime,
+								handoutBranchName: "",
 							},
 						]);
 						customerIndex = this.history.length - 1;
@@ -92,6 +93,7 @@ export class BulkHistoryComponent implements OnInit {
 							id: orderItem.customerItem as string,
 							item: "",
 							orderId: order.id,
+							handoutBranchName: "",
 						});
 					}
 				}

@@ -7,8 +7,8 @@ import {
 	OrderItem,
 } from "@boklisten/bl-model";
 import { ItemPriceService } from "../item-price/item-price.service";
-import { OrderItemType } from "@boklisten/bl-model/dist/order/order-item/order-item-type";
-import { Period } from "@boklisten/bl-model/dist/period/period";
+import { OrderItemType } from "@boklisten/bl-model/order/order-item/order-item-type";
+import { Period } from "@boklisten/bl-model/period/period";
 import { BranchStoreService } from "../../branch/branch-store.service";
 import { PriceService } from "../price.service";
 import { PriceInformation } from "../price-information";

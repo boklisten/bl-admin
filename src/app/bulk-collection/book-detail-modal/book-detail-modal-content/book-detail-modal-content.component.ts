@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ItemService } from "@boklisten/bl-connect";
-import { ScannedBook } from "@boklisten/bl-model/dist/bulk-collection/bulk-collection";
+import { ScannedBook } from "@boklisten/bl-model/bulk-collection/bulk-collection";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
