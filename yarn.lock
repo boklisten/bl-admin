@@ -1246,13 +1246,6 @@
     "@babel/helper-validator-identifier" "^7.22.5"
     to-fast-properties "^2.0.0"
 
-"@boklisten/bl-connect@^0.19.0":
-  version "0.19.5"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-connect/-/bl-connect-0.19.5.tgz#5c9992cdf317078ea596fc72d4f9c49d87a46dd4"
-  integrity sha512-Bxr5f6DsIo+KeeaE6n6EuS4vroSfFWhcQc85vBx3RupwUQoverX0xK9d6CXV8bz/L60u3mebp2OBiIhBgfCDEw==
-  dependencies:
-    tslib "^2.1.0"
-
 "@boklisten/bl-connect@^0.19.6":
   version "0.19.6"
   resolved "https://registry.yarnpkg.com/@boklisten/bl-connect/-/bl-connect-0.19.6.tgz#af327ff85a7829f0d137fc265a599363ae43bf81"
@@ -1277,21 +1270,12 @@
   dependencies:
     typescript "^4.5.2"
 
-"@boklisten/bl-model@^0.25.0":
-  version "0.25.5"
-  resolved "https://registry.npmjs.org/@boklisten/bl-model/-/bl-model-0.25.5.tgz"
-  integrity sha512-6qZu/ydLhW1GLBGPVywRmGvoY+EL7OP2u+bZIiGHagkQefBJi8wEiVF7duadYtVN54WaQ/JyAalW3iYM+2hE3g==
-  dependencies:
-    typescript "^4.2.4"
-
-"@boklisten/bl-reporter@^0.4.6":
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-reporter/-/bl-reporter-0.4.6.tgz#d420202b597be71afeea6c2109d631caf50f2d0d"
-  integrity sha512-AKRi6LhEykOJ7O5AHDXJCbGagkjwukrOckSEfhpu/45cFXjLvkuc+qSdgsK6gVLccrZ/0xjNPxykCVBTU2lfeA==
+"@boklisten/bl-reporter@^0.4.13":
+  version "0.4.13"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-reporter/-/bl-reporter-0.4.13.tgz#66ed4e06dc7708ceadc9c8ca2b4ab274772de30e"
+  integrity sha512-2ucGKBaMWsYeECvKQELRt6oSXRmNf10sKeQKHHE2SZAYxfX34+uSmn2UUg5qXO4172iGTKB7Uzmk8VpNjvOoiw==
   dependencies:
     "@angular/localize" "^11.2.3"
-    "@boklisten/bl-connect" "^0.19.0"
-    "@boklisten/bl-model" "^0.25.0"
     "@fortawesome/angular-fontawesome" "^0.8.2"
     "@fortawesome/fontawesome-svg-core" "^1.2.34"
     "@fortawesome/free-brands-svg-icons" "^5.15.2"
@@ -8746,11 +8730,6 @@ typescript@4.1, typescript@4.1.5:
   version "4.1.5"
   resolved "https://registry.npmjs.org/typescript/-/typescript-4.1.5.tgz"
   integrity sha512-6OSu9PTIzmn9TCDiovULTnET6BgXtDYL4Gg4szY+cGsc3JP1dQL8qvE8kShTRx1NIw4Q9IBHlwODjkjWEtMUyA==
-
-typescript@^4.2.4:
-  version "4.2.4"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-4.2.4.tgz"
-  integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
 
 typescript@^4.5.2:
   version "4.5.2"
