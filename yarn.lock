@@ -1253,6 +1253,13 @@
     "@babel/helper-validator-identifier" "^7.22.5"
     to-fast-properties "^2.0.0"
 
+"@boklisten/bl-connect@^0.19.10":
+  version "0.19.10"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-connect/-/bl-connect-0.19.10.tgz#95939ead7fe5e4c769d299189c81061289668dd7"
+  integrity sha512-3jJo9YtiKgD3a7qoYjDw06zhdNOT9wzMZezWPFgOGqpbaFPOPDy2qsT0ex85CzhLsuC18e99L2eYcscBVYfMtQ==
+  dependencies:
+    tslib "^2.1.0"
+
 "@boklisten/bl-connect@^0.19.6":
   version "0.19.9"
   resolved "https://registry.yarnpkg.com/@boklisten/bl-connect/-/bl-connect-0.19.9.tgz#989014f26506c30cca37d970079f095816955986"
@@ -1260,13 +1267,13 @@
   dependencies:
     tslib "^2.1.0"
 
-"@boklisten/bl-login@^1.2.4":
-  version "1.2.10"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-login/-/bl-login-1.2.10.tgz#ad21c29c344af0ad0970601d54bc6a6b3ed9bbdc"
-  integrity sha512-mTM7GVXfeGc1aoqn8NBaFlaabzqSZVZnmW5TtsauSjeciKvoi/b+A2eebmT27fMf+qmcZNHD5dXKWQr+zY3gWA==
+"@boklisten/bl-login@1.2.11":
+  version "1.2.11"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-login/-/bl-login-1.2.11.tgz#dcd7aa1b45ba630dbab1df1ebc67361f5072741e"
+  integrity sha512-OmKrmU/hNkoCXyPM+arR5NayJQxekDeIziiETf4rH2wxVexZkwH+xsgKKLoTh3rrfH99pak5n93D/72WJ9Q0/w==
   dependencies:
     "@auth0/angular-jwt" "5.0.2"
-    "@boklisten/bl-connect" "^0.19.6"
+    "@boklisten/bl-connect" "^0.19.10"
     date-fns "^2.17.0"
     tslib "^2.1.0"
 
