@@ -71,7 +71,7 @@ export class OrderDeliveryDetailComponent implements OnInit, OnChanges {
 
 	onBringClick() {
 		window.open(
-			"https://sporing.bring.no/sporing.html?q=" +
+			"https://sporing.bring.no/sporing/" +
 				this.delivery.info["trackingNumber"]
 		);
 	}
