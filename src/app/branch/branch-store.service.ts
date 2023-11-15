@@ -50,16 +50,14 @@ export class BranchStoreService {
 	}
 
 	private async fetchAndStoreBranchInfo(branchID: string) {
-		this.setBranch({} as Branch);
-		let branch: Branch;
+		this.setBranch({ id: branchID } as Branch);
 		try {
-			branch = await this._branchService.getById(branchID);
+			const branch = await this._branchService.getById(branchID);
+			this.setBranch(branch);
+			this._branchChange$.next(branch);
 		} catch (e) {
 			this._authService.logout();
 		}
-		this._currentBranch = branch;
-		this._branchChange$.next(branch);
-		this.setBranch(branch);
 	}
 
 	public subscribe(func: (branch: Branch) => void): Subscription {
