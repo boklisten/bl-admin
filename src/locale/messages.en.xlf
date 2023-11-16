@@ -586,7 +586,7 @@
 
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">3</context></context-group></trans-unit>
       <trans-unit id="passwordResetError" datatype="html">
-        <source>Failed to update password</source><target state="final">Failed to update password</target>
+        <source>Failed to update password. The reset link might be invalid, expired or already used.</source><target state="final">Failed to update password. The reset link might be invalid, expired or already used.</target>
 
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="passwordResetPasswordNotValid" datatype="html">
