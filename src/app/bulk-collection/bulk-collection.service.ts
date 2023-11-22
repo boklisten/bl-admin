@@ -126,7 +126,10 @@ export class BulkCollectionService {
 		try {
 			const query = customerItem
 				? "/" + customerItem
-				: "?blid=" + blid + "&returned=false&buyout=false";
+				: // Check both the blid and its inverted sibling to detected blids that have been inverted
+				  `?blid=${blid}&blid=${this.invertBlid(
+						blid
+				  )}&returned=false&buyout=false`;
 			const customerItems = await this._customerItemService.get({
 				query: query,
 			});
@@ -134,6 +137,17 @@ export class BulkCollectionService {
 		} catch (error) {
 			throw new Error("book not active");
 		}
+	}
+
+	private invertBlid(blid: string) {
+		return blid
+			.split("")
+			.map((char) =>
+				char === char.toUpperCase()
+					? char.toLowerCase()
+					: char.toUpperCase()
+			)
+			.join("");
 	}
 
 	private displayWarning(text: string) {

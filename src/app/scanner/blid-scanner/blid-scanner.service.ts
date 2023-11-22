@@ -42,7 +42,7 @@ export class BlidScannerService {
 				});
 				this._uniqueItemService
 					.get({
-						query: `?blid=${blid}&blid=${this.invertBlid(blid)}`,
+						query: `?blid=${blid}`,
 					})
 					.then((uniqueItems) => {
 						this.uniqueItem$.next(uniqueItems[0]);
@@ -54,24 +54,5 @@ export class BlidScannerService {
 					});
 			}
 		});
-	}
-
-	private invertBlid(blid: string) {
-		let sanitizedString = blid;
-
-		sanitizedString = blid
-			.split("")
-			.map((c) => {
-				if (c == c.toUpperCase()) {
-					console.log(c, "is uppercase");
-					return c.toLowerCase();
-				} else {
-					console.log(c, "is lowercase");
-					return c.toUpperCase();
-				}
-			})
-			.join("");
-
-		return sanitizedString;
 	}
 }
