@@ -4,7 +4,7 @@
     <body>
       <trans-unit id="ngb.alert.close" datatype="html">
         <source>Close</source><target state="final">Lukk</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/alert/alert.d.ts</context><context context-type="linenumber">2</context></context-group></trans-unit>
       <trans-unit id="ngb.carousel.previous" datatype="html">
         <source>Previous</source><target state="final">Forrige</target>
@@ -82,62 +82,62 @@
           <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
-      
+
       <trans-unit id="ngb.timepicker.increment-hours" datatype="html">
         <source>Increment hours</source><target state="final">Økende timer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">9</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.HH" datatype="html">
         <source>HH</source><target state="final">tt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.hours" datatype="html">
         <source>Hours</source><target state="final">Timer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">14</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.decrement-hours" datatype="html">
         <source>Decrement hours</source><target state="final">Synkende timer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">19</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.increment-minutes" datatype="html">
         <source>Increment minutes</source><target state="final">Økende minutter</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">28</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.MM" datatype="html">
         <source>MM</source><target state="final">mm</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">31</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.minutes" datatype="html">
         <source>Minutes</source><target state="final">Minutter</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">33</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.decrement-minutes" datatype="html">
         <source>Decrement minutes</source><target state="final">Synkende minutter</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">38</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.increment-seconds" datatype="html">
         <source>Increment seconds</source><target state="final">Økende sekunder</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">47</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.SS" datatype="html">
         <source>SS</source><target state="final">ss</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">50</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.seconds" datatype="html">
         <source>Seconds</source><target state="final">Sekunder</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">52</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.decrement-seconds" datatype="html">
         <source>Decrement seconds</source><target state="final">Synkende sekunder</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">57</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.PM" datatype="html">
         <source>PM</source><target state="final">PM</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">65</context></context-group></trans-unit>
       <trans-unit id="ngb.timepicker.AM" datatype="html">
         <source>AM</source><target state="final">AM</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context><context context-type="linenumber">66</context></context-group></trans-unit>
       <trans-unit id="ngb.datepicker.previous-month" datatype="html">
         <source>Previous month</source><target state="final">Forrige måned</target>
@@ -183,16 +183,16 @@
       </trans-unit>
       <trans-unit id="loginLogo" datatype="html">
         <source>Boklisten.no logo</source><target state="final">Boklisten.no logo</target>
-        
+
         <note priority="1" from="description">the message shown if image is not found </note>
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/login.component.d.ts</context><context context-type="linenumber">9</context></context-group></trans-unit>
       <trans-unit id="userDetailEditCouldNotRetrieveError" datatype="html">
         <source>Could not retrieve user details</source><target state="final">Kunne ikke hente brukerdetaljer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="userDetailEditEmailTitle" datatype="html">
         <source>Email</source><target state="final">E-post</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">19</context></context-group></trans-unit><trans-unit id="userDetailEditFirstNameTitle" datatype="html">
         <source>First name</source><target state="final">Fornavn</target>
         <context-group purpose="location">
@@ -230,158 +230,158 @@
           <context context-type="linenumber">117</context>
         </context-group>
       </trans-unit>
-      
-      
-      
+
+
+
       <trans-unit id="userDetailEditPhoneTitle" datatype="html">
         <source>Phone</source><target state="final">Telefon</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">126</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPhonePlaceholder" datatype="html">
         <source>Phone</source><target state="final">Telefon</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">138</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPhoneNumberMustBeValid" datatype="html">
         <source>Phone number must be a valid number</source><target state="final">Telefonnummeret må være gyldig</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">160</context></context-group></trans-unit>
       <trans-unit id="userDetailEditAddressTitle" datatype="html">
         <source>Address</source><target state="final">Adresse</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">169</context></context-group></trans-unit>
       <trans-unit id="userDetailEditAddressPlaceholder" datatype="html">
         <source>Address</source><target state="final">Adresse</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">181</context></context-group></trans-unit>
       <trans-unit id="userDetailEditAddressMustBeValid" datatype="html">
         <source>Address must be valid</source><target state="final">Adressen må være gyldig</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">201</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostalTitle" datatype="html">
         <source>Postal code and city</source><target state="final">Postnummer og by</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">210</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostCodePlaceholder" datatype="html">
         <source>Post code</source><target state="final">Postnummer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">222</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostCityPlaceholder" datatype="html">
         <source>Post city</source><target state="final">By</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">235</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostCityRequired" datatype="html">
         <source>Post city is required</source><target state="final">By er et påkrevd felt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">256</context></context-group></trans-unit>
       <trans-unit id="userDetailEditPostalCodeError" datatype="html">
         <source>Postal code must be 4 numbers</source><target state="final">Postnummer må være fire siffer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">271</context></context-group></trans-unit>
       <trans-unit id="userDetailEditBirthdayTitle" datatype="html">
         <source>Birthday</source><target state="final">Fødselsdag</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">280</context></context-group></trans-unit>
       <trans-unit id="userDetailEditMustProvideDob" datatype="html">
         <source>You must provide a date of birth</source><target state="final">Du må oppgi en fødselsdato</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">292</context></context-group></trans-unit>
       <trans-unit id="userDetailEditUnder18Info" datatype="html">
         <source>Since you are under the age of 18 we need information about
 					your guardian.
 				</source><target state="translated">Ettersom du er under 18 år trenger vi informasjon om en av dine foresatte</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">302</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianName" datatype="html">
         <source>Guardian's full name</source><target state="final">Fullt navn på foresatt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">311</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianNamePlaceholder" datatype="html">
         <source>Gardian's full name</source><target state="final">Fullt navn på foresatt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">323</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianNameError" datatype="html">
         <source>Guardian's full name is required</source><target state="final">Foresattes fulle navn er et påkrevd felt
 </target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">342</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianEmail" datatype="html">
         <source>Guardian's email</source><target state="final">Foresatt sin e-postadresse</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">351</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianEmailPlaceholder" datatype="html">
         <source>Gardian's email</source><target state="final">Foresatt sin e-postadresse</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">363</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianEmailError" datatype="html">
         <source>Must provide a valid email</source><target state="final">Du må oppgi en gyldig e-postadresse</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">381</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianPhoneTitle" datatype="html">
         <source>Guardian's phone</source><target state="final">Foresatt sitt telefonnummer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">390</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianPhonePlaceholder" datatype="html">
         <source>Guardian's phone </source><target state="final">Foresatt sitt telefonnummer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">402</context></context-group></trans-unit>
       <trans-unit id="userDetailEditGuardianPhoneError" datatype="html">
         <source>A valid phone number must be provided</source><target state="final">Et gyldig telefonnummer er påkrevd</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">420</context></context-group></trans-unit>
       <trans-unit id="userDetailEditSaveButton" datatype="html">
         <source>Save</source><target state="final">Lagre</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/user-detail/user-detail-edit/user-detail-edit.component.d.ts</context><context context-type="linenumber">441</context></context-group></trans-unit>
       <trans-unit id="registerDetailTitle" datatype="html">
         <source>Register user details</source><target state="final">Registrer brukerdetaljer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">4</context></context-group></trans-unit>
       <trans-unit id="registerDetailUpdateDetailsFor" datatype="html">
         <source>Update the details for</source><target state="final">Oppdater brukerdetaljer for</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">11</context></context-group></trans-unit>
       <trans-unit id="registerDetailErrorMsg" datatype="html">
         <source>User details could not be updated</source><target state="final">Brukerdetaljene kunne ikke bli oppdatert</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">20</context></context-group></trans-unit>
       <trans-unit id="registerDetailFullName" datatype="html">
         <source>Full name</source><target state="final">Fullt navn</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">32</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">41</context></context-group></trans-unit>
       <trans-unit id="registerDetailPhoneNumber" datatype="html">
         <source>Phone number</source><target state="final">Telefonnummer</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">53</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">62</context></context-group></trans-unit>
       <trans-unit id="registerDetailBirthday" datatype="html">
         <source>Birthday</source><target state="final">Fødselsdag</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">74</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">83</context></context-group></trans-unit>
       <trans-unit id="registerDetailAddress" datatype="html">
         <source>Address</source><target state="final">Adresse</target>
-        
-        
-        
+
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">100</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">109</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">120</context></context-group></trans-unit>
       <trans-unit id="registerDetailPostCode" datatype="html">
         <source>Post code</source><target state="final">Postnummer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">129</context></context-group></trans-unit>
       <trans-unit id="registerDetailPostCity" datatype="html">
         <source>Post city</source><target state="final">By</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">135</context></context-group></trans-unit>
       <trans-unit id="registerDetailBranch" datatype="html">
         <source>Branch</source><target state="final">Filial</target>
-        
-        
-        
+
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">148</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">160</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">158</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianTitle" datatype="html">
         <source>Guardian details</source><target state="final">Foresattdetaljer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">173</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianUnder18Info" datatype="html">
         <source>
@@ -390,42 +390,42 @@
 						</source><target state="final">
 							Ettersom du er under 18 år, trenger vi informasjon om en av dine foresatte. Du kan lese mer om hvorfor vi trenger dette i vår
 						</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">177</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianUserAgreement" datatype="html">
         <source>user agreement page</source><target state="final">personvernerklæring</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">182</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianFullName" datatype="html">
         <source>Guardian full name</source><target state="final">Foresatt sitt fulle navn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">202</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianEmail" datatype="html">
         <source>Guardian email</source><target state="final">Foresatt sin e-postadresse</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">210</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">219</context></context-group></trans-unit>
       <trans-unit id="registerDetailGuardianPhone" datatype="html">
         <source>Guardian phone</source><target state="final">Foresatt sitt telefonnummer</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">227</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">236</context></context-group></trans-unit>
       <trans-unit id="registerDetailUpdateDetailButton" datatype="html">
         <source>Update details</source><target state="final">Oppdater detaljer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">248</context></context-group></trans-unit>
       <trans-unit id="registerDetailGoBackButton" datatype="html">
         <source>Go back</source><target state="final">Gå tilbake</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-detail/register-detail.component.d.ts</context><context context-type="linenumber">253</context></context-group></trans-unit>
       <trans-unit id="registerTitle" datatype="html">
         <source>Register new user</source><target state="final">Registrer ny bruker</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">3</context></context-group></trans-unit>
       <trans-unit id="registerMustAgree" datatype="html">
         <source>You must agree to our terms to register</source><target state="final">Du må godta våre vilkår for å registrere deg</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">12</context></context-group></trans-unit><trans-unit id="registerPleaseRegisterWithThirdParty" datatype="html">
         <source>
 			Please register with one of our login providers
@@ -440,15 +440,15 @@
         <source>
 			Or use your email to register
 		</source><target state="translated">Eller bruk din e-postadresse for å registrere deg</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">44</context></context-group></trans-unit>
       <trans-unit id="registerGoToLoginPage" datatype="html">
         <source>Go to login page</source><target state="final">Gå til innloggingssiden</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register.component.d.ts</context><context context-type="linenumber">61</context></context-group></trans-unit>
       <trans-unit id="socialRegisterWithFacebook" datatype="html">
         <source>Register with Facebook</source><target state="final">Registrer deg med Facebook</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/social-register/social-register.component.d.ts</context><context context-type="linenumber">30</context></context-group></trans-unit><trans-unit id="socialRegisterWithGoogle" datatype="html">
         <source>Register with Google</source><target state="final">Registrer deg med Google</target>
         <context-group purpose="location">
@@ -456,10 +456,10 @@
           <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
-      
+
       <trans-unit id="localRegisterErrorMsg" datatype="html">
         <source>Could not register</source><target state="final">Kunne ikke registrere deg</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="localRegisterUserAlreadyExistsError" datatype="html">
         <source>
 				The user already exists </source><target state="translated">
@@ -475,21 +475,21 @@
 			</source><target state="final">
 				Klikk her hvis du tenkte å logge inn
 			</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">21</context></context-group></trans-unit>
       <trans-unit id="localRegisterEmail" datatype="html">
         <source>Email</source><target state="final">E-postadresse</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">35</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">48</context></context-group></trans-unit>
       <trans-unit id="localRegisterPassword" datatype="html">
         <source>Password</source><target state="final">Passord</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">62</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">74</context></context-group></trans-unit>
       <trans-unit id="localRegisterButton" datatype="html">
         <source>Register</source><target state="final">Registrer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/local-register/local-register.component.d.ts</context><context context-type="linenumber">87</context></context-group></trans-unit>
       <trans-unit id="registerAgreementIHaveUnderstood" datatype="html">
         <source>
@@ -497,7 +497,7 @@
 			</source><target state="translated">
 			Jeg har lest og forstått vilkårene
 		</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">28</context></context-group></trans-unit><trans-unit id="registerAgreementYouMustAgree" datatype="html">
         <source>
 				You must agree to our agreement to register.
@@ -512,98 +512,97 @@
         <source>
 			User agreement
 		</source><target state="translated">Vilkår</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">45</context></context-group></trans-unit>
       <trans-unit id="registerDetailIAgree" datatype="html">
         <source>I Agree</source><target state="final">Jeg godtar</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/register/register-agreement/register-agreement.component.d.ts</context><context context-type="linenumber">66</context></context-group></trans-unit>
       <trans-unit id="loginMenuRegisterButton" datatype="html">
         <source>Register new user</source><target state="final">Registrer ny bruker</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/login-menu/login-menu.component.d.ts</context><context context-type="linenumber">7</context></context-group></trans-unit>
       <trans-unit id="loginMenuLoginButton" datatype="html">
         <source>Login</source><target state="final">Logg inn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/login-menu/login-menu.component.d.ts</context><context context-type="linenumber">16</context></context-group></trans-unit>
       <trans-unit id="loginAuthTitle" datatype="html">
         <source>Login</source><target state="final">Logg inn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/login-auth/login-auth.component.d.ts</context><context context-type="linenumber">3</context></context-group></trans-unit>
       <trans-unit id="loginAuthOrUseEmail" datatype="html">
         <source>
 			Or use your email to login
 		</source><target state="translated">Eller bruk din e-postadresse til å logge deg inn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/login-auth/login-auth.component.d.ts</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="loginAuthForgotPassword" datatype="html">
         <source>Forgot your password?</source><target state="final">Glemt passord?</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/login-auth/login-auth.component.d.ts</context><context context-type="linenumber">23</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordTitle" datatype="html">
         <source>Forgot password</source><target state="final">Glemt passord</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordEmailError" datatype="html">
         <source>Please provide a valid email</source><target state="final">Vennligst oppgi en gyldig e-postadresse</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordNoResetLinkError" datatype="html">
         <source>Something went wrong, could not send you the reset link. Are you sure you have the correct email?</source><target state="final">Noe gikk galt, vi kunne ikke sende deg en nullstillingslenke. Er du sikker på at du har riktig e-postadresse?</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">22</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordSuccessMsg" datatype="html">
-        <source>An email with instructions on how to reset your password is sent to you.</source><target state="final">En e-post med instruksjoner for hvordan du kan endre passordet ditt er blitt sendt til deg.</target>
-        
+        <source>If a user exists with this email address, we have sent an email with instructions on how to reset your password.</source><target state="final">Hvis det finnes en bruker med denne e-postaddressen har vi sendt en e-post med instruksjoner for hvordan du kan endre passordet ditt.</target>
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">30</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordHowTo" datatype="html">
         <source>
 			Write in your email and we will send you a link about how to reset your password
 		</source><target state="final">
-			 Skriv inn din e-postadresse, og vi sender deg en lenke slik at du kan nullstille passordet ditt. 
+			 Skriv inn din e-postadresse, og vi sender deg en lenke slik at du kan nullstille passordet ditt.
 		</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">37</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordEmail" datatype="html">
         <source>Email</source><target state="final">E-postadresse</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">49</context></context-group></trans-unit>
       <trans-unit id="forgotPasswordGoBackToLogin" datatype="html">
         <source>Go back to login page</source><target state="final">Gå tilbake til innloggingssiden</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/forgot-password/forgot-password.component.d.ts</context><context context-type="linenumber">78</context></context-group></trans-unit>
       <trans-unit id="passwordResetTitle" datatype="html">
         <source>Create new password</source><target state="final">Lag nytt passord</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">3</context></context-group></trans-unit>
-      <trans-unit id="passwordResetError" datatype="html">
-        <source>Failed to update password</source><target state="final">Oppdatering av passord feilet</target>
-        
+      <trans-unit id="passwordResetError" datatype="html"><source>Failed to update password. The reset link might be invalid, expired or already used.</source><target state="final">Oppdatering av passord feilet. Linken kan være ugyldig, utgått eller allerede brukt.</target>
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="passwordResetPasswordNotValid" datatype="html">
         <source>Password not valid. Must at least be 6 characters long</source><target state="final">Passordet er ikke gyldig. Det må være på minst seks siffer.</target>
-        
+
         <note priority="1" from="description">should be at least 6 characters long </note>
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">21</context></context-group></trans-unit>
       <trans-unit id="passwordResetSuccessMsg" datatype="html">
         <source>Your password was reset!</source><target state="final">Passordet ditt ble endret!</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">29</context></context-group></trans-unit>
       <trans-unit id="passwordResetLoginButton" datatype="html">
         <source>Login</source><target state="final">Logg inn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">34</context></context-group></trans-unit>
       <trans-unit id="passwordResetNewPassword" datatype="html">
         <source>New password</source><target state="final">Nytt passord</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">44</context></context-group></trans-unit>
       <trans-unit id="passwordResetGoBackToLogin" datatype="html">
         <source>Go back to login page</source><target state="final">Gå tilbake til innloggingssiden</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-password-reset/auth-password-reset.component.d.ts</context><context context-type="linenumber">71</context></context-group></trans-unit>
       <trans-unit id="emailValidationEmailConfirmed" datatype="html">
         <source>Email was confirmed</source><target state="final">E-postadresse bekreftet</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">15</context></context-group></trans-unit><trans-unit id="emailValidationNoConnection" datatype="html">
         <source>Could not connect to the server</source><target state="final">Kunne ikke kontakte serveren</target>
         <context-group purpose="location">
@@ -613,35 +612,35 @@
       </trans-unit>
       <trans-unit id="emailValidationConfirmError" datatype="html">
         <source>Email could not be confirmed.</source><target state="final">E-postadressen kunne ikke bekreftes.</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">37</context></context-group></trans-unit>
       <trans-unit id="emailValidationLinkMayBeExpired" datatype="html">
         <source>The link may be expired.</source><target state="final">Det kan hende at lenken er utgått.</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">39</context></context-group></trans-unit>
       <trans-unit id="emailValidationClickForNewLink" datatype="html">
         <source>Click here to send a new confirmation link</source><target state="final">Klikke her for å sende en ny bekreftelseslenke.</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">45</context></context-group></trans-unit>
       <trans-unit id="emailValidationNotLoggedInError" datatype="html">
         <source>You must login to send a new confirmation link</source><target state="final">Du må logge inn for å sende en ny bekreftelseslenke</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">52</context></context-group></trans-unit>
       <trans-unit id="emailValidationClickToLogin" datatype="html">
         <source>Click her to login</source><target state="final">Trykk her for å logge inn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">56</context></context-group></trans-unit>
       <trans-unit id="emailValidationNewLinkSent" datatype="html">
         <source>A new confirmation link has been sent to your email.</source><target state="final">En ny bekreftelseslenke er blitt sendt til din e-postadresse.</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-email-validation/auth-email-validation.component.d.ts</context><context context-type="linenumber">68</context></context-group></trans-unit>
       <trans-unit id="socialLoginFailureErrorMsg" datatype="html">
         <source>Failed to log you in, please try again soon.</source><target state="final">Innlogging feilet, vennligst prøv igjen snarlig.</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-social-failure/auth-social-failure.component.d.ts</context><context context-type="linenumber">8</context></context-group></trans-unit>
       <trans-unit id="socialLoginFailureGoBackButton" datatype="html">
         <source>Go back</source><target state="final">Gå tilbake</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/auth/auth-social-failure/auth-social-failure.component.d.ts</context><context context-type="linenumber">16</context></context-group></trans-unit><trans-unit id="authTokenComponentWeAreLoggingYouIn" datatype="html">
         <source>We are logging you in, please wait</source><target state="final">Vi logger deg inn, vennligst vent</target>
         <context-group purpose="location">
@@ -671,19 +670,19 @@
       </trans-unit>
       <trans-unit id="loginPermissionFailureTitle" datatype="html">
         <source>Permission denied</source><target state="final">Tilgang avslått</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/login-permission-failure/login-permission-failure.component.d.ts</context><context context-type="linenumber">9</context></context-group></trans-unit>
       <trans-unit id="loginPermissionFailureNotRightPermission" datatype="html">
         <source>You don't have the right permission to access this content. You have been logged out.</source><target state="final">Du har ikke de riktige tilgangene for å se dette innholdet. Du har blitt logget ut.</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/login-permission-failure/login-permission-failure.component.d.ts</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="loginPermissionFailureWhatToDo" datatype="html">
         <source>You can try login with another user or ask an administrator for details.</source><target state="final">Du kan forsøke å logge inn med en annen bruker, eller spørre en administrator for flere detaljer.</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/login-permission-failure/login-permission-failure.component.d.ts</context><context context-type="linenumber">15</context></context-group></trans-unit>
       <trans-unit id="loginPermissionFailureLoginButton" datatype="html">
         <source>Login</source><target state="final">Logg inn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/login-permission-failure/login-permission-failure.component.d.ts</context><context context-type="linenumber">23</context></context-group></trans-unit><trans-unit id="userDetailDobDateFormatMustBe" datatype="html">
         <source>Date must be on the format "dd.mm.yyyy"</source><target state="final">Dato må være på formatet "dd.mm.yyyy"</target>
         <context-group purpose="location">
@@ -693,52 +692,52 @@
       </trans-unit>
       <trans-unit id="localLoginUserOrPasswordError" datatype="html">
         <source>Username or password is incorrect</source><target state="final">Brukernavn eller passord er feil</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="localLoginConnectionError" datatype="html">
         <source>Something went wrong with the connection</source><target state="final">Noe gikk galt med tilkoblingen</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">17</context></context-group></trans-unit>
       <trans-unit id="localLoginEmail" datatype="html">
         <source>Email</source><target state="final">E-postadresse</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">30</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">43</context></context-group></trans-unit>
       <trans-unit id="localLoginPassword" datatype="html">
         <source>Password</source><target state="final">Passord</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">56</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">68</context></context-group></trans-unit>
       <trans-unit id="localLoginButton" datatype="html">
         <source>Login</source><target state="final">Logg inn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/local-login/local-login.component.d.ts</context><context context-type="linenumber">81</context></context-group></trans-unit>
       <trans-unit id="socialLoginWithFacebook" datatype="html">
         <source>Login with Facebook</source><target state="final">Logg inn med Facebook</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/social-login/social-login.component.d.ts</context><context context-type="linenumber">29</context></context-group></trans-unit>
       <trans-unit id="socialLoginWithGoogle" datatype="html">
         <source>Login with Google</source><target state="final">Logg inn med Google</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-login/src/app/login/social-login/social-login.component.d.ts</context><context context-type="linenumber">52</context></context-group></trans-unit>
       <trans-unit id="branchEditListUploadSelected" datatype="html">
         <source>Upload selected</source><target state="final">Last opp valgte</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit-list/branch-edit-list.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="branchEditListDownloadSelected" datatype="html">
         <source>Download selected</source><target state="final">Last ned valgte</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit-list/branch-edit-list.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit>
       <trans-unit id="branchEditListFilterByNamePlaceholder" datatype="html">
         <source>Filter by name</source><target state="final">Filtrer på navn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit-list/branch-edit-list.component.html</context><context context-type="linenumber">22</context></context-group></trans-unit>
       <trans-unit id="branchUploadChooseFile" datatype="html">
         <source>Choose File</source><target state="final">Velg fil</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-upload/branch-upload.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit><trans-unit id="customerDetailNotValidError" datatype="html">
         <source>Customer detail does not have all required fields!</source><target state="final">Brukerdetaljene inneholder ikke alle påkrevde felter!</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-small/customer-detail-small.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="customerInformationEmail" datatype="html">
         <source>Email</source><target state="final">E-post</target>
         <context-group purpose="location">
@@ -754,34 +753,34 @@
       </trans-unit>
       <trans-unit id="blCommonUpdateButtonDefaultText" datatype="html">
         <source>Update</source><target state="final">Oppdater</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/bl-common/bl-common-update-button/bl-common-update-button.component.html</context><context context-type="linenumber">4</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-reporter/src/app/bl-common/buttons/bl-common-update-button/bl-common-update-button.component.d.ts</context><context context-type="linenumber">3</context></context-group></trans-unit><trans-unit id="blcItemAddWarning" datatype="html">
         <source>Warning</source><target state="final">Advarsel</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">19</context></context-group></trans-unit><trans-unit id="blcItemAddItemNotPartOfBranchItems" datatype="html">
         <source>
 			This item is not present in the branchItem list of the current
 			branch
 		</source><target state="final">Denne boken står ikke på skolens bokliste. Er du sikker på at du har valgt riktig bok eller skole?</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">45</context></context-group></trans-unit><trans-unit id="blcItemAddCustomerItemWithMatch" datatype="html">
         <source>
 			This item is apart of a match, are you sure you want to add this to
 			the cart?
 		</source><target state="final">Denne boken har kunden valgt "Gjenbruk" på. Er du sikker på at du skal gjøre noe med denne boken?</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">54</context></context-group></trans-unit><trans-unit id="blcItemAddCancel" datatype="html">
         <source>
 			Cancel
 		</source><target state="final">Kanseller
 		</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">65</context></context-group></trans-unit><trans-unit id="blcItemAddAnyway" datatype="html">
         <source>
 			Add anyway
 		</source><target state="final">Legg til likevel
 		</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-item-add/blc-item-add.component.html</context><context context-type="linenumber">73</context></context-group></trans-unit><trans-unit id="editStringValueNoValue" datatype="html">
         <source>[NO VALUE]</source><target state="final">[NO VALUE]</target>
         <context-group purpose="location">
@@ -794,16 +793,16 @@
 			</source><target state="translated">
                 Fra
             </target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-period/blc-period-select/blc-period-select.component.html</context><context context-type="linenumber">61</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-deadline-select/blc-deadline-select.component.html</context><context context-type="linenumber">19</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-reporter/src/app/bl-common/blc-period/blc-period-select/blc-period-select.component.d.ts</context><context context-type="linenumber">57</context></context-group></trans-unit><trans-unit id="blcPeriodSelectTo" datatype="html">
         <source>
 				To
 			</source><target state="translated">
                 Til
             </target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">app/bl-common/blc-period/blc-period-select/blc-period-select.component.html</context><context context-type="linenumber">73</context></context-group><context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-reporter/src/app/bl-common/blc-period/blc-period-select/blc-period-select.component.d.ts</context><context context-type="linenumber">69</context></context-group></trans-unit><trans-unit id="blcDeadlineSelectSelectedDeadline" datatype="html">
         <source>Selected deadline:</source><target state="final">Velg frist:</target>
         <context-group purpose="location">
@@ -908,29 +907,29 @@ Egendefinert
       </trans-unit>
       <trans-unit id="itemSearchBarPlaceholder" datatype="html">
         <source>Item Search</source><target state="final">Boksøk</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/item/item-search-bar/item-search-bar.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit>
       <trans-unit id="itemUploadChooseFile" datatype="html">
         <source>Choose File</source><target state="final">Velg fil</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/item/item-upload/item-upload.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="itemEditListUploadSelected" datatype="html">
         <source>Upload selected</source><target state="final">Last opp valgte</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.html</context><context context-type="linenumber">13</context></context-group></trans-unit>
       <trans-unit id="itemEditListDownloadSelected" datatype="html">
         <source>Download selected</source><target state="final">Last ned valgte</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.html</context><context context-type="linenumber">21</context></context-group></trans-unit>
       <trans-unit id="itemEditListFilterByTitleOrIsbnPlaceholder" datatype="html">
         <source>Filter by title or isbn</source><target state="final">Filtrer på tittel eller ISBN</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/item/item-edit/item-edit-list/item-edit-list.component.html</context><context context-type="linenumber">33</context></context-group></trans-unit>
-      
-      
+
+
       <trans-unit id="itemSelectListFilterByTitleOrIsbnPlaceholder" datatype="html">
         <source>Filter by title or isbn</source><target state="final">Filtrer på tittel eller ISBN</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/item/item-select-list/item-select-list.component.html</context><context context-type="linenumber">9</context></context-group></trans-unit><trans-unit id="itemSearchSelectPleaseScanISBN" datatype="html">
         <source>Please scan a ISBN</source><target state="final">Vennligst skann en ISBN</target>
         <context-group purpose="location">
@@ -957,8 +956,8 @@ Egendefinert
         </context-group>
       </trans-unit><trans-unit id="blidScannerPleaseScanBlid" datatype="html">
         <source>Please scan a BLID</source><target state="translated">Vennligst skann en Boklisten-ID</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">app/scanner/blid-scanner/blid-scanner.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="welcomeShortcuts" datatype="html">
         <source>
 					Shortcuts
@@ -994,10 +993,10 @@ Egendefinert
         </context-group>
       </trans-unit><trans-unit id="invoiceView" datatype="html">
         <source>View</source><target state="final">Se mer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice.component.html</context><context context-type="linenumber">6</context></context-group></trans-unit><trans-unit id="invoiceGenerate" datatype="html">
         <source>Generate</source><target state="final">Generer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice.component.html</context><context context-type="linenumber">16</context></context-group></trans-unit><trans-unit id="invoiceCreate" datatype="html">
         <source>Create</source><target state="final">Lag ny</target>
         <context-group purpose="location">
@@ -1007,35 +1006,35 @@ Egendefinert
       </trans-unit>
       <trans-unit id="headerCustomerSearch" datatype="html">
         <source>Customer search</source><target state="final">Kundesøk</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/header/header-customer-search/header-customer-search.component.html</context><context context-type="linenumber">7</context></context-group></trans-unit><trans-unit id="userComponentUsername" datatype="html">
         <source>username</source><target state="final">brukernavn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/user/user-info-small/user-info-small.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit><trans-unit id="userComponentPermission" datatype="html">
         <source>permission</source><target state="final">brukertype</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/user/user-info-small/user-info-small.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit>
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
       <trans-unit id="branchSelectBranchTitle" datatype="html">
         <source>Select a branch</source><target state="final">Velg en filial</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-select/branch-select.component.html</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="branchInfoEditButton" datatype="html">
         <source>Edit</source><target state="final">Rediger</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-info/branch-info.component.html</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="branchEditDescription" datatype="html">
         <source>Desc</source><target state="final">Beskrivelse</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit.component.html</context><context context-type="linenumber">32</context></context-group></trans-unit>
       <trans-unit id="branchEditActiveToggle" datatype="html">
         <source>Active</source><target state="final">Aktiv</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit.component.html</context><context context-type="linenumber">45</context></context-group></trans-unit><trans-unit id="branchEditPeriodSettinsPartlyPaymentsPeriodsTitle" datatype="html">
         <source>
 					Partly payment periods
@@ -1049,12 +1048,12 @@ Egendefinert
       </trans-unit>
       <trans-unit id="branchEditPeriodSettingsTitle" datatype="html">
         <source>Rent periods</source><target state="final">Leieperioder</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">187</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingType" datatype="html">
         <source>Type</source><target state="final">Type</target>
-        
-        
+
+
         <note priority="1" from="description">type of period</note>
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">30</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">210</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">345</context></context-group></trans-unit><trans-unit id="branchEditPeriodSettingUpfrontPercentage" datatype="html">
         <source>Upfront percentage</source><target state="final">Første betaling</target>
@@ -1089,37 +1088,37 @@ Egendefinert
       </trans-unit>
       <trans-unit id="branchEditPeriodSettingLimit" datatype="html">
         <source>Limit</source><target state="final">Grense</target>
-        
-        
+
+
         <note priority="1" from="description">limit of how many periods</note>
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">226</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">361</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingPercentage" datatype="html">
         <source>Percentage</source><target state="final">Prosent</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">244</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingDate" datatype="html">
         <source>Date</source><target state="final">Dato</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">260</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">395</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsAddButton" datatype="html">
         <source>Add</source><target state="final">Legg til</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">176</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">309</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">446</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettinsExtendPeriodsTitle" datatype="html">
         <source>
 					Extend periods
 				</source><target state="translated">Forlengelsesperioder</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">320</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingPrice" datatype="html">
         <source>Price</source><target state="final">Pris</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">379</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsBuyoutPercentage" datatype="html">
         <source>Buyout percentage</source><target state="final">Utkjøpsprosent</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">456</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsSellPercentage" datatype="html">
         <source>
@@ -1127,52 +1126,52 @@ Egendefinert
 		</source><target state="final">
 			Innkjøpsprosent
 		</target>
-        
+
         <note priority="1" from="description">sell is when customer sells the item to branch</note>
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">471</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsFreeDeliveryToggle" datatype="html">
         <source>Free delivery</source><target state="final">Gratis postlevering</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">486</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsDeliveryByMailToggle" datatype="html">
         <source>Delivery by mail</source><target state="final">Levering per post</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">500</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsDeliveryAtBranchToggle" datatype="html">
         <source>Delivery at branch</source><target state="final">Utlevering på filial</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">514</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsPayLaterToggle" datatype="html">
         <source>Pay later</source><target state="final">Betal senere</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">527</context></context-group></trans-unit>
       <trans-unit id="branchEditPeriodSettingsResponsibleForPaymentToggle" datatype="html">
         <source>Responsible for payment</source><target state="final">Ansvarlig for betaling</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-period-settings/branch-edit-period-settings.component.html</context><context context-type="linenumber">540</context></context-group></trans-unit>
       <trans-unit id="branchEditItemsTitle" datatype="html">
         <source>Items</source><target state="final">Bøker</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="branchEditItemsAddItems" datatype="html">
         <source>Add items</source><target state="final">Legg til bøker</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit>
       <trans-unit id="branchEditItemsAddItemsModalTitle" datatype="html">
         <source>
 				Add items to branch
 			</source><target state="translated">Legg til bøker til filial</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.html</context><context context-type="linenumber">62</context></context-group></trans-unit>
       <trans-unit id="branchEditItemsAddSelectedItemsButton" datatype="html">
         <source>Add selected items</source><target state="final">Legg til valgte bøker</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-edit-items.component.html</context><context context-type="linenumber">91</context></context-group></trans-unit>
       <trans-unit id="branchItemEditRent" datatype="html">
         <source>Rent</source><target state="translated">
                 Leie
             </target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.html</context><context context-type="linenumber">10</context></context-group></trans-unit><trans-unit id="branchItemEditPartlyPayment" datatype="html">
         <source>
 						Partly payment
@@ -1188,7 +1187,7 @@ Egendefinert
         <source>Buy</source><target state="translated">
                 Selge
             </target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.html</context><context context-type="linenumber">14</context></context-group></trans-unit>
       <trans-unit id="branchItemEditSell" datatype="html">
         <source>
@@ -1196,7 +1195,7 @@ Egendefinert
 					</source><target state="translated">
                 Innkjøp
             </target>
-        
+
         <note priority="1" from="description">if the customer can sell the item to branch </note>
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-edit/branch-item-edit.component.html</context><context context-type="linenumber">18</context></context-group></trans-unit><trans-unit id="branchItemEditBlWeb" datatype="html">
         <source>
@@ -1221,42 +1220,42 @@ Egendefinert
       </trans-unit>
       <trans-unit id="branchItemCategorySelectAddCategory" datatype="html">
         <source>Add category</source><target state="final">Legg til kategori</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.component.html</context><context context-type="linenumber">32</context></context-group></trans-unit>
       <trans-unit id="branchItemCategorySelectPopoverTitle" datatype="html">
         <source>Category select</source><target state="final">Velg kategori</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.component.html</context><context context-type="linenumber">21</context></context-group></trans-unit>
       <trans-unit id="branchItemCategorySelectNewCategoryPlaceholder" datatype="html">
         <source>New category</source><target state="final">Ny kategori</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-edit-items/branch-item-category-select/branch-item-category-select.component.html</context><context context-type="linenumber">46</context></context-group></trans-unit>
       <trans-unit id="blAddButton" datatype="html">
         <source>Add</source><target state="final">Legg til</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component.html</context><context context-type="linenumber">35</context></context-group></trans-unit>
       <trans-unit id="branchOpeningHoursEditAddOpeningHour" datatype="html">
         <source>Add opening hour</source><target state="final">Legg til åpningstid</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component.html</context><context context-type="linenumber">42</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/branch/branch-edit/branch-opening-hours-edit/branch-opening-hours-edit.component.html</context><context context-type="linenumber">83</context></context-group></trans-unit><trans-unit id="itemSearchResultOrdered" datatype="html">
         <source>Ordered</source><target state="final">Bestilt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context><context context-type="linenumber">34</context></context-group></trans-unit><trans-unit id="itemSearchResultCustomerHaveItem" datatype="html">
         <source>Customer have this item</source><target state="final">Kunde har denne boken</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context><context context-type="linenumber">42</context></context-group></trans-unit><trans-unit id="itemSearchResultOrderedOnAnotherBranch" datatype="html">
         <source>Ordered on another branch</source><target state="final">Bestilt på et annet filial</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context><context context-type="linenumber">57</context></context-group></trans-unit><trans-unit id="itemSearchResultNotAtCurrentBranch" datatype="html">
         <source>Not at current branch</source><target state="final">Ikke på valgt filial</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/item/item-search/item-search-result/item-search-result-item/item-search-result-item.component.html</context><context context-type="linenumber">71</context></context-group></trans-unit>
       <trans-unit id="customerOrderListTitle" datatype="html">
         <source>
 					Orders
 				</source><target state="translated">Ordre</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/customer-order/customer-order-list/customer-order-list.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="customerOrderListNoOrdersFound" datatype="html">
         <source>
 					No orders found on customer
@@ -1270,29 +1269,29 @@ Egendefinert
         </context-group>
       </trans-unit><trans-unit id="customerOrderItemListNoOrderItemsFound" datatype="html">
         <source>No ordered items found</source><target state="final">Ingen bestilte bøker funnet</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list.component.html</context><context context-type="linenumber">16</context></context-group></trans-unit>
-      
+
       <trans-unit id="customerItemListTitle" datatype="html">
         <source>
 			Customer items
 		</source><target state="translated">Kundens bøker</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list.component.html</context><context context-type="linenumber">3</context></context-group></trans-unit><trans-unit id="customerItemListNoCustomerItemsFound" datatype="html">
         <source>No customer-items found</source><target state="final">Fant ingen bøker hos kunde</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list.component.html</context><context context-type="linenumber">26</context></context-group></trans-unit><trans-unit id="customerItemDetailType" datatype="html">
         <source>Type</source><target state="final">Type</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">14</context></context-group></trans-unit><trans-unit id="customerItemDetailDeadline" datatype="html">
         <source>Deadline</source><target state="final">Frist</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">71</context></context-group></trans-unit><trans-unit id="customerItemDetailCustomer" datatype="html">
         <source>Customer</source><target state="final">Kunde</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit><trans-unit id="customerItemDetailHandoutTime" datatype="html">
         <source>Handout time</source><target state="final">Utdelingstidspunkt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">19</context></context-group></trans-unit><trans-unit id="customerItemDetailFinalized" datatype="html">
         <source>Finalized</source><target state="final">Avsluttet</target>
         <context-group purpose="location">
@@ -1325,10 +1324,10 @@ Egendefinert
         </context-group>
       </trans-unit><trans-unit id="customerItemDetailHandoutAt" datatype="html">
         <source>Handout at</source><target state="final">Utdelt hos</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">78</context></context-group></trans-unit><trans-unit id="customerItemDetailHandoutBy" datatype="html">
         <source>Handout by</source><target state="final">Utdelt av</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-detail/customer-item-detail.component.html</context><context context-type="linenumber">87</context></context-group></trans-unit><trans-unit id="customerItemDetailReturned" datatype="html">
         <source>Returned</source><target state="final">Levert tilbake</target>
         <context-group purpose="location">
@@ -1388,70 +1387,70 @@ Egendefinert
                     </source><target state="final">
                         Kunden har ikke bekreftet sin e-postadresse
                     </target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">12</context></context-group></trans-unit><trans-unit id="customerDetailModalContentEmailConfirmed" datatype="html">
         <source>
 					email confirmed
 				</source><target state="final">
 					Bekreftet e-postadresse
 				</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">18</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalFullNamePlaceholder" datatype="html">
         <source>Full name</source><target state="final">Fullt navn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">36</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalPhonePlaceholder" datatype="html">
         <source>Phone</source><target state="final">Telefonnummer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">49</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalDobPlaceholder" datatype="html">
         <source>Dob</source><target state="final">Fødselsdato</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">107</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalAddressPlaceholder" datatype="html">
         <source>Address</source><target state="final">Adresse</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">64</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalPostCodePlaceholder" datatype="html">
         <source>Post code</source><target state="final">Postnummer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">77</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalPostCityPlaceholder" datatype="html">
         <source>Post city</source><target state="final">By</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">81</context></context-group></trans-unit><trans-unit id="customerDetailModalContentDobNotProvided" datatype="html">
         <source>
 						date of birth not provided
 					</source><target state="final">
 						Fødselsdato ikke oppgitt
 					</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">88</context></context-group></trans-unit><trans-unit id="customerDetailModalContentDateMustBeOnFormat" datatype="html">
         <source>
 						date must be on format "DD.MM.YYYY"
 					</source><target state="final">
 						Fødselsdato må være på formatet "dd.mm.åååå"
 					</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">93</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalCloseButton" datatype="html">
         <source>Close</source><target state="final">Lukk</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal-content/customer-detail-modal-content.component.html</context><context context-type="linenumber">122</context></context-group></trans-unit>
       <trans-unit id="customerDetailModalEditButton" datatype="html">
         <source>Edit</source><target state="final">Rediger</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-modal/customer-detail-modal.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="customerDetailCardUserDetailWasUpdated" datatype="html">
         <source>User details was updated!</source><target state="final">Brukerdetaljer ble oppdatert!</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-card/customer-detail-card.component.html</context><context context-type="linenumber">14</context></context-group></trans-unit>
       <trans-unit id="customerDetailCartDobNotProvided" datatype="html">
         <source>date of birth not provided</source><target state="final">Fødselsdato ikke oppgitt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-card/customer-detail-card.component.html</context><context context-type="linenumber">47</context></context-group></trans-unit><trans-unit id="customerDetailCardGuardian" datatype="html">
         <source>Guardian</source><target state="final">Foresatt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer/customer-detail/customer-detail-card/customer-detail-card.component.html</context><context context-type="linenumber">55</context></context-group></trans-unit><trans-unit id="deleteCustomerButton" datatype="html">
         <source>
 	Delete customer
@@ -1558,10 +1557,10 @@ Egendefinert
       </trans-unit>
       <trans-unit id="orderDetailPrintReceiptButton" datatype="html">
         <source>Print receipt</source><target state="final">Skriv ut kvittering</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-detail.component.html</context><context context-type="linenumber">43</context></context-group></trans-unit><trans-unit id="orderDetailPrintAgreementButton" datatype="html">
         <source>Print agreement</source><target state="final">Skriv ut leiekontrakt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-detail.component.html</context><context context-type="linenumber">54</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailTitle" datatype="html">
         <source>
@@ -1569,35 +1568,35 @@ Egendefinert
 			</source><target state="final">
 				Betalinger
 			</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailCouldNotGetError" datatype="html">
         <source>could not get payments</source><target state="final">Kunne ikke hente betalinger</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">15</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailNoPaymentsFound" datatype="html">
         <source>no payments found on order</source><target state="final">Ingen betalinger funnet på denne ordren</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">26</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodCash" datatype="html">
         <source>Cash</source><target state="final">Kontant</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">61</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodDibs" datatype="html">
         <source>Dibs</source><target state="final">DIBS</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">70</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodVipps" datatype="html">
         <source>Vipps</source><target state="final">Vipps</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">78</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailMethodCard" datatype="html">
         <source>Card</source><target state="final">Betalingskort</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">87</context></context-group></trans-unit>
       <trans-unit id="orderPaymentDetailNoPaymentYet" datatype="html">
         <source>Not payed yet</source><target state="final">Ikke betalt enda!</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-payment-detail/order-payment-detail.component.html</context><context context-type="linenumber">98</context></context-group></trans-unit><trans-unit id="orderPaymentDetailConfirm" datatype="html">
         <source>
 										Confirm
@@ -1620,11 +1619,11 @@ Slett
       </trans-unit>
       <trans-unit id="orderDetailCardConfirmed" datatype="html">
         <source>Confirmed</source><target state="final">Bekreftet</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-detail-card/order-detail-card.component.html</context><context context-type="linenumber">7</context></context-group></trans-unit>
       <trans-unit id="orderDetailCardNotConfirmed" datatype="html">
         <source>Not Confirmed</source><target state="final">Ikke bekreftet</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-detail-card/order-detail-card.component.html</context><context context-type="linenumber">11</context></context-group></trans-unit>
       <trans-unit id="orderDeliveryDetailTitle" datatype="html">
         <source>
@@ -1632,59 +1631,59 @@ Slett
 			</source><target state="final">
 				Utlevering
 			</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">4</context></context-group></trans-unit>
       <trans-unit id="orderDeliveryDetailNoOrderAttached" datatype="html">
         <source>Order has no delivery attached</source><target state="final">Det er ikke tilknyttet levering til denne ordren</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">10</context></context-group></trans-unit>
       <trans-unit id="orderDeliveryDetailWarning" datatype="html">
         <source>could not get delivery</source><target state="final">kunne ikke hente leveringsstatus</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">17</context></context-group></trans-unit>
       <trans-unit id="orderDeliveryDetailTrackingNumber" datatype="html">
         <source>Tracking number</source><target state="final">Sporingsnummer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-delivery-detail/order-delivery-detail.component.html</context><context context-type="linenumber">110</context></context-group></trans-unit>
       <trans-unit id="orderItemListTitle" datatype="html">
         <source>Items</source><target state="final">Bøker</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-list/order-item-list.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit>
       <trans-unit id="orderItemListNoItemsAttachedError" datatype="html">
         <source>There was no items attached to order</source><target state="final">Det er ingen bøker tilknyttet ordren</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-list/order-item-list.component.html</context><context context-type="linenumber">12</context></context-group></trans-unit><trans-unit id="orderItemDetailListBuyout" datatype="html">
         <source>buyout</source><target state="final">utkjøp</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">24</context></context-group></trans-unit><trans-unit id="orderItemDetailListBuy" datatype="html">
         <source>buy</source><target state="final">kjøp</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">29</context></context-group></trans-unit><trans-unit id="orderItemDetailListReturn" datatype="html">
         <source>return</source><target state="final">retur</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">41</context></context-group></trans-unit><trans-unit id="orderItemDetailListBuyback" datatype="html">
         <source>buyback</source><target state="final">tilbakekjøp</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">51</context></context-group></trans-unit><trans-unit id="orderItemDetailListCancel" datatype="html">
         <source>cancel</source><target state="final">kansellert</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">59</context></context-group></trans-unit><trans-unit id="orderItemDetailListSell" datatype="html">
         <source>sell</source><target state="final">innkjøp</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">67</context></context-group></trans-unit><trans-unit id="orderItemDetailListRent" datatype="html">
         <source>rent</source><target state="final">leie</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">89</context></context-group></trans-unit><trans-unit id="orderItemDetailListExtend" datatype="html">
         <source>extend</source><target state="final">forlenge</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">94</context></context-group></trans-unit><trans-unit id="orderItemDetailListPartlyPayment" datatype="html">
         <source>partly-payment</source><target state="final">delbetaling</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">109</context></context-group></trans-unit>
       <trans-unit id="orderItemDetailListDelivered" datatype="html">
         <source>delivered</source><target state="final">Utlevert</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">144</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">158</context></context-group></trans-unit>
       <trans-unit id="orderItemDetailListMovedToAnotherOrder" datatype="html">
         <source>
@@ -1692,7 +1691,7 @@ Slett
 			</source><target state="translated">
 					Flyttet til en annen ordre
 				</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/order-detail/order-item-detail-list-item/order-item-detail-list-item.component.html</context><context context-type="linenumber">173</context></context-group></trans-unit><trans-unit id="orderConfirmComponentButton" datatype="html">
         <source>
 	Confirm
@@ -1709,17 +1708,17 @@ Slett
 				</source><target state="translated">
                     Ingen ordre funnet
                 </target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order-manager/order-manager-list/order-manager-list.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit>
       <trans-unit id="orderManagerListItemNumberOfItems" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {no items} =1 {one item} other {<x id="INTERPOLATION" equiv-text="{{order.orderItems.length}}"/> items } }</source><target state="final">{VAR_PLURAL, plural, =0 {ingen bøker} =1 {en bok} other {<x id="INTERPOLATION"/> bøker } }</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order-manager/order-manager-list/order-manager-list-item/order-manager-list-item.component.html</context><context context-type="linenumber">24</context></context-group></trans-unit>
       <trans-unit id="addOrderToCartButton" datatype="html">
         <source>
 	Add to cart
 </source><target state="translated">Legg i handlevogn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/add-order-to-cart/add-order-to-cart.component.html</context><context context-type="linenumber">5</context></context-group></trans-unit><trans-unit id="orderDetailDeleteOrder" datatype="html">
         <source>
 	Delete order
@@ -1758,44 +1757,44 @@ Slett
         </context-group>
       </trans-unit><trans-unit id="customerOrderItemListItemBuy" datatype="html">
         <source>buy</source><target state="final">kjøp</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component.html</context><context context-type="linenumber">32</context></context-group></trans-unit><trans-unit id="customerOrderItemListItemRent" datatype="html">
         <source>rent</source><target state="final">leie</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit><trans-unit id="customerOrderItemListItemExtend" datatype="html">
         <source>extend</source><target state="final">forlengelse</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component.html</context><context context-type="linenumber">44</context></context-group></trans-unit><trans-unit id="customerOrderItemListItemPartlyPayment" datatype="html">
         <source>partly payment</source><target state="final">delbetaling</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component.html</context><context context-type="linenumber">52</context></context-group></trans-unit>
       <trans-unit id="customerOrderItemListItemWrongBranchError" datatype="html">
         <source>
 				item is from another branch
 			</source><target state="translated">boken er fra en annen filial</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order/customer-order/customer-order-item-list/customer-order-item-list-item/customer-order-item-list-item.component.html</context><context context-type="linenumber">85</context></context-group></trans-unit><trans-unit id="3e6c0b341f917f7c7f05f5d70538a619e4222079" datatype="html">
         <source>Deadline expired!</source><target state="final">Frist utgått!</target>
-        
+
         <note priority="1" from="description">customerItemListItemDeadlineExpiredTooltip</note>
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list-item/customer-item-list-item.component.html</context><context context-type="linenumber">29</context></context-group></trans-unit><trans-unit id="customerItemListItemPartlyPayment" datatype="html">
         <source>partly payment</source><target state="translated">delbetaling</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list-item/customer-item-list-item.component.html</context><context context-type="linenumber">18</context></context-group></trans-unit><trans-unit id="customerItemListItemRent" datatype="html">
         <source>rent</source><target state="final">leie</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/customer-item/customer-item-list/customer-item-list-item/customer-item-list-item.component.html</context><context context-type="linenumber">52</context></context-group></trans-unit>
       <trans-unit id="paymentPay" datatype="html">
         <source>pay</source><target state="translated">
                         betal
                     </target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/payment/payment.component.html</context><context context-type="linenumber">6</context></context-group></trans-unit>
       <trans-unit id="paymentWith" datatype="html">
         <source>with</source><target state="translated">
 						med
 					</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/payment/payment.component.html</context><context context-type="linenumber">18</context></context-group></trans-unit><trans-unit id="checkoutProcessingOrder" datatype="html">
         <source>Processing order...</source><target state="final">Prosseserer ordre...</target>
         <context-group purpose="location">
@@ -1825,8 +1824,8 @@ Slett
 				Confirm
 			</source><target state="final">Bekreft
 			</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">app/checkout/checkout.component.html</context><context context-type="linenumber">125</context></context-group></trans-unit><trans-unit id="checkoutSendByMailButton" datatype="html">
         <source>
 				Confirm and send by mail
@@ -1867,18 +1866,18 @@ Slett
         <source>The item you scanned did not have the same BL-ID as the
 					item the customer already have.
 				</source><target state="translated">Boken du skannet hadde ikke den samme Boklisten-ID som den kunden allerede har, selv om de har samme tittel.</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">17</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartCustomersItem" datatype="html">
         <source>
 				Customer's item
 			</source><target state="final">Kundens bok</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">25</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartTheItemYouScanned" datatype="html">
         <source>
 				The item you scanned
 			</source><target state="final">Boken du skannet
 			</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">42</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartNotAbleToAdd" datatype="html">
         <source>
 					This item can not be added to cart as it does not match the
@@ -1892,24 +1891,24 @@ Slett
         </context-group>
       </trans-unit><trans-unit id="uniqueItemScanToCartAreYouSure" datatype="html">
         <source>Are you sure this is correct?</source><target state="final">Er du sikker på at dette er korrekt?</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">66</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartCancel" datatype="html">
         <source>
 				Cancel
 			</source><target state="final">Avbryt
 			</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">74</context></context-group></trans-unit><trans-unit id="uniqueItemScanToCartAddAnyway" datatype="html">
         <source>
 				Add anyway
 			</source><target state="final">Legg til likevel
 			</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-scan-to-cart/unique-item-scan-to-cart.component.html</context><context context-type="linenumber">83</context></context-group></trans-unit><trans-unit id="cartCustomer" datatype="html">
         <source>Customer
 						</source><target state="final">Kunde
 						</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">16</context></context-group></trans-unit><trans-unit id="cartNoCustomerSelected" datatype="html">
         <source>No customer selected</source><target state="final">Ingen kunde valgt</target>
         <context-group purpose="location">
@@ -1922,22 +1921,22 @@ Slett
 								</source><target state="final">
 									Bestilte bøker
 								</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">39</context></context-group></trans-unit><trans-unit id="cartCustomerItems" datatype="html">
         <source>
 									Customer items
 								</source><target state="final">
 									Kundens bøker
 								</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">48</context></context-group></trans-unit>
-      
-      
-      
-      
+
+
+
+
       <trans-unit id="cartSearch" datatype="html">
         <source>Search</source><target state="final">Søk</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart.component.html</context><context context-type="linenumber">60</context></context-group></trans-unit><trans-unit id="cartListItemDigitalBadge" datatype="html">
         <source>Digital</source><target state="final">Digital</target>
         <context-group purpose="location">
@@ -1958,11 +1957,11 @@ Slett
         </context-group>
       </trans-unit><trans-unit id="cartListCartIsEmpty" datatype="html">
         <source>Cart is empty</source><target state="final">Handlekurven er tom</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">28</context></context-group></trans-unit>
       <trans-unit id="blConfirmButton" datatype="html">
         <source>Confirm</source><target state="final">Bekreft</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list.component.html</context><context context-type="linenumber">50</context></context-group></trans-unit><trans-unit id="cartListTotalWithPartlyPayments" datatype="html">
         <source>Total to pay including partly payments</source><target state="final">Totalt å betale inkludert delbetalinger</target>
         <context-group purpose="location">
@@ -1971,12 +1970,12 @@ Slett
         </context-group>
       </trans-unit><trans-unit id="cartListItemPayLater" datatype="html">
         <source>pay later</source><target state="final">betal senere</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-amount/cart-list-item-amount.component.html</context><context context-type="linenumber">23</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionCancelThisItem" datatype="html">
         <source>cancel this item</source><target state="final">kanseller denne boken
 </target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">119</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionBuyThisItemFromCustomer" datatype="html">
         <source>
@@ -1984,27 +1983,27 @@ Slett
 </source><target state="final">
 	kjøp denne boken fra kunden
 </target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">132</context></context-group></trans-unit><trans-unit id="cartListItemActionBuybackThisItemFromCustomer" datatype="html">
         <source>
 	buyback this item from customer
 </source><target state="final">Kjøp denne boken tilbake fra kunde
 </target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">140</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionSellItemToCustomer" datatype="html">
         <source>
 	sell this item
 </source><target state="final">
 	selg denne boken</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">148</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionReturnItem" datatype="html">
         <source>
 	return this item
 </source><target state="final">
 	lever inn denne boken</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">156</context></context-group></trans-unit>
       <trans-unit id="cartListItemActionCustomerToBuyoutItem" datatype="html">
         <source>
@@ -2012,45 +2011,45 @@ Slett
 </source><target state="final">
 	utkjøp av denne boken
 </target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component.html</context><context context-type="linenumber">164</context></context-group></trans-unit>
-      
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
+
       <trans-unit id="cartDeliverySendWithBring" datatype="html">
         <source>send with Bring</source><target state="final">send med Bring</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-delivery/cart-delivery.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit>
       <trans-unit id="cartDeliveryTrackingNumberPlaceholder" datatype="html">
         <source>tracking number</source><target state="final">sporingsnummer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-delivery/cart-delivery.component.html</context><context context-type="linenumber">63</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/delivery/delivery-tracking-number-edit/delivery-tracking-number-edit.component.html</context><context context-type="linenumber">14</context></context-group></trans-unit>
       <trans-unit id="cartDeliveryConfirmDeliveryButton" datatype="html">
         <source>Confirm delivery</source><target state="final">Bekreft utlevering</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-delivery/cart-delivery.component.html</context><context context-type="linenumber">80</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/delivery/delivery-tracking-number-edit/delivery-tracking-number-edit.component.html</context><context context-type="linenumber">31</context></context-group></trans-unit><trans-unit id="cartListItemAgeNew" datatype="html">
         <source>new</source><target state="final">ny</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-age/cart-list-item-age.component.html</context><context context-type="linenumber">11</context></context-group></trans-unit><trans-unit id="cartListItemAgeUsed" datatype="html">
         <source>used</source><target state="final">brukt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/cart/cart-list/cart-list-item/cart-list-item-age/cart-list-item-age.component.html</context><context context-type="linenumber">15</context></context-group></trans-unit>
       <trans-unit id="paymentMethodSelectCard" datatype="html">
         <source>Card</source><target state="final">Kort</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">8</context></context-group></trans-unit>
       <trans-unit id="paymentMethodSelectCash" datatype="html">
         <source>Cash</source><target state="final">Kontant</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">12</context></context-group></trans-unit>
       <trans-unit id="paymentMethodSelectVipps" datatype="html">
         <source>Vipps</source><target state="final">Vipps</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">16</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/payment/payment-method-select/payment-method-select.component.html</context><context context-type="linenumber">62</context></context-group></trans-unit><trans-unit id="uniqueItemDetailItemInfo" datatype="html">
         <source>
 				Item info
@@ -2084,10 +2083,10 @@ Slett
 	</source><target state="final">
 Ikke utdelt for øyeblikket
 	</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-active-information/unique-item-active-information.component.html</context><context context-type="linenumber">27</context></context-group></trans-unit><trans-unit id="uniqueItemInformationCurrentlyNotActiveInfo" datatype="html">
         <source>The bl-id is not used by any customers at the moment.</source><target state="final">Denne Boklisten-IDen er ikke i bruk av noen kunder for øyeblikket</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/unique-item/unique-item-active-information/unique-item-active-information.component.html</context><context context-type="linenumber">32</context></context-group></trans-unit><trans-unit id="scannerAddedBlids" datatype="html">
         <source>Added <x id="INTERPOLATION" equiv-text="{{ successStatus.numberOfBlids }}"/> BLIDs for item "<x id="INTERPOLATION_1" equiv-text="{{
 						successStatus.title
@@ -2223,7 +2222,7 @@ Ikke utdelt for øyeblikket
         </context-group>
       </trans-unit><trans-unit id="customerItemDownloadBuyout" datatype="html">
         <source>
-            Buyout 
+            Buyout
           </source><target state="final">
             Utkjøp
           </target>
@@ -2271,7 +2270,7 @@ Ikke utdelt for øyeblikket
         </context-group>
       </trans-unit><trans-unit id="reportPrintUserDetailButton" datatype="html">
         <source>Print user details</source><target state="final">Skriv ut brukerdetaljer</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">../node_modules/@boklisten/bl-reporter/src/app/reporter/report-download/user-detail-download/user-detail-download.component.d.ts</context><context context-type="linenumber">39</context></context-group></trans-unit><trans-unit id="databaseReportOrderTitle" datatype="html">
         <source>
 				Orders
@@ -2380,10 +2379,10 @@ Ikke utdelt for øyeblikket
         </context-group>
       </trans-unit><trans-unit id="invoiceTableFilterPlaceholder" datatype="html">
         <source>Filter by name or invoice id</source><target state="final">Filtrer med navn eller faktura-id</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-table/invoice-table.component.html</context><context context-type="linenumber">19</context></context-group></trans-unit><trans-unit id="invoiceTablePrintSelected" datatype="html">
         <source>Visma format</source><target state="translated">Skriv ut selekterte til visma faktura format</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-table/invoice-table.component.html</context><context context-type="linenumber">43</context></context-group></trans-unit><trans-unit id="invoiceTablePrintSelectedEhf" datatype="html">
         <source>Visma EHF format</source><target state="final">Visma EHF format</target>
         <context-group purpose="location">
@@ -2392,22 +2391,22 @@ Ikke utdelt for øyeblikket
         </context-group>
       </trans-unit><trans-unit id="invoiceTableItemName" datatype="html">
         <source>Name</source><target state="final">Navn</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-table/invoice-table.component.html</context><context context-type="linenumber">93</context></context-group></trans-unit><trans-unit id="invoiceTableItemDeadline" datatype="html">
         <source>
 						Deadline
 					</source><target state="final">
 						Frist</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-table/invoice-table.component.html</context><context context-type="linenumber">94</context></context-group></trans-unit><trans-unit id="invoiceTableItemAmount" datatype="html">
         <source>Amount</source><target state="final">Beløp</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-table/invoice-table.component.html</context><context context-type="linenumber">97</context></context-group></trans-unit><trans-unit id="invoiceTableItemProcessed" datatype="html">
         <source>
 						Processed
 					</source><target state="final">
 						Prosessert</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-table/invoice-table.component.html</context><context context-type="linenumber">98</context></context-group></trans-unit><trans-unit id="invoiceDetailHeaderTitle" datatype="html">
         <source> Invoice </source><target state="final"> Faktura</target>
         <context-group purpose="location">
@@ -2524,33 +2523,33 @@ Ikke utdelt for øyeblikket
         </context-group>
       </trans-unit><trans-unit id="invoiceDetailCancel" datatype="html">
         <source>cancel</source><target state="final">Avbryt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-detail/invoice-detail.component.html</context><context context-type="linenumber">224</context></context-group></trans-unit><trans-unit id="invoiceDetailUndo" datatype="html">
         <source>undo</source><target state="final">angre</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-detail/invoice-detail.component.html</context><context context-type="linenumber">229</context></context-group></trans-unit><trans-unit id="invoiceDetailItemsTotal" datatype="html">
         <source>
 									Items total
 								</source><target state="final">
 									bøker totalt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-detail/invoice-detail.component.html</context><context context-type="linenumber">238</context></context-group></trans-unit><trans-unit id="invoiceDetailFee" datatype="html">
         <source>
 									Fee
 								</source><target state="translated">Avgift</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-detail/invoice-detail.component.html</context><context context-type="linenumber">256</context></context-group></trans-unit><trans-unit id="invoiceDetailCustomerItemPayment" datatype="html">
         <source>
 			The full price of item * a set fee percentage
 		</source><target state="final">
 			Bokens fulle pris * en satt avgiftsprosent</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-detail/invoice-detail.component.html</context><context context-type="linenumber">284</context></context-group></trans-unit><trans-unit id="invoiceDetailInvoiceFeeContent" datatype="html">
         <source>
 			A set fee * number of items
 		</source><target state="final">
 			En satt avgift * antall bøker</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-detail/invoice-detail.component.html</context><context context-type="linenumber">292</context></context-group></trans-unit><trans-unit id="invoiceCreateComponentReference" datatype="html">
         <source>reference</source><target state="final">Referanse</target>
         <context-group purpose="location">
@@ -2577,8 +2576,8 @@ Ikke utdelt for øyeblikket
         </context-group>
       </trans-unit><trans-unit id="invoiceCreateItemListPrice" datatype="html">
         <source>Price:</source><target state="final">Pris:</target>
-        
-        
+
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context><context context-type="linenumber">22</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context><context context-type="linenumber">74</context></context-group></trans-unit><trans-unit id="invoiceCreateItemListNumberOfUnits" datatype="html">
         <source>number of units:
 		</source><target state="final">Antall:</target>
@@ -2600,7 +2599,7 @@ Ikke utdelt for øyeblikket
         </context-group>
       </trans-unit><trans-unit id="invoiceCreateItemListTotal" datatype="html">
         <source>Total: </source><target state="final">Total: </target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/invoice/invoice-create/invoice-create-item-list/invoice-create-item-list-item/invoice-create-item-list-item.component.html</context><context context-type="linenumber">85</context></context-group></trans-unit><trans-unit id="invoiceCreateItemListTax" datatype="html">
         <source>Tax: </source><target state="final">MVA:</target>
         <context-group purpose="location">
@@ -2617,15 +2616,15 @@ Ikke utdelt for øyeblikket
         <source>The checkout was completed!
 			</source><target state="final">Ordren ble gjennomført!
 			</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/toaster/toast/toast.component.html</context><context context-type="linenumber">39</context></context-group></trans-unit><trans-unit id="toastNumberOfItems" datatype="html">
         <source>Number of items processed: </source><target state="final">Antall bøker prossesert:</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/toaster/toast/toast.component.html</context><context context-type="linenumber">43</context></context-group></trans-unit><trans-unit id="orderManagerShowOrder" datatype="html">
         <source>
 								Show order
 							</source><target state="translated">Vis ordre</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/order-manager/order-manager.component.html</context><context context-type="linenumber">28</context></context-group></trans-unit><trans-unit id="bookingView" datatype="html">
         <source>View</source><target state="final">Vis</target>
         <context-group purpose="location">
@@ -2722,13 +2721,13 @@ Kunde
         </context-group>
       </trans-unit><trans-unit id="bookingListEditRemoveSelected" datatype="html">
         <source>remove selected</source><target state="final">slett valgte</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/booking/booking-list-edit/booking-list-edit.component.html</context><context context-type="linenumber">39</context></context-group></trans-unit><trans-unit id="bookingListEditNoBookingsFound" datatype="html">
         <source>
 			No bookings found
 		</source><target state="final">Ingen bookinger funnet
 		</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/booking/booking-list-edit/booking-list-edit.component.html</context><context context-type="linenumber">56</context></context-group></trans-unit><trans-unit id="bookingListEditFrom" datatype="html">
         <source>From</source><target state="final">Fra</target>
         <context-group purpose="location">
@@ -2749,7 +2748,7 @@ Kunde
 						Booked
 					</source><target state="final">Booket
 					</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/booking/booking-list-edit/booking-list-edit.component.html</context><context context-type="linenumber">84</context></context-group></trans-unit><trans-unit id="bookingDisplayNotBooked" datatype="html">
         <source>Not booked</source><target state="final">Ikke booket</target>
         <context-group purpose="location">
@@ -2758,7 +2757,7 @@ Kunde
         </context-group>
       </trans-unit><trans-unit id="bookingDisplayCancel" datatype="html">
         <source>Cancel</source><target state="final">Kanseller</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/booking/booking-display/booking-display.component.html</context><context context-type="linenumber">41</context></context-group></trans-unit><trans-unit id="bookingTimePickerChooseADate" datatype="html">
         <source>
 		Choose a date
@@ -2773,7 +2772,7 @@ Kunde
 				Should send message to <x id="INTERPOLATION" equiv-text="{{ customerIds.length }}"/> customers
 			</source><target state="final">
 				Skal sende melding til <x id="INTERPOLATION"/> kunder</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder-modal/messenger-reminder-modal.component.html</context><context context-type="linenumber">8</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-send-modal/messenger-send-modal.component.html</context><context context-type="linenumber">16</context></context-group></trans-unit><trans-unit id="messengerReminderModalDeadline" datatype="html">
         <source>
 				deadline: <x id="INTERPOLATION" equiv-text="{{ deadline | blDate }}"/>
@@ -2794,29 +2793,29 @@ Kunde
 			Number of successfull messages: <x id="INTERPOLATION" equiv-text="{{ successfullMessages }}"/>
 		</source><target state="final">Antall suksessfulle meldinger: <x id="INTERPOLATION"/>
 		</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder-modal/messenger-reminder-modal.component.html</context><context context-type="linenumber">45</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-send-modal/messenger-send-modal.component.html</context><context context-type="linenumber">47</context></context-group></trans-unit><trans-unit id="messengerReminderModalNumberOfFailedMessages" datatype="html">
         <source>
 				Number of failed messages: <x id="INTERPOLATION" equiv-text="{{ failedMessages.length }}"/>
 			</source><target state="final">Antall feilede meldinger: <x id="INTERPOLATION"/>
 			</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder-modal/messenger-reminder-modal.component.html</context><context context-type="linenumber">49</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-send-modal/messenger-send-modal.component.html</context><context context-type="linenumber">51</context></context-group></trans-unit><trans-unit id="messengerReminderModalRetryFailedMessagesButton" datatype="html">
         <source>
 				retry failed messages
 			</source><target state="final">prøv å sende de feilede meldingene på nytt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder-modal/messenger-reminder-modal.component.html</context><context context-type="linenumber">69</context></context-group></trans-unit><trans-unit id="messengerReminderConfirmButton" datatype="html">
         <source>
 				Confirm
 			</source><target state="final">
 				Bekreft</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder-modal/messenger-reminder-modal.component.html</context><context context-type="linenumber">97</context></context-group></trans-unit><trans-unit id="messengerReminderDone" datatype="html">
         <source>
 				Done
 			</source><target state="final">Ferdig</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder-modal/messenger-reminder-modal.component.html</context><context context-type="linenumber">106</context></context-group></trans-unit><trans-unit id="messengerReminderEmail" datatype="html">
         <source>email</source><target state="final">E-post</target>
         <context-group purpose="location">
@@ -2825,13 +2824,13 @@ Kunde
         </context-group>
       </trans-unit><trans-unit id="messengerReminderSms" datatype="html">
         <source>sms</source><target state="final">sms</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit><trans-unit id="messengerReminderNoCustomerItemsFound" datatype="html">
         <source>No customerItems found</source><target state="final">Ingen CustomerItems funnet</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context><context context-type="linenumber">61</context></context-group><context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-match/messenger-match.component.html</context><context context-type="linenumber">37</context></context-group></trans-unit><trans-unit id="messengerReminderSendReminders" datatype="html">
         <source>Send reminders</source><target state="final">Send påminnelser</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-reminder/messenger-reminder.component.html</context><context context-type="linenumber">75</context></context-group></trans-unit><trans-unit id="messengerSendModalSendingMessageTo" datatype="html">
         <source>Sending message to <x id="INTERPOLATION" equiv-text="{{ customerIds.length }}"/> customers</source><target state="final">Sender melding til <x id="INTERPOLATION"/> kunder</target>
         <context-group purpose="location">
@@ -2862,16 +2861,16 @@ Kunde
         </context-group>
       </trans-unit><trans-unit id="messengerSendGeneriHtmlTextEmptyError" datatype="html">
         <source>Html text can not be empty</source><target state="final">Html-felt kan ikke være tom</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context><context context-type="linenumber">46</context></context-group></trans-unit><trans-unit id="messengerSendGenericSubjectEmptyError" datatype="html">
         <source>Subject is empty</source><target state="final">Emne er tomt</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context><context context-type="linenumber">57</context></context-group></trans-unit><trans-unit id="messengerSendGenericNoCustomersFound" datatype="html">
         <source>No customers found</source><target state="final">Ingen kunder funnet</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context><context context-type="linenumber">68</context></context-group></trans-unit><trans-unit id="messengerSendGeneric" datatype="html">
         <source>Send</source><target state="final">Send</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-generic/messenger-generic.component.html</context><context context-type="linenumber">82</context></context-group></trans-unit><trans-unit id="messengerReminderSendMatchMessages" datatype="html">
         <source>Send match messages</source><target state="final">Send match meldinger</target>
         <context-group purpose="location">
@@ -2880,10 +2879,10 @@ Kunde
         </context-group>
       </trans-unit><trans-unit id="messageListType" datatype="html">
         <source>Type</source><target state="final">Type</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-list/messenger-list.component.html</context><context context-type="linenumber">33</context></context-group></trans-unit><trans-unit id="massageListSubtype" datatype="html">
         <source>Subtype</source><target state="final">Subtype</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-list/messenger-list.component.html</context><context context-type="linenumber">34</context></context-group></trans-unit><trans-unit id="messageListSequence" datatype="html">
         <source>Sequence</source><target state="final">Sekvens</target>
         <context-group purpose="location">
@@ -2895,7 +2894,7 @@ Kunde
 						Customer
 					</source><target state="final">
 						Kunde</target>
-        
+
       <context-group purpose="location"><context context-type="sourcefile">app/messenger/messenger-list/messenger-list.component.html</context><context context-type="linenumber">40</context></context-group></trans-unit><trans-unit id="messageListEmailStatus" datatype="html">
         <source>
 						Email status
