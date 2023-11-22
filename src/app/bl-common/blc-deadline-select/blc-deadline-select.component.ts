@@ -33,18 +33,23 @@ export class BlcDeadlineSelectComponent implements OnInit {
 	}
 
 	private setDeadlineOptions() {
-		let branch = this.branchStoreService.getCurrentBranch();
+		const today = new Date();
+		const summerDeadline = new Date(today.getFullYear(), 6, 1);
+		const winterDeadline = new Date(today.getFullYear(), 11, 20);
 
-		for (let period of branch.paymentInfo.rentPeriods) {
-			this.deadlineOptions.push(period.date);
+		if (today > summerDeadline) {
+			summerDeadline.setFullYear(today.getFullYear() + 1);
+		}
+		if (today > winterDeadline) {
+			winterDeadline.setFullYear(today.getFullYear() + 1);
 		}
 
-		for (let period of branch.paymentInfo.partlyPaymentPeriods) {
-			if (this.deadlineOptions.indexOf(period.date) <= -1) {
-				this.deadlineOptions.push(period.date);
-			}
+		let usualDates = [summerDeadline, winterDeadline];
+		if (summerDeadline > winterDeadline) {
+			usualDates = [winterDeadline, summerDeadline];
 		}
 
+		this.deadlineOptions = usualDates;
 		this.selectDeadline(this.deadlineOptions[0]);
 	}
 }
