@@ -1270,10 +1270,10 @@
     date-fns "^2.17.0"
     tslib "^2.1.0"
 
-"@boklisten/bl-model@^0.25.26":
-  version "0.25.26"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-model/-/bl-model-0.25.26.tgz#324091873a80deb62b064dde4de2e9bb426b6acb"
-  integrity sha512-KpChYWqWcNob73KEhXucOI0cyQKQ7zI2cwIt4PEAe9VFF/LJwavwn9jwRvcrcN45qX3huCUguf2yABK9zJ62Bg==
+"@boklisten/bl-model@^0.25.27":
+  version "0.25.27"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-model/-/bl-model-0.25.27.tgz#26ba29538a09f381f1d55bb424c24ccbf71933ef"
+  integrity sha512-PfdcAWyb66GMvpX/J1r7kJjEVSFmUbwhcJ+ncDU8EAR7ZPtNTs+M7MxEbEk8dIFqlRaOgHWoYo0z53l4s2roaA==
   dependencies:
     typescript "^5.2.2"
 

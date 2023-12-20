@@ -1,0 +1,13 @@
+<div class="input-group">
+	<div class="input-group-prepend">
+		<span class="input-group-text">Egendefinert tekst</span>
+	</div>
+	<textarea
+		class="form-control"
+		[(ngModel)]="textContent"
+		(input)="onTextChange($event)"
+	></textarea>
+	<div class="input-group-append">
+		<span class="input-group-text" [textContent]="charCountText"></span>
+	</div>
+</div>

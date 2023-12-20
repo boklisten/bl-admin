@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import {
 	TextBlock,
-	Message,
 	CustomerItem,
 	CustomerItemType,
 	BlApiNotFoundError,
@@ -22,6 +21,8 @@ import moment from "moment-es6";
 export class MessengerReminderComponent implements OnInit {
 	public deadline: Date;
 	public textBlocks: TextBlock[];
+	public customContent: string;
+	public showCustomContentEditor: boolean;
 	public loading: boolean;
 	public selectedType: CustomerItemType | "all";
 	public selectedBranches: string[];
@@ -41,6 +42,8 @@ export class MessengerReminderComponent implements OnInit {
 	) {
 		this.deadline = new Date(2019, 11, 20);
 		this.textBlocks = [];
+		this.customContent = "";
+		this.showCustomContentEditor = false;
 		this.loading = false;
 		this.selectedBranches = [];
 		this.sequenceNumber = 0;
@@ -59,6 +62,11 @@ export class MessengerReminderComponent implements OnInit {
 
 	public onSequencePicked(pickedSequence: number) {
 		this.sequenceNumber = pickedSequence;
+		this.showCustomContentEditor =
+			this.mediums.sms &&
+			!this.mediums.email &&
+			!this.mediums.voice &&
+			pickedSequence === -1;
 	}
 
 	public openSendRemindersModal() {
@@ -100,6 +108,8 @@ export class MessengerReminderComponent implements OnInit {
 		modalRef.componentInstance.sequenceNumber = this.sequenceNumber;
 		modalRef.componentInstance.type = this.selectedType;
 		modalRef.componentInstance.mediums = this.mediums;
+		modalRef.componentInstance.customContent = this.customContent;
+		modalRef.componentInstance.inCustomContentMode = this.showCustomContentEditor;
 	}
 
 	private getUniqueCustomerWithNotReturnedCustomerItems(
@@ -219,5 +229,9 @@ export class MessengerReminderComponent implements OnInit {
 		}
 
 		return loanBranches;
+	}
+
+	updateMedium(medium: "sms" | "email" | "voice", $event: boolean): void {
+		this.mediums = { ...this.mediums, [medium]: $event };
 	}
 }

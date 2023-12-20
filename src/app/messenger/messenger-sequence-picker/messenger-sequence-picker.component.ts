@@ -15,6 +15,7 @@ import {
 })
 export class MessengerSequencePickerComponent implements OnInit, OnChanges {
 	@Input() messageType: string;
+	@Input() mediums: { sms: boolean; email: boolean; voice: boolean };
 	@Output() sequencePicked: EventEmitter<number>;
 	public sequences: number[];
 	public sequence: number;
@@ -46,15 +47,21 @@ export class MessengerSequencePickerComponent implements OnInit, OnChanges {
 			default:
 				this.sequences = [0];
 		}
+
+		if (this.mediums.sms && !this.mediums.email && !this.mediums.voice) {
+			this.sequences.unshift(-1);
+		}
+
 		this.selectSequence(this.sequences[0]);
 	}
 
 	public selectSequence(sequence: number) {
+		this.sequence = sequence;
 		this.sequencePicked.emit(sequence);
 	}
 
 	public ngOnChanges(changes: SimpleChanges) {
-		if (changes.messageType) {
+		if (changes.messageType || changes.mediums) {
 			this.setSequences();
 		}
 	}

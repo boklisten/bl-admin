@@ -14,6 +14,7 @@
 		<div class="col-auto">
 			<app-messenger-sequence-picker
 				[messageType]="selectedType"
+				[mediums]="mediums"
 				(sequencePicked)="onSequencePicked($event)"
 			>
 			</app-messenger-sequence-picker>
@@ -22,7 +23,7 @@
 			<app-bl-common-toggle-button
 				[value]="mediums.email"
 				[(ngModel)]="mediums.email"
-				(valueChange)="mediums.email = $event"
+				(valueChange)="updateMedium('email', $event)"
 				i18n-name="@@messengerReminderEmail"
 				name="email"
 			>
@@ -32,7 +33,7 @@
 			<app-bl-common-toggle-button
 				[value]="mediums.sms"
 				[(ngModel)]="mediums.sms"
-				(valueChange)="mediums.sms = $event"
+				(valueChange)="updateMedium('sms', $event)"
 				i18n-name="@@messengerReminderSms"
 				name="sms"
 			>
@@ -48,7 +49,14 @@
 	</div>
 	<div class="row mb-5">
 		<div class="col">
+			<app-messenger-sms-editor
+				*ngIf="showCustomContentEditor"
+				[messageType]="customContent"
+				[mediums]="mediums"
+				[(textContent)]="customContent"
+			></app-messenger-sms-editor>
 			<app-blc-textblock-edit
+				*ngIf="!showCustomContentEditor"
 				[(textBlocks)]="textBlocks"
 			></app-blc-textblock-edit>
 		</div>

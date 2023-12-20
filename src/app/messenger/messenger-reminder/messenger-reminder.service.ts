@@ -25,7 +25,8 @@ export class MessengerReminderService {
 		type: CustomerItemType | "all",
 		sequenceNumber: number,
 		mediums: { email: boolean; sms: boolean; voice: boolean },
-		textBlocks: TextBlock[]
+		textBlocks: TextBlock[],
+		customContent?: string
 	) {
 		for (let userId of userIds) {
 			this.messageService
@@ -36,7 +37,8 @@ export class MessengerReminderService {
 						type,
 						sequenceNumber,
 						this.getMessageMethod(mediums),
-						textBlocks
+						textBlocks,
+						customContent
 					)
 				)
 				.then((val) => {
@@ -76,11 +78,12 @@ export class MessengerReminderService {
 		type: CustomerItemType | "all",
 		sequenceNumber: number,
 		messageMethod: "email" | "sms" | "all",
-		textBlocks: TextBlock[]
+		textBlocks: TextBlock[],
+		customContent?: string
 	): Message {
 		return {
 			id: "",
-			messageType: "reminder",
+			messageType: customContent == null ? "reminder" : "custom-reminder",
 			messageSubtype: type as any,
 			messageMethod: messageMethod,
 			sequenceNumber: sequenceNumber,
@@ -89,6 +92,7 @@ export class MessengerReminderService {
 				deadline: this.dateService.toDeadlineFormat(deadline) as any,
 			},
 			textBlocks: textBlocks && textBlocks.length > 0 ? textBlocks : [],
+			customContent,
 		};
 	}
 

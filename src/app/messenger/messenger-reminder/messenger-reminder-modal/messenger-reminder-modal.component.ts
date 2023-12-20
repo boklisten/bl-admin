@@ -15,6 +15,8 @@ export class MessengerReminderModalComponent implements OnInit {
 	@Input() type: CustomerItemType | "all";
 	@Input() textBlocks: TextBlock[];
 	@Input() sequenceNumber: number;
+	@Input() customContent: string;
+	@Input() inCustomContentMode: boolean;
 	@Input() mediums: { sms: boolean; email: boolean; voice: boolean };
 	public confirmed: boolean;
 	public progressbarValue: number;
@@ -34,6 +36,7 @@ export class MessengerReminderModalComponent implements OnInit {
 		this.failedMessages = [];
 		this.remindersDone = false;
 		this.finished = false;
+		this.customContent = "";
 	}
 
 	ngOnInit() {
@@ -77,7 +80,8 @@ export class MessengerReminderModalComponent implements OnInit {
 			this.type,
 			this.sequenceNumber,
 			this.mediums,
-			this.textBlocks
+			this.textBlocks,
+			this.inCustomContentMode ? this.customContent : undefined
 		);
 	}
 
