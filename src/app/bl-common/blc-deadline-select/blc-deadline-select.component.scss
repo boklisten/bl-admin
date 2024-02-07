@@ -1,0 +1,14 @@
+// Class name repeated to increase specificity beyond usual button rules
+
+.deadline-passed.deadline-passed.deadline-passed:not(.active) {
+	border-color: #ffc260;
+	border-width: 2px;
+	background-color: #ffe5ca;
+	color: #606060;
+}
+
+.deadline-passed.deadline-passed.deadline-passed.active {
+	border-color: orange;
+	border-width: 2px;
+	background-color: darkorange;
+}

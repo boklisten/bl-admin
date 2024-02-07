@@ -11,6 +11,9 @@ export class BlcDeadlineSelectComponent implements OnInit {
 	@Output() deadlineChange: EventEmitter<Date>;
 	public deadlineOptions: Date[];
 	public customDeadline: boolean;
+	public today: Date;
+
+	public readonly MS_IN_DAY: number = 8.64e7;
 
 	constructor(private branchStoreService: BranchStoreService) {
 		this.deadlineChange = new EventEmitter<Date>();
@@ -34,13 +37,25 @@ export class BlcDeadlineSelectComponent implements OnInit {
 
 	private setDeadlineOptions() {
 		const today = new Date();
+		this.today = today;
 		const summerDeadline = new Date(today.getFullYear(), 6, 1);
 		const winterDeadline = new Date(today.getFullYear(), 11, 20);
+		// Continue to show the deadline for a month afterwards, with warning
+		const summerDeadlinePlusGracePeriod = new Date(
+			summerDeadline.getFullYear(),
+			7,
+			1
+		);
+		const winterDeadlinePlusGracePeriod = new Date(
+			winterDeadline.getFullYear() + 1,
+			0,
+			20
+		);
 
-		if (today > summerDeadline) {
+		if (today > summerDeadlinePlusGracePeriod) {
 			summerDeadline.setFullYear(today.getFullYear() + 1);
 		}
-		if (today > winterDeadline) {
+		if (today > winterDeadlinePlusGracePeriod) {
 			winterDeadline.setFullYear(today.getFullYear() + 1);
 		}
 

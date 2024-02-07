@@ -10,6 +10,16 @@
 				ngbButtonLabel
 				class="btn-outline-secondary"
 				*ngFor="let deadlineOption of deadlineOptions"
+				[ngClass]="
+					today - deadlineOption > MS_IN_DAY
+						? 'deadline-passed'
+						: undefined
+				"
+				[ngbTooltip]="
+					today - deadlineOption > MS_IN_DAY
+						? 'Denne fristen har gått ut'
+						: undefined
+				"
 			>
 				<input ngbButton type="radio" [value]="deadlineOption" />
 				{{ deadlineOption | blDate: "date" }}
