@@ -16,9 +16,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { CartListItemComponent } from "./cart-list/cart-list-item/cart-list-item.component";
 import { FormsModule } from "@angular/forms";
 import { CartListItemActionComponent } from "./cart-list/cart-list-item/cart-list-item-action/cart-list-item-action.component";
-import { CartConfirmComponent } from "./cart-confirm/cart-confirm.component";
 import { CustomerModule } from "../customer/customer.module";
-import { CartConfirmService } from "./cart-confirm/cart-confirm.service";
 import { PaymentModule } from "../payment/payment.module";
 import { CustomerItemModule } from "../customer-item/customer-item.module";
 import { CartDeliveryComponent } from "./cart-delivery/cart-delivery.component";
@@ -58,14 +56,12 @@ import { CartCustomerComponent } from "./cart-customer/cart-customer.component";
 		CartListComponent,
 		CartListItemComponent,
 		CartListItemActionComponent,
-		CartConfirmComponent,
 		CartDeliveryComponent,
 		CartListItemAgeComponent,
 		CartListItemAmountComponent,
 		CartCustomerComponent,
 	],
 	providers: [
-		CartConfirmService,
 		CartItemSearchService,
 		CustomerItemListService,
 		CustomerOrderItemListService,
