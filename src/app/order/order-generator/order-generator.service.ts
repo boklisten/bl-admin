@@ -41,6 +41,7 @@ export class OrderGeneratorService {
 			notification: {
 				email: email || false,
 			},
+			pendingSignature: false,
 		};
 	}
 
