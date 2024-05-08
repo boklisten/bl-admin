@@ -70,7 +70,9 @@
 				</tbody>
 			</table>
 
-			<h5 *ngIf="!isHistory">Gjenværende bøker</h5>
+			<h5 style="margin-top: 40px" *ngIf="!isHistory">
+				Gjenværende bøker
+			</h5>
 			<p *ngIf="!isHistory && remainingBooks.length === 0">
 				Kunden har levert alle sine bøker.
 			</p>
