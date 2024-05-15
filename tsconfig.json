@@ -1,5 +1,6 @@
 {
 	"compileOnSave": false,
+	"exclude": ["**/*.spec.ts", "**/*.e2e-spec.ts"],
 	"compilerOptions": {
 		"downlevelIteration": true,
 		"outDir": "./dist/out-tsc",
