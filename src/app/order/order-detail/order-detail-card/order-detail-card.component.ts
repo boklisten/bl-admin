@@ -47,11 +47,13 @@ export class OrderDetailCardComponent implements OnInit {
 			});
 			const customerItems = (
 				await Promise.all(
-					this.order.orderItems.map((orderItem) =>
-						this._customerItemService.get({
-							query: `?blid=${orderItem.blid}&returned=false&buyout=false&cancel=false`,
-						})
-					)
+					this.order.orderItems
+						.filter((oi) => oi.customerItem)
+						.map((orderItem) =>
+							this._customerItemService.get({
+								query: `?blid=${orderItem.blid}&returned=false&buyout=false&cancel=false`,
+							})
+						)
 				)
 			).flat();
 			await Promise.all(
