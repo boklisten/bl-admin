@@ -1,5 +1,11 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Branch, Order } from "@boklisten/bl-model";
+import {
+	BlApiNotFoundError,
+	BlError,
+	Branch,
+	CustomerItem,
+	Order,
+} from "@boklisten/bl-model";
 import {
 	BranchService,
 	CustomerItemService,
@@ -46,8 +52,11 @@ export class OrderDetailCardComponent implements OnInit {
 				branch: newBranchId,
 			});
 			const customerItems = (
-				await Promise.all(
+				await Promise.allSettled(
 					this.order.orderItems
+						// We are only interested in updating the branch for active customer items
+						// We know that there are no active customer items if the order has no customerItem attached, or it was cancelled in this order
+						// Thus, no need to send excessive requests.
 						.filter((oi) => oi.customerItem && oi.type !== "cancel")
 						.map((orderItem) =>
 							this._customerItemService.get({
@@ -55,7 +64,27 @@ export class OrderDetailCardComponent implements OnInit {
 							})
 						)
 				)
-			).flat();
+			)
+				.filter(
+					(
+						promiseResult
+					): promiseResult is PromiseFulfilledResult<
+						CustomerItem[]
+					> => {
+						if (promiseResult.status === "fulfilled") {
+							return true;
+						}
+
+						if (
+							promiseResult.reason["name"] !==
+							"BlApiNotFoundError"
+						) {
+							throw new Error("Could not get customerItem");
+						}
+					}
+				)
+				.map((fulfilledPromise) => fulfilledPromise.value)
+				.flat();
 			await Promise.all(
 				customerItems.map((customerItem) =>
 					this._customerItemService.update(customerItem.id, {
