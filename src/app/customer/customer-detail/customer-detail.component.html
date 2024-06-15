@@ -31,6 +31,11 @@
 										(deleted)="onUserDetailDeleted()"
 									></app-customer-delete>
 								</div>
+								<div class="col-12 mt-4" *ngIf="isAdmin()">
+									<app-customer-matches
+										[customer]="customerDetail"
+									></app-customer-matches>
+								</div>
 							</div>
 						</div>
 					</div>
