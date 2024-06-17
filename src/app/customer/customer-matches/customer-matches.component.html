@@ -1,0 +1,6 @@
+<app-bl-common-toggle-button
+	*ngIf="userMatches.length > 0"
+	[(value)]="userMatchesLocked"
+	[name]="'Match-lås'"
+	(update)="onLockChange()"
+></app-bl-common-toggle-button>
