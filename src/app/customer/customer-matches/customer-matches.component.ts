@@ -27,7 +27,7 @@ export class CustomerMatchesComponent implements OnInit {
 		try {
 			this.userMatches = (await this._matchService.get()).filter(
 				(match): match is UserMatch =>
-					match._variant === MatchVariant.UserMatch &&
+					match._variant === "UserMatch" &&
 					(match.sender === this.customer.id ||
 						match.receiver === this.customer.id)
 			);
