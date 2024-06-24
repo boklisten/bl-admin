@@ -53,16 +53,11 @@ export class OrderDetailCardComponent implements OnInit {
 			});
 			const customerItems = (
 				await Promise.allSettled(
-					this.order.orderItems
-						// We are only interested in updating the branch for active customer items
-						// We know that there are no active customer items if the order has no customerItem attached, or it was cancelled in this order
-						// Thus, no need to send excessive requests.
-						.filter((oi) => oi.customerItem && oi.type !== "cancel")
-						.map((orderItem) =>
-							this._customerItemService.get({
-								query: `?blid=${orderItem.blid}&returned=false&buyout=false&cancel=false`,
-							})
-						)
+					this.order.orderItems.map((orderItem) =>
+						this._customerItemService.get({
+							query: `?blid=${orderItem.blid}&returned=false&buyout=false&cancel=false`,
+						})
+					)
 				)
 			)
 				.filter(
