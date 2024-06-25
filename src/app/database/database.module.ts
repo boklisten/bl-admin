@@ -12,16 +12,11 @@ import { BranchModule } from "../branch/branch.module";
 import { DatabaseReportsComponent } from "./database-reports/database-reports.component";
 import { DatabaseReportOrderComponent } from "./database-reports/database-report-order/database-report-order.component";
 import { BlCommonModule } from "../bl-common/bl-common.module";
-import {
-	ReportDownloadModule,
-	OrderDownloadComponent,
-	PaymentDownloadComponent,
-	CustomerItemDownloadComponent,
-} from "@boklisten/bl-reporter";
 import { DatabaseCompaniesComponent } from "./database-companies/database-companies.component";
 import { DatabaseCompanyAddComponent } from "./database-companies/database-company-add/database-company-add.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import { DatabaseCompanyListComponent } from "./database-companies/database-company-list/database-company-list.component";
+import { ReportDownloadModule } from "./database-reports/reporter/report-download/report-download.module";
 
 @NgModule({
 	imports: [

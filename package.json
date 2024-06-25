@@ -21,7 +21,6 @@
 		"@angular/router": "^11.2.4",
 		"@boklisten/bl-connect": "^0.20.6",
 		"@boklisten/bl-login": "^1.2.20",
-		"@boklisten/bl-reporter": "^0.4.13",
 		"@fortawesome/angular-fontawesome": "^0.8.2",
 		"@fortawesome/fontawesome-svg-core": "^1.2.34",
 		"@fortawesome/free-brands-svg-icons": "^5.15.2",

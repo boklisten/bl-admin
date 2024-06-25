@@ -1,0 +1,48 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h6 i18n="@@userDetailDownloadTitle">User details</h6>
+			</div>
+			<div class="card-body">
+				<div class="row mb-2" *ngIf="wait">
+					<div class="col-12">
+						<app-bl-common-update-button [wait]="wait">
+						</app-bl-common-update-button>
+					</div>
+				</div>
+
+				<div
+					class="row justify-content-between"
+					*ngIf="currentBranchId"
+				>
+					<div class="col-auto">
+						<fa-icon [icon]="'location-arrow'"></fa-icon>
+					</div>
+					<div class="col-auto">
+						<app-bl-common-toggle-button
+							[(value)]="currentBranch"
+						></app-bl-common-toggle-button>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-12">
+						<button
+							type="button"
+							class="btn btn-outline-info btn-block"
+							(click)="onPrintUserDetails()"
+						>
+							<span class="mr-2"
+								><fa-icon [icon]="'file-excel'"></fa-icon
+							></span>
+							<span i18n="@@reportPrintUserDetailButton"
+								>Print user details</span
+							>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -228,7 +228,7 @@
   resolved "https://registry.npmjs.org/@angular/language-service/-/language-service-11.2.14.tgz"
   integrity sha512-3+0F0X4r1WeNOV6VmaMzYnJENPVmLX2/MX3/lugwZPNYKVXl/oGyh/4PB8ktntIj0tnxQuErzqRSeucNStNGRw==
 
-"@angular/localize@^11.2.3", "@angular/localize@~11.2.4":
+"@angular/localize@~11.2.4":
   version "11.2.14"
   resolved "https://registry.npmjs.org/@angular/localize/-/localize-11.2.14.tgz"
   integrity sha512-ssMuquxxqxA98LgEICEO/3JdmSflWxu5rlm/HPo28bnGiZ4IzDamZjJ1cu4S6RgsonJ1drB3Z8wkidXfEYZiWA==
@@ -1276,27 +1276,6 @@
   integrity sha512-+KgdcMqD390D9HCQ/3x5uRpSJdSdbj1s/1mjEbmo6oy48IDwnS9qJbzUFXZ4V0G+4QmrG+cE6AJ3MCC8UNiiBA==
   dependencies:
     typescript "^5.2.2"
-
-"@boklisten/bl-reporter@^0.4.13":
-  version "0.4.13"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-reporter/-/bl-reporter-0.4.13.tgz#66ed4e06dc7708ceadc9c8ca2b4ab274772de30e"
-  integrity sha512-2ucGKBaMWsYeECvKQELRt6oSXRmNf10sKeQKHHE2SZAYxfX34+uSmn2UUg5qXO4172iGTKB7Uzmk8VpNjvOoiw==
-  dependencies:
-    "@angular/localize" "^11.2.3"
-    "@fortawesome/angular-fontawesome" "^0.8.2"
-    "@fortawesome/fontawesome-svg-core" "^1.2.34"
-    "@fortawesome/free-brands-svg-icons" "^5.15.2"
-    "@fortawesome/free-regular-svg-icons" "^5.15.2"
-    "@fortawesome/free-solid-svg-icons" "^5.15.2"
-    "@ng-bootstrap/ng-bootstrap" "^9.0.2"
-    bootstrap "4.6.0"
-    classlist.js "^1.1.20150312"
-    core-js "^3.9.1"
-    file-saver "^2.0.5"
-    intl "^1.2.5"
-    moment-es6 "^1.0.0"
-    tslib "^2.1.0"
-    xlsx "^0.16.9"
 
 "@discoveryjs/json-ext@0.5.2":
   version "0.5.2"
@@ -2370,7 +2349,7 @@ boolbase@^1.0.0:
   resolved "https://registry.npmjs.org/boolbase/-/boolbase-1.0.0.tgz"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap@4.6.0, bootstrap@^4.6.0:
+bootstrap@^4.6.0:
   version "4.6.0"
   resolved "https://registry.npmjs.org/bootstrap/-/bootstrap-4.6.0.tgz"
   integrity sha512-Io55IuQY3kydzHtbGvQya3H+KorS/M9rSNyfCGCg9WZ4pyT/lCxIlpJgG1GXW/PswzC84Tr2fBYi+7+jFVQQBw==
@@ -2790,11 +2769,6 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
-
-classlist.js@^1.1.20150312:
-  version "1.1.20150312"
-  resolved "https://registry.npmjs.org/classlist.js/-/classlist.js-1.1.20150312.tgz"
-  integrity sha1-HXCEL3Ai8I2awIbOaeWyUPLFd4k=
 
 clean-stack@^2.0.0:
   version "2.2.0"
@@ -4943,11 +4917,6 @@ internal-ip@^4.3.0:
   dependencies:
     default-gateway "^4.2.0"
     ipaddr.js "^1.9.0"
-
-intl@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.npmjs.org/intl/-/intl-1.2.5.tgz"
-  integrity sha1-giRKIZDE5Bn4Nx9ao02qNCDiq94=
 
 ip-regex@^2.1.0:
   version "2.1.0"

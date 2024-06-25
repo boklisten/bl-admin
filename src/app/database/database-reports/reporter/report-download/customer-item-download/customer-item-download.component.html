@@ -1,0 +1,93 @@
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h6 i18n="@@customerItemDownloadTitle">Customer Items</h6>
+			</div>
+			<div class="card-body">
+				<div class="row mb-2" *ngIf="wait">
+					<div class="col-12">
+						<app-bl-common-update-button [wait]="wait">
+						</app-bl-common-update-button>
+					</div>
+				</div>
+
+				<div
+					class="row justify-content-between"
+					*ngIf="currentBranchId"
+				>
+					<div class="col-auto">
+						<fa-icon [icon]="'location-arrow'"></fa-icon>
+					</div>
+					<div class="col-auto">
+						<app-bl-common-toggle-button
+							[(value)]="currentBranch"
+						></app-bl-common-toggle-button>
+					</div>
+				</div>
+
+				<div class="row justify-content-between">
+					<div class="col-auto" i18n="@@customerItemDownloadReturned">
+						Returned
+					</div>
+					<div class="col-auto">
+						<app-bl-common-toggle-button
+							[(value)]="returned"
+						></app-bl-common-toggle-button>
+					</div>
+				</div>
+
+				<div class="row justify-content-between">
+					<div
+						class="col-auto"
+						i18n="@@customerItemDownloadNotReturned"
+					>
+						Not returned
+					</div>
+					<div class="col-auto">
+						<app-bl-common-toggle-button
+							[(value)]="notReturned"
+						></app-bl-common-toggle-button>
+					</div>
+				</div>
+
+				<div class="row justify-content-between">
+					<div class="col-auto" i18n="@@customerItemDownloadBuyout">
+						Buyout
+					</div>
+					<div class="col-auto">
+						<app-bl-common-toggle-button
+							[(value)]="buyout"
+						></app-bl-common-toggle-button>
+					</div>
+				</div>
+
+				<div class="row mt-2 justify-content-center">
+					<div class="col-auto">
+						<app-blc-period-select
+							(periodChange)="onPeriodChange($event)"
+						>
+						</app-blc-period-select>
+					</div>
+				</div>
+
+				<div class="row mt-5">
+					<div class="col-12">
+						<button
+							type="button"
+							class="btn btn-outline-info btn-block"
+							(click)="onPrintCustomerItems()"
+						>
+							<span class="mr-2"
+								><fa-icon [icon]="'file-excel'"></fa-icon
+							></span>
+							<span i18n="@@[reportPrintCustomerItemsButton]"
+								>Print customer items</span
+							>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
