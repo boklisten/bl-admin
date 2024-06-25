@@ -241,4 +241,19 @@ export class DateService {
 
 		return { from: new Date(), to: rentPeriod.date };
 	}
+
+	public getPeriodQuery(fromDate: Date, toDate: Date): string {
+		let query = "";
+		const dateFormat = "DDMMYYYYHHmm";
+
+		query += "&creationTime=>" + moment(fromDate).format(dateFormat);
+		query += "&creationTime=<" + moment(toDate).format(dateFormat);
+
+		return query;
+	}
+
+	public convertToExcelDate(date) {
+		const excelDateFormat = "DD.MM.YYYY  HH:mm:ss";
+		return moment(date).format(excelDateFormat);
+	}
 }
