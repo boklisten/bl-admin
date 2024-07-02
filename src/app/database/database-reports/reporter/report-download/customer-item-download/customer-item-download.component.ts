@@ -45,8 +45,8 @@ export class CustomerItemDownloadComponent implements OnInit {
 		const options = {
 			returned: this.returned,
 			buyout: this.buyout,
-			createdAfter: this.customerItemFilter.fromDate.toString(),
-			createdBefore: this.customerItemFilter.toDate.toString(),
+			createdAfter: this.customerItemFilter.fromDate,
+			createdBefore: this.customerItemFilter.toDate,
 		};
 		if (this.currentBranch && typeof this.currentBranchId !== "undefined") {
 			options["branchFilter"] = [this.currentBranchId];
@@ -56,6 +56,6 @@ export class CustomerItemDownloadComponent implements OnInit {
 			options
 		);
 		this.wait = false;
-		this.excelService.objectsToExcelFile(data.data, "customerItems");
+		this.excelService.objectsToExcelFile(data, "customerItems");
 	}
 }
