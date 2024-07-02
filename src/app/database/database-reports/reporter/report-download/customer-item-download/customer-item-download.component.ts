@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { CustomerItemDownloadService } from "./customer-item-download.service";
 import { CustomerItemFilter } from "./customerItemFilter";
-import { CustomerItem } from "@boklisten/bl-model";
+import { CustomerItemService } from "@boklisten/bl-connect";
+import { ExcelService } from "../../excel/excel.service";
 
 @Component({
 	selector: "app-customer-item-download",
@@ -14,17 +14,16 @@ export class CustomerItemDownloadComponent implements OnInit {
 	public customerItemFilter: CustomerItemFilter;
 	public wait: boolean;
 	public returned: boolean;
-	public notReturned: boolean;
 	public noCustomerItemsFound: boolean;
 	public buyout: boolean;
 
 	constructor(
-		private customerItemDownloadService: CustomerItemDownloadService
+		private customerItemService: CustomerItemService,
+		private excelService: ExcelService
 	) {
 		this.wait = false;
 		this.noCustomerItemsFound = false;
 		this.returned = false;
-		this.notReturned = true;
 		this.buyout = false;
 
 		this.customerItemFilter = {
@@ -42,36 +41,21 @@ export class CustomerItemDownloadComponent implements OnInit {
 		this.customerItemFilter.toDate = period.toDate;
 	}
 
-	public onPrintCustomerItems() {
+	public async onPrintCustomerItems() {
+		const options = {
+			returned: this.returned,
+			buyout: this.buyout,
+			createdAfter: this.customerItemFilter.fromDate.toString(),
+			createdBefore: this.customerItemFilter.toDate.toString(),
+		};
 		if (this.currentBranch && typeof this.currentBranchId !== "undefined") {
-			this.customerItemFilter["branchIds"] = [this.currentBranchId];
+			options["branchFilter"] = [this.currentBranchId];
 		}
-
-		if (!this.returned && this.notReturned) {
-			this.customerItemFilter["returned"] = false;
-		} else if (this.returned && !this.notReturned) {
-			this.customerItemFilter["returned"] = true;
-		} else {
-			this.customerItemFilter["returned"] = undefined;
-		}
-
-		this.customerItemFilter["buyout"] = this.buyout;
-
 		this.wait = true;
-		this.noCustomerItemsFound = false;
-
-		this.customerItemDownloadService
-			.getCustomerItemsByFilter(this.customerItemFilter)
-			.then((filteredCustomerItems: CustomerItem[]) => {
-				this.customerItemDownloadService.printCustomerItemsToExcelFile(
-					filteredCustomerItems,
-					"customerItems"
-				);
-				this.wait = false;
-			})
-			.catch((err) => {
-				this.wait = false;
-				this.noCustomerItemsFound = true;
-			});
+		const data = await this.customerItemService.generateCustomerItemReport(
+			options
+		);
+		this.wait = false;
+		this.excelService.objectsToExcelFile(data.data, "customerItems");
 	}
 }

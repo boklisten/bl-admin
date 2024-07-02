@@ -1260,6 +1260,13 @@
   dependencies:
     tslib "^2.1.0"
 
+"@boklisten/bl-connect@^0.20.9":
+  version "0.20.9"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-connect/-/bl-connect-0.20.9.tgz#9a598950a44b6a35a121c2e426f77ccb144b516b"
+  integrity sha512-7I1GH/9O/hluAlopxi1HFLVqMbHCT1C1VFBD4wjSbfEVmqPO2BFGp7wCpWxzB7Dh7DOAAIqu89PJeRteMisvIg==
+  dependencies:
+    tslib "^2.1.0"
+
 "@boklisten/bl-login@^1.2.20":
   version "1.2.20"
   resolved "https://registry.yarnpkg.com/@boklisten/bl-login/-/bl-login-1.2.20.tgz#95ce24dce03e980dc32b9a0aa6ad2ff5d16d10d2"

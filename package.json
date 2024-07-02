@@ -19,7 +19,7 @@
 		"@angular/platform-browser": "^11.2.4",
 		"@angular/platform-browser-dynamic": "^11.2.4",
 		"@angular/router": "^11.2.4",
-		"@boklisten/bl-connect": "^0.20.6",
+		"@boklisten/bl-connect": "^0.20.9",
 		"@boklisten/bl-login": "^1.2.20",
 		"@fortawesome/angular-fontawesome": "^0.8.2",
 		"@fortawesome/fontawesome-svg-core": "^1.2.34",
