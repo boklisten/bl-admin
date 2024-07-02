@@ -8,7 +8,6 @@ import {
 } from "@angular/core";
 
 import { CustomerItemDownloadComponent } from "./customer-item-download.component";
-import { CustomerItemDownloadService } from "./customer-item-download.service";
 
 @Component({ selector: "app-bl-common-update-button", template: "" })
 class BlCommonUpdateButtonStubComponent {

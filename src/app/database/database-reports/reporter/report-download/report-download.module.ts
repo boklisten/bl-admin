@@ -5,7 +5,6 @@ import { PaymentDownloadService } from "./payment-download/payment-download.serv
 import { PaymentDownloadComponent } from "./payment-download/payment-download.component";
 import { OrderDownloadService } from "./order-download/order-download.service";
 import { OrderDownloadComponent } from "./order-download/order-download.component";
-import { CustomerItemDownloadService } from "./customer-item-download/customer-item-download.service";
 import { CustomerItemDownloadComponent } from "./customer-item-download/customer-item-download.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { UserDetailDownloadComponent } from "./user-detail-download/user-detail-download.component";
@@ -19,7 +18,6 @@ import { BlCommonModule } from "../../../../bl-common/bl-common.module";
 		ExcelService,
 		PaymentDownloadService,
 		OrderDownloadService,
-		CustomerItemDownloadService,
 		UserDetailDownloadService,
 		DateService,
 	],
