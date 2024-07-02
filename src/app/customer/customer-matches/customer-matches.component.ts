@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { UserService } from "../../user/user.service";
 import { ToasterService } from "../../toaster/toaster.service";
 import { MatchService } from "@boklisten/bl-connect";
-import { MatchVariant, UserDetail, UserMatch } from "@boklisten/bl-model";
+import { UserDetail, UserMatch } from "@boklisten/bl-model";
 
 @Component({
 	selector: "app-customer-matches",
