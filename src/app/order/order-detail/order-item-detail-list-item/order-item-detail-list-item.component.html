@@ -78,16 +78,18 @@
 	</div>
 	<div class="row" *ngIf="orderItem.type === 'match-receive'">
 		<div class="col text-secondary">
-			<small
-				><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon>
+			<small>
+				<fa-icon [icon]="'people-arrows'" class="mr-2"></fa-icon>
+				<fa-icon [icon]="'chevron-left'" class="mr-2"></fa-icon>
 				<span>mottatt fra elev</span>
 			</small>
 		</div>
 	</div>
 	<div class="row" *ngIf="orderItem.type === 'match-deliver'">
 		<div class="col text-secondary">
-			<small
-				><fa-icon [icon]="'exchange-alt'" class="mr-2"></fa-icon>
+			<small>
+				<fa-icon [icon]="'people-arrows'" class="mr-2"></fa-icon>
+				<fa-icon [icon]="'chevron-right'" class="mr-2"></fa-icon>
 				<span>overlevert til elev</span>
 			</small>
 		</div>
