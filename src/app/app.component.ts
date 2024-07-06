@@ -3,6 +3,7 @@ import { AuthService } from "./auth/auth.service";
 import { BranchStoreService } from "./branch/branch-store.service";
 import { Router } from "@angular/router";
 import { environment } from "../environments/environment";
+import { BlNextLinkerService } from "./bl-next-linker/bl-next-linker.service";
 
 @Component({
 	selector: "app-root",
@@ -17,7 +18,8 @@ export class AppComponent {
 	constructor(
 		private _authService: AuthService,
 		private _branchStoreService: BranchStoreService,
-		private _router: Router
+		private _router: Router,
+		private _blNextLinkerService: BlNextLinkerService
 	) {
 		this.showContent = false;
 		this.devEnvironment = !environment.production;
@@ -37,6 +39,8 @@ export class AppComponent {
 		this._authService.onApplicationLogout().subscribe(() => {
 			this.showContent = false;
 		});
+
+		this._blNextLinkerService.receiveTokens();
 
 		this.showContent = this._authService.isLoggedIn();
 	}
