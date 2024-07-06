@@ -3,7 +3,7 @@ import { UserPermission } from "@boklisten/bl-model";
 import { TokenService } from "@boklisten/bl-connect";
 import { Router } from "@angular/router";
 import { Observable, Subject } from "rxjs";
-import { AuthLoginService } from "@boklisten/bl-login";
+import { BlNextLinkerService } from "../bl-next-linker/bl-next-linker.service";
 
 @Injectable()
 export class AuthService {
@@ -14,18 +14,17 @@ export class AuthService {
 
 	constructor(
 		private _tokenService: TokenService,
-		private _router: Router,
-		private _authLoginService: AuthLoginService
+		private _blNextLinkerService: BlNextLinkerService
 	) {
 		this._logout$ = new Subject<boolean>();
 		this._login$ = new Subject<boolean>();
 		this._applicationLogout$ = new Subject<boolean>();
 
-		this._authLoginService.onLogin().subscribe(() => {
+		this._blNextLinkerService.onLogin().subscribe(() => {
 			this._login$.next(true);
 		});
 
-		this._authLoginService.onLogout().subscribe(() => {
+		this._blNextLinkerService.onLogout().subscribe(() => {
 			this._logout$.next(true);
 		});
 	}
@@ -43,7 +42,7 @@ export class AuthService {
 	}
 
 	public isLoggedIn(): boolean {
-		return this._authLoginService.isLoggedIn();
+		return this._blNextLinkerService.isLoggedIn();
 	}
 
 	public isAdmin(): boolean {
@@ -83,7 +82,7 @@ export class AuthService {
 	}
 
 	private getUserPermission(): UserPermission {
-		if (this._authLoginService.isLoggedIn()) {
+		if (this._blNextLinkerService.isLoggedIn()) {
 			try {
 				this._tokenService.getAccessTokenBody();
 			} catch (e) {
@@ -97,7 +96,7 @@ export class AuthService {
 
 	public logout() {
 		this._logout$.next(true);
-		this._authLoginService.logout("/auth/menu");
+		this._blNextLinkerService.logout();
 	}
 
 	public onLogin(): Observable<boolean> {

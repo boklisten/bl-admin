@@ -46,6 +46,7 @@ import { BlcEnterEventDirective } from "./blc-key/blc-enter/blc-enter.directive"
 import { BlcClickDirective } from "./blc-click/blc-click.directive";
 import { BlcBlidComponent } from "./blc-blid/blc-blid.component";
 import { BlNavComponent } from "./bl-nav/bl-nav.component";
+import { BlcSpinnerComponent } from "./blc-spinner/blc-spinner.component";
 
 @NgModule({
 	imports: [
@@ -87,6 +88,7 @@ import { BlNavComponent } from "./bl-nav/bl-nav.component";
 		BlcEnterEventDirective,
 		BlcClickDirective,
 		BlcBlidComponent,
+		BlcSpinnerComponent,
 		BlNavComponent,
 	],
 	exports: [
@@ -116,6 +118,7 @@ import { BlNavComponent } from "./bl-nav/bl-nav.component";
 		BlcEnterEventDirective,
 		BlcClickDirective,
 		BlcBlidComponent,
+		BlcSpinnerComponent,
 		BlNavComponent,
 	],
 })
