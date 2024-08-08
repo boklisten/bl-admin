@@ -54,6 +54,7 @@ export class BlNextLinkerService {
 						refresh_token: null,
 						access_token: null,
 					},
+					replaceUrl: true,
 				});
 				this.tokensReceived = true;
 				this._login$.next(true);

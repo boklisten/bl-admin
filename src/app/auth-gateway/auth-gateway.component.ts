@@ -10,7 +10,7 @@ export class AuthGatewayComponent implements OnInit {
 
 	ngOnInit(): void {
 		setTimeout(() => {
-			this.router.navigate(["/"]);
+			this.router.navigate(["/"], { replaceUrl: true });
 		}, 200);
 	}
 }
