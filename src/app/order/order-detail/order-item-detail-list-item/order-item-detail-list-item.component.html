@@ -76,23 +76,14 @@
 			</small>
 		</div>
 	</div>
-
-	<div class="row" *ngIf="orderItem.type === 'match-deliver'">
-		<div class="col text-secondary">
-			<small>
-				<fa-icon [icon]="'people-arrows'" class="mr-2"></fa-icon>
-				<fa-icon [icon]="'chevron-right'" class="mr-2"></fa-icon>
-				<span>overlevert til elev</span>
-			</small>
-		</div>
-	</div>
 	<div
 		class="row justify-content-between text-secondary"
 		*ngIf="
 			orderItem.type === 'rent' ||
 			orderItem.type === 'extend' ||
 			orderItem.type === 'partly-payment' ||
-			orderItem.type === 'match-receive'
+			orderItem.type === 'match-receive' ||
+			orderItem.type === 'match-deliver'
 		"
 	>
 		<div
@@ -100,13 +91,17 @@
 			*ngIf="
 				orderItem.type === 'rent' ||
 				orderItem.type === 'extend' ||
-				orderItem.type === 'match-receive'
+				orderItem.type === 'match-receive' ||
+				orderItem.type === 'match-deliver'
 			"
 		>
 			<small>
 				<span
 					><fa-icon
-						*ngIf="orderItem.type !== 'match-receive'"
+						*ngIf="
+							orderItem.type !== 'match-receive' &&
+							orderItem.type !== 'match-deliver'
+						"
 						[icon]="'calendar-alt'"
 						class="mr-2"
 					></fa-icon>
@@ -128,8 +123,19 @@
 						<fa-icon [icon]="'chevron-left'" class="mr-2"></fa-icon>
 						<span>mottatt fra elev</span>
 					</span>
+					<span *ngIf="orderItem.type === 'match-deliver'">
+						<fa-icon
+							[icon]="'people-arrows'"
+							class="mr-2"
+						></fa-icon>
+						<fa-icon
+							[icon]="'chevron-right'"
+							class="mr-2"
+						></fa-icon>
+						<span>overlevert til elev</span>
+					</span>
 				</span>
-				<span class="ml-2"
+				<span class="ml-2" *ngIf="orderItem.info"
 					><fa-icon [icon]="'arrow-right'" class="mr-1"></fa-icon>
 					{{ orderItem.info["to"] | blDate }}</span
 				>
@@ -179,11 +185,7 @@
 			</small>
 			<small
 				class="bl-link-black mr-2 text-success"
-				*ngIf="
-					orderItem.customerItem &&
-					!orderItem.info &&
-					!orderItem.info.customerItem
-				"
+				*ngIf="orderItem.customerItem && !orderItem.info?.customerItem"
 				routerLink="{{
 					'/customerItem/' + orderItem.customerItem + '/detail'
 				}}"
