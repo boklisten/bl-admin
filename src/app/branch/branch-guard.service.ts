@@ -23,7 +23,7 @@ export class BranchGuardService implements CanActivate {
 		return new Promise((resolve, reject) => {
 			if (!this._branchStoreService.haveBranch()) {
 				this._branchStoreService.redirectUrl = state.url;
-				this._router.navigate(["/branch/select"]);
+				this._router.navigate(["/branch/select"], { replaceUrl: true });
 				reject(
 					new Error(
 						"branchGuardService: could not get current branch"
