@@ -2,7 +2,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { APP_INITIALIZER, ErrorHandler, NgModule } from "@angular/core";
 
 import { AppComponent } from "./app.component";
-import { AuthLoginService, LoginModule } from "@boklisten/bl-login";
 import { AppRoutingModule } from "./app-routing.module";
 import { HomeComponent } from "./home/home.component";
 import { environment } from "../environments/environment";
@@ -50,6 +49,9 @@ import { OrderManagerModule } from "./order-manager/order-manager.module";
 import * as Sentry from "@sentry/angular";
 import { Router } from "@angular/router";
 import { BulkCollectionModule } from "./bulk-collection/bulk-collection.module";
+import { BlNextLinkerModule } from "./bl-next-linker/bl-next-linker.module";
+import { BlNextLinkerService } from "./bl-next-linker/bl-next-linker.service";
+import { AuthGatewayComponent } from "./auth-gateway/auth-gateway.component";
 
 @NgModule({
 	declarations: [
@@ -60,13 +62,14 @@ import { BulkCollectionModule } from "./bulk-collection/bulk-collection.module";
 		SideBarButtonComponent,
 		MessagesComponent,
 		HeaderCustomerSearchComponent,
+		AuthGatewayComponent,
 	],
 	imports: [
 		BrowserModule,
 		BlConnectModule,
 		AppRoutingModule,
 		AuthModule,
-		LoginModule,
+		BlNextLinkerModule,
 		UserModule,
 		BranchModule,
 		FontAwesomeModule,
@@ -86,7 +89,7 @@ import { BulkCollectionModule } from "./bulk-collection/bulk-collection.module";
 		BulkCollectionModule,
 	],
 	providers: [
-		AuthLoginService,
+		BlNextLinkerService,
 		BranchStoreService,
 		BranchItemStoreService,
 		BranchGuardService,
@@ -123,23 +126,6 @@ export class AppModule {
 		library: FaIconLibrary
 	) {
 		addIconsToLibrary(library);
-
-		LoginModule.withConfig({
-			successPath: "home",
-			registerSuccessPath: "/auth/login",
-			apiPath: environment.apiPath,
-			userAgreementUrl: "/",
-			logoutPath: "/auth/login",
-			userDetailNotValidPath: "/",
-			permissionDeniedPath: "/auth/permission/denied",
-			permissions: ["employee", "manager", "admin", "super"],
-			providers: {
-				local: true,
-				facebook: true,
-				google: true,
-				feide: false,
-			},
-		});
 
 		_blConnectConfig.setConfig({ basePath: environment.apiPath });
 	}
