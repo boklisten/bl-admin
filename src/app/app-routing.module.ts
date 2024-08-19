@@ -74,6 +74,10 @@ const routes: Routes = [
 			},
 		],
 	},
+	{
+		path: "admin/hurtigutdeling",
+		component: BlNextLinkerComponent,
+	},
 ];
 
 @NgModule({

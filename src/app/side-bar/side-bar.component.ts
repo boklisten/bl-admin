@@ -70,6 +70,13 @@ export class SideBarComponent implements OnInit, OnDestroy {
 				permission: "employee",
 				selected: false,
 			},
+			{
+				name: "handout",
+				link: "admin/hurtigutdeling",
+				icon: "clipboard-list",
+				permission: "employee",
+				selected: false,
+			},
 			// {
 			// 	name: "booking",
 			// 	link: "booking",
