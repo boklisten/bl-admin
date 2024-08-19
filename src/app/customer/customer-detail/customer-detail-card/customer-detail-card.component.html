@@ -77,6 +77,18 @@
 				{{ customerDetail.id }}
 			</small>
 		</li>
+		<li class="list-group-item" *ngIf="showGuardian">
+			<small>
+				<a
+					target="_blank"
+					href="https://boklisten.no/signering/{{
+						customerDetail.id
+					}}"
+				>
+					https://boklisten.no/signering/{{ customerDetail.id }}
+				</a>
+			</small>
+		</li>
 	</ul>
 	<div class="card-footer" *ngIf="!wait">
 		<app-customer-detail-modal
