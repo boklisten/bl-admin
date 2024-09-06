@@ -4,7 +4,6 @@ import { EmployeeGuardService } from "../auth/guards/employee-guard.service";
 import { BranchGuardService } from "../branch/branch-guard.service";
 import { CustomerDetailComponent } from "./customer-detail/customer-detail.component";
 import { CustomerComponent } from "./customer.component";
-import { BookingListEditComponent } from "../booking/booking-list-edit/booking-list-edit.component";
 import { MessengerListComponent } from "../messenger/messenger-list/messenger-list.component";
 
 const routes: Routes = [
@@ -21,10 +20,6 @@ const routes: Routes = [
 			{
 				path: "detail",
 				component: CustomerDetailComponent,
-			},
-			{
-				path: "bookings",
-				component: BookingListEditComponent,
 			},
 			{
 				path: "messages",

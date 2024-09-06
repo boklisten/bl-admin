@@ -21,7 +21,6 @@ import { BranchGuardService } from "./branch/branch-guard.service";
 import { StorageService } from "./storage/storage.service";
 import { CustomerModule } from "./customer/customer.module";
 import { MessengerModule } from "./messenger/messenger.module";
-import { BookingModule } from "./booking/booking.module";
 import { ScannerModule } from "./scanner/scanner.module";
 import { addIconsToLibrary } from "./font-awesome-icons";
 import { BlCommonModule } from "./bl-common/bl-common.module";
@@ -82,7 +81,6 @@ import { AuthGatewayComponent } from "./auth-gateway/auth-gateway.component";
 		NgbDropdownModule,
 		InvoiceModule,
 		MessengerModule,
-		BookingModule,
 		ScannerModule,
 		ToasterModule,
 		OrderManagerModule,

@@ -21,7 +21,6 @@ import { OrderModule } from "../order/order.module";
 import { CustomerDetailSmallComponent } from "./customer-detail/customer-detail-small/customer-detail-small.component";
 import { CustomerItemModule } from "../customer-item/customer-item.module";
 import { MessengerModule } from "../messenger/messenger.module";
-import { BookingModule } from "../booking/booking.module";
 import { CustomerDeleteComponent } from "./customer-delete/customer-delete.component";
 import { CustomerPermissionComponent } from "./customer-permission/customer-permission.component";
 import { CustomerInformationComponent } from "./customer-information/customer-information.component";
@@ -42,7 +41,6 @@ import { CustomerMatchesComponent } from "./customer-matches/customer-matches.co
 		OrderModule,
 		CustomerItemModule,
 		MessengerModule,
-		BookingModule,
 	],
 	providers: [CustomerSearchService, CustomerDetailService],
 	declarations: [

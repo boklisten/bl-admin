@@ -77,13 +77,6 @@ export class SideBarComponent implements OnInit, OnDestroy {
 				permission: "employee",
 				selected: false,
 			},
-			// {
-			// 	name: "booking",
-			// 	link: "booking",
-			// 	icon: "calendar-alt",
-			// 	permission: "employee",
-			// 	selected: false,
-			// },
 			{
 				name: "orders",
 				link: "orders",
