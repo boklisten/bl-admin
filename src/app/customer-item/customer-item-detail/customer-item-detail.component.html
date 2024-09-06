@@ -98,9 +98,20 @@
 		<span i18n="@@customerItemDetailHandoutAt" class="text-secondary"
 			>Handout at</span
 		>
-		<span>
+		<select
+			*ngIf="isAdmin"
+			[(ngModel)]="selectedBranch"
+			class="form-control w-50"
+			(ngModelChange)="updateCustomerItemBranch(selectedBranch)"
+		>
+			<option *ngFor="let branch of branches" value="{{ branch.id }}">
+				<fa-icon class="mr-2"></fa-icon>
+				{{ branch.name }}
+			</option>
+		</select>
+		<p *ngIf="!isAdmin">
 			{{ customerItem.handoutInfo.handoutById | branchName | async }}
-		</span>
+		</p>
 	</li>
 
 	<li class="list-group-item justify-content-between d-flex" *ngIf="showMore">

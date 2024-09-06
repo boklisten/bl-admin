@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
-import { CustomerItemService, ItemService } from "@boklisten/bl-connect";
-import { CustomerItem, Item } from "@boklisten/bl-model";
+import {
+	BranchService,
+	CustomerItemService,
+	ItemService,
+} from "@boklisten/bl-connect";
+import { Branch, CustomerItem, Item } from "@boklisten/bl-model";
 import moment from "moment-es6";
-import { Moment } from "moment";
 import { ToasterService } from "../../toaster/toaster.service";
 import { AuthService } from "../../auth/auth.service";
 
@@ -20,19 +22,25 @@ export class CustomerItemDetailComponent implements OnInit {
 	public deadlineInput: string;
 	public isAdmin: boolean;
 
+	public selectedBranch: string;
+	public branches: Branch[];
+
 	constructor(
-		private _route: ActivatedRoute,
 		private _customerItemService: CustomerItemService,
 		private _itemService: ItemService,
 		private _toasterService: ToasterService,
-		private _authService: AuthService
+		private _authService: AuthService,
+		private _branchService: BranchService
 	) {
 		this.showMore = false;
 	}
 
 	ngOnInit() {
 		this.isAdmin = this._authService.isAdmin();
+		this.getAllBranches();
+
 		if (this.customerItem) {
+			this.selectedBranch = this.customerItem.handoutInfo.handoutById;
 			this.getItem();
 		}
 
@@ -40,14 +48,33 @@ export class CustomerItemDetailComponent implements OnInit {
 			console.log("customerItemId", this.customerItemId);
 			this.getCustomerItem(this.customerItemId);
 		}
+	}
 
-		/*
-		this._route.params.subscribe((params: Params) => {
-			if (params["id"]) {
-				this.getCustomerItem(params["id"]);
-			}
+	private async getAllBranches() {
+		this._branchService.get().then((branches: Branch[]) => {
+			this.branches = branches;
 		});
-       */
+	}
+
+	public async updateCustomerItemBranch(newBranchId: string) {
+		try {
+			this.customerItem = await this._customerItemService.update(
+				this.customerItem.id,
+				{
+					handoutInfo: {
+						...this.customerItem?.handoutInfo,
+						handoutById: newBranchId,
+					},
+				}
+			);
+			this._toasterService.add("SUCCESS", "Filial ble oppdatert!");
+		} catch (e) {
+			this._toasterService.add("WARNING", {
+				text: "Oppdatering av filial feilet! Årsak: " + e?.msg,
+			});
+		} finally {
+			this.selectedBranch = this.customerItem.handoutInfo.handoutById;
+		}
 	}
 
 	public onShowMore() {
