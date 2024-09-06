@@ -106,8 +106,8 @@ export class MessengerMatchComponent implements OnInit {
 			this.customerItemHandlerService
 				.getNotReturnedCustomerItems(
 					type as any,
-					this.deadline,
-					this.selectedBranches
+					this.selectedBranches,
+					this.deadline
 				)
 				.then((customerItems: CustomerItem[]) => {
 					resolve(this.getUniqueUserIds(customerItems));

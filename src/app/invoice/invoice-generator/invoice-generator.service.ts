@@ -63,8 +63,9 @@ export class InvoiceGeneratorService {
 
 		const notReturnedCustomerItems = await this.customerItemHandlerService.getNotReturnedCustomerItems(
 			customerItemType,
+			[],
 			period.fromDate,
-			[]
+			period.toDate
 		);
 
 		const groupedCustomerItems = this.groupCustomerItemsByCustomer(

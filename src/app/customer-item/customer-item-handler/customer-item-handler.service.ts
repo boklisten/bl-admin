@@ -115,13 +115,14 @@ export class CustomerItemHandlerService {
 
 	public async getNotReturnedCustomerItems(
 		type: CustomerItemType,
-		deadline: Date,
-		selectedBranches: string[]
+		selectedBranches: string[],
+		deadlineFrom: Date,
+		deadlineTo?: Date
 	): Promise<CustomerItem[]> {
-		const deadlineAboveString = moment(deadline)
+		const deadlineAboveString = moment(deadlineFrom)
 			.subtract("day", 1)
 			.format("DDMMYYYYHHmm");
-		const deadlineBelowString = moment(deadline)
+		const deadlineBelowString = moment(deadlineTo ?? deadlineFrom)
 			.add("day", 1)
 			.format("DDMMYYYYHHmm");
 
