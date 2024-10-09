@@ -10,18 +10,12 @@ export class CustomerDetailCardComponent implements OnInit {
 	@Input() customerDetail: UserDetail;
 	@Input() wait: boolean;
 	public customerDetailUpdated: boolean;
-	public showGuardian: boolean;
 
 	constructor() {
 		this.customerDetailUpdated = false;
 	}
 
-	ngOnInit() {
-		this.showGuardian =
-			this.customerDetail.guardian &&
-			this.customerDetail.guardian.name &&
-			this.customerDetail.guardian.name.length > 0;
-	}
+	ngOnInit() {}
 
 	onCustomerDetailUpdated() {
 		this.customerDetailUpdated = true;
