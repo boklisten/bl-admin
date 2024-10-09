@@ -41,17 +41,7 @@ export class BlcScannerDirective {
 		}
 
 		if (event.key === "Enter") {
-			if (
-				this.scannerString.length === 12 ||
-				this._blcScannerService.isUllernBlid(this.scannerString)
-			) {
-				this._blcScannerService.scanBlid(this.scannerString);
-			} else if (
-				this.scannerString.length > 9 &&
-				this.scannerString.length < 14
-			) {
-				this._blcScannerService.scanIsbn(this.scannerString);
-			}
+			this.processScannerString();
 			this.scannerString = "";
 		} else {
 			if (this.isAlphaNumeric(event.key)) {
@@ -61,6 +51,38 @@ export class BlcScannerDirective {
 
 		if (this.scannerString.length > 13) {
 			this.scannerString = "";
+		}
+	}
+
+	@HostListener("window:paste", ["$event"])
+	handlePaste(event: ClipboardEvent) {
+		const pastedData = event.clipboardData?.getData("text");
+		if (pastedData) {
+			this.scannerString = pastedData.trim();
+			this.processScannerString();
+			this.scannerString = "";
+		}
+	}
+
+	private processScannerString() {
+		if (
+			this.scannerString.length === 12 ||
+			this._blcScannerService.isUllernBlid(this.scannerString)
+		) {
+			this._blcScannerService.scanBlid(this.scannerString);
+		} else if (
+			this.scannerString.length > 9 &&
+			this.scannerString.length < 14
+		) {
+			this._blcScannerService.scanIsbn(this.scannerString);
+		} else {
+			this._toasterService.add(
+				"WARNING",
+				{
+					text: `"${this.scannerString}" er ikke en gyldig blid eller isbn.`,
+				},
+				5000
+			);
 		}
 	}
 
