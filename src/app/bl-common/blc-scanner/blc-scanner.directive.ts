@@ -43,10 +43,8 @@ export class BlcScannerDirective {
 		if (event.key === "Enter") {
 			this.processScannerString();
 			this.scannerString = "";
-		} else {
-			if (this.isAlphaNumeric(event.key)) {
-				this.scannerString += event.key;
-			}
+		} else if (event.key.length === 1) {
+			this.scannerString += event.key;
 		}
 
 		if (this.scannerString.length > 13) {
@@ -72,7 +70,8 @@ export class BlcScannerDirective {
 			this._blcScannerService.scanBlid(this.scannerString);
 		} else if (
 			this.scannerString.length > 9 &&
-			this.scannerString.length < 14
+			this.scannerString.length < 14 &&
+			this.isNumeric(this.scannerString)
 		) {
 			this._blcScannerService.scanIsbn(this.scannerString);
 		} else {
@@ -86,7 +85,7 @@ export class BlcScannerDirective {
 		}
 	}
 
-	private isAlphaNumeric(key: string) {
-		return !(!key || key === "Shift");
+	private isNumeric(value) {
+		return /^-?\d+$/.test(value);
 	}
 }
