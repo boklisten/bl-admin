@@ -42,7 +42,9 @@ export class OrderDetailCardComponent implements OnInit {
 
 	private async getAllBranches() {
 		this._branchService.get().then((branches: Branch[]) => {
-			this.branches = branches;
+			this.branches = branches.sort((a, b) =>
+				a.name.localeCompare(b.name, "no")
+			);
 		});
 	}
 

@@ -24,7 +24,9 @@ export class BlcBranchSelectComponent implements OnInit {
 		this.branchService
 			.get()
 			.then((branches: Branch[]) => {
-				this.branches = branches;
+				this.branches = branches.sort((a, b) =>
+					a.name.localeCompare(b.name, "no")
+				);
 				this.selectAll();
 			})
 			.catch(() => {
