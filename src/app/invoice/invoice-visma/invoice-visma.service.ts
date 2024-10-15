@@ -593,7 +593,7 @@ export class InvoiceVismaService {
 			lineNumber, // 2 'Line number':
 			invoiceNumber, // 3 'Invoice number':
 			"V", // 4 'Line type': (M)
-			customerItemPayment["payment"]["vat"] <= 0 ? "FRI" : "", // 5 'VAT type': (M)
+			customerItemPayment["payment"]["vat"] <= 0 ? "FRI" : "PLH", // 5 'VAT type': (M)
 			customerItemPayment["item"]
 				? this.getMongoIdCounter(customerItemPayment["item"]).toString()
 				: customerItemPayment["productNumber"], // 6 'Article number':
