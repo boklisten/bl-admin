@@ -55,7 +55,8 @@ export class BlcScannerDirective {
 	@HostListener("window:paste", ["$event"])
 	handlePaste(event: ClipboardEvent) {
 		const pastedData = event.clipboardData?.getData("text");
-		if (pastedData) {
+		const target = event.target as HTMLElement;
+		if (pastedData && target.tagName !== "INPUT") {
 			this.scannerString = pastedData.trim();
 			this.processScannerString();
 			this.scannerString = "";
