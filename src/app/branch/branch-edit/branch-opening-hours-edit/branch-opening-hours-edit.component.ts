@@ -77,6 +77,8 @@ export class BranchOpeningHoursEditComponent implements OnInit {
 	}
 
 	onAddOpeningHour() {
+		// Convert from zero-indexed month
+		this.fromDay.month = this.fromDay.month - 1;
 		const fromDate = moment(this.fromDay)
 			.set("hour", this.fromTime.hour)
 			.set("minute", this.fromTime.minute)
