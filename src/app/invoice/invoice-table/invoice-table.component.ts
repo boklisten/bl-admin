@@ -101,12 +101,12 @@ export class InvoiceTableComponent implements OnInit, OnChanges {
 		}
 	}
 
-	public exportToExcel(ehf: boolean) {
-		let selectedInvoices = this.getSelected();
+	public exportToExcel(ehf: boolean, isCreditOfInvoice: boolean) {
+		const selectedInvoices = this.getSelected();
 		this.printToExcelWait = true;
 
 		this.invoiceVismaService
-			.printToVismaInvoices(selectedInvoices, ehf)
+			.printToVismaInvoices(selectedInvoices, ehf, isCreditOfInvoice)
 			.then(() => {
 				this.printToExcelWait = false;
 			})

@@ -257,19 +257,32 @@ export class InvoiceVismaService {
 
 	public async printToVismaInvoices(
 		invoices: Invoice[],
-		ehf: boolean
+		ehf: boolean,
+		isCreditOfInvoice: boolean
 	): Promise<boolean> {
 		await this.addBranchNames(invoices);
-		const vismaRows = this.invoicesToVismaRows(invoices, ehf);
+		const vismaRows = this.invoicesToVismaRows(
+			invoices,
+			ehf,
+			isCreditOfInvoice
+		);
 		this.printService.printVismaRows(vismaRows);
 		return true;
 	}
 
-	public invoicesToVismaRows(invoices: Invoice[], ehf: boolean) {
+	public invoicesToVismaRows(
+		invoices: Invoice[],
+		ehf: boolean,
+		isCreditOfInvoice: boolean
+	) {
 		const vismaRows = [];
 
 		for (const invoice of invoices) {
-			for (const row of this.invoiceToVismaRows(invoice, ehf)) {
+			for (const row of this.invoiceToVismaRows(
+				invoice,
+				ehf,
+				isCreditOfInvoice
+			)) {
 				vismaRows.push(row);
 			}
 		}
@@ -356,10 +369,18 @@ export class InvoiceVismaService {
 		return epoch + counter; // return epoch + randomVal + counter;
 	}
 
-	private invoiceToVismaRows(invoice: Invoice, ehf: boolean): any[] {
+	private invoiceToVismaRows(
+		invoice: Invoice,
+		ehf: boolean,
+		isCreditOfInvoice: boolean
+	): any[] {
 		const rows = [];
 		let lineNum = 0;
-		rows.push(this.createVismaH1Field(lineNum, invoice, ehf));
+		if (isCreditOfInvoice) {
+			rows.push(this.createVismaH3Field(lineNum, invoice));
+		} else {
+			rows.push(this.createVismaH1Field(lineNum, invoice, ehf));
+		}
 
 		lineNum++;
 
@@ -475,6 +496,18 @@ export class InvoiceVismaService {
 		);
 		lineNumber++;
 		return rows;
+	}
+	private createVismaH3Field(lineNum: number, invoice: Invoice) {
+		const customerNumber = invoice.customerInfo.userDetail
+			? this.getInvoiceMiniID(invoice).toString()
+			: invoice.customerInfo.customerNumber;
+
+		return [
+			"H3", // 1 Record Type (M)
+			lineNum, // 2 Line number (M)
+			customerNumber, // 3 Customer no (M)
+			invoice.invoiceId, // 4 Invoice number (M)
+		];
 	}
 
 	private createVismaH1Field(
