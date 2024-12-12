@@ -40,7 +40,8 @@ export class BlcScannerDirective {
 			return;
 		}
 
-		if (event.key === "Enter") {
+		const target = event.target as HTMLElement;
+		if (event.key === "Enter" && target.tagName !== "INPUT") {
 			this.processScannerString();
 			this.scannerString = "";
 		} else if (event.key.length === 1) {
