@@ -32,5 +32,4 @@ export interface CartItem extends Subscribable {
 	getBLID(): string;
 	getISBN(): number;
 	getItem(): Item;
-	isDigital(): boolean;
 }

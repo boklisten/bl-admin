@@ -215,21 +215,6 @@
 					></app-bl-common-toggle-button>
 				</ng-template>
 			</ngx-datatable-column>
-
-			<ngx-datatable-column name="digital">
-				<ng-template
-					ngx-datatable-cell-template
-					let-rowIndex="rowIndex"
-					let-value="value"
-					let-row="row"
-				>
-					<app-bl-common-toggle-button
-						[(value)]="items[rowIndex].digital"
-						(update)="updateRowItem(rowIndex, 'digital')"
-						[tooltip]="'change digital state'"
-					></app-bl-common-toggle-button>
-				</ng-template>
-			</ngx-datatable-column>
 		</ngx-datatable>
 	</div>
 </div>

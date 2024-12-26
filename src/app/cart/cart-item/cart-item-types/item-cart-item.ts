@@ -86,8 +86,4 @@ export class ItemCartItem extends Subscribable implements CartItem {
 	public getItem(): Item {
 		return this._item;
 	}
-
-	public isDigital(): boolean {
-		return this._item && this._item.digital;
-	}
 }
