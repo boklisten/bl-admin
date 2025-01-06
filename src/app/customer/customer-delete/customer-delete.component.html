@@ -44,6 +44,25 @@
 					(ngModelChange)="onCustomerIdInputChange($event)"
 				/>
 			</div>
+
+			<span
+				>Vil du slå denne brukeren sammen med en annen bruker? Skriv inn
+				den andre brukerens ID</span
+			>
+
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text">
+						<fa-icon icon="user"></fa-icon>
+					</span>
+				</div>
+				<input
+					type="text"
+					class="form-control"
+					placeholder="KundeID"
+					[(ngModel)]="mergeIntoCustomerIdInput"
+				/>
+			</div>
 		</div>
 	</div>
 	<div class="modal-footer">
