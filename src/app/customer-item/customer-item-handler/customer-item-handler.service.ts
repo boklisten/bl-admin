@@ -109,7 +109,7 @@ export class CustomerItemHandlerService {
 		}
 
 		return this._customerItemService.get({
-			query: `?deadline=>${fromDate}&deadline=<${toDate}&returned=false&buyout=false&match=false&type=${customerItemType}`,
+			query: `?deadline=>${fromDate}&deadline=<${toDate}&returned=false&buyout=false&type=${customerItemType}`,
 		});
 	}
 
@@ -126,7 +126,7 @@ export class CustomerItemHandlerService {
 			.add("day", 1)
 			.format("DDMMYYYYHHmm");
 
-		let query = `?returned=false&buyout=false&match=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
+		let query = `?returned=false&buyout=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
 
 		// we currently have no notion of "loan" and therefore need to create this 'hack'
 		const branchIds = await this._branchHelperService.getBranchesWithType(

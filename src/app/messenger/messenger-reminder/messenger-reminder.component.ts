@@ -147,7 +147,7 @@ export class MessengerReminderComponent implements OnInit {
 			.add("day", 2)
 			.format("DDMMYYYYHHmm");
 
-		let query = `?returned=false&buyout=false&match=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
+		let query = `?returned=false&buyout=false&deadline=>${deadlineAboveString}&deadline=<${deadlineBelowString}`;
 
 		// we currently have no notion of "loan" and therefore need to create this 'hack'
 		const loanBranches = (
