@@ -134,6 +134,7 @@ export class InvoiceGeneratorService {
 				await Promise.all(
 					customerWithCustomerItem.customerItems.map(
 						async (customerItem) => {
+							// @ts-ignore
 							customerItem.item = await this.itemService.getById(
 								customerItem.item as string
 							);
@@ -225,6 +226,7 @@ export class InvoiceGeneratorService {
 		const customerItemPayments = [];
 
 		for (const customerItemObj of customerItems) {
+			// @ts-ignore
 			const item = customerItemObj.item as Item;
 			customerItemPayments.push({
 				customerItem: customerItemObj.id,
@@ -234,6 +236,7 @@ export class InvoiceGeneratorService {
 				numberOfItems: 1,
 				payment: this.createCustomerItemInvoicePayment(
 					customerItemObj,
+					// @ts-ignore
 					customerItemObj.item as Item
 				),
 			});

@@ -1,8 +1,15 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { UserService } from "../../user/user.service";
 import { ToasterService } from "../../toaster/toaster.service";
-import { MatchService } from "@boklisten/bl-connect";
-import { UserDetail, UserMatch } from "@boklisten/bl-model";
+import { UserDetail } from "@boklisten/bl-model";
+import { UserMatchService } from "@boklisten/bl-connect";
+
+interface SimplifiedUserMatch {
+	id: string;
+	customerA: string;
+	customerB: string;
+	itemsLockedToMatch: boolean;
+}
 
 @Component({
 	selector: "app-customer-matches",
@@ -12,27 +19,26 @@ import { UserDetail, UserMatch } from "@boklisten/bl-model";
 export class CustomerMatchesComponent implements OnInit {
 	@Input() customer: UserDetail;
 	public userMatchesLocked: boolean;
-	public userMatches: UserMatch[];
+	public userMatches: SimplifiedUserMatch[];
 
 	public isAdmin: boolean;
 
 	constructor(
 		private _userService: UserService,
-		private _matchService: MatchService,
+		private _userMatchService: UserMatchService,
 		private _toasterService: ToasterService
 	) {}
 
 	async ngOnInit() {
 		this.isAdmin = this._userService.havePermission("admin");
 		try {
-			this.userMatches = (await this._matchService.get()).filter(
-				(match): match is UserMatch =>
-					match._variant === "UserMatch" &&
-					(match.sender === this.customer.id ||
-						match.receiver === this.customer.id)
+			this.userMatches = (await this._userMatchService.get()).filter(
+				(userMatch) =>
+					userMatch.customerA === this.customer.id ||
+					userMatch.customerB === this.customer.id
 			);
 			this.userMatchesLocked = this.userMatches.some(
-				(match) => match.itemsLockedToMatch
+				(userMatch) => userMatch.itemsLockedToMatch
 			);
 		} catch (_error) {
 			// User has no matches
@@ -40,7 +46,7 @@ export class CustomerMatchesComponent implements OnInit {
 	}
 
 	public onLockChange() {
-		this._matchService
+		this._userMatchService
 			.updateLocksForCustomer(this.customer.id, this.userMatchesLocked)
 			.then((result) => {
 				this._toasterService.add("SUCCESS", "Match-lås ble oppdatert!");

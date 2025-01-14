@@ -1246,20 +1246,20 @@
     "@babel/helper-validator-identifier" "^7.22.5"
     to-fast-properties "^2.0.0"
 
-"@boklisten/bl-connect@^0.20.15":
-  version "0.20.15"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-connect/-/bl-connect-0.20.15.tgz#28ba2541e2aaed8f19e745f8cbe704c92da64d5b"
-  integrity sha512-DjgT/40G3Ybe9OLwtWyInIiPQqzn2858Wh/koBtcd24XgfA7EPD2DAQOoRo2fNTGDcSLqoAVAGbIngI0Q0ORRg==
+"@boklisten/bl-connect@^0.20.23":
+  version "0.20.23"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-connect/-/bl-connect-0.20.23.tgz#a484b91e2205695ff7f668ec930189aba150a353"
+  integrity sha512-Qp0U/ty8vyMhIxqlp1e6C2sUlhCbeu30ESeOV8c0jckmrz8zL385+xCvVDbYp9DLwz/f740np0VAgNf5928/7w==
   dependencies:
     "@auth0/angular-jwt" "5.0.2"
     tslib "^2.1.0"
 
-"@boklisten/bl-model@^0.25.37":
-  version "0.25.37"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-model/-/bl-model-0.25.37.tgz#53cf9ea5b38bc953ada24b3d1c353707d83496fc"
-  integrity sha512-+KgdcMqD390D9HCQ/3x5uRpSJdSdbj1s/1mjEbmo6oy48IDwnS9qJbzUFXZ4V0G+4QmrG+cE6AJ3MCC8UNiiBA==
+"@boklisten/bl-model@^0.26.9":
+  version "0.26.9"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-model/-/bl-model-0.26.9.tgz#eaaeb8b550723a34a932ef4a634cc5dd1019f00f"
+  integrity sha512-Hx5hBeUE/8Rz/pepGN56YRwhpU0oN2W5DaQCqopIAuTLans+PdVkNsKmrS4/F2HY+9iKPj42JUOlpzLexB7qCw==
   dependencies:
-    typescript "^5.2.2"
+    typescript "^5.7.2"
 
 "@discoveryjs/json-ext@0.5.2":
   version "0.5.2"
@@ -8691,10 +8691,10 @@ typescript@4.1, typescript@4.1.5:
   resolved "https://registry.npmjs.org/typescript/-/typescript-4.1.5.tgz"
   integrity sha512-6OSu9PTIzmn9TCDiovULTnET6BgXtDYL4Gg4szY+cGsc3JP1dQL8qvE8kShTRx1NIw4Q9IBHlwODjkjWEtMUyA==
 
-typescript@^5.2.2:
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.2.tgz#5ebb5e5a5b75f085f22bc3f8460fba308310fa78"
-  integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
+typescript@^5.7.2:
+  version "5.7.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.7.3.tgz#919b44a7dbb8583a9b856d162be24a54bf80073e"
+  integrity sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==
 
 ua-parser-js@^0.7.23:
   version "0.7.28"
