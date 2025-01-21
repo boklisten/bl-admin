@@ -47,10 +47,6 @@ export class BlcScannerDirective {
 		} else if (event.key.length === 1) {
 			this.scannerString += event.key;
 		}
-
-		if (this.scannerString.length > 13) {
-			this.scannerString = "";
-		}
 	}
 
 	@HostListener("window:paste", ["$event"])
@@ -65,26 +61,25 @@ export class BlcScannerDirective {
 	}
 
 	private processScannerString() {
-		if (
-			this.scannerString.length === 12 ||
-			this._blcScannerService.isUllernBlid(this.scannerString)
-		) {
-			this._blcScannerService.scanBlid(this.scannerString);
-		} else if (
-			this.scannerString.length > 9 &&
-			this.scannerString.length < 14 &&
-			this.isNumeric(this.scannerString)
-		) {
-			this._blcScannerService.scanIsbn(this.scannerString);
-		} else {
-			this._toasterService.add(
-				"WARNING",
-				{
-					text: `"${this.scannerString}" er ikke en gyldig blid eller isbn.`,
-				},
-				5000
-			);
+		if (this.isNumeric(this.scannerString)) {
+			if (this.scannerString.length === 8) {
+				return this._blcScannerService.scanBlid(this.scannerString);
+			}
+			if (
+				this.scannerString.length < 10 ||
+				this.scannerString.length > 13
+			) {
+				return this._toasterService.add(
+					"WARNING",
+					{
+						text: `"${this.scannerString}" er ikke en gyldig blid eller isbn.`,
+					},
+					5000
+				);
+			}
+			return this._blcScannerService.scanIsbn(this.scannerString);
 		}
+		this._blcScannerService.scanBlid(this.scannerString.slice(-12));
 	}
 
 	private isNumeric(value) {
