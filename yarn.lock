@@ -1246,10 +1246,10 @@
     "@babel/helper-validator-identifier" "^7.22.5"
     to-fast-properties "^2.0.0"
 
-"@boklisten/bl-connect@^0.20.23":
-  version "0.20.23"
-  resolved "https://registry.yarnpkg.com/@boklisten/bl-connect/-/bl-connect-0.20.23.tgz#a484b91e2205695ff7f668ec930189aba150a353"
-  integrity sha512-Qp0U/ty8vyMhIxqlp1e6C2sUlhCbeu30ESeOV8c0jckmrz8zL385+xCvVDbYp9DLwz/f740np0VAgNf5928/7w==
+"@boklisten/bl-connect@^0.20.24":
+  version "0.20.24"
+  resolved "https://registry.yarnpkg.com/@boklisten/bl-connect/-/bl-connect-0.20.24.tgz#f2334bdb25a56bf8c5c559293c8f2eb06e0a1461"
+  integrity sha512-6CWGmYE7w20ZPJT3PBiuojZzPIhi+IFd482yyqtMJYY3UluXEVy9rXD5XqIIdhnUOj7JIjpDX9bUMhm3WsZxdA==
   dependencies:
     "@auth0/angular-jwt" "5.0.2"
     tslib "^2.1.0"
