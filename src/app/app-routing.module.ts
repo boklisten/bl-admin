@@ -78,6 +78,10 @@ const routes: Routes = [
 		path: "admin/hurtigutdeling",
 		component: BlNextLinkerComponent,
 	},
+	{
+		path: "admin/venteliste",
+		component: BlNextLinkerComponent,
+	},
 ];
 
 @NgModule({
