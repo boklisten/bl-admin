@@ -107,7 +107,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 			},
 			{
 				name: "messenger",
-				link: "messenger",
+				link: "admin/kommunikasjon",
 				icon: "envelope",
 				permission: "admin",
 				selected: false,
