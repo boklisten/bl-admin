@@ -83,6 +83,7 @@ export class OrderManagerListService {
 				(orderItem) =>
 					orderItem.type !== "extend" &&
 					orderItem.type !== "buyout" &&
+					orderItem.type !== "cancel" &&
 					!orderItem.movedToOrder
 			);
 
