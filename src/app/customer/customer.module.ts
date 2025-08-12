@@ -26,7 +26,6 @@ import { CustomerPermissionComponent } from "./customer-permission/customer-perm
 import { CustomerInformationComponent } from "./customer-information/customer-information.component";
 import { CustomerChangeEmailComponent } from "./customer-change-email/customer-change-email.component";
 import { CustomerComponent } from "./customer.component";
-import { CustomerMatchesComponent } from "./customer-matches/customer-matches.component";
 
 @NgModule({
 	imports: [
@@ -59,7 +58,6 @@ import { CustomerMatchesComponent } from "./customer-matches/customer-matches.co
 		CustomerInformationComponent,
 		CustomerChangeEmailComponent,
 		CustomerComponent,
-		CustomerMatchesComponent,
 	],
 	exports: [
 		CustomerCurrentComponent,
