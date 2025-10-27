@@ -83,7 +83,7 @@ const routes: Routes = [
 		component: BlNextLinkerComponent,
 	},
 	{
-		path: "admin/kommunikasjon",
+		path: "admin/kommunikasjon/paminnelser",
 		component: BlNextLinkerComponent,
 	},
 ];
