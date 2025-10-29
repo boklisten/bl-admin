@@ -9,23 +9,12 @@
 					></app-customer-detail-card>
 				</div>
 			</div>
-			<div class="row mt-2" *ngIf="customerDetail">
+			<div class="row mt-2" *ngIf="customerDetail && isAdmin()">
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
 							<div class="row justify-content-between">
-								<div class="col-12">
-									<app-customer-change-email
-										(changed)="onUserDetailEmailChange()"
-										*ngIf="isManager()"
-									></app-customer-change-email>
-								</div>
-								<div class="col-12 mt-2" *ngIf="isAdmin()">
-									<app-customer-permission
-										[customer]="customerDetail"
-									></app-customer-permission>
-								</div>
-								<div class="col-12 mt-2" *ngIf="isAdmin()">
+								<div class="col-12 mt-2">
 									<app-customer-delete
 										[customer]="customerDetail"
 										(deleted)="onUserDetailDeleted()"

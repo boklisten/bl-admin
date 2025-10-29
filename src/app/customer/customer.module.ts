@@ -22,9 +22,7 @@ import { CustomerDetailSmallComponent } from "./customer-detail/customer-detail-
 import { CustomerItemModule } from "../customer-item/customer-item.module";
 import { MessengerModule } from "../messenger/messenger.module";
 import { CustomerDeleteComponent } from "./customer-delete/customer-delete.component";
-import { CustomerPermissionComponent } from "./customer-permission/customer-permission.component";
 import { CustomerInformationComponent } from "./customer-information/customer-information.component";
-import { CustomerChangeEmailComponent } from "./customer-change-email/customer-change-email.component";
 import { CustomerComponent } from "./customer.component";
 
 @NgModule({
@@ -54,9 +52,7 @@ import { CustomerComponent } from "./customer.component";
 		CustomerDetailPopoverComponent,
 		CustomerDetailSmallComponent,
 		CustomerDeleteComponent,
-		CustomerPermissionComponent,
 		CustomerInformationComponent,
-		CustomerChangeEmailComponent,
 		CustomerComponent,
 	],
 	exports: [

@@ -121,7 +121,7 @@ export class SideBarComponent implements OnInit, OnDestroy {
 			},
 			{
 				name: "user",
-				link: "user",
+				link: "admin/user-settings",
 				icon: this.getUserIcon(),
 				permission: "employee",
 				selected: false,

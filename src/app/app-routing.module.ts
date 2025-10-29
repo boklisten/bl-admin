@@ -86,6 +86,10 @@ const routes: Routes = [
 		path: "admin/kommunikasjon/paminnelser",
 		component: BlNextLinkerComponent,
 	},
+	{
+		path: "admin/user-settings",
+		component: BlNextLinkerComponent,
+	},
 ];
 
 @NgModule({
