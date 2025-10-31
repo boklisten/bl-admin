@@ -10,6 +10,7 @@ import { BranchUploadComponent } from "../branch/branch-upload/branch-upload.com
 import { BranchEditListComponent } from "../branch/branch-edit-list/branch-edit-list.component";
 import { ItemUploadComponent } from "../item/item-upload/item-upload.component";
 import { ItemEditListComponent } from "../item/item-edit/item-edit-list/item-edit-list.component";
+import { BlNextLinkerComponent } from "../bl-next-linker/bl-next-linker.component";
 
 const routes: Routes = [
 	{
@@ -66,7 +67,7 @@ const routes: Routes = [
 			},
 			{
 				path: "companies",
-				component: DatabaseCompaniesComponent,
+				component: BlNextLinkerComponent,
 			},
 		],
 	},
