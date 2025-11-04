@@ -48,7 +48,7 @@ const routes: Routes = [
 			},
 			{
 				path: "branches",
-				component: DatabaseBranchesComponent,
+				component: BlNextLinkerComponent,
 				children: [
 					{
 						path: "",
